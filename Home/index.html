@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sacramento Experiences</title>
+  <link rel="stylesheet" href="../Styles/styles.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <h2>Sacramento Experiences!</h2>
+
+  <div class="language-switch">
+    <button onclick="setLanguage('en')" class="lang-btn active">EN</button>
+    <button onclick="setLanguage('es')" class="lang-btn">ES</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 data-translate="hero_title">
+      Discover Colonia Like a Local
+    </h1>
+
+    <p data-translate="hero_text">
+      Handpicked experiences for curious travelers.
+    </p>
+
+    <a href="#experiences" class="btn" id="exploreBtn" data-translate="explore_btn">
+        Explore Experiences
+      </a>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section id="experiences" class="cards">
+
+<!-- Coffee -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/coffee.jpg" 
+           alt="Coffee experience in Colonia del Sacramento">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="coffee_title">
+        ☕ Coffee & Stories
+      </h3>
+  
+      <p data-translate="coffee_text">
+        Meet locals, discover hidden gems, and enjoy specialty coffee.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/coffee1.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+  
+    </div>
+  </div>
+  
+
+<!-- Plaza -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/plaza.jpg" alt="Plaza de Toros Real de San Carlos in Colonia">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="plaza_title">🏛 Plaza de Toros Experience with Beduina's coffee</h3>
+  
+      <p data-translate="plaza_text">
+        Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/plaza1.html" 
+        class="btn" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        data-translate="view_btn">
+        View Details
+     </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+ <!-- Food -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/shawarma.jpg" alt="Shawarma experience in Colonia">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="food_title">🥙 Local Food Experience</h3>
+  
+      <p data-translate="food_text">
+        Discover Colonia’s food scene, delicious shawarma and traditional rotisserie chicken.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/food1.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Romantic Dinner -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/romantic-dinner.jpg" 
+           alt="Romantic dinner for two in Colonia del Sacramento">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="romantic_title">
+        💕 Romantic Dinner for Two
+      </h3>
+  
+      <p data-translate="romantic_text">
+        Enjoy a private candlelight dinner in a charming colonial setting, perfect for couples looking for a magical night.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/romantic.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+<!-- Beer Bike -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/beerbike.jpg" alt="Beer Bike tour experience in Colonia">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="beerbike_title">🍺 Beer Bike Experience</h3>
+  
+      <p data-translate="beerbike_text">
+        Explore Colonia by bike while enjoying local beer with friends and taking in stunning views.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/beerbike.html" 
+        class="btn" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        data-translate="view_btn">
+        View Details
+     </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+ <!-- Grow -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/grow.jpg" alt="Grow shop and sunset experience in Colonia">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="grow_title">🌿 Grow Shop and Sunset Experience</h3>
+  
+      <p data-translate="grow_text">
+        Connect with a unique aspect of local culture and enjoy a relaxed sunset in a welcoming atmosphere. Adults only.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/grow.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+<!-- Lupa & Jack -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/lupajack.jpg" 
+           alt="Lupa and Jack dog walking experience in Colonia del Sacramento">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="lupajack_title">
+        🐾🐶 Walk with Lupa & Jack – Experience Colonia Like a Local
+      </h3>
+  
+      <p data-translate="lupajack_text">
+        We love animals and know how hard it can be to be away from them.
+        Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/lupajack.html" 
+        class="btn" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        data-translate="view_btn">
+        View Details
+     </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+ <!-- Horseback Riding -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/cabal.jpg" 
+           alt="Horseback riding experience through the countryside of Colonia del Sacramento">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="horse_title">
+        🐎 Horseback Riding Through Colonia’s Countryside
+      </h3>
+  
+      <p data-translate="horse_text">
+        Discover the rural side of Colonia on horseback. Enjoy a relaxed ride through open fields and quiet paths, surrounded by nature and local traditions.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/cabal.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+<!-- Introductory Flight -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/aero.jpg" 
+           alt="Introductory flight over Colonia del Sacramento with aerial views of the Río de la Plata">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="flight_title">
+        ✈️ Introductory Flight Experience
+      </h3>
+  
+      <p data-translate="flight_text">
+        Take to the skies with a certified pilot and discover Colonia from above.
+        Enjoy breathtaking aerial views of the Río de la Plata and the historic city.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/aero.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+            Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+<!-- Colonial Costume Experience -->
+<div class="card">
+    <div class="card-image">
+      <img src="../Assets/images/disfraz.jpg" 
+           alt="Visitors wearing colonial costumes in Colonia del Sacramento historic district">
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="costume_title">
+        🎭 Colonial Costume Experience with Lunch
+      </h3>
+  
+      <p data-translate="costume_text">
+        Step back in time and dress in traditional colonial attire.
+        Enjoy a delicious local lunch and experience the charm of historic Colonia
+        while capturing unforgettable memories in the old town.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/disfraz.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- JS -->
+<script src="../Scripts/translations.js"></script>
+
+</body>
+</html>
+
+<section id="info-util">
+
+    <details class="acordeon">
+      <summary>Farmacias en Colonia del Sacramento</summary>
+      <ul>
+        <li class="destacada">
+          <strong>Farmashops in Colonia del Sacramento</strong> – Manuel de Lobo 454
+          <span class="badge">24 hs</span>
+        </li>
+        <li><strong>Farmashop 85</strong> – Gral. Flores 450</li>
+        <li><strong>Farmacia Da Costa</strong> – Gral. Flores 329</li>
+        <li><strong>Farmacia Artigas I</strong> – Gral. Flores 308</li>
+      </ul>
+    </details>
+  
+    <details class="acordeon">
+      <summary>Hospitals & Health Centers</summary>
+      <ul>
+        <li>Hospital de Colonia</li>
+        <li>CAMEC</li>
+        <li>Hospital Evangélico</li>
+        <li>SATS > Movil Emergency</li>
+      </ul>
+    </details>
+  
+    <details class="acordeon">
+      <summary>Cash Machine</summary>
+      <ul>
+        <li>RedBROU – Centro</li>
+        <li>Santander – Gral. Flores</li>
+        <li>ITAÚ – Gral. Flores</li>
+        <li>Scotiabank – Gral. Flores</li>
+        <li>BBVA – Gral. Flores</li>
+        <li>Money Exchange Bervedere (Recomended) – Gral. Flores </li>
+
+      </ul>
+    </details>
+  
+  </section>

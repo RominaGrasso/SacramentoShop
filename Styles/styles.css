@@ -1,0 +1,509 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    background-color: #f8f8f8;
+    color: #333;
+  }
+  
+  /* ================= HEADER ================= */
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  
+  header h2 {
+    font-weight: 600;
+    color: #ff7a00;
+    letter-spacing: 1px;
+  }
+  
+  /* Language buttons */
+  
+  .language-switch {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .lang-btn {
+    background: transparent;
+    border: 1px solid #ff7a00;
+    color: #ff7a00;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .lang-btn:hover {
+    background: #ff7a00;
+    color: white;
+  }
+  
+  .lang-btn.active {
+    background: #ff7a00;
+    color: white;
+  }
+  
+  /* ================= HERO ================= */
+  
+  .hero {
+    height: 75vh;
+    background-image: url("../Assets/images/colonia.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+  }
+  
+  /* Overlay oscuro elegante */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  }
+  
+  .hero-content {
+    position: relative;
+    max-width: 600px;
+    color: white;
+    z-index: 1;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+  
+  /* ================= BUTTONS ================= */
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .btn {
+    background-color: #ff7a00;
+    color: white;
+  }
+  
+  .btn:hover {
+    background-color: #e66d00;
+    transform: translateY(-2px);
+  }
+  
+  .btn.secondary {
+    background-color: #eee;
+    color: #333;
+  }
+  
+  .btn.secondary:hover {
+    background-color: #ddd;
+  }
+  
+  /* ================= CARDS ================= */
+  
+  .cards {
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    transition: 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .card-content h3 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  .card-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  
+  .card-buttons .btn {
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* ================= RESPONSIVE ================= */
+  
+  @media (max-width: 768px) {
+  
+    header {
+      padding: 20px;
+    }
+  
+    .hero {
+      padding: 0 20px;
+      height: 65vh;
+    }
+  
+    .hero-content h1 {
+      font-size: 2.2rem;
+    }
+  
+    .cards {
+      padding: 60px 20px;
+    }
+  }
+
+/* ================= COFFEE PAGE ================= */
+
+.coffee-hero {
+    height: 50vh;
+    background-image: url("../Assets/images/coffee.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+  }
+  
+  /* Overlay elegante */
+  .coffee-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  }
+  
+  .coffee-hero h1 {
+    position: relative;
+    color: white;
+    font-size: 3rem;
+    z-index: 1;
+  }
+  
+  /* CONTENT */
+  
+  .coffee-content {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 0 20px;
+    line-height: 1.7;
+  }
+  
+  .coffee-content h2 {
+    margin-bottom: 15px;
+    color: #ff7a00;
+  }
+  
+  .coffee-content p {
+    margin-bottom: 20px;
+    color: #444;
+  }
+  
+  /* INCLUDES */
+  
+  .coffee-includes {
+    margin: 40px 0;
+    padding: 25px;
+    background: #fff7ef;
+    border-left: 4px solid #ff7a00;
+    border-radius: 10px;
+  }
+  
+  .coffee-includes ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .coffee-includes li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  
+  /* ITINERARY */
+  
+  .itinerary {
+    margin-top: 50px;
+  }
+  
+  .itinerary h2 {
+    margin-bottom: 20px;
+    color: #ff7a00;
+  }
+  
+  .itinerary p {
+    margin-bottom: 18px;
+    text-align: justify;
+  }
+  
+  /* ACTION BUTTONS */
+  
+  .coffee-actions {
+    margin-top: 50px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .coffee-actions .btn {
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    background-color: #ff7a00;
+    color: white;
+    transition: 0.3s ease;
+  }
+  
+  .coffee-actions .btn:hover {
+    background-color: #e66d00;
+    transform: translateY(-2px);
+  }
+  
+  .coffee-actions .btn.secondary {
+    background-color: #eee;
+    color: #333;
+  }
+  
+  .coffee-actions .btn.secondary:hover {
+    background-color: #ddd;
+  }
+  
+  /* RESPONSIVE */
+  
+  @media (max-width: 768px) {
+  
+    .coffee-hero h1 {
+      font-size: 2.2rem;
+    }
+  
+    .coffee-content {
+      margin: 50px auto;
+    }
+  
+    .coffee-actions {
+      flex-direction: column;
+    }
+  
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .btn.clicked {
+    background-color: #ff6f00;
+    color: white;
+  }
+
+  /* ================= ROMANTIC DINNER PAGE ================= */
+
+.romantic-hero {
+    height: 50vh;
+    background-image: url("../Assets/images/romantic-dinner.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+  }
+  
+  .romantic-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  }
+  
+  .romantic-hero h1 {
+    position: relative;
+    color: white;
+    font-size: 3rem;
+    z-index: 1;
+  }
+  
+  /* CONTENT */
+  
+  .romantic-content {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 0 20px;
+    line-height: 1.7;
+  }
+  
+  .romantic-content h2 {
+    margin-bottom: 15px;
+    color: #ff7a00;
+  }
+  
+  .romantic-content p {
+    margin-bottom: 20px;
+    color: #444;
+  }
+  
+  /* INCLUDES */
+  
+  .romantic-includes {
+    margin: 40px 0;
+    padding: 25px;
+    background: #fff3f7;
+    border-left: 4px solid #ff7a00;
+    border-radius: 10px;
+  }
+  
+  .romantic-includes ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .romantic-includes li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .romantic-buttons {
+    margin-top: 50px;
+    justify-content: center;
+  }
+  
+  /* RESPONSIVE */
+  
+  @media (max-width: 768px) {
+  
+    .romantic-hero h1 {
+      font-size: 2.2rem;
+    }
+  
+    .romantic-content {
+      margin: 50px auto;
+    }
+  
+    .romantic-actions {
+      flex-direction: column;
+    }
+  }
+  #info-util {
+    margin-left: 120px;   /* alineado como querías */
+    margin-top: 40px;
+    width: 600px;
+  }
+  
+  /* Caja acordeón */
+  .acordeon {
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    padding: 8px 15px;
+  }
+  
+  /* Título */
+  .acordeon summary {
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding: 10px 0;
+    color: #2c3e50;
+  }
+  
+  /* Sacar flecha default */
+  .acordeon summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Flecha personalizada */
+  .acordeon summary::after {
+    content: "▼";
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+  }
+  
+  .acordeon[open] summary::after {
+    transform: rotate(180deg);
+  }
+  
+  /* Lista */
+  .acordeon ul {
+    list-style: none;
+    padding: 10px 0 0 0;
+    margin: 0;
+  }
+  
+  .acordeon li {
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  
+  /* Destacada */
+  .destacada {
+    background: #fff9e6;
+    padding: 6px;
+    border-left: 4px solid #ffc107;
+    border-radius: 4px;
+  }
+  
+  .badge {
+    background: #28a745;
+    color: white;
+    padding: 2px 8px;
+    font-size: 11px;
+    border-radius: 12px;
+    margin-left: 8px;
+  }
