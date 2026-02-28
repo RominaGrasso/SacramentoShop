@@ -4,23 +4,30 @@
   <meta charset="UTF-8">
   <title>Sacramento Experiences</title>
   <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <header>
-  <h2>Sacramento Experiences!</h2>
+    <h2 class="logo">
+        <span class="logo-main">Sacramento</span>
+        <span class="logo-sub">Experiences</span>
+      </h2>
 
   <div class="language-switch">
-    <button onclick="setLanguage('en')" class="lang-btn active">EN</button>
-    <button onclick="setLanguage('es')" class="lang-btn">ES</button>
+    <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
+    <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+    <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
   </div>
 </header>
 
-<!-- HERO -->
+
+<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero-content">
+
     <h1 data-translate="hero_title">
       Discover Colonia Like a Local
     </h1>
@@ -29,9 +36,13 @@
       Handpicked experiences for curious travelers.
     </p>
 
-    <a href="#experiences" class="btn" id="exploreBtn" data-translate="explore_btn">
-        Explore Experiences
-      </a>
+    <a href="#experiences"
+       class="btn"
+       id="exploreBtn"
+       data-translate="explore_btn">
+       Explore Experiences
+    </a>
+
   </div>
 </section>
 
@@ -44,16 +55,16 @@
     <div class="card-image carousel">
   
       <div class="carousel-track">
-        <img src="../Assets/images/coffee.jpg" 
+        <img src="../Assets/images/bed4.jpg" 
              alt="Coffee experience in Colonia del Sacramento">
   
-        <img src="../Assets/images/colonia.jpg" 
+        <img src="../Assets/images/bed1.jpg" 
              alt="Specialty coffee in Colonia">
   
-        <img src="../Assets/images/disfraz.jpg" 
+        <img src="../Assets/images/bed2.jpg" 
              alt="Local café atmosphere in Colonia">
   
-        <img src="../Assets/images/plaza.jpg" 
+        <img src="../Assets/images/bed3.jpg" 
              alt="Coffee and stories experience">
       </div>
   
@@ -94,9 +105,9 @@
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/plaza.jpg">
-        <img src="../Assets/images/colonia.jpg">
-        <img src="../Assets/images/coffee.jpg">
-        <img src="../Assets/images/disfraz.jpg">
+        <img src="../Assets/images/plaz1.jpg">
+        <img src="../Assets/images/ser1.jpg">
+        <img src="../Assets/images/ser2.jpg">
       </div>
       <button class="carousel-btn prev">‹</button>
       <button class="carousel-btn next">›</button>
@@ -117,20 +128,20 @@
   <div class="card">
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/shawarma.jpg" alt="Shawarma experience in Colonia">
-        <img src="../Assets/images/colonia.jpg" alt="">
-        <img src="../Assets/images/plaza.jpg" alt="">
-        <img src="../Assets/images/disfraz.jpg" alt="">
+        <img src="../Assets/images/ref1.jpg" alt="Shawarma experience in Colonia">
+        <img src="../Assets/images/ref22.jpg" alt="">
+        <img src="../Assets/images/ref3.jpg" alt="">
+        <img src="../Assets/images/ref4.jpg" alt="">
       </div>
       <button class="carousel-btn prev">‹</button>
       <button class="carousel-btn next">›</button>
     </div>
   
     <div class="card-content">
-      <h3 data-translate="food_title">🥙 Local Food Experience</h3>
+      <h3 data-translate="food_title">🥙 Tradicional Chivito Uruguayo Experience</h3>
   
       <p data-translate="food_text">
-        Discover Colonia’s food scene, delicious shawarma and traditional rotisserie chicken.
+        Discover one of our most famous cousine, delicious chivito with fries and salads. Drinks and desserts included. Activity for 2.
       </p>
   
       <div class="card-buttons">
@@ -154,9 +165,9 @@
       <div class="carousel-track">
         <img src="../Assets/images/romantic-dinner.jpg" 
              alt="Romantic dinner for two in Colonia del Sacramento">
-        <img src="../Assets/images/colonia.jpg" alt="">
-        <img src="../Assets/images/plaza.jpg" alt="">
-        <img src="../Assets/images/disfraz.jpg" alt="">
+        <img src="../Assets/images/cas3.jpg" alt="">
+        <img src="../Assets/images/cas4.jpg" alt="">
+        <img src="../Assets/images/cas1.jpg" alt="">
       </div>
       <button class="carousel-btn prev">‹</button>
       <button class="carousel-btn next">›</button>
@@ -201,7 +212,7 @@
   
     <div class="card-content">
       <h3 data-translate="beer_title">
-        🍺 Beer Bike Experience
+        Colonia with friends? = 🍺 Beer Bike Experience
       </h3>
   
       <p data-translate="beer_text">
@@ -227,9 +238,9 @@
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/grow.jpg" alt="Grow shop experience in Colonia">
-        <img src="../Assets/images/colonia.jpg" alt="">
-        <img src="../Assets/images/plaza.jpg" alt="">
-        <img src="../Assets/images/disfraz.jpg" alt="">
+        <img src="../Assets/images/gr2.jpg" alt="">
+        <img src="../Assets/images/gr4.jpg" alt="">
+        <img src="../Assets/images/gr3.jpg" alt="">
       </div>
       <button class="carousel-btn prev">‹</button>
       <button class="carousel-btn next">›</button>
@@ -422,75 +433,63 @@
 
 </section>
 
-<!-- JS -->
-<script src="../Scripts/translations.js"></script>
+</section>
 
+
+<!-- ================= INFO UTIL ================= -->
+<section id="info-util">
+
+  <details class="acordeon">
+    <summary>Pharmashops in the city</summary>
+    <ul>
+      <li class="destacada">
+        <strong>Farmashop</strong> – Manuel de Lobo 454
+        <span class="badge">24 hs</span>
+      </li>
+      <li>Farmashop 85 – Gral. Flores</li>
+      <li>Farmacia Da Costa</li>
+    </ul>
+  </details>
+
+</section>
+
+
+<!-- ================= TRANSLATIONS ================= -->
+<script src="../Home/index.js"></script>
+
+
+<!-- ================= CAROUSEL ================= -->
 <script>
-    document.querySelectorAll(".carousel").forEach(carousel => {
-    
-      const track = carousel.querySelector(".carousel-track");
-      const images = track.querySelectorAll("img");
-      const prevBtn = carousel.querySelector(".prev");
-      const nextBtn = carousel.querySelector(".next");
-    
-      let index = 0;
-    
-      function updateCarousel() {
-        track.style.transform = `translateX(-${index * 100}%)`;
-      }
-    
-      nextBtn.addEventListener("click", () => {
-        index = (index + 1) % images.length;
-        updateCarousel();
-      });
-    
-      prevBtn.addEventListener("click", () => {
-        index = (index - 1 + images.length) % images.length;
-        updateCarousel();
-      });
-    
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelectorAll(".carousel").forEach(carousel => {
+
+    const track = carousel.querySelector(".carousel-track");
+    const images = track.querySelectorAll("img");
+    const prevBtn = carousel.querySelector(".prev");
+    const nextBtn = carousel.querySelector(".next");
+
+    let index = 0;
+
+    function updateCarousel() {
+      track.style.transform =
+        `translateX(-${index * 100}%)`;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index = (index + 1) % images.length;
+      updateCarousel();
     });
-    </script>
+
+    prevBtn.addEventListener("click", () => {
+      index = (index - 1 + images.length) % images.length;
+      updateCarousel();
+    });
+
+  });
+
+});
+</script>
 
 </body>
 </html>
-
-<section id="info-util">
-
-    <details class="acordeon">
-      <summary>Farmacias en Colonia del Sacramento</summary>
-      <ul>
-        <li class="destacada">
-          <strong>Farmashops in Colonia del Sacramento</strong> – Manuel de Lobo 454
-          <span class="badge">24 hs</span>
-        </li>
-        <li><strong>Farmashop 85</strong> – Gral. Flores 450</li>
-        <li><strong>Farmacia Da Costa</strong> – Gral. Flores 329</li>
-        <li><strong>Farmacia Artigas I</strong> – Gral. Flores 308</li>
-      </ul>
-    </details>
-  
-    <details class="acordeon">
-      <summary>Hospitals & Health Centers</summary>
-      <ul>
-        <li>Hospital de Colonia</li>
-        <li>CAMEC</li>
-        <li>Hospital Evangélico</li>
-        <li>SATS > Movil Emergency</li>
-      </ul>
-    </details>
-  
-    <details class="acordeon">
-      <summary>Cash Machine</summary>
-      <ul>
-        <li>RedBROU – Centro</li>
-        <li>Santander – Gral. Flores</li>
-        <li>ITAÚ – Gral. Flores</li>
-        <li>Scotiabank – Gral. Flores</li>
-        <li>BBVA – Gral. Flores</li>
-        <li>Money Exchange Bervedere (Recomended) – Gral. Flores </li>
-
-      </ul>
-    </details>
-  
-  </section>

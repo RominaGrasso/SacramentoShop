@@ -5,16 +5,12 @@ const translations = {
       hero_title: "Discover Colonia Like a Local",
       hero_text: "Handpicked experiences for curious travelers.",
       explore_btn: "Explore Experiences",
-  
-      coffee_title: "☕ Coffee & Stories",
-      coffee_text: "Discover hidden gems, and enjoy specialty coffee.",
-  
-      plaza_title: "🏛 Plaza de Toros Experience",
-      plaza_text: "Explore the iconic bullring and its history with transfer included.",
-  
-      food_title: "🥙 Local Food Experience",
-      food_text: "Discover Colonia’s food scene, delicious Shawarma and traditional Rotisserie Chicken!",
-  
+      coffee_title: "☕ Coffee with stunning views",
+      coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina, a cozy local café loved by locals and travelers alike.",
+      plaza_title: "🏛 Plaza de Toros Experience with Coffee and Panoramic Views",
+      plaza_text: "Explore the iconic bullring and its history with tickets and transfer included. Finish the experience with a specialty coffee at Serrano.",
+      food_title: "🇺🇾🥪 Traditional Uruguayan Chivito Experience",
+      food_text: "Discover one of Uruguay’s most famous dishes: the delicious chivito, served with fries and fresh salads. Drinks and dessert included.",
       book_btn: "Book Now"
     },
   
@@ -22,119 +18,128 @@ const translations = {
       hero_title: "Descubrí Colonia como un local",
       hero_text: "Experiencias seleccionadas para viajeros curiosos.",
       explore_btn: "Explorar Experiencias",
-  
       coffee_title: "☕ Café e Historias",
-      coffee_text: "Conocé locales, descubrí rincones ocultos y disfrutá café de especialidad.",
-  
+      coffee_text: "Conocé locales y disfrutá café de especialidad.",
       plaza_title: "🏛 Experiencia Plaza de Toros",
       plaza_text: "Explorá la icónica plaza de toros con traslado incluido.",
-  
       food_title: "🥙 Caminata Gastronómica",
-      food_text: "Descubrí la comida de Colonia, desde el mejor Shawarma hasta el tradicional pollo al spiedo.",
+      food_text: "Descubrí la comida de Colonia.",
+      book_btn: "Reservar"
+    },
   
+    pt: {
+      hero_title: "Descubra Colonia como um local",
+      hero_text: "Experiências selecionadas para viajantes curiosos.",
+      explore_btn: "Explorar Experiências",
+      coffee_title: "☕ Café e Histórias",
+      coffee_text: "Descubra lugares escondidos e aproveite café especial.",
+      plaza_title: "🏛 Experiência Plaza de Toros",
+      plaza_text: "Explore a icônica praça de touros.",
+      food_title: "🥙 Experiência Gastronômica",
+      food_text: "Descubra a comida de Colonia.",
       book_btn: "Reservar"
     }
   };
   
   
-  // ===== FUNCTION TO CHANGE LANGUAGE =====
+  
+  // ===== CHANGE LANGUAGE =====
   
   function setLanguage(language) {
   
-    const elements = document.querySelectorAll("[data-translate]");
+    if (!translations[language]) language = "en";
   
-    elements.forEach(element => {
-      const key = element.getAttribute("data-translate");
-  
+    document.querySelectorAll("[data-translate]").forEach(el => {
+      const key = el.dataset.translate;
       if (translations[language][key]) {
-        element.textContent = translations[language][key];
+        el.textContent = translations[language][key];
       }
     });
   
     localStorage.setItem("selectedLanguage", language);
   
-    // Marcar botón activo
-    document.querySelectorAll(".language-switch button")
-      .forEach(btn => btn.classList.remove("active"));
-  
-    const activeButton = document.querySelector(
-      `.language-switch button[onclick="setLanguage('${language}')"]`
-    );
-  
-    if (activeButton) {
-      activeButton.classList.add("active");
-    }
+    // botón activo
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.classList.toggle(
+        "active",
+        btn.dataset.lang === language
+      );
+    });
   }
   
   
-  // ===== AUTO LOAD LANGUAGE + SCROLL + ACTIVE BUTTONS + ACORDEON =====
+  
+  // ===== INIT =====
   
   document.addEventListener("DOMContentLoaded", () => {
   
-    // ===== IDIOMA AUTOMÁTICO =====
+    // idioma inicial
+    const savedLanguage =
+      localStorage.getItem("selectedLanguage") || "en";
   
-    const savedLanguage = localStorage.getItem("selectedLanguage");
-  
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    } else {
-      const browserLanguage = navigator.language.startsWith("es") ? "es" : "en";
-      setLanguage(browserLanguage);
-    }
+    setLanguage(savedLanguage);
   
   
-    // ===== SMOOTH SCROLL =====
+    // CLICK BOTONES IDIOMA ✅
+    const langButtons = document.querySelectorAll(".lang-btn");
   
+    langButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.lang);
+      });
+    });
+  
+  
+    // SMOOTH SCROLL
     const exploreBtn = document.getElementById("exploreBtn");
   
     if (exploreBtn) {
-      exploreBtn.addEventListener("click", function(e) {
+      exploreBtn.addEventListener("click", e => {
         e.preventDefault();
-  
-        const section = document.getElementById("experiences");
-  
-        if (section) {
-          section.scrollIntoView({
-            behavior: "smooth"
-          });
-        }
+        document
+          .getElementById("experiences")
+          ?.scrollIntoView({ behavior: "smooth" });
       });
     }
   
   
-    // ===== BOTONES ACTIVOS POR CARD =====
-  
-    const cards = document.querySelectorAll(".card");
-  
-    cards.forEach(card => {
-  
+    // BOTONES CARD
+    document.querySelectorAll(".card").forEach(card => {
       const buttons = card.querySelectorAll(".btn");
   
-      buttons.forEach(button => {
-        button.addEventListener("click", function() {
-  
-          buttons.forEach(btn => btn.classList.remove("clicked"));
-          this.classList.add("clicked");
-  
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("clicked"));
+          btn.classList.add("clicked");
         });
       });
-  
     });
   
   
-  // ===== ACORDEÓN (SOLO UNO ABIERTO) =====
-
-const acordeones = document.querySelectorAll(".acordeon");
-
-acordeones.forEach(acordeon => {
-  acordeon.addEventListener("click", function() {
-
-    acordeones.forEach(otro => {
-      if (otro !== this) {
-        otro.removeAttribute("open");
-      }
+    // ACORDEÓN
+    document.querySelectorAll(".acordeon").forEach(acc => {
+      acc.addEventListener("click", function () {
+        document.querySelectorAll(".acordeon").forEach(o => {
+          if (o !== this) o.removeAttribute("open");
+        });
+      });
     });
-
+  
   });
-});
-}); // ✅ cierre principal
+
+  let savedLanguage = localStorage.getItem("selectedLanguage");
+
+if (!savedLanguage) {
+  const browserLang = navigator.language;
+
+  if (browserLang.startsWith("es")) {
+    savedLanguage = "es";
+  } else if (browserLang.startsWith("pt")) {
+    savedLanguage = "pt";
+  } else {
+    savedLanguage = "en";
+  }
+}
+
+setLanguage(savedLanguage);
+
