@@ -261,7 +261,7 @@
 
 .coffee-hero {
     height: 50vh;
-    background-image: url("../Assets/images/coffee.jpg");
+    background-image: url("../Assets/images/bed1.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -606,4 +606,89 @@
   
   .carousel-btn.next {
     right: 10px;
+  }
+
+  /* ================= COFFEE GALLERY ================= */
+
+.coffee-gallery {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+  
+  .coffee-gallery h2 {
+    color: #ff7a00;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  /* grid profesional */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  
+  /* imágenes */
+  .gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    transition: 0.35s ease;
+    cursor: pointer;
+  }
+  
+  /* efecto premium */
+  .gallery-grid img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  /* ===== EXPERIENCE PRICE ===== */
+
+  .price-box {
+    display: inline-block;
+    background: #fff7ef;
+    border-left: 4px solid #ff7a00;
+    padding: 14px 20px;
+    border-radius: 10px;
+    margin: 20px 0 30px;
+  }
+  
+  .price-box h3 {
+    color: #ff7a00;
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 700;
+  }
+  
+  .price-box p {
+    margin: 2px 0 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .plaza-hero {
+    height: 55vh;
+    background-image: url("../Assets/images/plaza.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .food-hero {
+    height: 55vh;
+    background-image: url("../Assets/images/ref3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .horse-hero {
+    height: 55vh;
+    background-image: url("../Assets/images/cab3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
