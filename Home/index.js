@@ -9,8 +9,8 @@ const translations = {
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina, a cozy local café loved by locals and travelers alike.",
       plaza_title: "🏛 Plaza de Toros Experience with Coffee and Panoramic Views",
       plaza_text: "Explore the iconic bullring and its history with tickets and transfer included. Finish the experience with a specialty coffee at Serrano.",
-      food_title: "🇺🇾🥪 Traditional Uruguayan Chivito Experience",
-      food_text: "Discover one of Uruguay’s most famous dishes: the delicious chivito, served with fries and fresh salads. Drinks and dessert included.",
+      food_title: "🎭 Colonial Experience, Chivito & Plaza de Toros",
+      food_text: "Experience Colonia like never before: dress in colonial outfits, take unique photos, enjoy an authentic Uruguayan chivito, and visit the iconic Plaza de Toros. A perfect mix of culture, gastronomy and history.",
       book_btn: "Book Now"
     },
   
@@ -42,7 +42,6 @@ const translations = {
   };
   
   
-  
   // ===== CHANGE LANGUAGE =====
   
   function setLanguage(language) {
@@ -51,6 +50,7 @@ const translations = {
   
     document.querySelectorAll("[data-translate]").forEach(el => {
       const key = el.dataset.translate;
+  
       if (translations[language][key]) {
         el.textContent = translations[language][key];
       }
@@ -60,10 +60,7 @@ const translations = {
   
     // botón activo
     document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.classList.toggle(
-        "active",
-        btn.dataset.lang === language
-      );
+      btn.classList.toggle("active", btn.dataset.lang === language);
     });
   }
   
@@ -74,16 +71,12 @@ const translations = {
   document.addEventListener("DOMContentLoaded", () => {
   
     // idioma inicial
-    const savedLanguage =
-      localStorage.getItem("selectedLanguage") || "en";
-  
+    const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
     setLanguage(savedLanguage);
   
   
-    // CLICK BOTONES IDIOMA ✅
-    const langButtons = document.querySelectorAll(".lang-btn");
-  
-    langButtons.forEach(button => {
+    // CLICK BOTONES IDIOMA
+    document.querySelectorAll(".lang-btn").forEach(button => {
       button.addEventListener("click", () => {
         setLanguage(button.dataset.lang);
       });
@@ -105,41 +98,90 @@ const translations = {
   
     // BOTONES CARD
     document.querySelectorAll(".card").forEach(card => {
+  
       const buttons = card.querySelectorAll(".btn");
   
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
+  
           buttons.forEach(b => b.classList.remove("clicked"));
           btn.classList.add("clicked");
+  
         });
       });
+  
     });
   
   
     // ACORDEÓN
     document.querySelectorAll(".acordeon").forEach(acc => {
+  
       acc.addEventListener("click", function () {
+  
         document.querySelectorAll(".acordeon").forEach(o => {
           if (o !== this) o.removeAttribute("open");
         });
+  
       });
+  
+    });
+  
+  
+    // ===== VIDEO HOVER =====
+  
+    document.querySelectorAll(".card").forEach(card => {
+  
+      const video = card.querySelector(".card-video");
+  
+      if (!video) return;
+  
+      card.addEventListener("mouseenter", () => {
+        video.play();
+      });
+  
+      card.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+  
     });
   
   });
 
-  let savedLanguage = localStorage.getItem("selectedLanguage");
+  const toggle = document.querySelector(".menu-toggle");
+const menu = document.querySelector(".hamburger-menu");
 
-if (!savedLanguage) {
-  const browserLang = navigator.language;
+toggle.addEventListener("click", () => {
+  menu.style.display =
+    menu.style.display === "block" ? "none" : "block";
+});
 
-  if (browserLang.startsWith("es")) {
-    savedLanguage = "es";
-  } else if (browserLang.startsWith("pt")) {
-    savedLanguage = "pt";
-  } else {
-    savedLanguage = "en";
-  }
-}
+const filters = document.querySelectorAll(".hamburger-menu li");
+const cards = document.querySelectorAll(".card");
 
-setLanguage(savedLanguage);
+filters.forEach(filter => {
 
+  filter.addEventListener("click", () => {
+
+    const category = filter.dataset.filter;
+
+    cards.forEach(card => {
+
+      if (category === "all") {
+        card.style.display = "block";
+        return;
+      }
+
+      const cardCategories = card.dataset.category;
+
+      if (cardCategories && cardCategories.includes(category)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+
+    });
+
+  });
+
+});

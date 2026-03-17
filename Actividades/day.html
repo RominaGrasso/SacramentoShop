@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Just for a Day</title>
+
+<link rel="stylesheet" href="../Styles/styles.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <a href="../Home/index.html" class="logo">
+        <img src="../Assets/images/SacramentoLogo2.png"
+             alt="Sacramento Adventures Logo">
+      </a>
+
+<div class="language-switch">
+<button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
+<button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+<button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+</div>
+
+</header>
+
+<section class="day-hero">
+
+<h1>☀️ Just for a Day</h1>
+
+</section>
+
+<section class="coffee-content">
+
+<h2>Perfect daytime experiences</h2>
+
+<p>
+Discover the best daytime experiences in Colonia del Sacramento.
+From walking tours and bike rides to coffee experiences and local culture.
+</p>
+
+</section>
+
+<section class="cards">
+
+    <div class="card">
+    
+      <div class="card-image carousel">
+        <div class="carousel-track">
+    
+          <img src="../Assets/images/historic1.jpg">
+          <img src="../Assets/images/historic2.jpg">
+          <img src="../Assets/images/historic3.jpg">
+          <img src="../Assets/images/historic4.jpg">
+    
+        </div>
+    
+        <button class="carousel-btn prev">‹</button>
+        <button class="carousel-btn next">›</button>
+    
+      </div>
+    
+      <div class="card-content">
+    
+        <h3>
+          🏛 Guided Historic Quarter Walking Tour
+        </h3>
+    
+        <p class="card-meta">
+          ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese
+        </p>
+    
+        <p>
+          Explore Colonia del Sacramento’s UNESCO World Heritage historic district with a knowledgeable local guide.
+        </p>
+    
+        <div class="card-buttons">
+    
+          <a href="../Actividades/historic.html"
+             class="btn"
+             target="_blank">
+             View Details
+          </a>
+    
+          <a href="#" class="btn secondary">
+            Book Now
+          </a>
+    
+        </div>
+    
+      </div>
+    
+    </div>
+    
+    </section>
+
+<script>
+document.querySelectorAll(".carousel").forEach(carousel => {
+
+  const track = carousel.querySelector(".carousel-track");
+  const slides = track.querySelectorAll("img");
+  const prevBtn = carousel.querySelector(".prev");
+  const nextBtn = carousel.querySelector(".next");
+
+  let index = 0;
+
+  function updateCarousel(){
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  nextBtn.addEventListener("click", ()=>{
+    index = (index + 1) % slides.length;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener("click", ()=>{
+    index = (index - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
+});
+</script>
+
+</body>
+</html>

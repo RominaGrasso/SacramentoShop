@@ -5,53 +5,204 @@
   <title>Sacramento Experiences</title>
   <link rel="stylesheet" href="../Styles/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
 <!-- ================= HEADER ================= -->
 <header>
-    <h2 class="logo">
-        <span class="logo-main">Sacramento</span>
-        <span class="logo-sub">Adventures</span>
-      </h2>
 
-  <div class="language-switch">
-    <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
-    <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
-    <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
-  </div>
-</header>
+    <a href="../Home/index.html" class="logo">
+        <img src="../Assets/images/SacramentoLogo2.png"
+             alt="Sacramento Adventures Logo">
+      </a>
 
+    <div class="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <nav class="top-links">
+        <a href="../Home/about.html">About Us</a>
+      </nav>
+  
+    <div class="language-switch">
+      <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
+      <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+      <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+    </div>
+
+    <nav class="hamburger-menu">
+
+        <ul>
+            <li data-filter="fullday">🧭 Full Day Experiences</li>
+            <li data-filter="gastronomy">🌞 Just for a Day</li>
+            <li data-filter="gastronomy">🌙 Just for a Night</li>
+            <li data-filter="tour">🏛 Guided Tours</li>
+            <li data-filter="gastronomy">🍽 Gastronomy</li>
+            <li data-filter="nature">🐎 Nature and Animals </li>
+            <li data-filter="culture">🥁 Tradition & Culture</li>
+            <li data-filter="sports">🏄 Sports & Adventure</li>
+            <li data-filter="romantic">💕 Romantic</li>
+      
+        </ul>
+      
+      </nav>
+  
+  </header>
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="hero-content">
 
-    <h1 data-translate="hero_title">
-      Discover Colonia Like a Local
-    </h1>
+    <div class="hero-content">
+  
+      <h1 data-translate="hero_title">
+        Discover Colonia Like a Local
+      </h1>
+  
+      <p data-translate="hero_text">
+        Handpicked experiences for curious travelers.
+      </p>
 
-    <p data-translate="hero_text">
-      Handpicked experiences for curious travelers.
-    </p>
+      <div class="hero-buttons">
 
-    <a href="#experiences"
-       class="btn"
-       id="exploreBtn"
-       data-translate="explore_btn">
-       Explore Experiences
-    </a>
+        <a href="#experiences" class="btn" data-translate="explore_btn">
+          Explore Experiences
+        </a>
+      
+        <a href="../Actividades/day.html" class="btn" target="_blank">
+            ☀️ Just for a Day
+          </a>
+        
+          <a href="../Actividades/night.html" class="btn" target="_blank">
+            🌙 Just for a Night
+          </a>
+      
+      </div>
+  
+    </div>
+  
+    <img src="../Assets/images/qr.jpg"
+         class="hero-floating-img"
+         alt="Colonia experience">
+  
+  </section>
 
-  </div>
-</section>
+  <section class="trust-bar">
+
+    <div class="trust-item">
+      <i class="fa-solid fa-id-card"></i>
+      Certified guides by Uruguay Ministry of Tourism
+    </div>
+  
+    <div class="divider"></div>
+  
+    <div class="trust-item">
+      <i class="fa-solid fa-globe"></i>
+      Multilingual tours: Spanish, English & Portuguese
+    </div>
+  
+    <div class="divider"></div>
+  
+    <div class="trust-item">
+      <i class="fa-solid fa-map-location-dot"></i>
+      Local experts from Colonia del Sacramento
+    </div>
+  
+  </section>
 
 <!-- EXPERIENCES -->
 <section id="experiences" class="cards">
 
-<!-- Coffee -->
+    <div class="card">
+
+        <div class="card-image carousel">
+          <div class="carousel-track">
+      
+            <img src="../Assets/images/historic1.jpg"
+                 alt="Historic Quarter walking tour in Colonia del Sacramento">
+      
+            <img src="../Assets/images/historic2.jpg"
+                 alt="Guided walk through cobblestone streets of Colonia">
+      
+            <img src="../Assets/images/historic3.jpg"
+                 alt="Portón de Campo historic gate in Colonia">
+      
+            <img src="../Assets/images/historic4.jpg"
+                 alt="Lighthouse and colonial houses in Colonia">
+      
+          </div>
+      
+          <button class="carousel-btn prev">‹</button>
+          <button class="carousel-btn next">›</button>
+      
+        </div>
+      
+      
+        <div class="card-content">
+      
+          <h3 data-translate="historic_title">
+            🏛 Guided Historic Quarter Walking Tour
+          </h3>
+      
+          <p class="card-meta">
+            ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese
+            </p>
+    
+          <p data-translate="historic_text">
+            Explore Colonia del Sacramento’s UNESCO World Heritage historic district with a knowledgeable local guide. Walk through cobblestone streets, discover hidden corners, and hear the fascinating stories behind the city’s Portuguese and Spanish past.
+          </p>
+      
+          <div class="card-buttons">
+      
+            <a href="../Actividades/historic.html"
+               class="btn"
+               target="_blank"
+               rel="noopener noreferrer"
+               data-translate="view_btn">
+               View Details
+            </a>
+      
+            <a href="#" class="btn secondary" data-translate="book_btn">
+              Book Now
+            </a>
+      
+          </div>
+      
+        </div>
+      
+      </div>
+
+  
+
+  <div class="card">
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <img src="../Assets/images/plaza.jpg">
+        <img src="../Assets/images/plaz1.jpg">
+        <img src="../Assets/images/ser1.jpg">
+        <img src="../Assets/images/ser2.jpg">
+      </div>
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  
+    <div class="card-content">
+      <h3 data-translate="plaza_title">🏛 Plaza de Toros Experience with Beduina's coffee</h3>
+      <p data-translate="plaza_text">
+        Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!
+      </p>
+      <div class="card-buttons">
+        <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">View Details</a>
+        <a href="#" class="btn secondary" data-translate="book_btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coffee -->
 <div class="card">
 
+    <div class="card" data-category="gastronomy"></div>
     <div class="card-image carousel">
   
       <div class="carousel-track">
@@ -99,32 +250,213 @@
     </div>
   
   </div>
-  
 
   <div class="card">
+
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/plaza.jpg">
-        <img src="../Assets/images/plaz1.jpg">
-        <img src="../Assets/images/ser1.jpg">
-        <img src="../Assets/images/ser2.jpg">
+  
+        <img src="../Assets/images/lieb2.jpg"
+             alt="Las Liebres boutique restaurant in Colonia del Sacramento">
+  
+        <img src="../Assets/images/lieb1.jpg"
+             alt="Wine tasting experience at Las Liebres restaurant">
+  
+        <img src="../Assets/images/lieb3.jpg"
+             alt="Gourmet dishes at Las Liebres Colonia">
+  
+        <img src="../Assets/images/lieb4.jpg"
+             alt="Boutique dining atmosphere at Las Liebres">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="lieb_title">
+        🍷 Wine Tasting & Dining or Lunch at Las Liebres
+      </h3>
+
+      <p class="card-meta">
+        🚗 Transfer included ⏱ Duration: 2 hours
+        </p>
+  
+  
+      <p data-translate="lieb_text">
+        Enjoy an elegant experience at Las Liebres, a boutique restaurant in Colonia del Sacramento. 
+        Taste selected Uruguayan wines paired with carefully crafted dishes in a relaxed and intimate setting.
+        A perfect experience for food and wine lovers.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/lasliebres.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <video muted loop playsinline class="card-video">
+            <source src="../Assets/images/asado1.mp4" type="video/mp4">
+          </video>
+
+        <img src="../Assets/images/mate.jpg" alt="Mate experience in Uruguay">
+  
+        <img src="../Assets/images/asado1.jpg" alt="Uruguayan asado experience">
+  
+        <img src="../Assets/images/mate2.jpg" alt="Preparing traditional mate">
+
+        <img src="../Assets/images/cruz.jpg" alt="Cooking asado over fire">
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="mate_title">
+        🧉 Mate & Asado: Become Uruguayan for a Day
+      </h3>
+  
+      <p data-translate="mate_text">
+        Discover the heart of Uruguayan culture through mate and traditional asado. Learn how locals prepare and share mate, enjoy a relaxed barbecue experience, and immerse yourself in everyday traditions.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/mateasado.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+  
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+  
+        <video muted loop playsinline class="card-video">
+          <source src="../Assets/images/mate33.mp4" type="video/mp4">
+        </video>
+  
+        <img src="../Assets/images/mate22.jpg" alt="Traditional mate experience in Uruguay">
+  
+        <img src="../Assets/images/mate23.jpg" alt="Preparing mate with friends">
+  
+        <img src="../Assets/images/mate.jpg" alt="Sharing mate in Colonia">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="mateonly_title">
+        🧉 Traditional Mate Experience
+      </h3>
+  
+      <p data-translate="mateonly_text">
+        Discover Uruguay’s most beloved tradition. Learn how to prepare and share mate like locals do, understand the ritual behind it, and enjoy a relaxed cultural moment while listening to stories about everyday life in Uruguay.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/mate.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+   <!-- Lupa & Jack -->
+<div class="card">
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <img src="../Assets/images/lupajack.jpg" 
+             alt="Lupa and Jack dog walking experience in Colonia del Sacramento">
+        <img src="../Assets/images/lupajack2.jpg" alt="">
+        <img src="../Assets/images/lupajack3.jpg" alt="">
+        <img src="../Assets/images/lupajack4.jpg" alt="">
       </div>
       <button class="carousel-btn prev">‹</button>
       <button class="carousel-btn next">›</button>
     </div>
   
     <div class="card-content">
-      <h3 data-translate="plaza_title">🏛 Plaza de Toros Experience with Beduina's coffee</h3>
-      <p data-translate="plaza_text">
-        Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!
+      <h3 data-translate="lupajack_title">
+        🐾🐶 Walk with Lupa & Jack – Experience Colonia Like a Local
+      </h3>
+  
+      <p data-translate="lupajack_text">
+        We love animals and know how hard it can be to be away from them.
+        Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.
       </p>
+  
       <div class="card-buttons">
-        <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">View Details</a>
-        <a href="#" class="btn secondary" data-translate="book_btn">Book Now</a>
+        <a href="../Actividades/lupajack.html" 
+           class="btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
       </div>
     </div>
   </div>
-
   <div class="card">
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -138,11 +470,14 @@
     </div>
   
     <div class="card-content">
-      <h3 data-translate="food_title">🥙 Tradicional Chivito Uruguayo Experience</h3>
+      <h3 data-translate="food_title">🎭 Colonial Experience, Chivito & Plaza de Toros</h3>
+      <p class="card-meta">
+        🚗 Transfer included ⏱ Duration: 4 hours
+        </p>
   
       <p data-translate="food_text">
-        Discover one of our most famous cousine, delicious chivito with fries and salads. Drinks and desserts included. Activity for 2.
-      </p>
+        Experience Colonia like never before: dress in colonial outfits, take unique photos, enjoy an authentic Uruguayan chivito, and visit the iconic Plaza de Toros. A perfect mix of culture, gastronomy and history.
+    </p>
   
       <div class="card-buttons">
         <a href="../Actividades/food1.html"
@@ -158,6 +493,68 @@
         </a>
       </div>
     </div>
+  </div>
+
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+
+        <video muted loop playsinline class="card-video">
+            <source src="../Assets/images/candombe1.mp4" type="video/mp4">
+          </video>
+  
+        <img src="../Assets/images/tortafrita1.jpg"
+             alt="Candombe drums in Colonia del Sacramento">
+  
+        <img src="../Assets/images/candombe2.jpg"
+             alt="Learning to play candombe drums">
+  
+        <img src="../Assets/images/candombe3.jpg"
+             alt="Candombe performance in the streets">
+  
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="candombe_title">
+        🥁 Candombe Drum Experience
+      </h3>
+  
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+  
+      <p data-translate="candombe_text">
+        Experience the rhythm of Uruguay through candombe, one of the country’s most iconic cultural traditions. 
+        Learn the basics of traditional candombe drumming with local musicians and discover the history behind this Afro-Uruguayan heritage while playing the tambor yourself.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/candombe.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
   </div>
 
   <div class="card">
@@ -216,7 +613,7 @@
 
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/bike1.jpg" 
+        <img src="../Assets/images/bici1.jpg" 
              alt="Bike tour in Colonia del Sacramento">
   
         <img src="../Assets/images/bike2.jpg" 
@@ -307,7 +704,7 @@
  <div class="card">
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/cab1.jpg" 
+        <img src="../Assets/images/cab11.jpg" 
              alt="Horseback riding experience through the countryside of Colonia del Sacramento">
         <img src="../Assets/images/cab2.jpg" alt="">
         <img src="../Assets/images/cab3.jpg" alt="">
@@ -342,45 +739,6 @@
     </div>
   </div>
 
-  <!-- Lupa & Jack -->
-<div class="card">
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/lupajack.jpg" 
-             alt="Lupa and Jack dog walking experience in Colonia del Sacramento">
-        <img src="../Assets/images/colonia.jpg" alt="">
-        <img src="../Assets/images/plaza.jpg" alt="">
-        <img src="../Assets/images/disfraz.jpg" alt="">
-      </div>
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-    <div class="card-content">
-      <h3 data-translate="lupajack_title">
-        🐾🐶 Walk with Lupa & Jack – Experience Colonia Like a Local
-      </h3>
-  
-      <p data-translate="lupajack_text">
-        We love animals and know how hard it can be to be away from them.
-        Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.
-      </p>
-  
-      <div class="card-buttons">
-        <a href="../Actividades/lupajack.html" 
-           class="btn" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
-        </a>
-      </div>
-    </div>
-  </div>
 
   <div class="card">
     <div class="card-image carousel">
@@ -405,42 +763,6 @@
   
       <div class="card-buttons">
         <a href="../Actividades/beerbike.html"
-           class="btn"
-           target="_blank"
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/grow.jpg" alt="Grow shop experience in Colonia">
-        <img src="../Assets/images/gr2.jpg" alt="">
-        <img src="../Assets/images/gr4.jpg" alt="">
-        <img src="../Assets/images/gr3.jpg" alt="">
-      </div>
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-    <div class="card-content">
-      <h3 data-translate="grow_title">
-        🌿 Grow Shop Experience
-      </h3>
-  
-      <p data-translate="grow_text">
-        Learn about local cannabis culture and discover high-quality products in a safe and welcoming environment. Adults only.
-      </p>
-  
-      <div class="card-buttons">
-        <a href="../Actividades/grow.html"
            class="btn"
            target="_blank"
            rel="noopener noreferrer"
@@ -536,6 +858,253 @@
     </div>
   </div>
 
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+  
+        <img src="../Assets/images/fullday1.jpg"
+             alt="Full day experience exploring Colonia del Sacramento">
+  
+        <img src="../Assets/images/fullday2.jpg"
+             alt="Local experiences and hidden spots in Colonia">
+  
+        <img src="../Assets/images/fullday3.jpg"
+             alt="Enjoying food and culture during a full day tour">
+  
+        <img src="../Assets/images/fullday4.jpg"
+             alt="Sunset views during a full day experience in Colonia">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="fullday1_title">
+        🦜 Full Day Experience 1 -  Animal Reserve, Asado & Beach Experience
+      </h3>
+  
+      <p class="card-meta">
+        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
+      </p>
+  
+      <p data-translate="fullday1_text">
+        Visit the Kerayvoty Animal Reserve in Juan Lacaze, enjoy a traditional 
+  Uruguayan asado in Santa Ana, and relax by the beautiful coastal beaches 
+  before returning to Colonia.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/fullday1.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+  
+        <img src="../Assets/images/carmelo1.jpg"
+             alt="City tour in Carmelo Uruguay">
+  
+        <img src="../Assets/images/carmelo2.jpg"
+             alt="Historic streets of Carmelo">
+  
+        <img src="../Assets/images/carmelo3.jpg"
+             alt="Wine tasting in Carmelo winery">
+  
+        <img src="../Assets/images/carmelo4.jpg"
+             alt="Vineyards in Carmelo Uruguay">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="fullday2_title">
+        🍇 Full Day Experience 2 – Carmelo City & Wineries
+      </h3>
+  
+      <p class="card-meta">
+        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
+      </p>
+  
+      <p data-translate="fullday2_text">
+        Explore the charming town of Carmelo on a full-day experience combining 
+        a guided city tour with visits to local wineries. Discover the town’s 
+        history, walk along the riverfront, and enjoy wine tastings surrounded 
+        by beautiful vineyards in one of Uruguay’s most renowned wine regions.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/fullday2.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+  
+        <img src="../Assets/images/suiza1.jpg"
+             alt="Colonia Suiza Nueva Helvecia main square">
+  
+        <img src="../Assets/images/suiza2.jpg"
+             alt="Traditional cheese factory in Colonia Suiza">
+  
+        <img src="../Assets/images/suiza3.jpg"
+             alt="Schoenstatt Sanctuary in Nueva Helvecia">
+  
+        <img src="../Assets/images/suiza4.jpg"
+             alt="Historic Hotel Suizo in Nueva Helvecia">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="fullday3_title">
+        🧀 Full Day Experience 3 – Colonia Suiza Heritage Tour
+      </h3>
+  
+      <p class="card-meta">
+        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
+      </p>
+  
+      <p data-translate="fullday3_text">
+        Discover the Swiss heritage of Nueva Helvecia on this full-day experience. 
+        Visit traditional cheese factories, explore the historic town, stop at the 
+        Schoenstatt Sanctuary, and see iconic landmarks like the Hotel Suizo while 
+        learning about the culture and traditions brought by Swiss immigrants.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/fullday3.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+  
+        <img src="../Assets/images/horse4.jpg"
+             alt="Horseback riding in the countryside of Colonia">
+  
+        <img src="../Assets/images/horse2.jpg"
+             alt="Riding horses through fields in Colonia countryside">
+  
+        <img src="../Assets/images/cab11.jpg"
+             alt="Dinner experience at Las Liebres Colonia">
+  
+        <img src="../Assets/images/horse1.jpg"
+             alt="Stargazing experience under the night sky">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3 data-translate="fullday4_title">
+        ✨ Full Fay Experience 4 - Horseback Ride, Dinner & Stargazing Experience
+      </h3>
+  
+      <p class="card-meta">
+        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
+      </p>
+  
+      <p data-translate="fullday4_text">
+        Enjoy a scenic horseback ride through the countryside, followed by a special 
+        dinner at Las Liebres. End the night with a unique stargazing experience led 
+        by an astrophotographer who will guide you through the stars and capture 
+        unforgettable night sky photos.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/fullday4.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-translate="view_btn">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary" data-translate="book_btn">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
 </section>
 
 </section>
@@ -565,36 +1134,42 @@
 
 <!-- ================= CAROUSEL ================= -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  document.querySelectorAll(".carousel").forEach(carousel => {
-
-    const track = carousel.querySelector(".carousel-track");
-    const images = track.querySelectorAll("img");
-    const prevBtn = carousel.querySelector(".prev");
-    const nextBtn = carousel.querySelector(".next");
-
-    let index = 0;
-
-    function updateCarousel() {
-      track.style.transform =
-        `translateX(-${index * 100}%)`;
-    }
-
-    nextBtn.addEventListener("click", () => {
-      index = (index + 1) % images.length;
-      updateCarousel();
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      document.querySelectorAll(".carousel").forEach(carousel => {
+    
+        const track = carousel.querySelector(".carousel-track");
+        const slides = track.querySelectorAll("img, video");
+        const prevBtn = carousel.querySelector(".prev");
+        const nextBtn = carousel.querySelector(".next");
+    
+        let index = 0;
+    
+        function updateCarousel() {
+          track.style.transform = `translateX(-${index * 100}%)`;
+        }
+    
+        nextBtn.addEventListener("click", () => {
+          index = (index + 1) % slides.length;
+          updateCarousel();
+        });
+    
+        prevBtn.addEventListener("click", () => {
+          index = (index - 1 + slides.length) % slides.length;
+          updateCarousel();
+        });
+    
+      });
+    
     });
-
-    prevBtn.addEventListener("click", () => {
-      index = (index - 1 + images.length) % images.length;
-      updateCarousel();
-    });
-
-  });
-
-});
-</script>
-
-</body>
-</html>
+    </script>
+    
+    
+    <a href="https://wa.me/598091642195?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
+       class="whatsapp-float"
+       target="_blank">
+       <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    
+    </body>
+    </html>
