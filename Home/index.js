@@ -9,8 +9,8 @@ const translations = {
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina, a cozy local café loved by locals and travelers alike.",
       plaza_title: "🏛 Plaza de Toros Experience with Coffee and Panoramic Views",
       plaza_text: "Explore the iconic bullring and its history with tickets and transfer included. Finish the experience with a specialty coffee at Serrano.",
-      food_title: "🎭 Colonial Experience, Chivito & Plaza de Toros",
-      food_text: "Experience Colonia like never before: dress in colonial outfits, take unique photos, enjoy an authentic Uruguayan chivito, and visit the iconic Plaza de Toros. A perfect mix of culture, gastronomy and history.",
+      food_title: "🚶 Colonial Experience, Traditional Chivito & Plaza de Toros",
+      food_text: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture.",
       book_btn: "Book Now"
     },
   

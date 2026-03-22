@@ -23,7 +23,9 @@
       </div>
 
       <nav class="top-links">
-        <a href="../Home/about.html">About Us</a>
+        <a href="../Actividades/aboutus.html" target="_blank" rel="noopener noreferrer">
+          About Us
+        </a>
       </nav>
   
     <div class="language-switch">
@@ -55,6 +57,7 @@
 <section class="hero">
 
     <div class="hero-content">
+
   
       <h1 data-translate="hero_title">
         Discover Colonia Like a Local
@@ -66,17 +69,23 @@
 
       <div class="hero-buttons">
 
-        <a href="#experiences" class="btn" data-translate="explore_btn">
-          Explore Experiences
-        </a>
+        <a href="#" class="btn" id="exploreBtn">Explore Experiences</a>
       
         <a href="../Actividades/day.html" class="btn" target="_blank">
-            ☀️ Just for a Day
-          </a>
-        
-          <a href="../Actividades/night.html" class="btn" target="_blank">
-            🌙 Just for a Night
-          </a>
+          🌞 Just for a Day
+        </a>
+      
+        <a href="../Actividades/night.html" class="btn" target="_blank">
+          🌙 Just for a Night
+        </a>
+      
+        <a href="../Actividades/aftertour.html" class="btn" target="_blank">
+          ✨ After Tour
+        </a>
+
+        <div class="hero-promo">
+            🎁 Free walking tour included with Full Day & "Just for a Night" experiences
+          </div>
       
       </div>
   
@@ -112,6 +121,8 @@
   </section>
 
 <!-- EXPERIENCES -->
+
+<!-- TOUR GUIADO -->
 <section id="experiences" class="cards">
 
     <div class="card">
@@ -144,10 +155,18 @@
           <h3 data-translate="historic_title">
             🏛 Guided Historic Quarter Walking Tour
           </h3>
+
+          <p class="card-meta">
+            ⭐ Most popular experience 
+          </p>
       
           <p class="card-meta">
-            ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese
+            ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese 
             </p>
+
+            <p class="medical">
+                🛡️ Medical assistance included
+                </p>
     
           <p data-translate="historic_text">
             Explore Colonia del Sacramento’s UNESCO World Heritage historic district with a knowledgeable local guide. Walk through cobblestone streets, discover hidden corners, and hear the fascinating stories behind the city’s Portuguese and Spanish past.
@@ -155,7 +174,7 @@
       
           <div class="card-buttons">
       
-            <a href="../Actividades/historic.html"
+            <a href="../Actividades/walkingtour.html"
                class="btn"
                target="_blank"
                rel="noopener noreferrer"
@@ -173,70 +192,55 @@
       
       </div>
 
-  
+      <!-- BICI TOUR -->
 
   <div class="card">
+
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/plaza.jpg">
-        <img src="../Assets/images/plaz1.jpg">
-        <img src="../Assets/images/ser1.jpg">
-        <img src="../Assets/images/ser2.jpg">
+        <img src="../Assets/images/bici1.jpg" 
+             alt="Bike tour in Colonia del Sacramento">
+  
+        <img src="../Assets/images/bike2.jpg" 
+             alt="Cycling through Historic Quarter">
+  
+        <img src="../Assets/images/bike3.jpg" 
+             alt="Rambla bike ride in Colonia">
+  
+        <img src="../Assets/images/bike4.jpg" 
+             alt="Guided bicycle experience">
       </div>
+  
       <button class="carousel-btn prev">‹</button>
       <button class="carousel-btn next">›</button>
     </div>
   
-    <div class="card-content">
-      <h3 data-translate="plaza_title">🏛 Plaza de Toros Experience with Beduina's coffee</h3>
-      <p data-translate="plaza_text">
-        Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!
-      </p>
-      <div class="card-buttons">
-        <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">View Details</a>
-        <a href="#" class="btn secondary" data-translate="book_btn">Book Now</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Coffee -->
-<div class="card">
-
-    <div class="card" data-category="gastronomy"></div>
-    <div class="card-image carousel">
-  
-      <div class="carousel-track">
-        <img src="../Assets/images/bed4.jpg" 
-             alt="Coffee experience in Colonia del Sacramento">
-  
-        <img src="../Assets/images/bed1.jpg" 
-             alt="Specialty coffee in Colonia">
-  
-        <img src="../Assets/images/bed2.jpg" 
-             alt="Local café atmosphere in Colonia">
-  
-        <img src="../Assets/images/bed3.jpg" 
-             alt="Coffee and stories experience">
-      </div>
-  
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-  
-    </div>
   
     <div class="card-content">
-      <h3 data-translate="coffee_title">
-        ☕ Coffee & Stories
+      <h3 data-translate="bike_title">
+        🚴 Guided Bike Tour Experience
       </h3>
+
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese • Traditional torta frita included
+      </p>
+
+      <p class="card-meta">
+        🔥 Active experience • 🌅 Sunset option available
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
-      <p data-translate="coffee_text">
-        Meet locals, discover hidden gems, and enjoy specialty coffee.
+      <p data-translate="bike_text">
+        Explore Colonia del Sacramento by bicycle with a relaxed guided tour.
+        Ride through the Historic Quarter, the Rambla waterfront and scenic
+        local neighborhoods while discovering the city’s history and culture.
+        Perfect for active travelers.
       </p>
   
       <div class="card-buttons">
-        <a href="../Actividades/coffee1.html" 
-           class="btn" 
-           target="_blank" 
+        <a href="../Actividades/bike.html"
+           class="btn"
+           target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
            View Details
@@ -251,15 +255,105 @@
   
   </div>
 
+  <!-- PLAZA DE TOROS Y SERRANO -->
+
+  <div class="card">
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <img src="../Assets/images/plaza.jpg">
+        <img src="../Assets/images/plaz1.jpg">
+        <img src="../Assets/images/ser1.jpg">
+        <img src="../Assets/images/ser2.jpg">
+      </div>
+
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+
+    
+  
+    <div class="card-content">
+      <h3 data-translate="plaza_title">🏛 Plaza de Toros Experience with Beduina's coffee</h3>
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+      <p class="card-meta">
+        🔥 2 experiences in 1
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
+      <p data-translate="plaza_text">
+        Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!
+      </p>
+      <div class="card-buttons">
+        <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">View Details</a>
+        <a href="#" class="btn secondary" data-translate="book_btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+    <!-- CHIVITO -->
+    <div class="card">
+        <div class="card-image carousel">
+          <div class="carousel-track">
+            <img src="../Assets/images/ref1.jpg" alt="Shawarma experience in Colonia">
+            <img src="../Assets/images/ref22.jpg" alt="">
+            <img src="../Assets/images/ref3.jpg" alt="">
+            <img src="../Assets/images/ref4.jpg" alt="">
+          </div>
+          <button class="carousel-btn prev">‹</button>
+          <button class="carousel-btn next">›</button>
+        </div>
+      
+        <div class="card-content">
+          <h3 data-translate="food_title">🚶 Guided Tour, Chivito & Plaza de Toros</h3>
+    
+          <p class="card-meta">
+            ⭐ Best value experience in Colonia 
+          </p>
+          <p class="card-meta">
+            🔥 3 experiences in 1
+          </p>
+          <p class="card-meta">
+            🚗 Transfer included ⏱ Duration: 4 hours
+            </p>
+    
+          <p class="medical">🛡️ Medical assistance included</p>
+          
+      
+          <p data-translate="food_text">
+            Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture.
+            Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica.
+            Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories.
+            The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes —
+            followed by a visit to the historic Plaza de Toros.    </p>
+      
+          <div class="card-buttons">
+            <a href="../Actividades/food1.html"
+               class="btn"
+               target="_blank"
+               rel="noopener noreferrer"
+               data-translate="view_btn">
+               View Details
+            </a>
+      
+            <a href="#" class="btn secondary" data-translate="book_btn">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+  <!-- LIEBRES -->
+
   <div class="card">
 
     <div class="card-image carousel">
       <div class="carousel-track">
   
-        <img src="../Assets/images/lieb2.jpg"
+        <img src="../Assets/images/lieb1.jpg"
              alt="Las Liebres boutique restaurant in Colonia del Sacramento">
   
-        <img src="../Assets/images/lieb1.jpg"
+        <img src="../Assets/images/lieb2.jpg"
              alt="Wine tasting experience at Las Liebres restaurant">
   
         <img src="../Assets/images/lieb3.jpg"
@@ -283,8 +377,17 @@
       </h3>
 
       <p class="card-meta">
-        🚗 Transfer included ⏱ Duration: 2 hours
-        </p>
+        ⏱ 3 - 4 hours • 🍷 Selected Uruguayan wines • 🍽 Signature dishes
+      </p>
+
+      <p class="card-meta">
+        🔥 2 experiences in 1
+      </p>
+
+      <p class="card-meta">
+        🚗 Transfer included • 🌿 Boutique dining experience
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
   
       <p data-translate="lieb_text">
@@ -312,6 +415,222 @@
     </div>
   
   </div>
+
+  <!-- BRUMA -->
+<div class="card">
+    <div class="discount-badge">🔥 15% OFF</div>
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <img src="../Assets/images/bruma1.jpg" alt="Bruma restaurant Colonia del Sacramento">
+        <img src="../Assets/images/bruma2.jpg" alt="">
+        <img src="../Assets/images/bruma3.jpg" alt="">
+        <img src="../Assets/images/bruma4.jpg" alt="">
+      </div>
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  
+    <div class="card-content">
+      <h3>🍽 Bruma Restaurant Experience</h3>
+  
+      <p class="card-meta">
+        ✨ Perfect after your guided tour
+      </p>
+  
+      <p class="card-meta">
+        🍷 International cuisine by Chef Bruno
+      </p>
+  
+  
+      <p class="medical">🛡️ Medical assistance included</p>
+  
+      <p>
+        Enjoy a unique dining experience at Bruma, a boutique restaurant in the heart of Colonia’s Historic Quarter. 
+        Surrounded by cobblestone streets and colonial charm, it offers high-quality international cuisine and a relaxed atmosphere — the perfect complement after a guided tour.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/bruma.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESON DE LA PLAZA -->
+<div class="card">
+    <div class="discount-badge">🔥 15% OFF</div>
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <img src="../Assets/images/meson1.jpg" alt="El Mesón de la Plaza restaurant Colonia">
+        <img src="../Assets/images/meson2.jpg" alt="">
+        <img src="../Assets/images/meson3.jpg" alt="">
+        <img src="../Assets/images/meson4.jpg" alt="">
+      </div>
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  
+    <div class="card-content">
+      <h3>🍽 El Mesón de la Plaza Experience</h3>
+  
+      <p class="card-meta">
+        🏛 A true classic in Colonia
+      </p>
+  
+      <p class="card-meta">
+        🍷 Traditional & international cuisine
+      </p>
+  
+
+  
+      <p class="medical">🛡️ Medical assistance included</p>
+  
+      <p>
+        Experience one of Colonia del Sacramento’s most iconic restaurants. 
+        El Mesón de la Plaza combines tradition, history, and a warm atmosphere in the heart of the Historic Quarter. 
+        With years of trajectory and a carefully crafted menu, it’s the perfect place to enjoy a memorable lunch or dinner in a truly authentic setting.
+      </p>
+  
+      <div class="card-buttons">
+        <a href="../Actividades/meson.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUEN SUSPIRO -->
+<div class="card">
+    <div class="discount-badge">🔥 15% OFF</div>
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <img src="../Assets/images/buensus1.jpg" alt="Buen Suspiro restaurant in Colonia del Sacramento">
+        <img src="../Assets/images/buensus2.jpg" alt="Wine and cheese experience in Buen Suspiro">
+        <img src="../Assets/images/buensus3.jpg" alt="Colonial house restaurant atmosphere">
+        <img src="../Assets/images/buensus4.jpg" alt="Romantic dining in Colonia">
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3>
+        🍷 Wine & Cheese Experience at Buen Suspiro
+      </h3>
+  
+      <p class="card-meta">
+        💕 Perfect for couples • 🍷 Wine & cheese • 🏛 Historic setting
+      </p>
+  
+      <p class="medical">
+        🛡️ Medical assistance included
+      </p>
+  
+      <p>
+        Step into a charming colonial house and enjoy a unique wine and cheese experience 
+        at Buen Suspiro. Surrounded by cobblestone streets and history, this cozy spot 
+        offers selected wines, artisanal cheeses, and a truly intimate atmosphere.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/buensus.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+  <!-- VINOS DEL MUNDO -->
+<div class="card">
+    <div class="discount-badge">🔥 15% OFF</div>
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+        <img src="../Assets/images/vinos1.jpg" alt="Wine tasting experience in Colonia del Sacramento">
+        <img src="../Assets/images/vinos2.jpg" alt="International wines selection">
+        <img src="../Assets/images/vinos3.jpg" alt="Wine tasting atmosphere">
+        <img src="../Assets/images/vinos4.jpg" alt="Wine glasses and bottles">
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3>
+        🍷 Wine Tasting at Vinos del Mundo
+      </h3>
+  
+      <p class="card-meta">
+        🌍 Wines from around the world • 🏛 Historic location
+      </p>
+
+      <p class="card-meta">
+        ✨ Perfect after a guided tour
+      </p>
+  
+      <p class="medical">
+        🛡️ Medical assistance included
+      </p>
+  
+      <p>
+        Discover a unique wine tasting experience in the heart of Colonia’s Historic Quarter. 
+        Taste carefully selected wines from different regions of the world and enjoy a relaxed, 
+        sophisticated atmosphere guided by local experts.
+      </p>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/vinos.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+           View Details
+        </a>
+  
+        <a href="#" class="btn secondary">
+          Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+  <!-- ASADO EN CASA -->
   <div class="card">
 
     <div class="card-image carousel">
@@ -324,9 +643,9 @@
   
         <img src="../Assets/images/asado1.jpg" alt="Uruguayan asado experience">
   
-        <img src="../Assets/images/mate2.jpg" alt="Preparing traditional mate">
+        <img src="../Assets/images/asado6.jpg" alt="Preparing traditional mate">
 
-        <img src="../Assets/images/cruz.jpg" alt="Cooking asado over fire">
+        <img src="../Assets/images/asado7.jpg" alt="Cooking asado over fire">
       </div>
   
       <button class="carousel-btn prev">‹</button>
@@ -339,6 +658,15 @@
       <h3 data-translate="mate_title">
         🧉 Mate & Asado: Become Uruguayan for a Day
       </h3>
+
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+
+      <p class="card-meta">
+        🔥 2 experiences in 1
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="mate_text">
         Discover the heart of Uruguayan culture through mate and traditional asado. Learn how locals prepare and share mate, enjoy a relaxed barbecue experience, and immerse yourself in everyday traditions.
@@ -364,6 +692,7 @@
   
   </div>
 
+  <!-- MATE SOLO -->
   
   <div class="card">
 
@@ -393,6 +722,11 @@
       <h3 data-translate="mateonly_title">
         🧉 Traditional Mate Experience
       </h3>
+
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="mateonly_text">
         Discover Uruguay’s most beloved tradition. Learn how to prepare and share mate like locals do, understand the ritual behind it, and enjoy a relaxed cultural moment while listening to stories about everyday life in Uruguay.
@@ -418,82 +752,7 @@
   
   </div>
 
-   <!-- Lupa & Jack -->
-<div class="card">
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/lupajack.jpg" 
-             alt="Lupa and Jack dog walking experience in Colonia del Sacramento">
-        <img src="../Assets/images/lupajack2.jpg" alt="">
-        <img src="../Assets/images/lupajack3.jpg" alt="">
-        <img src="../Assets/images/lupajack4.jpg" alt="">
-      </div>
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-    <div class="card-content">
-      <h3 data-translate="lupajack_title">
-        🐾🐶 Walk with Lupa & Jack – Experience Colonia Like a Local
-      </h3>
-  
-      <p data-translate="lupajack_text">
-        We love animals and know how hard it can be to be away from them.
-        Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.
-      </p>
-  
-      <div class="card-buttons">
-        <a href="../Actividades/lupajack.html" 
-           class="btn" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/ref1.jpg" alt="Shawarma experience in Colonia">
-        <img src="../Assets/images/ref22.jpg" alt="">
-        <img src="../Assets/images/ref3.jpg" alt="">
-        <img src="../Assets/images/ref4.jpg" alt="">
-      </div>
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-    <div class="card-content">
-      <h3 data-translate="food_title">🎭 Colonial Experience, Chivito & Plaza de Toros</h3>
-      <p class="card-meta">
-        🚗 Transfer included ⏱ Duration: 4 hours
-        </p>
-  
-      <p data-translate="food_text">
-        Experience Colonia like never before: dress in colonial outfits, take unique photos, enjoy an authentic Uruguayan chivito, and visit the iconic Plaza de Toros. A perfect mix of culture, gastronomy and history.
-    </p>
-  
-      <div class="card-buttons">
-        <a href="../Actividades/food1.html"
-           class="btn"
-           target="_blank"
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
-        </a>
-      </div>
-    </div>
-  </div>
+  <!-- CANDOMBE -->
 
   <div class="card">
 
@@ -531,6 +790,7 @@
       <p class="card-meta">
         ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
       </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="candombe_text">
         Experience the rhythm of Uruguay through candombe, one of the country’s most iconic cultural traditions. 
@@ -557,109 +817,7 @@
   
   </div>
 
-  <div class="card">
-
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/carrito1.jpg" 
-             alt="Golf cart tour in Colonia del Sacramento">
-  
-        <img src="../Assets/images/carrito2.jpg" 
-             alt="Historic Quarter golf cart tour">
-  
-        <img src="../Assets/images/carrito3.jpg" 
-             alt="Real de San Carlos golf cart experience">
-  
-        <img src="../Assets/images/carrito4.jpg" 
-             alt="Guided city tour in Colonia">
-      </div>
-  
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-  
-    <div class="card-content">
-      <h3 data-translate="golf_title">
-        🚗 Guided Golf Cart City Tour
-      </h3>
-  
-      <p data-translate="golf_text">
-        Discover Colonia del Sacramento in a comfortable guided golf cart tour.
-        Explore the Historic Quarter, Real de San Carlos, the Rambla waterfront,
-        and hidden local spots while learning about the city's history and culture.
-        Perfect for all ages.
-      </p>
-  
-      <div class="card-buttons">
-        <a href="../Actividades/golfcart.html"
-           class="btn"
-           target="_blank"
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
-        </a>
-      </div>
-  
-    </div>
-  
-  </div>
-
-  <div class="card">
-
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/bici1.jpg" 
-             alt="Bike tour in Colonia del Sacramento">
-  
-        <img src="../Assets/images/bike2.jpg" 
-             alt="Cycling through Historic Quarter">
-  
-        <img src="../Assets/images/bike3.jpg" 
-             alt="Rambla bike ride in Colonia">
-  
-        <img src="../Assets/images/bike4.jpg" 
-             alt="Guided bicycle experience">
-      </div>
-  
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-  
-    <div class="card-content">
-      <h3 data-translate="bike_title">
-        🚴 Guided Bike Tour Experience
-      </h3>
-  
-      <p data-translate="bike_text">
-        Explore Colonia del Sacramento by bicycle with a relaxed guided tour.
-        Ride through the Historic Quarter, the Rambla waterfront and scenic
-        local neighborhoods while discovering the city’s history and culture.
-        Perfect for active travelers.
-      </p>
-  
-      <div class="card-buttons">
-        <a href="../Actividades/bike.html"
-           class="btn"
-           target="_blank"
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
-        </a>
-      </div>
-  
-    </div>
-  
-  </div>
+  <!-- ROMANTIC DINNER -->
 
   <div class="card">
     <div class="card-image carousel">
@@ -680,6 +838,11 @@
 
         💕 Romantic Dinner for Two
       </h3>
+
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="romantic_text">
         Enjoy a private candlelight dinner in a charming colonial setting, perfect for couples looking for a magical night.
@@ -718,6 +881,11 @@
       <h3 data-translate="horse_title">
         🐎 Horseback Riding Through Colonia’s Countryside
       </h3>
+
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="horse_text">
         Discover the rural side of Colonia on horseback. Enjoy a relaxed ride through open fields and quiet paths, surrounded by nature and local traditions.
@@ -756,6 +924,11 @@
       <h3 data-translate="beer_title">
         Colonia with friends? = 🍺 Beer Bike Experience
       </h3>
+
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="beer_text">
         Ride through Colonia while enjoying cold beer with friends in a fun and unique way. Minimum of 6 participants.
@@ -795,6 +968,11 @@
       <h3 data-translate="flight_title">
         ✈️ Introductory Flight Experience
       </h3>
+
+      <p class="card-meta">
+        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
+      </p>
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="flight_text">
         Take to the skies with a certified pilot and discover Colonia from above.
@@ -817,46 +995,7 @@
     </div>
   </div>
 
-<!-- Colonial Costume Experience -->
-<div class="card">
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/disfraz.jpg" 
-             alt="Visitors wearing colonial costumes in Colonia del Sacramento historic district">
-        <img src="../Assets/images/lupajack.jpg" alt="">
-        <img src="../Assets/images/shawarma.jpg" alt="">
-        <img src="../Assets/images/disfraz.jpg" alt="">
-      </div>
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-    <div class="card-content">
-      <h3 data-translate="costume_title">
-        🎭 Colonial Costume Experience with Lunch
-      </h3>
-  
-      <p data-translate="costume_text">
-        Step back in time and dress in traditional colonial attire.
-        Enjoy a delicious local lunch and experience the charm of historic Colonia
-        while capturing unforgettable memories in the old town.
-      </p>
-  
-      <div class="card-buttons">
-        <a href="../Actividades/disfraz.html" 
-           class="btn" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
-        </a>
-      </div>
-    </div>
-  </div>
+<!-- FULL DAY 1 -->
 
   <div class="card">
 
@@ -888,10 +1027,13 @@
       <h3 data-translate="fullday1_title">
         🦜 Full Day Experience 1 -  Animal Reserve, Asado & Beach Experience
       </h3>
+
   
       <p class="card-meta">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
+
+      <p class="medical">🛡️ Medical assistance included</p>
   
       <p data-translate="fullday1_text">
         Visit the Kerayvoty Animal Reserve in Juan Lacaze, enjoy a traditional 
@@ -953,7 +1095,7 @@
       <p class="card-meta">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
-  
+      <p class="medical">🛡️ Medical assistance included</p>
       <p data-translate="fullday2_text">
         Explore the charming town of Carmelo on a full-day experience combining 
         a guided city tour with visits to local wineries. Discover the town’s 
@@ -1015,7 +1157,7 @@
       <p class="card-meta">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
-  
+      <p class="medical">🛡️ Medical assistance included</p>
       <p data-translate="fullday3_text">
         Discover the Swiss heritage of Nueva Helvecia on this full-day experience. 
         Visit traditional cheese factories, explore the historic town, stop at the 
@@ -1077,7 +1219,7 @@
       <p class="card-meta">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
-  
+      <p class="medical">🛡️ Medical assistance included</p>
       <p data-translate="fullday4_text">
         Enjoy a scenic horseback ride through the countryside, followed by a special 
         dinner at Las Liebres. End the night with a unique stargazing experience led 
