@@ -167,6 +167,11 @@
     background: linear-gradient(135deg, #6ea8e5, #5a95cf);
     color: white;
     box-shadow: 0 4px 10px rgba(90,149,207,0.25);
+  
+    /* 👇 AGREGADO GLASS */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.2);
   }
   
   .btn:hover {
@@ -180,6 +185,14 @@
     color: white;
     font-weight: 600;
     box-shadow: 0 8px 20px rgba(47,75,189,0.4);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(47,75,189,0.4);
+  
+    /* 👇 GLASS TAMBIÉN */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
   }
   
   .btn.secondary:hover {
@@ -885,17 +898,6 @@
     margin-right: 20px;
   }
   
-  .hamburger-menu {
-    position: absolute;
-    top: 80px;
-    right: 60px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    width: 220px;
-    display: none;
-    z-index: 999;
-  }
   
   .hamburger-menu ul {
     list-style: none;
@@ -916,8 +918,14 @@
 
   .hamburger-menu {
     position: absolute;
-    top: 70px;
-    right: 150px;
+    top: 80px;
+    right: 250px; /* 👈 controla desde acá */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    width: 220px;
+    display: none;
+    z-index: 999;
   }
 
   .hero-buttons {
@@ -1013,19 +1021,32 @@
     margin-right:20px;
     }
     
-    .top-links a{
-        text-decoration:none;
-        color:#333;
-        font-weight:500;
-        font-size:0.95rem;
-        padding:6px 12px;
-        border-radius:20px;
-        transition:0.3s;
-        }
+    .top-links a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      
+        padding: 8px 16px;
+        border-radius: 20px;
+      
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+      
+        color: #5a95cf;
+      
+        background: rgba(102,166,230,0.12); /* 👈 leve fondo */
+        border: 1px solid rgba(102,166,230,0.25);
+      
+        transition: all 0.25s ease;
+      }
         
-        .top-links a:hover{
-        background:#f3f7fb;
-        }
+      .top-links a:hover {
+        background: linear-gradient(135deg, #6ea8e5, #5a95cf);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(90,149,207,0.3);
+      }
 
         .experience-steps-title{
             margin-top: 30px;

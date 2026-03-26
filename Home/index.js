@@ -185,3 +185,13 @@ filters.forEach(filter => {
   });
 
 });
+
+document.addEventListener("click", function (e) {
+    const menu = document.querySelector(".hamburger-menu");
+    const toggle = document.querySelector(".menu-toggle");
+  
+    // Si el click NO fue dentro del menú ni en el botón
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.style.display = "none";
+    }
+  });
