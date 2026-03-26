@@ -157,28 +157,47 @@
     border-radius: 30px;
     text-decoration: none;
     font-size: 0.9rem;
-    transition: 0.3s ease;
+    transition: all 0.25s ease;
     cursor: pointer;
     border: none;
+    font-weight: 500;
   }
   
   .btn {
-    background-color: #66a6e6;
+    background: linear-gradient(135deg, #6ea8e5, #5a95cf);
     color: white;
+    box-shadow: 0 4px 10px rgba(90,149,207,0.25);
   }
   
   .btn:hover {
-    background-color: #66a6e6;
+    background: linear-gradient(135deg, #5a95cf, #4a7fb3);
     transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(90,149,207,0.35);
   }
   
   .btn.secondary {
-    background-color: #eee;
-    color: #333;
+    background: linear-gradient(135deg, #2f4bbd, #7a6fdc);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(47,75,189,0.4);
   }
   
   .btn.secondary:hover {
-    background-color: #ddd;
+    background: linear-gradient(135deg, #253c9c, #6a5fd0);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 26px rgba(47,75,189,0.5);
+  }
+
+  .hero-buttons .btn {
+    border: 1px solid transparent;
+  }
+  
+  
+  .hero-buttons .btn:hover {
+    background: white; /* 👈 clave */
+    color: #5a95cf;
+    border: 1px solid #5a95cf;
+    transform: translateY(-2px);
   }
   
   /* ================= CARDS ================= */
