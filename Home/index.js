@@ -162,32 +162,37 @@ const translations = {
     });
   
   
-    /* ===== SEE MORE (FIX FINAL) ===== */
-    document.querySelectorAll(".card").forEach(card => {
+/* ===== SEE MORE FIX REAL ===== */
+document.querySelectorAll(".card").forEach(card => {
+
+    const text = card.querySelector(".card-description");
+    const btn = card.querySelector(".see-more");
   
-      const text = card.querySelector(".card-description");
-      const btn = card.querySelector(".see-more");
+    if (!text || !btn) return;
   
-      if (!text || !btn) return;
+    // 👇 esperar render real
+    setTimeout(() => {
   
-      // Ocultar si no hace falta
-      setTimeout(() => {
-        const isOverflowing = text.scrollHeight > text.clientHeight;
-        if (!isOverflowing) {
-          btn.style.display = "none";
-        }
-      }, 100);
+      // forzamos cálculo real
+      const fullHeight = text.scrollHeight;
   
-      // CLICK
-      btn.addEventListener("click", () => {
+      text.classList.add("expanded-temp");
+      const expandedHeight = text.scrollHeight;
+      text.classList.remove("expanded-temp");
   
-        text.classList.toggle("expanded");
+      // si no hay diferencia → ocultar botón
+      if (expandedHeight <= fullHeight + 5) {
+        btn.style.display = "none";
+      }
   
-        btn.textContent = text.classList.contains("expanded")
-          ? "See less"
-          : "See more";
+    }, 200);
   
-      });
+    // CLICK
+    btn.addEventListener("click", () => {
+  
+      const isExpanded = text.classList.toggle("expanded");
+  
+      btn.textContent = isExpanded ? "See less" : "See more";
   
     });
   

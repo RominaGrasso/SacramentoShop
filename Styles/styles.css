@@ -1432,7 +1432,9 @@
   }
   
   .card-description.expanded {
+    display: block; /* 👈 CLAVE */
     -webkit-line-clamp: unset;
+    overflow: visible;
   }
 
   .see-more {
@@ -1479,5 +1481,23 @@
   
   .card-description.expanded {
     -webkit-line-clamp: unset;
+  }
+
+  .card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .card-description.expanded {
+    display: block;
+    overflow: visible;
+  }
+  
+  .card-description.expanded-temp {
+    display: block;
+    visibility: hidden;
+    position: absolute;
   }
 
