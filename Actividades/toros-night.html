@@ -1,0 +1,219 @@
+<body>
+
+    <link rel="stylesheet" href="../Styles/styles.css">
+    
+    <!-- ================= HEADER ================= -->
+    <header>
+    
+      <a href="../Home/index.html" class="logo">
+        <img src="../Assets/images/SacramentoLogo2.png"
+             alt="Sacramento Adventures Logo">
+      </a>
+    
+      <div class="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    
+      <nav class="top-links">
+        <a href="../Actividades/aboutus.html" target="_blank">
+          About Us
+        </a>
+      </nav>
+    
+      <div class="language-switch">
+        <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
+        <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+        <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+      </div>
+    
+      <nav class="hamburger-menu">
+        <ul>
+          <li>🧭 Full Day Experiences</li>
+          <li>🌞 Just for a Day</li>
+          <li>🌙 Just for a Night</li>
+          <li>🏛 Guided Tours</li>
+          <li>🍽 Gastronomy</li>
+          <li>🐎 Nature and Animals</li>
+          <li>🥁 Tradition & Culture</li>
+          <li>🏄 Sports & Adventure</li>
+          <li>💕 Romantic</li>
+        </ul>
+      </nav>
+    
+    </header>
+    
+    
+    <!-- ================= HERO ================= -->
+    <section class="night-hero">
+    </section>
+    
+    
+    <!-- ================= CONTENT ================= -->
+    <section class="coffee-content">
+    
+      <h2>About this experience</h2>
+    
+      <p>
+        Enjoy a unique overnight experience in Colonia del Sacramento combining gastronomy,
+        comfort, and culture. Start your evening with a delicious dinner at <strong>Las Liebres</strong>, then relax in a
+        cozy apartment near <strong>Plaza de Toros</strong>. Wake up to a fresh breakfast and continue your
+        experience with a visit to the iconic bullring — tickets included.
+      </p>
+    
+      <h3 class="experience-steps-title">How it works</h3>
+    
+      <div class="experience-steps">
+        <ul>
+    
+            <li>
+                🚕 <strong>Personalized arrival:</strong> A local guide will welcome you and take you to your apartment, giving you time to settle in and start your experience comfortably.
+              </li>
+    
+          <li>
+            🍽 <strong>Dinner experience:</strong> Enjoy a curated dinner at a selected local restaurant.
+          </li>
+    
+          <li>
+            🛏 <strong>Overnight stay:</strong> Spend the night in a comfortable apartment near Plaza de Toros.
+          </li>
+    
+          <li>
+            ☕ <strong>Breakfast included:</strong> Start your morning with a fresh breakfast.
+          </li>
+    
+          <li>
+            🏟 <strong>Plaza de Toros visit:</strong> Explore the iconic bullring with tickets included.
+          </li>
+       
+
+    
+        </ul>
+      </div>
+    
+    
+      <!-- PRICE -->
+      <div class="price-box">
+        <h3>USD 150 per person</h3>
+      </div>
+    
+    
+      <div class="coffee-includes">
+    
+        <div class="includes-preferences">
+    
+          <!-- IZQUIERDA -->
+          <div class="includes-list">
+            <h3>What's included</h3>
+            <ul>
+              <li>✔ Dinner at selected restaurant "Las Liebres"</li>
+              <li>✔ Overnight stay (apartment near Plaza de Toros)</li>
+              <li>✔ Breakfast included</li>
+              <li>✔ Plaza de Toros tickets</li>
+              <li>✔ Late checkout</li>
+              <li>🚕 <strong>All transfers included</strong></li>
+              <li> 🎁 <strong>Free walking tour of the historic district</strong></li>
+            </ul>
+          </div>
+    
+          <!-- DERECHA -->
+          <div class="preferences-inside">
+            <h3 class="preferences-title">
+              Your preferences 
+              <span class="help-icon" id="nightHelp">ℹ️</span>
+            </h3>
+    
+            <label><input type="checkbox"> 🍷 Wine included</label>
+            <label><input type="checkbox"> 🥗 Vegetarian dinner</label>
+            <label><input type="checkbox"> 🚫 No alcohol</label>
+          </div>
+    
+        </div>
+    
+      </div>
+    
+    
+      <!-- ================= GALLERY ================= -->
+      <section class="coffee-gallery">
+    
+        <h2>Experience Gallery</h2>
+    
+        <div class="gallery-grid">
+    
+          <img src="../Assets/images/toros3.jpg">
+          <img src="../Assets/images/toros2.jpg">
+          <img src="../Assets/images/toros1.jpg">
+          <img src="../Assets/images/toros4.jpg">
+    
+          <img src="../Assets/images/lieb1.jpg">
+          <img src="../Assets/images/lieb5.jpg">
+    
+        </div>
+    
+      </section>
+    
+    
+      <!-- ================= ACTIONS ================= -->
+      <div class="coffee-actions">
+    
+        <a href="TU_LINK_DE_TAB" target="_blank" class="btn">
+          Book Now
+        </a>
+    
+        <a href="../Home/index.html" class="btn secondary">
+          Back to Home
+        </a>
+    
+      </div>
+    
+    </section>
+    
+    
+    <!-- ================= POPUP ================= -->
+    <div class="popup-overlay" id="popupNight">
+      <div class="popup-box">
+    
+        <p>
+          <strong class="popup-title">Experience details:</strong>
+        </p>
+    
+        <ul class="popup-list">
+          <li>🍽 Dinner includes main dish + drink</li>
+          <li>🛏 Apartment fully equipped</li>
+          <li>☕ Breakfast provided the next morning</li>
+          <li>🏟 Plaza de Toros tickets included</li>
+        </ul>
+    
+        <p>Exact details may vary depending on availability.</p>
+    
+        <button class="close-x" id="closeNight">✕</button>
+      </div>
+    </div>
+    
+    
+    <script src="../Home/index.js"></script>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const help = document.getElementById("nightHelp");
+      const popup = document.getElementById("popupNight");
+      const close = document.getElementById("closeNight");
+    
+      help.addEventListener("click", () => {
+        popup.classList.add("active");
+      });
+    
+      close.addEventListener("click", () => {
+        popup.classList.remove("active");
+      });
+    
+      popup.addEventListener("click", (e) => {
+        if (e.target === popup) {
+          popup.classList.remove("active");
+        }
+      });
+    
+    });
+    </script>
+    
+    </body>

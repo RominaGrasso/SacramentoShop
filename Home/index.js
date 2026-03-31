@@ -7,10 +7,10 @@ const translations = {
       explore_btn: "Explore Experiences",
       coffee_title: "☕ Coffee with stunning views",
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina.",
-      plaza_title: "🏛 Plaza de Toros Experience",
-      plaza_text: "Explore the iconic bullring.",
-      food_title: "🚶 Colonial Experience",
-      food_text: "Discover Colonia del Sacramento.",
+      plaza_title: "🏛 Plaza de Toros Experience with Beduina's coffee",
+      plaza_text: "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!",
+      food_title: "🚶 Guided Tour, Chivito & Plaza de Toros",
+      food_text: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes — followed by a visit to the historic Plaza de Toros.",
       book_btn: "Book Now"
     },
     es: {
@@ -162,38 +162,31 @@ const translations = {
     });
   
   
-/* ===== SEE MORE FIX REAL ===== */
-document.querySelectorAll(".card").forEach(card => {
+    document.querySelectorAll(".card").forEach(card => {
 
-    const text = card.querySelector(".card-description");
-    const btn = card.querySelector(".see-more");
-  
-    if (!text || !btn) return;
-  
-    // 👇 esperar render real
-    setTimeout(() => {
-  
-      // forzamos cálculo real
-      const fullHeight = text.scrollHeight;
-  
-      text.classList.add("expanded-temp");
-      const expandedHeight = text.scrollHeight;
-      text.classList.remove("expanded-temp");
-  
-      // si no hay diferencia → ocultar botón
-      if (expandedHeight <= fullHeight + 5) {
-        btn.style.display = "none";
-      }
-  
-    }, 200);
-  
-    // CLICK
-    btn.addEventListener("click", () => {
-  
-      const isExpanded = text.classList.toggle("expanded");
-  
-      btn.textContent = isExpanded ? "See less" : "See more";
-  
-    });
-  
-  });
+        const text = card.querySelector(".card-description");
+        const btn = card.querySelector(".see-more");
+      
+        if (!text || !btn) return;
+      
+        // 👇 esperar render real
+        setTimeout(() => {
+      
+          const isClamped = text.scrollHeight > text.clientHeight + 5;
+      
+          if (!isClamped) {
+            btn.style.display = "none";
+          }
+      
+        }, 100);
+      
+        btn.addEventListener("click", () => {
+      
+          const expanded = text.classList.toggle("expanded");
+      
+          btn.textContent = expanded ? "See less" : "See more";
+      
+        });
+      
+      });
+});

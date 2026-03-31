@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bar Hopping Experience</title>
+  <link rel="stylesheet" href="../Styles/styles.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+
+  <a href="../Home/index.html" class="logo">
+    <img src="../Assets/images/SacramentoLogo2.png"
+         alt="Sacramento Adventures Logo">
+  </a>
+
+  <div class="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <nav class="top-links">
+    <a href="../Actividades/aboutus.html" target="_blank">About Us</a>
+  </nav>
+
+  <div class="language-switch">
+    <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
+    <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+    <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+  </div>
+
+  <nav class="hamburger-menu">
+    <ul>
+      <li>🧭 Full Day Experiences</li>
+      <li>🌞 Just for a Day</li>
+      <li>🌙 Just for a Night</li>
+      <li>🏛 Guided Tours</li>
+      <li>🍽 Gastronomy</li>
+      <li>🐎 Nature and Animals</li>
+      <li>🥁 Tradition & Culture</li>
+      <li>🏄 Sports & Adventure</li>
+      <li>💕 Romantic</li>
+    </ul>
+  </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+<section class="night-hero"></section>
+
+
+<!-- ================= CONTENT ================= -->
+<section class="coffee-content">
+
+  <h2>About this experience</h2>
+
+  <p>
+    Discover Colonia del Sacramento’s nightlife through a curated bar hopping experience.
+    Visit Barbot, Arde, and La Chopería while enjoying signature cocktails,
+    local drinks, and a vibrant social atmosphere in the historic quarter after dark.
+    Perfect for meeting people and experiencing the city like a local.
+  </p>
+
+  <h3 class="experience-steps-title">How it works</h3>
+
+  <div class="experience-steps">
+    <ul>
+
+      <li>📍 <strong>Meeting point:</strong> Historic Quarter (shared after booking)</li>
+      <li>🍸 <strong>Barbot:</strong> Signature cocktails</li>
+      <li>🔥 <strong>Arde:</strong> Music & handcrafted drinks</li>
+      <li>🍺 <strong>La Chopería:</strong> Local beer experience</li>
+      <li>🌙 <strong>End:</strong> Stay or continue exploring</li>
+
+    </ul>
+  </div>
+
+  <div class="price-box">
+    <h3>USD 70 per person</h3>
+  </div>
+
+  <div class="coffee-includes">
+
+    <div class="includes-preferences">
+
+      <div class="includes-list">
+        <h3>What's included</h3>
+        <ul>
+          <li>✔ Guided bar hopping experience</li>
+          <li>✔ 3 bars: Barbot, Arde, La Chopería</li>
+          <li>✔ 2 drinks per bar (6 total)</li>
+          <li>✔ Complimentary grapamiel shots</li>
+          <li>✔ Local host</li>
+        </ul>
+      </div>
+
+      <div class="preferences-inside">
+        <h3 class="preferences-title">
+          Your preferences 
+          <span class="help-icon" id="drinkHelp">ℹ️</span>
+        </h3>
+
+        <label><input type="checkbox"> 🍹 Classic cocktails</label>
+        <label><input type="checkbox"> 🍸 Signature drinks</label>
+        <label><input type="checkbox"> 🍺 Beer preference</label>
+        <label><input type="checkbox"> 🚫 No alcohol</label>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- GALLERY -->
+  <section class="coffee-gallery">
+    <h2>Experience Gallery</h2>
+
+    <div class="gallery-grid">
+      <img src="../Assets/images/bar1.jpg">
+      <img src="../Assets/images/bar2.jpg">
+      <img src="../Assets/images/bar3.jpg">
+      <img src="../Assets/images/bar4.jpg">
+    </div>
+  </section>
+
+
+  <!-- ACTIONS -->
+  <div class="coffee-actions">
+    <a href="#" class="btn">Book Now</a>
+    <a href="../Home/index.html" class="btn secondary">Back to Home</a>
+  </div>
+
+</section>
+
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupDrink">
+  <div class="popup-box">
+
+    <p><strong class="popup-title">Drinks included:</strong></p>
+
+    <ul class="popup-list">
+      <li>🍸 2 drinks per bar (6 total)</li>
+      <li>🍯 Complimentary grapamiel shots</li>
+    </ul>
+
+    <button class="close-x" id="closeDrink">✕</button>
+  </div>
+</div>
+
+
+<!-- SCRIPTS -->
+<script>
+document.querySelector(".menu-toggle").addEventListener("click", () => {
+  document.querySelector(".hamburger-menu").style.display = "block";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const help = document.getElementById("drinkHelp");
+  const popup = document.getElementById("popupDrink");
+  const close = document.getElementById("closeDrink");
+
+  help.addEventListener("click", () => popup.classList.add("active"));
+  close.addEventListener("click", () => popup.classList.remove("active"));
+
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) popup.classList.remove("active");
+  });
+});
+</script>
+
+</body>
+</html>

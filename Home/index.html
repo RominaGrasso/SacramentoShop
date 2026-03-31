@@ -427,6 +427,78 @@
   
   </div>
 
+  <!-- BAR TOUR EXPERIENCE -->
+
+<div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+  
+        <img src="../Assets/images/bar1.jpg"
+             alt="Bar hopping experience in Colonia del Sacramento">
+  
+        <img src="../Assets/images/bar2.jpg"
+             alt="Cocktails and nightlife in Colonia">
+  
+        <img src="../Assets/images/bar3.jpg"
+             alt="Local bars and drinks experience">
+  
+        <img src="../Assets/images/bar4.jpg"
+             alt="Nightlife atmosphere in Colonia">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+  
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3>
+        🍻 Colonia Bar Hopping Experience
+      </h3>
+  
+      <p class="card-meta">
+        ⏱ 2 - 3 hours • 🍸 Signature cocktails • 🍺 Local beer tasting
+      </p>
+  
+      <p class="card-meta">
+        🔥 Social experience • 🌙 Nightlife vibes
+      </p>
+  
+      <p class="medical">🛡️ Medical assistance included</p>
+  
+      <p class="card-description">
+        Discover Colonia’s nightlife through a curated bar hopping experience.
+        Visit some of the city’s best local bars, enjoy signature cocktails,
+        taste Uruguayan craft beers, and experience the vibrant atmosphere
+        of the historic quarter after dark. Perfect to meet people and enjoy the night.
+      </p>
+  
+      <span class="see-more">See more</span>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/bar.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+           View Details
+        </a>
+  
+        <a href="#"
+           class="btn secondary">
+           Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
   <!-- BRUMA -->
 <div class="card">
     <div class="discount-badge">🔥 15% OFF</div>
@@ -1282,9 +1354,69 @@
   
   </div>
 
-</section>
+  <div class="card">
+
+    <div class="card-image carousel">
+      <div class="carousel-track">
+  
+        <img src="../Assets/images/toros3.jpg">
+        <img src="../Assets/images/toros1.jpg">
+        <img src="../Assets/images/toros2.jpg">
+        <img src="../Assets/images/toros4.jpg">
+  
+      </div>
+  
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  
+  
+    <div class="card-content">
+  
+      <h3>
+        🛏 🌙 Colonia Night Experience: Dinner, Stay & Plaza de Toros
+      </h3>
+  
+      <p class="card-meta">
+        🌙 1 night • 🍽 Dinner included • ☕ Breakfast included
+      </p>
+  
+      <p class="card-meta">
+        🔥 3 experiences in 1
+      </p>
+  
+      <p class="medical">🛡️ Medical assistance included</p>
+  
+      <p class="card-description">
+        Enjoy a unique overnight experience in Colonia. Start with a delicious dinner at <strong>Las Liebres</strong>,
+        spend the night in a comfortable apartment near <strong>Plaza de Toros</strong>, and wake up
+        to breakfast before visiting the iconic bullring with tickets included.
+      </p>
+  
+      <span class="see-more">See more</span>
+  
+      <div class="card-buttons">
+  
+        <a href="../Actividades/toros-night.html"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+           View Details
+        </a>
+  
+        <a href="#"
+           class="btn secondary">
+           Book Now
+        </a>
+  
+      </div>
+  
+    </div>
+  
+  </div>
 
 </section>
+
 
 
 <!-- ================= INFO UTIL ================= -->
@@ -1338,33 +1470,6 @@
     
       });
     
-    });
-    </script>
-
-<script>
-    document.querySelectorAll('.card').forEach(card => {
-      const text = card.querySelector('.card-description');
-      const btn = card.querySelector('.see-more');
-    
-      if (!text || !btn) return;
-    
-      // Espera a que el layout cargue
-      requestAnimationFrame(() => {
-        const isClamped = text.scrollHeight > text.clientHeight;
-    
-        // Si NO está cortado → ocultar botón
-        if (!isClamped) {
-          btn.style.display = "none";
-        }
-    
-        // Click expandir
-        btn.addEventListener('click', () => {
-          text.classList.toggle('expanded');
-          btn.textContent = text.classList.contains('expanded')
-            ? 'See less'
-            : 'See more';
-        });
-      });
     });
     </script>
     
