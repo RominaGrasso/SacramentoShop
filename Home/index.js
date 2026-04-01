@@ -7,7 +7,7 @@ const translations = {
       explore_btn: "Explore Experiences",
       coffee_title: "☕ Coffee with stunning views",
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina.",
-      plaza_title: "🏛 Plaza de Toros Experience with Beduina's coffee",
+      plaza_title: "🏛 Plaza de Toros Experience with Serrano's coffee",
       plaza_text: "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!",
       food_title: "🚶 Guided Tour, Chivito & Plaza de Toros",
       food_text: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes — followed by a visit to the historic Plaza de Toros.",

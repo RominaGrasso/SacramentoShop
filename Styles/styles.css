@@ -1505,11 +1505,24 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
-    padding: 60px 80px;
+    padding: 0px 80px 60px 80px;
     justify-items: center; /* 👈 clave */
   }
 
   .night-hero {
+    background-image: url("../Assets/images/night2.jpg"); /* 👈 tu nueva imagen */
+  
+    background-size: cover;
+    background-position: 20% 60%;
+    background-repeat: no-repeat;
+  
+    height: 320px;
+    width: 100%;
+  
+    position: relative;
+  }
+
+  .toros-night-hero {
     background-image: url("../Assets/images/toros4.jpg"); /* 👈 tu nueva imagen */
   
     background-size: cover;
@@ -1520,5 +1533,32 @@
     width: 100%;
   
     position: relative;
+  }
+
+  .mision-night-hero {
+    height: 320px;
+    background-image: url("../Assets/images/mision1.jpg"); /* tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .mision-night-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  }
+  
+  .mision-night-hero h1 {
+    color: white;
+    font-size: 3rem;
+    position: relative;
+    z-index: 1;
   }
 
