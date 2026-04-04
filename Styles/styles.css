@@ -1737,3 +1737,28 @@
     z-index: 1;
     text-align: center;
   }
+
+  .bar-hero{
+    height:55vh;
+    background-image:url("../Assets/images/delrio1.jpg");
+    background-size:cover;
+    background-position:center 40%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  .bar-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(0,0,0,0.45);
+  }
+
+  .bar-hero h1{
+    color:white;
+    font-size:3rem;
+    position:relative;
+    z-index:1;
+  }
