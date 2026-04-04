@@ -29,7 +29,7 @@
     </header>
     
     <!-- ================= HERO ================= -->
-    <section class="food-hero" style="background-image: url('../Assets/images/bruma1.jpg');">
+    <section class="food-hero" style="background-image: url('../Assets/images/bruman1.jpg');">
     </section>
     
     <!-- ================= CONTENT ================= -->
@@ -41,14 +41,14 @@
         Enjoy a unique gastronomic experience at Bruma, a boutique restaurant located in the heart of Colonia’s Historic Quarter. 
         Surrounded by cobblestone streets and charming colonial houses, Bruma offers an intimate and relaxed atmosphere.
         
-        Led by Chef Bruno, the restaurant features a carefully crafted international menu with high-quality ingredients and creative dishes.
+        Led by Chef Marcelo, the restaurant features a carefully crafted international menu with high-quality ingredients and creative dishes.
         
         This experience is the perfect complement after a guided tour — a moment to relax, enjoy great food, and soak in the essence of Colonia.
       </p>
     
       <!-- PRICE -->
       <div class="price-box">
-        <h3>USD40 per person</h3>
+        <h3>USD50 per person</h3>
       </div>
     
       <div class="coffee-includes">
@@ -60,8 +60,7 @@
             <h3>What's included</h3>
             <ul>
               <li>✔ Reserved table at Bruma restaurant</li>
-              <li>✔ International cuisine by Chef Bruno</li>
-              <li>✔ Main course selection</li>
+              <li><strong>✔ Full menu: main course, drink and dessert</strong></li>
               <li>✔ Personalized service</li>
               <li>✔ Prime location in the Historic Quarter</li>
             </ul>
@@ -74,8 +73,6 @@
             <label><input type="checkbox"> 🍺 0% Alcohol</label>
             <label><input type="checkbox"> 🧂 Low Salt</label>
             <label><input type="checkbox"> 🌱 Vegetarian</label>
-            <label><input type="checkbox"> 🥗 Vegan</label>
-            <label><input type="checkbox"> 🚫 Lactose Free</label>
             <label><input type="checkbox"> 🌶 No spicy food</label>
     
           </div>
@@ -90,10 +87,12 @@
         <h2>Experience Gallery</h2>
     
         <div class="gallery-grid">
-          <img src="../Assets/images/bruma1.jpg">
+          <img src="../Assets/images/bruman1.jpg">
           <img src="../Assets/images/bruma2.jpg">
-          <img src="../Assets/images/bruma3.jpg">
+          <img src="../Assets/images/bruman3.jpg">
           <img src="../Assets/images/bruma4.jpg">
+          <img src="../Assets/images/bruman2.jpg">
+          <img src="../Assets/images/bruman5.jpg">
         </div>
     
       </section>
@@ -118,5 +117,16 @@
         document.querySelector(".hamburger-menu").style.display = "block";
       });
     </script>
+      <script src="../Home/index.js"></script>
+      <div class="lightbox" id="lightbox">
     
+        <span class="close-lightbox" id="closeLightbox">✕</span>
+      
+        <button class="lightbox-btn prev" id="prevBtn">‹</button>
+      
+        <img class="lightbox-img" id="lightboxImg">
+      
+        <button class="lightbox-btn next" id="nextBtn">›</button>
+      
+      </div>
     </body>

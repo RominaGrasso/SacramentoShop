@@ -47,9 +47,8 @@ const translations = {
   }
   
   
-  // ===== INIT TODO =====
   document.addEventListener("DOMContentLoaded", () => {
-  
+
     /* ===== LANGUAGE ===== */
     const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
     setLanguage(savedLanguage);
@@ -59,6 +58,67 @@ const translations = {
         setLanguage(button.dataset.lang);
       });
     });
+  
+    /* ===== LIGHTBOX PRO ===== */
+  
+    const images = document.querySelectorAll(".gallery-grid img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const closeBtn = document.getElementById("closeLightbox");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+  
+    let currentIndex = 0;
+    const imageArray = Array.from(images);
+  
+    if (images.length && lightbox) {
+  
+      images.forEach((img, index) => {
+        img.addEventListener("click", () => {
+          currentIndex = index;
+          showImage();
+          lightbox.classList.add("active");
+        });
+      });
+  
+      function showImage() {
+        lightboxImg.src = imageArray[currentIndex].src;
+      }
+  
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % imageArray.length;
+        showImage();
+      }
+  
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
+        showImage();
+      }
+  
+      nextBtn?.addEventListener("click", nextImage);
+      prevBtn?.addEventListener("click", prevImage);
+  
+      closeBtn?.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+  
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove("active");
+        }
+      });
+  
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("active")) return;
+  
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+        if (e.key === "Escape") lightbox.classList.remove("active");
+      });
+  
+    }
+  
+  });
   
   
     /* ===== SMOOTH SCROLL ===== */
@@ -189,4 +249,4 @@ const translations = {
         });
       
       });
-});
+

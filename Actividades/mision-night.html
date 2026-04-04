@@ -102,7 +102,7 @@
 
   <!-- PRICE -->
   <div class="price-box">
-    <h3>USD 150 per person</h3>
+    <h3>USD 180 for 2 people</h3>
   </div>
 
 
@@ -134,14 +134,63 @@
         <label><input type="checkbox"> 🥗 Vegetarian dinner</label>
         <label><input type="checkbox"> 🚫 Gluten free</label>
         <label><input type="checkbox"> 🥛 Lactose free</label>
-        <label><input type="checkbox"> ☕ Coffee</label>
-        <label><input type="checkbox"> 🍵 Tea</label>
+       
       </div>
 
     </div>
 
   </div>
+  <div class="all-services">
 
+    <details>
+      <summary>✨ View all services</summary>
+  
+      <div class="services-content">
+  
+        <div class="services-grid">
+  
+          <!-- COLUMNA 1 -->
+          <div>
+            <h4>Highlighted services</h4>
+            <p>📶 Wi-Fi in lobby</p>
+            <p>📶 Wi-Fi in room</p>
+            <p>🐾 Pet friendly</p>
+        
+  
+            <h4>Hotel services</h4>
+            <ul>
+              <li>Temperature control</li>
+              <li>Breakfast</li>
+              <li>24h room service</li>
+              <li>Wi-Fi</li>
+              <li>Wi-Fi in lobby</li>
+              <li>Cashless payment</li>
+              <li>Non-smoking rooms</li>
+              <li>Safety protocols</li>
+            </ul>
+          </div>
+  
+          <!-- COLUMNA 2 -->
+          <div>
+            <h4>Room amenities</h4>
+            <ul>
+              <li>Air conditioning</li>
+              <li>Private bathroom with shower</li>
+              <li>Minibar</li>
+              <li>TV</li>
+              <li>Telephone</li>
+              <li>Openable windows</li>
+           
+            </ul>
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </details>
+  
+  </div>
 
   <!-- ================= GALLERY ================= -->
   <section class="coffee-gallery">
@@ -227,5 +276,45 @@
     
     });
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const images = document.querySelectorAll(".gallery-grid img");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const closeBtn = document.getElementById("closeLightbox");
+    
+      images.forEach(img => {
+        img.addEventListener("click", () => {
+          lightbox.classList.add("active");
+          lightboxImg.src = img.src;
+        });
+      });
+    
+      closeBtn.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+    
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove("active");
+        }
+      });
+    
+    });
+    </script>
+
+<div class="lightbox" id="lightbox">
+
+    <span class="close-lightbox" id="closeLightbox">✕</span>
+  
+    <button class="lightbox-btn prev" id="prevBtn">‹</button>
+  
+    <img class="lightbox-img" id="lightboxImg">
+  
+    <button class="lightbox-btn next" id="nextBtn">›</button>
+  
+  </div>
 </body>
 </html>

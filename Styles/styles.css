@@ -1561,4 +1561,152 @@
     position: relative;
     z-index: 1;
   }
+  .card-image img[src*="sushi1"] {
+    object-position: center 70%;
+  }
 
+  .sio-night-hero {
+    background-image: url("../Assets/images/sushin.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    height: 300px; /* 👈 clave */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    position: relative;
+  }
+  .sio-night-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* oscurece */
+  }
+  .sio-night-hero h1 {
+    color: white;
+    font-size: 2.5rem;
+    z-index: 1;
+    text-align: center;
+  }
+  .all-services {
+    margin-top: 20px;
+  }
+  
+  .all-services summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #4a7bbf;
+    margin-bottom: 10px;
+  }
+  
+  .services-content {
+    margin-top: 10px;
+    padding: 15px;
+    background: #f5f7fa;
+    border-radius: 12px;
+  }
+  
+  .services-content h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .services-content ul {
+    padding-left: 18px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .lightbox.active {
+    display: flex;
+  }
+  
+  .lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+  }
+  
+  .close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .lightbox.active {
+    display: flex;
+  }
+  
+  .lightbox-img {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 12px;
+  }
+  
+  .close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* FLECHAS */
+  .lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .lightbox-btn:hover {
+    background: rgba(255,255,255,0.4);
+  }
+  
+  .prev {
+    left: 20px;
+  }
+  
+  .next {
+    right: 20px;
+  }
