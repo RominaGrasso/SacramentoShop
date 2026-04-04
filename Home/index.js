@@ -58,6 +58,24 @@ const translations = {
         setLanguage(button.dataset.lang);
       });
     });
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        const imageContainer = card.querySelector(".card-image");
+        const link = card.querySelector(".card-buttons .btn");
+      
+        if (!imageContainer || !link) return;
+      
+        imageContainer.addEventListener("click", (e) => {
+      
+          // 👇 evita conflicto con botones del carrusel
+          if (e.target.closest(".carousel-btn")) return;
+      
+          // 👇 abrir link
+          window.open(link.href, "_blank");
+        });
+      
+      });
   
     /* ===== LIGHTBOX PRO ===== */
   
