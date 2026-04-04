@@ -1,0 +1,170 @@
+<body>
+
+    <link rel="stylesheet" href="../Styles/styles.css">
+    
+    <!-- ================= HEADER ================= -->
+    <header>
+    
+      <a href="../Home/index.html" class="logo">
+        <img src="../Assets/images/SacramentoLogo2.png">
+      </a>
+    
+      <div class="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    
+      <nav class="top-links">
+        <a href="../Actividades/aboutus.html" target="_blank">About Us</a>
+      </nav>
+    
+      <div class="language-switch">
+        <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
+        <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+        <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+      </div>
+    
+    </header>
+    
+    
+    <!-- HERO -->
+    <section class="boat-hero">
+        <h1>🔥🚤 Asado & Boat Experience</h1>
+      </section>
+    
+    
+    <!-- CONTENT -->
+    <section class="coffee-content">
+    
+      <h2>About this experience</h2>
+    
+      <p>
+        Experience the true essence of Uruguay with a unique combination of gastronomy and nature.
+        Enjoy an authentic <strong>asado</strong> prepared by <strong>Andres</strong> in El Refugio restaurant. You will taste
+        premium meats, local wine, and a relaxed atmosphere.
+        Then, embark on a scenic <strong>boat tour</strong> along the Río de la Plata,
+        discovering Colonia from a completely different perspective.
+      </p>
+    
+      <h3 class="experience-steps-title">How it works</h3>
+    
+      <div class="experience-steps">
+        <ul>
+    
+          <li>
+            📍 <strong>Meeting point:</strong> Historic Quarter (shared after booking)
+          </li>
+    
+          <li>
+            🔥 <strong>Asado experience:</strong> Enjoy a traditional Uruguayan BBQ prepared by Alejandro with premium meats and wine.
+          </li>
+    
+          <li>
+            🚤 <strong>Boat tour:</strong> Navigate the Río de la Plata and enjoy stunning views of Colonia from the water.
+          </li>
+    
+          <li>
+            🌅 <strong>Relax & enjoy:</strong> Perfect moment to unwind, take photos and experience the sunset.
+          </li>
+    
+          <li>🚶 All activities are within walking distance</li>
+    
+        </ul>
+      </div>
+    
+    
+      <!-- PRICE -->
+      <div class="price-box">
+        <h3>USD 120 per person</h3>
+      </div>
+    
+    
+      <div class="coffee-includes">
+    
+        <div class="includes-preferences">
+    
+          <!-- IZQUIERDA -->
+          <div class="includes-list">
+            <h3>What's included</h3>
+            <ul>
+              <li>✔ Traditional Uruguayan asado</li>
+              <li>✔ Premium meat selection</li>
+              <li>✔ Wine or beverage included</li>
+              <li>✔ Boat tour experience</li>
+              <li>✔ Local host (Alejandro)</li>
+              <li>✔ Transfer included</li>
+            </ul>
+          </div>
+    
+          <!-- DERECHA -->
+          <div class="preferences-inside">
+            <h3 class="preferences-title">
+              Your preferences 
+            </h3>
+    
+            <label><input type="checkbox"> 🍷 Wine</label>
+            <label><input type="checkbox"> 🥗 Vegetarian option</label>
+            <label><input type="checkbox"> 🚫 No alcohol</label>
+            <label><input type="checkbox"> ☕ Coffee</label>
+          </div>
+    
+        </div>
+    
+      </div>
+    
+    
+      <!-- GALLERY -->
+      <section class="coffee-gallery">
+    
+        <h2>Experience Gallery</h2>
+    
+        <div class="gallery-grid">
+    
+          <img src="../Assets/images/asado12.jpg">
+          <img src="../Assets/images/boat1.jpg.webp">
+          <img src="../Assets/images/boat2.jpg.webp">
+          <img src="../Assets/images/asado13.jpg">
+          <img src="../Assets/images/boat2.jpg.webp">
+          <img src="../Assets/images/boat1.jpg.webp">
+         
+       
+    
+        </div>
+    
+      </section>
+    
+    
+      <!-- ACTIONS -->
+      <div class="coffee-actions">
+    
+        <a href="#" class="btn">
+          Book Now
+        </a>
+    
+        <a href="../Home/index.html" class="btn secondary">
+          Back to Home
+        </a>
+    
+      </div>
+    
+    </section>
+    
+    
+    <!-- SCRIPTS -->
+    <script>
+    document.querySelector(".menu-toggle").addEventListener("click", () => {
+      document.querySelector(".hamburger-menu").style.display = "block";
+    });
+    </script>
+    
+    <script src="../Home/index.js"></script>
+    
+    
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+      <span class="close-lightbox" id="closeLightbox">✕</span>
+      <button class="lightbox-btn prev" id="prevBtn">‹</button>
+      <img class="lightbox-img" id="lightboxImg">
+      <button class="lightbox-btn next" id="nextBtn">›</button>
+    </div>
+    
+    </body>
