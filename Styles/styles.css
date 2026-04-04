@@ -1762,3 +1762,54 @@
     position:relative;
     z-index:1;
   }
+
+  .partners {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .partners h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* contenedor */
+  .logos-slider {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* track animado */
+  .logos-track {
+    display: flex;
+    gap: 40px;
+    animation: scrollLogos 20s linear infinite;
+  }
+  
+  /* logos */
+  .logos-track img {
+    height: 70px;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: 0.3s;
+  }
+  
+  .logos-track img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  
+  /* animación */
+  @keyframes scrollLogos {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .partners {
+    background: white !important;
+  }
+
