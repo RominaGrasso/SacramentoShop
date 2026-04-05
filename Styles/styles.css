@@ -1813,3 +1813,26 @@
     background: white !important;
   }
 
+  .under-construction {
+    font-size: 11px;
+    color: #999;
+    border: 1px solid #ddd;
+    padding: 3px 6px;
+    border-radius: 5px;
+    background: #f9f9f9;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .under-construction {
+    font-size: 14px;
+    background: #111;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+  }
