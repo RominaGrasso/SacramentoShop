@@ -1836,3 +1836,46 @@
     border-radius: 8px;
     font-weight: 600;
   }
+
+  .boat-hero-corp {
+    background-image: url("../Assets/images/petit2.jpg");
+    background-size: cover;
+    background-position: center 90%;
+    background-repeat: no-repeat;
+  
+    height: 300px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    position: relative;
+  }
+  .boat-hero-corp::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+  }
+  
+  .boat-hero-corp h1 {
+    color: white;
+    font-size: 2.5rem;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .price-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .price-note {
+    background: rgba(90, 149, 207, 0.1);
+    color: #5a95cf;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
