@@ -1879,3 +1879,65 @@
     padding: 6px 12px;
     border-radius: 999px;
   }
+
+  .logos-slider {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .logos-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+  
+    animation: scroll 25s linear infinite;
+  }
+  
+  /* 👇 clave para que funcione el click */
+  .logos-track a {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .logos-track img {
+    height: 50px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .logos-track img:hover {
+    transform: scale(1.08);
+    opacity: 0.8;
+  }
+  
+  /* animación */
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .logos-slider:hover .logos-track {
+    animation-play-state: paused;
+  }
+
+  .logos-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+  
+    animation: scroll 25s linear infinite;
+  
+    pointer-events: none; /* 👈 CLAVE */
+  }
+  
+  .logos-track a {
+    pointer-events: auto; /* 👈 CLAVE */
+    position: relative;
+    z-index: 5;
+  }
