@@ -41,14 +41,14 @@
         Enjoy a unique gastronomic experience at Bruma, a boutique restaurant located in the heart of Colonia’s Historic Quarter. 
         Surrounded by cobblestone streets and charming colonial houses, Bruma offers an intimate and relaxed atmosphere.
         
-        Led by Chef Marcelo, the restaurant features a carefully crafted international menu with high-quality ingredients and creative dishes.
+        Led by <strong>Chef Marcelo</strong>, the restaurant features a carefully crafted international menu with high-quality ingredients and creative dishes.
         
         This experience is the perfect complement after a guided tour — a moment to relax, enjoy great food, and soak in the essence of Colonia.
       </p>
     
       <!-- PRICE -->
       <div class="price-box">
-        <h3>USD50 per person</h3>
+        <h3>USD35 per person</h3>
       </div>
     
       <div class="coffee-includes">
@@ -68,7 +68,10 @@
     
           <!-- DERECHA -->
           <div class="preferences-inside">
-            <h3>Your preferences</h3>
+            <h3 class="preferences-title">
+                Your preferences 
+                <span class="help-icon" id="brumaHelp">ℹ️</span>
+              </h3>
     
             <label><input type="checkbox"> 🍺 0% Alcohol</label>
             <label><input type="checkbox"> 🧂 Low Salt</label>
@@ -80,6 +83,24 @@
         </div>
     
       </div>
+
+      <div class="order-summary" id="orderSummary">
+
+        <h3>Your order</h3>
+      
+        <p><strong>Starter:</strong> <span id="selectedStarter">—</span></p>
+        <p><strong>Main:</strong> <span id="selectedMain">—</span></p>
+        <p><strong>Drink:</strong> <span id="selectedDrink">—</span></p>
+        <p><strong>Preferences:</strong> <span id="selectedPreferences">—</span></p>
+      
+        <a href="#" id="bookWithOrder" class="btn order-floating-btn">
+          Book Now
+        </a>
+
+        
+      
+      </div>
+
     
       <!-- ================= GALLERY ================= -->
       <section class="coffee-gallery">
@@ -96,6 +117,7 @@
         </div>
     
       </section>
+
     
       <!-- ================= ACTIONS ================= -->
       <div class="coffee-actions">
@@ -129,4 +151,256 @@
         <button class="lightbox-btn next" id="nextBtn">›</button>
       
       </div>
+
+      <div class="popup-overlay" id="popupBruma">
+        <div class="popup-box">
+      
+          <p><strong class="popup-title">Chef's curated menu:</strong></p>
+      
+          <p><strong>Starter</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="starter">
+                <span>Empanada (cheese & onion / lamb / vegetables / bacon & cheese)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="starter">
+                <span>Homemade fries with brava sauce</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="starter">
+                <span>Pumpkin soup with cream and croutons</span>
+              </label>
+            </li>
+          </ul>
+          
+          <p><strong>Main Course</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="main">
+                <span>Pumpkin ravioli with sage butter and almonds</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="main">
+                <span>Sun-dried tomato & mushroom risotto</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="main">
+                <span>Braised pork sandwich in focaccia with cheese and caramelized onions</span>
+              </label>
+            </li>
+          </ul>
+          
+          <p><strong>Drink</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="drink">
+                <span>Glass of wine (red / rosé / white)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="drink">
+                <span>Water, soda or lemonade</span>
+              </label>
+            </li>
+          </ul>
+      
+          <button class="close-x" id="closeBruma">✕</button>
+          <div class="popup-actions">
+            <button id="saveMenu" class="btn">Save selection</button>
+            
+          </div>
+        </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        
+          const help = document.getElementById("brumaHelp");
+          const popup = document.getElementById("popupBruma");
+          const close = document.getElementById("closeBruma");
+        
+          help.addEventListener("click", () => {
+            popup.classList.add("active");
+          });
+        
+          close.addEventListener("click", () => {
+            popup.classList.remove("active");
+          });
+        
+          popup.addEventListener("click", (e) => {
+            if (e.target === popup) {
+              popup.classList.remove("active");
+            }
+          });
+        
+        });
+        </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const starters = document.querySelectorAll('input[name="starter"]');
+      const mains = document.querySelectorAll('input[name="main"]');
+      const drinks = document.querySelectorAll('input[name="drink"]');
+      const preferencesInputs = document.querySelectorAll('.preferences-inside input[type="checkbox"]');
+    
+      const starterText = document.getElementById("selectedStarter");
+      const mainText = document.getElementById("selectedMain");
+      const drinkText = document.getElementById("selectedDrink");
+      const preferencesText = document.getElementById("selectedPreferences");
+    
+      function updateSelection(inputs, output, storageKey) {
+        inputs.forEach(input => {
+          input.addEventListener("change", () => {
+            const text = input.parentElement.textContent.trim();
+    
+            output.textContent = text;
+            localStorage.setItem(storageKey, text);
+          });
+        });
+      }
+    
+      // 🔥 actualizar comidas
+      updateSelection(starters, starterText, "selectedStarter");
+      updateSelection(mains, mainText, "selectedMain");
+      updateSelection(drinks, drinkText, "selectedDrink");
+    
+      // 🔥 actualizar preferences en tiempo real
+      function updatePreferences() {
+        const selected = [];
+    
+        preferencesInputs.forEach(input => {
+          if (input.checked) {
+            selected.push(input.parentElement.textContent.trim());
+          }
+        });
+    
+        preferencesText.textContent = selected.length > 0 ? selected.join(", ") : "—";
+        localStorage.setItem("selectedPreferences", JSON.stringify(selected));
+      }
+    
+      preferencesInputs.forEach(input => {
+        input.addEventListener("change", updatePreferences);
+      });
+    
+      // 🔥 cargar datos guardados
+      starterText.textContent = localStorage.getItem("selectedStarter") || "—";
+      mainText.textContent = localStorage.getItem("selectedMain") || "—";
+      drinkText.textContent = localStorage.getItem("selectedDrink") || "—";
+    
+      const savedPreferences = JSON.parse(localStorage.getItem("selectedPreferences")) || [];
+      preferencesText.textContent = savedPreferences.length > 0 ? savedPreferences.join(", ") : "—";
+    
+    });
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const saveBtn = document.getElementById("saveMenu");
+    
+      saveBtn.addEventListener("click", () => {
+    
+        const starter = document.querySelector('input[name="starter"]:checked');
+        const main = document.querySelector('input[name="main"]:checked');
+        const drink = document.querySelector('input[name="drink"]:checked');
+    
+        if (!starter || !main || !drink) {
+          alert("Please select one option from each category");
+          return;
+        }
+    
+        const starterText = starter.nextElementSibling.textContent;
+        const mainText = main.nextElementSibling.textContent;
+        const drinkText = drink.nextElementSibling.textContent;
+    
+        // ✅ preferences (AHORA EN EL LUGAR CORRECTO)
+        const preferences = [];
+        document.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
+          .forEach(el => {
+            preferences.push(el.parentElement.textContent.trim());
+          });
+    
+        // guardar todo
+        localStorage.setItem("selectedStarter", starterText);
+        localStorage.setItem("selectedMain", mainText);
+        localStorage.setItem("selectedDrink", drinkText);
+        localStorage.setItem("selectedPreferences", JSON.stringify(preferences));
+    
+        // feedback
+        saveBtn.textContent = "Saved ✓";
+    
+        // cerrar popup
+        document.getElementById("popupBruma").classList.remove("active");
+    
+        setTimeout(() => {
+          saveBtn.textContent = "Save selection";
+        }, 1500);
+    
+      });
+    
+    });
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const bookBtn = document.getElementById("bookWithOrder");
+    
+      bookBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+    
+        const starter = localStorage.getItem("selectedStarter") || "-";
+        const main = localStorage.getItem("selectedMain") || "-";
+        const drink = localStorage.getItem("selectedDrink") || "-";
+        const preferences = JSON.parse(localStorage.getItem("selectedPreferences")) || [];
+    
+        const today = new Date();
+        const date = localStorage.getItem("selectedDate") || today.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        });
+    
+        const people = localStorage.getItem("selectedPeople") || "1";
+    
+        const preferencesText = preferences.length > 0
+          ? `*Preferences:*\n- ${preferences.join("\n- ")}`
+          : "*Preferences:* -";
+    
+        const paymentLink = "https://pago.handy.uy/details/?sessionId=4cdfbebb-031c-40f0-91c9-f1ffafb8aaef";
+    
+        const message = `Hello! I’d like to book the Bruma experience:
+    
+    *Date:* ${date}
+    *People:* ${people}
+    
+    *Starter:* ${starter}
+    *Main:* ${main}
+    *Drink:* ${drink}
+    
+    ${preferencesText}
+    
+    To confirm the reservation, please complete the payment here:
+    ${paymentLink}`;
+    
+        const url = `https://wa.me/598091642195?text=${encodeURIComponent(message)}`;
+    
+        window.open(url, "_blank");
+      });
+    
+    });
+    </script>
     </body>
