@@ -96,127 +96,56 @@
       </div>
     
       <div class="coffee-includes">
-
-  <div class="includes-preferences">
-
-    <!-- IZQUIERDA -->
-    <div class="includes-list">
-        <h3>What's included</h3>
-    <ul>
-      <li>✔ Guided walking tour with local expert</li>
-      <li>✔ Authentic Uruguayan chivito</li>
-      <li>✔ French fries or fresh salad</li>
-      <li>✔ Soft drink or local beverage</li>
-      <li>✔ Visit to Plaza de Toros (tickets included)</li>
-      <li>✔ Private Transfer</li>
-    </ul>
-</div>
-
-    <!-- DERECHA -->
-    <div class="preferences-inside">
-      <h3 class="preferences-title">
-        Your preferences 
-        <span class="help-icon" id="menuHelp">ℹ️</span>
-      </h3>
-
-      <label><input type="checkbox"> 🍺 0% Alcohol</label>
-      <label><input type="checkbox"> 🧂 Salt Free</label>
-      <label><input type="checkbox"> 🌱 Vegetarian</label>
-      <label><input type="checkbox"> 🌶 No spicy food</label>
-    </div>
-
-  </div>
-
-</div>
-    
-    
-      <!-- ================= GALLERY ================= -->
-      <section class="coffee-gallery">
-    
-        <h2>Experience Gallery</h2>
-    
-        <div class="gallery-grid">
-    
-          <img src="../Assets/images/ref1.jpg">
-          <img src="../Assets/images/ref22.jpg">
-          <img src="../Assets/images/ref3.jpg">
-          <img src="../Assets/images/ref4.jpg">
-    
-          <img src="../Assets/images/plaz1.jpg">
-          <img src="../Assets/images/plaza.jpg">
-    
+        <div class="includes-preferences">
+      
+          <!-- IZQUIERDA -->
+          <div class="includes-list">
+            <h3>What's included</h3>
+            <ul>
+              <li>✔ Guided walking tour with local expert</li>
+              <li>✔ Authentic Uruguayan chivito</li>
+              <li>✔ French fries or fresh salad</li>
+              <li>✔ Soft drink or local beverage</li>
+              <li>✔ Visit to Plaza de Toros (tickets included)</li>
+              <li>✔ Private Transfer</li>
+            </ul>
+          </div>
+      
+          <!-- DERECHA -->
+          <div class="order-start">
+            <h3>Create your menu</h3>
+            <p>Select your meal and preferences</p>
+      
+            <button id="createMenuBtn" class="btn primary-btn">
+              + Create your menu
+            </button>
+          </div>
+      
         </div>
-    
-      </section>
-    
-    
-      <!-- ================= ACTIONS ================= -->
-      <div class="coffee-actions">
-    
-        <a href="TU_LINK" target="_blank" class="btn">
-          Book Now
-        </a>
-    
-        <a href="../Home/index.html" class="btn secondary">
-          Back to Home
-        </a>
-    
       </div>
-    
+      
+      <div id="orderSummary"></div>
     </section>
 
-    <div class="popup-overlay" id="popup">
-        <div class="popup-box">
-            <p>
-                <strong class="popup-title">Dear Customer:</strong>
-                Your meal will be the traditional Uruguayan chivito.
-              </p>
-              
-              <p>You may also choose:</p>
-              
-              <ul class="popup-list">
-                <li>
-                  A typical milanesa with fries (drinks and dessert not included)
-                </li>
-                <li>
-                  The tourist menu (starter, main course, and dessert — drinks not included)
-                </li>
-              </ul>
-              
-              <p>All options are available for the same price.</p>
-            <button class="close-x" id="closePopup">✕</button>
-        </div>
+    <section class="coffee-gallery">
+      <h2>Experience Gallery</h2>
+    
+      <div class="gallery-grid">
+        <img src="../Assets/images/bruman1.jpg">
+        <img src="../Assets/images/bruma2.jpg">
+        <img src="../Assets/images/bruman3.jpg">
+        <img src="../Assets/images/bruma4.jpg">
+        <img src="../Assets/images/bruman2.jpg">
+        <img src="../Assets/images/bruman5.jpg">
       </div>
 
-    <script>
-        document.querySelector(".menu-toggle").addEventListener("click", () => {
-          document.querySelector(".hamburger-menu").style.display = "block";
-        });
-      </script>
+      <div class="coffee-actions">
+        <a href="#" id="bookNowBottom" class="btn secondary">Book Now</a>
+        <a href="../Home/index.html" class="btn secondary">Back to Home</a>
+      </div>
+    </section> 
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-  
-      const help = document.getElementById("menuHelp");
-      const popup = document.getElementById("popup");
-      const close = document.getElementById("closePopup");
-  
-      help.addEventListener("click", () => {
-  popup.classList.add("active");
-});
 
-close.addEventListener("click", () => {
-  popup.classList.remove("active");
-});
-
-popup.addEventListener("click", (e) => {
-  if (e.target === popup) {
-    popup.classList.remove("active");
-  }
-});
-  
-    });
-  </script>
   <script src="../Home/index.js"></script>
   <div class="lightbox" id="lightbox">
 
@@ -229,4 +158,382 @@ popup.addEventListener("click", (e) => {
     <button class="lightbox-btn next" id="nextBtn">›</button>
   
   </div>
-    </body>
+
+
+<div class="popup-overlay" id="popupBruma">
+  <div class="popup-box">
+
+    <button class="close-x" id="closeBruma">✕</button>
+
+    <p><strong class="popup-title">Choose your meal:</strong></p>
+
+    <!-- 🔹 STARTER (dummy oculto para el JS) -->
+    <input type="radio" name="starter" checked hidden>
+
+    <!-- 🔹 MAIN (LO REAL) -->
+    <p><strong>Main Course</strong></p>
+
+<ul class="popup-list">
+
+  <!-- CHIVITO -->
+  <li>
+    <label>
+      <input type="radio" name="main" value="chivito">
+      <span>Chivito al pan</span>
+    </label>
+    <small class="meal-detail">
+      Beef, mozzarella, bacon, fried egg, lettuce, arugula & tomato + rustic fries
+    </small>
+  </li>
+
+  <!-- MILANESA -->
+  <li>
+    <label>
+      <input type="radio" name="main" value="milanesa">
+      <span>Milanesa a caballo</span>
+    </label>
+    <small class="meal-detail">
+      Meat or chicken milanesa with ham, mozzarella, sauce & fried egg + fries
+    </small>
+  </li>
+
+  <!-- MENU TURISTICO -->
+  <li>
+    <label>
+      <input type="radio" name="main" value="tourist">
+      <span>Tourist menu (starter + main + dessert)</span>
+    </label>
+  </li>
+
+</ul>
+
+<div id="touristOptions" style="display:none; margin-top:20px;">
+
+  <p><strong>Starter</strong></p>
+  <label><input type="radio" name="starter"> Sopa de vegetales</label>
+  <label><input type="radio" name="starter"> Chorizo a las brasas con ensalada</label>
+  <label><input type="radio" name="starter"> Jamón con rusa</label>
+
+  <p style="margin-top:15px;"><strong>Main</strong></p>
+  <label><input type="radio" name="touristMain"> Muslo de pollo con mixta o puré</label>
+  <label><input type="radio" name="touristMain"> Cerdo a las brasas con mixta o puré</label>
+  <label><input type="radio" name="touristMain"> Tallarines con boloñesa o fileto</label>
+
+  <p style="margin-top:15px;"><strong>Dessert</strong></p>
+  <p>Chajá típico uruguayo</p>
+
+</div>
+
+    <!-- 🔹 PREFERENCES -->
+    <div class="preferences-inside">
+      <h3 class="preferences-title">
+        Your preferences 
+        <span class="help-icon">ℹ️</span>
+      </h3>
+
+      <label><input type="checkbox"> 🍺 0% Alcohol</label>
+      <label><input type="checkbox"> 🧂 Salt Free</label>
+      <label><input type="checkbox"> 🌱 Vegetarian</label>
+      <label><input type="checkbox"> 🌶 No spicy food</label>
+    </div>
+
+    <!-- 🔹 SAVE -->
+    <div class="popup-actions">
+      <button id="saveMenu" class="btn">Save selection</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+<script>
+  let editingIndex = null;
+  
+  document.addEventListener("DOMContentLoaded", () => {
+  
+    const popup = document.getElementById("popupBruma");
+    const createBtn = document.getElementById("createMenuBtn");
+    const closeBtn = document.getElementById("closeBruma");
+    const saveBtn = document.getElementById("saveMenu");
+  
+    const mainOptions = document.querySelectorAll('input[name="main"]');
+    const touristBlock = document.getElementById("touristOptions");
+  
+    renderOrders();
+  
+    // ================= OPEN POPUP =================
+    if (createBtn) {
+      createBtn.onclick = () => {
+        editingIndex = null;
+        resetPopup();
+        popup.classList.add("active");
+      };
+    }
+  
+    if (closeBtn) {
+      closeBtn.onclick = () => {
+        popup.classList.remove("active");
+      };
+    }
+  
+    // ================= SHOW TOURIST OPTIONS =================
+    mainOptions.forEach(option => {
+      option.addEventListener("change", () => {
+        if (option.value === "tourist" && option.checked) {
+          touristBlock.style.display = "block";
+        } else {
+          touristBlock.style.display = "none";
+        }
+      });
+    });
+  
+    // ================= SAVE =================
+    if (saveBtn) {
+      saveBtn.onclick = () => {
+  
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  
+        const main = document.querySelector('input[name="main"]:checked');
+  
+        if (!main) {
+          alert("Select a meal");
+          return;
+        }
+  
+        const preferences = [];
+        document.querySelectorAll(".preferences-inside input:checked")
+          .forEach(p => preferences.push(p.parentElement.textContent.trim()));
+  
+        let starter = null;
+        let touristMain = null;
+  
+        if (main.value === "tourist") {
+          const starterSelected = document.querySelector('input[name="starter"]:checked');
+          const mainSelected = document.querySelector('input[name="touristMain"]:checked');
+  
+          if (!starterSelected || !mainSelected) {
+            alert("Please complete starter and main");
+            return;
+          }
+  
+          starter = starterSelected.parentElement.textContent.trim();
+          touristMain = mainSelected.parentElement.textContent.trim();
+        }
+  
+        const order = {
+          main: main.nextElementSibling.textContent,
+          starter,
+          touristMain,
+          preferences
+        };
+  
+        if (editingIndex !== null) {
+          orders[editingIndex] = order;
+          editingIndex = null;
+        } else {
+          orders.push(order);
+        }
+  
+        localStorage.setItem("orders", JSON.stringify(orders));
+  
+        popup.classList.remove("active");
+        renderOrders();
+      };
+    }
+  });
+  
+  
+  // ================= RENDER =================
+  function renderOrders() {
+    const container = document.getElementById("orderSummary");
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  
+    let html = `
+      <div class="order-container">
+        <h2>Your order</h2>
+    `;
+  
+    if (orders.length > 0) {
+      html += `
+        <button id="addGuestBtn" class="add-guest-btn">
+          + Add guest order
+        </button>
+      `;
+    }
+  
+    orders.forEach((order, i) => {
+
+  html += `
+    <div class="order-card">
+      <div class="order-header">
+        <h3>Order ${i + 1}</h3>
+
+        <div class="order-actions">
+          <span onclick="editOrder(${i})">✏️</span>
+          <span onclick="deleteOrder(${i})">🗑️</span>
+        </div>
+      </div>
+  `;
+
+  // 👇 MAIN correcto (sin duplicados)
+  if (order.touristMain) {
+    html += `<p><strong>Main:</strong> ${order.touristMain}</p>`;
+  } else {
+    html += `<p><strong>Main:</strong> ${order.main}</p>`;
+  }
+
+  // 👇 starter (si existe)
+  if (order.starter) {
+    html += `<p><strong>Starter:</strong> ${order.starter}</p>`;
+  }
+
+  // 👇 dessert SOLO si es tourist
+  if (order.touristMain) {
+    html += `<p><strong>Dessert:</strong> Chajá típico uruguayo</p>`;
+  }
+
+  // 👇 preferences
+  html += `
+      <p><strong>Preferences:</strong> ${
+        order.preferences.length > 0
+          ? order.preferences.join(", ")
+          : "-"
+      }</p>
+    </div>
+  `;
+});
+  
+    if (orders.length > 0) {
+      const total = orders.length * 90;
+  
+      html += `
+        <div class="total-box">
+          <div class="total-left">
+            <span class="total-label">Total</span>
+            <span class="total-detail">(${orders.length} x USD 90)</span>
+          </div>
+  
+          <div class="total-right">
+            USD ${total}
+          </div>
+  
+          <a href="#" id="bookWithOrder" class="btn total-btn">
+            Book Now
+          </a>
+        </div>
+      `;
+    }
+  
+    html += `</div>`;
+    container.innerHTML = html;
+  
+    // ================= ADD GUEST =================
+    const addBtn = document.getElementById("addGuestBtn");
+    if (addBtn) {
+      addBtn.onclick = () => {
+        editingIndex = null;
+        resetPopup();
+        document.getElementById("popupBruma").classList.add("active");
+      };
+    }
+  
+    // ================= BOOK =================
+    const bookBtn = document.getElementById("bookWithOrder");
+    if (bookBtn) {
+      bookBtn.onclick = (e) => {
+        e.preventDefault();
+  
+        let message = "Hello! I’d like to book the Food Experience:\n\n";
+  
+        orders.forEach((o, i) => {
+          message += `Order ${i + 1}: ${o.main}\n`;
+        });
+  
+        const total = orders.length * 90;
+        message += `\nTotal: USD ${total}`;
+  
+        window.open(`https://wa.me/598091642195?text=${encodeURIComponent(message)}`);
+      };
+    }
+  
+    const bookBottom = document.getElementById("bookNowBottom");
+    if (bookBottom) {
+      bookBottom.onclick = (e) => {
+        e.preventDefault();
+        window.open(`https://wa.me/598091642195`);
+      };
+    }
+  }
+  
+  
+  // ================= DELETE =================
+  function deleteOrder(index) {
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.splice(index, 1);
+    localStorage.setItem("orders", JSON.stringify(orders));
+    renderOrders();
+  }
+  
+  
+  // ================= EDIT =================
+  function editOrder(index) {
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const order = orders[index];
+  
+    editingIndex = index;
+  
+    resetPopup();
+  
+    document.querySelectorAll('input[name="main"]').forEach(input => {
+      if (input.nextElementSibling.textContent === order.main) {
+        input.checked = true;
+  
+        if (input.value === "tourist") {
+          document.getElementById("touristOptions").style.display = "block";
+        }
+      }
+    });
+  
+    if (order.starter) {
+      document.querySelectorAll('input[name="starter"]').forEach(i => {
+        if (i.parentElement.textContent.trim() === order.starter) {
+          i.checked = true;
+        }
+      });
+    }
+  
+    if (order.touristMain) {
+      document.querySelectorAll('input[name="touristMain"]').forEach(i => {
+        if (i.parentElement.textContent.trim() === order.touristMain) {
+          i.checked = true;
+        }
+      });
+    }
+  
+    document.querySelectorAll('.preferences-inside input').forEach(i => i.checked = false);
+  
+    document.querySelectorAll('.preferences-inside label').forEach(label => {
+      if (order.preferences.includes(label.textContent.trim())) {
+        label.querySelector("input").checked = true;
+      }
+    });
+  
+    document.getElementById("popupBruma").classList.add("active");
+  }
+  
+  
+  // ================= RESET =================
+  function resetPopup() {
+    document.querySelectorAll('input[name="main"]').forEach(i => i.checked = false);
+    document.querySelectorAll('input[name="starter"]').forEach(i => i.checked = false);
+    document.querySelectorAll('input[name="touristMain"]').forEach(i => i.checked = false);
+    document.querySelectorAll('.preferences-inside input').forEach(i => i.checked = false);
+  
+    const touristBlock = document.getElementById("touristOptions");
+    if (touristBlock) touristBlock.style.display = "none";
+  }
+  </script>
+</body>
+    
+ 
