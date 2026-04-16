@@ -764,7 +764,7 @@
 
   .food-hero {
     height: 55vh;
-    background-image: url("../Assets/images/ref3.jpg");
+    background-image: url("../Assets/images/ref161.jpg");
     background-size: cover;
     background-position: 50% 65%;
     background-repeat: no-repeat;
@@ -2220,4 +2220,85 @@
     font-weight: 700;
     border-radius: 26px;
   }
+/* contenedor de toda la sección de orders */
+.order-container {
+  background-color: #e9eff4; /* 👈 MISMO estilo que Bruma */
+  padding: 30px;
+  border-radius: 16px;
+  margin-top: 30px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999;
+}
+
+.popup-overlay.active {
+  display: flex;
+}
+
+/* 🔥 CLAVE */
+.popup-box {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+
+  max-height: 90vh;   /* 👈 limita altura */
+  overflow-y: auto;   /* 👈 habilita scroll */
+
+  width: 90%;
+  max-width: 500px;
+}
+
+.popup-list li {
+  margin-bottom: 15px;
+}
+
+.popup-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.meal-detail {
+  display: block;
+  font-size: 13px;
+  color: #666;
+  margin-left: 28px; /* 👈 alinea con texto, no con radio */
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* 🔥 fuerza cada opción a ocupar toda la fila */
+#touristOptions label {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* espacio entre secciones */
+#touristOptions p {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* radios alineados mejor */
+#touristOptions input[type="radio"] {
+  margin-right: 8px;
+}
+
+#touristOptions {
+  text-align: left;
+}
+
 
