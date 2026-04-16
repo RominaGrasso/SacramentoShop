@@ -220,7 +220,25 @@
       </div>
 
       
+      <script src="../Home/orders.js"></script>
       <script>
+        initExperience({
+          experienceName: "Bruma",
+          pricePerPerson: 35,
+          bookNowBottomId: "bookNowBottom",
+          selectedDateKey: "selectedDate",
+          whatsappNumber: "598091642195",
+          paymentLinks: {
+            1: "https://pago.handy.uy/details/?sessionId=e7f8720c-d3cb-4680-90fa-262fbb190895",
+            2: "https://pago.handy.uy/details/?sessionId=LINK_70",
+            3: "https://pago.handy.uy/details/?sessionId=LINK_105",
+            4: "https://pago.handy.uy/details/?sessionId=LINK_140",
+            5: "https://pago.handy.uy/details/?sessionId=LINK_175"
+          }
+        });
+
+        // Deshabilitado: lógica inline antigua (se reemplaza por Home/orders.js).
+        if (false) {
         let editingIndex = null;
         
         document.addEventListener("DOMContentLoaded", () => {
@@ -568,5 +586,6 @@ We are a group of more than 5 people and would like to coordinate the reservatio
     window.open(url, "_blank");
   });
 }
+        }
         </script>
 </body>
