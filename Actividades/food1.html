@@ -247,7 +247,17 @@
 
 
 
+<script src="../Home/orders.js"></script>
 <script>
+  initFoodExperience({
+    experienceName: "Food",
+    pricePerPerson: 90,
+    bookNowBottomId: "bookNowBottom",
+    whatsappNumber: "598091642195"
+  });
+
+  // Deshabilitado: lógica inline antigua (se reemplaza por Home/orders.js).
+  if (false) {
   let editingIndex = null;
   
   document.addEventListener("DOMContentLoaded", () => {
@@ -532,6 +542,7 @@
   
     const touristBlock = document.getElementById("touristOptions");
     if (touristBlock) touristBlock.style.display = "none";
+  }
   }
   </script>
 </body>
