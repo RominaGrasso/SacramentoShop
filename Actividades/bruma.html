@@ -101,10 +101,7 @@
       <!-- ================= ACTIONS ================= -->
       <div class="coffee-actions">
     
-        <a href="TU_LINK" target="_blank" class="btn">
-          Book Now
-        </a>
-    
+        <a href="#" id="bookNowBottom" class="btn secondary">Book Now</a>    
         <a href="../Home/index.html" class="btn secondary">
           Back to Home
         </a>
@@ -227,6 +224,13 @@
         let editingIndex = null;
         
         document.addEventListener("DOMContentLoaded", () => {
+          const paymentLinks = {
+    1: "LINK_35",
+    2: "LINK_70",
+    3: "LINK_105",
+    4: "LINK_140",
+    5: "LINK_175"
+  };
           renderOrders();
         
           const popup = document.getElementById("popupBruma");
@@ -341,14 +345,33 @@ if (orders.length > 0) {
               </div>
             `;
           });
+
+
         
           if (orders.length > 0) {
-            html += `
-              <a href="#" id="bookWithOrder" class="btn order-floating-btn">
-                Book Now
-              </a>
-            `;
-          }
+
+  const pricePerPerson = 35;
+  const total = orders.length * pricePerPerson;
+
+  html += `
+  <div class="total-box">
+
+    <div class="total-left">
+      <span class="total-label">Total</span>
+      <span class="total-detail">(${orders.length} x USD 35)</span>
+    </div>
+
+    <div class="total-right">
+      USD ${total}
+    </div>
+
+    <a href="#" id="bookWithOrder" class="btn total-btn">
+      Book Now
+    </a>
+
+  </div>
+`;
+}
         
           container.innerHTML = html;
         
@@ -438,22 +461,112 @@ if (orders.length > 0) {
         `;
               });
         
-              const paymentLink = "https://pago.handy.uy/details/?sessionId=e7f8720c-d3cb-4680-90fa-262fbb190895";
-        
-              const message = `Hello! I’d like to book the Bruma experience:
-        
-        Date: ${date}
-        People: ${orders.length}
-        
-        ${ordersText}
-        
-        To confirm the reservation, please complete the payment here:
-        ${paymentLink}`;
+              const paymentLinks = {
+  1: "https://pago.handy.uy/details/?sessionId=e7f8720c-d3cb-4680-90fa-262fbb190895",
+  2: "https://pago.handy.uy/details/?sessionId=LINK_70",
+  3: "https://pago.handy.uy/details/?sessionId=LINK_105",
+  4: "https://pago.handy.uy/details/?sessionId=LINK_140",
+  5: "https://pago.handy.uy/details/?sessionId=LINK_175"
+};
+
+const people = orders.length;
+let paymentLink = paymentLinks[people] || "";
+
+let message = `Hello! I’d like to book the Bruma experience:
+
+Date: ${date}
+People: ${people}
+
+${ordersText}
+
+Total: USD ${people * 35}
+`;
+
+if (people <= 5) {
+  message += `
+
+To confirm the reservation, please complete the payment here:
+${paymentLink}`;
+} else {
+  message += `
+
+We are a group of more than 5 people and would like to coordinate the reservation.`;
+}
         
               const url = `https://wa.me/598091642195?text=${encodeURIComponent(message)}`;
               window.open(url, "_blank");
             });
           }
         }
+
+        const bottomBtn = document.getElementById("bookNowBottom");
+
+if (bottomBtn) {
+  bottomBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    const today = new Date();
+    const date = localStorage.getItem("selectedDate") || today.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    });
+
+    const people = orders.length;
+
+    let ordersText = "";
+
+    orders.forEach((order, index) => {
+      const prefs = order.preferences.length > 0
+        ? `\n  Preferences:\n  - ${order.preferences.join("\n  - ")}`
+        : "";
+
+      ordersText += `
+Order ${index + 1}
+Starter: ${order.starter}
+Main: ${order.main}
+Drink: ${order.drink}${prefs}
+
+`;
+    });
+
+    const paymentLinks = {
+  1: "https://pago.handy.uy/details/?sessionId=LINK_35",
+  2: "https://pago.handy.uy/details/?sessionId=LINK_70",
+  3: "https://pago.handy.uy/details/?sessionId=LINK_105",
+  4: "https://pago.handy.uy/details/?sessionId=LINK_140",
+  5: "https://pago.handy.uy/details/?sessionId=LINK_175"
+};
+
+let paymentLink = paymentLinks[people] || "";
+
+let message = `Hello! I’d like to book the Bruma experience:
+
+Date: ${date}
+People: ${people}
+
+${ordersText}
+
+Total: USD ${people * 35}
+`;
+
+if (people <= 5) {
+  message += `
+
+To confirm the reservation, please complete the payment here:
+${paymentLink}`;
+} else {
+  message += `
+
+We are a group of more than 5 people and would like to coordinate the reservation.`;
+}
+
+    const url = `https://wa.me/598091642195?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+  });
+}
         </script>
 </body>

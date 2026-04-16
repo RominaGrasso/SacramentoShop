@@ -164,8 +164,8 @@
   }
   
   .btn.secondary {
-    background: linear-gradient(135deg, #3b4fd1, #7a6fdc);
-    color: white;
+    background: #e6ebf2;
+    color: #2f67a3;
     font-weight: 600;
   
     border: 1px solid rgba(255,255,255,0.3);
@@ -450,12 +450,12 @@
   }
   
   .coffee-actions .btn.secondary {
-    background-color: #eee;
-    color: #333;
+    background-color: #2f67a3;
+    color: white;
   }
   
   .coffee-actions .btn.secondary:hover {
-    background-color: #ddd;
+    background-color: #66a6e6;
   }
   
   /* RESPONSIVE */
@@ -2140,3 +2140,84 @@
   .order-card strong {
     color: #2c3e50;
   }
+
+  .total-box {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #2266aa;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .total-left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .total-label {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .total-detail {
+    font-size: 13px;
+    color: #777;
+  }
+  
+  .total-right {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .total-right {
+    color: #5b8def; /* mismo azul que usás en botones */
+  }
+
+  .total-box {
+    color: white;
+  }
+
+  .total-box {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #2f67a3;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .total-left {
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+  
+  .total-label {
+    font-weight: 600;
+  }
+  
+  .total-detail {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+  }
+  
+  .total-right {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .total-btn {
+    padding: 20px 32px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 26px;
+  }
+
