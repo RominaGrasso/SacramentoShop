@@ -1,42 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 <body>
 
     <link rel="stylesheet" href="../Styles/styles.css">
     
     <!-- ================= HEADER ================= -->
-    <header>
-    
-      <a href="../Home/index.html" class="logo">
-        <img src="../Assets/images/SacramentoLogo2.png"
-             alt="Sacramento Adventures Logo">
-      </a>
-    
-      <div class="menu-toggle">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-    
-      <nav class="top-links">
-        <a href="../Actividades/aboutus.html" target="_blank">About Us</a>
-      </nav>
-    
-      <div class="language-switch">
-        <button class="lang-btn">🇺🇸 EN</button>
-        <button class="lang-btn">🇺🇾 ES</button>
-        <button class="lang-btn">🇧🇷 PT</button>
-      </div>
-    
-      <nav class="hamburger-menu">
-        <ul>
-          <li>🧭 Full Day Experiences</li>
-          <li>🌞 Just for a Day</li>
-          <li>🌙 Just for a Night</li>
-          <li>🏛 Guided Tours</li>
-          <li>🍽 Gastronomy</li>
-          <li>🐎 Nature and Animals</li>
-          <li>🥁 Tradition & Culture</li>
-        </ul>
-      </nav>
-    
-    </header>
+ <header>
+
+  <div class="logo-container">
+    <a href="../Home/index.html" class="logo">
+      <img src="../Assets/images/SacramentoLogo2.png" 
+           alt="Sacramento Adventures Logo">
+    </a>
+
+  
+  </div>
+
+  <div class="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <nav class="top-links">
+    <a href="aboutus.html">
+      👤&nbsp;About Us
+    </a>
+  </nav>
+
+  <div class="language-switch">
+    <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+    <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+    <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+  </div>
+
+  <nav class="hamburger-menu">
+    <ul>
+      <li data-filter="fullday">🧭 Full Day Experiences</li>
+      <li data-filter="gastronomy">🌞 Just for a Day</li>
+      <li data-filter="gastronomy">🌙 Just for a Night</li>
+      <li data-filter="tour">🏛 Guided Tours</li>
+      <li data-filter="gastronomy">🍽 Gastronomy</li>
+      <li data-filter="nature">🐎 Nature and Animals</li>
+      <li data-filter="culture">🥁 Tradition & Culture</li>
+      <li data-filter="sports">🏄 Sports & Adventure</li>
+      <li data-filter="romantic">💕 Romantic</li>
+      <li data-filter="corporate">🏢 Corporate Experiences</li>
+    </ul>
+  </nav>
+
+</header>
     
     
     <!-- ================= HERO ================= -->
@@ -154,10 +171,5 @@
     
     
     <!-- ================= JS ================= -->
-    <script>
-      document.querySelector(".menu-toggle").addEventListener("click", () => {
-        document.querySelector(".hamburger-menu").style.display = "block";
-      });
-    </script>
-    
+    <script src="../Home/index.js"></script>
     </body>

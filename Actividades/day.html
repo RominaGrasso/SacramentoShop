@@ -14,6 +14,7 @@
 
 <body>
 
+<!-- ================= HEADER ================= -->
 <header>
 
     <a href="../Home/index.html" class="logo">
@@ -21,13 +22,40 @@
              alt="Sacramento Adventures Logo">
       </a>
 
-<div class="language-switch">
-<button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
-<button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
-<button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
-</div>
+    <div class="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
 
-</header>
+      <nav class="top-links">
+        <a href="../Actividades/aboutus.html" target="_blank" rel="noopener noreferrer">
+            👤&nbsp;About Us
+        </a>
+      </nav>
+  
+    <div class="language-switch">
+      <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
+      <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+      <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+    </div>
+
+    <nav class="hamburger-menu">
+
+        <ul>
+            <li data-filter="fullday">🧭 Full Day Experiences</li>
+            <li data-filter="gastronomy">🌞 Just for a Day</li>
+            <li data-filter="gastronomy">🌙 Just for a Night</li>
+            <li data-filter="tour">🏛 Guided Tours</li>
+            <li data-filter="gastronomy">🍽 Gastronomy</li>
+            <li data-filter="nature">🐎 Nature and Animals </li>
+            <li data-filter="culture">🥁 Tradition & Culture</li>
+            <li data-filter="sports">🏄 Sports & Adventure</li>
+            <li data-filter="romantic">💕 Romantic</li>
+      
+        </ul>
+      
+      </nav>
+  
+  </header>
 
 <section class="day-hero">
 
@@ -125,6 +153,6 @@ document.querySelectorAll(".carousel").forEach(carousel => {
 
 });
 </script>
-
+<script src="../Home/index.js"></script>
 </body>
 </html>
