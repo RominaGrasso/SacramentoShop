@@ -96,21 +96,22 @@
           </div>
     
           <!-- DERECHA -->
-          <div class="preferences-inside">
-            <h3 class="preferences-title">
-              Your preferences 
-            </h3>
-    
-            <label><input type="checkbox"> 🍷 Wine</label>
-            <label><input type="checkbox"> 🥗 Vegetarian option</label>
-            <label><input type="checkbox"> 🚫 No alcohol</label>
-            <label><input type="checkbox"> ☕ Coffee</label>
+          <div class="order-start">
+            <h3>Create your menu</h3>
+            <p>Select your preferences and add guest orders</p>
+
+            <button id="createMenuBtnAsado" class="btn primary-btn" type="button">
+              + Create your menu
+            </button>
           </div>
     
         </div>
     
       </div>
     
+    <!-- ================= ORDERS ================= -->
+    <div class="order-summary" id="orderSummary"></div>
+
     
       <!-- GALLERY -->
       <section class="coffee-gallery">
@@ -136,7 +137,7 @@
       <!-- ACTIONS -->
       <div class="coffee-actions">
     
-        <a href="#" class="btn">
+        <a href="#" id="bookNowBottom" class="btn">
           Book Now
         </a>
     
@@ -157,6 +158,28 @@
     </script>
     
     <script src="../Home/index.js"></script>
+
+    <script src="../Home/orders.js"></script>
+    <script>
+      initPreferencesOrderExperience({
+        experienceName: "Asado & Boat",
+        pricePerPerson: 70,
+        popupId: "popupAsadoBoat",
+        createBtnId: "createMenuBtnAsado",
+        closeBtnId: "closeAsadoBoat",
+        saveBtnId: "saveMenu",
+        orderSummaryId: "orderSummary",
+        bookNowBottomId: "bookNowBottom",
+        whatsappNumber: "598091642195",
+        paymentLinks: {
+          1: "https://pago.handy.uy/details/?sessionId=LINK_70",
+          2: "https://pago.handy.uy/details/?sessionId=LINK_140",
+          3: "https://pago.handy.uy/details/?sessionId=LINK_210",
+          4: "https://pago.handy.uy/details/?sessionId=LINK_280",
+          5: "https://pago.handy.uy/details/?sessionId=LINK_350"
+        }
+      });
+    </script>
     
     
     <!-- LIGHTBOX -->
@@ -165,6 +188,32 @@
       <button class="lightbox-btn prev" id="prevBtn">‹</button>
       <img class="lightbox-img" id="lightboxImg">
       <button class="lightbox-btn next" id="nextBtn">›</button>
+    </div>
+
+    <!-- ================= ASADO BOAT POPUP (PREFERENCES) ================= -->
+    <div class="popup-overlay" id="popupAsadoBoat" aria-hidden="true">
+      <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="asadoPopupTitle">
+        <button class="close-x" id="closeAsadoBoat" type="button">✕</button>
+
+        <p>
+          <strong class="popup-title" id="asadoPopupTitle">
+            Choose your preferences
+          </strong>
+        </p>
+
+        <div class="preferences-inside">
+          <label><input type="checkbox" value="Wine"> 🍷 Wine</label>
+          <label><input type="checkbox" value="Vegetarian option"> 🥗 Vegetarian option</label>
+          <label><input type="checkbox" value="No alcohol"> 🚫 No alcohol</label>
+          <label><input type="checkbox" value="Coffee"> ☕ Coffee</label>
+        </div>
+
+        <div class="popup-actions">
+          <button id="saveMenu" class="btn" type="button">
+            Save selection
+          </button>
+        </div>
+      </div>
     </div>
     
     </body>
