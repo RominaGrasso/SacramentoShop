@@ -80,6 +80,6 @@ Optional:
 ### Notes
 
 - Never commit the `.pfx` file or credentials.
-- `POST /api/payments/resolve` will use Plexo `ExpressCheckout` in this mode.
+- `POST /api/payments/resolve` will use Plexo `Auth + Uri` flow in this mode.
 - `POST /api/payments/webhook` accepts both generic webhooks and signed Plexo callbacks.
 
