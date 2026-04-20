@@ -31,12 +31,16 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
     candidates.push(endpointRaw);
   } else if (endpointRaw.startsWith("/")) {
     candidates.push(endpointRaw);
-    candidates.push(`http://localhost:8787${endpointRaw}`);
-    candidates.push(`http://127.0.0.1:8787${endpointRaw}`);
+    if (!isLocalDevHost) {
+      candidates.push(`http://localhost:8787${endpointRaw}`);
+      candidates.push(`http://127.0.0.1:8787${endpointRaw}`);
+    }
   } else {
     candidates.push(endpointRaw);
-    candidates.push(`http://localhost:8787/${endpointRaw.replace(/^\.?\//, "")}`);
-    candidates.push(`http://127.0.0.1:8787/${endpointRaw.replace(/^\.?\//, "")}`);
+    if (!isLocalDevHost) {
+      candidates.push(`http://localhost:8787/${endpointRaw.replace(/^\.?\//, "")}`);
+      candidates.push(`http://127.0.0.1:8787/${endpointRaw.replace(/^\.?\//, "")}`);
+    }
   }
 
   if (typeof window !== "undefined" && window.location?.protocol === "file:") {
@@ -424,7 +428,8 @@ function initExperience(config) {
 
     const buildWhatsAppMessage = (orders, dateStr, paymentLinkOverride = "") => {
       const people = orders.length;
-      const paymentLink = paymentLinkOverride || paymentLinks[people] || "";
+      const dynamicEnabled = Boolean(dynamicPayment && dynamicPayment.enabled);
+      const paymentLink = paymentLinkOverride || (!dynamicEnabled ? paymentLinks[people] || "" : "");
       const experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
       const gg = groupGuideAmount();
       const transportTotal =
@@ -493,6 +498,8 @@ function initExperience(config) {
         message += `\n\nTo confirm the reservation, please complete the payment here:\n${paymentLink}`;
       } else if (people > 5) {
         message += `\n\nWe are a group of more than 5 people and would like to coordinate the reservation.`;
+      } else if (dynamicEnabled) {
+        message += `\n\nPayment link could not be generated automatically yet. Please confirm and we will send it right away.`;
       }
 
       return message;
@@ -1234,12 +1241,17 @@ function initPreferencesOrderExperience(config) {
         ordersText += `*Order ${i + 1}*\nPreferences: ${prefs.join(", ") || "-"}\n\n`;
       });
 
-      const paymentLink = paymentLinkOverride || paymentLinks[people] || "";
+      const dynamicEnabled = Boolean(dynamicPayment && dynamicPayment.enabled);
+      const paymentLink = paymentLinkOverride || (!dynamicEnabled ? paymentLinks[people] || "" : "");
       let message = `Hello! I’d like to book the ${experienceName} experience:\n\nDate: ${date}\nPeople: ${people}\n\n${ordersText}Total: USD ${people * pricePerPerson}\n`;
 
       if (paymentLink) {
         message += `\nTo confirm the reservation, please complete the payment here:\n${paymentLink}`;
       } else if (people > 0) {
+        if (dynamicEnabled) {
+          message += `\nPayment link could not be generated automatically yet. Please confirm and we will send it right away.`;
+          return message;
+        }
         message += `\nWe are a group of more than 5 people and would like to coordinate the reservation.`;
       }
 
@@ -1695,6 +1707,7 @@ function initPackageOrderExperience(config) {
     };
 
     const buildWhatsAppMessage = (orders, paymentLinkOverride = "") => {
+      const dynamicEnabled = Boolean(dynamicPayment && dynamicPayment.enabled);
       const date = new Date().toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "short",
@@ -1755,7 +1768,7 @@ function initPackageOrderExperience(config) {
 
       if (paymentLinkOverride) {
         message += `\nTo confirm the reservation, please complete the payment here:\n${paymentLinkOverride}`;
-      } else if (orders.length === 1) {
+      } else if (!dynamicEnabled && orders.length === 1) {
         const o0 = orders[0];
         const pkgKey = o0.packageId != null ? String(o0.packageId) : String(o0.packagePeople);
         const link =
