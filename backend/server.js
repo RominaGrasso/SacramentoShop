@@ -199,14 +199,17 @@ function pickPlexoResponse(rawData) {
     rawData?.Object?.ResultCode ??
     rawData?.ResultCode ??
     0;
-  if (Number(resultCode) !== 0) {
+  const resultCodeNumber = Number(resultCode);
+  // Plexo can return Started/Pending for flows that are still valid for redirect-based checkout.
+  // Accept these statuses as long as a checkout URI is present.
+  if (![0, 1, 2].includes(resultCodeNumber)) {
     throw new Error(`PLEXO_RESULT_${resultCode}`);
   }
   const paymentUrl =
     responseNode?.Uri || responseNode?.URL || responseNode?.url || responseNode?.checkoutUrl || "";
   const sessionId = responseNode?.Id || responseNode?.SessionId || responseNode?.id || `plexo_${Date.now()}`;
   if (!paymentUrl) {
-    throw new Error("PLEXO_RESPONSE_MISSING_URI");
+    throw new Error(`PLEXO_RESPONSE_MISSING_URI_RESULT_${resultCode}`);
   }
   return { paymentUrl, sessionId };
 }
@@ -243,7 +246,7 @@ async function createPaymentLink(payload) {
   }
 
   if (!HANDY_CREATE_URL || !HANDY_TOKEN) {
-    return buildMockPaymentLink(payload);
+    throw new Error("HANDY_CONFIG_INCOMPLETE");
   }
 
   const response = await fetch(HANDY_CREATE_URL, {
@@ -313,7 +316,7 @@ app.post("/api/payments/resolve", async (req, res) => {
   const reusableIsMock =
     reusable &&
     (String(reusable.sessionId || "").startsWith("mock_") || String(reusable.paymentUrl || "").includes("sessionId=mock_"));
-  if (reusable && !(PAYMENT_MODE === "plexo" && reusableIsMock)) {
+  if (reusable && !(PAYMENT_MODE !== "mock" && reusableIsMock)) {
     return res.json({
       reused: true,
       paymentUrl: reusable.paymentUrl,

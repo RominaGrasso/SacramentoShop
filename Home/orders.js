@@ -59,6 +59,10 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
   }
 
   const uniqueCandidates = [...new Set(candidates)];
+  const isMockPaymentUrl = (url) => {
+    const value = String(url || "");
+    return value.includes("sessionId=mock_") || /\/mock_[a-z0-9]+/i.test(value);
+  };
 
   for (const endpoint of uniqueCandidates) {
     try {
@@ -72,7 +76,9 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
       if (!response.ok) continue;
       const data = await response.json();
       const url = data.paymentUrl || data.url || "";
-      if (url) return url;
+      if (!url) continue;
+      if (isMockPaymentUrl(url)) continue;
+      return url;
     } catch {
       // try next candidate
     }
