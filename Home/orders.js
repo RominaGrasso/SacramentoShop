@@ -1481,6 +1481,12 @@ function initPackageOrderExperience(config) {
     transportPerVehicle,
     transportPerPerson = 0,
     guideFeePerPerson = 0,
+    guideOptional = false,
+    optionalGuideCheckboxId = null,
+    groupGuideOptional = false,
+    groupGuideFlatFee = 0,
+    groupGuideCheckboxId = null,
+    groupGuideWrapId = null,
     dynamicPayment = null,
     paymentLinksByPackage = {}
   } = config || {};
@@ -1525,6 +1531,34 @@ function initPackageOrderExperience(config) {
     if (!popup || !createBtn || !closeBtn || !saveBtn || !container) return;
 
     const guideFee = Math.max(0, Number(guideFeePerPerson) || 0);
+    const optionalGuideEl = () =>
+      optionalGuideCheckboxId ? document.getElementById(optionalGuideCheckboxId) : null;
+    const groupGuideEl = () =>
+      groupGuideCheckboxId ? document.getElementById(groupGuideCheckboxId) : null;
+    const groupGuideStorageKey = `${storageKey}_groupGuide`;
+    const getGroupGuideStored = () => localStorage.getItem(groupGuideStorageKey) === "1";
+    const setGroupGuideStored = (on) => {
+      if (on) localStorage.setItem(groupGuideStorageKey, "1");
+      else localStorage.removeItem(groupGuideStorageKey);
+    };
+    const groupGuideFlat = Math.max(0, Number(groupGuideFlatFee) || 0);
+    const groupGuideEnabled = (groupGuideOptional || Boolean(groupGuideCheckboxId)) && groupGuideFlat > 0;
+    const groupGuideAmount = () => {
+      if (!groupGuideEnabled) return 0;
+      const orders = getOrders();
+      if (orders.length === 0) return 0;
+      const el = groupGuideEl();
+      const onEl = Boolean(el && el.checked);
+      const onStored = getGroupGuideStored();
+      return onEl || onStored ? groupGuideFlat : 0;
+    };
+    const syncGroupGuideWrap = () => {
+      const wrapId = groupGuideWrapId || (groupGuideCheckboxId ? `${groupGuideCheckboxId}Wrap` : null);
+      const wrap = wrapId ? document.getElementById(wrapId) : null;
+      if (wrap) {
+        wrap.style.display = getOrders().length > 0 ? "" : "none";
+      }
+    };
 
     /** Precio y etiqueta siempre desde el catálogo actual (evita órdenes viejas con packagePrice desactualizado). */
     const getEffectivePackagePricing = (o) => {
@@ -1532,7 +1566,8 @@ function initPackageOrderExperience(config) {
       if (o.packageId != null) {
         const spec = resolvePackageSpec(o.packageId);
         if (spec) {
-          return { label: spec.label, price: spec.price + guideFee };
+          const gf = guideOptional ? (o && o.includeGuide ? guideFee : 0) : guideFee;
+          return { label: spec.label, price: spec.price + gf };
         }
       }
       return {
@@ -1599,6 +1634,8 @@ function initPackageOrderExperience(config) {
       popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((i) => {
         i.checked = false;
       });
+      const og = optionalGuideEl();
+      if (og) og.checked = false;
       saveBtn.textContent = "Save selection";
     };
 
@@ -1661,17 +1698,44 @@ function initPackageOrderExperience(config) {
       });
 
       const tGroup = totalGroupTransport(orders);
+      const gg = groupGuideAmount();
       const total =
-        experienceSubtotal + (usesGroupTransport(orders) ? tGroup : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0));
+        experienceSubtotal +
+        (usesGroupTransport(orders) ? tGroup : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0)) +
+        gg;
 
       let message = `Hello! I’d like to book the ${experienceName} experience:\n\nDate: ${date}\n\n${ordersText}`;
       if (usesGroupTransport(orders) && orders.length > 0) {
         const vehicles = Math.ceil(orders.length / 4);
-        const guideNote =
-          guideFee > 0 ? ` (includes USD ${formatMoney(guideFee)} guide fee per guest)` : "";
+        const guideTotalOptional =
+          guideOptional && guideFee > 0
+            ? orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0)
+            : 0;
+        let guideNote = "";
+        if (guideFee > 0) {
+          if (guideOptional) {
+            if (guideTotalOptional > 0) {
+              guideNote = ` (includes USD ${formatMoney(guideTotalOptional)} in optional guide fees)`;
+            }
+          } else {
+            guideNote = ` (includes USD ${formatMoney(guideFee)} guide fee per guest)`;
+          }
+        }
         message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}${guideNote}\n*Private transport (${orders.length} guests, ${vehicles} vehicle${vehicles === 1 ? "" : "s"} × USD ${formatMoney(vehicleTransportRate)}):* USD ${formatMoney(tGroup)}\n`;
       } else if (guideFee > 0 && orders.length > 0) {
-        message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)} (includes USD ${formatMoney(guideFee)} guide fee per guest)\n`;
+        if (guideOptional) {
+          const guideTotalOptional = orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0);
+          if (guideTotalOptional > 0) {
+            message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)} (includes USD ${formatMoney(guideTotalOptional)} in optional guide fees)\n`;
+          } else {
+            message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}\n`;
+          }
+        } else {
+          message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)} (includes USD ${formatMoney(guideFee)} guide fee per guest)\n`;
+        }
+      }
+      if (groupGuideEnabled) {
+        message += `*Group guide (optional, USD ${formatMoney(groupGuideFlat)} total):* ${gg > 0 ? `Yes — USD ${formatMoney(gg)}` : "No"}\n`;
       }
       message += `*Total:* USD ${formatMoney(total)}\n`;
 
@@ -1696,6 +1760,10 @@ function initPackageOrderExperience(config) {
 
     const renderOrders = () => {
       const orders = getOrders();
+      const gelSync = groupGuideEl();
+      if (groupGuideEnabled && gelSync) {
+        setGroupGuideStored(Boolean(gelSync.checked));
+      }
 
       let html = `<h3>Your order</h3>`;
 
@@ -1708,20 +1776,22 @@ function initPackageOrderExperience(config) {
         `;
       }
 
-      let total = 0;
-
       orders.forEach((order, index) => {
         const prefs = Array.isArray(order.preferences) ? order.preferences : [];
         const lineTotal = lineTotalForOrder(order, orders);
-        total += lineTotal;
 
         const effPkg = getEffectivePackagePricing(order);
         const pkgPrice = effPkg.price;
         const share = usesGroupTransport(orders) ? transportSharePerGuest(orders) : transportForLegacyOrder(order);
-        const expLabel =
-          guideFee > 0
-            ? `experience, incl. USD ${formatMoney(guideFee)} guide`
-            : "experience";
+        const expLabel = (() => {
+          if (guideFee <= 0) return "experience";
+          if (guideOptional) {
+            return order.includeGuide
+              ? `experience, incl. optional guide USD ${formatMoney(guideFee)}`
+              : "experience";
+          }
+          return `experience, incl. USD ${formatMoney(guideFee)} guide`;
+        })();
         let packageHtml = `<strong>Package:</strong> ${escapeHtml(effPkg.label)} — USD ${escapeHtml(String(pkgPrice))} (${expLabel})`;
         if (share > 0) {
           packageHtml += `<br><strong>Transport (your share of the group):</strong> USD ${escapeHtml(formatMoney(share))}`;
@@ -1748,12 +1818,29 @@ function initPackageOrderExperience(config) {
       if (orders.length > 0) {
         const expSum = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
         const tGroupAmt = usesGroupTransport(orders) ? totalGroupTransport(orders) : 0;
+        const ggAmt = groupGuideAmount();
+        const transportSum = usesGroupTransport(orders)
+          ? tGroupAmt
+          : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
+        const total = expSum + transportSum + ggAmt;
         const detailExtra =
           usesGroupTransport(orders) && orders.length > 0
             ? ` · transport USD ${escapeHtml(formatMoney(tGroupAmt))}`
             : "";
-        const guideDetail =
-          guideFee > 0 ? ` · guide USD ${escapeHtml(formatMoney(guideFee))}/guest incl.` : "";
+        let guideDetail = "";
+        if (guideFee > 0) {
+          if (guideOptional) {
+            const guideTotalOptional = orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0);
+            if (guideTotalOptional > 0) {
+              guideDetail = ` · optional guide USD ${escapeHtml(formatMoney(guideTotalOptional))}`;
+            }
+          } else {
+            guideDetail = ` · guide USD ${escapeHtml(formatMoney(guideFee))}/guest incl.`;
+          }
+        }
+        if (groupGuideEnabled && ggAmt > 0) {
+          guideDetail += ` · group guide USD ${escapeHtml(formatMoney(ggAmt))}`;
+        }
         html += `
           <div class="total-box">
             <div class="total-left">
@@ -1771,6 +1858,7 @@ function initPackageOrderExperience(config) {
       }
 
       container.innerHTML = html;
+      syncGroupGuideWrap();
     };
 
     container.addEventListener("click", (e) => {
@@ -1815,6 +1903,8 @@ function initPackageOrderExperience(config) {
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((cb) => {
           cb.checked = prefsSet.has(cb.value);
         });
+        const og = optionalGuideEl();
+        if (og) og.checked = Boolean(order.includeGuide);
 
         saveBtn.textContent = "Update order";
         popup.classList.add("active");
@@ -1832,7 +1922,7 @@ function initPackageOrderExperience(config) {
           const transportTotal = usesGroupTransport(orders)
             ? totalGroupTransport(orders)
             : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
-          const total = expTotal + transportTotal;
+          const total = expTotal + transportTotal + groupGuideAmount();
           const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
             experience: dynamicPayment?.experienceId || experienceName,
             amount: total,
@@ -1885,12 +1975,15 @@ function initPackageOrderExperience(config) {
       const preferences = Array.from(
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
       ).map((cb) => cb.value);
+      const og = optionalGuideEl();
+      const includeGuide = og ? Boolean(og.checked) : false;
 
       const order = {
         packageId,
         packageLabel: spec.label,
-        packagePrice: spec.price + guideFee,
-        preferences
+        packagePrice: spec.price + (guideOptional ? (includeGuide ? guideFee : 0) : guideFee),
+        preferences,
+        ...(guideOptional ? { includeGuide } : {})
       };
 
       const orders = getOrders();
@@ -1921,7 +2014,7 @@ function initPackageOrderExperience(config) {
             const transportTotal = usesGroupTransport(orders)
               ? totalGroupTransport(orders)
               : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
-            const total = expTotal + transportTotal;
+            const total = expTotal + transportTotal + groupGuideAmount();
             const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
               experience: dynamicPayment?.experienceId || experienceName,
               amount: total,
@@ -1940,6 +2033,17 @@ function initPackageOrderExperience(config) {
             const message = buildWhatsAppMessage(orders, paymentUrl);
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
           })();
+        });
+      }
+    }
+
+    if (groupGuideEnabled && groupGuideCheckboxId) {
+      const gel = groupGuideEl();
+      if (gel) {
+        gel.checked = getGroupGuideStored();
+        gel.addEventListener("change", () => {
+          setGroupGuideStored(Boolean(gel.checked));
+          renderOrders();
         });
       }
     }

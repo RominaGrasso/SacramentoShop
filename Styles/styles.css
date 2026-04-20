@@ -946,6 +946,22 @@
     background: #1e3048;
   }
 
+  .liebres-dining-hero {
+    height: 43vh;
+    background-image: url("../Assets/images/lieb2121.jpg");
+    background-size: cover;
+    background-position: center 66%;
+    background-repeat: no-repeat;
+  }
+
+  @media (max-width: 900px) {
+    .liebres-dining-hero {
+      height: 39vh;
+      background-size: cover;
+      background-position: center 64%;
+    }
+  }
+
   .liebres-hero-video {
     position: absolute;
     inset: 0;

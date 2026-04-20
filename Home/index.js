@@ -109,7 +109,7 @@ const translations = {
       liebres_choice_drink: "Wine focus",
       liebres_about_title: "About this experience",
       liebres_about_p:
-        "You'll be welcomed by Juanma and Sabrina, who look after six horses and a young filly for your cabalgata, and their two dogs — Simón and Estrelli — who are part of the day and often tag along between stops. The cabalgata takes place in Riachuelo, on the outskirts of Colonia. After the ride, a private transfer takes you to Las Liebres for a walk through the vineyard and organic garden and a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Plan on about 3 to 4 hours for the full experience (ride, transfers, visit, and tasting).",
+        "You'll be welcomed by Juanma and Sabrina, who look after six horses and a young filly for your cabalgata, and their two dogs — Simón and Estrelli — who are part of the day and often tag along between stops. The cabalgata takes place in Riachuelo, on the outskirts of Colonia. After the ride, a private transfer takes you to Las Liebres for a walk through the vineyard and organic garden and a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Andres, the manager, will be waiting to welcome your group at Las Liebres. Plan on about 3 to 4 hours for the full experience (ride, transfers, visit, and tasting).",
       liebres_steps_title: "How it works",
       liebres_step_1:
         "🚐 Private pick-up: A private transfer collects you at your hotel or the bus terminal.",
@@ -297,7 +297,7 @@ const translations = {
       liebres_choice_drink: "Enfoque del vino",
       liebres_about_title: "Sobre esta experiencia",
       liebres_about_p:
-        "Te recibirán Juanma y Sabrina, que cuidan seis caballos y una potranca para tu cabalgata, y sus dos perros — Simón y Estrelli — que forman parte del día y suelen acompañar entre paradas. La cabalgata es en Riachuelo, en las afueras de Colonia. Después del paseo, un traslado privado te lleva a Las Liebres para recorrer el viñedo y la huerta orgánica y degustar tres vinos uruguayos maridados con platos de temporada de la cocina. Calculá unas 3 a 4 horas para toda la experiencia (cabalgata, traslados, visita y degustación).",
+        "Te recibirán Juanma y Sabrina, que cuidan seis caballos y una potranca para tu cabalgata, y sus dos perros — Simón y Estrelli — que forman parte del día y suelen acompañar entre paradas. La cabalgata es en Riachuelo, en las afueras de Colonia. Después del paseo, un traslado privado te lleva a Las Liebres para recorrer el viñedo y la huerta orgánica y degustar tres vinos uruguayos maridados con platos de temporada de la cocina. Andres, el gerente, va a estar esperando para recibir al grupo en Las Liebres. Calculá unas 3 a 4 horas para toda la experiencia (cabalgata, traslados, visita y degustación).",
       liebres_steps_title: "Cómo funciona",
       liebres_step_1:
         "🚐 Traslado privado: Un vehículo privado te busca en tu hotel o en la terminal de ómnibus.",
@@ -485,7 +485,7 @@ const translations = {
       liebres_choice_drink: "Foco do vinho",
       liebres_about_title: "Sobre esta experiência",
       liebres_about_p:
-        "Você será recebido por Juanma e Sabrina, que cuidam de seis cavalos e uma potranca para a sua cavalgada, e pelos dois cães — Simón e Estrelli — que fazem parte do dia e costumam acompanhar entre uma parada e outra. A cavalgada é em Riachuelo, nos arredores de Colonia. Depois do passeio, um transfer privativo leva você até Las Liebres para caminhar pelo vinhedo e horta orgânica e degustar três vinhos uruguaios harmonizados com pratos sazonais da cozinha. Reserve cerca de 3 a 4 horas para a experiência completa (cavalgada, transfers, visita e degustação).",
+        "Você será recebido por Juanma e Sabrina, que cuidam de seis cavalos e uma potranca para a sua cavalgada, e pelos dois cães — Simón e Estrelli — que fazem parte do dia e costumam acompanhar entre uma parada e outra. A cavalgada é em Riachuelo, nos arredores de Colonia. Depois do passeio, um transfer privativo leva você até Las Liebres para caminhar pelo vinhedo e horta orgânica e degustar três vinhos uruguaios harmonizados com pratos sazonais da cozinha. Andres, o gerente, estará esperando para receber o grupo em Las Liebres. Reserve cerca de 3 a 4 horas para a experiência completa (cavalgada, transfers, visita e degustação).",
       liebres_steps_title: "Como funciona",
       liebres_step_1:
         "🚐 Transfer privativo: Um veículo privativo busca você no hotel ou no terminal de ônibus.",
