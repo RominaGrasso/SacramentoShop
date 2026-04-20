@@ -160,51 +160,26 @@ function signPlexoPayload(requestObject) {
   };
 }
 
-function buildPlexoExpressCheckoutRequest(payload) {
+function buildPlexoAuthRequest(payload) {
   const amount = Number(payload.amount);
   if (!Number.isFinite(amount) || amount <= 0) throw new Error("INVALID_AMOUNT");
-  const currencyId = String(payload.currency || "USD").toUpperCase() === "USD" ? 2 : 1;
   const traceId = String(payload.fingerprint || `${Date.now()}`);
-  const invoiceNumber = Number(String(Date.now()).slice(-9));
-  const clientReferenceId = `${payload.experience || "booking"}_${Date.now()}`;
-
   const request = {
-    AuthorizationData: {
-      Action: 64,
-      Type: 0,
-      MetaReference: traceId,
-      RedirectUri: PLEXO_REDIRECT_URL,
-      DoNotUseCallback: false
-    },
-    PaymentData: {
-      ClientReferenceId: clientReferenceId,
-      CurrencyId: currencyId,
-      FinancialInclusion: {
-        Type: 0,
-        TaxedAmount: amount,
-        BilledAmount: amount,
-        InvoiceNumber: invoiceNumber
-      },
-      Installments: 1,
-      Items: [
-        {
-          Amount: amount,
-          ClientItemReferenceId: traceId,
-          Name: String(payload.experience || "booking"),
-          Description: String(payload.experience || "booking"),
-          Quantity: 1
-        }
-      ],
-      PaymentInstrumentInput: {
-        UseExtendedClientCreditIfAvailable: false
-      },
-      OptionalMetadata: traceId
-    }
+    Action: 64, // ExpressCheckout through Auth + Uri flow.
+    Type: 0,
+    MetaReference: traceId,
+    RedirectUri: PLEXO_REDIRECT_URL,
+    DoNotUseCallback: false,
+    OptionalMetadata: JSON.stringify({
+      experience: payload.experience || "booking",
+      amount: Number(payload.amount),
+      currency: payload.currency || "USD",
+      people: payload.people || null
+    })
   };
 
   if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
-    request.AuthorizationData.OptionalCommerceId = PLEXO_COMMERCE_ID;
-    request.PaymentData.OptionalCommerceId = PLEXO_COMMERCE_ID;
+    request.OptionalCommerceId = PLEXO_COMMERCE_ID;
   }
 
   return {
@@ -241,8 +216,8 @@ async function createPlexoPaymentLink(payload) {
     throw new Error("PLEXO_GATEWAY_URL_MISSING");
   }
   const base = PLEXO_GATEWAY_URL.replace(/\/+$/, "");
-  const endpoint = `${base}/Operation/ExpressCheckout`;
-  const requestBody = signPlexoPayload(buildPlexoExpressCheckoutRequest(payload));
+  const endpoint = `${base}/Auth`;
+  const requestBody = signPlexoPayload(buildPlexoAuthRequest(payload));
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
@@ -252,7 +227,7 @@ async function createPlexoPaymentLink(payload) {
   });
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`PLEXO_EXPRESSCHECKOUT_FAILED ${response.status} ${errorBody}`);
+    throw new Error(`PLEXO_AUTH_FAILED ${response.status} ${errorBody}`);
   }
   const data = await response.json();
   return pickPlexoResponse(data);
@@ -327,14 +302,18 @@ app.post("/api/payments/resolve", async (req, res) => {
     amount: Number(amount),
     currency: String(currency),
     people: Number.isFinite(Number(people)) ? Number(people) : null,
-    orderPayload: orderPayload || null
+    orderPayload: orderPayload || null,
+    paymentMode: PAYMENT_MODE
   };
 
   const nowIso = new Date().toISOString();
   const fingerprint = hashPayload(normalizedPayload);
   const reusable = findReusableLink(fingerprint, nowIso);
 
-  if (reusable) {
+  const reusableIsMock =
+    reusable &&
+    (String(reusable.sessionId || "").startsWith("mock_") || String(reusable.paymentUrl || "").includes("sessionId=mock_"));
+  if (reusable && !(PAYMENT_MODE === "plexo" && reusableIsMock)) {
     return res.json({
       reused: true,
       paymentUrl: reusable.paymentUrl,
