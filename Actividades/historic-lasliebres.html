@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Historic Quarter & Las Liebres | Sacramento Adventures</title>
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <link rel="stylesheet" href="../Styles/styles.css">
+    
+    <!-- ================= HEADER ================= -->
+ <header>
+
+  <div class="logo-container">
+    <a href="../Home/index.html" class="logo">
+      <img src="../Assets/images/SacramentoLogo2.png" 
+           alt="Sacramento Adventures Logo">
+    </a>
+
+  
+  </div>
+
+  <div class="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <nav class="top-links">
+    <a href="aboutus.html">
+      👤&nbsp;About Us
+    </a>
+  </nav>
+
+  <div class="language-switch">
+    <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+    <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+    <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+  </div>
+
+  <nav class="hamburger-menu">
+    <ul>
+      <li data-filter="fullday">🧭 Full Day Experiences</li>
+      <li data-filter="gastronomy">🌞 Just for a Day</li>
+      <li data-filter="gastronomy">🌙 Just for a Night</li>
+      <li data-filter="tour">🏛 Guided Tours</li>
+      <li data-filter="gastronomy">🍽 Gastronomy</li>
+      <li data-filter="nature">🐎 Nature and Animals</li>
+      <li data-filter="culture">🥁 Tradition & Culture</li>
+      <li data-filter="sports">🏄 Sports & Adventure</li>
+      <li data-filter="romantic">💕 Romantic</li>
+      <li data-filter="corporate">🏢 Corporate Experiences</li>
+    </ul>
+  </nav>
+
+</header>
+    
+    
+    <section class="historic-lasliebres-hero"> 
+    </section>
+    
+    
+    <section class="coffee-content">
+    
+    <h2>About this experience</h2>
+    
+    <p>
+      Combine the best of <strong>Colonia’s UNESCO-listed Historic Quarter</strong> with a guided visit to
+      <strong>Las Liebres</strong> — boutique vineyard, organic garden, and restaurant.
+      Stroll cobbled streets and learn the city’s stories with a local guide, then continue to Las Liebres for a
+      walk through the vines and garden, followed by a <strong>curated tasting</strong> or a <strong>full lunch</strong>
+      with wine pairings, depending on the package you choose.
+      Allow approximately <strong>3 to 4 hours</strong> for the full experience (timing may vary with pace and traffic).
+    </p>
+
+    <h3 class="experience-steps-title">How it works</h3>
+
+    <div class="experience-steps">
+      <ul>
+        <li>
+          🚐 <strong>Private pick-up:</strong> A private transfer collects you at your hotel or the bus terminal.
+        </li>
+        <li>
+          🏛 <strong>Guided Historic Quarter:</strong> Walking tour of the old town — walls, lighthouse, streets, and key landmarks with your guide.
+        </li>
+        <li>
+          🌊 <strong>Onward to Las Liebres:</strong> Private transfer to Comarca Las Liebres for your visit at the vineyard.
+        </li>
+        <li>
+          🍇 <strong>Vineyard &amp; organic garden:</strong> Guided visit at Las Liebres before your tasting or lunch.
+        </li>
+        <li>
+          🍷 <strong>Tasting or lunch:</strong> Enjoy the package you select when you create your order (pairings or full meal).
+        </li>
+        <li>
+          🏨 <strong>Return:</strong> The same private service picks you up after the experience and drops you at your hotel or the terminal.
+        </li>
+      </ul>
+    </div>
+    
+    
+    <div class="price-options">
+        <div class="price-box">
+          <h3>Experiences from USD 95</h3>
+          <p>Listed prices include <strong>USD 20 per guest</strong> for your guide. Plus <strong>private transport by vehicle</strong>: <strong>USD 30</strong> total for 1–4 guests (one vehicle); <strong>USD 60</strong> total for 5–8 guests (two vehicles). Each guest adds their own package below — the summary shows experience + an equal share of the group transport.</p>
+        </div>
+      </div>
+    
+    
+    <div class="coffee-includes">
+      <div class="includes-preferences">
+        <div class="includes-list">
+          <h3>What's included</h3>
+          <ul>
+            <li>✔ Guided walking tour of the Historic Quarter</li>
+            <li>✔ Guided visit to Las Liebres vineyard &amp; organic garden</li>
+            <li>✔ Wine tasting with kitchen pairings and/or lunch (per package)</li>
+            <li>✔ Local English/Spanish-speaking guides (where available)</li>
+            <li>✔ Private round-trip transfer (USD 30 per vehicle for up to 4 guests; second vehicle +USD 30 for guests 5–8 — hotel or terminal; see order summary)</li>
+          </ul>
+        </div>
+
+        <div class="order-start">
+          <h3>Create your menu</h3>
+          <p>Choose tasting or lunch with visit, then add preferences</p>
+
+          <button id="createMenuBtnHistoricLiebres" class="btn primary-btn" type="button">
+            + Create your menu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary" id="orderSummaryHistoricLiebres"></div>
+
+    <div class="experience-support-notice" role="status">
+      <p>
+        <strong>After your reservation</strong>, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.
+      </p>
+    </div>
+
+    <section class="coffee-gallery">
+    
+    <h2>Experience Gallery</h2>
+    
+    <div class="gallery-grid">
+    
+    <img src="../Assets/images/colonia.jpg"
+         alt="Colonia del Sacramento historic quarter">
+    
+    <img src="../Assets/images/lieb1.jpg"
+         alt="Las Liebres boutique restaurant and vineyard">
+    
+    <img src="../Assets/images/lieb2.jpg"
+         alt="Wine tasting at Las Liebres">
+    
+    <img src="../Assets/images/lieb3.jpg"
+         alt="Gourmet dishes at Las Liebres">
+
+    <img src="../Assets/images/lieb4.jpg"
+         alt="Dining atmosphere at Las Liebres">
+
+    <img src="../Assets/images/lieb5.jpg"
+         alt="Las Liebres vineyard atmosphere">
+
+    <img src="../Assets/images/lieb6.jpg"
+         alt="Organic garden at Las Liebres">
+
+    <img src="../Assets/images/lieb7.jpg"
+         alt="Wine and vineyard at Las Liebres">
+
+    <img src="../Assets/images/lieb22.jpg"
+         alt="Las Liebres vineyard Colonia">
+    
+    </div>
+    
+    </section>
+
+    <section class="experience-map" aria-labelledby="historicLiebresMapTitle">
+      <h2 id="historicLiebresMapTitle">Where to find Las Liebres</h2>
+      <p>
+        After your walk in the Historic Quarter, the experience continues at Comarca Las Liebres (restaurant, vineyard &amp; organic garden) in Colonia.
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Comarca+Las+Liebres+Armon%C3%ADa+Somers+1150+Colonia+del+Sacramento+Uruguay" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+      </p>
+      <div class="map-embed">
+        <iframe
+          title="Map: Las Liebres, Colonia del Sacramento"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Comarca+Las+Liebres+Armon%C3%ADa+Somers+1150+Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=15">
+        </iframe>
+      </div>
+    </section>
+    
+    
+    <div class="coffee-actions">
+    
+    <a href="#" id="bookNowBottomHistoricLiebres" class="btn">
+    Book Now
+    </a>
+    
+    <a href="../Home/index.html" class="btn secondary">
+    Back to Home
+    </a>
+    
+    </div>
+    
+    </section>
+    <script src="../Home/index.js"></script>
+    <script src="../Home/orders.js"></script>
+    <script>
+      initPackageOrderExperience({
+        experienceName: "Historic Quarter & Las Liebres",
+        whatsappNumber: "598091642195",
+        popupId: "popupHistoricLiebres",
+        createBtnId: "createMenuBtnHistoricLiebres",
+        closeBtnId: "closeHistoricLiebres",
+        saveBtnId: "saveMenuHistoricLiebres",
+        orderSummaryId: "orderSummaryHistoricLiebres",
+        bookNowBottomId: "bookNowBottomHistoricLiebres",
+        storageKey: "orders_historic_lasliebres",
+        dynamicPayment: {
+          enabled: true,
+          endpoint: "/api/payments/resolve",
+          experienceId: "historic_lasliebres",
+          currency: "USD"
+        },
+        packageRadioName: "packageId",
+        transportPerVehicle: 30,
+        guideFeePerPerson: 20,
+        packages: {
+          casco_tasting: {
+            price: 75,
+            label: "Historic Quarter + vineyard & garden + 3-wine tasting"
+          },
+          casco_lunch_vinedo: {
+            price: 105,
+            label: "Historic Quarter + visit + lunch (Propuesta Viñedo)"
+          },
+          casco_lunch_ceibo: {
+            price: 125,
+            label: "Historic Quarter + visit + lunch (Propuesta Ceibo)"
+          }
+        },
+        paymentLinksByPackage: {
+          casco_tasting: "https://pago.handy.uy/details/?sessionId=LINK_CASCO_TASTING",
+          casco_lunch_vinedo: "https://pago.handy.uy/details/?sessionId=LINK_CASCO_VINEDO",
+          casco_lunch_ceibo: "https://pago.handy.uy/details/?sessionId=LINK_CASCO_CEIBO"
+        }
+      });
+    </script>
+
+    <div class="popup-overlay" id="popupHistoricLiebres" aria-hidden="true">
+      <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="historicLiebresPopupTitle">
+        <button class="close-x" id="closeHistoricLiebres" type="button">✕</button>
+
+        <p>
+          <strong class="popup-title" id="historicLiebresPopupTitle">
+            Choose your package and preferences
+          </strong>
+        </p>
+
+        <p><strong>Package</strong> <small>(per person: experience + USD 20 guide fee; transport is shared — see summary)</small></p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="packageId" value="casco_tasting">
+              <span>Historic Quarter + vineyard &amp; garden + tasting (USD 95)</span>
+            </label>
+            <small class="meal-detail">
+              Guided walk in the old town · Visit to organic garden &amp; vineyard · Three wines with kitchen pairings · Water, soft drinks, glass of wine · Coffee or tea where included · Plus your share of group transport
+            </small>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="packageId" value="casco_lunch_vinedo">
+              <span>Historic Quarter + visit + lunch — Propuesta Viñedo (USD 125)</span>
+            </label>
+            <small class="meal-detail">
+              Morning historic tour · Vineyard &amp; garden visit · Lunch: starter, main, dessert (Viñedo) · Water, soft drinks, glass of wine · Coffee or tea · Plus your share of group transport
+            </small>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="packageId" value="casco_lunch_ceibo">
+              <span>Historic Quarter + visit + lunch — Propuesta Ceibo (USD 145)</span>
+            </label>
+            <small class="meal-detail">
+              Morning historic tour · Vineyard &amp; garden visit · Premium lunch menu · Water, soft drinks, glass of wine · Coffee or tea · Plus your share of group transport
+            </small>
+          </li>
+        </ul>
+
+        <div class="preferences-inside">
+          <h3 class="preferences-title">Your preferences</h3>
+          <label><input type="checkbox" value="Red wine preferred"> 🍷 Red wine preferred</label>
+          <label><input type="checkbox" value="White wine preferred"> 🥂 White wine preferred</label>
+          <label><input type="checkbox" value="Vegetarian"> 🌱 Vegetarian</label>
+          <label><input type="checkbox" value="No alcohol"> 🚫 No alcohol</label>
+          <label><input type="checkbox" value="Slower walking pace"> 🚶 Slower walking pace in the Historic Quarter</label>
+        </div>
+
+        <div class="popup-actions">
+          <button id="saveMenuHistoricLiebres" class="btn" type="button">Save selection</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+  
+      <span class="close-lightbox" id="closeLightbox">✕</span>
+    
+      <button class="lightbox-btn prev" id="prevBtn">‹</button>
+    
+      <img class="lightbox-img" id="lightboxImg">
+    
+      <button class="lightbox-btn next" id="nextBtn">›</button>
+    
+    </div>
+    </body>
+</html>

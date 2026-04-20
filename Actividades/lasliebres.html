@@ -57,100 +57,392 @@
 </header>
     
     
-    <section class="liebres-hero"> 
+    <section
+      class="liebres-hero"
+      aria-label="Las Liebres vineyard"
+      data-translate-aria-label="liebres_hero_aria"
+    >
+      <video
+        class="liebres-hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="../Assets/images/lieb1.jpg"
+      >
+        <source src="../Assets/images/lieb44.mp4" type="video/mp4">
+      </video>
     </section>
     
     
     <section class="coffee-content">
     
-    <h2>About this experience</h2>
-    
-    <p>
-    Enjoy a unique wine and dining experience at <strong>Las Liebres</strong>, a boutique restaurant in Colonia del Sacramento. 
-    Discover the flavors of Uruguay through a carefully curated tasting of local wines paired with gourmet dishes in an intimate and elegant setting.
-    Perfect for couples and travelers looking for a refined gastronomic experience.
+    <h2 data-translate="liebres_about_title">About this experience</h2>
+
+    <p data-translate="liebres_about_p">
+      You'll be welcomed by Juanma and Sabrina, who look after six horses and a young filly for your cabalgata, and their two dogs — Simón and Estrelli — who are part of the day and often tag along between stops. The cabalgata takes place in Riachuelo, on the outskirts of Colonia. After the ride, a private transfer takes you to Las Liebres for a walk through the vineyard and organic garden and a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Plan on about 3 to 4 hours for the full experience (ride, transfers, visit, and tasting).
     </p>
+
+    <h3 class="experience-steps-title" data-translate="liebres_steps_title">How it works</h3>
+
+    <div class="experience-steps">
+      <ul>
+        <li data-translate="liebres_step_1">
+          🚐 Private pick-up: A private transfer collects you at your hotel or the bus terminal.
+        </li>
+        <li data-translate="liebres_step_2">
+          🐎 Cabalgata in Riachuelo: Guided ride in the Riachuelo countryside, outside Colonia. Juanma and Sabrina's horses and (often) Simón and Estrelli join you on the trail.
+        </li>
+        <li data-translate="liebres_step_3">
+          🚗 Transfer to Las Liebres: After the ride in Riachuelo, a private vehicle takes you directly to Comarca Las Liebres.
+        </li>
+        <li data-translate="liebres_step_4">
+          🍇 Vineyard &amp; garden: Guided walk through the vines and organic garden at Las Liebres.
+        </li>
+        <li data-translate="liebres_step_5">
+          🍷 Wine tasting: Three wines with food pairings — confirm any dietary notes when you create your order.
+        </li>
+        <li data-translate="liebres_step_6">
+          🏨 Return: The same private service picks you up when you finish and drops you at your hotel or the terminal.
+        </li>
+      </ul>
+    </div>
     
     
     <div class="price-options">
-
         <div class="price-box">
-          <h3>$80 USD</h3>
-          <p>Experience for 1 person</p>
+          <h3 data-translate="liebres_price_title">USD 100 per guest + optional group guide</h3>
+          <p data-translate="liebres_price_p">
+            The experience includes cabalgata in Riachuelo (outside Colonia), transfer to Las Liebres, vineyard &amp; garden visit, and three-wine tasting with pairings. Allow roughly 3 to 4 hours door-to-door. Private transport is billed by vehicle: USD 30 total for 1–4 guests (one vehicle); USD 60 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.
+          </p>
         </div>
-      
-        <div class="price-box">
-          <h3>$150 USD</h3>
-          <p>Experience for 2 people</p>
-        </div>
-      
       </div>
     
     
     <div class="coffee-includes">
-    
-    <ul>
-    
-    <li>✔ Welcome glass of selected Uruguayan wine</li>
-    
-    <li>✔ Guided tasting of premium local wines</li>
-    
-    <li>✔ Gourmet dishes specially paired with the wines</li>
-    
-    <li>✔ Boutique restaurant atmosphere</li>
-    
-    <li>✔ Reserved table at Las Liebres</li>
-    
-    <li>✔ Transfer included</li>
-    
-    </ul>
-    
+      <div class="includes-preferences">
+        <div class="includes-list">
+          <h3 data-translate="liebres_included_title">What's included</h3>
+          <ul>
+            <li data-translate="liebres_include_1">✔ Guided cabalgata in Riachuelo (countryside outside Colonia), then Las Liebres</li>
+            <li data-translate="liebres_include_2">✔ Guided visit to the vineyard &amp; organic garden</li>
+            <li data-translate="liebres_include_3">✔ Three-wine tasting with seasonal kitchen pairings</li>
+            <li data-translate="liebres_include_4">✔ Welcome coordination &amp; hosting at Las Liebres</li>
+            <li data-translate="liebres_include_5">✔ Private round-trip transfer (USD 30 per vehicle for up to 4 guests; second vehicle +USD 30 for guests 5–8 — hotel or terminal; see order summary)</li>
+          </ul>
+        </div>
+
+        <div class="order-start">
+          <h3 data-translate="liebres_create_title">Create your order</h3>
+          <p data-translate="liebres_create_subtitle">Choose tasting options and preferences.</p>
+
+          <button id="createMenuBtnLiebres" class="btn primary-btn" type="button" data-translate="liebres_create_btn">
+            + Create your order
+          </button>
+        </div>
+      </div>
     </div>
-    
-    
+
+    <div class="liebres-group-guide-wrap" id="liebresGroupGuideWrap" style="display: none">
+      <div class="liebres-group-guide-row">
+        <label class="liebres-guide-label">
+          <input type="checkbox" id="liebresGroupGuide" name="groupGuide" value="1">
+          <span data-translate="liebres_group_guide_cb">Include a guide for the whole group (USD 40 total)</span>
+        </label>
+        <div class="liebres-guide-help-wrap">
+          <button
+            type="button"
+            class="liebres-guide-help-btn"
+            id="liebresGroupGuideHelpBtn"
+            aria-expanded="false"
+            aria-controls="liebresGroupGuideHelpPanel"
+            data-translate-title="liebres_guide_help_btn"
+            title="What the guide does"
+          >
+            <span aria-hidden="true">ℹ️</span>
+          </button>
+          <div
+            class="liebres-guide-help-panel"
+            id="liebresGroupGuideHelpPanel"
+            role="tooltip"
+            hidden
+          >
+            <p data-translate="liebres_guide_help_p">
+              The guide meets your group at the agreed pick-up point, accompanies you on the horseback ride (including taking photos), joins you at Las Liebres for the vineyard visit, and at the end drops you back at your starting point, hotel, or the bus terminal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary" id="orderSummary"></div>
+
+    <div class="experience-support-notice" role="status">
+      <p>
+        <strong data-translate="liebres_support_title">After your reservation</strong><span data-translate="liebres_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+      </p>
+    </div>
+
     <section class="coffee-gallery">
-    
-    <h2>Experience Gallery</h2>
+
+    <h2 data-translate="liebres_gallery_title">Experience Gallery</h2>
     
     <div class="gallery-grid">
-    
+
+    <img src="../Assets/images/cab1.jpg"
+         alt="Horseback riding in the countryside"
+         data-translate-alt="liebres_gal_alt_cab1">
+
+    <img src="../Assets/images/cab2.jpg"
+         alt="Horseback experience on the trail"
+         data-translate-alt="liebres_gal_alt_cab2">
+
+    <img src="../Assets/images/cab3.jpg"
+         alt="Cabalgata — part of the experience"
+         data-translate-alt="liebres_gal_alt_cab3">
+
     <img src="../Assets/images/lieb1.jpg"
-         alt="Las Liebres boutique restaurant in Colonia">
-    
+         alt="Las Liebres boutique restaurant in Colonia"
+         data-translate-alt="liebres_gal_alt_lieb1">
+
     <img src="../Assets/images/lieb2.jpg"
-         alt="Wine tasting experience at Las Liebres">
-    
+         alt="Wine tasting experience at Las Liebres"
+         data-translate-alt="liebres_gal_alt_lieb2">
+
     <img src="../Assets/images/lieb3.jpg"
-         alt="Gourmet dishes at Las Liebres restaurant">
-    
+         alt="Gourmet dishes at Las Liebres restaurant"
+         data-translate-alt="liebres_gal_alt_lieb3">
+
     <img src="../Assets/images/lieb4.jpg"
-         alt="Dining atmosphere at Las Liebres">
+         alt="Dining atmosphere at Las Liebres"
+         data-translate-alt="liebres_gal_alt_lieb4">
 
-         <img src="../Assets/images/lieb5.jpg"
-         alt="Dining atmosphere at Las Liebres2">
+    <img src="../Assets/images/lieb5.jpg"
+         alt="Las Liebres dining room"
+         data-translate-alt="liebres_gal_alt_lieb5">
 
-         <img src="../Assets/images/lieb6.jpg"
-         alt="Dining atmosphere at Las Liebres3">
+    <img src="../Assets/images/lieb6.jpg"
+         alt="Las Liebres restaurant atmosphere"
+         data-translate-alt="liebres_gal_alt_lieb6">
+
+    <img src="../Assets/images/lieb7.jpg"
+         alt="Wine tasting at Las Liebres"
+         data-translate-alt="liebres_gal_alt_lieb7">
+
+    <img src="../Assets/images/lieb22.jpg"
+         alt="Las Liebres restaurant detail"
+         data-translate-alt="liebres_gal_alt_lieb22">
+
+    <img src="../Assets/images/lieb23.jpg"
+         alt="Las Liebres dining experience"
+         data-translate-alt="liebres_gal_alt_lieb23">
     
     </div>
     
+    </section>
+
+    <section class="experience-map" aria-labelledby="liebresMapTitle">
+      <h2 id="liebresMapTitle" data-translate="liebres_map_title">Where to find Las Liebres</h2>
+      <p>
+        <span data-translate="liebres_map_text">Comarca Las Liebres (restaurant, vineyard &amp; garden) is in Colonia del Sacramento — a short drive from the Historic Quarter along the coast.</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Comarca+Las+Liebres+Armon%C3%ADa+Somers+1150+Colonia+del+Sacramento+Uruguay" target="_blank" rel="noopener noreferrer" data-translate="liebres_map_link">Open in Google Maps</a>
+      </p>
+      <div class="map-embed">
+        <iframe
+          title="Map: Las Liebres, Colonia del Sacramento"
+          data-translate-title="liebres_map_iframe_title"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Comarca+Las+Liebres+Armon%C3%ADa+Somers+1150+Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=15">
+        </iframe>
+      </div>
     </section>
     
     
     <div class="coffee-actions">
-    
-    <a href="TU_LINK" target="_blank" class="btn">
+
+    <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">
     Book Now
     </a>
-    
-    <a href="../Home/index.html" class="btn secondary">
+
+    <a href="../Home/index.html" class="btn secondary" data-translate="liebres_back_home">
     Back to Home
     </a>
-    
+
     </div>
     
     </section>
     <script src="../Home/index.js"></script>
+    <script src="../Home/orders.js"></script>
+    <script>
+      initExperience({
+        experienceName: "Wine tasting at Las Liebres (horseback + vineyard)",
+        experienceNameKey: "liebres_experience_name",
+        pricePerPerson: 100,
+        guideFeePerPerson: 0,
+        groupGuideOptional: true,
+        groupGuideFlatFee: 40,
+        groupGuideCheckboxId: "liebresGroupGuide",
+        groupGuideWrapId: "liebresGroupGuideWrap",
+        transportPerVehicle: 30,
+        choiceSectionLabelKeys: {
+          starter: "liebres_choice_starter",
+          main: "liebres_choice_main",
+          drink: "liebres_choice_drink"
+        },
+        popupId: "popupLiebres",
+        closeBtnId: "closeLiebres",
+        saveBtnId: "saveMenu",
+        createBtnId: "createMenuBtnLiebres",
+        orderSummaryId: "orderSummary",
+        bookNowBottomId: "bookNowBottom",
+        selectedDateKey: "selectedDate",
+        whatsappNumber: "598091642195",
+        storageKey: "orders_lasliebres_wine",
+        dynamicPayment: {
+          enabled: true,
+          endpoint: "/api/payments/resolve",
+          experienceId: "lasliebres",
+          currency: "USD"
+        },
+        paymentLinks: {
+          1: "https://pago.handy.uy/details/?sessionId=LINK_130",
+          2: "https://pago.handy.uy/details/?sessionId=LINK_230",
+          3: "https://pago.handy.uy/details/?sessionId=LINK_330",
+          4: "https://pago.handy.uy/details/?sessionId=LINK_430",
+          5: "https://pago.handy.uy/details/?sessionId=LINK_560"
+        }
+      });
+    </script>
+    <script>
+      (function () {
+        function initLiebresGuideHelp() {
+          const btn = document.getElementById("liebresGroupGuideHelpBtn");
+          const panel = document.getElementById("liebresGroupGuideHelpPanel");
+          if (!btn || !panel) return;
+
+          function close() {
+            panel.hidden = true;
+            btn.setAttribute("aria-expanded", "false");
+          }
+
+          function toggle() {
+            const open = panel.hidden;
+            panel.hidden = !open;
+            btn.setAttribute("aria-expanded", String(open));
+          }
+
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggle();
+          });
+
+          document.addEventListener("click", function (e) {
+            if (panel.hidden) return;
+            if (btn.contains(e.target) || panel.contains(e.target)) return;
+            close();
+          });
+
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") close();
+          });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initLiebresGuideHelp);
+        } else {
+          initLiebresGuideHelp();
+        }
+      })();
+    </script>
+
+    <div class="popup-overlay" id="popupLiebres" aria-hidden="true">
+      <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="liebresPopupTitle">
+        <button class="close-x" id="closeLiebres" type="button">✕</button>
+
+        <p>
+          <strong class="popup-title" id="liebresPopupTitle" data-translate="liebres_popup_title">
+            Your ride, tasting &amp; preferences
+          </strong>
+        </p>
+
+        <p>
+          <strong data-translate="liebres_popup_horseback_strong">Horseback</strong>
+          <small data-translate="liebres_popup_horseback_note">(included — Riachuelo, outside Colonia)</small>
+        </p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input
+                type="radio"
+                name="starter"
+                value="Riachuelo — guided countryside trail (~45 min)"
+                data-legacy-values="Guided ride — countryside trail (~45 min)"
+                checked
+              >
+              <span data-translate="liebres_starter_1">Riachuelo — guided countryside trail (~45 min)</span>
+            </label>
+          </li>
+        </ul>
+
+        <p>
+          <strong data-translate="liebres_popup_tasting_strong">Tasting</strong>
+          <small data-translate="liebres_popup_tasting_note">(same price — pick one pairing style)</small>
+        </p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="main" value="Three wines — seasonal kitchen pairings (standard)">
+              <span data-translate="liebres_main_1">Three wines — seasonal kitchen pairings (standard)</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="main" value="Three wines — vegetarian pairings">
+              <span data-translate="liebres_main_2">Three wines — vegetarian pairings</span>
+            </label>
+          </li>
+        </ul>
+
+        <p>
+          <strong data-translate="liebres_popup_wine_strong">Wine focus</strong>
+          <small data-translate="liebres_popup_wine_note">(pick one)</small>
+        </p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="drink" value="Flight — reds &amp; Tannat-led blends">
+              <span data-translate="liebres_drink_1">Flight — reds &amp; Tannat-led blends</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="drink" value="Flight — mixed reds &amp; whites">
+              <span data-translate="liebres_drink_2">Flight — mixed reds &amp; whites</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="drink" value="Non-alcoholic pairing (advance notice)">
+              <span data-translate="liebres_drink_3">Non-alcoholic pairing (advance notice)</span>
+            </label>
+          </li>
+        </ul>
+
+        <div class="preferences-inside">
+          <h3 class="preferences-title" data-translate="liebres_preferences_title">Your preferences</h3>
+          <label><input type="checkbox" value="Red wine preferred"> 🍷 <span data-translate="liebres_pref_red">Red wine preferred</span></label>
+          <label><input type="checkbox" value="White wine preferred"> 🥂 <span data-translate="liebres_pref_white">White wine preferred</span></label>
+          <label><input type="checkbox" value="Vegetarian"> 🌱 <span data-translate="liebres_pref_vegetarian">Vegetarian</span></label>
+          <label><input type="checkbox" value="No alcohol"> 🚫 <span data-translate="liebres_pref_no_alcohol">No alcohol</span></label>
+        </div>
+
+        <div class="popup-actions">
+          <button id="saveMenu" class="btn" type="button" data-translate="save_selection">Save selection</button>
+        </div>
+      </div>
+    </div>
+
     <div class="lightbox" id="lightbox">
   
       <span class="close-lightbox" id="closeLightbox">✕</span>
