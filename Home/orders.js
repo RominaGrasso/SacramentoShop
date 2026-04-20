@@ -19,6 +19,13 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
   const endpointRaw = dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT;
   const isAbsolute = /^https?:\/\//i.test(endpointRaw);
   const candidates = [];
+  const isLocalDevHost =
+    typeof window !== "undefined" &&
+    ["localhost", "127.0.0.1"].includes(window.location?.hostname || "");
+  const remoteTestBase =
+    typeof window !== "undefined" && window.SACRAMENTO_PAYMENTS_API_BASE
+      ? String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "")
+      : "https://sacramento-payments-test.onrender.com";
 
   if (isAbsolute) {
     candidates.push(endpointRaw);
@@ -38,6 +45,13 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
       `http://localhost:8787/${endpointRaw.replace(/^\/+/, "")}`,
       `http://127.0.0.1:8787/${endpointRaw.replace(/^\/+/, "")}`
     );
+  }
+
+  if (isLocalDevHost && !isAbsolute) {
+    const endpointPath = endpointRaw.startsWith("/")
+      ? endpointRaw
+      : `/${endpointRaw.replace(/^\.?\//, "")}`;
+    candidates.unshift(`${remoteTestBase}${endpointPath}`);
   }
 
   const uniqueCandidates = [...new Set(candidates)];
