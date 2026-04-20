@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dining at Las Liebres | Sacramento Adventures</title>
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <link rel="stylesheet" href="../Styles/styles.css">
+
+  <header>
+    <div class="logo-container">
+      <a href="../Home/index.html" class="logo">
+        <img src="../Assets/images/SacramentoLogo2.png" alt="Sacramento Adventures Logo">
+      </a>
+    </div>
+
+    <div class="menu-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <nav class="top-links">
+      <a href="aboutus.html">👤&nbsp;About Us</a>
+    </nav>
+
+    <div class="language-switch">
+      <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+      <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+      <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+    </div>
+
+    <nav class="hamburger-menu">
+      <ul>
+        <li data-filter="fullday">🧭 Full Day Experiences</li>
+        <li data-filter="gastronomy">🌞 Just for a Day</li>
+        <li data-filter="gastronomy">🌙 Just for a Night</li>
+        <li data-filter="tour">🏛 Guided Tours</li>
+        <li data-filter="gastronomy">🍽 Gastronomy</li>
+        <li data-filter="nature">🐎 Nature and Animals</li>
+        <li data-filter="culture">🥁 Tradition & Culture</li>
+        <li data-filter="sports">🏄 Sports & Adventure</li>
+        <li data-filter="romantic">💕 Romantic</li>
+        <li data-filter="corporate">🏢 Corporate Experiences</li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="liebres-dining-hero"></section>
+
+  <section class="coffee-content">
+    <h2>About this experience</h2>
+
+    <p>
+      Enjoy a lunch or dinner experience at <strong>Las Liebres</strong>, a boutique restaurant in Colonia del
+      Sacramento. This activity focuses on the gastronomic menu and restaurant atmosphere, with private transfer
+      included. Andres, the manager, will be waiting to welcome your group at Las Liebres. You can choose your preferred meal format when you create your order.
+    </p>
+
+    <h3 class="experience-steps-title">How it works</h3>
+
+    <div class="experience-steps">
+      <ul>
+        <li>🚐 <strong>Private pick-up:</strong> Transfer from your hotel or the bus terminal.</li>
+        <li>🍽 <strong>Lunch or dinner:</strong> Choose your menu at Las Liebres when creating your order.</li>
+        <li>🌿 <strong>Restaurant setting:</strong> Boutique dining experience in a relaxed atmosphere.</li>
+        <li>🏨 <strong>Return:</strong> Private drop-off back to your hotel or terminal.</li>
+      </ul>
+    </div>
+
+    <div class="price-options">
+      <div class="price-box">
+        <h3>Dining experiences from USD 70</h3>
+        <p>
+          Private transport is billed by vehicle: <strong>USD 30</strong> total for 1–4 guests (one vehicle);
+          <strong>USD 60</strong> total for 5–8 guests (two vehicles). Add one order per guest — the summary and
+          total update automatically.
+        </p>
+      </div>
+    </div>
+
+    <div class="coffee-includes">
+      <div class="includes-preferences">
+        <div class="includes-list">
+          <h3>What's included</h3>
+          <ul>
+            <li>✔ Lunch or dinner menu at Las Liebres (depending on package)</li>
+            <li>✔ Boutique restaurant atmosphere</li>
+            <li>✔ Welcome coordination at the venue</li>
+            <li>✔ Private round-trip transfer (hotel or terminal; see summary)</li>
+          </ul>
+        </div>
+
+        <div class="order-start">
+          <h3>Create your order</h3>
+          <p>Choose lunch or dinner and menu style (Viñedo or Ceibo), then add preferences.</p>
+          <button id="createMenuBtnLiebresDining" class="btn primary-btn" type="button">
+            + Create your order
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="liebres-group-guide-wrap" id="liebresDiningGroupGuideWrap" style="display: none">
+      <div class="liebres-group-guide-row">
+        <label class="liebres-guide-label">
+          <input type="checkbox" id="liebresDiningGroupGuide" name="groupGuide" value="1">
+          <span>Include a guide for the whole group (USD 40 total)</span>
+        </label>
+        <div class="liebres-guide-help-wrap">
+          <button
+            type="button"
+            class="liebres-guide-help-btn"
+            id="liebresDiningGroupGuideHelpBtn"
+            aria-expanded="false"
+            aria-controls="liebresDiningGroupGuideHelpPanel"
+            title="What the guide does"
+            aria-label="More information about the optional group guide"
+          >
+            <span aria-hidden="true">ℹ️</span>
+          </button>
+          <div
+            class="liebres-guide-help-panel"
+            id="liebresDiningGroupGuideHelpPanel"
+            role="tooltip"
+            hidden
+          >
+            <p>
+              El guía acompaña al grupo desde el punto de encuentro hasta Las Liebres y coordina los tiempos del
+              servicio para que la experiencia fluya sin esperas. También ayuda con la
+              organización en mesa y necesidades del grupo durante toda la actividad, y acompaña la coordinación del
+              regreso.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary" id="orderSummaryLiebresDining"></div>
+
+    <section class="coffee-gallery">
+      <h2>Experience Gallery</h2>
+      <div class="gallery-grid">
+        <img src="../Assets/images/lieb7.jpg" alt="Las Liebres dining room">
+        <img src="../Assets/images/lieb2.jpg" alt="Las Liebres table setting">
+        <img src="../Assets/images/lieb3.jpg" alt="Las Liebres signature dishes">
+        <img src="../Assets/images/lieb4.jpg" alt="Boutique dining atmosphere">
+        <img src="../Assets/images/lieb5.jpg" alt="Las Liebres restaurant detail">
+        <img src="../Assets/images/lieb2121.jpg" alt="Las Liebres ambiance">
+        <img src="../Assets/images/lieb2020.jpg" alt="Las Liebres venue in Colonia">
+        <img src="../Assets/images/lieb23.jpg" alt="Dining experience at Las Liebres">
+        <img src="../Assets/images/lieb20.jpg" alt="Dining experience at Las Liebres">
+      </div>
+    </section>
+
+    <section class="experience-map" aria-labelledby="liebresDiningMapTitle">
+      <h2 id="liebresDiningMapTitle">Where to find Las Liebres</h2>
+      <p>
+        Comarca Las Liebres (restaurant, vineyard &amp; garden) is in Colonia del Sacramento.
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Comarca+Las+Liebres+Armon%C3%ADa+Somers+1150+Colonia+del+Sacramento+Uruguay" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+      </p>
+      <div class="map-embed">
+        <iframe
+          title="Map: Las Liebres, Colonia del Sacramento"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Comarca+Las+Liebres+Armon%C3%ADa+Somers+1150+Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=15">
+        </iframe>
+      </div>
+    </section>
+
+    <div class="coffee-actions">
+      <a href="#" id="bookNowBottomLiebresDining" class="btn">Book Now</a>
+      <a href="../Home/index.html" class="btn secondary">Back to Home</a>
+    </div>
+  </section>
+
+  <script src="../Home/index.js"></script>
+  <script src="../Home/orders.js?v=guidegroupfix2"></script>
+  <script>
+    initPackageOrderExperience({
+      experienceName: "Dining at Las Liebres",
+      whatsappNumber: "598091642195",
+      popupId: "popupLiebresDining",
+      createBtnId: "createMenuBtnLiebresDining",
+      closeBtnId: "closeLiebresDining",
+      saveBtnId: "saveMenuLiebresDining",
+      orderSummaryId: "orderSummaryLiebresDining",
+      bookNowBottomId: "bookNowBottomLiebresDining",
+      storageKey: "orders_lasliebres_dining",
+      dynamicPayment: {
+        enabled: true,
+        endpoint: "/api/payments/resolve",
+        experienceId: "lasliebres_dining",
+        currency: "USD"
+      },
+      packageRadioName: "packageId",
+      transportPerVehicle: 30,
+      groupGuideOptional: true,
+      groupGuideFlatFee: 40,
+      groupGuideCheckboxId: "liebresDiningGroupGuide",
+      groupGuideWrapId: "liebresDiningGroupGuideWrap",
+      packages: {
+        lunch_vinedo: {
+          price: 70,
+          label: "Lunch menu — Propuesta Viñedo"
+        },
+        lunch_ceibo: {
+          price: 85,
+          label: "Lunch menu — Propuesta Ceibo"
+        },
+        dinner_vinedo: {
+          price: 70,
+          label: "Dinner menu — Propuesta Viñedo"
+        },
+        dinner_ceibo: {
+          price: 85,
+          label: "Dinner menu — Propuesta Ceibo"
+        }
+      },
+      paymentLinksByPackage: {
+        lunch_vinedo: "https://pago.handy.uy/details/?sessionId=LINK_LL_LUNCH_VINEDO",
+        lunch_ceibo: "https://pago.handy.uy/details/?sessionId=LINK_LL_LUNCH_CEIBO",
+        dinner_vinedo: "https://pago.handy.uy/details/?sessionId=LINK_LL_DINNER_VINEDO",
+        dinner_ceibo: "https://pago.handy.uy/details/?sessionId=LINK_LL_DINNER_CEIBO"
+      }
+    });
+  </script>
+
+  <div class="popup-overlay" id="popupLiebresDining" aria-hidden="true">
+    <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="liebresDiningPopupTitle">
+      <button class="close-x" id="closeLiebresDining" type="button">✕</button>
+
+      <p>
+        <strong class="popup-title" id="liebresDiningPopupTitle">
+          Choose lunch or dinner
+        </strong>
+      </p>
+
+      <p><strong>Package</strong> <small>(price per guest; transport share appears in summary)</small></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="packageId" value="lunch_vinedo">
+            <span>Lunch — Propuesta Viñedo (USD 70)</span>
+          </label>
+          <small class="meal-detail" data-package-detail="lunch_vinedo" hidden>
+            Lunch · Propuesta Viñedo: starter, main and dessert from the Viñedo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          </small>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="packageId" value="lunch_ceibo">
+            <span>Lunch — Propuesta Ceibo (USD 85)</span>
+          </label>
+          <small class="meal-detail" data-package-detail="lunch_ceibo" hidden>
+            Lunch · Propuesta Ceibo: premium starter, main and dessert from the Ceibo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          </small>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="packageId" value="dinner_vinedo">
+            <span>Dinner — Propuesta Viñedo (USD 70)</span>
+          </label>
+          <small class="meal-detail" data-package-detail="dinner_vinedo" hidden>
+            Dinner · Propuesta Viñedo: starter, main and dessert from the Viñedo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          </small>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="packageId" value="dinner_ceibo">
+            <span>Dinner — Propuesta Ceibo (USD 85)</span>
+          </label>
+          <small class="meal-detail" data-package-detail="dinner_ceibo" hidden>
+            Dinner · Propuesta Ceibo: premium starter, main and dessert from the Ceibo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          </small>
+        </li>
+      </ul>
+
+      <div class="preferences-inside">
+        <h3 class="preferences-title">Your preferences</h3>
+        <label><input type="checkbox" value="Vegetarian"> 🌱 Vegetarian</label>
+        <label><input type="checkbox" value="No alcohol"> 🚫 No alcohol</label>
+        <label><input type="checkbox" value="Low salt"> 🧂 Low salt</label>
+        <label><input type="checkbox" value="No spicy food"> 🌶 No spicy food</label>
+      </div>
+
+      <div class="popup-actions">
+        <button id="saveMenuLiebresDining" class="btn" type="button">Save selection</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-lightbox" id="closeLightbox">✕</span>
+    <button class="lightbox-btn prev" id="prevBtn">‹</button>
+    <img class="lightbox-img" id="lightboxImg">
+    <button class="lightbox-btn next" id="nextBtn">›</button>
+  </div>
+
+  <script>
+    (function () {
+      function initLiebresDiningPackageDetail() {
+        const popup = document.getElementById("popupLiebresDining");
+        const createBtn = document.getElementById("createMenuBtnLiebresDining");
+        const summary = document.getElementById("orderSummaryLiebresDining");
+        if (!popup) return;
+
+        function refresh() {
+          const selected = popup.querySelector('input[name="packageId"]:checked');
+          const details = popup.querySelectorAll("[data-package-detail]");
+          details.forEach((el) => {
+            el.hidden = true;
+          });
+          if (!selected) return;
+          const match = popup.querySelector(`[data-package-detail="${selected.value}"]`);
+          if (match) match.hidden = false;
+        }
+
+        popup.addEventListener("change", (e) => {
+          if (e.target && e.target.name === "packageId") refresh();
+        });
+
+        if (createBtn) {
+          createBtn.addEventListener("click", () => {
+            setTimeout(refresh, 0);
+          });
+        }
+
+        if (summary) {
+          summary.addEventListener("click", (e) => {
+            const edit = e.target.closest && e.target.closest(".edit-order");
+            if (edit) setTimeout(refresh, 0);
+          });
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLiebresDiningPackageDetail);
+      } else {
+        initLiebresDiningPackageDetail();
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      function initLiebresDiningGuideHelp() {
+        const btn = document.getElementById("liebresDiningGroupGuideHelpBtn");
+        const panel = document.getElementById("liebresDiningGroupGuideHelpPanel");
+        if (!btn || !panel) return;
+
+        function close() {
+          panel.hidden = true;
+          btn.setAttribute("aria-expanded", "false");
+        }
+
+        function toggle() {
+          const open = panel.hidden;
+          panel.hidden = !open;
+          btn.setAttribute("aria-expanded", String(open));
+        }
+
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggle();
+        });
+
+        document.addEventListener("click", function (e) {
+          if (panel.hidden) return;
+          if (btn.contains(e.target) || panel.contains(e.target)) return;
+          close();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") close();
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initLiebresDiningGuideHelp);
+      } else {
+        initLiebresDiningGuideHelp();
+      }
+    })();
+  </script>
+</body>
+</html>

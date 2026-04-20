@@ -60,20 +60,38 @@
     <!-- ================= CONTENT ================= -->
     <section class="coffee-content">
     
-      <h2>About this experience</h2>
+      <h2 data-translate="bruma_about_title">About this experience</h2>
     
-      <p>
-        Enjoy a unique gastronomic experience at Bruma, a boutique restaurant located in the heart of Colonia’s Historic Quarter. 
+      <p data-translate="bruma_about_p1">
+        Enjoy a unique gastronomic experience at Bruma, a boutique restaurant located in the heart of Colonia’s Historic Quarter.
         Surrounded by cobblestone streets and charming colonial houses, Bruma offers an intimate and relaxed atmosphere.
-        
-        Led by <strong>Chef Marcelo</strong>, the restaurant features a carefully crafted international menu with high-quality ingredients and creative dishes.
-        
-        This experience is the perfect complement after a guided tour — a moment to relax, enjoy great food, and soak in the essence of Colonia.
       </p>
+      <p>
+        <span data-translate="bruma_about_p2_prefix">The project is run by its owners, </span>
+        <strong data-translate="bruma_about_owner_names">Bruno and Chef Marcelo</strong>
+        <span data-translate="bruma_about_p2_middle"> — and the name </span>
+        <strong data-translate="bruma_about_name_word">Bruma</strong>
+        <span data-translate="bruma_about_p2_suffix"> comes from combining their names.</span>
+      </p>
+      <p data-translate="bruma_about_p3">
+        The restaurant features a carefully crafted international menu with high-quality ingredients and creative dishes.
+      </p>
+      <p data-translate="bruma_about_p4">
+        This experience is the perfect lunch stop in Colonia — a moment to relax, enjoy great food, and soak in the essence of the Historic Quarter.
+      </p>
+      <a
+        href="https://www.instagram.com/_sacramentoadventures/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="reel-link-btn"
+        data-translate="bruma_reel_btn"
+      >
+        🎥 Watch Reel on @_sacramentoadventures
+      </a>
     
       <!-- PRICE -->
       <div class="price-box">
-        <h3>USD35 per person</h3>
+        <h3 data-translate="bruma_price_title">From USD 40 per guest · Premium USD 60</h3>
       </div>
     
       <div class="coffee-includes">
@@ -82,20 +100,20 @@
     
           <!-- IZQUIERDA -->
           <div class="includes-list">
-            <h3>What's included</h3>
+            <h3 data-translate="bruma_included_title">What's included</h3>
             <ul>
-              <li>✔ Reserved table at Bruma restaurant</li>
-              <li><strong>✔ Full menu: main course, drink and dessert</strong></li>
-              <li>✔ Personalized service</li>
-              <li>✔ Prime location in the Historic Quarter</li>
+              <li data-translate="bruma_include_table">✔ Reserved table at Bruma restaurant</li>
+              <li><strong data-translate="bruma_include_menu">✔ Full menu: main course, drink and dessert</strong></li>
+              <li data-translate="bruma_include_service">✔ Personalized service</li>
+              <li data-translate="bruma_include_location">✔ Prime location in the Historic Quarter</li>
             </ul>
           </div>
     
           <div class="order-start">
-            <h3>Create your menu</h3>
-            <p>Select your starter, main course, drink and preferences</p>
+            <h3 data-translate="bruma_create_title">Create your menu</h3>
+            <p data-translate="bruma_create_subtitle">Select standard or premium menu, then your courses and preferences</p>
           
-            <button id="createMenuBtn" class="btn primary-btn">
+            <button id="createMenuBtn" class="btn primary-btn" data-translate="bruma_create_btn">
               + Create your menu
             </button>
           </div>
@@ -105,11 +123,17 @@
 
       <div class="order-summary" id="orderSummary"></div>
 
+      <div class="experience-support-notice" role="status">
+        <p>
+          <strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+        </p>
+      </div>
+
     
       <!-- ================= GALLERY ================= -->
       <section class="coffee-gallery">
     
-        <h2>Experience Gallery</h2>
+        <h2 data-translate="bruma_gallery_title">Experience Gallery</h2>
     
         <div class="gallery-grid">
           <img src="../Assets/images/bruman1.jpg">
@@ -118,16 +142,35 @@
           <img src="../Assets/images/bruma4.jpg">
           <img src="../Assets/images/bruman2.jpg">
           <img src="../Assets/images/bruman5.jpg">
+          <img src="../Assets/images/bruma1.jpg">
+          <img src="../Assets/images/bruma3.jpg">
+          <img src="../Assets/images/bruman3.jpg">
         </div>
     
+      </section>
+
+      <section class="experience-map" aria-labelledby="brumaMapTitle">
+        <h2 id="brumaMapTitle" data-translate="bruma_map_title">Where to find Bruma</h2>
+        <p>
+          <span data-translate="bruma_map_text">Use this map as a reference for Bruma's location in Colonia del Sacramento, within the Historic Quarter area.</span>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Bruma+Colonia+del+Sacramento+Uruguay" target="_blank" rel="noopener noreferrer" data-translate="bruma_map_link">Open in Google Maps</a>
+        </p>
+        <div class="map-embed">
+          <iframe
+            title="Map: Bruma, Colonia del Sacramento"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Bruma+Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=15">
+          </iframe>
+        </div>
       </section>
 
     
       <!-- ================= ACTIONS ================= -->
       <div class="coffee-actions">
     
-        <a href="#" id="bookNowBottom" class="btn secondary">Book Now</a>    
-        <a href="../Home/index.html" class="btn secondary">
+        <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">Book Now</a>    
+        <a href="../Home/index.html" class="btn secondary" data-translate="bruma_back_home">
           Back to Home
         </a>
     
@@ -153,87 +196,173 @@
       
           <button class="close-x" id="closeBruma">✕</button>
       
-          <p><strong class="popup-title">Chef's curated menu:</strong></p>
+          <p><strong class="popup-title" data-translate="bruma_popup_title">Chef's curated menu:</strong></p>
+
+          <div class="bruma-tier-wrap">
+            <p class="bruma-tier-heading" data-translate="bruma_tier_heading">Choose your menu</p>
+            <label class="bruma-tier-option">
+              <input type="radio" name="brumaMenuTier" value="standard" checked>
+              <span data-translate="bruma_tier_standard_option">Standard — from USD 40 per guest</span>
+            </label>
+            <label class="bruma-tier-option">
+              <input type="radio" name="brumaMenuTier" value="premium">
+              <span data-translate="bruma_tier_premium_option">Premium — USD 60 per guest</span>
+            </label>
+          </div>
+
+          <div id="brumaStandardMenu" class="bruma-menu-panel">
       
           <!-- STARTER -->
-          <p><strong>Starter</strong></p>
+          <p><strong data-translate="bruma_popup_starter">Starter</strong></p>
           <ul class="popup-list">
             <li>
               <label>
-                <input type="radio" name="starter">
-                <span>Empanada (cheese & onion / lamb / vegetables / bacon & cheese)</span>
+                <input type="radio" name="starter" value="Empanada (cheese & onion / lamb / vegetables / bacon & cheese)">
+                <span data-translate="bruma_starter_1">Empanada (cheese & onion / lamb / vegetables / bacon & cheese)</span>
               </label>
             </li>
             <li>
               <label>
-                <input type="radio" name="starter">
-                <span>Homemade fries with brava sauce</span>
+                <input type="radio" name="starter" value="Homemade fries with brava sauce">
+                <span data-translate="bruma_starter_2">Homemade fries with brava sauce</span>
               </label>
             </li>
             <li>
               <label>
-                <input type="radio" name="starter">
-                <span>Pumpkin soup with cream and croutons</span>
+                <input type="radio" name="starter" value="Pumpkin soup with cream and croutons">
+                <span data-translate="bruma_starter_3">Pumpkin soup with cream and croutons</span>
               </label>
             </li>
           </ul>
       
           <!-- MAIN -->
-          <p><strong>Main Course</strong></p>
+          <p><strong data-translate="bruma_popup_main">Main Course</strong></p>
           <ul class="popup-list">
             <li>
               <label>
-                <input type="radio" name="main">
-                <span>Pumpkin ravioli with sage butter and almonds</span>
+                <input type="radio" name="main" value="Pumpkin ravioli with sage butter and almonds">
+                <span data-translate="bruma_main_1">Pumpkin ravioli with sage butter and almonds</span>
               </label>
             </li>
             <li>
               <label>
-                <input type="radio" name="main">
-                <span>Sun-dried tomato & mushroom risotto</span>
+                <input type="radio" name="main" value="Sun-dried tomato & mushroom risotto">
+                <span data-translate="bruma_main_2">Sun-dried tomato & mushroom risotto</span>
               </label>
             </li>
             <li>
               <label>
-                <input type="radio" name="main">
-                <span>Braised pork sandwich in focaccia with cheese and caramelized onions</span>
+                <input type="radio" name="main" value="Braised pork sandwich in focaccia with cheese and caramelized onions">
+                <span data-translate="bruma_main_3">Braised pork sandwich in focaccia with cheese and caramelized onions</span>
               </label>
             </li>
           </ul>
       
           <!-- DRINK -->
-          <p><strong>Drink</strong></p>
+          <p><strong data-translate="bruma_popup_drink">Drink</strong></p>
           <ul class="popup-list">
             <li>
               <label>
-                <input type="radio" name="drink">
-                <span>Glass of wine (red / rosé / white)</span>
+                <input type="radio" name="drink" value="Glass of wine (red / rosé / white)">
+                <span data-translate="bruma_drink_1">Glass of wine (red / rosé / white)</span>
               </label>
             </li>
             <li>
               <label>
-                <input type="radio" name="drink">
-                <span>Water, soda or lemonade</span>
+                <input type="radio" name="drink" value="Water, soda or lemonade">
+                <span data-translate="bruma_drink_2">Water, soda or lemonade</span>
               </label>
             </li>
           </ul>
+
+          </div>
+
+          <div id="brumaPremiumMenu" class="bruma-menu-panel" hidden>
+
+          <p><strong data-translate="bruma_prem_platos">Plates</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri">
+                <span data-translate="bruma_prem_starter_1">Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Corvina rotolo with mussel sauce">
+                <span data-translate="bruma_prem_starter_2">Corvina rotolo with mussel sauce</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Salmon raviolones with blue cheese sauce &amp; celery salad">
+                <span data-translate="bruma_prem_starter_3">Salmon raviolones with blue cheese sauce &amp; celery salad</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Pumpkin ravioli with sage butter &amp; almonds">
+                <span data-translate="bruma_prem_starter_4">Pumpkin ravioli with sage butter &amp; almonds</span>
+              </label>
+            </li>
+          </ul>
+
+          <p><strong data-translate="bruma_prem_postres">Desserts</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="prm_main" value="Baked cheesecake with red berries">
+                <span data-translate="bruma_prem_main_1">Baked cheesecake with red berries</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_main" value="Pavlova with pastry cream &amp; seasonal fruit">
+                <span data-translate="bruma_prem_main_2">Pavlova with pastry cream &amp; seasonal fruit</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_main" value="Chocolate cake with dulce de leche &amp; English cream">
+                <span data-translate="bruma_prem_main_3">Chocolate cake with dulce de leche &amp; English cream</span>
+              </label>
+            </li>
+          </ul>
+
+          <p><strong data-translate="bruma_prem_bebidas">Drinks</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="prm_drink" value="Glass of wine (red / white / rosé)">
+                <span data-translate="bruma_prem_drink_1">Glass of wine (red / white / rosé)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_drink" value="Water, soda or glass of lemonade">
+                <span data-translate="bruma_prem_drink_2">Water, soda or glass of lemonade</span>
+              </label>
+            </li>
+          </ul>
+
+          </div>
       
           <!-- PREFERENCES (AHORA EN EL LUGAR CORRECTO) -->
           <div class="preferences-inside">
             <h3 class="preferences-title">
-              Your preferences 
+              <span data-translate="bruma_preferences_title">Your preferences</span>
               <span class="help-icon" id="brumaHelp">ℹ️</span>
             </h3>
       
-            <label><input type="checkbox"> 🍺 0% Alcohol</label>
-            <label><input type="checkbox"> 🧂 Low Salt</label>
-            <label><input type="checkbox"> 🌱 Vegetarian</label>
-            <label><input type="checkbox"> 🌶 No spicy food</label>
+            <label><input type="checkbox" value="0% Alcohol"> 🍺 <span data-translate="bruma_pref_alcohol">0% Alcohol</span></label>
+            <label><input type="checkbox" value="Low Salt"> 🧂 <span data-translate="bruma_pref_salt">Low Salt</span></label>
+            <label><input type="checkbox" value="Vegetarian"> 🌱 <span data-translate="bruma_pref_veg">Vegetarian</span></label>
+            <label><input type="checkbox" value="No spicy food"> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
           </div>
       
           <!-- SAVE SIEMPRE AL FINAL -->
           <div class="popup-actions">
-            <button id="saveMenu" class="btn">Save selection</button>
+            <button id="saveMenu" class="btn" data-translate="bruma_save_selection">Save selection</button>
           </div>
       
         </div>
@@ -242,16 +371,34 @@
       <script>
         initExperience({
           experienceName: "Bruma",
-          pricePerPerson: 35,
+          pricePerPerson: 40,
+          menuUpgradePrice: 60,
+          menuTierRadioName: "brumaMenuTier",
+          premiumChoiceFieldNames: {
+            starter: "prm_starter",
+            main: "prm_main",
+            drink: "prm_drink"
+          },
+          menuTierPanelIds: {
+            standard: "brumaStandardMenu",
+            premium: "brumaPremiumMenu"
+          },
           bookNowBottomId: "bookNowBottom",
           selectedDateKey: "selectedDate",
           whatsappNumber: "598091642195",
+          storageKey: "orders_bruma",
+          dynamicPayment: {
+            enabled: true,
+            endpoint: "/api/payments/resolve",
+            experienceId: "bruma",
+            currency: "USD"
+          },
           paymentLinks: {
-            1: "https://pago.handy.uy/details/?sessionId=e7f8720c-d3cb-4680-90fa-262fbb190895",
-            2: "https://pago.handy.uy/details/?sessionId=LINK_70",
-            3: "https://pago.handy.uy/details/?sessionId=LINK_105",
-            4: "https://pago.handy.uy/details/?sessionId=LINK_140",
-            5: "https://pago.handy.uy/details/?sessionId=LINK_175"
+            1: "https://pago.handy.uy/details/?sessionId=LINK_40",
+            2: "https://pago.handy.uy/details/?sessionId=LINK_80",
+            3: "https://pago.handy.uy/details/?sessionId=LINK_120",
+            4: "https://pago.handy.uy/details/?sessionId=LINK_160",
+            5: "https://pago.handy.uy/details/?sessionId=LINK_200"
           }
         });
 
@@ -261,11 +408,11 @@
         
         document.addEventListener("DOMContentLoaded", () => {
           const paymentLinks = {
-    1: "LINK_35",
-    2: "LINK_70",
-    3: "LINK_105",
-    4: "LINK_140",
-    5: "LINK_175"
+    1: "LINK_40",
+    2: "LINK_80",
+    3: "LINK_120",
+    4: "LINK_160",
+    5: "LINK_200"
   };
           renderOrders();
         
@@ -386,7 +533,7 @@ if (orders.length > 0) {
         
           if (orders.length > 0) {
 
-  const pricePerPerson = 35;
+  const pricePerPerson = 40;
   const total = orders.length * pricePerPerson;
 
   html += `
@@ -394,7 +541,7 @@ if (orders.length > 0) {
 
     <div class="total-left">
       <span class="total-label">Total</span>
-      <span class="total-detail">(${orders.length} x USD 35)</span>
+      <span class="total-detail">(${orders.length} x USD 40)</span>
     </div>
 
     <div class="total-right">
@@ -499,10 +646,10 @@ if (orders.length > 0) {
         
               const paymentLinks = {
   1: "https://pago.handy.uy/details/?sessionId=e7f8720c-d3cb-4680-90fa-262fbb190895",
-  2: "https://pago.handy.uy/details/?sessionId=LINK_70",
-  3: "https://pago.handy.uy/details/?sessionId=LINK_105",
-  4: "https://pago.handy.uy/details/?sessionId=LINK_140",
-  5: "https://pago.handy.uy/details/?sessionId=LINK_175"
+  2: "https://pago.handy.uy/details/?sessionId=LINK_80",
+  3: "https://pago.handy.uy/details/?sessionId=LINK_120",
+  4: "https://pago.handy.uy/details/?sessionId=LINK_160",
+  5: "https://pago.handy.uy/details/?sessionId=LINK_200"
 };
 
 const people = orders.length;
@@ -515,7 +662,7 @@ People: ${people}
 
 ${ordersText}
 
-Total: USD ${people * 35}
+Total: USD ${people * 40}
 `;
 
 if (people <= 5) {
@@ -569,11 +716,11 @@ Drink: ${order.drink}${prefs}
     });
 
     const paymentLinks = {
-  1: "https://pago.handy.uy/details/?sessionId=LINK_35",
-  2: "https://pago.handy.uy/details/?sessionId=LINK_70",
-  3: "https://pago.handy.uy/details/?sessionId=LINK_105",
-  4: "https://pago.handy.uy/details/?sessionId=LINK_140",
-  5: "https://pago.handy.uy/details/?sessionId=LINK_175"
+  1: "https://pago.handy.uy/details/?sessionId=LINK_40",
+  2: "https://pago.handy.uy/details/?sessionId=LINK_80",
+  3: "https://pago.handy.uy/details/?sessionId=LINK_120",
+  4: "https://pago.handy.uy/details/?sessionId=LINK_160",
+  5: "https://pago.handy.uy/details/?sessionId=LINK_200"
 };
 
 let paymentLink = paymentLinks[people] || "";
@@ -585,7 +732,7 @@ People: ${people}
 
 ${ordersText}
 
-Total: USD ${people * 35}
+Total: USD ${people * 40}
 `;
 
 if (people <= 5) {

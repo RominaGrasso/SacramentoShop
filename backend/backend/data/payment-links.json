@@ -1,0 +1,59 @@
+[
+  {
+    "fingerprint": "ac060ba9d72ab87163dbbcba9c6b81af0aab75c327612f72ca5141f94221e3b3",
+    "experience": "bruma",
+    "amount": 40,
+    "currency": "USD",
+    "people": 1,
+    "orderPayload": {
+      "orders": [
+        {
+          "main": "test"
+        }
+      ]
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_ac060ba9d72ab871&amount=40&currency=USD",
+    "sessionId": "mock_ac060ba9d72ab871",
+    "status": "active",
+    "createdAt": "2026-04-19T17:11:34.298Z",
+    "updatedAt": "2026-04-19T17:11:34.298Z",
+    "expiresAt": "2026-04-20T17:11:34.301Z"
+  },
+  {
+    "fingerprint": "f8bf55593e9054a86df80bb826e2b7bd05b20e6f5093d112caf879d0a1977e77",
+    "experience": "lasliebres",
+    "amount": 220,
+    "currency": "USD",
+    "people": 2,
+    "orderPayload": {
+      "orders": [
+        {
+          "packageId": "degustacion_almuerzo",
+          "packageLabel": "Tasting + lunch (Viñedo)",
+          "packagePrice": 85,
+          "preferences": [
+            "Red wine preferred"
+          ]
+        },
+        {
+          "packageId": "degustacion_almuerzo",
+          "packageLabel": "Tasting + lunch (Viñedo)",
+          "packagePrice": 105,
+          "preferences": [
+            "Red wine preferred",
+            "White wine preferred",
+            "Vegetarian"
+          ]
+        }
+      ],
+      "total": 220,
+      "experienceName": "Las Liebres"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_f8bf55593e9054a8&amount=220&currency=USD",
+    "sessionId": "mock_f8bf55593e9054a8",
+    "status": "active",
+    "createdAt": "2026-04-19T17:29:09.948Z",
+    "updatedAt": "2026-04-19T17:29:09.948Z",
+    "expiresAt": "2026-04-20T17:29:09.954Z"
+  }
+]
