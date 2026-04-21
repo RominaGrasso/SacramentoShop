@@ -30,6 +30,7 @@ const PLEXO_LIMIT_ISSUERS = String(process.env.PLEXO_LIMIT_ISSUERS || "4,11,15")
 const PLEXO_CHECKOUT_EMAIL = process.env.PLEXO_CHECKOUT_EMAIL || "";
 const PLEXO_CHECKOUT_NAME = process.env.PLEXO_CHECKOUT_NAME || "Sacramento Guest";
 const PLEXO_CHECKOUT_DOC = process.env.PLEXO_CHECKOUT_DOC || "12345678";
+const PLEXO_ADMIN_TOKEN = process.env.PLEXO_ADMIN_TOKEN || "";
 const PAYMENT_DEBUG_LOG =
   process.env.PAYMENT_DEBUG_LOG === "1" || /^true$/i.test(String(process.env.PAYMENT_DEBUG_LOG || ""));
 
@@ -570,6 +571,47 @@ async function createPlexoPaymentLink(payload) {
   return pickPlexoResponse(data);
 }
 
+async function callPlexoSigned(pathSuffix, requestObject) {
+  if (!PLEXO_GATEWAY_URL) throw new Error("PLEXO_GATEWAY_URL_MISSING");
+  const base = PLEXO_GATEWAY_URL.replace(/\/+$/, "");
+  const endpoint = `${base}${pathSuffix}`;
+  const body = signPlexoPayload({
+    Client: PLEXO_CLIENT_NAME,
+    ...(requestObject ? { Request: requestObject } : {})
+  });
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+  const text = await response.text();
+  if (!response.ok) {
+    throw new Error(`PLEXO_${pathSuffix.replace(/\//g, "_").toUpperCase()}_FAILED ${response.status} ${text}`);
+  }
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`PLEXO_${pathSuffix.replace(/\//g, "_").toUpperCase()}_INVALID_JSON`);
+  }
+}
+
+function ensurePlexoAdminAccess(req, res) {
+  if (PAYMENT_MODE !== "plexo") {
+    res.status(400).json({ error: "Plexo admin endpoints require PAYMENT_MODE=plexo." });
+    return false;
+  }
+  if (!PLEXO_ADMIN_TOKEN) {
+    res.status(400).json({ error: "PLEXO_ADMIN_TOKEN is required for admin endpoints." });
+    return false;
+  }
+  const sent = req.get("x-plexo-admin-token") || "";
+  if (sent !== PLEXO_ADMIN_TOKEN) {
+    res.status(401).json({ error: "Invalid admin token." });
+    return false;
+  }
+  return true;
+}
+
 async function createPaymentLink(payload) {
   if (PAYMENT_MODE === "mock") {
     return buildMockPaymentLink(payload);
@@ -627,8 +669,43 @@ app.get("/api/payments/health", (_req, res) => {
     plexoReady: PAYMENT_MODE !== "plexo" ? undefined : Boolean(plexoMaterial),
     /** Valor efectivo en runtime (0 = no se envía OptionalCommerceId al gateway). */
     plexoCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_COMMERCE_ID : undefined,
-    plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined
+    plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined,
+    plexoAdminTokenConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_ADMIN_TOKEN) : undefined
   });
+});
+
+app.get("/api/payments/plexo/commerces", async (req, res) => {
+  if (!ensurePlexoAdminAccess(req, res)) return;
+  try {
+    const data = await callPlexoSigned("/Commerce");
+    const resultCode = data?.Object?.Object?.ResultCode ?? data?.Object?.ResultCode ?? data?.ResultCode ?? null;
+    const response = data?.Object?.Object?.Response ?? data?.Object?.Response ?? data?.Response ?? [];
+    return res.json({ ok: true, resultCode, commerces: response, raw: PAYMENT_DEBUG_LOG ? data : undefined });
+  } catch (error) {
+    return res.status(502).json({
+      error: "Failed to get commerces",
+      detail: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
+app.post("/api/payments/plexo/commerces", async (req, res) => {
+  if (!ensurePlexoAdminAccess(req, res)) return;
+  const name = String(req.body?.name || "").trim();
+  if (!name) {
+    return res.status(400).json({ error: "name is required." });
+  }
+  try {
+    const data = await callPlexoSigned("/Commerce/Add", { Name: name });
+    const resultCode = data?.Object?.Object?.ResultCode ?? data?.Object?.ResultCode ?? data?.ResultCode ?? null;
+    const response = data?.Object?.Object?.Response ?? data?.Object?.Response ?? data?.Response ?? null;
+    return res.json({ ok: true, resultCode, commerce: response, raw: PAYMENT_DEBUG_LOG ? data : undefined });
+  } catch (error) {
+    return res.status(502).json({
+      error: "Failed to add commerce",
+      detail: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
 });
 
 app.post("/api/payments/resolve", async (req, res) => {
