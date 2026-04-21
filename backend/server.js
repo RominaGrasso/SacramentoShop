@@ -290,20 +290,69 @@ const PLEXO_GATEWAY_RESULT_HINT = {
 };
 
 function extractPlexoErrorMessage(rawData) {
-  const msg =
-    rawData?.Object?.Object?.ErrorMessage ??
-    rawData?.Object?.ErrorMessage ??
-    rawData?.ErrorMessage ??
-    "";
-  return typeof msg === "string" && msg.trim() ? msg.trim() : "";
+  const candidates = [
+    rawData?.Object?.Object?.ErrorMessage,
+    rawData?.Object?.ErrorMessage,
+    rawData?.ErrorMessage
+  ];
+  for (const c of candidates) {
+    if (typeof c === "string" && c.trim()) return c.trim();
+  }
+  return "";
 }
 
-/** Busca https://web.testing / pagos.plexo en cualquier nivel (respuestas REST varían el anidamiento). */
+/** Plexo suele enviar I18NErrorMessages (array u objeto) además de ErrorMessage. */
+function extractPlexoI18nMessages(rawData) {
+  const node = rawData?.Object?.Object ?? rawData?.Object ?? rawData;
+  const i18n = node?.I18NErrorMessages;
+  if (i18n == null) return "";
+  if (typeof i18n === "string") return i18n.trim();
+  if (Array.isArray(i18n)) {
+    const parts = i18n.map((x) => {
+      if (typeof x === "string") return x.trim();
+      if (x && typeof x === "object") {
+        return String(
+          x.Message ?? x.message ?? x.Text ?? x.text ?? x.Description ?? x.description ?? ""
+        ).trim();
+      }
+      return "";
+    });
+    return parts.filter(Boolean).join(" | ");
+  }
+  if (typeof i18n === "object") {
+    try {
+      return JSON.stringify(i18n);
+    } catch {
+      return "";
+    }
+  }
+  return "";
+}
+
+function collectPlexoErrorDetail(rawData) {
+  return [extractPlexoErrorMessage(rawData), extractPlexoI18nMessages(rawData)]
+    .filter(Boolean)
+    .join(" — ");
+}
+
+/** URLs de checkout en ambientes Plexo (host varía: web.testing…, testing…:4043, pagos…). */
+function isPlexoCheckoutUrlString(s) {
+  if (typeof s !== "string" || !/^https:\/\//i.test(s)) return false;
+  try {
+    const host = new URL(s).hostname.toLowerCase();
+    if (host.includes("plexo")) return true;
+    if (host.endsWith("handy.uy") || host.includes(".handy.uy")) return true;
+  } catch {
+    return false;
+  }
+  return false;
+}
+
+/** Busca Uri de checkout en cualquier nivel (REST anida distinto; strings sueltas no solo bajo "Uri"). */
 function findPlexoCheckoutUrlDeep(node, depth = 0) {
   if (depth > 14 || node == null) return "";
   if (typeof node === "string") {
-    if (/^https:\/\/(web\.testing\.plexo\.com\.uy|pagos\.plexo\.com\.uy)\//i.test(node)) return node;
-    return "";
+    return isPlexoCheckoutUrlString(node) ? node : "";
   }
   if (typeof node !== "object") return "";
   if (Array.isArray(node)) {
@@ -314,8 +363,23 @@ function findPlexoCheckoutUrlDeep(node, depth = 0) {
     return "";
   }
   const direct =
-    node.Uri || node.URL || node.url || node.checkoutUrl || node.RedirectUrl || node.redirectUrl || "";
-  if (typeof direct === "string" && direct.startsWith("https://")) return direct;
+    node.Uri ||
+    node.uri ||
+    node.URL ||
+    node.url ||
+    node.checkoutUrl ||
+    node.CheckoutUri ||
+    node.checkoutURI ||
+    node.RedirectUrl ||
+    node.redirectUrl ||
+    node.PaymentUrl ||
+    node.paymentUrl ||
+    node.Link ||
+    node.link ||
+    node.Href ||
+    node.href ||
+    "";
+  if (typeof direct === "string" && /^https:\/\//i.test(direct)) return direct;
   for (const k of Object.keys(node)) {
     const u = findPlexoCheckoutUrlDeep(node[k], depth + 1);
     if (u) return u;
@@ -324,40 +388,86 @@ function findPlexoCheckoutUrlDeep(node, depth = 0) {
 }
 
 function pickPlexoResponse(rawData) {
-  const responseNode =
-    rawData?.Object?.Object?.Response ||
-    rawData?.Object?.Object?.Object?.Response ||
-    rawData?.Object?.Response ||
-    rawData?.Response ||
-    rawData;
   const resultCode =
     rawData?.Object?.Object?.ResultCode ??
     rawData?.Object?.ResultCode ??
     rawData?.ResultCode ??
     0;
   const resultCodeNumber = Number(resultCode);
-  const errMsg = extractPlexoErrorMessage(rawData);
+  const errDetail = collectPlexoErrorDetail(rawData);
   const hint = PLEXO_GATEWAY_RESULT_HINT[resultCodeNumber];
-  // Plexo can return Started/Pending for flows that are still valid for redirect-based checkout.
-  // Accept these statuses as long as a checkout URI is present.
+
+  const responseNode =
+    rawData?.Object?.Object?.Response ||
+    rawData?.Object?.Object?.Object?.Response ||
+    rawData?.Object?.Response ||
+    rawData?.Response ||
+    null;
+  const hasResponse =
+    responseNode != null && typeof responseNode === "object" && !Array.isArray(responseNode);
+
   if (![0, 1, 2].includes(resultCodeNumber)) {
-    const extra = [hint, errMsg].filter(Boolean).join(" — ");
-    throw new Error(
-      extra ? `PLEXO_RESULT_${resultCode} ${extra}` : `PLEXO_RESULT_${resultCode}`
-    );
+    const extra = [hint, errDetail].filter(Boolean).join(" — ");
+    throw new Error(extra ? `PLEXO_RESULT_${resultCode} ${extra}` : `PLEXO_RESULT_${resultCode}`);
   }
+
+  // ExpressCheckout exitoso trae Response.{ Uri, Id, ... }. Sin Response pero con mensajes = rechazo Plexo (no "falta Uri").
+  if (!hasResponse) {
+    const deepUrl = findPlexoCheckoutUrlDeep(rawData);
+    if (deepUrl) {
+      const sessionId =
+        deepUrl.split("/").filter(Boolean).pop() || `plexo_${Date.now()}`;
+      return { paymentUrl: deepUrl, sessionId };
+    }
+    if (errDetail) {
+      throw new Error(`PLEXO_CHECKOUT_ERROR_${resultCodeNumber} ${errDetail}`);
+    }
+    if (PAYMENT_DEBUG_LOG) {
+      let snippet = "";
+      try {
+        snippet = JSON.stringify(rawData).slice(0, 3500);
+      } catch {
+        snippet = "[unserializable]";
+      }
+      // eslint-disable-next-line no-console
+      console.log("[plexo-auth] missing-response raw snapshot (truncated)", snippet);
+    }
+    throw new Error(`PLEXO_RESPONSE_MISSING_RESPONSE_RESULT_${resultCodeNumber}`);
+  }
+
   let paymentUrl =
-    responseNode?.Uri || responseNode?.URL || responseNode?.url || responseNode?.checkoutUrl || "";
+    responseNode.Uri ||
+    responseNode.uri ||
+    responseNode.URL ||
+    responseNode.url ||
+    responseNode.checkoutUrl ||
+    responseNode.CheckoutUri ||
+    responseNode.RedirectUrl ||
+    responseNode.redirectUrl ||
+    "";
   if (!paymentUrl) {
     paymentUrl = findPlexoCheckoutUrlDeep(rawData);
   }
   const sessionId =
-    responseNode?.Id ||
-    responseNode?.SessionId ||
-    responseNode?.id ||
+    responseNode.Id ||
+    responseNode.SessionId ||
+    responseNode.id ||
     (paymentUrl ? paymentUrl.split("/").filter(Boolean).pop() : "") ||
     `plexo_${Date.now()}`;
   if (!paymentUrl) {
+    if (errDetail) {
+      throw new Error(`PLEXO_CHECKOUT_ERROR_${resultCodeNumber} ${errDetail}`);
+    }
+    if (PAYMENT_DEBUG_LOG) {
+      let snippet = "";
+      try {
+        snippet = JSON.stringify(rawData).slice(0, 3500);
+      } catch {
+        snippet = "[unserializable]";
+      }
+      // eslint-disable-next-line no-console
+      console.log("[plexo-auth] missing-uri raw snapshot (truncated)", snippet);
+    }
     throw new Error(`PLEXO_RESPONSE_MISSING_URI_RESULT_${resultCode}`);
   }
   return { paymentUrl, sessionId };
@@ -380,6 +490,7 @@ function logPlexoAuthResponseShape(label, rawData) {
     const innerKeys = inner && typeof inner === "object" ? Object.keys(inner) : [];
     const responseKeys =
       responseNode && typeof responseNode === "object" ? Object.keys(responseNode) : [];
+    const errPreview = collectPlexoErrorDetail(rawData).slice(0, 800);
     // eslint-disable-next-line no-console
     console.log(
       `[plexo-auth] ${label}`,
@@ -387,9 +498,15 @@ function logPlexoAuthResponseShape(label, rawData) {
         resultCode,
         innerKeys,
         responseKeys,
+        hasResponse: Boolean(responseNode && typeof responseNode === "object"),
         hasUriField: Boolean(
-          responseNode?.Uri || responseNode?.URL || responseNode?.url || responseNode?.checkoutUrl
-        )
+          responseNode?.Uri ||
+            responseNode?.uri ||
+            responseNode?.URL ||
+            responseNode?.url ||
+            responseNode?.checkoutUrl
+        ),
+        errorPreview: errPreview || undefined
       })
     );
   } catch (e) {
@@ -540,9 +657,14 @@ app.post("/api/payments/resolve", async (req, res) => {
       fingerprint
     });
   } catch (error) {
-    return res.status(502).json({
+    const detail = error instanceof Error ? error.message : "Unknown error";
+    /** Errores de validación / negocio devueltos por Plexo (sin Response). */
+    const plexoClientError =
+      /^PLEXO_CHECKOUT_ERROR_\d+/.test(detail) || /^PLEXO_RESULT_\d+/.test(detail);
+    const status = plexoClientError ? 400 : 502;
+    return res.status(status).json({
       error: "Failed to create payment link",
-      detail: error instanceof Error ? error.message : "Unknown error"
+      detail
     });
   }
 });
