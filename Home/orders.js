@@ -32,6 +32,9 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
   } else if (endpointRaw.startsWith("/")) {
     candidates.push(endpointRaw);
     if (!isLocalDevHost) {
+      candidates.push(`${remoteTestBase}${endpointRaw}`);
+    }
+    if (!isLocalDevHost) {
       candidates.push(`http://localhost:8787${endpointRaw}`);
       candidates.push(`http://127.0.0.1:8787${endpointRaw}`);
     }
