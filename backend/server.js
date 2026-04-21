@@ -22,10 +22,22 @@ const PLEXO_PFX_PATH = process.env.PLEXO_PFX_PATH || "";
 const PLEXO_PFX_BASE64 = process.env.PLEXO_PFX_BASE64 || "";
 const PLEXO_REDIRECT_URL = process.env.PLEXO_REDIRECT_URL || "https://rominagrasso.github.io/SacramentoShop/Home/index.html";
 const PLEXO_COMMERCE_ID = Number(process.env.PLEXO_COMMERCE_ID || 0);
+const PAYMENT_DEBUG_LOG =
+  process.env.PAYMENT_DEBUG_LOG === "1" || /^true$/i.test(String(process.env.PAYMENT_DEBUG_LOG || ""));
 
 const app = express();
 app.use(cors({ origin: ALLOWED_ORIGIN === "*" ? true : ALLOWED_ORIGIN }));
 app.use(express.json({ limit: "1mb" }));
+
+// Render logs only show stdout; the app had no request logging before, so POSTs looked "invisible".
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on("finish", () => {
+    // eslint-disable-next-line no-console
+    console.log(`${req.method} ${req.originalUrl} ${res.statusCode} ${Date.now() - start}ms`);
+  });
+  next();
+});
 
 function stableStringify(value) {
   if (value === null || typeof value !== "object") return JSON.stringify(value);
@@ -191,6 +203,7 @@ function buildPlexoAuthRequest(payload) {
 function pickPlexoResponse(rawData) {
   const responseNode =
     rawData?.Object?.Object?.Response ||
+    rawData?.Object?.Object?.Object?.Response ||
     rawData?.Object?.Response ||
     rawData?.Response ||
     rawData;
@@ -214,6 +227,41 @@ function pickPlexoResponse(rawData) {
   return { paymentUrl, sessionId };
 }
 
+function logPlexoAuthResponseShape(label, rawData) {
+  if (!PAYMENT_DEBUG_LOG) return;
+  try {
+    const resultCode =
+      rawData?.Object?.Object?.ResultCode ??
+      rawData?.Object?.ResultCode ??
+      rawData?.ResultCode ??
+      null;
+    const inner = rawData?.Object?.Object ?? rawData?.Object ?? rawData;
+    const responseNode =
+      rawData?.Object?.Object?.Response ||
+      rawData?.Object?.Object?.Object?.Response ||
+      rawData?.Object?.Response ||
+      rawData?.Response;
+    const innerKeys = inner && typeof inner === "object" ? Object.keys(inner) : [];
+    const responseKeys =
+      responseNode && typeof responseNode === "object" ? Object.keys(responseNode) : [];
+    // eslint-disable-next-line no-console
+    console.log(
+      `[plexo-auth] ${label}`,
+      JSON.stringify({
+        resultCode,
+        innerKeys,
+        responseKeys,
+        hasUriField: Boolean(
+          responseNode?.Uri || responseNode?.URL || responseNode?.url || responseNode?.checkoutUrl
+        )
+      })
+    );
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log("[plexo-auth] log shape failed", e instanceof Error ? e.message : String(e));
+  }
+}
+
 async function createPlexoPaymentLink(payload) {
   if (!PLEXO_GATEWAY_URL) {
     throw new Error("PLEXO_GATEWAY_URL_MISSING");
@@ -233,6 +281,7 @@ async function createPlexoPaymentLink(payload) {
     throw new Error(`PLEXO_AUTH_FAILED ${response.status} ${errorBody}`);
   }
   const data = await response.json();
+  logPlexoAuthResponseShape("parsed", data);
   return pickPlexoResponse(data);
 }
 
