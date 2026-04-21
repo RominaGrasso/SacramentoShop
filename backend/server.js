@@ -523,6 +523,18 @@ async function createPlexoPaymentLink(payload) {
   // Plexo exposes ExpressCheckout at /ExpressCheckout (not /Operation/ExpressCheckout — that path 404s).
   const endpoint = `${base}/ExpressCheckout`;
   const requestBody = signPlexoPayload(buildPlexoExpressCheckoutRequest(payload));
+  if (PAYMENT_DEBUG_LOG) {
+    const reqInner = requestBody?.Object?.Object?.Request;
+    // eslint-disable-next-line no-console
+    console.log(
+      "[plexo-req] OptionalCommerceId",
+      JSON.stringify({
+        envPlexoCommerceId: PLEXO_COMMERCE_ID,
+        sentInAuth: reqInner?.AuthorizationData?.OptionalCommerceId ?? null,
+        sentInPayment: reqInner?.PaymentData?.OptionalCommerceId ?? null
+      })
+    );
+  }
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
@@ -593,7 +605,10 @@ app.get("/api/payments/health", (_req, res) => {
     ok: true,
     mode: PAYMENT_MODE,
     ttlMinutes: LINK_TTL_MINUTES,
-    plexoReady: PAYMENT_MODE !== "plexo" ? undefined : Boolean(plexoMaterial)
+    plexoReady: PAYMENT_MODE !== "plexo" ? undefined : Boolean(plexoMaterial),
+    /** Valor efectivo en runtime (0 = no se envía OptionalCommerceId al gateway). */
+    plexoCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_COMMERCE_ID : undefined,
+    plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined
   });
 });
 
