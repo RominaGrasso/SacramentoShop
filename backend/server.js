@@ -172,31 +172,75 @@ function signPlexoPayload(requestObject) {
   };
 }
 
-function buildPlexoAuthRequest(payload) {
+/** Plexo CurrencyId: 1-Uruguayo, 2-Dolar, ... (manual v4.2) */
+function mapCurrencyToPlexoId(currency) {
+  const c = String(currency || "USD").toUpperCase();
+  if (c === "USD" || c === "DOLAR" || c === "DOLLAR") return 2;
+  if (c === "UYU" || c === "UY") return 1;
+  return 2;
+}
+
+/**
+ * ExpressCheckout must call /Operation/ExpressCheckout with AuthorizationData + PaymentData.
+ * Calling /Auth with Action 64 alone can return ResultCode Started without Uri (incomplete flow).
+ */
+function buildPlexoExpressCheckoutRequest(payload) {
   const amount = Number(payload.amount);
   if (!Number.isFinite(amount) || amount <= 0) throw new Error("INVALID_AMOUNT");
-  const traceId = String(payload.fingerprint || `${Date.now()}`);
-  const request = {
-    Action: 64, // ExpressCheckout through Auth + Uri flow.
+  const traceId = String(payload.fingerprint || `${Date.now()}`).slice(0, 64);
+  const invoiceNumber = Math.abs(parseInt(String(traceId).replace(/\D/g, "").slice(-9), 10) || Date.now() % 2147483647);
+
+  const authorizationData = {
+    Action: 64, // ExpressCheckout
     Type: 0,
     MetaReference: traceId,
     RedirectUri: PLEXO_REDIRECT_URL,
     DoNotUseCallback: false,
     OptionalMetadata: JSON.stringify({
       experience: payload.experience || "booking",
-      amount: Number(payload.amount),
+      amount,
       currency: payload.currency || "USD",
       people: payload.people || null
     })
   };
 
   if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
-    request.OptionalCommerceId = PLEXO_COMMERCE_ID;
+    authorizationData.OptionalCommerceId = PLEXO_COMMERCE_ID;
+  }
+
+  const paymentData = {
+    ClientReferenceId: traceId,
+    CurrencyId: mapCurrencyToPlexoId(payload.currency),
+    FinancialInclusion: {
+      Type: 0, // no aplica (manual)
+      BilledAmount: amount,
+      TaxedAmount: amount,
+      InvoiceNumber: invoiceNumber
+    },
+    Installments: 1,
+    Items: [
+      {
+        Amount: amount,
+        ClientItemReferenceId: "Item-1",
+        Name: String(payload.experience || "Booking"),
+        Quantity: 1
+      }
+    ],
+    PaymentInstrumentInput: {
+      UseExtendedClientCreditIfAvailable: false
+    }
+  };
+
+  if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
+    paymentData.OptionalCommerceId = PLEXO_COMMERCE_ID;
   }
 
   return {
     Client: PLEXO_CLIENT_NAME,
-    Request: request
+    Request: {
+      AuthorizationData: authorizationData,
+      PaymentData: paymentData
+    }
   };
 }
 
@@ -267,8 +311,8 @@ async function createPlexoPaymentLink(payload) {
     throw new Error("PLEXO_GATEWAY_URL_MISSING");
   }
   const base = PLEXO_GATEWAY_URL.replace(/\/+$/, "");
-  const endpoint = `${base}/Auth`;
-  const requestBody = signPlexoPayload(buildPlexoAuthRequest(payload));
+  const endpoint = `${base}/Operation/ExpressCheckout`;
+  const requestBody = signPlexoPayload(buildPlexoExpressCheckoutRequest(payload));
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
@@ -278,10 +322,10 @@ async function createPlexoPaymentLink(payload) {
   });
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`PLEXO_AUTH_FAILED ${response.status} ${errorBody}`);
+    throw new Error(`PLEXO_EXPRESS_CHECKOUT_FAILED ${response.status} ${errorBody}`);
   }
   const data = await response.json();
-  logPlexoAuthResponseShape("parsed", data);
+  logPlexoAuthResponseShape("express-checkout", data);
   return pickPlexoResponse(data);
 }
 
