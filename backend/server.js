@@ -123,7 +123,26 @@ function plexoStateLabel(value) {
 
 function readPfxBytes() {
   if (PLEXO_PFX_BASE64) return Buffer.from(PLEXO_PFX_BASE64, "base64");
-  if (PLEXO_PFX_PATH) return fs.readFileSync(PLEXO_PFX_PATH);
+  if (PLEXO_PFX_PATH) {
+    const raw = fs.readFileSync(PLEXO_PFX_PATH);
+    /**
+     * Render Secret Files often store text. Accept both:
+     * - binary .pfx bytes
+     * - base64 string content of a .pfx
+     */
+    const asText = raw.toString("utf8").trim();
+    if (asText && /^[A-Za-z0-9+/=\r\n]+$/.test(asText)) {
+      try {
+        const decoded = Buffer.from(asText.replace(/\s+/g, ""), "base64");
+        if (decoded.length > 0 && decoded[0] === 0x30) {
+          return decoded;
+        }
+      } catch {
+        // Keep raw bytes fallback below.
+      }
+    }
+    return raw;
+  }
   return null;
 }
 
