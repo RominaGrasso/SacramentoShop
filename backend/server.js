@@ -181,7 +181,7 @@ function mapCurrencyToPlexoId(currency) {
 }
 
 /**
- * ExpressCheckout must call /Operation/ExpressCheckout with AuthorizationData + PaymentData.
+ * ExpressCheckout must call /ExpressCheckout with AuthorizationData + PaymentData.
  * Calling /Auth with Action 64 alone can return ResultCode Started without Uri (incomplete flow).
  */
 function buildPlexoExpressCheckoutRequest(payload) {
@@ -311,7 +311,8 @@ async function createPlexoPaymentLink(payload) {
     throw new Error("PLEXO_GATEWAY_URL_MISSING");
   }
   const base = PLEXO_GATEWAY_URL.replace(/\/+$/, "");
-  const endpoint = `${base}/Operation/ExpressCheckout`;
+  // Plexo exposes ExpressCheckout at /ExpressCheckout (not /Operation/ExpressCheckout — that path 404s).
+  const endpoint = `${base}/ExpressCheckout`;
   const requestBody = signPlexoPayload(buildPlexoExpressCheckoutRequest(payload));
   const response = await fetch(endpoint, {
     method: "POST",
