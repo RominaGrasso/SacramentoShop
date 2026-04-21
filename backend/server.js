@@ -57,11 +57,19 @@ function buildMockPaymentLink({ fingerprint, amount, currency }) {
   return { sessionId, paymentUrl: url };
 }
 
-function normalizePlexoValue(value) {
+/** Plexo guía: montos tipo decimal deben ir como 300.0 en el JSON firmado (no 300), o la verificación falla (InvalidSignature / 13). */
+const PLEXO_DECIMAL_FIELD_NAMES = new Set([
+  "Amount",
+  "BilledAmount",
+  "TaxedAmount",
+  "TipAmount"
+]);
+
+function normalizePlexoValue(value, fieldName = "") {
   if (value === null || value === undefined) return undefined;
   if (Array.isArray(value)) {
     const items = value.map((item) => {
-      const normalized = normalizePlexoValue(item);
+      const normalized = normalizePlexoValue(item, fieldName);
       return normalized === undefined ? null : normalized;
     });
     return `[${items.map((item) => (item === null ? "null" : item)).join(",")}]`;
@@ -70,12 +78,18 @@ function normalizePlexoValue(value) {
     const keys = Object.keys(value).sort();
     const parts = [];
     keys.forEach((k) => {
-      const normalized = normalizePlexoValue(value[k]);
+      const normalized = normalizePlexoValue(value[k], k);
       if (normalized !== undefined) {
         parts.push(`${JSON.stringify(k)}:${normalized}`);
       }
     });
     return `{${parts.join(",")}}`;
+  }
+  if (typeof value === "number" && Number.isFinite(value)) {
+    if (PLEXO_DECIMAL_FIELD_NAMES.has(fieldName) && Number.isInteger(value)) {
+      return `${value}.0`;
+    }
+    return JSON.stringify(value);
   }
   return JSON.stringify(value);
 }
@@ -244,6 +258,20 @@ function buildPlexoExpressCheckoutRequest(payload) {
   };
 }
 
+/** Plexo.Models ResultCodes (gateway); 13 = InvalidSignature */
+const PLEXO_GATEWAY_RESULT_HINT = {
+  13: "InvalidSignature (revisar firma, fingerprint del .pfx y formato decimal de montos 80.0)"
+};
+
+function extractPlexoErrorMessage(rawData) {
+  const msg =
+    rawData?.Object?.Object?.ErrorMessage ??
+    rawData?.Object?.ErrorMessage ??
+    rawData?.ErrorMessage ??
+    "";
+  return typeof msg === "string" && msg.trim() ? msg.trim() : "";
+}
+
 function pickPlexoResponse(rawData) {
   const responseNode =
     rawData?.Object?.Object?.Response ||
@@ -257,10 +285,15 @@ function pickPlexoResponse(rawData) {
     rawData?.ResultCode ??
     0;
   const resultCodeNumber = Number(resultCode);
+  const errMsg = extractPlexoErrorMessage(rawData);
+  const hint = PLEXO_GATEWAY_RESULT_HINT[resultCodeNumber];
   // Plexo can return Started/Pending for flows that are still valid for redirect-based checkout.
   // Accept these statuses as long as a checkout URI is present.
   if (![0, 1, 2].includes(resultCodeNumber)) {
-    throw new Error(`PLEXO_RESULT_${resultCode}`);
+    const extra = [hint, errMsg].filter(Boolean).join(" — ");
+    throw new Error(
+      extra ? `PLEXO_RESULT_${resultCode} ${extra}` : `PLEXO_RESULT_${resultCode}`
+    );
   }
   const paymentUrl =
     responseNode?.Uri || responseNode?.URL || responseNode?.url || responseNode?.checkoutUrl || "";
