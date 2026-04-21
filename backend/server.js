@@ -22,6 +22,14 @@ const PLEXO_PFX_PATH = process.env.PLEXO_PFX_PATH || "";
 const PLEXO_PFX_BASE64 = process.env.PLEXO_PFX_BASE64 || "";
 const PLEXO_REDIRECT_URL = process.env.PLEXO_REDIRECT_URL || "https://rominagrasso.github.io/SacramentoShop/Home/index.html";
 const PLEXO_COMMERCE_ID = Number(process.env.PLEXO_COMMERCE_ID || 0);
+/** Comma-separated issuer ids (manual ejemplo: 4,11,15,30,32). Vacío = no enviar. */
+const PLEXO_LIMIT_ISSUERS = String(process.env.PLEXO_LIMIT_ISSUERS || "4,11,15")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const PLEXO_CHECKOUT_EMAIL = process.env.PLEXO_CHECKOUT_EMAIL || "";
+const PLEXO_CHECKOUT_NAME = process.env.PLEXO_CHECKOUT_NAME || "Sacramento Guest";
+const PLEXO_CHECKOUT_DOC = process.env.PLEXO_CHECKOUT_DOC || "12345678";
 const PAYMENT_DEBUG_LOG =
   process.env.PAYMENT_DEBUG_LOG === "1" || /^true$/i.test(String(process.env.PAYMENT_DEBUG_LOG || ""));
 
@@ -195,21 +203,34 @@ function mapCurrencyToPlexoId(currency) {
 }
 
 /**
- * ExpressCheckout must call /ExpressCheckout with AuthorizationData + PaymentData.
- * Calling /Auth with Action 64 alone can return ResultCode Started without Uri (incomplete flow).
+ * ExpressCheckout: POST JSON firmado a .../ExpressCheckout (REST; manual v4.2 también lista /Operation/ExpressCheckout en doc antigua).
+ * Ejemplo manual incluye ClientInformation + LimitIssuers en AuthorizationData.
  */
 function buildPlexoExpressCheckoutRequest(payload) {
   const amount = Number(payload.amount);
   if (!Number.isFinite(amount) || amount <= 0) throw new Error("INVALID_AMOUNT");
   const traceId = String(payload.fingerprint || `${Date.now()}`).slice(0, 64);
   const invoiceNumber = Math.abs(parseInt(String(traceId).replace(/\D/g, "").slice(-9), 10) || Date.now() % 2147483647);
+  const contactEmail =
+    (PLEXO_CHECKOUT_EMAIL && PLEXO_CHECKOUT_EMAIL.includes("@") && PLEXO_CHECKOUT_EMAIL) ||
+    "sacramento.booking@example.com";
+  /** Manual: MetaReference suele ser un correo cuando Type=ClientReference; ayuda a homologación. */
+  const metaReference =
+    (PLEXO_CHECKOUT_EMAIL && PLEXO_CHECKOUT_EMAIL.includes("@") && PLEXO_CHECKOUT_EMAIL) || contactEmail;
 
   const authorizationData = {
     Action: 64, // ExpressCheckout
     Type: 0,
-    MetaReference: traceId,
+    MetaReference: metaReference.slice(0, 128),
     RedirectUri: PLEXO_REDIRECT_URL,
     DoNotUseCallback: false,
+    ClientInformation: {
+      Name: PLEXO_CHECKOUT_NAME,
+      Address: "Montevideo",
+      Email: contactEmail,
+      Identification: PLEXO_CHECKOUT_DOC,
+      IdentificationType: "0"
+    },
     OptionalMetadata: JSON.stringify({
       experience: payload.experience || "booking",
       amount,
@@ -217,6 +238,10 @@ function buildPlexoExpressCheckoutRequest(payload) {
       people: payload.people || null
     })
   };
+
+  if (PLEXO_LIMIT_ISSUERS.length > 0) {
+    authorizationData.LimitIssuers = PLEXO_LIMIT_ISSUERS;
+  }
 
   if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
     authorizationData.OptionalCommerceId = PLEXO_COMMERCE_ID;
@@ -236,6 +261,7 @@ function buildPlexoExpressCheckoutRequest(payload) {
       {
         Amount: amount,
         ClientItemReferenceId: "Item-1",
+        Description: String(payload.experience || "Booking"),
         Name: String(payload.experience || "Booking"),
         Quantity: 1
       }
@@ -272,6 +298,31 @@ function extractPlexoErrorMessage(rawData) {
   return typeof msg === "string" && msg.trim() ? msg.trim() : "";
 }
 
+/** Busca https://web.testing / pagos.plexo en cualquier nivel (respuestas REST varían el anidamiento). */
+function findPlexoCheckoutUrlDeep(node, depth = 0) {
+  if (depth > 14 || node == null) return "";
+  if (typeof node === "string") {
+    if (/^https:\/\/(web\.testing\.plexo\.com\.uy|pagos\.plexo\.com\.uy)\//i.test(node)) return node;
+    return "";
+  }
+  if (typeof node !== "object") return "";
+  if (Array.isArray(node)) {
+    for (const item of node) {
+      const u = findPlexoCheckoutUrlDeep(item, depth + 1);
+      if (u) return u;
+    }
+    return "";
+  }
+  const direct =
+    node.Uri || node.URL || node.url || node.checkoutUrl || node.RedirectUrl || node.redirectUrl || "";
+  if (typeof direct === "string" && direct.startsWith("https://")) return direct;
+  for (const k of Object.keys(node)) {
+    const u = findPlexoCheckoutUrlDeep(node[k], depth + 1);
+    if (u) return u;
+  }
+  return "";
+}
+
 function pickPlexoResponse(rawData) {
   const responseNode =
     rawData?.Object?.Object?.Response ||
@@ -295,9 +346,17 @@ function pickPlexoResponse(rawData) {
       extra ? `PLEXO_RESULT_${resultCode} ${extra}` : `PLEXO_RESULT_${resultCode}`
     );
   }
-  const paymentUrl =
+  let paymentUrl =
     responseNode?.Uri || responseNode?.URL || responseNode?.url || responseNode?.checkoutUrl || "";
-  const sessionId = responseNode?.Id || responseNode?.SessionId || responseNode?.id || `plexo_${Date.now()}`;
+  if (!paymentUrl) {
+    paymentUrl = findPlexoCheckoutUrlDeep(rawData);
+  }
+  const sessionId =
+    responseNode?.Id ||
+    responseNode?.SessionId ||
+    responseNode?.id ||
+    (paymentUrl ? paymentUrl.split("/").filter(Boolean).pop() : "") ||
+    `plexo_${Date.now()}`;
   if (!paymentUrl) {
     throw new Error(`PLEXO_RESPONSE_MISSING_URI_RESULT_${resultCode}`);
   }
