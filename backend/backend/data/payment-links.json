@@ -55,5 +55,44 @@
     "createdAt": "2026-04-19T17:29:09.948Z",
     "updatedAt": "2026-04-19T17:29:09.948Z",
     "expiresAt": "2026-04-20T17:29:09.954Z"
+  },
+  {
+    "fingerprint": "d66c3853bbb9cb50a57b7f0015c69811870fe5f9768415b54f107052dd0386e2",
+    "experience": "bruma",
+    "amount": 120,
+    "currency": "USD",
+    "people": 2,
+    "orderPayload": {
+      "orders": [
+        {
+          "starter": "Pumpkin ravioli with sage butter & almonds",
+          "main": "Baked cheesecake with red berries",
+          "drink": "Glass of wine (red / white / rosé)",
+          "preferences": [
+            "Low Salt"
+          ],
+          "menuTier": "premium"
+        },
+        {
+          "starter": "Grilled ribeye with homemade fries, salsa criolla & chimichurri",
+          "main": "Pavlova with pastry cream & seasonal fruit",
+          "drink": "Glass of wine (red / white / rosé)",
+          "preferences": [
+            "0% Alcohol"
+          ],
+          "menuTier": "premium"
+        }
+      ],
+      "total": 120,
+      "people": 2,
+      "experienceName": "Bruma",
+      "groupGuideFlat": 0
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_d66c3853bbb9cb50&amount=120&currency=USD",
+    "sessionId": "mock_d66c3853bbb9cb50",
+    "status": "active",
+    "createdAt": "2026-04-21T17:54:27.474Z",
+    "updatedAt": "2026-04-21T17:54:27.474Z",
+    "expiresAt": "2026-04-22T17:54:27.482Z"
   }
 ]
