@@ -708,6 +708,76 @@ app.post("/api/payments/plexo/commerces", async (req, res) => {
   }
 });
 
+app.get("/api/payments/plexo/issuers/supported", async (req, res) => {
+  if (!ensurePlexoAdminAccess(req, res)) return;
+  try {
+    const data = await callPlexoSigned("/Issuer");
+    const resultCode = data?.Object?.Object?.ResultCode ?? data?.Object?.ResultCode ?? data?.ResultCode ?? null;
+    const response = data?.Object?.Object?.Response ?? data?.Object?.Response ?? data?.Response ?? [];
+    return res.json({ ok: true, resultCode, issuers: response, raw: PAYMENT_DEBUG_LOG ? data : undefined });
+  } catch (error) {
+    return res.status(502).json({
+      error: "Failed to get supported issuers",
+      detail: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
+app.get("/api/payments/plexo/commerces/:commerceId/issuers", async (req, res) => {
+  if (!ensurePlexoAdminAccess(req, res)) return;
+  const commerceId = Number(req.params.commerceId);
+  if (!Number.isFinite(commerceId) || commerceId <= 0) {
+    return res.status(400).json({ error: "commerceId must be a positive number." });
+  }
+  try {
+    const data = await callPlexoSigned("/Commerce/Issuer", { CommerceId: commerceId });
+    const resultCode = data?.Object?.Object?.ResultCode ?? data?.Object?.ResultCode ?? data?.ResultCode ?? null;
+    const response = data?.Object?.Object?.Response ?? data?.Object?.Response ?? data?.Response ?? [];
+    return res.json({ ok: true, resultCode, issuers: response, raw: PAYMENT_DEBUG_LOG ? data : undefined });
+  } catch (error) {
+    return res.status(502).json({
+      error: "Failed to get commerce issuers",
+      detail: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
+app.post("/api/payments/plexo/commerces/:commerceId/issuers", async (req, res) => {
+  if (!ensurePlexoAdminAccess(req, res)) return;
+  const commerceId = Number(req.params.commerceId);
+  const issuerId = Number(req.body?.issuerId);
+  const metadataInput = req.body?.metadata;
+  if (!Number.isFinite(commerceId) || commerceId <= 0) {
+    return res.status(400).json({ error: "commerceId must be a positive number." });
+  }
+  if (!Number.isFinite(issuerId) || issuerId <= 0) {
+    return res.status(400).json({ error: "issuerId must be a positive number." });
+  }
+  if (!metadataInput || typeof metadataInput !== "object" || Array.isArray(metadataInput)) {
+    return res.status(400).json({ error: "metadata object is required." });
+  }
+  const metadata = {};
+  for (const [k, v] of Object.entries(metadataInput)) {
+    if (v === undefined || v === null) continue;
+    metadata[String(k)] = String(v);
+  }
+  try {
+    const data = await callPlexoSigned("/Commerce/Issuer/Add", {
+      CommerceId: commerceId,
+      IssuerId: issuerId,
+      Metadata: metadata
+    });
+    const resultCode = data?.Object?.Object?.ResultCode ?? data?.Object?.ResultCode ?? data?.ResultCode ?? null;
+    const response = data?.Object?.Object?.Response ?? data?.Object?.Response ?? data?.Response ?? null;
+    return res.json({ ok: true, resultCode, issuerConfig: response, raw: PAYMENT_DEBUG_LOG ? data : undefined });
+  } catch (error) {
+    return res.status(502).json({
+      error: "Failed to add commerce issuer",
+      detail: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
 app.post("/api/payments/resolve", async (req, res) => {
   const { experience, amount, currency = "USD", people, orderPayload } = req.body || {};
   if (!experience || !Number.isFinite(Number(amount)) || Number(amount) <= 0) {
