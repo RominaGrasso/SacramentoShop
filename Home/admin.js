@@ -105,6 +105,25 @@
     return data;
   }
 
+  async function apiFetchPaymentDetail(sessionId) {
+    const base = getApiBase();
+    const token = getToken();
+    const res = await fetch(`${base}/api/payments/admin/payments/${encodeURIComponent(sessionId)}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 401) {
+      setToken("");
+      throw new Error("SESSION_EXPIRED");
+    }
+    if (!res.ok) {
+      throw new Error(data.error || `Request failed (${res.status})`);
+    }
+    return data;
+  }
+
   function readFilters() {
     return {
       status: el("filter-status")?.value?.trim() || "",
@@ -125,13 +144,15 @@
     if (!items || items.length === 0) {
       const tr = document.createElement("tr");
       tr.innerHTML =
-        '<td colspan="9" class="admin-empty">No hay pagos que coincidan con los filtros.</td>';
+        '<td colspan="11" class="admin-empty">No hay pagos que coincidan con los filtros.</td>';
       tbody.appendChild(tr);
       return;
     }
     for (const row of items) {
       const tr = document.createElement("tr");
       const url = row.paymentUrl || "";
+      const attempts = Number.isFinite(Number(row.attemptsCount)) ? Number(row.attemptsCount) : 0;
+      const sessionId = row.sessionId || "";
       tr.innerHTML = `
         <td>${esc(row.createdAt || "—")}</td>
         <td>${esc(row.updatedAt || "—")}</td>
@@ -140,10 +161,89 @@
         <td>${esc(row.amount != null ? row.amount : "—")}</td>
         <td>${esc(row.currency || "—")}</td>
         <td><span class="admin-badge">${esc(row.status || "—")}</span></td>
-        <td class="mono">${esc(row.sessionId || "—")}</td>
+        <td>${esc(attempts)}</td>
+        <td class="mono">${esc(sessionId || "—")}</td>
         <td class="url-cell">${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a>` : "—"}</td>
+        <td>${sessionId ? `<button type="button" class="admin-link-btn js-open-detail" data-session-id="${esc(sessionId)}">Ver detalle</button>` : "—"}</td>
       `;
       tbody.appendChild(tr);
+    }
+    tbody.querySelectorAll(".js-open-detail").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        await openPaymentDetail(btn.dataset.sessionId || "");
+      });
+    });
+  }
+
+  function detailCard(label, value) {
+    return `<div class="admin-detail-item"><span class="k">${esc(label)}</span><span class="v">${esc(value || "—")}</span></div>`;
+  }
+
+  function formatCardText(card) {
+    if (!card || typeof card !== "object") return "—";
+    const parts = [];
+    if (card.brand) parts.push(card.brand);
+    if (card.maskedNumber) parts.push(card.maskedNumber);
+    else if (card.last4) parts.push(`****${card.last4}`);
+    return parts.join(" · ") || "—";
+  }
+
+  function renderAttemptRows(attempts) {
+    const tbody = el("attempts-tbody");
+    tbody.innerHTML = "";
+    if (!attempts || attempts.length === 0) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = '<td colspan="8" class="admin-empty">Aún no hay intentos registrados por webhook para este pago.</td>';
+      tbody.appendChild(tr);
+      return;
+    }
+    const ordered = [...attempts].sort((a, b) => new Date(b.at || 0).getTime() - new Date(a.at || 0).getTime());
+    for (const a of ordered) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${esc(a.at || "—")}</td>
+        <td>${esc(a.status || "—")}</td>
+        <td>${esc(a.source || "—")}</td>
+        <td>${esc(a.gateway || "—")}</td>
+        <td>${esc(formatCardText(a.card))}</td>
+        <td>${esc(a.card?.holderName || a.payer?.name || "—")}</td>
+        <td>${esc(a.issuer?.name || a.issuer?.id || "—")}</td>
+        <td>${esc(a.reference || "—")}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  }
+
+  function renderPaymentDetail(item) {
+    const summary = el("detail-summary");
+    summary.innerHTML = [
+      detailCard("Session ID", item.sessionId),
+      detailCard("Estado actual", item.status),
+      detailCard("Intentos webhook", item.attemptsCount),
+      detailCard("Experiencia", item.experience),
+      detailCard("Monto", `${item.amount ?? "—"} ${item.currency || ""}`.trim()),
+      detailCard("Personas", item.people),
+      detailCard("Creado", item.createdAt),
+      detailCard("Actualizado", item.updatedAt),
+      detailCard("Fingerprint", item.fingerprint)
+    ].join("");
+    renderAttemptRows(Array.isArray(item.paymentAttempts) ? item.paymentAttempts : []);
+    el("view-detail").hidden = false;
+  }
+
+  async function openPaymentDetail(sessionId) {
+    if (!sessionId) return;
+    setStatus("", "");
+    try {
+      const data = await apiFetchPaymentDetail(sessionId);
+      renderPaymentDetail(data.item || {});
+    } catch (e) {
+      if (e.message === "SESSION_EXPIRED") {
+        setStatus("Sesión expirada o token inválido. Iniciá sesión de nuevo.", "error");
+        showView("login");
+        return;
+      }
+      setStatus(e.message || "No se pudo cargar el detalle del pago.", "error");
     }
   }
 
@@ -155,6 +255,7 @@
       const data = await apiFetchPayments(f);
       el("payments-meta").textContent = `Mostrando ${data.items?.length || 0} de ${data.total ?? 0} (offset ${data.offset ?? 0})`;
       renderRows(data.items || []);
+      el("view-detail").hidden = true;
     } catch (e) {
       if (e.message === "SESSION_EXPIRED") {
         setStatus("Sesión expirada o token inválido. Iniciá sesión de nuevo.", "error");
@@ -199,6 +300,7 @@
       setToken("");
       showView("login");
       setStatus("", "");
+      el("view-detail").hidden = true;
     });
 
     el("btn-refresh").addEventListener("click", () => loadPayments());
