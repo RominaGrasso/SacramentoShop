@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import forge from "node-forge";
-import { findReusableLink, upsertLink, updateStatusBySessionId } from "./store.js";
+import { findReusableLink, upsertLink, updateStatusBySessionId, listPayments } from "./store.js";
 
 dotenv.config({ path: "backend/.env" });
 
@@ -34,8 +34,19 @@ const PLEXO_ADMIN_TOKEN = process.env.PLEXO_ADMIN_TOKEN || "";
 const PAYMENT_DEBUG_LOG =
   process.env.PAYMENT_DEBUG_LOG === "1" || /^true$/i.test(String(process.env.PAYMENT_DEBUG_LOG || ""));
 
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
+const ADMIN_JWT_SECRET = process.env.ADMIN_JWT_SECRET || "";
+const ADMIN_JWT_TTL_SEC = Number(process.env.ADMIN_JWT_TTL_SEC || 8 * 60 * 60);
+
 const app = express();
-app.use(cors({ origin: ALLOWED_ORIGIN === "*" ? true : ALLOWED_ORIGIN }));
+app.use(
+  cors({
+    origin: ALLOWED_ORIGIN === "*" ? true : ALLOWED_ORIGIN,
+    /** Necesario para admin desde GitHub Pages → Render (Bearer en preflight). */
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
 app.use(express.json({ limit: "1mb" }));
 
 // Render logs only show stdout; the app had no request logging before, so POSTs looked "invisible".
@@ -660,6 +671,125 @@ async function createPaymentLink(payload) {
 
   return { sessionId, paymentUrl };
 }
+
+/** --- Admin auth (JWT HS256, sin dependencias extra) --- */
+
+function b64urlFromBuffer(buf) {
+  return Buffer.from(buf).toString("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+}
+
+function b64urlJson(obj) {
+  return b64urlFromBuffer(Buffer.from(JSON.stringify(obj), "utf8"));
+}
+
+function signAdminToken() {
+  const iat = Math.floor(Date.now() / 1000);
+  const exp = iat + (Number.isFinite(ADMIN_JWT_TTL_SEC) && ADMIN_JWT_TTL_SEC > 0 ? ADMIN_JWT_TTL_SEC : 3600);
+  const payload = { sub: "sacramento-admin", iat, exp };
+  const header = { alg: "HS256", typ: "JWT" };
+  const h = b64urlJson(header);
+  const p = b64urlJson(payload);
+  const data = `${h}.${p}`;
+  const sig = crypto.createHmac("sha256", ADMIN_JWT_SECRET).update(data).digest();
+  return `${data}.${b64urlFromBuffer(sig)}`;
+}
+
+function parseB64urlToBuffer(s) {
+  let str = String(s).replace(/-/g, "+").replace(/_/g, "/");
+  while (str.length % 4) str += "=";
+  return Buffer.from(str, "base64");
+}
+
+function verifyAdminToken(token) {
+  if (!token || !ADMIN_JWT_SECRET) return null;
+  const parts = String(token).split(".");
+  if (parts.length !== 3) return null;
+  const [h, p, s] = parts;
+  const data = `${h}.${p}`;
+  const expected = crypto.createHmac("sha256", ADMIN_JWT_SECRET).update(data).digest();
+  let got;
+  try {
+    got = parseB64urlToBuffer(s);
+  } catch {
+    return null;
+  }
+  if (got.length !== expected.length || !crypto.timingSafeEqual(got, expected)) return null;
+  let payload;
+  try {
+    payload = JSON.parse(parseB64urlToBuffer(p).toString("utf8"));
+  } catch {
+    return null;
+  }
+  const now = Math.floor(Date.now() / 1000);
+  if (payload.exp != null && now >= Number(payload.exp)) return null;
+  if (payload.sub !== "sacramento-admin") return null;
+  return payload;
+}
+
+function requireAdminAuth(req, res, next) {
+  const auth = req.headers.authorization || "";
+  const m = /^Bearer\s+(\S+)/i.exec(auth);
+  if (!m) {
+    return res.status(401).json({ error: "Missing or invalid Authorization header." });
+  }
+  const payload = verifyAdminToken(m[1]);
+  if (!payload) {
+    return res.status(401).json({ error: "Invalid or expired admin token." });
+  }
+  req.admin = payload;
+  return next();
+}
+
+app.post("/api/payments/admin/login", (req, res) => {
+  const username = req.body?.username;
+  const password = req.body?.password;
+  if (!ADMIN_USERNAME || !ADMIN_PASSWORD || !ADMIN_JWT_SECRET) {
+    return res.status(503).json({
+      error: "Admin login is not configured (set ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_JWT_SECRET)."
+    });
+  }
+  if (String(username) !== ADMIN_USERNAME || String(password) !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: "Invalid username or password." });
+  }
+  try {
+    const token = signAdminToken();
+    return res.json({
+      ok: true,
+      token,
+      tokenType: "Bearer",
+      expiresIn: Number.isFinite(ADMIN_JWT_TTL_SEC) && ADMIN_JWT_TTL_SEC > 0 ? ADMIN_JWT_TTL_SEC : 3600
+    });
+  } catch {
+    return res.status(500).json({ error: "Could not issue admin token." });
+  }
+});
+
+app.get("/api/payments/admin/payments", requireAdminAuth, (req, res) => {
+  const status = req.query.status != null && String(req.query.status).trim() ? String(req.query.status).trim() : "";
+  const experience =
+    req.query.experience != null && String(req.query.experience).trim()
+      ? String(req.query.experience).trim()
+      : "";
+  const q = req.query.q != null && String(req.query.q).trim() ? String(req.query.q).trim() : "";
+  const from = req.query.from != null && String(req.query.from).trim() ? String(req.query.from).trim() : "";
+  const to = req.query.to != null && String(req.query.to).trim() ? String(req.query.to).trim() : "";
+  const sort = req.query.sort === "createdAt" ? "createdAt" : "updatedAt";
+  const order = /^asc$/i.test(String(req.query.order || "")) ? "asc" : "desc";
+
+  const result = listPayments({
+    status: status || undefined,
+    experience: experience || undefined,
+    q: q || undefined,
+    from: from || undefined,
+    to: to || undefined,
+    limit: req.query.limit,
+    offset: req.query.offset,
+    sort,
+    order
+  });
+
+  return res.json({ ok: true, ...result });
+});
 
 app.get("/api/payments/health", (_req, res) => {
   res.json({
