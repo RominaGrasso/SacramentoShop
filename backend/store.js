@@ -62,3 +62,93 @@ export function updateStatusBySessionId(sessionId, status) {
   return true;
 }
 
+/**
+ * Lista pagos desde el JSON local con filtros y orden por fecha (V1 admin).
+ * @param {object} filters
+ * @param {string} [filters.status] — coincidencia exacta
+ * @param {string} [filters.experience] — subcadena (case-insensitive)
+ * @param {string} [filters.q] — busca en sessionId y fingerprint
+ * @param {string} [filters.from] — ISO: updatedAt >= from
+ * @param {string} [filters.to] — ISO: updatedAt <= end of day si solo fecha
+ * @param {number} [filters.limit=100] — máx 500
+ * @param {number} [filters.offset=0]
+ * @param {'updatedAt'|'createdAt'} [filters.sort='updatedAt']
+ * @param {'asc'|'desc'} [filters.order='desc']
+ */
+export function listPayments(filters = {}) {
+  const {
+    status,
+    experience,
+    q,
+    from,
+    to,
+    limit: limitRaw,
+    offset: offsetRaw,
+    sort = "updatedAt",
+    order = "desc"
+  } = filters;
+
+  let items = readAll();
+
+  if (status && String(status).trim()) {
+    const st = String(status).trim();
+    items = items.filter((x) => String(x.status || "") === st);
+  }
+
+  if (experience && String(experience).trim()) {
+    const ex = String(experience).trim().toLowerCase();
+    items = items.filter((x) => String(x.experience || "").toLowerCase().includes(ex));
+  }
+
+  if (q && String(q).trim()) {
+    const qq = String(q).trim().toLowerCase();
+    items = items.filter(
+      (x) =>
+        String(x.sessionId || "")
+          .toLowerCase()
+          .includes(qq) ||
+        String(x.fingerprint || "")
+          .toLowerCase()
+          .includes(qq)
+    );
+  }
+
+  const fromMs = from ? new Date(from).getTime() : NaN;
+  if (Number.isFinite(fromMs)) {
+    items = items.filter((x) => {
+      const t = new Date(x.updatedAt || x.createdAt || 0).getTime();
+      return t >= fromMs;
+    });
+  }
+
+  let toMs = to ? new Date(to).getTime() : NaN;
+  if (Number.isFinite(toMs)) {
+    /** Si `to` es solo fecha (sin hora), incluir todo el día */
+    const toStr = String(to).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(toStr)) {
+      toMs = new Date(`${toStr}T23:59:59.999Z`).getTime();
+    }
+    items = items.filter((x) => {
+      const t = new Date(x.updatedAt || x.createdAt || 0).getTime();
+      return t <= toMs;
+    });
+  }
+
+  const sortKey = sort === "createdAt" ? "createdAt" : "updatedAt";
+  const dir = order === "asc" ? 1 : -1;
+  items.sort((a, b) => {
+    const ta = new Date(a[sortKey] || a.createdAt || 0).getTime();
+    const tb = new Date(b[sortKey] || b.createdAt || 0).getTime();
+    if (ta < tb) return -1 * dir;
+    if (ta > tb) return 1 * dir;
+    return 0;
+  });
+
+  const total = items.length;
+  const limit = Math.min(Math.max(Number(limitRaw) || 100, 1), 500);
+  const offset = Math.max(Number(offsetRaw) || 0, 0);
+  const slice = items.slice(offset, offset + limit);
+
+  return { items: slice, total, limit, offset };
+}
+
