@@ -4,6 +4,14 @@
  */
 (function () {
   const TOKEN_KEY = "sacramento_admin_jwt";
+  let latestReportCsv = "";
+
+  const RESTAURANT_RULES = [
+    { restaurant: "Bruma", patterns: ["bruma"] },
+    { restaurant: "Las Liebres", patterns: ["liebres"] },
+    { restaurant: "Meson", patterns: ["meson"] },
+    { restaurant: "No aplica / Tours", patterns: ["walkingtour", "walking", "bike", "tour", "plaza", "day", "night"] }
+  ];
 
   function getApiBase() {
     if (typeof window === "undefined") return "";
@@ -61,6 +69,30 @@
     return d.innerHTML;
   }
 
+  function normalizeText(v) {
+    return String(v || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "");
+  }
+
+  function inferRestaurant(experienceRaw) {
+    const exp = normalizeText(experienceRaw);
+    for (const rule of RESTAURANT_RULES) {
+      if (rule.patterns.some((p) => exp.includes(normalizeText(p)))) {
+        return rule.restaurant;
+      }
+    }
+    return "No aplica / Tours";
+  }
+
+  function enrichPaymentRow(row) {
+    return {
+      ...row,
+      restaurant: inferRestaurant(row.experience)
+    };
+  }
+
   async function apiLogin(username, password) {
     const base = getApiBase();
     const res = await fetch(`${base}/api/payments/admin/login`, {
@@ -105,6 +137,23 @@
     return data;
   }
 
+  async function apiFetchAllPayments(params) {
+    const limit = 500;
+    let offset = 0;
+    let total = Infinity;
+    const all = [];
+    while (offset < total) {
+      const data = await apiFetchPayments({ ...params, limit, offset });
+      const items = Array.isArray(data.items) ? data.items : [];
+      all.push(...items);
+      total = Number(data.total) || items.length;
+      if (items.length === 0) break;
+      offset += items.length;
+      if (items.length < limit) break;
+    }
+    return all;
+  }
+
   async function apiFetchPaymentDetail(sessionId) {
     const base = getApiBase();
     const token = getToken();
@@ -128,6 +177,7 @@
     return {
       status: el("filter-status")?.value?.trim() || "",
       experience: el("filter-experience")?.value?.trim() || "",
+      restaurant: el("filter-restaurant")?.value?.trim() || "",
       q: el("filter-q")?.value?.trim() || "",
       from: el("filter-from")?.value?.trim() || "",
       to: el("filter-to")?.value?.trim() || "",
@@ -137,6 +187,11 @@
     };
   }
 
+  function applyRestaurantFilter(items, restaurant) {
+    if (!restaurant) return items;
+    return items.filter((x) => String(x.restaurant || "") === String(restaurant));
+  }
+
   function renderRows(items) {
     const tbody = el("payments-tbody");
     if (!tbody) return;
@@ -144,7 +199,7 @@
     if (!items || items.length === 0) {
       const tr = document.createElement("tr");
       tr.innerHTML =
-        '<td colspan="11" class="admin-empty">No hay pagos que coincidan con los filtros.</td>';
+        '<td colspan="12" class="admin-empty">No hay pagos que coincidan con los filtros.</td>';
       tbody.appendChild(tr);
       return;
     }
@@ -157,6 +212,7 @@
         <td>${esc(row.createdAt || "—")}</td>
         <td>${esc(row.updatedAt || "—")}</td>
         <td>${esc(row.experience || "—")}</td>
+        <td>${esc(row.restaurant || "—")}</td>
         <td>${esc(row.people != null ? row.people : "—")}</td>
         <td>${esc(row.amount != null ? row.amount : "—")}</td>
         <td>${esc(row.currency || "—")}</td>
@@ -221,6 +277,7 @@
       detailCard("Estado actual", item.status),
       detailCard("Intentos webhook", item.attemptsCount),
       detailCard("Experiencia", item.experience),
+      detailCard("Restoran", inferRestaurant(item.experience)),
       detailCard("Monto", `${item.amount ?? "—"} ${item.currency || ""}`.trim()),
       detailCard("Personas", item.people),
       detailCard("Creado", item.createdAt),
@@ -253,8 +310,10 @@
     try {
       const f = readFilters();
       const data = await apiFetchPayments(f);
-      el("payments-meta").textContent = `Mostrando ${data.items?.length || 0} de ${data.total ?? 0} (offset ${data.offset ?? 0})`;
-      renderRows(data.items || []);
+      const enriched = (data.items || []).map(enrichPaymentRow);
+      const filtered = applyRestaurantFilter(enriched, f.restaurant);
+      el("payments-meta").textContent = `Mostrando ${filtered.length || 0} de ${data.total ?? 0} (offset ${data.offset ?? 0})`;
+      renderRows(filtered);
       el("view-detail").hidden = true;
     } catch (e) {
       if (e.message === "SESSION_EXPIRED") {
@@ -265,6 +324,125 @@
       }
     } finally {
       el("btn-refresh").disabled = false;
+    }
+  }
+
+  function csvEscape(v) {
+    const s = String(v == null ? "" : v);
+    if (/[",\n]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+    return s;
+  }
+
+  function toCsv(rows) {
+    const headers = ["fecha", "restoran", "experiencia", "personas", "monto", "moneda", "estado", "sessionId", "paymentUrl"];
+    const lines = [headers.join(",")];
+    for (const row of rows) {
+      lines.push(
+        [
+          csvEscape(row.updatedAt || row.createdAt || ""),
+          csvEscape(row.restaurant || ""),
+          csvEscape(row.experience || ""),
+          csvEscape(row.people ?? ""),
+          csvEscape(row.amount ?? ""),
+          csvEscape(row.currency || ""),
+          csvEscape(row.status || ""),
+          csvEscape(row.sessionId || ""),
+          csvEscape(row.paymentUrl || "")
+        ].join(",")
+      );
+    }
+    return lines.join("\n");
+  }
+
+  function downloadCsv(content, filename) {
+    const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function renderReport(rows) {
+    const wrap = el("report-wrap");
+    const summary = el("report-summary");
+    const tbody = el("report-tbody");
+    summary.innerHTML = "";
+    tbody.innerHTML = "";
+    if (!rows.length) {
+      wrap.hidden = false;
+      summary.innerHTML = '<div class="admin-report-card"><h4>Sin resultados</h4><p>No hay pagos para ese filtro.</p></div>';
+      return;
+    }
+
+    const byRestaurant = new Map();
+    rows.forEach((r) => {
+      const key = r.restaurant || "No aplica / Tours";
+      if (!byRestaurant.has(key)) byRestaurant.set(key, { count: 0, people: 0, amount: 0 });
+      const agg = byRestaurant.get(key);
+      agg.count += 1;
+      agg.people += Number(r.people) || 0;
+      agg.amount += Number(r.amount) || 0;
+    });
+
+    byRestaurant.forEach((agg, restaurant) => {
+      const card = document.createElement("div");
+      card.className = "admin-report-card";
+      card.innerHTML = `
+        <h4>${esc(restaurant)}</h4>
+        <p>Pagos: <strong>${agg.count}</strong></p>
+        <p>Personas: <strong>${agg.people}</strong></p>
+        <p>Total estimado: <strong>USD ${agg.amount.toFixed(2)}</strong></p>
+      `;
+      summary.appendChild(card);
+    });
+
+    rows
+      .slice()
+      .sort((a, b) => new Date(b.updatedAt || b.createdAt || 0).getTime() - new Date(a.updatedAt || a.createdAt || 0).getTime())
+      .forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${esc(row.updatedAt || row.createdAt || "—")}</td>
+          <td>${esc(row.restaurant || "—")}</td>
+          <td>${esc(row.experience || "—")}</td>
+          <td>${esc(row.people != null ? row.people : "—")}</td>
+          <td>${esc(row.amount != null ? row.amount : "—")}</td>
+          <td>${esc(row.currency || "—")}</td>
+          <td>${esc(row.status || "—")}</td>
+          <td class="mono">${esc(row.sessionId || "—")}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    wrap.hidden = false;
+  }
+
+  async function generateReport() {
+    setStatus("", "");
+    const btnGenerate = el("btn-generate-report");
+    const btnDownload = el("btn-download-report");
+    btnGenerate.disabled = true;
+    try {
+      const f = readFilters();
+      const all = await apiFetchAllPayments(f);
+      const enriched = all.map(enrichPaymentRow);
+      const filtered = applyRestaurantFilter(enriched, f.restaurant);
+      renderReport(filtered);
+      latestReportCsv = toCsv(filtered);
+      btnDownload.disabled = filtered.length === 0;
+      setStatus(`Reporte generado: ${filtered.length} registros.`, "ok");
+    } catch (e) {
+      if (e.message === "SESSION_EXPIRED") {
+        setStatus("Sesión expirada o token inválido. Iniciá sesión de nuevo.", "error");
+        showView("login");
+      } else {
+        setStatus(e.message || "No se pudo generar el reporte.", "error");
+      }
+    } finally {
+      btnGenerate.disabled = false;
     }
   }
 
@@ -301,21 +479,30 @@
       showView("login");
       setStatus("", "");
       el("view-detail").hidden = true;
+      el("report-wrap").hidden = true;
     });
 
     el("btn-refresh").addEventListener("click", () => loadPayments());
+    el("btn-generate-report").addEventListener("click", () => generateReport());
+    el("btn-download-report").addEventListener("click", () => {
+      if (!latestReportCsv) return;
+      const d = new Date().toISOString().slice(0, 10);
+      downloadCsv(latestReportCsv, `reporte-pagos-${d}.csv`);
+    });
 
-    ["filter-status", "filter-experience", "filter-q", "filter-from", "filter-to", "filter-limit", "filter-sort", "filter-order"].forEach(
+    ["filter-status", "filter-experience", "filter-restaurant", "filter-q", "filter-from", "filter-to", "filter-limit", "filter-sort", "filter-order"].forEach(
       (id) => {
         const node = el(id);
         if (node) {
           node.addEventListener("change", () => loadPayments());
-          if (id === "filter-q") node.addEventListener("keydown", (ev) => {
-            if (ev.key === "Enter") {
-              ev.preventDefault();
-              loadPayments();
-            }
-          });
+          if (id === "filter-q") {
+            node.addEventListener("keydown", (ev) => {
+              if (ev.key === "Enter") {
+                ev.preventDefault();
+                loadPayments();
+              }
+            });
+          }
         }
       }
     );
