@@ -5,6 +5,59 @@
   <title>Walking Tour - Sacramento Adventures</title>
   <link rel="stylesheet" href="../Styles/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .order-preferences-list {
+      margin: 0.5rem 0 0.4rem 1.6rem;
+      padding-left: 0.8rem;
+    }
+
+    .order-preferences-list li {
+      margin: 0.28rem 0;
+      line-height: 1.35;
+    }
+
+    .order-summary .total-box {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: #2f67a3;
+      border-radius: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 16px;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .order-summary .total-btn {
+      background: #fff;
+      color: #2f67a3;
+      border: 1px solid rgba(47, 103, 163, 0.2);
+      font-weight: 700;
+      min-width: 130px;
+      text-align: center;
+    }
+
+    .order-summary .total-btn:hover {
+      background: #eef5ff;
+      color: #234e7b;
+    }
+
+    .walking-price-note {
+      margin-top: 0.35rem;
+    }
+
+    .walking-price-note .is-highlight {
+      font-weight: 700;
+      color: #0b3d91;
+      background: #eaf2ff;
+      border-radius: 6px;
+      padding: 0.08rem 0.38rem;
+      display: inline-block;
+      margin-right: 0.2rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -61,33 +114,33 @@
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
 
-  <h2>About this experience</h2>
+  <h2 data-translate="walking_about_title">About this experience</h2>
 
-  <p>
+  <p data-translate="walking_about_p">
     Explore Colonia del Sacramento’s UNESCO World Heritage historic district with a knowledgeable local guide. 
     Walk through cobblestone streets, discover hidden corners, and hear the fascinating stories behind the city’s Portuguese and Spanish past.
   </p>
 
   <!-- HOW IT WORKS -->
-  <h3 class="experience-steps-title">How it works</h3>
+  <h3 class="experience-steps-title" data-translate="walking_steps_title">How it works</h3>
 
   <div class="experience-steps">
     <ul>
 
       <li>
-        🏛 <strong>Meeting point:</strong> Plaza de la Basílica (Historic Quarter)
+        <span data-translate="walking_step_1">🏛 Meeting point: Plaza de la Basílica (Historic Quarter)</span>
       </li>
 
       <li>
-        🚶 <strong>Guided walking tour:</strong> Explore the historic streets and learn about Colonia’s past with a local expert
+        <span data-translate="walking_step_2">🚶 Guided walking tour: Explore the historic streets and learn about Colonia’s past with a local expert</span>
       </li>
 
       <li>
-        📸 <strong>Hidden gems:</strong> Discover secret corners and best photo spots
+        <span data-translate="walking_step_3">📸 Hidden gems: Discover secret corners and best photo spots</span>
       </li>
 
       <li>
-        🌅 <strong>End of tour:</strong> Finish in the historic area with recommendations to continue exploring
+        <span data-translate="walking_step_4">🌅 End of tour: Finish in the historic area with recommendations to continue exploring</span>
       </li>
 
     </ul>
@@ -95,7 +148,10 @@
 
   <!-- PRICE -->
   <div class="price-box">
-    <h3>USD 35 per person</h3>
+    <h3 id="walkingTourPriceTitle" data-translate="walking_price_title">USD 15 per guest</h3>
+    <p id="walkingTourPriceNote" class="walking-price-note">
+      <span class="is-highlight">Spanish: USD 11</span> · <span data-translate="walking_price_note">English: USD 15 · Portuguese: USD 15</span>
+    </p>
   </div>
 
   <!-- INCLUDES -->
@@ -105,32 +161,37 @@
 
       <!-- IZQUIERDA -->
       <div class="includes-list">
-        <h3>What's included</h3>
+        <h3 data-translate="walking_included_title">What's included</h3>
         <ul>
-          <li>✔ Guided walking tour with local expert</li>
-          <li>✔ Cultural and historical insights</li>
-          <li>✔ Recommendations for food & activities</li>
-          <li>✔ Small group experience</li>
+          <li data-translate="walking_include_1">✔ Guided walking tour with local expert</li>
+          <li data-translate="walking_include_2">✔ Cultural and historical insights</li>
+          <li data-translate="walking_include_3">✔ Recommendations for food & activities</li>
+          <li data-translate="walking_include_4">✔ Small group experience</li>
         </ul>
       </div>
 
       <!-- DERECHA -->
-      <div class="preferences-inside">
-        <h3>Your preferences</h3>
-
-        <label><input type="checkbox"> 🌍 English</label>
-        <label><input type="checkbox"> 🇪🇸 Spanish</label>
-        <label><input type="checkbox"> 🇧🇷 Portuguese</label>
+      <div class="order-start">
+        <h3 data-translate="walking_create_title">Create your walking tour</h3>
+        <p data-translate="walking_create_subtitle">Select language and preferences, then add each guest order</p>
+        <button
+          id="createMenuBtn"
+          class="btn primary-btn"
+          type="button"
+          data-translate="walking_create_btn"
+        >+ Create walking tour</button>
       </div>
 
     </div>
 
   </div>
 
+  <div class="order-summary" id="orderSummary"></div>
+
   <!-- ================= GALLERY ================= -->
   <section class="coffee-gallery">
 
-    <h2>Experience Gallery</h2>
+    <h2 data-translate="walking_gallery_title">Experience Gallery</h2>
 
     <div class="gallery-grid">
       <img src="../Assets/images/historic1.jpg">
@@ -149,17 +210,51 @@
   <!-- ================= ACTIONS ================= -->
   <div class="coffee-actions">
 
-    <a href="TU_LINK" target="_blank" class="btn">
+    <a href="#" id="bookNowBottom" class="btn" data-translate="walking_book_now">
       Book Now
     </a>
 
-    <a href="../Home/index.html" class="btn secondary">
+    <a href="../Home/index.html" class="btn secondary" data-translate="walking_back_home">
       Back to Home
     </a>
 
   </div>
 
 </section>
+
+<!-- ================= POPUP WALKING TOUR ================= -->
+<div class="popup-overlay" id="popupBruma">
+  <div class="popup-box" aria-hidden="true">
+    <button
+      class="close-x"
+      id="closeBruma"
+      type="button"
+      onclick="(function(){var p=document.getElementById('popupBruma'); if(p){p.classList.remove('active'); p.style.display=''; p.setAttribute('aria-hidden','true');}})();"
+    >✕</button>
+
+    <p><strong class="popup-title" data-translate="walking_create_title">Walking Tour details</strong></p>
+
+    <div class="preferences-inside">
+      <h3 class="preferences-title" data-translate="walking_label_language">Language</h3>
+      <label><input type="radio" name="walkingTourLanguage" value="English guide" checked> 🌍 <span data-translate="walking_lang_en">English guide</span></label>
+      <label><input type="radio" name="walkingTourLanguage" value="Spanish guide"> 🇪🇸 <span data-translate="walking_lang_es">Spanish guide</span></label>
+      <label><input type="radio" name="walkingTourLanguage" value="Portuguese guide"> 🇧🇷 <span data-translate="walking_lang_pt">Portuguese guide</span></label>
+
+      <h3 class="preferences-title" style="margin-top: 14px;" data-translate="walking_label_preferences">Preferences</h3>
+      <label><input type="checkbox" value="Morning slot preferred"> 🌅 <span data-translate="walking_pref_1">Morning slot preferred</span></label>
+      <label><input type="checkbox" value="Sunset slot preferred"> 🌇 <span data-translate="walking_pref_2">Sunset slot preferred</span></label>
+      <label><input type="checkbox" value="Slow pace / senior friendly"> 🚶 <span data-translate="walking_pref_3">Slow pace / senior friendly</span></label>
+      <label><input type="checkbox" value="Family with kids"> 👨‍👩‍👧 <span data-translate="walking_pref_4">Family with kids</span></label>
+      <p id="walkingTourKidsNote" style="margin-top:12px; font-size:0.92rem; color:#2f67a3; font-weight:600;">
+        Children under 12 join for free.
+      </p>
+    </div>
+
+    <div class="popup-actions">
+      <button id="saveMenu" class="btn" data-translate="save_selection">Save selection</button>
+    </div>
+  </div>
+</div>
 
 <div class="lightbox" id="lightbox">
 
@@ -173,5 +268,408 @@
 
 </div>
 <script src="../Home/index.js"></script>
+<script src="../Home/orders.js"></script>
+<script>
+  (function () {
+    const pricesByLang = { es: 11, en: 15, pt: 15 };
+    const getLang = () => (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
+    const t = (key, fallback) => {
+      const lang = getLang();
+      const dict = window.__SACRAMENTO_TRANSLATIONS || {};
+      return dict?.[lang]?.[key] || dict?.en?.[key] || fallback;
+    };
+    const getPriceForGuideLanguage = (guideLanguage) => {
+      const g = String(guideLanguage || "").toLowerCase();
+      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 11;
+      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 15;
+      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 15;
+      return null;
+    };
+    const getPrice = (guideLanguage) => {
+      const byGuide = getPriceForGuideLanguage(guideLanguage);
+      if (Number.isFinite(byGuide)) return byGuide;
+      return pricesByLang[getLang()] || 15;
+    };
+    const getKidsFreeNote = () => {
+      return t("walking_kids_note", "Children under 12 join for free.");
+    };
+    const normalizeWalkingLanguage = (value) => {
+      const v = String(value || "").trim().toLowerCase();
+      if (!v) return "English guide";
+      if (v.includes("spanish") || v.includes("español") || v.includes("espanol")) return "Spanish guide";
+      if (v.includes("portuguese") || v.includes("portugués") || v.includes("portugues")) return "Portuguese guide";
+      return "English guide";
+    };
+    const normalizeWalkingPreference = (value) => {
+      const v = String(value || "").trim().toLowerCase();
+      if (!v) return "";
+      if (v.includes("morning") || v.includes("mañana") || v.includes("manha")) return "Morning slot preferred";
+      if (v.includes("sunset") || v.includes("atardecer") || v.includes("pôr") || v.includes("por do sol")) return "Sunset slot preferred";
+      if (v.includes("slow") || v.includes("senior") || v.includes("tranquilo") || v.includes("idos")) return "Slow pace / senior friendly";
+      if (v.includes("family") || v.includes("familia") || v.includes("crian")) return "Family with kids";
+      return "";
+    };
+    const localizeWalkingLanguage = (value) => {
+      const normalized = normalizeWalkingLanguage(value);
+      if (normalized === "Spanish guide") return t("walking_lang_es", "Spanish guide");
+      if (normalized === "Portuguese guide") return t("walking_lang_pt", "Portuguese guide");
+      return t("walking_lang_en", "English guide");
+    };
+    const localizeWalkingPreference = (value) => {
+      const normalized = normalizeWalkingPreference(value);
+      if (normalized === "Morning slot preferred") return t("walking_pref_1", "Morning slot preferred");
+      if (normalized === "Sunset slot preferred") return t("walking_pref_2", "Sunset slot preferred");
+      if (normalized === "Slow pace / senior friendly") return t("walking_pref_3", "Slow pace / senior friendly");
+      if (normalized === "Family with kids") return t("walking_pref_4", "Family with kids");
+      return value;
+    };
+
+    function updatePriceText() {
+      const lang = getLang();
+      const price = getPrice();
+      const title = document.getElementById("walkingTourPriceTitle");
+      const note = document.getElementById("walkingTourPriceNote");
+      const kidsNote = document.getElementById("walkingTourKidsNote");
+      if (!title || !note) return;
+
+      if (lang === "es") {
+        title.textContent = t("walking_price_title", `USD ${price} por persona`);
+        note.innerHTML = "<span class='is-highlight'>Español: USD 11</span> · Inglés: USD 15 · Portugués: USD 15";
+        if (kidsNote) kidsNote.textContent = t("walking_kids_note", "Menores de 12 años van gratis.");
+      } else {
+        title.textContent = t("walking_price_title", `USD ${price} per guest`);
+        note.innerHTML = lang === "pt"
+          ? "<span class='is-highlight'>Espanhol: USD 11</span> · Inglês: USD 15 · Português: USD 15"
+          : "<span class='is-highlight'>Spanish: USD 11</span> · English: USD 15 · Portuguese: USD 15";
+        if (kidsNote) {
+          kidsNote.textContent = t("walking_kids_note", "Children under 12 join for free.");
+        }
+      }
+    }
+
+    function setupManualFallback() {
+      const popup = document.getElementById("popupBruma");
+      const openBtn = document.getElementById("createMenuBtn");
+      const closeBtn = document.getElementById("closeBruma");
+      const saveBtn = document.getElementById("saveMenu");
+      const summary = document.getElementById("orderSummary");
+      const bookNowBottomBtn = document.getElementById("bookNowBottom");
+      const storageKey = "orders_walkingtour";
+      const whatsappNumber = "598091642195";
+
+      if (!popup || !openBtn || !closeBtn || !saveBtn || !summary) return;
+
+      const getGroupConfig = () => {
+        try {
+          const raw = JSON.parse(localStorage.getItem(storageKey));
+          // Formato nuevo: objeto de grupo.
+          if (raw && !Array.isArray(raw) && typeof raw === "object") {
+            return {
+              language: normalizeWalkingLanguage(raw.language),
+              preferences: Array.isArray(raw.preferences)
+                ? raw.preferences.map(normalizeWalkingPreference).filter(Boolean)
+                : [],
+              people: Math.max(1, Number(raw.people) || 1)
+            };
+          }
+          // Compatibilidad: formato viejo con "orders" por persona.
+          if (Array.isArray(raw) && raw.length > 0) {
+            const first = raw[0] || {};
+            const basePrefs = Array.isArray(first.preferences) ? first.preferences.filter(Boolean) : [];
+            let language = String(first.language || "").trim();
+            let preferences = basePrefs.slice();
+            if (!language) {
+              const idx = basePrefs.findIndex((p) => /guide$/i.test(String(p || "").trim()));
+              if (idx >= 0) {
+                language = String(basePrefs[idx] || "").trim();
+                preferences = basePrefs.filter((_, i) => i !== idx);
+              }
+            }
+            return {
+              language: normalizeWalkingLanguage(language || "English guide"),
+              preferences: preferences.map(normalizeWalkingPreference).filter(Boolean),
+              people: raw.length
+            };
+          }
+          return null;
+        } catch {
+          return null;
+        }
+      };
+      const setGroupConfig = (group) => {
+        localStorage.setItem(storageKey, JSON.stringify(group));
+      };
+      const formatDate = () =>
+        new Date().toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        });
+      const sendBookingToWhatsApp = (group) => {
+        const waWindow = window.open("about:blank", "_blank");
+        const unitPrice = getPrice(group.language);
+        const total = unitPrice * group.people;
+        const prefs = Array.isArray(group.preferences) ? group.preferences.map(localizeWalkingPreference) : [];
+        const prefsText = prefs.length ? `- ${prefs.join("\n- ")}` : `- ${t("wa_none", "None")}`;
+        const date = formatDate();
+
+        (async () => {
+          let paymentUrl = "";
+          try {
+            if (typeof resolveDynamicPaymentLink === "function") {
+              paymentUrl = await resolveDynamicPaymentLink(
+                {
+                  enabled: true,
+                  endpoint: "/api/payments/resolve",
+                  experienceId: "walkingtour",
+                  currency: "USD"
+                },
+                {
+                  experience: "walkingtour",
+                  amount: total,
+                  currency: "USD",
+                  people: group.people,
+                  orderFingerprint:
+                    typeof stableStringify === "function"
+                      ? stableStringify({ group, total })
+                      : JSON.stringify({ group, total }),
+                  orderPayload: { group, total, experienceName: "Walking Tour" }
+                }
+              );
+            }
+          } catch {
+            // Fallback: continue without payment URL
+          }
+
+          let message =
+            `${t("wa_intro_walking", "Hello! I'd like to book the Walking Tour experience:")}\n\n` +
+            `${t("wa_date_label", "Date")}: ${date}\n` +
+            `${t("wa_people_label", "People")}: ${group.people}\n` +
+            `${t("wa_language_label", "Language")}: ${localizeWalkingLanguage(group.language)}\n` +
+            `${t("wa_preferences_label", "Preferences")}:\n${prefsText}\n\n` +
+            `${t("wa_total_label", "Total")}: USD ${total}\n` +
+            `${t("wa_note_label", "Note")}: ${getKidsFreeNote()}`;
+
+          if (paymentUrl) {
+            message += `\n\n${t("wa_payment_prompt", "To confirm the reservation, please complete the payment here:")}\n${paymentUrl}`;
+          } else {
+            message += `\n\n${t("wa_payment_fallback", "Please share payment instructions to confirm this booking.")}`;
+          }
+
+          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+          if (waWindow && !waWindow.closed) {
+            waWindow.location.href = waUrl;
+          } else {
+            window.location.href = waUrl;
+          }
+        })();
+      };
+      const selectedPrefs = () =>
+        Array.from(popup.querySelectorAll(".preferences-inside input[type='checkbox']:checked"))
+          .map((i) => i.value)
+          .filter(Boolean);
+      const selectedLanguage = () =>
+        popup.querySelector("input[name='walkingTourLanguage']:checked")?.value || "";
+      const renderFallbackSummary = () => {
+        const group = getGroupConfig();
+        summary.innerHTML = `<h3>${t("walking_group_title", "Your group")}</h3>`;
+        if (!group) {
+          const createP = document.createElement("p");
+          createP.innerHTML = t("walking_group_create_first", "Create your walking tour configuration first.");
+          summary.appendChild(createP);
+          return;
+        }
+
+        const controls = document.createElement("div");
+        controls.className = "order-header";
+        controls.innerHTML = `
+          <button type="button" class="add-guest-btn" data-action="edit-group">${t("walking_edit_group", "Edit group setup")}</button>
+          <div class="order-actions">
+            <button type="button" class="add-guest-btn" data-action="delete-group">${t("walking_delete_group", "Delete group")}</button>
+            <button type="button" class="add-guest-btn" data-action="minus-person">${t("walking_minus_person", "- Person")}</button>
+            <button type="button" class="add-guest-btn" data-action="plus-person">${t("walking_plus_person", "+ Person")}</button>
+          </div>
+        `;
+        summary.appendChild(controls);
+
+        const prefItems = group.preferences.length
+          ? `<ul class="order-preferences-list">${group.preferences.map((p) => `<li>${localizeWalkingPreference(p)}</li>`).join("")}</ul>`
+          : "<span>-</span>";
+        const card = document.createElement("div");
+        card.className = "order-card";
+        card.innerHTML = `
+          <div class="order-header"><strong>${t("walking_group_card_title", "Walking Tour Group")}</strong></div>
+          <p><strong>${t("walking_label_people", "People")}:</strong> ${group.people}</p>
+          <p><strong>${t("walking_label_language", "Language")}:</strong> ${localizeWalkingLanguage(group.language)}</p>
+          <p><strong>${t("walking_label_preferences", "Preferences")}:</strong></p>
+          ${prefItems}
+          <p><strong>${t("walking_label_note", "Note")}:</strong> ${getKidsFreeNote()}</p>
+        `;
+        summary.appendChild(card);
+
+        const unitPrice = getPrice(group.language);
+        const total = group.people * unitPrice;
+        const totalBox = document.createElement("div");
+        totalBox.className = "total-box";
+        totalBox.innerHTML = `
+          <div class="total-left">
+            <span class="total-label">${t("total_label", "Total")}</span>
+            <span class="total-detail">(${group.people} x USD ${unitPrice})</span>
+          </div>
+          <div class="total-right">USD ${total}</div>
+        `;
+        const bookBtn = document.createElement("a");
+        bookBtn.href = "#";
+        bookBtn.className = "btn total-btn";
+        bookBtn.id = "bookWithOrder";
+        bookBtn.dataset.action = "book-now";
+        bookBtn.textContent = t("walking_book_now", "Book Now");
+        totalBox.appendChild(bookBtn);
+        summary.appendChild(totalBox);
+      };
+
+      if (!openBtn.dataset.popupBound) {
+        openBtn.dataset.popupBound = "1";
+        openBtn.addEventListener("click", () => {
+          const existing = getGroupConfig();
+          if (existing) {
+            const proceed = window.confirm(
+              t(
+                "walking_confirm_replace",
+                "You already have a group configured for this tour. If you continue, you'll be editing/replacing that group setup."
+              )
+            );
+            if (!proceed) return;
+          }
+          popup.classList.add("active");
+          popup.style.display = "flex";
+          popup.setAttribute("aria-hidden", "false");
+        });
+      }
+      if (!closeBtn.dataset.popupBound) {
+        closeBtn.dataset.popupBound = "1";
+        closeBtn.addEventListener("click", () => popup.classList.remove("active"));
+      }
+      if (!saveBtn.dataset.popupBound) {
+        saveBtn.dataset.popupBound = "1";
+        saveBtn.addEventListener("click", () => {
+          const language = selectedLanguage();
+          if (!language) {
+            alert(t("walking_alert_select_language", "Please select a language"));
+            return;
+          }
+          const prefs = selectedPrefs();
+          const prev = getGroupConfig();
+          setGroupConfig({
+            language,
+            preferences: prefs,
+            people: prev?.people || 1
+          });
+          popup.classList.remove("active");
+          popup.style.display = "";
+          popup.setAttribute("aria-hidden", "true");
+          popup.querySelectorAll(".preferences-inside input[type='checkbox']").forEach((i) => {
+            i.checked = false;
+          });
+          const defaultLanguage = popup.querySelector("input[name='walkingTourLanguage'][value='English guide']");
+          if (defaultLanguage) defaultLanguage.checked = true;
+          renderFallbackSummary();
+        });
+      }
+
+      if (!summary.dataset.groupBound) {
+        summary.dataset.groupBound = "1";
+        summary.addEventListener("click", (ev) => {
+          const btn = ev.target.closest("[data-action]");
+          if (!btn) return;
+          const action = btn.dataset.action;
+          const group = getGroupConfig();
+          if (!group) return;
+
+          if (action === "plus-person") {
+            setGroupConfig({ ...group, people: group.people + 1 });
+            renderFallbackSummary();
+            return;
+          }
+          if (action === "delete-group") {
+            const ok = window.confirm(t("walking_confirm_delete", "Are you sure you want to delete this group?"));
+            if (!ok) return;
+            localStorage.removeItem(storageKey);
+            renderFallbackSummary();
+            return;
+          }
+          if (action === "minus-person") {
+            setGroupConfig({ ...group, people: Math.max(1, group.people - 1) });
+            renderFallbackSummary();
+            return;
+          }
+          if (action === "edit-group") {
+            const radios = popup.querySelectorAll("input[name='walkingTourLanguage']");
+            radios.forEach((r) => {
+              r.checked = r.value === normalizeWalkingLanguage(group.language);
+            });
+            popup.querySelectorAll(".preferences-inside input[type='checkbox']").forEach((i) => {
+              i.checked = group.preferences.map(normalizeWalkingPreference).includes(i.value);
+            });
+            popup.classList.add("active");
+            popup.style.display = "flex";
+            popup.setAttribute("aria-hidden", "false");
+            return;
+          }
+          if (action === "book-now") {
+            ev.preventDefault();
+            sendBookingToWhatsApp(group);
+          }
+        });
+      }
+
+      if (bookNowBottomBtn && !bookNowBottomBtn.dataset.bound) {
+        bookNowBottomBtn.dataset.bound = "1";
+        bookNowBottomBtn.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          const group = getGroupConfig();
+          if (!group) {
+            alert(t("walking_alert_create_first", "Please create your walking tour group first."));
+            return;
+          }
+          sendBookingToWhatsApp(group);
+        });
+      }
+
+      renderFallbackSummary();
+    }
+
+    function initWalkingTourPage() {
+      updatePriceText();
+      // Para esta página usamos fallback manual siempre, para que
+      // el flujo sea estable y permita guardar con idioma + preferencias opcionales.
+      setupManualFallback();
+
+      // If user changes site language, update price + totals immediately.
+      document.addEventListener("sacramento:setLanguage", () => {
+        updatePriceText();
+        setupManualFallback();
+      });
+
+      // Fallback: if language script doesn't emit the event, store and refresh manually.
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = String(btn.dataset.lang || "").toLowerCase();
+          if (lang) {
+            localStorage.setItem("selectedLanguage", lang);
+            updatePriceText();
+            setupManualFallback();
+          }
+        });
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initWalkingTourPage);
+    } else {
+      initWalkingTourPage();
+    }
+  })();
+</script>
 </body>
 </html>
