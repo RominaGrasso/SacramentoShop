@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>Admin — Pagos | Sacramento</title>
   <link rel="stylesheet" href="../Styles/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -31,6 +32,11 @@
     .admin-table .url-cell { max-width: 220px; word-break: break-all; }
     .admin-empty { text-align: center; padding: 2rem !important; color: #666; }
     .admin-badge { display: inline-block; padding: 0.15rem 0.45rem; background: #eef; border-radius: 4px; font-size: 0.8rem; }
+    .admin-link-btn { border: 0; background: none; color: #1a56db; cursor: pointer; padding: 0; text-decoration: underline; }
+    .admin-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.7rem; margin-bottom: 1rem; }
+    .admin-detail-item { background: #fff; border: 1px solid #e8e8e8; border-radius: 6px; padding: 0.6rem; }
+    .admin-detail-item .k { color: #666; font-size: 0.8rem; display: block; margin-bottom: 0.2rem; }
+    .admin-detail-item .v { font-size: 0.9rem; word-break: break-word; }
   </style>
 </head>
 <body>
@@ -124,11 +130,35 @@
               <th>Monto</th>
               <th>Moneda</th>
               <th>Estado</th>
+              <th>Intentos</th>
               <th>Session ID</th>
               <th>Payment URL</th>
+              <th>Detalle</th>
             </tr>
           </thead>
           <tbody id="payments-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="view-detail" class="admin-panel" hidden>
+      <h2>Detalle de pago</h2>
+      <div id="detail-summary" class="admin-detail-grid"></div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Fecha intento</th>
+              <th>Estado</th>
+              <th>Origen</th>
+              <th>Gateway</th>
+              <th>Tarjeta</th>
+              <th>Titular</th>
+              <th>Emisor</th>
+              <th>Referencia</th>
+            </tr>
+          </thead>
+          <tbody id="attempts-tbody"></tbody>
         </table>
       </div>
     </section>

@@ -1,12 +1,22 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const DATA_DIR = path.resolve("backend", "data");
+const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
+const DATA_DIR = path.join(MODULE_DIR, "data");
 const DB_FILE = path.join(DATA_DIR, "payment-links.json");
+/** Compatibilidad con una ruta legacy que dependía del cwd (backend/backend/data). */
+const LEGACY_DB_FILE = path.resolve("backend", "data", "payment-links.json");
 
 function ensureStore() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-  if (!fs.existsSync(DB_FILE)) fs.writeFileSync(DB_FILE, "[]", "utf8");
+  if (!fs.existsSync(DB_FILE)) {
+    if (fs.existsSync(LEGACY_DB_FILE)) {
+      fs.copyFileSync(LEGACY_DB_FILE, DB_FILE);
+    } else {
+      fs.writeFileSync(DB_FILE, "[]", "utf8");
+    }
+  }
 }
 
 function readAll() {
@@ -51,15 +61,78 @@ export function upsertLink(entry) {
   return entry;
 }
 
-export function updateStatusBySessionId(sessionId, status) {
+export function updateStatusBySessionId(sessionId, status, attempt = null) {
   if (!sessionId) return false;
   const items = readAll();
   const idx = items.findIndex((x) => x.sessionId === sessionId);
   if (idx < 0) return false;
   items[idx].status = status;
-  items[idx].updatedAt = new Date().toISOString();
+  const nowIso = new Date().toISOString();
+  items[idx].updatedAt = nowIso;
+  if (!Array.isArray(items[idx].paymentAttempts)) {
+    items[idx].paymentAttempts = [];
+  }
+  items[idx].paymentAttempts.push(
+    attempt && typeof attempt === "object"
+      ? {
+          at: nowIso,
+          status,
+          source: attempt.source || "status_update",
+          gateway: attempt.gateway || undefined,
+          card: attempt.card || undefined,
+          payer: attempt.payer || undefined,
+          issuer: attempt.issuer || undefined,
+          reference: attempt.reference || undefined,
+          note: attempt.note || undefined,
+          raw: attempt.raw || undefined
+        }
+      : {
+          at: nowIso,
+          status,
+          source: "status_update"
+        }
+  );
   writeAll(items);
   return true;
+}
+
+export function appendPaymentAttemptBySessionId(sessionId, attempt = {}) {
+  if (!sessionId) return false;
+  const items = readAll();
+  const idx = items.findIndex((x) => x.sessionId === sessionId);
+  if (idx < 0) return false;
+  const nowIso = new Date().toISOString();
+  if (!Array.isArray(items[idx].paymentAttempts)) {
+    items[idx].paymentAttempts = [];
+  }
+  const entry = {
+    at: nowIso,
+    status: attempt.status || items[idx].status || "unknown",
+    source: attempt.source || "webhook",
+    gateway: attempt.gateway || undefined,
+    card: attempt.card || undefined,
+    payer: attempt.payer || undefined,
+    issuer: attempt.issuer || undefined,
+    reference: attempt.reference || undefined,
+    note: attempt.note || undefined,
+    raw: attempt.raw || undefined
+  };
+  items[idx].paymentAttempts.push(entry);
+  /** Evita crecer indefinidamente. */
+  if (items[idx].paymentAttempts.length > 100) {
+    items[idx].paymentAttempts = items[idx].paymentAttempts.slice(-100);
+  }
+  items[idx].updatedAt = nowIso;
+  writeAll(items);
+  return true;
+}
+
+export function getPaymentBySessionId(sessionId) {
+  if (!sessionId) return null;
+  const items = readAll();
+  const item = items.find((x) => String(x.sessionId || "") === String(sessionId));
+  if (!item) return null;
+  return { ...item };
 }
 
 /**
@@ -147,7 +220,14 @@ export function listPayments(filters = {}) {
   const total = items.length;
   const limit = Math.min(Math.max(Number(limitRaw) || 100, 1), 500);
   const offset = Math.max(Number(offsetRaw) || 0, 0);
-  const slice = items.slice(offset, offset + limit);
+  const slice = items.slice(offset, offset + limit).map((x) => {
+    const attempts = Array.isArray(x.paymentAttempts) ? x.paymentAttempts : [];
+    return {
+      ...x,
+      attemptsCount: attempts.length,
+      lastAttemptAt: attempts.length ? attempts[attempts.length - 1].at : null
+    };
+  });
 
   return { items: slice, total, limit, offset };
 }

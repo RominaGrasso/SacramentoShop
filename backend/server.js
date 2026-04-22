@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import forge from "node-forge";
-import { findReusableLink, upsertLink, updateStatusBySessionId, listPayments } from "./store.js";
+import { findReusableLink, upsertLink, updateStatusBySessionId, listPayments, getPaymentBySessionId } from "./store.js";
 
 dotenv.config({ path: "backend/.env" });
 
@@ -740,6 +740,146 @@ function requireAdminAuth(req, res, next) {
   return next();
 }
 
+function pickFirstNonEmpty(...values) {
+  for (const v of values) {
+    if (v === undefined || v === null) continue;
+    const s = String(v).trim();
+    if (s) return s;
+  }
+  return "";
+}
+
+function getByPath(obj, pathArray) {
+  let cur = obj;
+  for (const p of pathArray) {
+    if (!cur || typeof cur !== "object") return undefined;
+    cur = cur[p];
+  }
+  return cur;
+}
+
+function pickFirstByPaths(obj, paths) {
+  for (const pathArr of paths) {
+    const v = getByPath(obj, pathArr);
+    if (v === undefined || v === null) continue;
+    const s = String(v).trim();
+    if (s) return s;
+  }
+  return "";
+}
+
+function extractMaskedCardInfo(...sources) {
+  const nonNullSources = sources.filter((x) => x && typeof x === "object");
+  const masked = pickFirstNonEmpty(
+    ...nonNullSources.map((s) =>
+      pickFirstByPaths(s, [
+        ["CardNumberMasked"],
+        ["MaskedCardNumber"],
+        ["PanMasked"],
+        ["CardMasked"],
+        ["Card", "MaskedNumber"],
+        ["PaymentInstrument", "MaskedPan"],
+        ["PaymentInstrument", "MaskedCardNumber"],
+        ["Instrument", "MaskedPan"]
+      ])
+    )
+  );
+  const brand = pickFirstNonEmpty(
+    ...nonNullSources.map((s) =>
+      pickFirstByPaths(s, [
+        ["CardBrand"],
+        ["Brand"],
+        ["CardType"],
+        ["PaymentInstrument", "Brand"],
+        ["Card", "Brand"]
+      ])
+    )
+  );
+  const holder = pickFirstNonEmpty(
+    ...nonNullSources.map((s) =>
+      pickFirstByPaths(s, [
+        ["CardHolder"],
+        ["Cardholder"],
+        ["HolderName"],
+        ["Card", "HolderName"],
+        ["PaymentInstrument", "HolderName"],
+        ["ClientInformation", "Name"]
+      ])
+    )
+  );
+  const last4Match = masked.match(/(\d{4})\D*$/);
+  return {
+    maskedNumber: masked || undefined,
+    last4: last4Match ? last4Match[1] : undefined,
+    brand: brand || undefined,
+    holderName: holder || undefined
+  };
+}
+
+function buildAttemptMetaFromPlexoWebhook(payload) {
+  const plexoPayload = payload?.Object?.Object || {};
+  const responseObj = payload?.Object?.Object?.Response || {};
+  const status = plexoStateLabel(plexoPayload?.CurrentState || plexoPayload?.Status || 1);
+  const card = extractMaskedCardInfo(plexoPayload, responseObj, payload);
+  const payerName = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
+    pickFirstByPaths(responseObj, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
+    card.holderName
+  );
+  const payerEmail = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["ClientInformation", "Email"], ["Email"], ["PayerEmail"]]),
+    pickFirstByPaths(responseObj, [["ClientInformation", "Email"], ["Email"], ["PayerEmail"]])
+  );
+  const issuerName = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["IssuerName"]]),
+    pickFirstByPaths(responseObj, [["IssuerName"]])
+  );
+  const issuerId = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["IssuerId"]]),
+    pickFirstByPaths(responseObj, [["IssuerId"]])
+  );
+
+  return {
+    status,
+    source: "webhook_plexo",
+    gateway: "plexo",
+    card,
+    payer: {
+      name: payerName || undefined,
+      email: payerEmail || undefined
+    },
+    issuer: {
+      id: issuerId || undefined,
+      name: issuerName || undefined
+    },
+    reference: pickFirstNonEmpty(plexoPayload?.TransactionId, plexoPayload?.SessionId, plexoPayload?.Id),
+    raw: {
+      currentState: plexoPayload?.CurrentState,
+      statusCode: plexoPayload?.Status,
+      resultCode: plexoPayload?.ResultCode
+    }
+  };
+}
+
+function buildAttemptMetaFromGenericWebhook(body, status) {
+  const card = extractMaskedCardInfo(body);
+  return {
+    status: String(status || "unknown"),
+    source: "webhook_generic",
+    gateway: PAYMENT_MODE,
+    card,
+    payer: {
+      name: pickFirstByPaths(body, [["payerName"], ["cardHolder"], ["holderName"], ["customer", "name"]]) || undefined,
+      email: pickFirstByPaths(body, [["payerEmail"], ["customer", "email"]]) || undefined
+    },
+    issuer: {
+      id: pickFirstByPaths(body, [["issuerId"]]) || undefined,
+      name: pickFirstByPaths(body, [["issuerName"]]) || undefined
+    },
+    reference: pickFirstByPaths(body, [["authorizationCode"], ["authCode"], ["reference"]]) || undefined
+  };
+}
+
 app.post("/api/payments/admin/login", (req, res) => {
   const username = req.body?.username;
   const password = req.body?.password;
@@ -789,6 +929,26 @@ app.get("/api/payments/admin/payments", requireAdminAuth, (req, res) => {
   });
 
   return res.json({ ok: true, ...result });
+});
+
+app.get("/api/payments/admin/payments/:sessionId", requireAdminAuth, (req, res) => {
+  const sessionId = decodeURIComponent(String(req.params.sessionId || ""));
+  if (!sessionId) {
+    return res.status(400).json({ error: "sessionId is required." });
+  }
+  const payment = getPaymentBySessionId(sessionId);
+  if (!payment) {
+    return res.status(404).json({ error: "Payment not found." });
+  }
+  const attempts = Array.isArray(payment.paymentAttempts) ? payment.paymentAttempts : [];
+  return res.json({
+    ok: true,
+    item: {
+      ...payment,
+      attemptsCount: attempts.length,
+      lastAttemptAt: attempts.length ? attempts[attempts.length - 1].at : null
+    }
+  });
 });
 
 app.get("/api/payments/health", (_req, res) => {
@@ -988,9 +1148,10 @@ app.post("/api/payments/webhook", (req, res) => {
       plexoPayload?.SessionId ||
       plexoPayload?.Id ||
       req.body?.Object?.Object?.Response?.Id;
-    const status = plexoStateLabel(plexoPayload?.CurrentState || plexoPayload?.Status || 1);
+    const attempt = buildAttemptMetaFromPlexoWebhook(req.body);
+    const status = attempt.status;
     if (txId) {
-      updateStatusBySessionId(String(txId), status);
+      updateStatusBySessionId(String(txId), status, attempt);
     }
     if (PAYMENT_MODE === "plexo" && plexoMaterial) {
       const ack = signPlexoPayload({
@@ -1007,7 +1168,11 @@ app.post("/api/payments/webhook", (req, res) => {
   if (!sessionId || !status) {
     return res.status(400).json({ error: "sessionId and status are required." });
   }
-  const updated = updateStatusBySessionId(String(sessionId), String(status));
+  const updated = updateStatusBySessionId(
+    String(sessionId),
+    String(status),
+    buildAttemptMetaFromGenericWebhook(req.body || {}, status)
+  );
   return res.json({ ok: true, updated });
 });
 
