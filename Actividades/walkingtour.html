@@ -148,9 +148,9 @@
 
   <!-- PRICE -->
   <div class="price-box">
-    <h3 id="walkingTourPriceTitle" data-translate="walking_price_title">USD 15 per guest</h3>
+    <h3 id="walkingTourPriceTitle" data-translate="walking_price_title">USD 13 per guest</h3>
     <p id="walkingTourPriceNote" class="walking-price-note">
-      <span class="is-highlight">Spanish: USD 11</span> · <span data-translate="walking_price_note">English: USD 15 · Portuguese: USD 15</span>
+      <span class="is-highlight">Spanish: USD 9</span> · <span data-translate="walking_price_note">English: USD 13 · Portuguese: USD 13</span>
     </p>
   </div>
 
@@ -271,7 +271,7 @@
 <script src="../Home/orders.js"></script>
 <script>
   (function () {
-    const pricesByLang = { es: 11, en: 15, pt: 15 };
+    const pricesByLang = { es: 9, en: 13, pt: 13 };
     const getLang = () => (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
     const t = (key, fallback) => {
       const lang = getLang();
@@ -280,15 +280,15 @@
     };
     const getPriceForGuideLanguage = (guideLanguage) => {
       const g = String(guideLanguage || "").toLowerCase();
-      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 11;
-      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 15;
-      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 15;
+      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 9;
+      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 13;
+      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 13;
       return null;
     };
     const getPrice = (guideLanguage) => {
       const byGuide = getPriceForGuideLanguage(guideLanguage);
       if (Number.isFinite(byGuide)) return byGuide;
-      return pricesByLang[getLang()] || 15;
+      return pricesByLang[getLang()] || 13;
     };
     const getKidsFreeNote = () => {
       return t("walking_kids_note", "Children under 12 join for free.");
@@ -334,13 +334,13 @@
 
       if (lang === "es") {
         title.textContent = t("walking_price_title", `USD ${price} por persona`);
-        note.innerHTML = "<span class='is-highlight'>Español: USD 11</span> · Inglés: USD 15 · Portugués: USD 15";
+        note.innerHTML = "<span class='is-highlight'>Español: USD 9</span> · Inglés: USD 13 · Portugués: USD 13";
         if (kidsNote) kidsNote.textContent = t("walking_kids_note", "Menores de 12 años van gratis.");
       } else {
         title.textContent = t("walking_price_title", `USD ${price} per guest`);
         note.innerHTML = lang === "pt"
-          ? "<span class='is-highlight'>Espanhol: USD 11</span> · Inglês: USD 15 · Português: USD 15"
-          : "<span class='is-highlight'>Spanish: USD 11</span> · English: USD 15 · Portuguese: USD 15";
+          ? "<span class='is-highlight'>Espanhol: USD 9</span> · Inglês: USD 13 · Português: USD 13"
+          : "<span class='is-highlight'>Spanish: USD 9</span> · English: USD 13 · Portuguese: USD 13";
         if (kidsNote) {
           kidsNote.textContent = t("walking_kids_note", "Children under 12 join for free.");
         }

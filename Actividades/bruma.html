@@ -91,7 +91,7 @@
     
       <!-- PRICE -->
       <div class="price-box">
-        <h3 data-translate="bruma_price_title">From USD 40 per guest · Premium USD 60</h3>
+        <h3 data-translate="bruma_price_title">From USD 35 per guest · Premium USD 45</h3>
       </div>
     
       <div class="coffee-includes">
@@ -202,11 +202,11 @@
             <p class="bruma-tier-heading" data-translate="bruma_tier_heading">Choose your menu</p>
             <label class="bruma-tier-option">
               <input type="radio" name="brumaMenuTier" value="standard" checked>
-              <span data-translate="bruma_tier_standard_option">Standard — from USD 40 per guest</span>
+              <span data-translate="bruma_tier_standard_option">Standard — from USD 35 per guest</span>
             </label>
             <label class="bruma-tier-option">
               <input type="radio" name="brumaMenuTier" value="premium">
-              <span data-translate="bruma_tier_premium_option">Premium — USD 60 per guest</span>
+              <span data-translate="bruma_tier_premium_option">Premium — USD 45 per guest</span>
             </label>
           </div>
 
@@ -371,8 +371,8 @@
       <script>
         initExperience({
           experienceName: "Bruma",
-          pricePerPerson: 40,
-          menuUpgradePrice: 60,
+          pricePerPerson: 35,
+          menuUpgradePrice: 45,
           menuTierRadioName: "brumaMenuTier",
           premiumChoiceFieldNames: {
             starter: "prm_starter",
@@ -533,7 +533,7 @@ if (orders.length > 0) {
         
           if (orders.length > 0) {
 
-  const pricePerPerson = 40;
+  const pricePerPerson = 35;
   const total = orders.length * pricePerPerson;
 
   html += `
@@ -541,7 +541,7 @@ if (orders.length > 0) {
 
     <div class="total-left">
       <span class="total-label">Total</span>
-      <span class="total-detail">(${orders.length} x USD 40)</span>
+      <span class="total-detail">(${orders.length} x USD 35)</span>
     </div>
 
     <div class="total-right">
@@ -662,7 +662,7 @@ People: ${people}
 
 ${ordersText}
 
-Total: USD ${people * 40}
+Total: USD ${people * 35}
 `;
 
 if (people <= 5) {
@@ -732,7 +732,7 @@ People: ${people}
 
 ${ordersText}
 
-Total: USD ${people * 40}
+Total: USD ${people * 35}
 `;
 
 if (people <= 5) {
