@@ -6,6 +6,83 @@
   <link rel="stylesheet" href="../Styles/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --historic-accent: #66a6e6;
+    }
+    #popupHistoricLiebres .popup-box {
+      overflow-x: hidden;
+    }
+    #popupHistoricLiebres .popup-list.historic-package-list {
+      list-style: none;
+      margin: 0.5rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      width: 100%;
+    }
+    #popupHistoricLiebres .historic-package-item {
+      display: block;
+      margin: 0 !important;
+      padding: 0;
+    }
+    #popupHistoricLiebres .historic-package-option {
+      display: flex;
+      gap: 0.55rem;
+      align-items: flex-start;
+      cursor: pointer;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    #popupHistoricLiebres .historic-package-option input[type="radio"] {
+      margin-top: 0.33rem;
+      transform: scale(1.05);
+      accent-color: #2f8ad8;
+    }
+    #popupHistoricLiebres .historic-package-name {
+      font-weight: 700;
+      font-size: 1.02rem;
+      line-height: 1.32;
+      color: #1f2f47;
+      display: inline-block;
+    }
+    #popupHistoricLiebres .historic-meal-detail {
+      margin: 0.38rem 0 0.52rem 1.9rem;
+      color: #223753;
+      font-size: 0.94rem;
+      line-height: 1.42;
+    }
+    #popupHistoricLiebres .historic-meal-detail[hidden] {
+      display: none !important;
+    }
+    #popupHistoricLiebres .historic-meal-detail strong {
+      color: var(--historic-accent);
+    }
+    #popupHistoricLiebres .historic-meal-bullets {
+      margin: 0.15rem 0 0.08rem !important;
+      padding-left: 1.15rem !important;
+      list-style: disc !important;
+      list-style-position: outside !important;
+      display: block !important;
+    }
+    #popupHistoricLiebres .historic-meal-bullets li {
+      display: list-item !important;
+      list-style-type: disc !important;
+      margin: 0.16rem 0 !important;
+      color: #1f3350;
+      font-size: 0.92rem;
+      line-height: 1.3;
+      font-weight: 400;
+    }
+    #popupHistoricLiebres .historic-meal-bullets li::marker {
+      color: #111;
+      font-size: 1.05em;
+    }
+    #popupHistoricLiebres .preferences-inside {
+      margin-top: 1.25rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -232,16 +309,16 @@
         guideFeePerPerson: 20,
         packages: {
           casco_tasting: {
-            price: 75,
+            price: 65,
             label: "Historic Quarter + vineyard & garden + 3-wine tasting"
           },
           casco_lunch_vinedo: {
-            price: 105,
-            label: "Historic Quarter + visit + lunch (Propuesta Viñedo)"
+            price: 85,
+            label: "Historic Quarter + lunch (Propuesta Viñedo)"
           },
           casco_lunch_ceibo: {
-            price: 125,
-            label: "Historic Quarter + visit + lunch (Propuesta Ceibo)"
+            price: 100,
+            label: "Historic Quarter + lunch (Propuesta Ceibo)"
           }
         },
         paymentLinksByPackage: {
@@ -263,32 +340,54 @@
         </p>
 
         <p><strong>Package</strong> <small>(per person: experience + USD 20 guide fee; transport is shared — see summary)</small></p>
-        <ul class="popup-list">
-          <li>
-            <label>
+        <ul class="popup-list historic-package-list">
+          <li class="historic-package-item">
+            <label class="historic-package-option">
               <input type="radio" name="packageId" value="casco_tasting">
-              <span>Historic Quarter + vineyard &amp; garden + tasting (USD 95)</span>
+              <span class="historic-package-name">Historic Quarter + vineyard &amp; garden + tasting 🏛🍷 (USD 65)</span>
             </label>
-            <small class="meal-detail">
-              Guided walk in the old town · Visit to organic garden &amp; vineyard · Three wines with kitchen pairings · Water, soft drinks, glass of wine · Coffee or tea where included · Plus your share of group transport
+            <small class="meal-detail historic-meal-detail" data-package-detail="casco_tasting" hidden>
+              <strong>What you get:</strong>
+              <ul class="historic-meal-bullets">
+                <li>Guided walk in the old town</li>
+                <li>Visit to organic garden &amp; vineyard</li>
+                <li>Three wines with kitchen pairings</li>
+                <li>Water, soft drinks and one glass of wine</li>
+                <li>Coffee or tea (where included)</li>
+                <li>Plus your share of group transport</li>
+              </ul>
             </small>
           </li>
-          <li>
-            <label>
+          <li class="historic-package-item">
+            <label class="historic-package-option">
               <input type="radio" name="packageId" value="casco_lunch_vinedo">
-              <span>Historic Quarter + visit + lunch — Propuesta Viñedo (USD 125)</span>
+              <span class="historic-package-name">Historic Quarter + lunch — Propuesta Viñedo 🍇 (USD 85)</span>
             </label>
-            <small class="meal-detail">
-              Morning historic tour · Vineyard &amp; garden visit · Lunch: starter, main, dessert (Viñedo) · Water, soft drinks, glass of wine · Coffee or tea · Plus your share of group transport
+            <small class="meal-detail historic-meal-detail" data-package-detail="casco_lunch_vinedo" hidden>
+              <strong>What you get:</strong>
+              <ul class="historic-meal-bullets">
+                <li>Morning historic tour</li>
+                <li>Lunch: starter, main and dessert (Viñedo)</li>
+                <li>Water, soft drinks and one glass of wine</li>
+                <li>Coffee or tea</li>
+                <li>Plus your share of group transport</li>
+              </ul>
             </small>
           </li>
-          <li>
-            <label>
+          <li class="historic-package-item">
+            <label class="historic-package-option">
               <input type="radio" name="packageId" value="casco_lunch_ceibo">
-              <span>Historic Quarter + visit + lunch — Propuesta Ceibo (USD 145)</span>
+              <span class="historic-package-name">Historic Quarter + lunch — Propuesta Ceibo 🌳 (USD 100)</span>
             </label>
-            <small class="meal-detail">
-              Morning historic tour · Vineyard &amp; garden visit · Premium lunch menu · Water, soft drinks, glass of wine · Coffee or tea · Plus your share of group transport
+            <small class="meal-detail historic-meal-detail" data-package-detail="casco_lunch_ceibo" hidden>
+              <strong>What you get:</strong>
+              <ul class="historic-meal-bullets">
+                <li>Morning historic tour</li>
+                <li>Premium lunch menu (Ceibo)</li>
+                <li>Water, soft drinks and one glass of wine</li>
+                <li>Coffee or tea</li>
+                <li>Plus your share of group transport</li>
+              </ul>
             </small>
           </li>
         </ul>
@@ -319,5 +418,157 @@
       <button class="lightbox-btn next" id="nextBtn">›</button>
     
     </div>
+    <script>
+      (function () {
+        function initHistoricPackageDetail() {
+          const popup = document.getElementById("popupHistoricLiebres");
+          const createBtn = document.getElementById("createMenuBtnHistoricLiebres");
+          const summary = document.getElementById("orderSummaryHistoricLiebres");
+          if (!popup) return;
+
+          function refresh() {
+            const selected = popup.querySelector('input[name="packageId"]:checked');
+            const details = popup.querySelectorAll("[data-package-detail]");
+            details.forEach((el) => {
+              el.hidden = true;
+            });
+            if (!selected) return;
+            const match = popup.querySelector(`[data-package-detail="${selected.value}"]`);
+            if (match) match.hidden = false;
+          }
+
+          popup.addEventListener("change", (e) => {
+            if (e.target && e.target.name === "packageId") refresh();
+          });
+
+          if (createBtn) {
+            createBtn.addEventListener("click", () => {
+              setTimeout(refresh, 0);
+            });
+          }
+
+          if (summary) {
+            summary.addEventListener("click", (e) => {
+              const edit = e.target.closest && e.target.closest(".edit-order");
+              if (edit) setTimeout(refresh, 0);
+            });
+          }
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initHistoricPackageDetail);
+        } else {
+          initHistoricPackageDetail();
+        }
+      })();
+    </script>
+    <script>
+      (function () {
+        const STORAGE_KEY = "orders_historic_lasliebres";
+        const WHATSAPP_NUMBER = "598091642195";
+        const TRANSPORT_PER_VEHICLE = 30;
+
+        function readOrders() {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
+          } catch {
+            return [];
+          }
+        }
+
+        function calcTotal(orders) {
+          const people = orders.length;
+          const expTotal = orders.reduce((s, o) => s + (Number(o?.packagePrice) || 0), 0);
+          const vehicles = people > 0 ? Math.ceil(people / 4) : 0;
+          const transportTotal = vehicles * TRANSPORT_PER_VEHICLE;
+          return {
+            people,
+            expTotal,
+            transportTotal,
+            total: expTotal + transportTotal,
+            vehicles
+          };
+        }
+
+        function buildMessage(orders, totals, paymentUrl) {
+          const rows = orders
+            .map((o, i) => {
+              const prefs = Array.isArray(o?.preferences) && o.preferences.length
+                ? `\n  Preferences: ${o.preferences.join(", ")}`
+                : "";
+              return `Order ${i + 1}: ${o?.packageLabel || o?.packageId || "Package"} — USD ${Number(o?.packagePrice || 0).toFixed(2)}${prefs}`;
+            })
+            .join("\n");
+
+          const lines = [
+            "Hello! I'd like to book Historic Quarter + Las Liebres:",
+            "",
+            rows || "No package details available.",
+            "",
+            `People: ${totals.people}`,
+            `Experiences subtotal: USD ${totals.expTotal.toFixed(2)}`,
+            `Private transport (${totals.vehicles} vehicle${totals.vehicles === 1 ? "" : "s"} x USD ${TRANSPORT_PER_VEHICLE}): USD ${totals.transportTotal.toFixed(2)}`,
+            `Total: USD ${totals.total.toFixed(2)}`
+          ];
+          if (paymentUrl) {
+            lines.push("", `Payment link: ${paymentUrl}`);
+          }
+          return lines.join("\n");
+        }
+
+        async function openWhatsAppBooking() {
+          const orders = readOrders();
+          if (!orders.length) {
+            alert("Please create your order first.");
+            const createBtn = document.getElementById("createMenuBtnHistoricLiebres");
+            if (createBtn) createBtn.click();
+            return;
+          }
+          const totals = calcTotal(orders);
+          let paymentUrl = "";
+          if (typeof resolveDynamicPaymentLink === "function") {
+            paymentUrl = await resolveDynamicPaymentLink(
+              {
+                enabled: true,
+                endpoint: "/api/payments/resolve",
+                experienceId: "historic_lasliebres",
+                currency: "USD"
+              },
+              {
+                experience: "historic_lasliebres",
+                amount: totals.total,
+                currency: "USD",
+                people: totals.people,
+                orderPayload: {
+                  orders,
+                  total: totals.total,
+                  experienceName: "Historic Quarter & Las Liebres"
+                }
+              }
+            );
+          }
+          const message = buildMessage(orders, totals, paymentUrl);
+          const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+          window.open(url, "_blank");
+        }
+
+        document.addEventListener(
+          "click",
+          function (e) {
+            const target = e.target && e.target.closest
+              ? e.target.closest("#bookNowBottomHistoricLiebres, #bookWithOrder")
+              : null;
+            if (!target) return;
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            openWhatsAppBooking();
+          },
+          true
+        );
+      })();
+    </script>
     </body>
 </html>

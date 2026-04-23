@@ -6,6 +6,161 @@
   <link rel="stylesheet" href="../Styles/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --dining-accent: #66a6e6;
+    }
+    .dining-package-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-top: 0.6rem;
+      width: 100%;
+      padding: 0;
+      list-style: none;
+    }
+    #popupLiebresDining .popup-list.dining-package-list {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding-left: 0 !important;
+    }
+    .dining-package-item {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      padding: 0.1rem 0;
+      width: 100%;
+      box-sizing: border-box;
+      transition: color 0.2s ease;
+      display: grid;
+      grid-template-columns: minmax(250px, 46%) minmax(230px, 1fr);
+      column-gap: 1.2rem;
+      align-items: start;
+    }
+    #popupLiebresDining .popup-list .dining-package-item {
+      display: grid !important;
+      grid-template-columns: minmax(220px, 48%) minmax(0, 1fr) !important;
+      align-items: start !important;
+      margin-bottom: 0.25rem !important;
+      gap: 0 !important;
+      width: 100% !important;
+    }
+    .dining-package-item.selected {
+      background: transparent;
+    }
+    .dining-package-option {
+      display: flex;
+      gap: 0.55rem;
+      align-items: start;
+      cursor: pointer;
+      grid-column: 1;
+    }
+    #popupLiebresDining .dining-package-option {
+      display: flex !important;
+      align-items: flex-start !important;
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+    }
+    .dining-package-option input[type="radio"] {
+      margin-top: 0.32rem;
+      transform: scale(1.05);
+      accent-color: #2f8ad8;
+    }
+    .dining-package-copy {
+      display: block;
+    }
+    .dining-package-name {
+      font-weight: 700;
+      line-height: 1.24;
+      color: #1f2f47;
+      display: inline-block;
+      font-size: 1.06rem;
+    }
+    .dining-package-price {
+      display: inline-block;
+      font-weight: 700;
+      color: #1f2f47;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      margin-left: 0.2rem;
+      font-size: 1.06rem;
+      vertical-align: middle;
+    }
+    .dining-package-short {
+      display: block;
+      margin-top: 0.08rem;
+      font-size: 0.97rem;
+      color: #4f627d;
+      line-height: 1.25;
+    }
+    #popupLiebresDining .dining-package-item.selected .dining-package-short {
+      margin-top: 1.85rem;
+    }
+    .dining-meal-detail {
+      display: block;
+      margin: 0.02rem 0 0.12rem 0;
+      color: #223753;
+      font-size: 0.95rem;
+      line-height: 1.1;
+      grid-column: 2;
+    }
+    #popupLiebresDining .dining-meal-detail {
+      grid-column: 2 !important;
+      margin: 0.02rem 0 0.06rem 1.8rem !important;
+      min-width: 0 !important;
+    }
+    .dining-meal-detail[hidden] {
+      display: none !important;
+    }
+    .dining-meal-detail strong {
+      color: var(--dining-accent);
+    }
+    .dining-meal-bullets {
+      margin: 0;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding-left: 1.05rem;
+      list-style: disc;
+      list-style-position: outside;
+    }
+    #popupLiebresDining .dining-meal-bullets {
+      list-style: disc !important;
+      list-style-position: outside !important;
+      margin: 0 !important;
+      padding-left: 1rem !important;
+    }
+    .dining-meal-bullets li {
+      margin: 0;
+      color: #1f3350;
+      font-size: 0.92rem;
+      line-height: 1.05;
+      font-weight: 400;
+      padding-left: 0;
+    }
+    #popupLiebresDining .dining-meal-bullets li {
+      display: list-item !important;
+      margin: 0 !important;
+      line-height: 1.05 !important;
+      padding-left: 0 !important;
+      list-style-type: disc !important;
+    }
+    #popupLiebresDining .dining-meal-bullets li + li {
+      margin-top: -0.12rem !important;
+    }
+    .dining-meal-bullets li::marker {
+      color: #1a4f80;
+      font-size: 1.02em;
+    }
+    #popupLiebresDining .popup-box {
+      overflow-x: hidden;
+    }
+    #popupLiebresDining .preferences-inside {
+      margin-top: 0.95rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -72,7 +227,7 @@
 
     <div class="price-options">
       <div class="price-box">
-        <h3>Dining experiences from USD 70</h3>
+        <h3>Dining experiences from USD 65</h3>
         <p>
           Private transport is billed by vehicle: <strong>USD 30</strong> total for 1–4 guests (one vehicle);
           <strong>USD 60</strong> total for 5–8 guests (two vehicles). Add one order per guest — the summary and
@@ -204,19 +359,19 @@
       groupGuideWrapId: "liebresDiningGroupGuideWrap",
       packages: {
         lunch_vinedo: {
-          price: 70,
+          price: 65,
           label: "Lunch menu — Propuesta Viñedo"
         },
         lunch_ceibo: {
-          price: 85,
+          price: 80,
           label: "Lunch menu — Propuesta Ceibo"
         },
         dinner_vinedo: {
-          price: 70,
+          price: 65,
           label: "Dinner menu — Propuesta Viñedo"
         },
         dinner_ceibo: {
-          price: 85,
+          price: 80,
           label: "Dinner menu — Propuesta Ceibo"
         }
       },
@@ -240,41 +395,73 @@
       </p>
 
       <p><strong>Package</strong> <small>(price per guest; transport share appears in summary)</small></p>
-      <ul class="popup-list">
-        <li>
-          <label>
+      <ul class="popup-list dining-package-list">
+        <li class="dining-package-item">
+          <label class="dining-package-option">
             <input type="radio" name="packageId" value="lunch_vinedo">
-            <span>Lunch — Propuesta Viñedo (USD 70)</span>
+            <span class="dining-package-copy">
+              <span class="dining-package-name">Lunch — Propuesta Viñedo 🍇 <span class="dining-package-price">USD 65</span></span>
+              <span class="dining-package-short">Balanced menu selection</span>
+            </span>
           </label>
-          <small class="meal-detail" data-package-detail="lunch_vinedo" hidden>
-            Lunch · Propuesta Viñedo: starter, main and dessert from the Viñedo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          <small class="meal-detail dining-meal-detail" data-package-detail="lunch_vinedo" hidden>
+            <strong>What you get:</strong>
+            <ul class="dining-meal-bullets">
+              <li>Starter, main and dessert from the Viñedo menu</li>
+              <li>Plus water/soft drink</li>
+              <li>One glass of wine and coffee or tea</li>
+            </ul>
           </small>
         </li>
-        <li>
-          <label>
+        <li class="dining-package-item">
+          <label class="dining-package-option">
             <input type="radio" name="packageId" value="lunch_ceibo">
-            <span>Lunch — Propuesta Ceibo (USD 85)</span>
+            <span class="dining-package-copy">
+              <span class="dining-package-name">Lunch — Propuesta Ceibo 🌳 <span class="dining-package-price">USD 80</span></span>
+              <span class="dining-package-short">Premium menu selection</span>
+            </span>
           </label>
-          <small class="meal-detail" data-package-detail="lunch_ceibo" hidden>
-            Lunch · Propuesta Ceibo: premium starter, main and dessert from the Ceibo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          <small class="meal-detail dining-meal-detail" data-package-detail="lunch_ceibo" hidden>
+            <strong>What you get:</strong>
+            <ul class="dining-meal-bullets">
+              <li>Premium starter, main and dessert from the Ceibo menu</li>
+              <li>Plus water/soft drink</li>
+              <li>One glass of wine and coffee or tea</li>
+            </ul>
           </small>
         </li>
-        <li>
-          <label>
+        <li class="dining-package-item">
+          <label class="dining-package-option">
             <input type="radio" name="packageId" value="dinner_vinedo">
-            <span>Dinner — Propuesta Viñedo (USD 70)</span>
+            <span class="dining-package-copy">
+              <span class="dining-package-name">Dinner — Propuesta Viñedo 🍇 <span class="dining-package-price">USD 65</span></span>
+              <span class="dining-package-short">Balanced menu selection</span>
+            </span>
           </label>
-          <small class="meal-detail" data-package-detail="dinner_vinedo" hidden>
-            Dinner · Propuesta Viñedo: starter, main and dessert from the Viñedo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          <small class="meal-detail dining-meal-detail" data-package-detail="dinner_vinedo" hidden>
+            <strong>What you get:</strong>
+            <ul class="dining-meal-bullets">
+              <li>Starter, main and dessert from the Viñedo menu</li>
+              <li>Plus water/soft drink</li>
+              <li>One glass of wine and coffee or tea</li>
+            </ul>
           </small>
         </li>
-        <li>
-          <label>
+        <li class="dining-package-item">
+          <label class="dining-package-option">
             <input type="radio" name="packageId" value="dinner_ceibo">
-            <span>Dinner — Propuesta Ceibo (USD 85)</span>
+            <span class="dining-package-copy">
+              <span class="dining-package-name">Dinner — Propuesta Ceibo 🌳 <span class="dining-package-price">USD 80</span></span>
+              <span class="dining-package-short">Premium menu selection</span>
+            </span>
           </label>
-          <small class="meal-detail" data-package-detail="dinner_ceibo" hidden>
-            Dinner · Propuesta Ceibo: premium starter, main and dessert from the Ceibo menu. Includes water/soft drink, one glass of wine and coffee or tea.
+          <small class="meal-detail dining-meal-detail" data-package-detail="dinner_ceibo" hidden>
+            <strong>What you get:</strong>
+            <ul class="dining-meal-bullets">
+              <li>Premium starter, main and dessert from the Ceibo menu</li>
+              <li>Plus water/soft drink</li>
+              <li>One glass of wine and coffee or tea</li>
+            </ul>
           </small>
         </li>
       </ul>
@@ -310,11 +497,15 @@
 
         function refresh() {
           const selected = popup.querySelector('input[name="packageId"]:checked');
+          const cards = popup.querySelectorAll(".dining-package-item");
+          cards.forEach((card) => card.classList.remove("selected"));
           const details = popup.querySelectorAll("[data-package-detail]");
           details.forEach((el) => {
             el.hidden = true;
           });
           if (!selected) return;
+          const card = selected.closest(".dining-package-item");
+          if (card) card.classList.add("selected");
           const match = popup.querySelector(`[data-package-detail="${selected.value}"]`);
           if (match) match.hidden = false;
         }

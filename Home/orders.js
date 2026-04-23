@@ -127,7 +127,7 @@ function initExperience(config) {
     groupGuideCheckboxId = null,
     /** Optional wrapper id to show only when there is at least one guest order. */
     groupGuideWrapId = null,
-    /** Optional second price tier (e.g. Bruma premium menu USD 60). */
+    /** Optional second price tier (e.g. Bruma premium menu USD 45). */
     menuUpgradePrice = null,
     /** Radio group name for standard vs premium, e.g. brumaMenuTier. */
     menuTierRadioName = null,
@@ -474,8 +474,8 @@ function initExperience(config) {
           const tierLine = menuUpgradePrice
             ? `\n${getI18nText("bruma_whatsapp_tier", "Menu tier")}: ${
                 prem
-                  ? getI18nText("bruma_whatsapp_premium", "Premium (USD 60)")
-                  : getI18nText("bruma_whatsapp_standard", "Standard (from USD 40)")
+                  ? getI18nText("bruma_whatsapp_premium", "Premium (USD 45)")
+                  : getI18nText("bruma_whatsapp_standard", "Standard (from USD 35)")
               }`
             : "";
           return `*Order ${i + 1}*${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}\n${lm}: ${getLocalizedChoice(mainName, o.main)}\n${labD}: ${getLocalizedChoice(drinkName, o.drink)}${gLine}\nPreferences: ${prefs.join(", ") || "-"}`;
@@ -645,8 +645,8 @@ function initExperience(config) {
           menuUpgradePrice
             ? `<p class="order-menu-tier"><strong>${escapeHtml(t("bruma_order_tier_label", "Menu"))}:</strong> ${escapeHtml(
                 prem
-                  ? t("bruma_order_tier_premium", "Premium · USD 60")
-                  : t("bruma_order_tier_standard", "Standard · from USD 40")
+                  ? t("bruma_order_tier_premium", "Premium · USD 45")
+                  : t("bruma_order_tier_standard", "Standard · from USD 35")
               )}</p>`
             : "";
         html += `
