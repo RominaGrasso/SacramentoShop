@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Admin — Pagos | Sacramento</title>
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --admin-salmon-050: #fff6f3;
+      --admin-salmon-100: #ffe4dd;
+      --admin-salmon-200: #ffc9ba;
+      --admin-salmon-300: #f6a18c;
+      --admin-salmon-400: #ed8169;
+      --admin-salmon-700: #9b4a3f;
+      --admin-ink: #3d2f2a;
+    }
+    body { background: linear-gradient(180deg, var(--admin-salmon-050) 0%, #fff 30%); color: var(--admin-ink); }
+    .admin-shell {
+      max-width: 1240px;
+      margin: 1.75rem auto;
+      padding: 1rem;
+      border-radius: 20px;
+      background: var(--admin-salmon-300);
+      box-shadow: 0 10px 24px rgba(237, 129, 105, 0.22);
+    }
+    .admin-wrap { max-width: 1200px; margin: 0 auto; padding: 0 0.5rem; }
+    .admin-wrap h1 { font-family: "Playfair Display", serif; margin-bottom: 0.5rem; color: #fff; text-shadow: 0 2px 8px rgba(89, 39, 31, 0.35); }
+    .admin-wrap a { color: var(--admin-salmon-700); }
+    .admin-meta { font-size: 0.85rem; color: #785b53; margin-bottom: 1.5rem; }
+    .admin-panel { background: #fff; border: 1px solid var(--admin-salmon-200); border-radius: 12px; box-shadow: 0 6px 18px rgba(237, 129, 105, 0.12); padding: 1.25rem; margin-bottom: 1rem; }
+    .admin-panel h2 { margin: 0 0 1rem; font-size: 1.1rem; color: var(--admin-salmon-700); }
+    .admin-form label { display: block; margin-bottom: 0.35rem; font-weight: 600; color: #68483f; }
+    .admin-form input, .admin-form select { width: 100%; max-width: 320px; padding: 0.5rem 0.6rem; margin-bottom: 0.75rem; border: 1px solid var(--admin-salmon-200); border-radius: 8px; background: #fffdfd; }
+    .admin-form input:focus, .admin-form select:focus, .admin-filters .field input:focus, .admin-filters .field select:focus { outline: none; border-color: var(--admin-salmon-400); box-shadow: 0 0 0 3px rgba(237, 129, 105, 0.18); }
+    .admin-filters { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; align-items: end; }
+    .admin-filters .field label { font-size: 0.85rem; color: #68483f; }
+    .admin-filters .field input, .admin-filters .field select { max-width: none; width: 100%; margin-bottom: 0; border: 1px solid var(--admin-salmon-200); border-radius: 8px; background: #fffdfd; }
+    .admin-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; align-items: center; }
+    .admin-btn { padding: 0.5rem 1rem; border-radius: 999px; border: 1px solid var(--admin-salmon-400); background: var(--admin-salmon-400); color: #fff; cursor: pointer; font-size: 0.95rem; transition: all 0.2s ease; }
+    .admin-btn:hover { background: #e16d54; border-color: #e16d54; }
+    .admin-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .admin-btn.secondary { background: #fff; color: var(--admin-salmon-700); }
+    .admin-btn.secondary:hover { background: var(--admin-salmon-100); }
+    #status-msg { padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--admin-salmon-200); background: var(--admin-salmon-050); color: var(--admin-salmon-700); }
+    #status-msg[data-kind="error"] { background: #fdecea; border: 1px solid #f5c6cb; color: #721c24; }
+    .admin-table-wrap { overflow-x: auto; border: 1px solid var(--admin-salmon-200); border-radius: 10px; }
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: #fff; }
+    .admin-table th, .admin-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid #f6ddd4; vertical-align: top; }
+    .admin-table th { background: var(--admin-salmon-100); position: sticky; top: 0; color: #6d4338; }
+    .admin-table .mono { font-family: ui-monospace, monospace; word-break: break-all; }
+    .admin-table .url-cell { max-width: 220px; word-break: break-all; }
+    .admin-empty { text-align: center; padding: 2rem !important; color: #8a6d64; }
+    .admin-badge { display: inline-block; padding: 0.15rem 0.45rem; background: var(--admin-salmon-050); border: 1px solid var(--admin-salmon-200); border-radius: 999px; font-size: 0.8rem; color: var(--admin-salmon-700); }
+    .admin-link-btn { border: 0; background: none; color: var(--admin-salmon-700); cursor: pointer; padding: 0; text-decoration: underline; }
+    .admin-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.7rem; margin-bottom: 1rem; }
+    .admin-detail-item { background: #fff; border: 1px solid var(--admin-salmon-200); border-radius: 8px; padding: 0.6rem; }
+    .admin-detail-item .k { color: #9a6d61; font-size: 0.8rem; display: block; margin-bottom: 0.2rem; }
+    .admin-detail-item .v { font-size: 0.9rem; word-break: break-word; }
+    .admin-report-wrap { margin-top: 1rem; }
+    .admin-report-summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+    .admin-report-card { background: #fff; border: 1px solid var(--admin-salmon-200); border-radius: 10px; padding: 0.65rem; }
+    .admin-report-card h4 { margin: 0 0 0.35rem; font-size: 0.95rem; color: var(--admin-salmon-700); }
+    .admin-report-card p { margin: 0.2rem 0; font-size: 0.86rem; color: #614943; }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+  <div class="admin-wrap">
+    <h1>Admin — Pagos</h1>
+    <p class="admin-meta">API base: <strong id="api-base-display">—</strong> · <a href="index.html">Volver al sitio</a></p>
+
+    <div id="status-msg" hidden role="alert"></div>
+
+    <section id="view-login" class="admin-panel">
+      <h2>Iniciar sesión</h2>
+      <form id="login-form" class="admin-form" autocomplete="on">
+        <label for="login-user">Usuario</label>
+        <input id="login-user" name="username" type="text" required autocomplete="username">
+
+        <label for="login-pass">Contraseña</label>
+        <input id="login-pass" name="password" type="password" required autocomplete="current-password">
+
+        <button type="submit" class="admin-btn" id="btn-login">Entrar</button>
+      </form>
+    </section>
+
+    <section id="view-payments" class="admin-panel" hidden>
+      <h2>Listado de pagos</h2>
+
+      <div class="admin-filters">
+        <div class="field">
+          <label for="filter-status">Estado</label>
+          <input id="filter-status" type="text" placeholder="ej. active, paid" list="status-suggestions">
+          <datalist id="status-suggestions">
+            <option value="active"></option>
+            <option value="paid"></option>
+            <option value="cancelled"></option>
+          </datalist>
+        </div>
+        <div class="field">
+          <label for="filter-experience">Experiencia</label>
+          <input id="filter-experience" type="text" placeholder="contiene…">
+        </div>
+        <div class="field">
+          <label for="filter-restaurant">Restoran</label>
+          <select id="filter-restaurant">
+            <option value="" selected>Todos</option>
+            <option value="Bruma">Bruma</option>
+            <option value="Las Liebres">Las Liebres</option>
+            <option value="Meson">Meson</option>
+            <option value="No aplica / Tours">No aplica / Tours</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-q">SessionId / fingerprint</label>
+          <input id="filter-q" type="search" placeholder="búsqueda libre">
+        </div>
+        <div class="field">
+          <label for="filter-from">Desde (ISO o fecha)</label>
+          <input id="filter-from" type="date">
+        </div>
+        <div class="field">
+          <label for="filter-to">Hasta (ISO o fecha)</label>
+          <input id="filter-to" type="date">
+        </div>
+        <div class="field">
+          <label for="filter-limit">Límite</label>
+          <select id="filter-limit">
+            <option value="50">50</option>
+            <option value="100" selected>100</option>
+            <option value="200">200</option>
+            <option value="500">500</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-sort">Ordenar por</label>
+          <select id="filter-sort">
+            <option value="updatedAt" selected>Última actualización</option>
+            <option value="createdAt">Creación</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-order">Dirección</label>
+          <select id="filter-order">
+            <option value="desc" selected>Reciente primero</option>
+            <option value="asc">Antiguo primero</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="admin-actions">
+        <button type="button" class="admin-btn" id="btn-refresh">Actualizar</button>
+        <button type="button" class="admin-btn secondary" id="btn-generate-report">Generar reporte</button>
+        <button type="button" class="admin-btn secondary" id="btn-download-report" disabled>Descargar CSV</button>
+        <button type="button" class="admin-btn secondary" id="btn-logout">Cerrar sesión</button>
+        <span id="payments-meta" class="admin-meta" style="margin:0"></span>
+      </div>
+
+      <div class="admin-table-wrap" style="margin-top:1rem">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Creado</th>
+              <th>Actualizado</th>
+              <th>Experiencia</th>
+              <th>Restoran</th>
+              <th>Personas</th>
+              <th>Monto</th>
+              <th>Moneda</th>
+              <th>Estado</th>
+              <th>Intentos</th>
+              <th>Session ID</th>
+              <th>Payment URL</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody id="payments-tbody"></tbody>
+        </table>
+      </div>
+
+      <div id="report-wrap" class="admin-report-wrap" hidden>
+        <h2 style="margin-top:1rem">Reporte</h2>
+        <div id="report-summary" class="admin-report-summary"></div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Restoran</th>
+                <th>Experiencia</th>
+                <th>Personas</th>
+                <th>Monto</th>
+                <th>Moneda</th>
+                <th>Estado</th>
+                <th>Session ID</th>
+              </tr>
+            </thead>
+            <tbody id="report-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-detail" class="admin-panel" hidden>
+      <h2>Detalle de pago</h2>
+      <div id="detail-summary" class="admin-detail-grid"></div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Fecha intento</th>
+              <th>Estado</th>
+              <th>Origen</th>
+              <th>Gateway</th>
+              <th>Tarjeta</th>
+              <th>Titular</th>
+              <th>Emisor</th>
+              <th>Referencia</th>
+            </tr>
+          </thead>
+          <tbody id="attempts-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import forge from "node-forge";
-import { findReusableLink, upsertLink, updateStatusBySessionId } from "./store.js";
+import { findReusableLink, upsertLink, updateStatusBySessionId, listPayments, getPaymentBySessionId } from "./store.js";
 
 dotenv.config({ path: "backend/.env" });
 
@@ -34,8 +34,19 @@ const PLEXO_ADMIN_TOKEN = process.env.PLEXO_ADMIN_TOKEN || "";
 const PAYMENT_DEBUG_LOG =
   process.env.PAYMENT_DEBUG_LOG === "1" || /^true$/i.test(String(process.env.PAYMENT_DEBUG_LOG || ""));
 
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
+const ADMIN_JWT_SECRET = process.env.ADMIN_JWT_SECRET || "";
+const ADMIN_JWT_TTL_SEC = Number(process.env.ADMIN_JWT_TTL_SEC || 8 * 60 * 60);
+
 const app = express();
-app.use(cors({ origin: ALLOWED_ORIGIN === "*" ? true : ALLOWED_ORIGIN }));
+app.use(
+  cors({
+    origin: ALLOWED_ORIGIN === "*" ? true : ALLOWED_ORIGIN,
+    /** Necesario para admin desde GitHub Pages → Render (Bearer en preflight). */
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
 app.use(express.json({ limit: "1mb" }));
 
 // Render logs only show stdout; the app had no request logging before, so POSTs looked "invisible".
@@ -661,6 +672,285 @@ async function createPaymentLink(payload) {
   return { sessionId, paymentUrl };
 }
 
+/** --- Admin auth (JWT HS256, sin dependencias extra) --- */
+
+function b64urlFromBuffer(buf) {
+  return Buffer.from(buf).toString("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+}
+
+function b64urlJson(obj) {
+  return b64urlFromBuffer(Buffer.from(JSON.stringify(obj), "utf8"));
+}
+
+function signAdminToken() {
+  const iat = Math.floor(Date.now() / 1000);
+  const exp = iat + (Number.isFinite(ADMIN_JWT_TTL_SEC) && ADMIN_JWT_TTL_SEC > 0 ? ADMIN_JWT_TTL_SEC : 3600);
+  const payload = { sub: "sacramento-admin", iat, exp };
+  const header = { alg: "HS256", typ: "JWT" };
+  const h = b64urlJson(header);
+  const p = b64urlJson(payload);
+  const data = `${h}.${p}`;
+  const sig = crypto.createHmac("sha256", ADMIN_JWT_SECRET).update(data).digest();
+  return `${data}.${b64urlFromBuffer(sig)}`;
+}
+
+function parseB64urlToBuffer(s) {
+  let str = String(s).replace(/-/g, "+").replace(/_/g, "/");
+  while (str.length % 4) str += "=";
+  return Buffer.from(str, "base64");
+}
+
+function verifyAdminToken(token) {
+  if (!token || !ADMIN_JWT_SECRET) return null;
+  const parts = String(token).split(".");
+  if (parts.length !== 3) return null;
+  const [h, p, s] = parts;
+  const data = `${h}.${p}`;
+  const expected = crypto.createHmac("sha256", ADMIN_JWT_SECRET).update(data).digest();
+  let got;
+  try {
+    got = parseB64urlToBuffer(s);
+  } catch {
+    return null;
+  }
+  if (got.length !== expected.length || !crypto.timingSafeEqual(got, expected)) return null;
+  let payload;
+  try {
+    payload = JSON.parse(parseB64urlToBuffer(p).toString("utf8"));
+  } catch {
+    return null;
+  }
+  const now = Math.floor(Date.now() / 1000);
+  if (payload.exp != null && now >= Number(payload.exp)) return null;
+  if (payload.sub !== "sacramento-admin") return null;
+  return payload;
+}
+
+function requireAdminAuth(req, res, next) {
+  const auth = req.headers.authorization || "";
+  const m = /^Bearer\s+(\S+)/i.exec(auth);
+  if (!m) {
+    return res.status(401).json({ error: "Missing or invalid Authorization header." });
+  }
+  const payload = verifyAdminToken(m[1]);
+  if (!payload) {
+    return res.status(401).json({ error: "Invalid or expired admin token." });
+  }
+  req.admin = payload;
+  return next();
+}
+
+function pickFirstNonEmpty(...values) {
+  for (const v of values) {
+    if (v === undefined || v === null) continue;
+    const s = String(v).trim();
+    if (s) return s;
+  }
+  return "";
+}
+
+function getByPath(obj, pathArray) {
+  let cur = obj;
+  for (const p of pathArray) {
+    if (!cur || typeof cur !== "object") return undefined;
+    cur = cur[p];
+  }
+  return cur;
+}
+
+function pickFirstByPaths(obj, paths) {
+  for (const pathArr of paths) {
+    const v = getByPath(obj, pathArr);
+    if (v === undefined || v === null) continue;
+    const s = String(v).trim();
+    if (s) return s;
+  }
+  return "";
+}
+
+function extractMaskedCardInfo(...sources) {
+  const nonNullSources = sources.filter((x) => x && typeof x === "object");
+  const masked = pickFirstNonEmpty(
+    ...nonNullSources.map((s) =>
+      pickFirstByPaths(s, [
+        ["CardNumberMasked"],
+        ["MaskedCardNumber"],
+        ["PanMasked"],
+        ["CardMasked"],
+        ["Card", "MaskedNumber"],
+        ["PaymentInstrument", "MaskedPan"],
+        ["PaymentInstrument", "MaskedCardNumber"],
+        ["Instrument", "MaskedPan"]
+      ])
+    )
+  );
+  const brand = pickFirstNonEmpty(
+    ...nonNullSources.map((s) =>
+      pickFirstByPaths(s, [
+        ["CardBrand"],
+        ["Brand"],
+        ["CardType"],
+        ["PaymentInstrument", "Brand"],
+        ["Card", "Brand"]
+      ])
+    )
+  );
+  const holder = pickFirstNonEmpty(
+    ...nonNullSources.map((s) =>
+      pickFirstByPaths(s, [
+        ["CardHolder"],
+        ["Cardholder"],
+        ["HolderName"],
+        ["Card", "HolderName"],
+        ["PaymentInstrument", "HolderName"],
+        ["ClientInformation", "Name"]
+      ])
+    )
+  );
+  const last4Match = masked.match(/(\d{4})\D*$/);
+  return {
+    maskedNumber: masked || undefined,
+    last4: last4Match ? last4Match[1] : undefined,
+    brand: brand || undefined,
+    holderName: holder || undefined
+  };
+}
+
+function buildAttemptMetaFromPlexoWebhook(payload) {
+  const plexoPayload = payload?.Object?.Object || {};
+  const responseObj = payload?.Object?.Object?.Response || {};
+  const status = plexoStateLabel(plexoPayload?.CurrentState || plexoPayload?.Status || 1);
+  const card = extractMaskedCardInfo(plexoPayload, responseObj, payload);
+  const payerName = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
+    pickFirstByPaths(responseObj, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
+    card.holderName
+  );
+  const payerEmail = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["ClientInformation", "Email"], ["Email"], ["PayerEmail"]]),
+    pickFirstByPaths(responseObj, [["ClientInformation", "Email"], ["Email"], ["PayerEmail"]])
+  );
+  const issuerName = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["IssuerName"]]),
+    pickFirstByPaths(responseObj, [["IssuerName"]])
+  );
+  const issuerId = pickFirstNonEmpty(
+    pickFirstByPaths(plexoPayload, [["IssuerId"]]),
+    pickFirstByPaths(responseObj, [["IssuerId"]])
+  );
+
+  return {
+    status,
+    source: "webhook_plexo",
+    gateway: "plexo",
+    card,
+    payer: {
+      name: payerName || undefined,
+      email: payerEmail || undefined
+    },
+    issuer: {
+      id: issuerId || undefined,
+      name: issuerName || undefined
+    },
+    reference: pickFirstNonEmpty(plexoPayload?.TransactionId, plexoPayload?.SessionId, plexoPayload?.Id),
+    raw: {
+      currentState: plexoPayload?.CurrentState,
+      statusCode: plexoPayload?.Status,
+      resultCode: plexoPayload?.ResultCode
+    }
+  };
+}
+
+function buildAttemptMetaFromGenericWebhook(body, status) {
+  const card = extractMaskedCardInfo(body);
+  return {
+    status: String(status || "unknown"),
+    source: "webhook_generic",
+    gateway: PAYMENT_MODE,
+    card,
+    payer: {
+      name: pickFirstByPaths(body, [["payerName"], ["cardHolder"], ["holderName"], ["customer", "name"]]) || undefined,
+      email: pickFirstByPaths(body, [["payerEmail"], ["customer", "email"]]) || undefined
+    },
+    issuer: {
+      id: pickFirstByPaths(body, [["issuerId"]]) || undefined,
+      name: pickFirstByPaths(body, [["issuerName"]]) || undefined
+    },
+    reference: pickFirstByPaths(body, [["authorizationCode"], ["authCode"], ["reference"]]) || undefined
+  };
+}
+
+app.post("/api/payments/admin/login", (req, res) => {
+  const username = req.body?.username;
+  const password = req.body?.password;
+  if (!ADMIN_USERNAME || !ADMIN_PASSWORD || !ADMIN_JWT_SECRET) {
+    return res.status(503).json({
+      error: "Admin login is not configured (set ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_JWT_SECRET)."
+    });
+  }
+  if (String(username) !== ADMIN_USERNAME || String(password) !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: "Invalid username or password." });
+  }
+  try {
+    const token = signAdminToken();
+    return res.json({
+      ok: true,
+      token,
+      tokenType: "Bearer",
+      expiresIn: Number.isFinite(ADMIN_JWT_TTL_SEC) && ADMIN_JWT_TTL_SEC > 0 ? ADMIN_JWT_TTL_SEC : 3600
+    });
+  } catch {
+    return res.status(500).json({ error: "Could not issue admin token." });
+  }
+});
+
+app.get("/api/payments/admin/payments", requireAdminAuth, (req, res) => {
+  const status = req.query.status != null && String(req.query.status).trim() ? String(req.query.status).trim() : "";
+  const experience =
+    req.query.experience != null && String(req.query.experience).trim()
+      ? String(req.query.experience).trim()
+      : "";
+  const q = req.query.q != null && String(req.query.q).trim() ? String(req.query.q).trim() : "";
+  const from = req.query.from != null && String(req.query.from).trim() ? String(req.query.from).trim() : "";
+  const to = req.query.to != null && String(req.query.to).trim() ? String(req.query.to).trim() : "";
+  const sort = req.query.sort === "createdAt" ? "createdAt" : "updatedAt";
+  const order = /^asc$/i.test(String(req.query.order || "")) ? "asc" : "desc";
+
+  const result = listPayments({
+    status: status || undefined,
+    experience: experience || undefined,
+    q: q || undefined,
+    from: from || undefined,
+    to: to || undefined,
+    limit: req.query.limit,
+    offset: req.query.offset,
+    sort,
+    order
+  });
+
+  return res.json({ ok: true, ...result });
+});
+
+app.get("/api/payments/admin/payments/:sessionId", requireAdminAuth, (req, res) => {
+  const sessionId = decodeURIComponent(String(req.params.sessionId || ""));
+  if (!sessionId) {
+    return res.status(400).json({ error: "sessionId is required." });
+  }
+  const payment = getPaymentBySessionId(sessionId);
+  if (!payment) {
+    return res.status(404).json({ error: "Payment not found." });
+  }
+  const attempts = Array.isArray(payment.paymentAttempts) ? payment.paymentAttempts : [];
+  return res.json({
+    ok: true,
+    item: {
+      ...payment,
+      attemptsCount: attempts.length,
+      lastAttemptAt: attempts.length ? attempts[attempts.length - 1].at : null
+    }
+  });
+});
+
 app.get("/api/payments/health", (_req, res) => {
   res.json({
     ok: true,
@@ -858,9 +1148,10 @@ app.post("/api/payments/webhook", (req, res) => {
       plexoPayload?.SessionId ||
       plexoPayload?.Id ||
       req.body?.Object?.Object?.Response?.Id;
-    const status = plexoStateLabel(plexoPayload?.CurrentState || plexoPayload?.Status || 1);
+    const attempt = buildAttemptMetaFromPlexoWebhook(req.body);
+    const status = attempt.status;
     if (txId) {
-      updateStatusBySessionId(String(txId), status);
+      updateStatusBySessionId(String(txId), status, attempt);
     }
     if (PAYMENT_MODE === "plexo" && plexoMaterial) {
       const ack = signPlexoPayload({
@@ -877,7 +1168,11 @@ app.post("/api/payments/webhook", (req, res) => {
   if (!sessionId || !status) {
     return res.status(400).json({ error: "sessionId and status are required." });
   }
-  const updated = updateStatusBySessionId(String(sessionId), String(status));
+  const updated = updateStatusBySessionId(
+    String(sessionId),
+    String(status),
+    buildAttemptMetaFromGenericWebhook(req.body || {}, status)
+  );
   return res.json({ ok: true, updated });
 });
 
