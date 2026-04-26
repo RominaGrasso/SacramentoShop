@@ -669,9 +669,22 @@ function initExperience(config) {
       });
 
       if (orders.length > 0) {
-        const experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
-        const ggAmt = groupGuideAmount();
-        const total = experienceSubtotal + ggAmt + transportTotal;
+        let experienceSubtotal;
+        let total;
+        let ggAmt = 0; // evita errores en lógica existente
+
+        if (storageKey === "orders_mision") {
+          const base = calculateBaseMision(people);
+          const menus = calculateMenus(orders);
+
+          experienceSubtotal = menus;
+          total = base + menus;
+
+        } else {
+          ggAmt = groupGuideAmount();
+          experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
+          total = experienceSubtotal + ggAmt + transportTotal;
+        }
         const orderCountLabel =
           people === 1
             ? t("guest_order_singular", "guest order")
@@ -2086,4 +2099,27 @@ function initPackageOrderExperience(config) {
 
     renderOrders();
   });
+} 
+
+//Calculo de costos La mision night experences. 
+function calculateBaseMision(people) {
+  const BASE = {
+    1: 75,
+    2: 75,
+    3: 95
+  };
+  return BASE[people] || 0;
+}
+
+function calculateMenus(orders) {
+  const MENU = {
+    standard: 40,
+    premium: 60
+  };
+
+  return orders.reduce((sum, o) => {
+    return sum + (o.menuTier === "premium"
+      ? MENU.premium
+      : MENU.standard);
+  }, 0);
 }
