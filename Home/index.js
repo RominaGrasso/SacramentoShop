@@ -4,6 +4,39 @@ const translations = {
     en: {
       hero_title: "Discover Colonia Like a Local",
       hero_text: "Handpicked experiences for curious travelers.",
+      rent_with_us: "Rent with us!",
+      rent_popup_title: "Choose your rental",
+      rent_popup_benefit: "With your rental, you get a 2x1 ticket promo for Plaza de Toros.",
+      rent_popup_choose: "Rental options",
+      rent_option_bike: "Bike rental",
+      rent_option_cart: "Cart rental (up to 4 guests)",
+      rent_option_cart6: "Cart rental (up to 6 guests)",
+      rent_price_bike: "Bike: USD 10 per hour",
+      rent_price_cart: "Cart (4): USD 20 per hour",
+      rent_price_cart6: "Cart (6): USD 35 per hour",
+      rent_price_bike_day: "Bike: USD 30 per day",
+      rent_price_cart_day: "Cart (4): USD 50 per day",
+      rent_price_cart6_day: "Cart (6): USD 70 per day",
+      rent_popup_select_first: "Select bike or cart to see the price.",
+      rent_mode_label: "Rental type",
+      rent_mode_hour: "Per hour",
+      rent_mode_day: "Per day",
+      rent_qty_label: "How many",
+      rent_units_label_hour: "How many hours",
+      rent_units_label_day: "How many days",
+      rent_total_label: "Total",
+      rent_book_now: "Book Now",
+      wa_intro_rent: "Hello! I'd like to book this rental option:",
+      wa_rent_option: "Option",
+      wa_rent_mode: "Type",
+      wa_rent_quantity: "Quantity",
+      wa_rent_rate: "Rate",
+      wa_rent_hours: "Hours/Days",
+      wa_rent_bonus: "Bonus",
+      wa_rent_bonus_text: "2x1 Plaza de Toros tickets",
+      rent_post_purchase_note:
+        "After purchase, we'll send you the central pickup address for the bikes/cart and your 2x1 Plaza de Toros voucher.",
+      rent_popup_close: "Close",
       explore_btn: "Explore Experiences",
       coffee_title: "☕ Coffee with stunning views",
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina.",
@@ -302,6 +335,39 @@ const translations = {
     es: {
       hero_title: "Descubrí Colonia como un local",
       hero_text: "Experiencias seleccionadas.",
+      rent_with_us: "¡Alquilá con nosotros!",
+      rent_popup_title: "Elegí tu alquiler",
+      rent_popup_benefit: "Con tu alquiler, tenés promo 2x1 en entradas para Plaza de Toros.",
+      rent_popup_choose: "Opciones de alquiler",
+      rent_option_bike: "Alquiler de bici",
+      rent_option_cart: "Alquiler de carrito (hasta 4 personas)",
+      rent_option_cart6: "Alquiler de carrito (hasta 6 personas)",
+      rent_price_bike: "Bici: USD 10 por hora",
+      rent_price_cart: "Carrito (4): USD 20 por hora",
+      rent_price_cart6: "Carrito (6): USD 35 por hora",
+      rent_price_bike_day: "Bici: USD 30 por día",
+      rent_price_cart_day: "Carrito (4): USD 50 por día",
+      rent_price_cart6_day: "Carrito (6): USD 70 por día",
+      rent_popup_select_first: "Seleccioná bici o carrito para ver el precio.",
+      rent_mode_label: "Tipo de alquiler",
+      rent_mode_hour: "Por hora",
+      rent_mode_day: "Por día",
+      rent_qty_label: "Cuántos querés",
+      rent_units_label_hour: "Cuántas horas",
+      rent_units_label_day: "Cuántos días",
+      rent_total_label: "Total",
+      rent_book_now: "Reservar",
+      wa_intro_rent: "¡Hola! Quiero reservar esta opción de alquiler:",
+      wa_rent_option: "Opción",
+      wa_rent_mode: "Tipo",
+      wa_rent_quantity: "Cantidad",
+      wa_rent_rate: "Tarifa",
+      wa_rent_hours: "Horas/Días",
+      wa_rent_bonus: "Beneficio",
+      wa_rent_bonus_text: "Entradas 2x1 para Plaza de Toros",
+      rent_post_purchase_note:
+        "Luego de la compra, te vamos a enviar la dirección de retiro en el centro (bici/carrito) y tu voucher 2x1 para Plaza de Toros.",
+      rent_popup_close: "Cerrar",
       explore_btn: "Explorar",
       book_btn: "Reservar",
       save_selection: "Guardar selección",
@@ -597,6 +663,39 @@ const translations = {
     pt: {
       hero_title: "Descubra Colonia",
       hero_text: "Experiências selecionadas.",
+      rent_with_us: "Alugue com a gente!",
+      rent_popup_title: "Escolha seu aluguel",
+      rent_popup_benefit: "Com seu aluguel, você ganha promoção 2x1 nos ingressos da Plaza de Toros.",
+      rent_popup_choose: "Opções de aluguel",
+      rent_option_bike: "Aluguel de bicicleta",
+      rent_option_cart: "Aluguel de carrinho (até 4 pessoas)",
+      rent_option_cart6: "Aluguel de carrinho (até 6 pessoas)",
+      rent_price_bike: "Bicicleta: USD 10 por hora",
+      rent_price_cart: "Carrinho (4): USD 20 por hora",
+      rent_price_cart6: "Carrinho (6): USD 35 por hora",
+      rent_price_bike_day: "Bicicleta: USD 30 por dia",
+      rent_price_cart_day: "Carrinho (4): USD 50 por dia",
+      rent_price_cart6_day: "Carrinho (6): USD 70 por dia",
+      rent_popup_select_first: "Selecione bicicleta ou carrinho para ver o preço.",
+      rent_mode_label: "Tipo de aluguel",
+      rent_mode_hour: "Por hora",
+      rent_mode_day: "Por dia",
+      rent_qty_label: "Quantos você quer",
+      rent_units_label_hour: "Quantas horas",
+      rent_units_label_day: "Quantos dias",
+      rent_total_label: "Total",
+      rent_book_now: "Reservar",
+      wa_intro_rent: "Olá! Quero reservar esta opção de aluguel:",
+      wa_rent_option: "Opção",
+      wa_rent_mode: "Tipo",
+      wa_rent_quantity: "Quantidade",
+      wa_rent_rate: "Tarifa",
+      wa_rent_hours: "Horas/Dias",
+      wa_rent_bonus: "Benefício",
+      wa_rent_bonus_text: "Ingressos 2x1 para Plaza de Toros",
+      rent_post_purchase_note:
+        "Após a compra, enviaremos o endereço de retirada no centro (bicicleta/carrinho) e seu voucher 2x1 para Plaza de Toros.",
+      rent_popup_close: "Fechar",
       explore_btn: "Explorar",
       book_btn: "Reservar",
       save_selection: "Salvar seleção",
@@ -891,6 +990,364 @@ const translations = {
     }
   };
   window.__SACRAMENTO_TRANSLATIONS = translations;
+
+function injectRentBadgeInActivityHero() {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+
+  const path = window.location.pathname || "";
+  const isActivityPage = path.includes("/Actividades/");
+  const isCorporatePage = path.includes("corporate-boat.html");
+
+  if (!isActivityPage || isCorporatePage) return;
+  if (document.querySelector(".hero-rent-badge")) return;
+
+  const hero = document.querySelector(
+    ".coffee-hero, .food-hero, .plaza-hero, .horse-hero, .boat-hero, .romantic-hero, .day-hero, .night-hero, .toros-night-hero, .mision-night-hero, .sio-night-hero, .bar-hero, .historic-lasliebres-hero, .liebres-dining-hero, .liebres-hero, .about-hero"
+  );
+
+  if (!hero) return;
+
+  const badge = document.createElement("div");
+  badge.className = "hero-rent-badge";
+  badge.setAttribute("aria-label", "Rent with us");
+  badge.innerHTML = `
+    <span class="rent-icon" title="Bike rental">🚲</span>
+    <span class="rent-icon" title="Cart rental">🛺</span>
+    <span class="rent-text" data-translate="rent_with_us">Rent with us!</span>
+  `;
+  hero.appendChild(badge);
+}
+
+function ensureRentPopup() {
+  if (typeof document === "undefined") return null;
+  let overlay = document.getElementById("rentPopupOverlay");
+  if (overlay) return overlay;
+
+  overlay = document.createElement("div");
+  overlay.id = "rentPopupOverlay";
+  overlay.className = "popup-overlay";
+  overlay.setAttribute("aria-hidden", "true");
+  overlay.innerHTML = `
+    <div class="popup-box rent-popup-box" role="dialog" aria-modal="true" aria-labelledby="rentPopupTitle">
+      <button class="close-x" id="rentPopupCloseX" type="button">✕</button>
+      <p><strong class="popup-title" id="rentPopupTitle" data-translate="rent_popup_title">Choose your rental</strong></p>
+      <p class="rent-popup-benefit" data-translate="rent_popup_benefit">With your rental, you get a 2x1 ticket promo for Plaza de Toros.</p>
+      <div class="preferences-inside rent-options">
+        <h3 data-translate="rent_popup_choose">Rental options</h3>
+        <label class="rent-option">
+          <input type="radio" name="rentType" value="bike">
+          <span data-translate="rent_option_bike">Bike rental</span>
+        </label>
+        <label class="rent-option">
+          <input type="radio" name="rentType" value="cart">
+          <span data-translate="rent_option_cart">Cart rental (up to 4 guests)</span>
+        </label>
+        <label class="rent-option">
+          <input type="radio" name="rentType" value="cart6">
+          <span data-translate="rent_option_cart6">Cart rental (up to 6 guests)</span>
+        </label>
+      </div>
+      <div class="rent-price-box" id="rentPriceBox">
+        <p class="rent-price-placeholder" data-translate="rent_popup_select_first">Select bike or cart to see the price.</p>
+      </div>
+      <div class="rent-config-wrap" id="rentConfigWrap" hidden>
+        <div class="rent-mode-wrap">
+          <span class="rent-hours-label" data-translate="rent_mode_label">Rental type</span>
+          <div class="rent-mode-options">
+            <label class="rent-option">
+              <input type="radio" name="rentMode" value="hour" checked>
+              <span data-translate="rent_mode_hour">Per hour</span>
+            </label>
+            <label class="rent-option">
+              <input type="radio" name="rentMode" value="day">
+              <span data-translate="rent_mode_day">Per day</span>
+            </label>
+          </div>
+        </div>
+        <div class="rent-hours-wrap">
+          <span class="rent-hours-label" data-translate="rent_qty_label">How many</span>
+          <div class="rent-hours-controls">
+            <button type="button" class="add-guest-btn" id="rentQtyMinus">-</button>
+            <span id="rentQtyValue">1</span>
+            <button type="button" class="add-guest-btn" id="rentQtyPlus">+</button>
+          </div>
+        </div>
+        <div class="rent-hours-wrap">
+          <span class="rent-hours-label" id="rentUnitsLabel" data-translate="rent_units_label_hour">How many hours</span>
+          <div class="rent-hours-controls">
+            <button type="button" class="add-guest-btn" id="rentUnitsMinus">-</button>
+            <span id="rentUnitsValue">1</span>
+            <button type="button" class="add-guest-btn" id="rentUnitsPlus">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="total-box rent-total-box" id="rentTotalBox" hidden>
+        <div class="total-left">
+          <span class="total-label" data-translate="rent_total_label">Total</span>
+          <span class="total-detail" id="rentTotalDetail"></span>
+        </div>
+        <div class="total-right" id="rentTotalValue">USD 0</div>
+        <a href="#" id="rentBookNowBtn" class="btn total-btn" data-translate="rent_book_now">Book Now</a>
+      </div>
+      <p class="rent-post-note" data-translate="rent_post_purchase_note">
+        After purchase, we'll send you the central pickup address for the bikes/cart and your 2x1 Plaza de Toros voucher.
+      </p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  return overlay;
+}
+
+async function resolveRentDynamicPaymentLink(payload) {
+  const endpoint = "/api/payments/resolve";
+  const candidates = [];
+  const protocol = typeof window !== "undefined" ? window.location?.protocol || "" : "";
+  const hostname = typeof window !== "undefined" ? window.location?.hostname || "" : "";
+  const isFile = protocol === "file:";
+  const isLocalDevHost = ["localhost", "127.0.0.1"].includes(hostname);
+  const remoteTestBase =
+    typeof window !== "undefined" && window.SACRAMENTO_PAYMENTS_API_BASE
+      ? String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "")
+      : "https://sacramento-payments-test.onrender.com";
+
+  if (isFile) {
+    candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
+  } else {
+    candidates.push(endpoint);
+    if (isLocalDevHost) {
+      candidates.push(`${remoteTestBase}${endpoint}`);
+      candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
+    }
+  }
+
+  const uniqueCandidates = [...new Set(candidates)];
+  const isMockPaymentUrl = (url) => {
+    const value = String(url || "");
+    return value.includes("sessionId=mock_") || /\/mock_[a-z0-9]+/i.test(value);
+  };
+
+  for (const url of uniqueCandidates) {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) continue;
+      const data = await response.json();
+      const paymentUrl = data.paymentUrl || data.url || "";
+      if (isMockPaymentUrl(paymentUrl)) continue;
+      if (paymentUrl) return paymentUrl;
+    } catch {
+      // try next candidate
+    }
+  }
+  return "";
+}
+
+function initRentPopupBehavior() {
+  if (typeof document === "undefined") return;
+  const overlay = ensureRentPopup();
+  if (!overlay || overlay.dataset.bound === "1") return;
+
+  const closePopup = () => {
+    overlay.classList.remove("active");
+    overlay.setAttribute("aria-hidden", "true");
+  };
+  const openPopup = () => {
+    overlay.classList.add("active");
+    overlay.setAttribute("aria-hidden", "false");
+  };
+
+  const rentRates = {
+    bike: { hour: 10, day: 30 },
+    cart: { hour: 20, day: 50 },
+    cart6: { hour: 35, day: 70 }
+  };
+
+  const getRateLabelByTypeAndMode = (type, mode) => {
+    if (type === "bike" && mode === "hour") return "rent_price_bike";
+    if (type === "cart" && mode === "hour") return "rent_price_cart";
+    if (type === "cart6" && mode === "hour") return "rent_price_cart6";
+    if (type === "bike" && mode === "day") return "rent_price_bike_day";
+    if (type === "cart" && mode === "day") return "rent_price_cart_day";
+    if (type === "cart6" && mode === "day") return "rent_price_cart6_day";
+    return "";
+  };
+
+  const getOptionKeyByType = (type) => {
+    if (type === "bike") return "rent_option_bike";
+    if (type === "cart") return "rent_option_cart";
+    if (type === "cart6") return "rent_option_cart6";
+    return "";
+  };
+
+  const getCounterValue = (id, fallback = 1) => {
+    const node = document.getElementById(id);
+    const n = Number(node?.textContent || "1");
+    return Number.isFinite(n) && n > 0 ? n : fallback;
+  };
+
+  const setCounterValue = (id, value, min = 1, max = 24) => {
+    const node = document.getElementById(id);
+    if (!node) return;
+    const next = Math.max(min, Math.min(max, Number(value) || min));
+    node.textContent = String(next);
+  };
+
+  const renderRentPrice = () => {
+    const priceBox = document.getElementById("rentPriceBox");
+    const configWrap = document.getElementById("rentConfigWrap");
+    const totalBox = document.getElementById("rentTotalBox");
+    const totalValue = document.getElementById("rentTotalValue");
+    const totalDetail = document.getElementById("rentTotalDetail");
+    const unitsLabel = document.getElementById("rentUnitsLabel");
+    if (!priceBox) return;
+
+    const selected = overlay.querySelector('input[name="rentType"]:checked')?.value || "";
+    const mode = overlay.querySelector('input[name="rentMode"]:checked')?.value || "hour";
+    const qty = getCounterValue("rentQtyValue", 1);
+    const units = getCounterValue("rentUnitsValue", 1);
+    const rate = rentRates[selected]?.[mode] || 0;
+    const total = rate * qty * units;
+    const rateLabelKey = getRateLabelByTypeAndMode(selected, mode);
+
+    if (!selected || !rateLabelKey) {
+      priceBox.innerHTML = `<p class="rent-price-placeholder" data-translate="rent_popup_select_first">Select bike or cart to see the price.</p>`;
+      if (configWrap) configWrap.hidden = true;
+      if (totalBox) totalBox.hidden = true;
+    } else {
+      if (configWrap) configWrap.hidden = false;
+      priceBox.innerHTML = `<p class="rent-price-value" data-translate="${rateLabelKey}"></p>`;
+      if (unitsLabel) {
+        unitsLabel.dataset.translate = mode === "day" ? "rent_units_label_day" : "rent_units_label_hour";
+      }
+
+      if (totalBox && totalValue && totalDetail) {
+        totalBox.hidden = false;
+        totalValue.textContent = `USD ${total}`;
+        const unitSuffix = mode === "day" ? "d" : "h";
+        totalDetail.textContent = `${qty} x ${units}${unitSuffix} x USD ${rate}`;
+      }
+    }
+
+    const language = localStorage.getItem("selectedLanguage") || "en";
+    if (typeof setLanguage === "function") setLanguage(language);
+  };
+
+  overlay.addEventListener("change", (e) => {
+    if (e.target && e.target.matches('input[name="rentMode"]')) {
+      // Reset counters when switching hour/day mode to avoid stale totals.
+      setCounterValue("rentQtyValue", 1, 1, 20);
+      setCounterValue("rentUnitsValue", 1, 1, 24);
+      renderRentPrice();
+      return;
+    }
+    if (e.target && e.target.matches('input[name="rentType"]')) {
+      renderRentPrice();
+    }
+  });
+
+  const closeX = document.getElementById("rentPopupCloseX");
+  if (closeX) closeX.addEventListener("click", closePopup);
+  const bindCounter = (minusId, plusId, valueId, max = 24) => {
+    const minusBtn = document.getElementById(minusId);
+    const plusBtn = document.getElementById(plusId);
+    if (minusBtn) {
+      minusBtn.addEventListener("click", () => {
+        setCounterValue(valueId, getCounterValue(valueId, 1) - 1, 1, max);
+        renderRentPrice();
+      });
+    }
+    if (plusBtn) {
+      plusBtn.addEventListener("click", () => {
+        setCounterValue(valueId, getCounterValue(valueId, 1) + 1, 1, max);
+        renderRentPrice();
+      });
+    }
+  };
+  bindCounter("rentQtyMinus", "rentQtyPlus", "rentQtyValue", 20);
+  bindCounter("rentUnitsMinus", "rentUnitsPlus", "rentUnitsValue", 24);
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closePopup();
+  });
+
+  document.addEventListener("click", (e) => {
+    const trigger = e.target && e.target.closest ? e.target.closest(".hero-rent-badge") : null;
+    if (!trigger) return;
+    e.preventDefault();
+    setCounterValue("rentQtyValue", 1, 1, 20);
+    setCounterValue("rentUnitsValue", 1, 1, 24);
+    openPopup();
+    renderRentPrice();
+  });
+
+  document.addEventListener("click", (e) => {
+    const bookBtn = e.target && e.target.closest ? e.target.closest("#rentBookNowBtn") : null;
+    if (!bookBtn) return;
+    e.preventDefault();
+
+    const selected = overlay.querySelector('input[name="rentType"]:checked')?.value || "";
+    const mode = overlay.querySelector('input[name="rentMode"]:checked')?.value || "hour";
+    const rate = rentRates[selected]?.[mode] || 0;
+    if (!rate) return;
+    const qty = getCounterValue("rentQtyValue", 1);
+    const units = getCounterValue("rentUnitsValue", 1);
+    const total = rate * qty * units;
+    const language = localStorage.getItem("selectedLanguage") || "en";
+    const tr = translations[language] || translations.en;
+    const optionKey = getOptionKeyByType(selected);
+    const rateKey = getRateLabelByTypeAndMode(selected, mode);
+    const optionText = tr[optionKey] || selected;
+    const modeText = mode === "day" ? (tr.rent_mode_day || "Per day") : (tr.rent_mode_hour || "Per hour");
+    const rateText = tr[rateKey] || `USD ${rate}/${mode === "day" ? "day" : "hour"}`;
+
+    // Open the tab immediately from the click event to avoid popup blockers.
+    const waWindow = window.open("about:blank", "_blank");
+
+    (async () => {
+      const paymentUrl = await resolveRentDynamicPaymentLink({
+        experience: "thrifty_rentals",
+        amount: total,
+        currency: "USD",
+        people: qty,
+        orderPayload: {
+          option: selected,
+          mode,
+          quantity: qty,
+          units,
+          unitRate: rate,
+          total,
+          bonus: "2x1 Plaza de Toros tickets"
+        }
+      });
+
+      const message =
+        `${tr.wa_intro_rent || "Hello! I'd like to book this rental option:"}\n\n` +
+        `${tr.wa_rent_option || "Option"}: ${optionText}\n` +
+        `${tr.wa_rent_mode || "Type"}: ${modeText}\n` +
+        `${tr.wa_rent_quantity || "Quantity"}: ${qty}\n` +
+        `${tr.wa_rent_rate || "Rate"}: ${rateText}\n` +
+        `${tr.wa_rent_hours || "Hours/Days"}: ${units}\n` +
+        `${tr.rent_total_label || "Total"}: USD ${total}\n` +
+        `${tr.wa_rent_bonus || "Bonus"}: ${tr.wa_rent_bonus_text || "2x1 Plaza de Toros tickets"}\n\n` +
+        (paymentUrl
+          ? `${tr.wa_payment_prompt || "To confirm the reservation, please complete the payment here:"}\n${paymentUrl}`
+          : `${tr.wa_payment_fallback || "Please share payment instructions to confirm this booking."}`);
+
+      const waUrl = `https://wa.me/598091642195?text=${encodeURIComponent(message)}`;
+      if (waWindow && !waWindow.closed) {
+        waWindow.location.href = waUrl;
+      } else {
+        // Fallback if browser blocked/closed the pre-opened tab.
+        window.open(waUrl, "_blank");
+      }
+    })();
+  });
+
+  overlay.dataset.bound = "1";
+}
   
   // ===== CHANGE LANGUAGE =====
   function setLanguage(language) {
@@ -936,6 +1393,8 @@ const translations = {
   
   
   document.addEventListener("DOMContentLoaded", () => {
+  injectRentBadgeInActivityHero();
+  initRentPopupBehavior();
 
     /* ===== LANGUAGE ===== */
     const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
