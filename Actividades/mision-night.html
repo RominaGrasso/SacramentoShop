@@ -27,7 +27,9 @@
   </div>
 
   <nav class="top-links">
-    <a href="aboutus.html">
+    <a href="../Actividades/aboutus.html"
+        target="_blank"
+        rel="noopener noreferrer">
       👤&nbsp;About Us
     </a>
   </nav>
@@ -105,12 +107,10 @@
     </ul>
   </div>
 
-
   <!-- PRICE -->
   <div class="price-box">
-    <h3>USD 200 for 2 people</h3>
+    <h3>Single & Doble USD 75 . Triple USD 95</h3>
   </div>
-
 
   <div class="coffee-includes">
 
@@ -129,23 +129,27 @@
         </ul>
       </div>
 
-      <!-- DERECHA -->
-      <div class="preferences-inside">
-        <h3 class="preferences-title">
-            Your preferences 
-            <span class="help-icon" id="nightHelp">ℹ️</span>
-          </h3>
+       <!-- DERECHA (BOTÓN DE MENÚ) -->
+      <div class="order-start">
+        <h3>Create your menu</h3>
+        <p>Select standard or premium menu, then your courses and preferences</p>
 
-        <label><input type="checkbox"> 🍷 Wine included</label>
-        <label><input type="checkbox"> 🥗 Vegetarian dinner</label>
-        <label><input type="checkbox"> 🚫 Gluten free</label>
-        <label><input type="checkbox"> 🥛 Lactose free</label>
-       
+        <button id="createMenuBtn" class="btn primary-btn">
+          + Create your menu
+        </button>
       </div>
 
-    </div>
-
   </div>
+</div>
+
+<div class="order-summary" id="orderSummary"></div>
+
+<div class="experience-support-notice" role="status">
+  <p>
+    <strong>After your reservation</strong>, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.
+  </p>
+</div>
+
   <div class="all-services">
 
     <details>
@@ -223,7 +227,7 @@
   <!-- ================= ACTIONS ================= -->
   <div class="coffee-actions">
 
-    <a href="#" target="_blank" class="btn">
+    <a href="#" id="bookNowBottom" class="btn">
       Book Now
     </a>
 
@@ -233,86 +237,235 @@
 
   </div>
 
+  <div id="orderSummary"></div>
+
 </section>
 
 <script src="../Home/index.js"></script>
 
 <!-- ================= POPUP ================= -->
-<div class="popup-overlay" id="popupNight">
-    <div class="popup-box">
-  
-      <p>
-        <strong class="popup-title">Experience details:</strong>
-      </p>
-  
-      <ul class="popup-list">
-        <li>🍽 Dinner includes main dish + drink at Bruma</li>
-        <li>🛏 Stay at La Misión in the historic district</li>
-        <li>☕ Breakfast prepared according to your preferences</li>
-        <li>🎁 Guided walking tour included</li>
-        <li>🚶 All activities are within walking distance</li>
-      </ul>
-  
-      <p>Exact details may vary depending on availability.</p>
-  
-      <button class="close-x" id="closeNight">✕</button>
-    </div>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    
-      const help = document.getElementById("nightHelp");
-      const popup = document.getElementById("popupNight");
-      const close = document.getElementById("closeNight");
-    
-      if (help) {
-        help.addEventListener("click", () => {
-          popup.classList.add("active");
-        });
-      }
-    
-      if (close) {
-        close.addEventListener("click", () => {
-          popup.classList.remove("active");
-        });
-      }
-    
-      popup.addEventListener("click", (e) => {
-        if (e.target === popup) {
-          popup.classList.remove("active");
-        }
-      });
-    
-    });
-    </script>
+<div class="popup-overlay" id="popupMision">
+  <div class="popup-box">
 
+    <button class="close-x" id="closeMision">✕</button>
+
+    <p><strong class="popup-title">Chef's curated menu:</strong></p>
+
+    <!-- 🔹 SELECTOR STANDARD / PREMIUM -->
+    <div class="bruma-tier-wrap">
+      <p class="bruma-tier-heading">Choose your menu</p>
+
+      <label class="bruma-tier-option">
+        <input type="radio" name="misionMenuTier" value="standard" checked>
+        <span>Standard — USD 40 per guest</span>
+      </label>
+
+      <label class="bruma-tier-option">
+        <input type="radio" name="misionMenuTier" value="premium">
+        <span>Premium — USD 60 per guest</span>
+      </label>
+    </div>
+
+    <!-- ================= STANDARD MENU ================= -->
+    <div id="misionStandardMenu" class="bruma-menu-panel">
+
+      <!-- STARTER -->
+      <p><strong>Starter</strong></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="starter" value="Empanada (cheese & onion / lamb / vegetables / bacon & cheese)">
+            <span>Empanada (cheese & onion / lamb / vegetables / bacon & cheese)</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="starter" value="Homemade fries with brava sauce">
+            <span>Homemade fries with brava sauce</span>
+          </label>
+        </li>
+        <li>
+          <label>
+              <input type="radio" name="starter" value="Pumpkin soup with cream and croutons">
+              <span>Pumpkin soup with cream and croutons</span>
+            </label>
+        </li>
+      </ul>
+
+      <!-- MAIN -->
+      <p><strong>Main Course</strong></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="main" value="Pumpkin ravioli with sage butter and almonds">
+            <span>Pumpkin ravioli with sage butter and almonds</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="main" value="Sun-dried tomato & mushroom risotto">
+            <span>Sun-dried tomato & mushroom risotto</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="main" value="Braised pork sandwich in focaccia with cheese and caramelized onions">
+            <span>Braised pork sandwich in focaccia with cheese and caramelized onions</span>
+          </label>
+        </li>
+      </ul>
+
+      <!-- DRINK -->
+      <p><strong>Drink</strong></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="drink" value="Glass of wine (red / rosé / white)">
+            <span data-translate="bruma_drink_1">Glass of wine (red / rosé / white)</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="drink" value="Water, soda or lemonade">
+            <span data-translate="bruma_drink_2">Water, soda or lemonade</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ================= PREMIUM MENU ================= -->
+    <div id="misionPremiumMenu" class="bruma-menu-panel" hidden>
+
+      <p><strong data-translate="bruma_prem_platos">Plates</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri">
+                <span>Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Corvina rotolo with mussel sauce">
+                <span>Corvina rotolo with mussel sauce</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Salmon raviolones with blue cheese sauce &amp; celery salad">
+                <span>Salmon raviolones with blue cheese sauce &amp; celery salad</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_starter" value="Pumpkin ravioli with sage butter &amp; almonds">
+                <span>Pumpkin ravioli with sage butter &amp; almonds</span>
+              </label>
+            </li>
+          </ul>
+
+          <p><strong data-translate="bruma_prem_postres">Desserts</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="prm_main" value="Baked cheesecake with red berries">
+                <span>Baked cheesecake with red berries</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_main" value="Pavlova with pastry cream &amp; seasonal fruit">
+                <span>Pavlova with pastry cream &amp; seasonal fruit</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_main" value="Chocolate cake with dulce de leche &amp; English cream">
+                <span>Chocolate cake with dulce de leche &amp; English cream</span>
+              </label>
+            </li>
+          </ul>
+
+          <p><strong data-translate="bruma_prem_bebidas">Drinks</strong></p>
+          <ul class="popup-list">
+            <li>
+              <label>
+                <input type="radio" name="prm_drink" value="Glass of wine (red / white / rosé)">
+                <span>Glass of wine (red / white / rosé)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="prm_drink" value="Water, soda or glass of lemonade">
+                <span>Water, soda or glass of lemonade</span>
+              </label>
+            </li>
+          </ul>
+    </div>
+
+    <!-- ================= PREFERENCES ================= -->
+    <div class="preferences-inside">
+      <h3 class="preferences-title">
+        <span>Your preferences</span>
+        <span class="help-icon" id="brumaHelp">ℹ️</span>
+      </h3>
+
+      <label><input type="checkbox" value="0% Alcohol"> 🍺 <span data-translate="bruma_pref_alcohol">0% Alcohol</span></label>
+      <label><input type="checkbox" value="Low Salt"> 🧂 <span data-translate="bruma_pref_salt">Low Salt</span></label>
+      <label><input type="checkbox" value="Vegetarian"> 🌱 <span data-translate="bruma_pref_veg">Vegetarian</span></label>
+      <label><input type="checkbox" value="No spicy food"> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
+    </div>
+
+    <!-- ================= SAVE ================= -->
+    <div class="popup-actions">
+      <button id="saveMenu" class="btn">Save selection</button>
+    </div>
+
+  </div>
+</div>
+<script src="../Home/orders.js"></script> 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    
-      const images = document.querySelectorAll(".gallery-grid img");
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightboxImg");
-      const closeBtn = document.getElementById("closeLightbox");
-    
-      images.forEach(img => {
-        img.addEventListener("click", () => {
-          lightbox.classList.add("active");
-          lightboxImg.src = img.src;
-        });
-      });
-    
-      closeBtn.addEventListener("click", () => {
-        lightbox.classList.remove("active");
-      });
-    
-      lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
-          lightbox.classList.remove("active");
-        }
-      });
-    
-    });
-    </script>
+  initExperience({
+
+    popupId: "popupMision",       
+    closeBtnId: "closeMision",  
+
+    experienceName: "La Mision Night Experience",
+    pricePerPerson: 40,        // Standard
+    menuUpgradePrice: 60,      // Premium
+    menuTierRadioName: "misionMenuTier",
+    premiumChoiceFieldNames: {
+      starter: "prm_starter",
+      main: "prm_main",
+      drink: "prm_drink"
+    },
+    menuTierPanelIds: {
+      standard: "misionStandardMenu",
+      premium: "misionPremiumMenu"
+    },
+    bookNowBottomId: "bookNowBottom",
+    selectedDateKey: "selectedDate",
+    whatsappNumber: "598091642195",
+
+    // 💾 storage (IMPORTANTE: distinto a bruma)
+    storageKey: "orders_mision",
+
+    // 💳 pagos (lo dejamos igual por ahora)
+    dynamicPayment: {
+      enabled: true,
+      endpoint: "/api/payments/resolve",
+      experienceId: "mision-night",
+      currency: "USD"
+    },
+
+    // 🔗 links fallback
+    paymentLinks: {
+      1: "https://pago.handy.uy/details/?sessionId=LINK_115",
+      2: "https://pago.handy.uy/details/?sessionId=LINK_175",
+      3: "https://pago.handy.uy/details/?sessionId=LINK_275"
+    }
+  });
+</script>
 
 <div class="lightbox" id="lightbox">
 
@@ -324,6 +477,6 @@
   
     <button class="lightbox-btn next" id="nextBtn">›</button>
   
-  </div>
+</div>
 </body>
 </html>
