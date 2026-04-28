@@ -630,7 +630,7 @@
   
   /* Título */
   .acordeon summary {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 600;
     cursor: pointer;
     list-style: none;
@@ -831,6 +831,217 @@
     height: auto;
     border-radius: 14px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  }
+
+  .hero-rent-badge {
+    position: absolute;
+    top: 34px;
+    right: 84px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(92, 151, 214, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(12, 38, 77, 0.32);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hero-rent-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px rgba(12, 38, 77, 0.36);
+  }
+
+  .hero-rent-badge .rent-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.16);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .hero-rent-badge .rent-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .popup-box.rent-popup-box {
+    max-width: 680px;
+    width: min(94vw, 680px);
+    text-align: left;
+  }
+
+  .rent-popup-benefit {
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(255, 127, 127, 0.16);
+    border: 1px solid rgba(255, 95, 95, 0.34);
+    color: #d75454;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .rent-options {
+    margin-bottom: 8px;
+  }
+
+  .rent-option {
+    align-items: center !important;
+    font-weight: 600;
+  }
+
+  .rent-price-box {
+    margin-top: 10px;
+    margin-bottom: 14px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .rent-price-placeholder {
+    margin: 0;
+    color: #5e6b78;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .rent-price-value {
+    margin: 0;
+    color: #2f67a3;
+    font-size: 1.02rem;
+    font-weight: 800;
+  }
+
+  .rent-hours-wrap {
+    margin: 4px 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .rent-config-wrap {
+    margin-top: 4px;
+  }
+
+  .rent-mode-wrap {
+    margin: 2px 0 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(90, 149, 207, 0.08);
+    border: 1px solid rgba(47, 103, 163, 0.15);
+  }
+
+  .rent-mode-options {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .rent-hours-label {
+    font-size: 0.92rem;
+    color: #41566c;
+    font-weight: 700;
+  }
+
+  .rent-hours-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .rent-hours-controls #rentHoursValue,
+  .rent-hours-controls #rentQtyValue,
+  .rent-hours-controls #rentUnitsValue {
+    min-width: 28px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    font-weight: 700;
+    color: #2f67a3;
+  }
+
+  .rent-total-box {
+    margin-top: 0;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+
+  .rent-total-box .total-left {
+    flex: 0 0 180px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .rent-total-box .total-right {
+    margin-left: auto;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .rent-total-box .total-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 760px) {
+    .popup-box.rent-popup-box {
+      max-width: 96vw;
+      width: 96vw;
+    }
+  }
+
+  .rent-popup-box .popup-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .coffee-hero,
+  .food-hero,
+  .plaza-hero,
+  .horse-hero,
+  .boat-hero,
+  .romantic-hero,
+  .day-hero,
+  .night-hero,
+  .toros-night-hero,
+  .mision-night-hero,
+  .sio-night-hero,
+  .bar-hero,
+  .historic-lasliebres-hero,
+  .liebres-dining-hero,
+  .liebres-hero,
+  .about-hero {
+    position: relative;
+  }
+
+  @media (max-width: 900px) {
+    .hero-rent-badge {
+      top: 18px;
+      right: 20px;
+      transform: scale(0.93);
+      transform-origin: top right;
+    }
   }
 
   .trust-bar {
@@ -2573,6 +2784,21 @@
     line-height: 1.25;
     white-space: nowrap;
   }
+
+  .total-box .total-btn {
+    background: linear-gradient(135deg, #6ea8e5, #4c8fd4);
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 6px 18px rgba(47, 103, 163, 0.35);
+  }
+
+  .total-box .total-btn:hover {
+    background: linear-gradient(135deg, #7cb4ec, #5a9fe0);
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
 /* contenedor de toda la sección de orders */
 .order-container {
   background-color: #e9eff4; /* 👈 MISMO estilo que Bruma */
@@ -2621,6 +2847,61 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
+}
+
+/* Trusted-by logo rail: single continuous loop without gaps */
+.partners .logos-slider {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.partners .logos-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: max-content;
+  animation: logosLoop 26s linear infinite;
+  will-change: transform;
+}
+
+.partners .logos-track a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.partners .logos-track img {
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.95;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.partners .logos-track img:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.partners .logos-slider:hover .logos-track {
+  animation-play-state: paused;
+}
+
+@keyframes logosLoop {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.rent-post-note {
+  margin: 8px 2px 2px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #506070;
+  font-weight: 600;
 }
 
 .meal-detail {
