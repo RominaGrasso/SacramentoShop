@@ -948,9 +948,39 @@
 
   .rent-mode-options {
     margin-top: 8px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .rent-mode-options .rent-option {
+    flex: 1 1 0;
+    margin-bottom: 0;
+    white-space: nowrap;
+    gap: 10px !important;
+  }
+
+  .rent-mode-options .rent-option input[type="radio"] {
+    margin-right: 2px;
+  }
+
+  .rent-guided-help-panel {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(47, 103, 163, 0.22);
+    box-shadow: 0 4px 14px rgba(12, 38, 77, 0.08);
+  }
+
+  .rent-guided-help-panel p {
+    margin: 0;
+    font-size: 0.86rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #3d4f5f;
   }
 
   .rent-hours-label {
@@ -2885,6 +2915,16 @@
 .partners .logos-track img:hover {
   transform: scale(1.05);
   opacity: 1;
+}
+
+.partners .logos-track img[src*="calmalogo"] {
+  height: 62px;
+}
+
+.partners .logos-track img[src*="brumalogo"],
+.partners .logos-track img[src*="logorefugio"],
+.partners .logos-track img[src*="casapetitlogo"] {
+  height: 62px;
 }
 
 .partners .logos-slider:hover .logos-track {
