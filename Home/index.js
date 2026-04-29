@@ -1036,8 +1036,9 @@ function injectRentBadgeInActivityHero() {
   const path = window.location.pathname || "";
   const isActivityPage = path.includes("/Actividades/");
   const isCorporatePage = path.includes("corporate-boat.html");
+  const isAboutPage = path.includes("about.html") || path.includes("aboutus.html");
 
-  if (!isActivityPage || isCorporatePage) return;
+  if (!isActivityPage || isCorporatePage || isAboutPage) return;
   if (document.querySelector(".hero-rent-badge")) return;
 
   const hero = document.querySelector(

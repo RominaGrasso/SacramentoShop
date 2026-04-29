@@ -944,6 +944,7 @@
     border-radius: 10px;
     background: rgba(90, 149, 207, 0.08);
     border: 1px solid rgba(47, 103, 163, 0.15);
+    text-align: center;
   }
 
   .rent-mode-options {
