@@ -1161,8 +1161,10 @@ async function resolveRentDynamicPaymentLink(payload) {
     candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
   } else {
     candidates.push(endpoint);
+    // On static hosts (e.g. GitHub Pages), relative /api can return 404/405.
+    // Keep it first for same-origin setups, but always include remote fallback.
+    candidates.push(`${remoteTestBase}${endpoint}`);
     if (isLocalDevHost) {
-      candidates.push(`${remoteTestBase}${endpoint}`);
       candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
     }
   }
