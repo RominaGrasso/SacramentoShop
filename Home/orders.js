@@ -154,6 +154,71 @@ function initExperience(config) {
       } catch {}
       return fallback;
     };
+    const I18N_PREF_PREFIX = "__i18n__:";
+    const normalizePrefText = (value) =>
+      String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    const encodePref = (keyOrLabel) => {
+      const raw = String(keyOrLabel || "").trim();
+      if (!raw) return "";
+      return raw.startsWith(I18N_PREF_PREFIX) ? raw : `${I18N_PREF_PREFIX}${raw}`;
+    };
+    const legacyPrefToI18nKey = (value) => {
+      const v = normalizePrefText(value);
+      if (!v) return "";
+      if (
+        v.includes("low salt") ||
+        v.includes("salt free") ||
+        v.includes("salt") ||
+        v.includes("bajo en sal") ||
+        v.includes("sin sal") ||
+        v.includes("sal") ||
+        v.includes("baixo teor de sal")
+      ) {
+        return "bruma_pref_salt";
+      }
+      if (v.includes("vegetarian") || v.includes("vegetariano") || v.includes("vegetariana")) {
+        return "bruma_pref_veg";
+      }
+      if (
+        v.includes("no spicy") ||
+        v.includes("spicy") ||
+        v.includes("sin picante") ||
+        v.includes("picante") ||
+        v.includes("sem comida picante")
+      ) {
+        return "bruma_pref_spicy";
+      }
+      return "";
+    };
+    const decodePref = (storedPref) => {
+      const raw = String(storedPref || "").trim();
+      if (!raw) return "";
+      if (!raw.startsWith(I18N_PREF_PREFIX)) {
+        const legacyKey = legacyPrefToI18nKey(raw);
+        return legacyKey ? getI18nText(legacyKey, raw) : raw;
+      }
+      const key = raw.slice(I18N_PREF_PREFIX.length);
+      return getI18nText(key, key);
+    };
+    const prefEmojiFor = (storedPref) => {
+      const raw = String(storedPref || "").trim();
+      const key = raw.startsWith(I18N_PREF_PREFIX) ? raw.slice(I18N_PREF_PREFIX.length) : legacyPrefToI18nKey(raw);
+      if (key === "bruma_pref_salt") return "🧂";
+      if (key === "bruma_pref_veg") return "🌱";
+      if (key === "bruma_pref_spicy") return "🌶";
+      return "";
+    };
+    const decoratePref = (storedPref) => {
+      const label = decodePref(storedPref);
+      const emoji = prefEmojiFor(storedPref);
+      return emoji ? `${emoji} ${label}` : label;
+    };
 
     const escapeHtml = (str) =>
       String(str).replace(/[&<>"']/g, (m) => ({
@@ -166,7 +231,26 @@ function initExperience(config) {
 
     const getOrders = () => {
       try {
-        return JSON.parse(localStorage.getItem(storageKey)) || [];
+        const parsed = JSON.parse(localStorage.getItem(storageKey)) || [];
+        if (!Array.isArray(parsed)) return [];
+        let mutated = false;
+        const migrated = parsed.map((order) => {
+          if (!order || !Array.isArray(order.preferences)) return order;
+          const nextPrefs = order.preferences.map((pref) => {
+            const raw = String(pref || "").trim();
+            if (!raw) return raw;
+            if (raw.startsWith(I18N_PREF_PREFIX)) return raw;
+            const legacyKey = legacyPrefToI18nKey(raw);
+            if (!legacyKey) return raw;
+            mutated = true;
+            return encodePref(legacyKey);
+          });
+          return { ...order, preferences: nextPrefs };
+        });
+        if (mutated) {
+          localStorage.setItem(storageKey, JSON.stringify(migrated));
+        }
+        return migrated;
       } catch {
         return [];
       }
@@ -240,14 +324,29 @@ function initExperience(config) {
         const translated = key ? getI18nText(key, rawLabel) : rawLabel;
         if (value) map.set(value, translated);
         if (rawLabel) map.set(rawLabel, translated);
+        if (key) map.set(encodePref(key), translated);
       });
       return map;
     };
     const getLocalizedPreference = (storedValue) => {
-      const text = String(storedValue || "").trim();
+      const raw = String(storedValue || "").trim();
+      if (!raw) return "-";
+      if (raw.startsWith(I18N_PREF_PREFIX)) {
+        const dec = decodePref(raw);
+        return dec && dec.trim() ? dec : "-";
+      }
+      const text = raw
+        .replace(/^🍺\s*/, "")
+        .replace(/^🧂\s*/, "")
+        .replace(/^🌱\s*/, "")
+        .replace(/^🚫\s*/, "")
+        .replace(/^🌶\s*/, "")
+        .trim();
       if (!text) return "-";
+      const legacy = decodePref(text);
+      if (legacy !== text) return legacy;
       const lookup = buildPreferenceLookup();
-      return lookup.get(text) || text;
+      return lookup.get(text) || lookup.get(raw) || text;
     };
 
     const optionalGuideEl = () =>
@@ -581,8 +680,14 @@ function initExperience(config) {
 
       const prefsSet = new Set(Array.isArray(order.preferences) ? order.preferences : []);
       popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((input) => {
+        const span = input.parentElement?.querySelector("span[data-translate]");
+        const trKey = span?.dataset?.translate;
+        const encoded = trKey ? encodePref(trKey) : "";
         const labelText = input.parentElement?.textContent?.trim();
-        input.checked = prefsSet.has(input.value) || prefsSet.has(labelText);
+        input.checked =
+          prefsSet.has(input.value) ||
+          Boolean(labelText && prefsSet.has(labelText)) ||
+          Boolean(encoded && prefsSet.has(encoded));
       });
 
       const og = optionalGuideEl();
@@ -599,6 +704,7 @@ function initExperience(config) {
           .replace(/^🍺\s*/, "")
           .replace(/^🧂\s*/, "")
           .replace(/^🌱\s*/, "")
+          .replace(/^🚫\s*/, "")
           .replace(/^🌶\s*/, "")
           .trim();
       const t = (key, fallback) => getI18nText(key, fallback);
@@ -765,6 +871,7 @@ function initExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
+        const pendingTab = window.open("about:blank", "_blank");
         (async () => {
           const people = orders.length;
           const transportTotal =
@@ -772,19 +879,24 @@ function initExperience(config) {
           const experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
           const ggAmt = groupGuideAmount();
           const total = experienceSubtotal + ggAmt + transportTotal;
-          const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-            experience: dynamicPayment?.experienceId || experienceName,
-            amount: total,
-            currency: dynamicPayment?.currency || "USD",
-            people,
-            orderFingerprint: stableStringify({ orders, total, people, groupGuide: ggAmt }),
-            orderPayload: { orders, total, people, experienceName, groupGuideFlat: ggAmt }
-          });
+          let paymentUrl = "";
+          try {
+            paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+              experience: dynamicPayment?.experienceId || experienceName,
+              amount: total,
+              currency: dynamicPayment?.currency || "USD",
+              people,
+              orderFingerprint: stableStringify({ orders, total, people, groupGuide: ggAmt }),
+              orderPayload: { orders, total, people, experienceName, groupGuideFlat: ggAmt }
+            });
+          } catch {}
           const message = buildWhatsAppMessage(orders, formatDate(new Date()), paymentUrl);
-          window.open(
-            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-            "_blank"
-          );
+          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+          if (pendingTab && !pendingTab.closed) {
+            pendingTab.location.href = waUrl;
+          } else {
+            window.open(waUrl, "_blank");
+          }
         })();
       }
     });
@@ -818,6 +930,7 @@ function initExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
+          const pendingTab = window.open("about:blank", "_blank");
           (async () => {
             const people = orders.length;
             const transportTotal =
@@ -825,19 +938,24 @@ function initExperience(config) {
             const experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
             const ggAmt = groupGuideAmount();
             const total = experienceSubtotal + ggAmt + transportTotal;
-            const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-              experience: dynamicPayment?.experienceId || experienceName,
-              amount: total,
-              currency: dynamicPayment?.currency || "USD",
-              people,
-              orderFingerprint: stableStringify({ orders, total, people, groupGuide: ggAmt }),
-              orderPayload: { orders, total, people, experienceName, groupGuideFlat: ggAmt }
-            });
+            let paymentUrl = "";
+            try {
+              paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+                experience: dynamicPayment?.experienceId || experienceName,
+                amount: total,
+                currency: dynamicPayment?.currency || "USD",
+                people,
+                orderFingerprint: stableStringify({ orders, total, people, groupGuide: ggAmt }),
+                orderPayload: { orders, total, people, experienceName, groupGuideFlat: ggAmt }
+              });
+            } catch {}
             const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
-            window.open(
-              `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-              "_blank"
-            );
+            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            if (pendingTab && !pendingTab.closed) {
+              pendingTab.location.href = waUrl;
+            } else {
+              window.open(waUrl, "_blank");
+            }
           })();
         });
       }
@@ -866,6 +984,7 @@ function initFoodExperience(config) {
   const {
     pricePerPerson,
     experienceName = "Food",
+    experienceNameKey = null,
     whatsappNumber = "598091642195",
     popupId = "popupBruma",
     closeBtnId = "closeBruma",
@@ -875,9 +994,13 @@ function initFoodExperience(config) {
     touristOptionsId = "touristOptions",
     bookNowBottomId,
     storageKey = "orders",
+    dynamicPayment = null,
+    whatsappIncludesTitleKey = null,
+    whatsappIncludesKeys = [],
     mainName = "main",
     starterName = "starter",
-    touristMainName = "touristMain"
+    touristMainName = "touristMain",
+    defaultMainValue = ""
   } = config || {};
 
   if (!pricePerPerson) {
@@ -887,6 +1010,108 @@ function initFoodExperience(config) {
 
   document.addEventListener("DOMContentLoaded", () => {
     let editingIndex = null;
+    const getI18nText = (key, fallback) => {
+      const lang = localStorage.getItem("selectedLanguage") || "en";
+      try {
+        if (translations?.[lang]?.[key]) return translations[lang][key];
+        if (translations?.en?.[key]) return translations.en[key];
+      } catch {}
+      return fallback;
+    };
+    const I18N_PREF_PREFIX = "__i18n__:";
+    const normalizePrefText = (value) =>
+      String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    const encodePref = (keyOrLabel) => {
+      const raw = String(keyOrLabel || "").trim();
+      if (!raw) return "";
+      return raw.startsWith(I18N_PREF_PREFIX) ? raw : `${I18N_PREF_PREFIX}${raw}`;
+    };
+    const legacyPrefToI18nKey = (value) => {
+      const v = normalizePrefText(value);
+      if (!v) return "";
+      if (
+        v.includes("low salt") ||
+        v.includes("salt free") ||
+        v.includes("salt") ||
+        v.includes("bajo en sal") ||
+        v.includes("sin sal") ||
+        v.includes("sal") ||
+        v.includes("baixo teor de sal")
+      ) {
+        return "bruma_pref_salt";
+      }
+      if (v.includes("vegetarian") || v.includes("vegetariano") || v.includes("vegetariana")) {
+        return "bruma_pref_veg";
+      }
+      if (
+        v.includes("no spicy") ||
+        v.includes("spicy") ||
+        v.includes("sin picante") ||
+        v.includes("picante") ||
+        v.includes("sem comida picante")
+      ) {
+        return "bruma_pref_spicy";
+      }
+      return "";
+    };
+    const decodePref = (storedPref) => {
+      const raw = String(storedPref || "").trim();
+      if (!raw) return "";
+      if (!raw.startsWith(I18N_PREF_PREFIX)) {
+        const legacyKey = legacyPrefToI18nKey(raw);
+        return legacyKey ? getI18nText(legacyKey, raw) : raw;
+      }
+      const key = raw.slice(I18N_PREF_PREFIX.length);
+      return getI18nText(key, key);
+    };
+    const prefEmojiFor = (storedPref) => {
+      const raw = String(storedPref || "").trim();
+      const key = raw.startsWith(I18N_PREF_PREFIX) ? raw.slice(I18N_PREF_PREFIX.length) : legacyPrefToI18nKey(raw);
+      if (key === "bruma_pref_salt") return "🧂";
+      if (key === "bruma_pref_veg") return "🌱";
+      if (key === "bruma_pref_spicy") return "🌶";
+      return "";
+    };
+    const decoratePref = (storedPref) => {
+      const label = decodePref(storedPref);
+      const emoji = prefEmojiFor(storedPref);
+      return emoji ? `${emoji} ${label}` : label;
+    };
+
+    const FOOD_MEAL_I18N_KEYS = [
+      "food_popup_main_1",
+      "food_popup_main_2",
+      "food_popup_main_3",
+      "food_tourist_starter_1",
+      "food_tourist_starter_2",
+      "food_tourist_starter_3",
+      "food_tourist_main_1",
+      "food_tourist_main_2",
+      "food_tourist_main_3"
+    ];
+    const mealLabelMap = (() => {
+      const map = Object.create(null);
+      try {
+        ["en", "es", "pt"].forEach((lang) => {
+          FOOD_MEAL_I18N_KEYS.forEach((key) => {
+            const t = translations?.[lang]?.[key];
+            if (t) map[normalizePrefText(t)] = key;
+          });
+        });
+      } catch {}
+      return map;
+    })();
+    const mainRadioValueToKey = {
+      chivito: "food_popup_main_1",
+      milanesa: "food_popup_main_2",
+      tourist: "food_popup_main_3"
+    };
 
     const escapeHtml = (str) =>
       String(str).replace(/[&<>"']/g, (m) => ({
@@ -899,7 +1124,51 @@ function initFoodExperience(config) {
 
     const getOrders = () => {
       try {
-        return JSON.parse(localStorage.getItem(storageKey)) || [];
+        const parsed = JSON.parse(localStorage.getItem(storageKey)) || [];
+        if (!Array.isArray(parsed)) return [];
+        let mutated = false;
+        const migrated = parsed.map((order) => {
+          if (!order) return order;
+          let next = { ...order };
+          if (!Array.isArray(next.preferences)) next.preferences = [];
+
+          const nextPrefs = next.preferences.map((pref) => {
+            const raw = String(pref || "").trim();
+            if (!raw) return raw;
+            if (raw.startsWith(I18N_PREF_PREFIX)) return raw;
+            const legacyKey = legacyPrefToI18nKey(raw);
+            if (!legacyKey) return raw;
+            mutated = true;
+            return encodePref(legacyKey);
+          });
+          next.preferences = nextPrefs;
+
+          ["main", "starter", "touristMain"].forEach((field) => {
+            const v = next[field];
+            if (v == null || v === "") return;
+            const str = String(v).trim();
+            if (!str || str.startsWith(I18N_PREF_PREFIX)) return;
+            if (field === "main") {
+              const aliasKey = mainRadioValueToKey[str.toLowerCase()];
+              if (aliasKey) {
+                next[field] = encodePref(aliasKey);
+                mutated = true;
+                return;
+              }
+            }
+            const mapped = mealLabelMap[normalizePrefText(str)];
+            if (mapped) {
+              next[field] = encodePref(mapped);
+              mutated = true;
+            }
+          });
+
+          return next;
+        });
+        if (mutated) {
+          localStorage.setItem(storageKey, JSON.stringify(migrated));
+        }
+        return migrated;
       } catch {
         return [];
       }
@@ -922,6 +1191,13 @@ function initFoodExperience(config) {
       popup.querySelectorAll('input[type="radio"]').forEach((i) => (i.checked = false));
       popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((i) => (i.checked = false));
       touristBlock.style.display = "none";
+      if (defaultMainValue) {
+        const defaultMain = popup.querySelector(`input[name="${mainName}"][value="${defaultMainValue}"]`);
+        if (defaultMain) {
+          defaultMain.checked = true;
+          touristBlock.style.display = defaultMainValue === "tourist" ? "block" : "none";
+        }
+      }
     };
 
     // Mostrar/ocultar opciones "tourist"
@@ -938,7 +1214,7 @@ function initFoodExperience(config) {
     createBtn.addEventListener("click", (e) => {
       e.preventDefault();
       editingIndex = null;
-      saveBtn.textContent = "Save selection";
+      saveBtn.textContent = getI18nText("save_selection", "Save selection");
       resetPopup();
       popup.classList.add("active");
     });
@@ -955,15 +1231,29 @@ function initFoodExperience(config) {
 
       const main = popup.querySelector(`input[name="${mainName}"]:checked`);
       if (!main) {
-        alert("Select a meal");
+        alert(getI18nText("food_alert_select_meal", "Select a meal"));
         return;
       }
 
-      const mainText = main.nextElementSibling?.textContent?.trim() || main.value;
+      const mainSpan =
+        main.parentElement?.querySelector("span[data-translate]") ||
+        (main.nextElementSibling?.matches?.("[data-translate]") ? main.nextElementSibling : null);
+      const mainI18nKey = mainSpan?.dataset?.translate;
+      const mainVal = String(main.value || "").trim();
+      const mainStored = mainI18nKey
+        ? encodePref(mainI18nKey)
+        : mainRadioValueToKey[mainVal.toLowerCase()]
+          ? encodePref(mainRadioValueToKey[mainVal.toLowerCase()])
+          : mainVal;
 
       const preferences = Array.from(
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
-      ).map((el) => el.parentElement.textContent.trim());
+      ).map((el) => {
+        const trSpan = el.parentElement?.querySelector("span[data-translate]");
+        const trKey = trSpan?.dataset?.translate;
+        if (trKey) return encodePref(trKey);
+        return el.parentElement.textContent.trim();
+      });
 
       let starter = null;
       let touristMain = null;
@@ -973,16 +1263,28 @@ function initFoodExperience(config) {
         const touristMainSelected = touristBlock.querySelector(`input[name="${touristMainName}"]:checked`);
 
         if (!starterSelected || !touristMainSelected) {
-          alert("Please complete starter and main");
+          alert(
+            getI18nText(
+              "food_alert_complete_tourist",
+              "Please choose starter and main for the tourist menu"
+            )
+          );
           return;
         }
 
-        starter = starterSelected.parentElement.textContent.trim();
-        touristMain = touristMainSelected.parentElement.textContent.trim();
+        const stSpan = starterSelected.parentElement?.querySelector("span[data-translate]");
+        const stKey = stSpan?.dataset?.translate;
+        starter = stKey ? encodePref(stKey) : starterSelected.parentElement.textContent.trim();
+
+        const tmSpan = touristMainSelected.parentElement?.querySelector("span[data-translate]");
+        const tmKey = tmSpan?.dataset?.translate;
+        touristMain = tmKey
+          ? encodePref(tmKey)
+          : touristMainSelected.parentElement.textContent.trim();
       }
 
       const order = {
-        main: mainText,
+        main: mainStored,
         starter,
         touristMain,
         preferences
@@ -1005,34 +1307,35 @@ function initFoodExperience(config) {
 
       let html = `
         <div class="order-container">
-          <h2>Your order</h2>
+          <h2>${escapeHtml(getI18nText("your_order", "Your order"))}</h2>
       `;
 
       if (orders.length > 0) {
         html += `
           <button id="addGuestBtn" class="add-guest-btn">
-            + Add Order
+            + ${escapeHtml(getI18nText("add_order", "Add Order"))}
           </button>
         `;
       }
 
       orders.forEach((order, i) => {
-        const mainDisplay = order.touristMain ? order.touristMain : order.main;
+        const mainDisplay = order.touristMain ? decodePref(order.touristMain) : decodePref(order.main);
         const prefs = Array.isArray(order.preferences) ? order.preferences : [];
+        const prefsLocalized = prefs.map((p) => decoratePref(p)).filter(Boolean);
 
         html += `
           <div class="order-card">
             <div class="order-header">
-              <h3>Order ${i + 1}</h3>
+              <h3>${escapeHtml(getI18nText("order_word", "Order"))} ${i + 1}</h3>
               <div class="order-actions">
                 <span class="edit-order" data-index="${i}">✏️</span>
                 <span class="delete-order" data-index="${i}">🗑️</span>
               </div>
             </div>
-            <p><strong>Main:</strong> ${escapeHtml(mainDisplay || "-")}</p>
-            ${order.starter ? `<p><strong>Starter:</strong> ${escapeHtml(order.starter)}</p>` : ""}
-            ${order.touristMain ? `<p><strong>Dessert:</strong> Chajá típico uruguayo</p>` : ""}
-            <p><strong>Preferences:</strong> ${escapeHtml(prefs.join(", ") || "-")}</p>
+            <p><strong>${escapeHtml(getI18nText("bruma_popup_main", "Main Course"))}:</strong> ${escapeHtml(mainDisplay || "-")}</p>
+            ${order.starter ? `<p><strong>${escapeHtml(getI18nText("bruma_popup_starter", "Starter"))}:</strong> ${escapeHtml(decodePref(order.starter))}</p>` : ""}
+            ${order.touristMain ? `<p><strong>${escapeHtml(getI18nText("dessert_word", "Dessert"))}:</strong> ${escapeHtml(getI18nText("food_tourist_dessert_1", "Traditional Uruguayan Chajá"))}</p>` : ""}
+            <p><strong>${escapeHtml(getI18nText("preferences_word", "Preferences"))}:</strong> ${escapeHtml(prefsLocalized.join(", ") || "-")}</p>
           </div>
         `;
       });
@@ -1049,7 +1352,7 @@ function initFoodExperience(config) {
               USD ${total}
             </div>
             <a href="#" id="bookWithOrder" class="btn total-btn">
-              Book Now
+              ${escapeHtml(getI18nText("book_btn", "Book Now"))}
             </a>
           </div>
         `;
@@ -1059,6 +1362,67 @@ function initFoodExperience(config) {
       container.innerHTML = html;
     };
 
+    const buildFoodWhatsAppMessage = (orders, paymentLinkOverride = "") => {
+      const waIntro = getI18nText(
+        "wa_booking_intro",
+        "Hello! I’d like to book the"
+      );
+      const waExperienceWord = getI18nText("wa_experience_word", "experience");
+      const waOrderWord = getI18nText("order_word", "Order");
+      const waTotalLabel = getI18nText("wa_total_label", "Total");
+      const waMainLabel = getI18nText("bruma_popup_main", "Main Course");
+      const waStarterLabel = getI18nText("bruma_popup_starter", "Starter");
+      const waDessertLabel = getI18nText("dessert_word", "Dessert");
+      const waPreferencesLabel = getI18nText("preferences_word", "Preferences");
+      const localizedExperienceName = experienceNameKey
+        ? getI18nText(experienceNameKey, experienceName)
+        : experienceName;
+      const normalizedExpName = String(localizedExperienceName || "").trim().toLowerCase();
+      const normalizedExpWord = String(waExperienceWord || "").trim().toLowerCase();
+      const includeExpWord =
+        normalizedExpWord &&
+        !normalizedExpName.endsWith(normalizedExpWord);
+      const waLine = [waIntro, localizedExperienceName, includeExpWord ? waExperienceWord : ""]
+        .filter(Boolean)
+        .join(" ");
+      let message = `${waLine}:\n\n`;
+      if (Array.isArray(whatsappIncludesKeys) && whatsappIncludesKeys.length > 0) {
+        const includesTitle = whatsappIncludesTitleKey
+          ? getI18nText(whatsappIncludesTitleKey, "What's included")
+          : getI18nText("wa_includes_label", "What's included");
+        message += `*${includesTitle}:*\n`;
+        whatsappIncludesKeys.forEach((key) => {
+          const line = getI18nText(key, key);
+          message += `• ${line}\n`;
+        });
+        message += `\n`;
+      }
+      orders.forEach((o, i) => {
+        const mainDisplay = o.touristMain ? decodePref(o.touristMain) : decodePref(o.main);
+        const prefs = Array.isArray(o.preferences) ? o.preferences : [];
+        const prefsLocalized = prefs.map((p) => decoratePref(p)).filter(Boolean);
+        message += `*${waOrderWord} ${i + 1}*\n`;
+        message += `${waMainLabel}: ${mainDisplay || "-"}\n`;
+        if (o.starter) {
+          message += `${waStarterLabel}: ${decodePref(o.starter)}\n`;
+        }
+        if (o.touristMain) {
+          message += `${waDessertLabel}: ${getI18nText("food_tourist_dessert_1", "Traditional Uruguayan Chajá")}\n`;
+        }
+        message += `${waPreferencesLabel}: ${prefsLocalized.join(", ") || "-"}\n\n`;
+      });
+      const total = orders.length * pricePerPerson;
+      message += `*${waTotalLabel}:* USD ${total}`;
+      if (paymentLinkOverride) {
+        message += `\n\n${getI18nText("wa_payment_cta", "To confirm the reservation, please complete the payment here:")}\n${paymentLinkOverride}`;
+        message += `\n\n${getI18nText(
+          "food_post_payment_note",
+          "After payment, we will send your reservation details and instructions."
+        )}`;
+      }
+      return { message, total };
+    };
+
     container.addEventListener("click", (e) => {
       const target = e.target;
 
@@ -1066,7 +1430,7 @@ function initFoodExperience(config) {
       if (addBtn) {
         e.preventDefault();
         editingIndex = null;
-        saveBtn.textContent = "Save selection";
+        saveBtn.textContent = getI18nText("save_selection", "Save selection");
         resetPopup();
         popup.classList.add("active");
         return;
@@ -1097,34 +1461,61 @@ function initFoodExperience(config) {
           if (touristRadio) touristRadio.checked = true;
           touristBlock.style.display = "block";
 
-          popup
-            .querySelectorAll(`input[name="${starterName}"]`)
-            .forEach((r) => {
-              const text = r.parentElement?.textContent?.trim();
-              if (text === order.starter) r.checked = true;
-            });
+          popup.querySelectorAll(`input[name="${starterName}"]`).forEach((r) => {
+            const span = r.parentElement?.querySelector("span[data-translate]");
+            const k = span?.dataset?.translate;
+            const enc = k ? encodePref(k) : "";
+            const legacyText = r.parentElement?.textContent?.trim();
+            if (
+              (enc && enc === order.starter) ||
+              (legacyText && (legacyText === order.starter || legacyText === decodePref(order.starter)))
+            ) {
+              r.checked = true;
+            }
+          });
 
-          touristBlock
-            .querySelectorAll(`input[name="${touristMainName}"]`)
-            .forEach((r) => {
-              const text = r.parentElement?.textContent?.trim();
-              if (text === order.touristMain) r.checked = true;
-            });
+          touristBlock.querySelectorAll(`input[name="${touristMainName}"]`).forEach((r) => {
+            const span = r.parentElement?.querySelector("span[data-translate]");
+            const k = span?.dataset?.translate;
+            const enc = k ? encodePref(k) : "";
+            const legacyText = r.parentElement?.textContent?.trim();
+            if (
+              (enc && enc === order.touristMain) ||
+              (legacyText &&
+                (legacyText === order.touristMain || legacyText === decodePref(order.touristMain)))
+            ) {
+              r.checked = true;
+            }
+          });
         } else {
           popup.querySelectorAll(`input[name="${mainName}"]`).forEach((r) => {
-            const text = r.nextElementSibling?.textContent?.trim();
-            if (text === order.main) r.checked = true;
+            const span =
+              r.parentElement?.querySelector("span[data-translate]") ||
+              (r.nextElementSibling?.matches?.("[data-translate]") ? r.nextElementSibling : null);
+            const k = span?.dataset?.translate;
+            const enc = k ? encodePref(k) : "";
+            const labelText = span?.textContent?.trim();
+            if (
+              (enc && enc === order.main) ||
+              (labelText &&
+                (labelText === order.main || labelText === decodePref(order.main)))
+            ) {
+              r.checked = true;
+            }
           });
           touristBlock.style.display = "none";
         }
 
         const prefSet = new Set(Array.isArray(order.preferences) ? order.preferences : []);
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((cb) => {
+          const trSpan = cb.parentElement?.querySelector("span[data-translate]");
+          const trKey = trSpan?.dataset?.translate;
           const labelText = cb.parentElement?.textContent?.trim();
-          cb.checked = prefSet.has(labelText);
+          const encoded = trKey ? encodePref(trKey) : "";
+          cb.checked = (encoded && prefSet.has(encoded)) || prefSet.has(labelText);
         });
 
-        saveBtn.textContent = "Update order";
+        saveBtn.textContent = getI18nText("update_order", "Update order");
         popup.classList.add("active");
         return;
       }
@@ -1134,16 +1525,30 @@ function initFoodExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
-
-        let message = `Hello! I’d like to book the ${experienceName} Experience:\n\n`;
-        orders.forEach((o, i) => {
-          const mainDisplay = o.touristMain ? o.touristMain : o.main;
-          message += `Order ${i + 1}: ${mainDisplay}\n`;
-        });
-        const total = orders.length * pricePerPerson;
-        message += `\nTotal: USD ${total}`;
-
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
+        const pendingTab = window.open("about:blank", "_blank");
+        (async () => {
+          const base = buildFoodWhatsAppMessage(orders);
+          let finalMessage = base.message;
+          try {
+            const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+              experience: dynamicPayment?.experienceId || experienceName,
+              amount: base.total,
+              currency: dynamicPayment?.currency || "USD",
+              people: orders.length,
+              orderFingerprint: stableStringify({ orders, total: base.total }),
+              orderPayload: { orders, total: base.total, experienceName }
+            });
+            if (paymentUrl) {
+              finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
+            }
+          } catch {}
+          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
+          if (pendingTab && !pendingTab.closed) {
+            pendingTab.location.href = waUrl;
+          } else {
+            window.open(waUrl, "_blank");
+          }
+        })();
       }
     });
 
@@ -1152,10 +1557,50 @@ function initFoodExperience(config) {
       if (bottomBtn) {
         bottomBtn.addEventListener("click", (e) => {
           e.preventDefault();
-          window.open(`https://wa.me/${whatsappNumber}`, "_blank");
+          const orders = getOrders();
+          if (orders.length === 0) {
+            alert(getI18nText("orders_alert_create_first", "Please create your order first."));
+            return;
+          }
+          const pendingTab = window.open("about:blank", "_blank");
+          (async () => {
+            const base = buildFoodWhatsAppMessage(orders);
+            let finalMessage = base.message;
+            try {
+              const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+                experience: dynamicPayment?.experienceId || experienceName,
+                amount: base.total,
+                currency: dynamicPayment?.currency || "USD",
+                people: orders.length,
+                orderFingerprint: stableStringify({ orders, total: base.total }),
+                orderPayload: { orders, total: base.total, experienceName }
+              });
+              if (paymentUrl) {
+                finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
+              }
+            } catch {}
+            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
+            if (pendingTab && !pendingTab.closed) {
+              pendingTab.location.href = waUrl;
+            } else {
+              window.open(waUrl, "_blank");
+            }
+          })();
         });
       }
     }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        renderOrders();
+        if (popup.classList.contains("active")) {
+          saveBtn.textContent =
+            editingIndex !== null
+              ? getI18nText("update_order", "Update order")
+              : getI18nText("save_selection", "Save selection");
+        }
+      });
+    });
 
     renderOrders();
   });
@@ -1406,20 +1851,28 @@ function initPreferencesOrderExperience(config) {
         const orders = getOrders();
         if (orders.length === 0) return;
 
+        const pendingTab = window.open("about:blank", "_blank");
         (async () => {
           const people = orders.length;
           const total = people * pricePerPerson;
-          const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-            experience: dynamicPayment?.experienceId || experienceName,
-            amount: total,
-            currency: dynamicPayment?.currency || "USD",
-            people,
-            orderFingerprint: stableStringify({ orders, total, people }),
-            orderPayload: { orders, total, people, experienceName }
-          });
+          let paymentUrl = "";
+          try {
+            paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+              experience: dynamicPayment?.experienceId || experienceName,
+              amount: total,
+              currency: dynamicPayment?.currency || "USD",
+              people,
+              orderFingerprint: stableStringify({ orders, total, people }),
+              orderPayload: { orders, total, people, experienceName }
+            });
+          } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
-          const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          window.open(url, "_blank");
+          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+          if (pendingTab && !pendingTab.closed) {
+            pendingTab.location.href = waUrl;
+          } else {
+            window.open(waUrl, "_blank");
+          }
         })();
       }
     });
@@ -1471,20 +1924,28 @@ function initPreferencesOrderExperience(config) {
             return;
           }
 
+          const pendingTab = window.open("about:blank", "_blank");
           (async () => {
             const people = orders.length;
             const total = people * pricePerPerson;
-            const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-              experience: dynamicPayment?.experienceId || experienceName,
-              amount: total,
-              currency: dynamicPayment?.currency || "USD",
-              people,
-              orderFingerprint: stableStringify({ orders, total, people }),
-              orderPayload: { orders, total, people, experienceName }
-            });
+            let paymentUrl = "";
+            try {
+              paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+                experience: dynamicPayment?.experienceId || experienceName,
+                amount: total,
+                currency: dynamicPayment?.currency || "USD",
+                people,
+                orderFingerprint: stableStringify({ orders, total, people }),
+                orderPayload: { orders, total, people, experienceName }
+              });
+            } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
-            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, "_blank");
+            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            if (pendingTab && !pendingTab.closed) {
+              pendingTab.location.href = waUrl;
+            } else {
+              window.open(waUrl, "_blank");
+            }
           })();
         });
       }
@@ -1554,6 +2015,21 @@ function initPackageOrderExperience(config) {
     return;
   }
 
+  const getI18nText = (key, fallback) => {
+    const lang = localStorage.getItem("selectedLanguage") || "en";
+    try {
+      if (translations?.[lang]?.[key]) return translations[lang][key];
+      if (translations?.en?.[key]) return translations.en[key];
+    } catch {}
+    return fallback;
+  };
+
+  const trTpl = (key, fallback, vars) => {
+    let s = getI18nText(key, fallback);
+    if (!vars || typeof vars !== "object") return s;
+    return Object.keys(vars).reduce((acc, k) => acc.split(`{${k}}`).join(String(vars[k])), s);
+  };
+
   const resolvePackageSpec = (id) => {
     const raw = packages[id];
     if (raw == null) return null;
@@ -1561,7 +2037,12 @@ function initPackageOrderExperience(config) {
       return { price: raw, label: String(id) };
     }
     if (typeof raw === "object" && typeof raw.price === "number") {
-      const label = typeof raw.label === "string" && raw.label.trim() ? raw.label.trim() : String(id);
+      const fallbackLabel =
+        typeof raw.label === "string" && raw.label.trim() ? raw.label.trim() : String(id);
+      const label =
+        typeof raw.labelKey === "string" && raw.labelKey.trim()
+          ? getI18nText(raw.labelKey.trim(), fallbackLabel)
+          : fallbackLabel;
       return { price: raw.price, label };
     }
     return null;
@@ -1663,6 +2144,41 @@ function initPackageOrderExperience(config) {
         "'": "&#39;"
       }[m]));
 
+    const pkgI18nPrefPrefix = "__i18n__:";
+    const buildPreferenceLookup = () => {
+      const map = new Map();
+      popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((input) => {
+        const value = input.value || "";
+        const span = input.parentElement?.querySelector("span[data-translate]");
+        const rawLabel = span?.textContent?.trim() || input.parentElement?.textContent?.trim() || value;
+        const key = span?.dataset?.translate;
+        const translated = key ? getI18nText(key, rawLabel) : rawLabel;
+        if (value) map.set(value, translated);
+        if (rawLabel) map.set(rawLabel, translated);
+        if (key) map.set(`${pkgI18nPrefPrefix}${key}`, translated);
+      });
+      return map;
+    };
+
+    const getLocalizedPreference = (storedValue) => {
+      const raw = String(storedValue || "").trim();
+      if (!raw) return "-";
+      if (raw.startsWith(pkgI18nPrefPrefix)) {
+        const key = raw.slice(pkgI18nPrefPrefix.length);
+        return getI18nText(key, key);
+      }
+      const text = raw
+        .replace(/^🍺\s*/, "")
+        .replace(/^🧂\s*/, "")
+        .replace(/^🌱\s*/, "")
+        .replace(/^🚫\s*/, "")
+        .replace(/^🌶\s*/, "")
+        .trim();
+      if (!text) return "-";
+      const lookup = buildPreferenceLookup();
+      return lookup.get(text) || lookup.get(raw) || text;
+    };
+
     const getOrders = () => {
       try {
         return JSON.parse(localStorage.getItem(storageKey)) || [];
@@ -1684,7 +2200,7 @@ function initPackageOrderExperience(config) {
       });
       const og = optionalGuideEl();
       if (og) og.checked = false;
-      saveBtn.textContent = "Save selection";
+      saveBtn.textContent = getI18nText("save_selection", "Save selection");
     };
 
     const resetPopup = () => {
@@ -1717,15 +2233,29 @@ function initPackageOrderExperience(config) {
       const total = lineTotalForOrder(o, orders);
       if (o.packageId != null && eff.label) {
         if (share > 0) {
-          return `${eff.label} — USD ${pkgPrice} experience + USD ${formatMoney(share)} transport share (group) = USD ${formatMoney(total)} per person`;
+          return trTpl(
+            "orders_pkg_line_with_transport",
+            "{label} — USD {pkg} experience + USD {share} group transport share = USD {total} per guest",
+            {
+              label: eff.label,
+              pkg: pkgPrice,
+              share: formatMoney(share),
+              total: formatMoney(total)
+            }
+          );
         }
-        return `${eff.label} (USD ${pkgPrice} per person)`;
+        return trTpl("orders_pkg_line_per_person", "{label} (USD {pkg} per person)", {
+          label: eff.label,
+          pkg: pkgPrice
+        });
       }
       const n = Number(o.packagePeople);
       if (n > 0) {
-        return `${n} person${n === 1 ? "" : "s"} (USD ${pkgPrice})`;
+        const key = n === 1 ? "orders_pkg_line_people_one" : "orders_pkg_line_people_many";
+        const fb = n === 1 ? "{n} person (USD {pkg})" : "{n} people (USD {pkg})";
+        return trTpl(key, fb, { n, pkg: pkgPrice });
       }
-      return `Package (USD ${pkgPrice})`;
+      return trTpl("orders_pkg_line_fallback", "Package (USD {pkg})", { pkg: pkgPrice });
     };
 
     const buildWhatsAppMessage = (orders, paymentLinkOverride = "") => {
@@ -1742,8 +2272,12 @@ function initPackageOrderExperience(config) {
       orders.forEach((o, i) => {
         const prefs = Array.isArray(o.preferences) ? o.preferences : [];
         experienceSubtotal += getEffectivePackagePricing(o).price;
+        const prefsWa =
+          prefs.length === 0
+            ? "-"
+            : prefs.map(getLocalizedPreference).filter((p) => p && p !== "-").join(", ") || "-";
 
-        ordersText += `*Order ${i + 1}*\nPackage: ${packageLineForOrder(o, orders)}\nPreferences: ${prefs.join(", ") || "-"}\n\n`;
+        ordersText += `*Order ${i + 1}*\nPackage: ${packageLineForOrder(o, orders)}\nPreferences: ${prefsWa}\n\n`;
       });
 
       const tGroup = totalGroupTransport(orders);
@@ -1814,52 +2348,73 @@ function initPackageOrderExperience(config) {
         setGroupGuideStored(Boolean(gelSync.checked));
       }
 
-      let html = `<h3>Your order</h3>`;
+      let html = `<h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>`;
 
       if (orders.length > 0) {
         html = `
           <button id="addGuestBtn" class="add-guest-btn">
-            + Add Order
+            + ${escapeHtml(getI18nText("add_order", "Add Order"))}
           </button>
-          <h3>Your order</h3>
+          <h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>
         `;
       }
 
       orders.forEach((order, index) => {
-        const prefs = Array.isArray(order.preferences) ? order.preferences : [];
+        const prefsRaw = Array.isArray(order.preferences) ? order.preferences : [];
+        const prefsLine =
+          prefsRaw.length === 0
+            ? "-"
+            : prefsRaw.map(getLocalizedPreference).filter((p) => p && p !== "-").join(", ") || "-";
         const lineTotal = lineTotalForOrder(order, orders);
 
         const effPkg = getEffectivePackagePricing(order);
         const pkgPrice = effPkg.price;
         const share = usesGroupTransport(orders) ? transportSharePerGuest(orders) : transportForLegacyOrder(order);
         const expLabel = (() => {
-          if (guideFee <= 0) return "experience";
+          if (guideFee <= 0) return getI18nText("orders_pkg_paren_experience", "experience");
           if (guideOptional) {
             return order.includeGuide
-              ? `experience, incl. optional guide USD ${formatMoney(guideFee)}`
-              : "experience";
+              ? trTpl(
+                  "orders_pkg_paren_exp_opt_guide",
+                  "experience, incl. optional guide USD {n}",
+                  { n: formatMoney(guideFee) }
+                )
+              : getI18nText("orders_pkg_paren_experience", "experience");
           }
-          return `experience, incl. USD ${formatMoney(guideFee)} guide`;
+          return trTpl(
+            "orders_pkg_paren_exp_incl_guide",
+            "experience, incl. USD {n} guide",
+            { n: formatMoney(guideFee) }
+          );
         })();
-        let packageHtml = `<strong>Package:</strong> ${escapeHtml(effPkg.label)} — USD ${escapeHtml(String(pkgPrice))} (${expLabel})`;
+        const pkgLbl = escapeHtml(getI18nText("orders_pkg_package_lbl", "Package:"));
+        let packageHtml = `<strong>${pkgLbl}</strong> ${escapeHtml(effPkg.label)} — USD ${escapeHtml(
+          String(pkgPrice)
+        )} (${escapeHtml(expLabel)})`;
         if (share > 0) {
-          packageHtml += `<br><strong>Transport (your share of the group):</strong> USD ${escapeHtml(formatMoney(share))}`;
-          packageHtml += `<br><strong>Guest total:</strong> USD ${escapeHtml(formatMoney(lineTotal))}`;
+          packageHtml += `<br><strong>${escapeHtml(
+            getI18nText("orders_pkg_transport_share", "Transport (your share of the group):")
+          )}</strong> USD ${escapeHtml(formatMoney(share))}`;
+          packageHtml += `<br><strong>${escapeHtml(
+            getI18nText("orders_pkg_guest_total", "Guest total:")
+          )}</strong> USD ${escapeHtml(formatMoney(lineTotal))}`;
         } else {
-          packageHtml = `<strong>Package:</strong> ${escapeHtml(packageLineForOrder(order, orders))}`;
+          packageHtml = `<strong>${pkgLbl}</strong> ${escapeHtml(packageLineForOrder(order, orders))}`;
         }
 
         html += `
           <div class="order-card">
             <div class="order-header">
-              <strong>Order ${index + 1}</strong>
+              <strong>${escapeHtml(getI18nText("order_word", "Order"))} ${index + 1}</strong>
               <div class="order-actions">
                 <span class="edit-order" data-index="${index}">✏️</span>
                 <span class="delete-order" data-index="${index}">🗑️</span>
               </div>
             </div>
             <p>${packageHtml}</p>
-            <p><strong>Preferences:</strong> ${escapeHtml(prefs.join(", ") || "-")}</p>
+            <p><strong>${escapeHtml(getI18nText("preferences_word", "Preferences"))}:</strong> ${escapeHtml(
+          prefsLine
+        )}</p>
           </div>
         `;
       });
@@ -1872,35 +2427,51 @@ function initPackageOrderExperience(config) {
           ? tGroupAmt
           : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
         const total = expSum + transportSum + ggAmt;
+        const guestUnit =
+          orders.length === 1
+            ? getI18nText("guest_order_singular", "guest order")
+            : getI18nText("guest_order_plural", "guest orders");
         const detailExtra =
           usesGroupTransport(orders) && orders.length > 0
-            ? ` · transport USD ${escapeHtml(formatMoney(tGroupAmt))}`
+            ? ` · ${escapeHtml(getI18nText("orders_summary_transport", "transport"))} USD ${escapeHtml(
+                formatMoney(tGroupAmt)
+              )}`
             : "";
         let guideDetail = "";
         if (guideFee > 0) {
           if (guideOptional) {
             const guideTotalOptional = orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0);
             if (guideTotalOptional > 0) {
-              guideDetail = ` · optional guide USD ${escapeHtml(formatMoney(guideTotalOptional))}`;
+              guideDetail = ` · ${escapeHtml(getI18nText("orders_summary_optional_guide", "optional guide"))} USD ${escapeHtml(
+                formatMoney(guideTotalOptional)
+              )}`;
             }
           } else {
-            guideDetail = ` · guide USD ${escapeHtml(formatMoney(guideFee))}/guest incl.`;
+            guideDetail = ` · ${escapeHtml(
+              trTpl("orders_summary_guide_guest_incl", "guide USD {n}/guest incl.", {
+                n: formatMoney(guideFee)
+              })
+            )}`;
           }
         }
         if (groupGuideEnabled && ggAmt > 0) {
-          guideDetail += ` · group guide USD ${escapeHtml(formatMoney(ggAmt))}`;
+          guideDetail += ` · ${escapeHtml(getI18nText("orders_summary_group_guide", "group guide"))} USD ${escapeHtml(
+            formatMoney(ggAmt)
+          )}`;
         }
         html += `
           <div class="total-box">
             <div class="total-left">
-              <span class="total-label">Total</span>
-              <span class="total-detail">${orders.length} guest order${orders.length === 1 ? "" : "s"} · experiences USD ${escapeHtml(formatMoney(expSum))}${guideDetail}${detailExtra}</span>
+              <span class="total-label">${escapeHtml(getI18nText("total_label", "Total"))}</span>
+              <span class="total-detail">${orders.length} ${escapeHtml(guestUnit)} · ${escapeHtml(
+          getI18nText("orders_summary_experiences", "experiences")
+        )} USD ${escapeHtml(formatMoney(expSum))}${guideDetail}${detailExtra}</span>
             </div>
             <div class="total-right">
               USD ${escapeHtml(formatMoney(total))}
             </div>
             <a href="#" id="bookWithOrder" class="btn total-btn">
-              Book Now
+              ${escapeHtml(getI18nText("book_btn", "Book Now"))}
             </a>
           </div>
         `;
@@ -1950,12 +2521,19 @@ function initPackageOrderExperience(config) {
 
         const prefsSet = new Set(Array.isArray(order.preferences) ? order.preferences : []);
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((cb) => {
-          cb.checked = prefsSet.has(cb.value);
+          const span = cb.parentElement?.querySelector("span[data-translate]");
+          const trKey = span?.dataset?.translate;
+          const encoded = trKey ? `${pkgI18nPrefPrefix}${trKey}` : "";
+          const labelText = cb.parentElement?.textContent?.trim();
+          cb.checked =
+            prefsSet.has(cb.value) ||
+            Boolean(labelText && prefsSet.has(labelText)) ||
+            Boolean(encoded && prefsSet.has(encoded));
         });
         const og = optionalGuideEl();
         if (og) og.checked = Boolean(order.includeGuide);
 
-        saveBtn.textContent = "Update order";
+        saveBtn.textContent = getI18nText("update_order", "Update order");
         popup.classList.add("active");
         popup.setAttribute("aria-hidden", "false");
         return;
@@ -1966,29 +2544,38 @@ function initPackageOrderExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
+        const pendingTab = window.open("about:blank", "_blank");
         (async () => {
           const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
           const transportTotal = usesGroupTransport(orders)
             ? totalGroupTransport(orders)
             : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
           const total = expTotal + transportTotal + groupGuideAmount();
-          const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-            experience: dynamicPayment?.experienceId || experienceName,
-            amount: total,
-            currency: dynamicPayment?.currency || "USD",
-            people: orders.length,
-            orderFingerprint: stableStringify({
-              orders: orders.map((o) => ({
-                ...o,
-                packagePrice: getEffectivePackagePricing(o).price,
-                packageLabel: getEffectivePackagePricing(o).label
-              })),
-              total
-            }),
-            orderPayload: { orders, total, experienceName }
-          });
+          let paymentUrl = "";
+          try {
+            paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+              experience: dynamicPayment?.experienceId || experienceName,
+              amount: total,
+              currency: dynamicPayment?.currency || "USD",
+              people: orders.length,
+              orderFingerprint: stableStringify({
+                orders: orders.map((o) => ({
+                  ...o,
+                  packagePrice: getEffectivePackagePricing(o).price,
+                  packageLabel: getEffectivePackagePricing(o).label
+                })),
+                total
+              }),
+              orderPayload: { orders, total, experienceName }
+            });
+          } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
-          window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
+          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+          if (pendingTab && !pendingTab.closed) {
+            pendingTab.location.href = waUrl;
+          } else {
+            window.open(waUrl, "_blank");
+          }
         })();
       }
     });
@@ -2009,7 +2596,7 @@ function initPackageOrderExperience(config) {
 
       const selectedPackage = popup.querySelector(`input[name="${packageRadioName}"]:checked`);
       if (!selectedPackage) {
-        alert("Please select a package");
+        alert(getI18nText("orders_pkg_alert_select", "Please select a package"));
         return;
       }
 
@@ -2017,7 +2604,7 @@ function initPackageOrderExperience(config) {
       const spec = resolvePackageSpec(packageId);
 
       if (!spec || !spec.price) {
-        alert("Invalid package");
+        alert(getI18nText("orders_pkg_alert_invalid", "Invalid package"));
         return;
       }
 
@@ -2058,29 +2645,38 @@ function initPackageOrderExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
+          const pendingTab = window.open("about:blank", "_blank");
           (async () => {
             const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
             const transportTotal = usesGroupTransport(orders)
               ? totalGroupTransport(orders)
               : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
             const total = expTotal + transportTotal + groupGuideAmount();
-            const paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-              experience: dynamicPayment?.experienceId || experienceName,
-              amount: total,
-              currency: dynamicPayment?.currency || "USD",
-              people: orders.length,
-              orderFingerprint: stableStringify({
-                orders: orders.map((o) => ({
-                  ...o,
-                  packagePrice: getEffectivePackagePricing(o).price,
-                  packageLabel: getEffectivePackagePricing(o).label
-                })),
-                total
-              }),
-              orderPayload: { orders, total, experienceName }
-            });
+            let paymentUrl = "";
+            try {
+              paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+                experience: dynamicPayment?.experienceId || experienceName,
+                amount: total,
+                currency: dynamicPayment?.currency || "USD",
+                people: orders.length,
+                orderFingerprint: stableStringify({
+                  orders: orders.map((o) => ({
+                    ...o,
+                    packagePrice: getEffectivePackagePricing(o).price,
+                    packageLabel: getEffectivePackagePricing(o).label
+                  })),
+                  total
+                }),
+                orderPayload: { orders, total, experienceName }
+              });
+            } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
-            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
+            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            if (pendingTab && !pendingTab.closed) {
+              pendingTab.location.href = waUrl;
+            } else {
+              window.open(waUrl, "_blank");
+            }
           })();
         });
       }
@@ -2096,6 +2692,18 @@ function initPackageOrderExperience(config) {
         });
       }
     }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        renderOrders();
+        if (popup.classList.contains("active")) {
+          saveBtn.textContent =
+            editingIndex !== null
+              ? getI18nText("update_order", "Update order")
+              : getI18nText("save_selection", "Save selection");
+        }
+      });
+    });
 
     renderOrders();
   });
