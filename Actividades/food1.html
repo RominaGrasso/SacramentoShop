@@ -31,7 +31,7 @@
   <a href="../Actividades/aboutus.html"
       target="_blank"
       rel="noopener noreferrer">
-    👤&nbsp;About Us
+    <span data-translate="about_us_nav">👤&nbsp;About Us</span>
   </a>
 </nav>
 
@@ -67,38 +67,47 @@
     <!-- ================= CONTENT ================= -->
     <section class="coffee-content">
     
-      <h2>About this experience</h2>
+      <h2 data-translate="food_about_title">About this experience</h2>
     
-      <p>
+      <p data-translate="food_about_p">
         Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture.
         Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica.
         Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories.
         The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes —
         followed by a visit to the historic Plaza de Toros.
       </p>
+      <a
+        href="https://www.instagram.com/_sacramentoadventures/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="reel-link-btn"
+        data-translate="food_reel_btn"
+      >
+        🎥 Watch Reel on @_sacramentoadventures
+      </a>
     
-      <h3 class="experience-steps-title">How it works</h3>
+      <h3 class="experience-steps-title" data-translate="food_steps_title">How it works</h3>
     
       <div class="experience-steps">
         <ul>
     
-          <li>
+          <li data-translate="food_step_1">
             🏛 <strong>Meeting point:</strong> Plaza de la Basílica (Historic Quarter).
           </li>
     
-          <li>
+          <li data-translate="food_step_2">
             🚶 <strong>Guided walking tour:</strong> Explore Colonia’s historic streets, learn about its past, and discover hidden gems with a local guide.
           </li>
     
-          <li>
+          <li data-translate="food_step_3">
             🍽 <strong>Lunch experience:</strong> Enjoy an authentic Uruguayan chivito at a local restaurant.
           </li>
     
-          <li>
+          <li data-translate="food_step_4">
             🏟 <strong>Plaza de Toros visit:</strong> Continue the experience with a visit to the iconic bullring. Tickets are included.
           </li>
     
-          <li>
+          <li data-translate="food_step_5">
             🚗 <strong>Return:</strong> After the experience, you can choose to stay in the area or receive guidance to return to your accommodation.
           </li>
     
@@ -108,7 +117,11 @@
     
       <!-- PRICE -->
       <div class="price-box">
-        <h3>USD 90 per person</h3>
+        <h3>
+          <span data-translate="food_price_title">USD 90 per person</span>
+          <span class="food-price-separator"> · </span>
+          <span data-translate="food_duration_label">Duration: 3-4 hours</span>
+        </h3>
       </div>
     
       <div class="coffee-includes">
@@ -116,23 +129,23 @@
       
           <!-- IZQUIERDA -->
           <div class="includes-list">
-            <h3>What's included</h3>
+            <h3 data-translate="food_included_title">What's included</h3>
             <ul>
-              <li>✔ Guided walking tour with local expert</li>
-              <li>✔ Authentic Uruguayan chivito</li>
-              <li>✔ French fries or fresh salad</li>
-              <li>✔ Soft drink or local beverage</li>
-              <li>✔ Visit to Plaza de Toros (tickets included)</li>
-              <li>✔ Private Transfer</li>
+              <li data-translate="food_include_1">✔ Guided walking tour with local expert</li>
+              <li data-translate="food_include_2">✔ Authentic Uruguayan chivito</li>
+              <li data-translate="food_include_3">✔ French fries or fresh salad</li>
+              <li data-translate="food_include_4">✔ Soft drink or local beverage</li>
+              <li data-translate="food_include_5">✔ Visit to Plaza de Toros (tickets included)</li>
+              <li data-translate="food_include_6">✔ Private Transfer</li>
             </ul>
           </div>
       
           <!-- DERECHA -->
           <div class="order-start">
-            <h3>Create your menu</h3>
-            <p>Select your meal and preferences</p>
+            <h3 data-translate="food_create_title">Create your menu</h3>
+            <p data-translate="food_create_subtitle">Select your meal and preferences</p>
       
-            <button id="createMenuBtn" class="btn primary-btn">
+            <button id="createMenuBtn" class="btn primary-btn" data-translate="food_create_btn">
               + Create your menu
             </button>
           </div>
@@ -141,28 +154,58 @@
       </div>
       
       <div id="orderSummary"></div>
+      <div class="experience-support-notice" role="status">
+        <p>
+          <strong data-translate="food_support_title">After your reservation</strong><span data-translate="food_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+        </p>
+      </div>
     </section>
 
     <section class="coffee-gallery">
-      <h2>Experience Gallery</h2>
+      <h2 data-translate="food_gallery_title">Experience Gallery</h2>
     
       <div class="gallery-grid">
-        <img src="../Assets/images/bruman1.jpg">
-        <img src="../Assets/images/bruma2.jpg">
-        <img src="../Assets/images/bruman3.jpg">
-        <img src="../Assets/images/bruma4.jpg">
-        <img src="../Assets/images/bruman2.jpg">
-        <img src="../Assets/images/bruman5.jpg">
-        <img src="../Assets/images/bruma1.jpg">
-        <img src="../Assets/images/bruma3.jpg">
-        <img src="../Assets/images/bruman3.jpg">
+        <img src="../Assets/images/ref1.jpg" alt="Refugio experience photo 1">
+        <img src="../Assets/images/ref2.jpg" alt="Refugio experience photo 2">
+        <img src="../Assets/images/ref3.jpg" alt="Refugio experience photo 3">
+        <img src="../Assets/images/ref4.jpg" alt="Refugio experience photo 4">
+        <img src="../Assets/images/ref22.jpg" alt="Refugio experience photo 5">
+        <img src="../Assets/images/ref161.jpg" alt="Refugio experience photo 6">
+        <img src="../Assets/images/ref162.jpg" alt="Refugio experience photo 7">
+        <video autoplay loop muted preload="metadata" playsinline aria-label="Refugio experience video">
+          <source src="../Assets/images/refvid1.mp4" type="video/mp4">
+        </video>
       </div>
+    </section>
 
-      <div class="coffee-actions">
-        <a href="#" id="bookNowBottom" class="btn">Book Now</a>
-        <a href="../Home/index.html" class="btn secondary">Back to Home</a>
+    <section class="experience-map food-map-section" aria-labelledby="foodMapTitle">
+      <h2 id="foodMapTitle" data-translate="food_map_title">Where to find El Refugio</h2>
+      <p>
+        <span data-translate="food_map_text">Use this map as a reference for El Refugio's location in Colonia del Sacramento.</span>
+        <a
+          href="https://www.google.com/maps/search/?api=1&amp;query=El+Refugio+Colonia+del+Sacramento+Uruguay"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-translate="food_map_link"
+        >Open in Google Maps</a>
+      </p>
+      <div class="map-embed">
+        <iframe
+          title="Map: El Refugio, Colonia del Sacramento"
+          data-translate-title="food_map_iframe_title"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=El+Refugio+Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=15">
+        </iframe>
       </div>
-    </section> 
+    </section>
+
+    <section class="coffee-gallery">
+      <div class="coffee-actions">
+        <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">Book Now</a>
+        <a href="../Home/index.html" class="btn secondary" data-translate="food_back_home">Back to Home</a>
+      </div>
+    </section>
 
 
   <script src="../Home/index.js"></script>
@@ -180,85 +223,99 @@
 
 
 <div class="popup-overlay" id="popupBruma">
-  <div class="popup-box">
+  <div class="popup-box food-menu-popup-box" role="dialog" aria-modal="true" aria-labelledby="foodMenuPopupTitle">
 
     <button class="close-x" id="closeBruma">✕</button>
 
-    <p><strong class="popup-title">Choose your meal:</strong></p>
+    <p><strong class="popup-title" id="foodMenuPopupTitle" data-translate="food_popup_title">Choose your meal:</strong></p>
 
     <!-- 🔹 STARTER (dummy oculto para el JS) -->
     <input type="radio" name="starter" checked hidden>
 
     <!-- 🔹 MAIN (LO REAL) -->
-    <p><strong>Main Course</strong></p>
+    <p class="food-menu-section-title"><strong data-translate="food_popup_main_title">Main Course</strong></p>
 
 <ul class="popup-list">
 
   <!-- CHIVITO -->
-  <li>
-    <label>
+  <li class="food-menu-option">
+    <label class="food-menu-option-label">
       <input type="radio" name="main" value="chivito">
-      <span>Chivito al pan</span>
+      <span class="food-menu-option-main" data-translate="food_popup_main_1">Chivito al pan</span>
+      <span class="food-menu-option-sub" data-translate="food_popup_main_1_sub">Classic Uruguayan sandwich</span>
     </label>
-    <small class="meal-detail">
-      Beef, mozzarella, bacon, fried egg, lettuce, arugula & tomato + rustic fries
-    </small>
+    <div class="food-menu-whatyouget">
+      <h4 data-translate="food_popup_what_you_get">What you get:</h4>
+      <ul>
+        <li data-translate="food_popup_main_1_item_1">Beef, mozzarella, bacon, fried egg, lettuce, arugula & tomato</li>
+        <li data-translate="food_popup_main_1_item_2">Rustic fries</li>
+      </ul>
+    </div>
   </li>
 
   <!-- MILANESA -->
-  <li>
-    <label>
+  <li class="food-menu-option">
+    <label class="food-menu-option-label">
       <input type="radio" name="main" value="milanesa">
-      <span>Milanesa a caballo</span>
+      <span class="food-menu-option-main" data-translate="food_popup_main_2">Milanesa a caballo</span>
+      <span class="food-menu-option-sub" data-translate="food_popup_main_2_sub">Meat or chicken available</span>
     </label>
-    <small class="meal-detail">
-      Meat or chicken milanesa with ham, mozzarella, sauce & fried egg + fries
-    </small>
+    <div class="food-menu-whatyouget">
+      <h4 data-translate="food_popup_what_you_get">What you get:</h4>
+      <ul>
+        <li data-translate="food_popup_main_2_item_1">Meat or chicken milanesa with ham, mozzarella, sauce & fried egg</li>
+        <li data-translate="food_popup_main_2_item_2">Fries</li>
+      </ul>
+    </div>
   </li>
 
   <!-- MENU TURISTICO -->
-  <li>
-    <label>
+  <li class="food-menu-option">
+    <label class="food-menu-option-label">
       <input type="radio" name="main" value="tourist">
-      <span>Tourist menu (starter + main + dessert)</span>
+      <span class="food-menu-option-main" data-translate="food_popup_main_3">Tourist menu (starter + main + dessert)</span>
+      <span class="food-menu-option-sub" data-translate="food_popup_main_3_sub">Complete menu experience</span>
     </label>
+    <div class="food-menu-whatyouget">
+      <h4 data-translate="food_popup_what_you_get">What you get:</h4>
+      <ul>
+        <li data-translate="food_popup_main_3_item_1">Starter + main + dessert</li>
+        <li class="no-bullet" data-translate="food_popup_main_3_item_2">Select each course below</li>
+      </ul>
+    </div>
   </li>
 
 </ul>
 
-<div id="touristOptions" style="display:none; margin-top:20px;">
+<div id="touristOptions" class="food-tourist-options" style="display:none; margin-top:20px;">
 
-  <p><strong>Starter</strong></p>
-  <label><input type="radio" name="starter"> Sopa de vegetales</label>
-  <label><input type="radio" name="starter"> Chorizo a las brasas con ensalada</label>
-  <label><input type="radio" name="starter"> Jamón con rusa</label>
+  <p><strong data-translate="food_tourist_starter_title">Starter</strong></p>
+  <label><input type="radio" name="starter"> <span data-translate="food_tourist_starter_1">Vegetable soup</span></label>
+  <label><input type="radio" name="starter"> <span data-translate="food_tourist_starter_2">Grilled chorizo with salad</span></label>
+  <label><input type="radio" name="starter"> <span data-translate="food_tourist_starter_3">Ham with Russian salad</span></label>
 
-  <p style="margin-top:15px;"><strong>Main</strong></p>
-  <label><input type="radio" name="touristMain"> Muslo de pollo con mixta o puré</label>
-  <label><input type="radio" name="touristMain"> Cerdo a las brasas con mixta o puré</label>
-  <label><input type="radio" name="touristMain"> Tallarines con boloñesa o fileto</label>
+  <p style="margin-top:15px;"><strong data-translate="food_tourist_main_title">Main</strong></p>
+  <label><input type="radio" name="touristMain"> <span data-translate="food_tourist_main_1">Chicken thigh with mixed salad or mashed potatoes</span></label>
+  <label><input type="radio" name="touristMain"> <span data-translate="food_tourist_main_2">Grilled pork with mixed salad or mashed potatoes</span></label>
+  <label><input type="radio" name="touristMain"> <span data-translate="food_tourist_main_3">Tagliatelle with bolognese or tomato sauce</span></label>
 
-  <p style="margin-top:15px;"><strong>Dessert</strong></p>
-  <p>Chajá típico uruguayo</p>
+  <p style="margin-top:15px;"><strong data-translate="food_tourist_dessert_title">Dessert</strong></p>
+  <p data-translate="food_tourist_dessert_1">Traditional Uruguayan Chajá</p>
 
 </div>
 
     <!-- 🔹 PREFERENCES -->
     <div class="preferences-inside">
-      <h3 class="preferences-title">
-        Your preferences 
-        <span class="help-icon">ℹ️</span>
-      </h3>
+      <h3 class="preferences-title" data-translate="bruma_preferences_title">Your preferences</h3>
 
-      <label><input type="checkbox"> 🍺 0% Alcohol</label>
-      <label><input type="checkbox"> 🧂 Salt Free</label>
-      <label><input type="checkbox"> 🌱 Vegetarian</label>
-      <label><input type="checkbox"> 🌶 No spicy food</label>
+      <label><input type="checkbox"> 🧂 <span data-translate="bruma_pref_salt">Salt Free</span></label>
+      <label><input type="checkbox"> 🌱 <span data-translate="bruma_pref_veg">Vegetarian</span></label>
+      <label><input type="checkbox"> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
     </div>
 
     <!-- 🔹 SAVE -->
     <div class="popup-actions">
-      <button id="saveMenu" class="btn">Save selection</button>
+      <button id="saveMenu" class="btn" data-translate="save_selection">Save selection</button>
     </div>
 
   </div>
@@ -269,10 +326,24 @@
 <script src="../Home/orders.js"></script>
 <script>
   initFoodExperience({
-    experienceName: "Food",
+    experienceName: "Chivito Experience",
+    experienceNameKey: "food_experience_name",
     pricePerPerson: 90,
     bookNowBottomId: "bookNowBottom",
-    whatsappNumber: "598091642195"
+    whatsappNumber: "598091642195",
+    dynamicPayment: {
+      enabled: true,
+      endpoint: "/api/payments/resolve",
+      experienceId: "refugio",
+      currency: "USD"
+    },
+    whatsappIncludesTitleKey: "wa_includes_label",
+    whatsappIncludesKeys: [
+      "food_wa_include_1",
+      "food_wa_include_2",
+      "food_wa_include_3"
+    ],
+    defaultMainValue: "chivito"
   });
 
   // Deshabilitado: lógica inline antigua (se reemplaza por Home/orders.js).
