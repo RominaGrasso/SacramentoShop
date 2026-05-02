@@ -56,7 +56,7 @@ const translations = {
       about_us_nav: "👤 About Us",
       coffee_title: "☕ Coffee with stunning views",
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina.",
-      plaza_title: "🏛 Plaza de Toros Experience with Serrano's coffee",
+      plaza_title: "🏛 Plaza de Toros Experience with Anita's coffee",
       plaza_text: "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!",
       food_title: "🚶 Guided Tour, Chivito & Plaza de Toros",
       food_text: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes — followed by a visit to the historic Plaza de Toros.",
@@ -559,6 +559,9 @@ const translations = {
       rent_popup_close: "Cerrar",
       explore_btn: "Explorar",
       about_us_nav: "👤 Sobre Nosotros",
+      plaza_title: "🏛 Experiencia en la Plaza de Toros con el café de Anita",
+      plaza_text:
+        "Conocé la icónica plaza de toros y su historia con traslado privado y entradas incluidas. ¡Sin hacer fila!",
       book_btn: "Reservar",
       save_selection: "Guardar selección",
       update_order: "Actualizar pedido",
@@ -1062,6 +1065,9 @@ const translations = {
       rent_popup_close: "Fechar",
       explore_btn: "Explorar",
       about_us_nav: "👤 Sobre Nós",
+      plaza_title: "🏛 Experiência na Plaza de Toros com o café da Anita",
+      plaza_text:
+        "Explore a icônica praça de touros e sua história com transfer privativo e ingressos incluídos. Pule a fila!",
       book_btn: "Reservar",
       save_selection: "Salvar seleção",
       update_order: "Atualizar pedido",
