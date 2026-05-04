@@ -132,6 +132,13 @@
        <!-- DERECHA (BOTÓN DE MENÚ) -->
       <div class="order-start">
         <h3>Create your menu</h3>
+        <div class="booking-visit-date-row">
+          <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+          <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
+          <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+            Pick the day you plan to come so we can coordinate availability in advance.
+          </p>
+        </div>
         <p>Select standard or premium menu, then your courses and preferences</p>
 
         <button id="createMenuBtn" class="btn primary-btn">
@@ -241,7 +248,7 @@
 
 </section>
 
-<script src="../Home/index.js?v=20260505"></script>
+<script src="../Home/index.js?v=20260509"></script>
 
 <!-- ================= POPUP ================= -->
 <div class="popup-overlay" id="popupMision">
@@ -412,7 +419,6 @@
 
       <label><input type="checkbox" value="0% Alcohol"> 🍺 <span data-translate="bruma_pref_alcohol">0% Alcohol</span></label>
       <label><input type="checkbox" value="Low Salt"> 🧂 <span data-translate="bruma_pref_salt">Low Salt</span></label>
-      <label><input type="checkbox" value="Vegetarian"> 🌱 <span data-translate="bruma_pref_veg">Vegetarian</span></label>
       <label><input type="checkbox" value="No spicy food"> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
     </div>
 
@@ -423,7 +429,8 @@
 
   </div>
 </div>
-<script src="../Home/orders.js"></script> 
+<script src="../Home/orders.js"></script>
+<script src="../Home/booking-date-picker.js"></script>
 <script>
   initExperience({
 

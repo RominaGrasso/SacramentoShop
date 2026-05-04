@@ -57,6 +57,33 @@
       display: inline-block;
       margin-right: 0.2rem;
     }
+
+    .walking-tour-popup-times {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .walking-tour-popup-times label {
+      font-weight: 400;
+      color: #374151;
+      cursor: pointer;
+    }
+
+    .walking-tour-summary-times {
+      margin: 10px 0 14px;
+    }
+
+    .walking-tour-summary-times .orders-boat-times {
+      margin-bottom: 1.35rem;
+    }
+
+    .walking-tour-summary-times .orders-boat-time-option {
+      font-weight: 400;
+      color: #4a5568;
+    }
   </style>
 </head>
 
@@ -154,15 +181,26 @@
       <li>
         <span data-translate="walking_step_4">🌅 End of tour: Finish in the historic area with recommendations to continue exploring</span>
       </li>
+      <li>
+        <span data-translate="walking_step_5">🧉 Optional: Mate Experience for USD 5 extra</span>
+      </li>
 
     </ul>
   </div>
 
   <!-- PRICE -->
   <div class="price-box">
-    <h3 id="walkingTourPriceTitle" data-translate="walking_price_title">USD 13 per guest</h3>
+    <h3 id="walkingTourPriceTitle" data-translate="walking_price_title">USD 15 per guest</h3>
     <p id="walkingTourPriceNote" class="walking-price-note">
-      <span class="is-highlight">Spanish: USD 9</span> · <span data-translate="walking_price_note">English: USD 13 · Portuguese: USD 13</span>
+      <span class="is-highlight">Spanish: USD 10</span> · <span class="is-highlight">English: USD 15</span> · <span class="is-highlight">Portuguese: USD 15</span>
+    </p>
+  </div>
+
+  <!-- MATE EXPERIENCE (OPTIONAL) -->
+  <div class="price-box price-box--with-blurb walking-mate-experience-box">
+    <h3 data-translate="walking_mate_experience_title">Mate Experience · USD 5 extra</h3>
+    <p class="price-box-detail" data-translate="walking_mate_experience_body">
+      Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 5 per person).
     </p>
   </div>
 
@@ -185,7 +223,7 @@
       <!-- DERECHA -->
       <div class="order-start">
         <h3 data-translate="walking_create_title">Create your walking tour</h3>
-        <p data-translate="walking_create_subtitle">Select language and preferences, then add each guest order</p>
+        <p data-translate="walking_create_subtitle">Select language and departure time, then add people to your group</p>
         <button
           id="createMenuBtn"
           class="btn primary-btn"
@@ -216,11 +254,11 @@
       <img src="../Assets/images/historic2.jpg">
       <img src="../Assets/images/historic3.jpg">
       <img src="../Assets/images/historic4.jpg">
-      <img src="../Assets/images/historic1.jpg">
-      <img src="../Assets/images/historic2.jpg">
-      <img src="../Assets/images/historic3.jpg">
-      <img src="../Assets/images/historic4.jpg">
-      <img src="../Assets/images/historic1.jpg">
+      <img src="../Assets/images/matescon1.jpeg">
+      <img src="../Assets/images/matescon2.jpeg">
+      <img src="../Assets/images/matescon3.jpeg">
+      <img src="../Assets/images/matescon4.jpeg">
+      <img src="../Assets/images/colonia.jpg">
     </div>
 
   </section>
@@ -258,11 +296,13 @@
       <label><input type="radio" name="walkingTourLanguage" value="Spanish guide"> 🇪🇸 <span data-translate="walking_lang_es">Spanish guide</span></label>
       <label><input type="radio" name="walkingTourLanguage" value="Portuguese guide"> 🇧🇷 <span data-translate="walking_lang_pt">Portuguese guide</span></label>
 
-      <h3 class="preferences-title" style="margin-top: 14px;" data-translate="walking_label_preferences">Preferences</h3>
-      <label><input type="checkbox" value="Morning slot preferred"> 🌅 <span data-translate="walking_pref_1">Morning slot preferred</span></label>
-      <label><input type="checkbox" value="Sunset slot preferred"> 🌇 <span data-translate="walking_pref_2">Sunset slot preferred</span></label>
-      <label><input type="checkbox" value="Slow pace / senior friendly"> 🚶 <span data-translate="walking_pref_3">Slow pace / senior friendly</span></label>
-      <label><input type="checkbox" value="Family with kids"> 👨‍👩‍👧 <span data-translate="walking_pref_4">Family with kids</span></label>
+      <h3 class="preferences-title" style="margin-top: 14px;" id="walkingTourTimeHeading" data-translate="walking_asado_popup_tour_time_heading">Walking tour departure time</h3>
+      <div class="walking-tour-popup-times" role="radiogroup" aria-labelledby="walkingTourTimeHeading">
+        <label><input type="radio" name="walkingTourDepartureTime" value="10:00"> 10:00</label>
+        <label><input type="radio" name="walkingTourDepartureTime" value="11:00"> 11:00</label>
+        <label><input type="radio" name="walkingTourDepartureTime" value="13:30"> 13:30</label>
+        <label><input type="radio" name="walkingTourDepartureTime" value="15:30"> 15:30</label>
+      </div>
       <p id="walkingTourKidsNote" style="margin-top:12px; font-size:0.92rem; color:#2f67a3; font-weight:600;">
         Children under 12 join for free.
       </p>
@@ -285,11 +325,11 @@
   <button class="lightbox-btn next" id="nextBtn">›</button>
 
 </div>
-<script src="../Home/index.js?v=20260505"></script>
+<script src="../Home/index.js?v=20260523"></script>
 <script src="../Home/orders.js"></script>
 <script>
   (function () {
-    const pricesByLang = { es: 9, en: 13, pt: 13 };
+    const pricesByLang = { es: 10, en: 15, pt: 15 };
     const getLang = () => (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
     const t = (key, fallback) => {
       const lang = getLang();
@@ -298,15 +338,15 @@
     };
     const getPriceForGuideLanguage = (guideLanguage) => {
       const g = String(guideLanguage || "").toLowerCase();
-      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 9;
-      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 13;
-      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 13;
+      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 10;
+      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 15;
+      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 15;
       return null;
     };
     const getPrice = (guideLanguage) => {
       const byGuide = getPriceForGuideLanguage(guideLanguage);
       if (Number.isFinite(byGuide)) return byGuide;
-      return pricesByLang[getLang()] || 13;
+      return pricesByLang[getLang()] || 15;
     };
     const getKidsFreeNote = () => {
       return t("walking_kids_note", "Children under 12 join for free.");
@@ -318,28 +358,11 @@
       if (v.includes("portuguese") || v.includes("portugués") || v.includes("portugues")) return "Portuguese guide";
       return "English guide";
     };
-    const normalizeWalkingPreference = (value) => {
-      const v = String(value || "").trim().toLowerCase();
-      if (!v) return "";
-      if (v.includes("morning") || v.includes("mañana") || v.includes("manha")) return "Morning slot preferred";
-      if (v.includes("sunset") || v.includes("atardecer") || v.includes("pôr") || v.includes("por do sol")) return "Sunset slot preferred";
-      if (v.includes("slow") || v.includes("senior") || v.includes("tranquilo") || v.includes("idos")) return "Slow pace / senior friendly";
-      if (v.includes("family") || v.includes("familia") || v.includes("crian")) return "Family with kids";
-      return "";
-    };
     const localizeWalkingLanguage = (value) => {
       const normalized = normalizeWalkingLanguage(value);
       if (normalized === "Spanish guide") return t("walking_lang_es", "Spanish guide");
       if (normalized === "Portuguese guide") return t("walking_lang_pt", "Portuguese guide");
       return t("walking_lang_en", "English guide");
-    };
-    const localizeWalkingPreference = (value) => {
-      const normalized = normalizeWalkingPreference(value);
-      if (normalized === "Morning slot preferred") return t("walking_pref_1", "Morning slot preferred");
-      if (normalized === "Sunset slot preferred") return t("walking_pref_2", "Sunset slot preferred");
-      if (normalized === "Slow pace / senior friendly") return t("walking_pref_3", "Slow pace / senior friendly");
-      if (normalized === "Family with kids") return t("walking_pref_4", "Family with kids");
-      return value;
     };
 
     function updatePriceText() {
@@ -352,13 +375,15 @@
 
       if (lang === "es") {
         title.textContent = t("walking_price_title", `USD ${price} por persona`);
-        note.innerHTML = "<span class='is-highlight'>Español: USD 9</span> · Inglés: USD 13 · Portugués: USD 13";
+        note.innerHTML =
+          "<span class='is-highlight'>Español: USD 10</span> · <span class='is-highlight'>Inglés: USD 15</span> · <span class='is-highlight'>Portugués: USD 15</span>";
         if (kidsNote) kidsNote.textContent = t("walking_kids_note", "Menores de 12 años van gratis.");
       } else {
         title.textContent = t("walking_price_title", `USD ${price} per guest`);
-        note.innerHTML = lang === "pt"
-          ? "<span class='is-highlight'>Espanhol: USD 9</span> · Inglês: USD 13 · Português: USD 13"
-          : "<span class='is-highlight'>Spanish: USD 9</span> · English: USD 13 · Portuguese: USD 13";
+        note.innerHTML =
+          lang === "pt"
+            ? "<span class='is-highlight'>Espanhol: USD 10</span> · <span class='is-highlight'>Inglês: USD 15</span> · <span class='is-highlight'>Português: USD 15</span>"
+            : "<span class='is-highlight'>Spanish: USD 10</span> · <span class='is-highlight'>English: USD 15</span> · <span class='is-highlight'>Portuguese: USD 15</span>";
         if (kidsNote) {
           kidsNote.textContent = t("walking_kids_note", "Children under 12 join for free.");
         }
@@ -374,39 +399,56 @@
       const bookNowBottomBtn = document.getElementById("bookNowBottom");
       const storageKey = "orders_walkingtour";
       const whatsappNumber = "598091642195";
+      const TOUR_TIME_SLOTS = ["10:00", "11:00", "13:30", "15:30"];
+      const WALKING_TOUR_MAX_PEOPLE = 15;
+      const normalizeTourTime = (value) => {
+        const s = String(value || "").trim();
+        return TOUR_TIME_SLOTS.includes(s) ? s : "";
+      };
 
       if (!popup || !openBtn || !closeBtn || !saveBtn || !summary) return;
+
+      const prefillPopupFromGroup = (group) => {
+        if (!group) {
+          popup.querySelectorAll("input[name='walkingTourDepartureTime']").forEach((i) => {
+            i.checked = false;
+          });
+          const defLang = popup.querySelector("input[name='walkingTourLanguage'][value='English guide']");
+          if (defLang) defLang.checked = true;
+          return;
+        }
+        popup.querySelectorAll("input[name='walkingTourLanguage']").forEach((r) => {
+          r.checked = r.value === normalizeWalkingLanguage(group.language);
+        });
+        popup.querySelectorAll("input[name='walkingTourDepartureTime']").forEach((r) => {
+          r.checked = r.value === group.tourTime;
+        });
+      };
 
       const getGroupConfig = () => {
         try {
           const raw = JSON.parse(localStorage.getItem(storageKey));
-          // Formato nuevo: objeto de grupo.
           if (raw && !Array.isArray(raw) && typeof raw === "object") {
             return {
               language: normalizeWalkingLanguage(raw.language),
-              preferences: Array.isArray(raw.preferences)
-                ? raw.preferences.map(normalizeWalkingPreference).filter(Boolean)
-                : [],
-              people: Math.max(1, Number(raw.people) || 1)
+              tourTime: normalizeTourTime(raw.tourTime),
+              people: Math.min(WALKING_TOUR_MAX_PEOPLE, Math.max(1, Number(raw.people) || 1)),
+              mateAddon: Boolean(raw.mateAddon)
             };
           }
-          // Compatibilidad: formato viejo con "orders" por persona.
           if (Array.isArray(raw) && raw.length > 0) {
             const first = raw[0] || {};
             const basePrefs = Array.isArray(first.preferences) ? first.preferences.filter(Boolean) : [];
             let language = String(first.language || "").trim();
-            let preferences = basePrefs.slice();
             if (!language) {
               const idx = basePrefs.findIndex((p) => /guide$/i.test(String(p || "").trim()));
-              if (idx >= 0) {
-                language = String(basePrefs[idx] || "").trim();
-                preferences = basePrefs.filter((_, i) => i !== idx);
-              }
+              if (idx >= 0) language = String(basePrefs[idx] || "").trim();
             }
             return {
               language: normalizeWalkingLanguage(language || "English guide"),
-              preferences: preferences.map(normalizeWalkingPreference).filter(Boolean),
-              people: raw.length
+              tourTime: "",
+              people: Math.min(WALKING_TOUR_MAX_PEOPLE, raw.length),
+              mateAddon: false
             };
           }
           return null;
@@ -424,11 +466,15 @@
           year: "numeric"
         });
       const sendBookingToWhatsApp = (group) => {
+        if (!group || !group.tourTime) {
+          alert(t("walking_alert_select_tour_time", "Please choose a walking tour departure time."));
+          return;
+        }
         const waWindow = window.open("about:blank", "_blank");
         const unitPrice = getPrice(group.language);
-        const total = unitPrice * group.people;
-        const prefs = Array.isArray(group.preferences) ? group.preferences.map(localizeWalkingPreference) : [];
-        const prefsText = prefs.length ? `- ${prefs.join("\n- ")}` : `- ${t("wa_none", "None")}`;
+        const walkTotal = unitPrice * group.people;
+        const mateTotal = group.mateAddon ? group.people * 5 : 0;
+        const total = walkTotal + mateTotal;
         const date = formatDate();
 
         (async () => {
@@ -459,12 +505,16 @@
             // Fallback: continue without payment URL
           }
 
+          const mateWaLine =
+            group.mateAddon && mateTotal > 0
+              ? `\n${t("walking_wa_mate", "Mate experience")}: +USD ${mateTotal} (${group.people} × USD 5)`
+              : "";
           let message =
             `${t("wa_intro_walking", "Hello! I'd like to book the Walking Tour experience:")}\n\n` +
             `${t("wa_date_label", "Date")}: ${date}\n` +
             `${t("wa_people_label", "People")}: ${group.people}\n` +
             `${t("wa_language_label", "Language")}: ${localizeWalkingLanguage(group.language)}\n` +
-            `${t("wa_preferences_label", "Preferences")}:\n${prefsText}\n\n` +
+            `${t("wa_tour_time_label", "Walking tour time")}: ${group.tourTime}${mateWaLine}\n\n` +
             `${t("wa_total_label", "Total")}: USD ${total}\n` +
             `${t("wa_note_label", "Note")}: ${getKidsFreeNote()}`;
 
@@ -482,10 +532,8 @@
           }
         })();
       };
-      const selectedPrefs = () =>
-        Array.from(popup.querySelectorAll(".preferences-inside input[type='checkbox']:checked"))
-          .map((i) => i.value)
-          .filter(Boolean);
+      const selectedTourTime = () =>
+        String(popup.querySelector("input[name='walkingTourDepartureTime']:checked")?.value || "").trim();
       const selectedLanguage = () =>
         popup.querySelector("input[name='walkingTourLanguage']:checked")?.value || "";
       const renderFallbackSummary = () => {
@@ -498,41 +546,79 @@
           return;
         }
 
+        const slotHint = t(
+          "walking_asado_passengers_per_slot",
+          "Up to {max} people per walking tour departure time."
+        ).replace(/\{max\}/g, String(WALKING_TOUR_MAX_PEOPLE));
+        const hintP = document.createElement("p");
+        hintP.className = "sunset-boat-passengers-slot-hint";
+        hintP.textContent = slotHint;
+        summary.appendChild(hintP);
+
         const controls = document.createElement("div");
         controls.className = "order-header";
+        const plusDisabled = group.people >= WALKING_TOUR_MAX_PEOPLE ? " disabled" : "";
         controls.innerHTML = `
           <button type="button" class="add-guest-btn" data-action="edit-group">${t("walking_edit_group", "Edit group setup")}</button>
           <div class="order-actions">
-            <button type="button" class="add-guest-btn" data-action="delete-group">${t("walking_delete_group", "Delete group")}</button>
             <button type="button" class="add-guest-btn" data-action="minus-person">${t("walking_minus_person", "- Person")}</button>
-            <button type="button" class="add-guest-btn" data-action="plus-person">${t("walking_plus_person", "+ Person")}</button>
+            <button type="button" class="add-guest-btn"${plusDisabled} data-action="plus-person">${t("walking_plus_person", "+ Person")}</button>
           </div>
         `;
         summary.appendChild(controls);
 
-        const prefItems = group.preferences.length
-          ? `<ul class="order-preferences-list">${group.preferences.map((p) => `<li>${localizeWalkingPreference(p)}</li>`).join("")}</ul>`
-          : "<span>-</span>";
+        const walkTourRadioName = "walkingTourSummaryTime";
+        const timeOptions = TOUR_TIME_SLOTS.map((slot) => {
+          const checked = group.tourTime === slot ? " checked" : "";
+          return `<label class="orders-boat-time-option"><input type="radio" class="walking-tour-summary-time-input" name="${walkTourRadioName}" value="${slot}"${checked}/> ${slot}</label>`;
+        }).join("");
         const card = document.createElement("div");
         card.className = "order-card";
+        const mateCardLine =
+          group.mateAddon
+            ? `<p><strong>${t("walking_label_mate", "Mate experience")}:</strong> ${t(
+                "walking_mate_card_yes",
+                "Yes (+USD 5 per person)"
+              )}</p>`
+            : "";
         card.innerHTML = `
           <div class="order-header"><strong>${t("walking_group_card_title", "Walking Tour Group")}</strong></div>
           <p><strong>${t("walking_label_people", "People")}:</strong> ${group.people}</p>
           <p><strong>${t("walking_label_language", "Language")}:</strong> ${localizeWalkingLanguage(group.language)}</p>
-          <p><strong>${t("walking_label_preferences", "Preferences")}:</strong></p>
-          ${prefItems}
+          <div class="walking-tour-summary-times order-card-walking-tour-times">
+            <p class="orders-boat-time-heading"><strong>${t("walking_asado_orders_tour_time_label", "Walking tour time")}</strong></p>
+            <div class="orders-boat-times" role="radiogroup">${timeOptions}</div>
+          </div>
+          ${mateCardLine}
           <p><strong>${t("walking_label_note", "Note")}:</strong> ${getKidsFreeNote()}</p>
         `;
         summary.appendChild(card);
 
+        const mateBtnLabel = group.mateAddon
+          ? t("walking_mate_remove_btn", "Remove mate")
+          : t("walking_mate_add_btn", "Add mate");
+        const mateRow = document.createElement("div");
+        mateRow.className = "walking-summary-mate-row";
+        mateRow.innerHTML = `
+          <button type="button" class="add-guest-btn" data-action="toggle-mate">${mateBtnLabel}</button>
+          <span class="walking-mate-price-note">${t("walking_mate_price_note", "(USD 5 per person added)")}</span>
+        `;
+        summary.appendChild(mateRow);
+
         const unitPrice = getPrice(group.language);
-        const total = group.people * unitPrice;
+        const walkLineTotal = group.people * unitPrice;
+        const mateLineTotal = group.mateAddon ? group.people * 5 : 0;
+        const total = walkLineTotal + mateLineTotal;
+        const totalDetailMate =
+          mateLineTotal > 0
+            ? ` + ${t("walking_mate_short", "Mate")} (${group.people} × USD 5)`
+            : "";
         const totalBox = document.createElement("div");
         totalBox.className = "total-box";
         totalBox.innerHTML = `
           <div class="total-left">
             <span class="total-label">${t("total_label", "Total")}</span>
-            <span class="total-detail">(${group.people} x USD ${unitPrice})</span>
+            <span class="total-detail">(${group.people} × USD ${unitPrice})${totalDetailMate}</span>
           </div>
           <div class="total-right">USD ${total}</div>
         `;
@@ -559,6 +645,7 @@
             );
             if (!proceed) return;
           }
+          prefillPopupFromGroup(existing);
           popup.classList.add("active");
           popup.style.display = "flex";
           popup.setAttribute("aria-hidden", "false");
@@ -576,17 +663,22 @@
             alert(t("walking_alert_select_language", "Please select a language"));
             return;
           }
-          const prefs = selectedPrefs();
+          const tourTime = normalizeTourTime(selectedTourTime());
+          if (!tourTime) {
+            alert(t("walking_alert_select_tour_time", "Please choose a walking tour departure time."));
+            return;
+          }
           const prev = getGroupConfig();
           setGroupConfig({
             language,
-            preferences: prefs,
-            people: prev?.people || 1
+            tourTime,
+            people: prev?.people || 1,
+            mateAddon: Boolean(prev?.mateAddon)
           });
           popup.classList.remove("active");
           popup.style.display = "";
           popup.setAttribute("aria-hidden", "true");
-          popup.querySelectorAll(".preferences-inside input[type='checkbox']").forEach((i) => {
+          popup.querySelectorAll("input[name='walkingTourDepartureTime']").forEach((i) => {
             i.checked = false;
           });
           const defaultLanguage = popup.querySelector("input[name='walkingTourLanguage'][value='English guide']");
@@ -605,14 +697,22 @@
           if (!group) return;
 
           if (action === "plus-person") {
+            if (btn.disabled) return;
+            if (group.people >= WALKING_TOUR_MAX_PEOPLE) {
+              alert(
+                t(
+                  "orders_boat_slot_full_short",
+                  "No more seats for this departure time. Add another booking with a different time or reduce passengers elsewhere."
+                )
+              );
+              return;
+            }
             setGroupConfig({ ...group, people: group.people + 1 });
             renderFallbackSummary();
             return;
           }
-          if (action === "delete-group") {
-            const ok = window.confirm(t("walking_confirm_delete", "Are you sure you want to delete this group?"));
-            if (!ok) return;
-            localStorage.removeItem(storageKey);
+          if (action === "toggle-mate") {
+            setGroupConfig({ ...group, mateAddon: !group.mateAddon });
             renderFallbackSummary();
             return;
           }
@@ -622,13 +722,7 @@
             return;
           }
           if (action === "edit-group") {
-            const radios = popup.querySelectorAll("input[name='walkingTourLanguage']");
-            radios.forEach((r) => {
-              r.checked = r.value === normalizeWalkingLanguage(group.language);
-            });
-            popup.querySelectorAll(".preferences-inside input[type='checkbox']").forEach((i) => {
-              i.checked = group.preferences.map(normalizeWalkingPreference).includes(i.value);
-            });
+            prefillPopupFromGroup(group);
             popup.classList.add("active");
             popup.style.display = "flex";
             popup.setAttribute("aria-hidden", "false");
@@ -638,6 +732,21 @@
             ev.preventDefault();
             sendBookingToWhatsApp(group);
           }
+        });
+      }
+
+      if (!summary.dataset.walkingTourTimeBound) {
+        summary.dataset.walkingTourTimeBound = "1";
+        summary.addEventListener("change", (ev) => {
+          const input = ev.target;
+          if (!input || !input.classList || !input.classList.contains("walking-tour-summary-time-input")) return;
+          if (input.type !== "radio" || !input.checked) return;
+          const g = getGroupConfig();
+          if (!g) return;
+          const val = normalizeTourTime(input.value);
+          if (!val) return;
+          setGroupConfig({ ...g, tourTime: val });
+          renderFallbackSummary();
         });
       }
 
@@ -659,8 +768,7 @@
 
     function initWalkingTourPage() {
       updatePriceText();
-      // Para esta página usamos fallback manual siempre, para que
-      // el flujo sea estable y permita guardar con idioma + preferencias opcionales.
+      // Fallback manual: idioma + horario del tour (cupo máx. 15 personas) y grupo en localStorage.
       setupManualFallback();
 
       // If user changes site language, update price + totals immediately.

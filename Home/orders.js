@@ -3,6 +3,67 @@ const DEFAULT_DYNAMIC_PAYMENT_ENDPOINT =
     ? "http://localhost:8787/api/payments/resolve"
     : "/api/payments/resolve";
 
+function paymentApiOriginFromResolveUrl(endpoint) {
+  const e = String(endpoint || "");
+  if (/^https?:\/\//i.test(e)) {
+    try {
+      return new URL(e).origin;
+    } catch {
+      return "";
+    }
+  }
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return window.location.origin;
+  }
+  return "";
+}
+
+async function fetchPlexoCybersourceHints(origins) {
+  let orgId = "";
+  let prefix = "";
+  for (const origin of origins) {
+    try {
+      const r = await fetch(`${origin}/api/payments/plexo-client-hints`);
+      if (!r.ok) continue;
+      const h = await r.json();
+      if (h.paymentMode !== "plexo") continue;
+      if (h.cybersourceOrgId) orgId = String(h.cybersourceOrgId);
+      if (h.cybersourceSessionPrefix) prefix = String(h.cybersourceSessionPrefix);
+      if (orgId && prefix) break;
+    } catch {
+      /* next origin */
+    }
+  }
+  return { orgId, prefix };
+}
+
+/** Mismo session_id en script CyberSource y en PaymentData.CybersourceDeviceFingerprint (manual Plexo / Totalnet). */
+async function sacramentoCollectCybersourceSessionId(orgId, prefix) {
+  const inv =
+    typeof crypto !== "undefined" && crypto.randomUUID
+      ? crypto.randomUUID().replace(/-/g, "")
+      : `${Date.now()}_${Math.random().toString(36).slice(2, 14)}`;
+  const sessionId = `${prefix}${inv}`.slice(0, 128);
+  await new Promise((resolve) => {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = `https://h.online-metrix.net/fp/tags.js?org_id=${encodeURIComponent(orgId)}&session_id=${encodeURIComponent(sessionId)}`;
+    const done = () => resolve();
+    s.onload = done;
+    s.onerror = done;
+    document.head.appendChild(s);
+  });
+  await new Promise((r) => setTimeout(r, 1200));
+  return sessionId;
+}
+
+/** i18n table from index.js or `window.__SACRAMENTO_TRANSLATIONS` if script scope differs. */
+function sacramentoI18nTable() {
+  if (typeof translations !== "undefined" && translations) return translations;
+  if (typeof window !== "undefined" && window.__SACRAMENTO_TRANSLATIONS) return window.__SACRAMENTO_TRANSLATIONS;
+  return {};
+}
+
 function stableStringify(value) {
   if (value === null || typeof value !== "object") {
     return JSON.stringify(value);
@@ -67,6 +128,32 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
     return value.includes("sessionId=mock_") || /\/mock_[a-z0-9]+/i.test(value);
   };
 
+  const origins = [...new Set(uniqueCandidates.map(paymentApiOriginFromResolveUrl).filter(Boolean))];
+  let bodyPayload = { ...payload };
+  const existingDf =
+    typeof payload.cybersourceDeviceFingerprint === "string"
+      ? payload.cybersourceDeviceFingerprint.trim()
+      : "";
+  if (!existingDf && typeof window !== "undefined") {
+    let orgId = dynamicPayment.cybersourceOrgId ? String(dynamicPayment.cybersourceOrgId).trim() : "";
+    let prefix = dynamicPayment.cybersourceSessionPrefix
+      ? String(dynamicPayment.cybersourceSessionPrefix).trim()
+      : "";
+    if (!orgId || !prefix) {
+      const hints = await fetchPlexoCybersourceHints(origins);
+      if (!orgId) orgId = hints.orgId;
+      if (!prefix) prefix = hints.prefix;
+    }
+    if (orgId && prefix) {
+      try {
+        const df = await sacramentoCollectCybersourceSessionId(orgId, prefix);
+        if (df) bodyPayload = { ...bodyPayload, cybersourceDeviceFingerprint: df };
+      } catch {
+        /* sin fingerprint: Plexo puede seguir fallando 3DS en Visa */
+      }
+    }
+  }
+
   for (const endpoint of uniqueCandidates) {
     try {
       const response = await fetch(endpoint, {
@@ -74,7 +161,7 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(bodyPayload)
       });
       if (!response.ok) continue;
       const data = await response.json();
@@ -87,6 +174,106 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
     }
   }
   return "";
+}
+
+const SACRAMENTO_I18N_PREF = "__i18n__:";
+
+function sacramentoNormalizePrefText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Map free-text / legacy checkbox values to i18n keys (for labels + emoji). */
+function sacramentoLegacyPrefKey(value) {
+  const v = sacramentoNormalizePrefText(value);
+  if (!v) return "";
+  if (
+    v.includes("red wine") ||
+    v.includes("vino tinto") ||
+    (v.includes("tinto") && (v.includes("prefer") || v.includes("preferencia")))
+  ) {
+    return "liebres_pref_red";
+  }
+  if (
+    v.includes("white wine") ||
+    v.includes("vino blanco") ||
+    (v.includes("blanco") && (v.includes("prefer") || v.includes("preferencia")))
+  ) {
+    return "liebres_pref_white";
+  }
+  if (
+    v.includes("no alcohol") ||
+    v.includes("sin alcohol") ||
+    v.includes("sem alcool")
+  ) {
+    return "liebres_pref_no_alcohol";
+  }
+  if ((v.includes("0") && v.includes("alcohol")) || v.includes("zero alcohol")) {
+    return "bruma_pref_alcohol";
+  }
+  if (v.includes("vegetarian") || v.includes("vegetariano") || v.includes("vegetariana")) {
+    return "bruma_pref_veg";
+  }
+  if (
+    v.includes("low salt") ||
+    v.includes("salt free") ||
+    v.includes("bajo en sal") ||
+    v.includes("sin sal") ||
+    v.includes("baixo teor de sal")
+  ) {
+    return "bruma_pref_salt";
+  }
+  if (
+    v.includes("no spicy") ||
+    v.includes("spicy") ||
+    v.includes("sin picante") ||
+    v.includes("picante") ||
+    v.includes("sem comida picante")
+  ) {
+    return "bruma_pref_spicy";
+  }
+  return "";
+}
+
+function sacramentoPrefEmojiKey(key) {
+  if (!key) return "";
+  const m = {
+    bruma_pref_alcohol: "🍺",
+    bruma_pref_salt: "🧂",
+    bruma_pref_veg: "🌱",
+    bruma_pref_spicy: "🌶",
+    liebres_pref_red: "🍷",
+    liebres_pref_white: "🥂",
+    liebres_pref_vegetarian: "🌱",
+    liebres_pref_no_alcohol: "🚫",
+    liebres_dining_pref_no_alcohol: "🚫",
+  };
+  return m[key] || "";
+}
+
+function sacramentoDecodePrefLabel(raw, getI18nText, prefix = SACRAMENTO_I18N_PREF) {
+  const r = String(raw || "").trim();
+  if (!r) return "";
+  if (r.startsWith(prefix)) {
+    const k = r.slice(prefix.length);
+    return getI18nText(k, k);
+  }
+  const k = sacramentoLegacyPrefKey(r);
+  return k ? getI18nText(k, r) : r;
+}
+
+function sacramentoDecoratePref(raw, getI18nText, prefix = SACRAMENTO_I18N_PREF) {
+  const r = String(raw || "").trim();
+  if (!r) return "";
+  const key = r.startsWith(prefix) ? r.slice(prefix.length) : sacramentoLegacyPrefKey(r);
+  const label = r.startsWith(prefix) ? getI18nText(key, key) : key ? getI18nText(key, r) : r;
+  const emoji = sacramentoPrefEmojiKey(key);
+  return emoji ? `${emoji} ${label}` : label;
 }
 
 function initExperience(config) {
@@ -134,7 +321,88 @@ function initExperience(config) {
     /** When premium tier: field names for plate / dessert / drink, e.g. prm_starter, prm_main, prm_drink. */
     premiumChoiceFieldNames = null,
     /** Panel ids for standard vs premium menus: { standard: "id", premium: "id" }. */
-    menuTierPanelIds = null
+    menuTierPanelIds = null,
+    /** If true, order summary / WhatsApp use the same starter/main labels for premium as for standard (not Plate/Dessert). */
+    uniformTierChoiceLabels = false,
+    /** Currency label before amounts in this experience's subtotal/total (default USD). E.g. UYU for pesos. */
+    totalCurrencyLabel = "USD",
+    /** Optional override for the standard tier line in the order card (else Bruma i18n). */
+    tierSummaryStandard = null,
+    /** Optional override for the premium tier line in the order card. */
+    tierSummaryPremium = null,
+    /** Optional override for standard tier in WhatsApp. */
+    tierWhatsappStandard = null,
+    /** Optional override for premium tier in WhatsApp. */
+    tierWhatsappPremium = null,
+    /** If set, order card tier line uses `getI18nText(key, tierSummaryStandard || …)` instead of `tierSummaryStandard` alone. */
+    tierSummaryStandardKey = null,
+    tierSummaryPremiumKey = null,
+    tierWhatsappStandardKey = null,
+    tierWhatsappPremiumKey = null,
+    /**
+     * Optional `{ standard: "i18nKey", premium: "i18nKey" }` for a short serving-size line under the menu tier in the order card (when `menuUpgradePrice` is set).
+     */
+    tierServingNotesI18n = null,
+    /**
+     * If true (with menuUpgradePrice set): experience subtotal is one flat amount for the whole group —
+     * menuUpgradePrice if any guest order is premium, else pricePerPerson. Ignores party size for pricing.
+     */
+    experienceMenuFlatTotal = false,
+    /**
+     * When true with menu tiers: saving a Standard order does not require `mainName` radios;
+     * `standardMainPlaceholder` is stored as `order.main` instead.
+     */
+    standardSkipsMainField = false,
+    /** Stored as order.main when standardSkipsMainField and tier is Standard. */
+    standardMainPlaceholder = "—",
+    /** When true with premium tier: starter and main choices must differ (two side dishes). */
+    premiumRequireDistinctSides = false,
+    /** Checkbox `name` for Standard sides (max 1 checked). If set, replaces starter radios for Standard. */
+    standardSideCheckboxName = null,
+    /** Checkbox `name` for Premium sides (max 2 checked). If set, replaces premium starter/main radios. */
+    premiumSideCheckboxName = null,
+    /** When true: no drink/beverage radios required; `order.drink` is stored empty and hidden in summary / WhatsApp. */
+    experienceSkipsDrinkField = false,
+    /**
+     * Optional boat add-on priced per passenger (e.g. 25). Stored separately in localStorage as `{storageKey}_boatPassengers`.
+     * Counter appears in the order summary when there is at least one menu order.
+     */
+    boatPerPersonPrice = 0,
+    boatPassengersMax = 50,
+    /** Optional list of boat departure time labels (e.g. `["11:00am", …]`). Shown when `boatPerPersonPrice` > 0; stored in localStorage. */
+    boatTimeSlots = null,
+    /**
+     * When true: no starter/main/drink (or sides) validation in the popup — only preferences (+ optional per-guest guide).
+     * Use for boat-only or similar: each save adds one guest at `pricePerPerson`.
+     */
+    experienceSkipsMenuChoices = false,
+    /**
+     * When true with `boatTimeSlots`: show departure time pickers when there are orders, without a separate boat $ line
+     * (`boatPerPersonPrice` should be 0; total = guests × `pricePerPerson`).
+     */
+    boatScheduleOnly = false,
+    boatTimePerOrder = false,
+    boatTimePopupRadioName = null,
+    /**
+     * Optional radio `name` for per-order extra field (e.g. walking tour guide language).
+     * When set, saving requires a checked option; stored as `order.walkingLanguage`.
+     */
+    orderLanguageRadioName = null,
+    /** Optional i18n key for order-card / WhatsApp label before language value (default: walking_label_language). */
+    orderLanguageSummaryLabelKey = null,
+    /**
+     * When > 0 with `orderLanguageRadioName`: each order stores `walkingPartyCount` (1..max);
+     * `guideFeePerPerson` is multiplied by that count (walking tour guests per menu order).
+     */
+    orderWalkingPartyMax = 0,
+    /**
+     * When true with `walkingTourTimeSlots` and walking party + language: each order stores
+     * `walkingTourDepartureTime`; sum of `walkingPartyCount` per same time ≤ `walkingTourSlotMax`.
+     */
+    walkingTourTimePerOrder = false,
+    walkingTourTimeSlots = null,
+    walkingTourSlotMax = 15,
+    walkingTourTimePopupRadioName = null
   } = config || {};
 
   if (!pricePerPerson) {
@@ -144,81 +412,250 @@ function initExperience(config) {
 
   document.addEventListener("DOMContentLoaded", () => {
     let editingIndex = null;
+    const curLabel = totalCurrencyLabel || "USD";
+    const boatRate = Math.max(0, Number(boatPerPersonPrice) || 0);
+    const boatMax = Math.max(1, Math.min(200, Number(boatPassengersMax) || 50));
+    const boatTimePerOrderFlag =
+      Boolean(boatTimePerOrder) && Array.isArray(boatTimeSlots) && boatTimeSlots.length > 0;
+    const menuWithPerOrderBoat =
+      boatTimePerOrderFlag && boatRate > 0 && !experienceSkipsMenuChoices;
+    const orderBoatTime = (o) => String(o && o.boatDepartureTime ? o.boatDepartureTime : "").trim();
+    const orderBoatPax = (o) => {
+      if (!o) return 0;
+      if (experienceSkipsMenuChoices && boatTimePerOrderFlag) {
+        return Math.max(1, Math.min(boatMax, Math.floor(Number(o.passengers) || 1)));
+      }
+      if (menuWithPerOrderBoat) {
+        return Math.max(0, Math.min(boatMax, Math.floor(Number(o.boatPassengers) || 0)));
+      }
+      return 0;
+    };
+    const boatLSKey = boatRate > 0 && !boatTimePerOrderFlag ? `${storageKey}_boatPassengers` : null;
+    const getBoatPassengers = () => {
+      if (!boatLSKey) return 0;
+      const n = parseInt(localStorage.getItem(boatLSKey), 10);
+      return Math.min(boatMax, Math.max(0, Number.isFinite(n) ? n : 0));
+    };
+    const setBoatPassengers = (n) => {
+      if (!boatLSKey) return;
+      localStorage.setItem(boatLSKey, String(Math.min(boatMax, Math.max(0, Math.floor(Number(n) || 0)))));
+    };
+    const boatTimePopupRadioNameResolved = boatTimePerOrderFlag
+      ? String(
+          boatTimePopupRadioName ||
+            `boatTimePopup_${String(storageKey).replace(/[^a-zA-Z0-9_-]/g, "_")}`
+        ).slice(0, 120)
+      : "";
+    const boatScheduleOnlyFlag = Boolean(boatScheduleOnly) && !boatTimePerOrderFlag;
+    const boatTimeLSKey =
+      !boatTimePerOrderFlag &&
+      Array.isArray(boatTimeSlots) &&
+      boatTimeSlots.length > 0 &&
+      (boatRate > 0 || boatScheduleOnlyFlag)
+        ? `${storageKey}_boatTime`
+        : null;
+    const boatTimeRadioName = boatTimeLSKey ? `boatTimeSlot_${storageKey.replace(/[^a-zA-Z0-9_-]/g, "_")}` : "";
+    const getBoatTimeSlot = () => {
+      if (!boatTimeLSKey) return "";
+      return String(localStorage.getItem(boatTimeLSKey) || "").trim();
+    };
+    const setBoatTimeSlot = (v) => {
+      if (!boatTimeLSKey) return;
+      const s = String(v || "").trim();
+      if (s) localStorage.setItem(boatTimeLSKey, s);
+      else localStorage.removeItem(boatTimeLSKey);
+    };
     const guideFee = Math.max(0, Number(guideFeePerPerson) || 0);
+    const orderWalkingPartyMaxNum = Math.max(0, Math.min(200, Number(orderWalkingPartyMax) || 0));
+    const walkingTourSlotMaxNum = Math.max(1, Math.min(200, Number(walkingTourSlotMax) || 15));
+    const walkingTourTimePerOrderFlag =
+      Boolean(walkingTourTimePerOrder) &&
+      Array.isArray(walkingTourTimeSlots) &&
+      walkingTourTimeSlots.length > 0 &&
+      orderWalkingPartyMaxNum > 0 &&
+      Boolean(orderLanguageRadioName);
+    const walkingTourTimePopupRadioNameResolved = walkingTourTimePerOrderFlag
+      ? String(
+          walkingTourTimePopupRadioName ||
+            `walkingTourTimePopup_${String(storageKey).replace(/[^a-zA-Z0-9_-]/g, "_")}`
+        ).slice(0, 120)
+      : "";
+    const orderWalkingTourTime = (o) => String(o && o.walkingTourDepartureTime ? o.walkingTourDepartureTime : "").trim();
+    const walkingPartyForOrder = (o) => {
+      if (!orderWalkingPartyMaxNum || !orderLanguageRadioName) return 1;
+      return Math.max(1, Math.min(orderWalkingPartyMaxNum, Math.floor(Number(o?.walkingPartyCount) || 1)));
+    };
+    const walkingPartySameTimeExcluding = (time, excludeIndex) => {
+      if (!walkingTourTimePerOrderFlag) return 0;
+      const ord = getOrders();
+      let sum = 0;
+      ord.forEach((o, j) => {
+        if (excludeIndex != null && j === excludeIndex) return;
+        if (!sameBoatDepartureTime(orderWalkingTourTime(o), time)) return;
+        sum += walkingPartyForOrder(o);
+      });
+      return sum;
+    };
+    const maxWalkingPartyForOrderIndex = (index) => {
+      if (!walkingTourTimePerOrderFlag) return orderWalkingPartyMaxNum;
+      const ord = getOrders();
+      const o = ord[index];
+      if (!o) return orderWalkingPartyMaxNum;
+      const tim = orderWalkingTourTime(o);
+      if (!tim) return orderWalkingPartyMaxNum;
+      const others = walkingPartySameTimeExcluding(tim, index);
+      return Math.max(0, Math.min(orderWalkingPartyMaxNum, walkingTourSlotMaxNum - others));
+    };
+    const walkingTourSlotHasRoom = (time, walkingPartyCount, excludeIndex) => {
+      if (!walkingTourTimePerOrderFlag) return true;
+      const t = String(time || "").trim();
+      if (!t) return true;
+      const p = Math.max(1, Math.min(orderWalkingPartyMaxNum, Math.floor(Number(walkingPartyCount) || 1)));
+      return walkingPartySameTimeExcluding(t, excludeIndex) + p <= walkingTourSlotMaxNum;
+    };
     const vehicleTransportRate = Math.max(0, Number(transportPerVehicle) || 0);
     const getI18nText = (key, fallback) => {
       const lang = localStorage.getItem("selectedLanguage") || "en";
+      const tr = sacramentoI18nTable();
       try {
-        if (translations?.[lang]?.[key]) return translations[lang][key];
-        if (translations?.en?.[key]) return translations.en[key];
+        if (tr?.[lang]?.[key]) return tr[lang][key];
+        if (tr?.en?.[key]) return tr.en[key];
       } catch {}
       return fallback;
     };
-    const I18N_PREF_PREFIX = "__i18n__:";
-    const normalizePrefText = (value) =>
-      String(value || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
+    const boatBookReady = () => {
+      if (walkingTourTimePerOrderFlag) {
+        const ordWt = getOrders();
+        if (ordWt.length === 0) return true;
+        for (let i = 0; i < ordWt.length; i++) {
+          if (!String(ordWt[i]?.walkingTourDepartureTime || "").trim()) {
+            alert(
+              getI18nText(
+                "walking_tour_time_each_required",
+                "Each order needs a walking tour departure time. Edit the order to choose a time."
+              )
+            );
+            return false;
+          }
+        }
+        const totalsWalk = new Map();
+        for (let i = 0; i < ordWt.length; i++) {
+          const t = String(ordWt[i]?.walkingTourDepartureTime || "").trim();
+          const p = walkingPartyForOrder(ordWt[i]);
+          totalsWalk.set(t, (totalsWalk.get(t) || 0) + p);
+        }
+        for (const [, total] of totalsWalk) {
+          if (total > walkingTourSlotMaxNum) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_over_capacity",
+                "One departure time has more passengers than allowed. Please adjust bookings before continuing."
+              )
+            );
+            return false;
+          }
+        }
+      }
+      if (boatTimePerOrderFlag) {
+        const ord = getOrders();
+        if (ord.length === 0) return true;
+        if (menuWithPerOrderBoat) {
+          for (let i = 0; i < ord.length; i++) {
+            const p = orderBoatPax(ord[i]);
+            if (p > 0 && !String(ord[i]?.boatDepartureTime || "").trim()) {
+              alert(
+                getI18nText(
+                  "orders_boat_menu_time_required",
+                  "Each order with boat passengers needs a departure time. Edit that order to choose a time."
+                )
+              );
+              return false;
+            }
+          }
+          const totalsByTime = new Map();
+          for (let i = 0; i < ord.length; i++) {
+            const p = orderBoatPax(ord[i]);
+            if (p <= 0) continue;
+            const t = String(ord[i]?.boatDepartureTime || "").trim();
+            totalsByTime.set(t, (totalsByTime.get(t) || 0) + p);
+          }
+          for (const [, total] of totalsByTime) {
+            if (total > boatMax) {
+              alert(
+                getI18nText(
+                  "orders_boat_slot_over_capacity",
+                  "One departure time has more passengers than allowed. Please adjust bookings before continuing."
+                )
+              );
+              return false;
+            }
+          }
+          return true;
+        }
+        for (let i = 0; i < ord.length; i++) {
+          if (!String(ord[i]?.boatDepartureTime || "").trim()) {
+            alert(
+              getI18nText(
+                "orders_boat_time_each_required",
+                "Each booking must have a boat departure time. Please edit the booking missing a time."
+              )
+            );
+            return false;
+          }
+        }
+        const totalsByTime = new Map();
+        for (let i = 0; i < ord.length; i++) {
+          const t = String(ord[i]?.boatDepartureTime || "").trim();
+          const p = Math.max(1, Math.min(boatMax, Math.floor(Number(ord[i]?.passengers) || 1)));
+          totalsByTime.set(t, (totalsByTime.get(t) || 0) + p);
+        }
+        for (const [, total] of totalsByTime) {
+          if (total > boatMax) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_over_capacity",
+                "One departure time has more passengers than allowed. Please adjust bookings before continuing."
+              )
+            );
+            return false;
+          }
+        }
+        return true;
+      }
+      if (!boatTimeLSKey) return true;
+      if (boatScheduleOnlyFlag) {
+        if (getOrders().length === 0) return true;
+        if (!getBoatTimeSlot()) {
+          alert(
+            getI18nText(
+              "orders_boat_time_required",
+              "Please choose a boat departure time."
+            )
+          );
+          return false;
+        }
+        return true;
+      }
+      if (getBoatPassengers() <= 0) return true;
+      if (!getBoatTimeSlot()) {
+        alert(
+          getI18nText(
+            "orders_boat_time_required",
+            "Please choose a boat departure time."
+          )
+        );
+        return false;
+      }
+      return true;
+    };
+    const I18N_PREF_PREFIX = SACRAMENTO_I18N_PREF;
     const encodePref = (keyOrLabel) => {
       const raw = String(keyOrLabel || "").trim();
       if (!raw) return "";
       return raw.startsWith(I18N_PREF_PREFIX) ? raw : `${I18N_PREF_PREFIX}${raw}`;
     };
-    const legacyPrefToI18nKey = (value) => {
-      const v = normalizePrefText(value);
-      if (!v) return "";
-      if (
-        v.includes("low salt") ||
-        v.includes("salt free") ||
-        v.includes("salt") ||
-        v.includes("bajo en sal") ||
-        v.includes("sin sal") ||
-        v.includes("sal") ||
-        v.includes("baixo teor de sal")
-      ) {
-        return "bruma_pref_salt";
-      }
-      if (v.includes("vegetarian") || v.includes("vegetariano") || v.includes("vegetariana")) {
-        return "bruma_pref_veg";
-      }
-      if (
-        v.includes("no spicy") ||
-        v.includes("spicy") ||
-        v.includes("sin picante") ||
-        v.includes("picante") ||
-        v.includes("sem comida picante")
-      ) {
-        return "bruma_pref_spicy";
-      }
-      return "";
-    };
-    const decodePref = (storedPref) => {
-      const raw = String(storedPref || "").trim();
-      if (!raw) return "";
-      if (!raw.startsWith(I18N_PREF_PREFIX)) {
-        const legacyKey = legacyPrefToI18nKey(raw);
-        return legacyKey ? getI18nText(legacyKey, raw) : raw;
-      }
-      const key = raw.slice(I18N_PREF_PREFIX.length);
-      return getI18nText(key, key);
-    };
-    const prefEmojiFor = (storedPref) => {
-      const raw = String(storedPref || "").trim();
-      const key = raw.startsWith(I18N_PREF_PREFIX) ? raw.slice(I18N_PREF_PREFIX.length) : legacyPrefToI18nKey(raw);
-      if (key === "bruma_pref_salt") return "🧂";
-      if (key === "bruma_pref_veg") return "🌱";
-      if (key === "bruma_pref_spicy") return "🌶";
-      return "";
-    };
-    const decoratePref = (storedPref) => {
-      const label = decodePref(storedPref);
-      const emoji = prefEmojiFor(storedPref);
-      return emoji ? `${emoji} ${label}` : label;
-    };
+    const decodePref = (storedPref) => sacramentoDecodePrefLabel(storedPref, getI18nText, I18N_PREF_PREFIX);
+    const decoratePref = (storedPref) => sacramentoDecoratePref(storedPref, getI18nText, I18N_PREF_PREFIX);
 
     const escapeHtml = (str) =>
       String(str).replace(/[&<>"']/g, (m) => ({
@@ -240,7 +677,7 @@ function initExperience(config) {
             const raw = String(pref || "").trim();
             if (!raw) return raw;
             if (raw.startsWith(I18N_PREF_PREFIX)) return raw;
-            const legacyKey = legacyPrefToI18nKey(raw);
+            const legacyKey = sacramentoLegacyPrefKey(raw);
             if (!legacyKey) return raw;
             mutated = true;
             return encodePref(legacyKey);
@@ -260,6 +697,144 @@ function initExperience(config) {
       localStorage.setItem(storageKey, JSON.stringify(orders));
     };
 
+    const getTotalBoatPassengersPaid = () => {
+      if (!boatRate) return 0;
+      if (boatTimePerOrderFlag) {
+        return getOrders().reduce((s, o) => s + orderBoatPax(o), 0);
+      }
+      return getBoatPassengers();
+    };
+
+    const peopleCountForPayment = (ordersArr) => {
+      if (boatTimePerOrderFlag && experienceSkipsMenuChoices) {
+        return ordersArr.reduce((s, o) => s + orderBoatPax(o), 0);
+      }
+      if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
+        return ordersArr.reduce((s, o) => s + walkingPartyForOrder(o), 0);
+      }
+      return ordersArr.length;
+    };
+
+    const buildBoatTimesPayload = (ordersArr) => {
+      if (!boatTimePerOrderFlag) return getBoatTimeSlot();
+      if (menuWithPerOrderBoat) {
+        return ordersArr.map((o) => ({
+          time: orderBoatTime(o),
+          passengers: orderBoatPax(o),
+          menuTier: o && o.menuTier ? o.menuTier : null
+        }));
+      }
+      return ordersArr.map((o) => ({
+        time: o && o.boatDepartureTime,
+        passengers: Math.max(1, Math.min(boatMax, Math.floor(Number(o && o.passengers) || 1)))
+      }));
+    };
+
+    const sameBoatDepartureTime = (a, b) => {
+      const ta = String(a || "").trim();
+      const tb = String(b || "").trim();
+      return Boolean(ta) && ta === tb;
+    };
+
+    /** Passengers on other orders with the same departure time (`excludeIndex` skips that row, e.g. while editing). */
+    const passengersSameTimeExcluding = (time, excludeIndex) => {
+      if (!boatTimePerOrderFlag) return 0;
+      const ord = getOrders();
+      let sum = 0;
+      ord.forEach((o, j) => {
+        if (excludeIndex != null && j === excludeIndex) return;
+        if (!sameBoatDepartureTime(o?.boatDepartureTime, time)) return;
+        sum += orderBoatPax(o);
+      });
+      return sum;
+    };
+
+    /** Remaining seats this booking can use for that time (0 = full for new passengers). */
+    const maxPassengersForOrderIndex = (index) => {
+      if (!boatTimePerOrderFlag) return boatMax;
+      const ord = getOrders();
+      const o = ord[index];
+      if (!o) return boatMax;
+      const t = orderBoatTime(o);
+      if (!t) return boatMax;
+      return Math.max(0, boatMax - passengersSameTimeExcluding(t, index));
+    };
+
+    const boatTimeSlotHasRoom = (time, passengers, excludeIndex) => {
+      if (!boatTimePerOrderFlag) return true;
+      const t = String(time || "").trim();
+      if (!t) return true;
+      const raw = Math.floor(Number(passengers) || 0);
+      const p = experienceSkipsMenuChoices
+        ? Math.max(1, Math.min(boatMax, raw || 1))
+        : Math.max(0, Math.min(boatMax, raw));
+      if (!experienceSkipsMenuChoices && p === 0) return true;
+      return passengersSameTimeExcluding(t, excludeIndex) + p <= boatMax;
+    };
+
+    /** One-time: migrate global boat time / passenger counter into per-order fields. */
+    (() => {
+      if (!Boolean(config?.boatTimePerOrder) || !Array.isArray(boatTimeSlots) || boatTimeSlots.length === 0) return;
+      const legacyTimeKey = `${storageKey}_boatTime`;
+      const legacyPaxKey = `${storageKey}_boatPassengers`;
+      const legacyT = String(localStorage.getItem(legacyTimeKey) || "").trim();
+      const legacyRn = parseInt(localStorage.getItem(legacyPaxKey), 10);
+      const legacyBn = Number.isFinite(legacyRn) ? Math.max(0, Math.min(boatMax, legacyRn)) : 0;
+      if (!legacyT && !legacyBn) return;
+      let ord;
+      try {
+        ord = JSON.parse(localStorage.getItem(storageKey)) || [];
+      } catch {
+        return;
+      }
+      if (!Array.isArray(ord) || ord.length === 0) return;
+
+      if (Boolean(config?.experienceSkipsMenuChoices)) {
+        if (!legacyT) return;
+        let changed = false;
+        const next = ord.map((o) => {
+          if (o && !String(o.boatDepartureTime || "").trim()) {
+            changed = true;
+            return {
+              ...o,
+              boatDepartureTime: legacyT,
+              passengers: Math.max(1, Math.min(boatMax, Math.floor(Number(o.passengers) || 1)))
+            };
+          }
+          return o;
+        });
+        if (changed) {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+          localStorage.removeItem(legacyTimeKey);
+          localStorage.removeItem(legacyPaxKey);
+        }
+        return;
+      }
+
+      if (boatRate > 0) {
+        let changed = false;
+        const next = ord.map((o, i) => {
+          if (!o || i !== 0) return o;
+          const hasBoat =
+            Boolean(String(o.boatDepartureTime || "").trim()) || Math.floor(Number(o.boatPassengers) || 0) > 0;
+          if (hasBoat) return o;
+          changed = true;
+          const t = legacyT || "";
+          const bp = legacyBn > 0 ? legacyBn : legacyT ? 1 : 0;
+          return {
+            ...o,
+            boatDepartureTime: t,
+            boatPassengers: Math.min(boatMax, bp)
+          };
+        });
+        if (changed) {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+          localStorage.removeItem(legacyTimeKey);
+          localStorage.removeItem(legacyPaxKey);
+        }
+      }
+    })();
+
     const formatDate = (d) =>
       d.toLocaleDateString("en-GB", {
         day: "2-digit",
@@ -269,6 +844,11 @@ function initExperience(config) {
 
     const getDateForBooking = () => {
       const stored = selectedDateKey ? localStorage.getItem(selectedDateKey) : null;
+      if (stored && /^\d{4}-\d{2}-\d{2}$/.test(stored)) {
+        const [y, m, d] = stored.split("-").map(Number);
+        const parsed = new Date(y, m - 1, d);
+        if (!Number.isNaN(parsed.getTime())) return formatDate(parsed);
+      }
       if (stored) return stored;
       return formatDate(new Date());
     };
@@ -311,42 +891,15 @@ function initExperience(config) {
         const alt = buildChoiceLookup(secondary);
         if (alt.has(text)) return alt.get(text);
       }
-      return text;
-    };
-    const buildPreferenceLookup = () => {
-      const map = new Map();
-      const prefs = popup.querySelectorAll('.preferences-inside input[type="checkbox"]');
-      prefs.forEach((input) => {
-        const value = input.value || "";
-        const span = input.parentElement?.querySelector("span[data-translate]");
-        const rawLabel = span?.textContent?.trim() || input.parentElement?.textContent?.trim() || value;
-        const key = span?.dataset?.translate;
-        const translated = key ? getI18nText(key, rawLabel) : rawLabel;
-        if (value) map.set(value, translated);
-        if (rawLabel) map.set(rawLabel, translated);
-        if (key) map.set(encodePref(key), translated);
-      });
-      return map;
-    };
-    const getLocalizedPreference = (storedValue) => {
-      const raw = String(storedValue || "").trim();
-      if (!raw) return "-";
-      if (raw.startsWith(I18N_PREF_PREFIX)) {
-        const dec = decodePref(raw);
-        return dec && dec.trim() ? dec : "-";
+      if (standardSideCheckboxName) {
+        const sideMap = buildChoiceLookup(standardSideCheckboxName);
+        if (sideMap.has(text)) return sideMap.get(text);
       }
-      const text = raw
-        .replace(/^🍺\s*/, "")
-        .replace(/^🧂\s*/, "")
-        .replace(/^🌱\s*/, "")
-        .replace(/^🚫\s*/, "")
-        .replace(/^🌶\s*/, "")
-        .trim();
-      if (!text) return "-";
-      const legacy = decodePref(text);
-      if (legacy !== text) return legacy;
-      const lookup = buildPreferenceLookup();
-      return lookup.get(text) || lookup.get(raw) || text;
+      if (premiumSideCheckboxName) {
+        const sideMapPrm = buildChoiceLookup(premiumSideCheckboxName);
+        if (sideMapPrm.has(text)) return sideMapPrm.get(text);
+      }
+      return text;
     };
 
     const optionalGuideEl = () =>
@@ -384,17 +937,36 @@ function initExperience(config) {
     };
 
     const guestExperienceTotal = (o) => {
-      let base = Number(pricePerPerson) || 0;
+      let unit = Number(pricePerPerson) || 0;
       if (menuUpgradePrice != null && o && o.menuTier === "premium") {
-        base = Number(menuUpgradePrice) || base;
+        unit = Number(menuUpgradePrice) || unit;
       }
+      let mult = 1;
+      if (boatTimePerOrderFlag && experienceSkipsMenuChoices && o) {
+        mult = Math.max(1, Math.min(boatMax, Math.floor(Number(o.passengers) || 1)));
+      }
+      let base = unit * mult;
       if (groupGuideOptional) {
         return base;
       }
       if (guideOptional) {
         return base + (o && o.includeGuide ? guideFee : 0);
       }
+      if (guideFee > 0 && orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
+        return base + guideFee * walkingPartyForOrder(o);
+      }
       return base + guideFee;
+    };
+
+    const groupExperienceSubtotal = (orders) => {
+      if (!experienceMenuFlatTotal || menuUpgradePrice == null) {
+        return orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
+      }
+      if (!orders.length) return 0;
+      const std = Number(pricePerPerson) || 0;
+      const prem = Number(menuUpgradePrice) || std;
+      const anyPremium = orders.some((o) => o && o.menuTier === "premium");
+      return anyPremium ? prem : std;
     };
 
     const popup = document.getElementById(popupId);
@@ -432,6 +1004,8 @@ function initExperience(config) {
           check
         );
       }
+      if (boatTimePopupRadioNameResolved) check(boatTimePopupRadioNameResolved);
+      if (walkingTourTimePopupRadioNameResolved) check(walkingTourTimePopupRadioNameResolved);
     };
 
     function openPopupForNewOrder() {
@@ -440,6 +1014,21 @@ function initExperience(config) {
         if (menuTierRadioName && i.name === menuTierRadioName) return;
         i.checked = false;
       });
+      if (orderLanguageRadioName) {
+        popup.querySelectorAll(`input[name="${orderLanguageRadioName}"]`).forEach((r) => {
+          r.checked = false;
+        });
+        const defLang =
+          popup.querySelector(`input[name="${orderLanguageRadioName}"][value="English guide"]`) ||
+          popup.querySelector(`input[name="${orderLanguageRadioName}"]`);
+        if (defLang) defLang.checked = true;
+      }
+      if (standardSideCheckboxName) {
+        popup.querySelectorAll(`input[name="${standardSideCheckboxName}"]`).forEach((i) => (i.checked = false));
+      }
+      if (premiumSideCheckboxName) {
+        popup.querySelectorAll(`input[name="${premiumSideCheckboxName}"]`).forEach((i) => (i.checked = false));
+      }
       if (menuUpgradePrice && menuTierRadioName) {
         const std = popup.querySelector(`input[name="${menuTierRadioName}"][value="standard"]`);
         if (std) std.checked = true;
@@ -468,6 +1057,25 @@ function initExperience(config) {
       });
     }
 
+    if (popup && standardSideCheckboxName) {
+      popup.addEventListener("change", (e) => {
+        const t = e.target;
+        if (!t || t.name !== standardSideCheckboxName || !t.checked) return;
+        popup.querySelectorAll(`input[name="${standardSideCheckboxName}"]`).forEach((c) => {
+          if (c !== t) c.checked = false;
+        });
+      });
+    }
+
+    if (popup && premiumSideCheckboxName) {
+      popup.addEventListener("change", (e) => {
+        const t = e.target;
+        if (!t || t.name !== premiumSideCheckboxName || !t.checked) return;
+        const checked = popup.querySelectorAll(`input[name="${premiumSideCheckboxName}"]:checked`);
+        if (checked.length > 2) t.checked = false;
+      });
+    }
+
     if (closeBtn) {
       closeBtn.addEventListener("click", () => popup.classList.remove("active"));
     }
@@ -476,40 +1084,263 @@ function initExperience(config) {
       saveBtn.addEventListener("click", () => {
         const orders = getOrders();
 
+        if (experienceSkipsMenuChoices) {
+          const preferences = Array.from(
+            popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
+          ).map((el) => (el.value || el.parentElement.textContent.trim()));
+          const og = optionalGuideEl();
+          const includeGuide = guideOptional && !groupGuideOptional && og ? Boolean(og.checked) : false;
+          let boatDepartureTime = "";
+          if (boatTimePerOrderFlag && boatTimePopupRadioNameResolved) {
+            const sel = popup.querySelector(`input[name="${boatTimePopupRadioNameResolved}"]:checked`);
+            boatDepartureTime = sel ? String(sel.value || "").trim() : "";
+            if (!boatDepartureTime) {
+              alert(
+                getI18nText(
+                  "orders_boat_time_popup_required",
+                  "Please choose a boat departure time."
+                )
+              );
+              return;
+            }
+          }
+          const existingPassengers =
+            editingIndex !== null && orders[editingIndex]
+              ? Math.max(1, Math.min(boatMax, Math.floor(Number(orders[editingIndex].passengers) || 1)))
+              : 1;
+          const order = {
+            starter: "",
+            main: "",
+            drink: "",
+            preferences,
+            ...(boatTimePerOrderFlag
+              ? { boatDepartureTime, passengers: existingPassengers }
+              : {}),
+            ...(guideOptional && !groupGuideOptional ? { includeGuide } : {})
+          };
+          if (
+            boatTimePerOrderFlag &&
+            boatDepartureTime &&
+            !boatTimeSlotHasRoom(boatDepartureTime, existingPassengers, editingIndex)
+          ) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_full",
+                "This departure time already has the maximum number of passengers. Choose another time or reduce passengers in another booking."
+              )
+            );
+            return;
+          }
+          if (editingIndex !== null) {
+            orders[editingIndex] = order;
+            editingIndex = null;
+          } else {
+            orders.push(order);
+          }
+          setOrders(orders);
+          popup.classList.remove("active");
+          renderOrders();
+          return;
+        }
+
         const tierPremium =
           menuUpgradePrice &&
           menuTierRadioName &&
           popup.querySelector(`input[name="${menuTierRadioName}"]:checked`)?.value === "premium";
 
-        let starter;
-        let main;
-        let drink;
+        const skipMainStandard =
+          Boolean(standardSkipsMainField && menuUpgradePrice && !tierPremium);
 
-        if (tierPremium && premiumChoiceFieldNames) {
-          starter = popup.querySelector(`input[name="${premiumChoiceFieldNames.starter}"]:checked`);
-          main = popup.querySelector(`input[name="${premiumChoiceFieldNames.main}"]:checked`);
-          drink = popup.querySelector(`input[name="${premiumChoiceFieldNames.drink}"]:checked`);
+        const useStdSidesCb =
+          Boolean(standardSideCheckboxName && menuUpgradePrice && !tierPremium);
+        const usePrmSidesCb =
+          Boolean(premiumSideCheckboxName && menuUpgradePrice && tierPremium);
+
+        let starterText = "";
+        let mainText = "";
+        let drinkText = "";
+
+        if (usePrmSidesCb) {
+          const sides = Array.from(
+            popup.querySelectorAll(`input[name="${premiumSideCheckboxName}"]:checked`)
+          );
+          if (sides.length < 1 || sides.length > 2) {
+            alert(
+              getI18nText(
+                "orders_alert_sides_premium_range",
+                "Premium: choose 1 or 2 side dishes."
+              )
+            );
+            return;
+          }
+          starterText =
+            sides[0].value || sides[0].nextElementSibling?.textContent?.trim() || "";
+          mainText =
+            sides.length === 2
+              ? sides[1].value || sides[1].nextElementSibling?.textContent?.trim() || ""
+              : "";
+          if (
+            premiumRequireDistinctSides &&
+            sides.length === 2 &&
+            String(starterText).trim() === String(mainText).trim()
+          ) {
+            alert(
+              getI18nText(
+                "orders_alert_distinct_sides",
+                "Please choose two different side dishes for Premium."
+              )
+            );
+            return;
+          }
+          drinkText = "";
+        } else if (useStdSidesCb) {
+          const sides = Array.from(
+            popup.querySelectorAll(`input[name="${standardSideCheckboxName}"]:checked`)
+          );
+          if (sides.length !== 1) {
+            alert(
+              getI18nText(
+                "orders_alert_sides_standard_one",
+                "Standard: choose exactly 1 side dish."
+              )
+            );
+            return;
+          }
+          starterText =
+            sides[0].value || sides[0].nextElementSibling?.textContent?.trim() || "";
+          mainText =
+            standardMainPlaceholder === undefined || standardMainPlaceholder === null
+              ? ""
+              : String(standardMainPlaceholder);
+          drinkText = "";
         } else {
-          starter = popup.querySelector(`input[name="${starterName}"]:checked`);
-          main = popup.querySelector(`input[name="${mainName}"]:checked`);
-          drink = popup.querySelector(`input[name="${drinkName}"]:checked`);
-        }
+          let starter;
+          let main;
+          let drink;
 
-        if (!starter || !main || !drink) {
-          alert(getI18nText("orders_alert_select_each", "Please select one option from each category"));
-          return;
+          if (tierPremium && premiumChoiceFieldNames) {
+            starter = popup.querySelector(`input[name="${premiumChoiceFieldNames.starter}"]:checked`);
+            main = popup.querySelector(`input[name="${premiumChoiceFieldNames.main}"]:checked`);
+            drink = popup.querySelector(`input[name="${premiumChoiceFieldNames.drink}"]:checked`);
+          } else {
+            starter = popup.querySelector(`input[name="${starterName}"]:checked`);
+            main = popup.querySelector(`input[name="${mainName}"]:checked`);
+            drink = popup.querySelector(`input[name="${drinkName}"]:checked`);
+          }
+
+          if (!starter || (!experienceSkipsDrinkField && !drink) || (!skipMainStandard && !main)) {
+            alert(getI18nText("orders_alert_select_each", "Please select one option from each category"));
+            return;
+          }
+
+          starterText = starter.value || starter.nextElementSibling?.textContent?.trim();
+          mainText = main
+            ? main.value || main.nextElementSibling?.textContent?.trim()
+            : "";
+          if (skipMainStandard) {
+            mainText =
+              standardMainPlaceholder === undefined || standardMainPlaceholder === null
+                ? ""
+                : String(standardMainPlaceholder);
+          }
+          drinkText = experienceSkipsDrinkField
+            ? ""
+            : drink.value || drink.nextElementSibling?.textContent?.trim();
+
+          if (
+            tierPremium &&
+            premiumRequireDistinctSides &&
+            String(starterText).trim() === String(mainText).trim()
+          ) {
+            alert(
+              getI18nText(
+                "orders_alert_distinct_sides",
+                "Please choose two different side dishes for Premium."
+              )
+            );
+            return;
+          }
         }
 
         const preferences = Array.from(
           popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
         ).map((el) => (el.value || el.parentElement.textContent.trim()));
 
-        const starterText = starter.value || starter.nextElementSibling?.textContent?.trim();
-        const mainText = main.value || main.nextElementSibling?.textContent?.trim();
-        const drinkText = drink.value || drink.nextElementSibling?.textContent?.trim();
+        let walkingLanguage = "";
+        if (orderLanguageRadioName) {
+          const lr = popup.querySelector(`input[name="${orderLanguageRadioName}"]:checked`);
+          walkingLanguage = lr
+            ? String(lr.value || lr.nextElementSibling?.textContent?.trim() || "").trim()
+            : "";
+          if (!walkingLanguage) {
+            alert(getI18nText("walking_alert_select_language", "Please select a language"));
+            return;
+          }
+        }
 
         const og = optionalGuideEl();
         const includeGuide = guideOptional && !groupGuideOptional && og ? Boolean(og.checked) : false;
+
+        let boatDepartureTimeMenu = "";
+        let boatPassengersMenu = 0;
+        if (menuWithPerOrderBoat && boatTimePopupRadioNameResolved) {
+          const selBoat = popup.querySelector(`input[name="${boatTimePopupRadioNameResolved}"]:checked`);
+          boatDepartureTimeMenu = selBoat ? String(selBoat.value || "").trim() : "";
+          boatPassengersMenu =
+            editingIndex !== null && orders[editingIndex]
+              ? Math.max(0, Math.min(boatMax, Math.floor(Number(orders[editingIndex].boatPassengers) || 0)))
+              : 0;
+          if (boatPassengersMenu > 0 && !boatDepartureTimeMenu) {
+            alert(
+              getI18nText(
+                "orders_boat_time_popup_required",
+                "Please choose a boat departure time."
+              )
+            );
+            return;
+          }
+          if (
+            boatDepartureTimeMenu &&
+            boatPassengersMenu > 0 &&
+            !boatTimeSlotHasRoom(boatDepartureTimeMenu, boatPassengersMenu, editingIndex)
+          ) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_full",
+                "This departure time already has the maximum number of passengers. Choose another time or reduce passengers in another booking."
+              )
+            );
+            return;
+          }
+        }
+
+        let walkingTourDepartureTimeMenu = "";
+        if (walkingTourTimePerOrderFlag && walkingTourTimePopupRadioNameResolved) {
+          const selWt = popup.querySelector(`input[name="${walkingTourTimePopupRadioNameResolved}"]:checked`);
+          walkingTourDepartureTimeMenu = selWt ? String(selWt.value || "").trim() : "";
+          if (!walkingTourDepartureTimeMenu) {
+            alert(
+              getI18nText(
+                "walking_tour_time_popup_required",
+                "Please choose a walking tour departure time."
+              )
+            );
+            return;
+          }
+          const partyForWalkSlot =
+            editingIndex !== null && orders[editingIndex]
+              ? walkingPartyForOrder(orders[editingIndex])
+              : 1;
+          if (!walkingTourSlotHasRoom(walkingTourDepartureTimeMenu, partyForWalkSlot, editingIndex)) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_full",
+                "This departure time already has the maximum number of passengers. Choose another time or reduce passengers in another booking."
+              )
+            );
+            return;
+          }
+        }
 
         const order = {
           starter: starterText,
@@ -517,7 +1348,22 @@ function initExperience(config) {
           drink: drinkText,
           preferences,
           ...(guideOptional && !groupGuideOptional ? { includeGuide } : {}),
-          ...(menuUpgradePrice ? { menuTier: tierPremium ? "premium" : "standard" } : {})
+          ...(menuUpgradePrice ? { menuTier: tierPremium ? "premium" : "standard" } : {}),
+          ...(menuWithPerOrderBoat
+            ? { boatDepartureTime: boatDepartureTimeMenu, boatPassengers: boatPassengersMenu }
+            : {}),
+          ...(walkingTourTimePerOrderFlag && walkingTourDepartureTimeMenu
+            ? { walkingTourDepartureTime: walkingTourDepartureTimeMenu }
+            : {}),
+          ...(orderLanguageRadioName && walkingLanguage ? { walkingLanguage } : {}),
+          ...(orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
+            ? {
+                walkingPartyCount:
+                  editingIndex !== null && orders[editingIndex]
+                    ? walkingPartyForOrder(orders[editingIndex])
+                    : 1
+              }
+            : {})
         };
 
         if (editingIndex !== null) {
@@ -536,13 +1382,18 @@ function initExperience(config) {
 
     const buildWhatsAppMessage = (orders, dateStr, paymentLinkOverride = "") => {
       const people = orders.length;
+      const peopleCount = peopleCountForPayment(orders);
       const dynamicEnabled = Boolean(dynamicPayment && dynamicPayment.enabled);
-      const paymentLink = paymentLinkOverride || (!dynamicEnabled ? paymentLinks[people] || "" : "");
-      const experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
+      const paymentLink =
+        paymentLinkOverride ||
+        (!dynamicEnabled ? paymentLinks[peopleCount] || paymentLinks[people] || "" : "");
+      const experienceSubtotal = groupExperienceSubtotal(orders);
       const gg = groupGuideAmount();
       const transportTotal =
-        vehicleTransportRate > 0 ? groupPrivateTransportTotal(people, vehicleTransportRate) : 0;
-      const total = experienceSubtotal + gg + transportTotal;
+        vehicleTransportRate > 0 ? groupPrivateTransportTotal(peopleCount, vehicleTransportRate) : 0;
+      const boatPassengersWa = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
+      const boatTotalWa = boatPassengersWa * boatRate;
+      const total = experienceSubtotal + gg + transportTotal + boatTotalWa;
 
       const Ls = choiceSectionLabels || {};
       const Lk = choiceSectionLabelKeys || {};
@@ -556,38 +1407,127 @@ function initExperience(config) {
         ? getI18nText(Lk.drink, Ls.drink || "Drink")
         : Ls.drink || "Drink";
       const labGuide = getI18nText("guide_accompany_short", "Guide");
+      const guestLbl = getI18nText("guest_order_label", "Guest");
+      const tierWaPremLine =
+        tierWhatsappPremiumKey
+          ? getI18nText(tierWhatsappPremiumKey, tierWhatsappPremium || "")
+          : tierWhatsappPremium || getI18nText("bruma_whatsapp_premium", "Premium (USD 45)");
+      const tierWaStdLine =
+        tierWhatsappStandardKey
+          ? getI18nText(tierWhatsappStandardKey, tierWhatsappStandard || "")
+          : tierWhatsappStandard || getI18nText("bruma_whatsapp_standard", "Standard (from USD 35)");
       const ordersText = orders
         .map((o, i) => {
-          const prefs = (Array.isArray(o.preferences) ? o.preferences : []).map(getLocalizedPreference);
+          const prefs = (Array.isArray(o.preferences) ? o.preferences : [])
+            .map((p) => decoratePref(p))
+            .filter((p) => p && p.trim() && p !== "-");
           const gLine =
             guideOptional && !groupGuideOptional && guideFee > 0
               ? `\n${labGuide}: ${o && o.includeGuide ? "Yes (+USD " + guideFee + ")" : "No"}`
               : "";
+          if (experienceSkipsMenuChoices) {
+            const cardLbl = boatTimePerOrderFlag
+              ? getI18nText("booking_order_label", "Booking")
+              : guestLbl;
+            const pax = boatTimePerOrderFlag
+              ? Math.max(1, Math.min(boatMax, Math.floor(Number(o.passengers) || 1)))
+              : 1;
+            const timeLine =
+              boatTimePerOrderFlag && String(o.boatDepartureTime || "").trim()
+                ? `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${String(o.boatDepartureTime).trim()} · ${getI18nText("passengers_label", "Passengers")}: ${pax}`
+                : "";
+            const prefPart =
+              (prefs.join(", ") || "").trim() !== ""
+                ? `\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ")}`
+                : "";
+            return `*${cardLbl} ${i + 1}*${timeLine}${gLine}${prefPart}`;
+          }
           const prem = menuUpgradePrice && o.menuTier === "premium";
-          const ls = prem
-            ? getI18nText("bruma_premium_label_plate", "Plate")
-            : labS;
-          const lm = prem
-            ? getI18nText("bruma_premium_label_dessert", "Dessert")
-            : labM;
+          const ls =
+            prem && !uniformTierChoiceLabels
+              ? getI18nText("bruma_premium_label_plate", "Plate")
+              : labS;
+          const lm =
+            prem && !uniformTierChoiceLabels
+              ? getI18nText("bruma_premium_label_dessert", "Dessert")
+              : labM;
           const tierLine = menuUpgradePrice
-            ? `\n${getI18nText("bruma_whatsapp_tier", "Menu tier")}: ${
-                prem
-                  ? getI18nText("bruma_whatsapp_premium", "Premium (USD 45)")
-                  : getI18nText("bruma_whatsapp_standard", "Standard (from USD 35)")
-              }`
+            ? `\n${getI18nText("bruma_whatsapp_tier", "Menu tier")}: ${prem ? tierWaPremLine : tierWaStdLine}`
             : "";
-          return `*Order ${i + 1}*${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}\n${lm}: ${getLocalizedChoice(mainName, o.main)}\n${labD}: ${getLocalizedChoice(drinkName, o.drink)}${gLine}\nPreferences: ${prefs.join(", ") || "-"}`;
+          const stdSkipsMain =
+            Boolean(standardSkipsMainField && menuUpgradePrice && !prem);
+          const premOmitsSecondSide = prem && !String(o.main || "").trim();
+          const mainPart =
+            stdSkipsMain || premOmitsSecondSide
+              ? ""
+              : `\n${lm}: ${getLocalizedChoice(mainName, o.main)}`;
+          const drinkPart = experienceSkipsDrinkField
+            ? ""
+            : `\n${labD}: ${getLocalizedChoice(drinkName, o.drink)}`;
+          const menuBoatWa =
+            menuWithPerOrderBoat && boatRate > 0
+              ? (() => {
+                  const bp = orderBoatPax(o);
+                  const bt = orderBoatTime(o);
+                  if (bp <= 0 && !bt) return "";
+                  return `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${bt || "-"} · ${getI18nText("passengers_label", "Passengers")}: ${bp}`;
+                })()
+              : "";
+          const walkLangLabelKey = orderLanguageSummaryLabelKey || "walking_label_language";
+          const walkLangLabelFb = orderLanguageSummaryLabelKey ? "Guided tour" : "Language";
+          const walkLangWa =
+            orderLanguageRadioName && String(o.walkingLanguage || "").trim()
+              ? `\n${getI18nText(walkLangLabelKey, walkLangLabelFb)}: ${getLocalizedChoice(
+                  orderLanguageRadioName,
+                  o.walkingLanguage
+                )}`
+              : "";
+          const walkTourTimeWa =
+            walkingTourTimePerOrderFlag && orderWalkingTourTime(o)
+              ? `\n${getI18nText("orders_wa_walking_tour_time", "Walking tour time")}: ${orderWalkingTourTime(o)}`
+              : "";
+          const walkPartyWa =
+            orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
+              ? `\n${getI18nText("walking_asado_wa_tour_quantity", "Walking tour guests")}: ${walkingPartyForOrder(o)}`
+              : "";
+          return `*${getI18nText("order_word", "Order")} ${i + 1}*${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}`;
         })
         .join("\n\n");
 
       const expName = experienceNameKey
         ? getI18nText(experienceNameKey, experienceName)
         : experienceName;
-      let message = `Hello! I’d like to book the ${expName} experience:\n\nDate: ${dateStr}\nPeople: ${people}\n\n${ordersText}\n\n`;
-      message += `Experience subtotal: USD ${experienceSubtotal}`;
+      const waIntroRaw = getI18nText(
+        "orders_wa_intro",
+        "Hello! I'd like to book the {experience} experience:"
+      );
+      const waIntro = waIntroRaw.replace(/\{experience\}/g, expName);
+      let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${dateStr}\n${getI18nText("orders_wa_people_line", "People")}: ${peopleCount}`;
+      if (boatTotalWa > 0) {
+        message += `\n${getI18nText("orders_wa_boat_passengers", "Boat passengers")}: ${boatPassengersWa}`;
+        if (!menuWithPerOrderBoat) {
+          const bTime = getBoatTimeSlot();
+          if (bTime) {
+            message += `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${bTime}`;
+          }
+        }
+      } else if (boatScheduleOnlyFlag && boatTimeLSKey && people > 0 && !boatTimePerOrderFlag) {
+        const bTimeOnly = getBoatTimeSlot();
+        if (bTimeOnly) {
+          message += `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${bTimeOnly}`;
+        }
+      }
+      message += `\n\n${ordersText}\n\n`;
+      message += `${getI18nText("orders_wa_experience_subtotal", "Experience subtotal")}: ${curLabel} ${experienceSubtotal}`;
       if (guideFee > 0 && !guideOptional && !groupGuideOptional) {
-        message += ` (includes USD ${guideFee} guide fee per guest)`;
+        if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
+          message += ` (${getI18nText(
+            "walking_asado_wa_guide_in_subtotal",
+            "walking tour guide USD 15 × quantity per order is included in the subtotal"
+          )})`;
+        } else {
+          message += ` (includes USD ${guideFee} guide fee per guest)`;
+        }
       } else if (guideOptional && !groupGuideOptional && guideFee > 0) {
         const gt = orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0);
         if (gt > 0) message += ` (includes USD ${gt} in optional guide fees)`;
@@ -597,17 +1537,29 @@ function initExperience(config) {
         message += `Group guide (optional, USD ${groupGuideFlat} total for the group): ${gg > 0 ? `Yes — USD ${gg}` : "No"}\n`;
       }
       if (transportTotal > 0) {
-        const vehicles = Math.ceil(people / 4);
+        const vehicles = Math.ceil(peopleCount / 4);
         message += `Private transport (${vehicles} vehicle${vehicles === 1 ? "" : "s"} x USD ${vehicleTransportRate}): USD ${transportTotal}\n`;
       }
-      message += `Total: USD ${total}`;
+      if (boatTotalWa > 0) {
+        message += `${getI18nText("orders_wa_boat_subtotal", "Boat")} (${boatPassengersWa} × ${curLabel} ${boatRate}): ${curLabel} ${boatTotalWa}\n`;
+      }
+      message += `${getI18nText("orders_wa_total_label", "Total")}: ${curLabel} ${total}`;
 
       if (paymentLink) {
-        message += `\n\nTo confirm the reservation, please complete the payment here:\n${paymentLink}`;
-      } else if (people > 5) {
-        message += `\n\nWe are a group of more than 5 people and would like to coordinate the reservation.`;
+        message += `\n\n${getI18nText(
+          "orders_wa_pay_confirm",
+          "To confirm the reservation, please complete the payment here:"
+        )}\n${paymentLink}`;
+      } else if (peopleCount > 5) {
+        message += `\n\n${getI18nText(
+          "orders_wa_group_coordinate",
+          "We are a group of more than 5 people and would like to coordinate the reservation."
+        )}`;
       } else if (dynamicEnabled) {
-        message += `\n\nPayment link could not be generated automatically yet. Please confirm and we will send it right away.`;
+        message += `\n\n${getI18nText(
+          "orders_wa_payment_pending",
+          "Payment link could not be generated automatically yet. Please confirm and we will send it right away."
+        )}`;
       }
 
       return message;
@@ -627,8 +1579,15 @@ function initExperience(config) {
         if (menuTierRadioName && i.name === menuTierRadioName) return;
         i.checked = false;
       });
+      if (standardSideCheckboxName) {
+        popup.querySelectorAll(`input[name="${standardSideCheckboxName}"]`).forEach((i) => (i.checked = false));
+      }
+      if (premiumSideCheckboxName) {
+        popup.querySelectorAll(`input[name="${premiumSideCheckboxName}"]`).forEach((i) => (i.checked = false));
+      }
       popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((i) => (i.checked = false));
 
+      if (!experienceSkipsMenuChoices) {
       const isPrem = menuUpgradePrice && order.menuTier === "premium";
       if (menuUpgradePrice && menuTierRadioName) {
         const tr = popup.querySelector(
@@ -638,7 +1597,23 @@ function initExperience(config) {
         syncMenuTierPanels(!isPrem);
       }
 
-      if (isPrem && premiumChoiceFieldNames) {
+      if (isPrem && premiumSideCheckboxName) {
+        const want = [order.starter, order.main].filter((v) => String(v || "").trim());
+        popup.querySelectorAll(`input[name="${premiumSideCheckboxName}"]`).forEach((input) => {
+          const labelText = input.nextElementSibling?.textContent?.trim();
+          const match = (val) =>
+            val &&
+            (labelText === val || input.value === val || storedMatchesRadio(input, val));
+          input.checked = want.some((val) => match(val));
+        });
+        if (premiumChoiceFieldNames && !experienceSkipsDrinkField) {
+          popup.querySelectorAll(`input[name="${premiumChoiceFieldNames.drink}"]`).forEach((input) => {
+            const labelText = input.nextElementSibling?.textContent?.trim();
+            input.checked =
+              labelText === order.drink || input.value === order.drink || storedMatchesRadio(input, order.drink);
+          });
+        }
+      } else if (isPrem && premiumChoiceFieldNames) {
         popup.querySelectorAll(`input[name="${premiumChoiceFieldNames.starter}"]`).forEach((input) => {
           const labelText = input.nextElementSibling?.textContent?.trim();
           input.checked =
@@ -651,11 +1626,28 @@ function initExperience(config) {
           input.checked =
             labelText === order.main || input.value === order.main || storedMatchesRadio(input, order.main);
         });
-        popup.querySelectorAll(`input[name="${premiumChoiceFieldNames.drink}"]`).forEach((input) => {
+        if (!experienceSkipsDrinkField) {
+          popup.querySelectorAll(`input[name="${premiumChoiceFieldNames.drink}"]`).forEach((input) => {
+            const labelText = input.nextElementSibling?.textContent?.trim();
+            input.checked =
+              labelText === order.drink || input.value === order.drink || storedMatchesRadio(input, order.drink);
+          });
+        }
+      } else if (!isPrem && standardSideCheckboxName) {
+        popup.querySelectorAll(`input[name="${standardSideCheckboxName}"]`).forEach((input) => {
           const labelText = input.nextElementSibling?.textContent?.trim();
           input.checked =
-            labelText === order.drink || input.value === order.drink || storedMatchesRadio(input, order.drink);
+            labelText === order.starter ||
+            input.value === order.starter ||
+            storedMatchesRadio(input, order.starter);
         });
+        if (!experienceSkipsDrinkField) {
+          popup.querySelectorAll(`input[name="${drinkName}"]`).forEach((input) => {
+            const labelText = input.nextElementSibling?.textContent?.trim();
+            input.checked =
+              labelText === order.drink || input.value === order.drink || storedMatchesRadio(input, order.drink);
+          });
+        }
       } else {
         popup.querySelectorAll(`input[name="${starterName}"]`).forEach((input) => {
           const labelText = input.nextElementSibling?.textContent?.trim();
@@ -665,16 +1657,50 @@ function initExperience(config) {
             storedMatchesRadio(input, order.starter);
         });
 
-        popup.querySelectorAll(`input[name="${mainName}"]`).forEach((input) => {
-          const labelText = input.nextElementSibling?.textContent?.trim();
-          input.checked =
-            labelText === order.main || input.value === order.main || storedMatchesRadio(input, order.main);
-        });
+        if (!(standardSkipsMainField && menuUpgradePrice && !isPrem)) {
+          popup.querySelectorAll(`input[name="${mainName}"]`).forEach((input) => {
+            const labelText = input.nextElementSibling?.textContent?.trim();
+            input.checked =
+              labelText === order.main || input.value === order.main || storedMatchesRadio(input, order.main);
+          });
+        }
 
-        popup.querySelectorAll(`input[name="${drinkName}"]`).forEach((input) => {
+        if (!experienceSkipsDrinkField) {
+          popup.querySelectorAll(`input[name="${drinkName}"]`).forEach((input) => {
+            const labelText = input.nextElementSibling?.textContent?.trim();
+            input.checked =
+              labelText === order.drink || input.value === order.drink || storedMatchesRadio(input, order.drink);
+          });
+        }
+        }
+      }
+
+      if (menuWithPerOrderBoat && boatTimePopupRadioNameResolved) {
+        popup.querySelectorAll(`input[name="${boatTimePopupRadioNameResolved}"]`).forEach((input) => {
+          input.checked = String(input.value).trim() === orderBoatTime(order);
+        });
+      }
+
+      if (experienceSkipsMenuChoices && boatTimePerOrderFlag && boatTimePopupRadioNameResolved) {
+        popup.querySelectorAll(`input[name="${boatTimePopupRadioNameResolved}"]`).forEach((input) => {
+          input.checked = String(input.value).trim() === String(order.boatDepartureTime || "").trim();
+        });
+      }
+
+      if (walkingTourTimePerOrderFlag && walkingTourTimePopupRadioNameResolved) {
+        popup.querySelectorAll(`input[name="${walkingTourTimePopupRadioNameResolved}"]`).forEach((input) => {
+          input.checked = String(input.value).trim() === orderWalkingTourTime(order);
+        });
+      }
+
+      if (orderLanguageRadioName && String(order.walkingLanguage || "").trim()) {
+        const w = String(order.walkingLanguage).trim();
+        popup.querySelectorAll(`input[name="${orderLanguageRadioName}"]`).forEach((input) => {
           const labelText = input.nextElementSibling?.textContent?.trim();
           input.checked =
-            labelText === order.drink || input.value === order.drink || storedMatchesRadio(input, order.drink);
+            String(input.value).trim() === w ||
+            (labelText && labelText === w) ||
+            storedMatchesRadio(input, w);
         });
       }
 
@@ -696,28 +1722,62 @@ function initExperience(config) {
 
     const renderOrders = () => {
       const orders = getOrders();
+      if (boatLSKey && orders.length === 0 && getBoatPassengers() > 0) {
+        setBoatPassengers(0);
+      }
+      if (menuWithPerOrderBoat && orders.length === 0) {
+        localStorage.removeItem(`${storageKey}_boatPassengers`);
+        localStorage.removeItem(`${storageKey}_boatTime`);
+      }
+      if (boatTimeLSKey && orders.length === 0) {
+        setBoatTimeSlot("");
+      }
       const people = orders.length;
+      const headcount =
+        boatTimePerOrderFlag && experienceSkipsMenuChoices
+          ? orders.reduce((s, o) => s + orderBoatPax(o), 0)
+          : people;
+      const transportParty = boatTimePerOrderFlag && experienceSkipsMenuChoices ? headcount : people;
       const transportTotal =
-        vehicleTransportRate > 0 ? groupPrivateTransportTotal(people, vehicleTransportRate) : 0;
-      const cleanPreference = (text) =>
-        String(text || "")
-          .replace(/^🍺\s*/, "")
-          .replace(/^🧂\s*/, "")
-          .replace(/^🌱\s*/, "")
-          .replace(/^🚫\s*/, "")
-          .replace(/^🌶\s*/, "")
-          .trim();
+        vehicleTransportRate > 0
+          ? groupPrivateTransportTotal(transportParty, vehicleTransportRate)
+          : 0;
       const t = (key, fallback) => getI18nText(key, fallback);
 
       let html = `<h3>${escapeHtml(t("your_order", "Your order"))}</h3>`;
 
       if (orders.length > 0) {
+        const addLabel = experienceSkipsMenuChoices
+          ? t("add_passenger", "Add passenger or group")
+          : t("add_order", "Add Order");
         html = `
           <button id="addGuestBtn" class="add-guest-btn">
-            + ${escapeHtml(t("add_order", "Add Order"))}
+            + ${escapeHtml(addLabel)}
           </button>
           <h3>${escapeHtml(t("your_order", "Your order"))}</h3>
         `;
+      }
+
+      if (selectedDateKey) {
+        html += `<p class="order-summary-visit-date"><strong>${escapeHtml(
+          t("orders_visit_date_label", "Visit date")
+        )}:</strong> ${escapeHtml(getDateForBooking())}</p>`;
+      }
+
+      if (boatTimePerOrderFlag) {
+        const slotHintRaw = t(
+          "sunset_boat_passengers_per_slot",
+          "Up to {max} passengers allowed per departure time."
+        ).replace(/\{max\}/g, String(boatMax));
+        html += `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(slotHintRaw)}</p>`;
+      }
+
+      if (walkingTourTimePerOrderFlag) {
+        const slotHintWalk = t(
+          "walking_asado_passengers_per_slot",
+          "Up to {max} people per walking tour departure time."
+        ).replace(/\{max\}/g, String(walkingTourSlotMaxNum));
+        html += `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(slotHintWalk)}</p>`;
       }
 
       const Ls = choiceSectionLabels || {};
@@ -733,48 +1793,279 @@ function initExperience(config) {
       );
       orders.forEach((order, index) => {
         const prefs = (Array.isArray(order.preferences) ? order.preferences : [])
-          .map(cleanPreference)
-          .map(getLocalizedPreference);
+          .map((p) => decoratePref(p))
+          .filter((p) => p && p.trim() && p !== "-");
         const guideLine =
           guideOptional && !groupGuideOptional && guideFee > 0
             ? `<p><strong>${escapeHtml(t("guide_accompany_label", "Guide to accompany"))}:</strong> ${order.includeGuide ? escapeHtml(`${getI18nText("yes_word", "Yes")} (+USD ${guideFee})`) : escapeHtml(t("guide_no", "No"))}</p>`
             : "";
-        const prem = menuUpgradePrice && order.menuTier === "premium";
-        const labS = prem
-          ? escapeHtml(t("bruma_premium_label_plate", "Plate"))
-          : defLabS;
-        const labM = prem
-          ? escapeHtml(t("bruma_premium_label_dessert", "Dessert"))
-          : defLabM;
-        const labD = defLabD;
-        const tierRow =
-          menuUpgradePrice
-            ? `<p class="order-menu-tier"><strong>${escapeHtml(t("bruma_order_tier_label", "Menu"))}:</strong> ${escapeHtml(
-                prem
-                  ? t("bruma_order_tier_premium", "Premium · USD 45")
-                  : t("bruma_order_tier_standard", "Standard · from USD 35")
-              )}</p>`
+        if (experienceSkipsMenuChoices) {
+          const cardTitleKey = boatTimePerOrderFlag ? "booking_order_label" : "guest_order_label";
+          const cardTitleFb = boatTimePerOrderFlag ? "Booking" : "Guest";
+          const pax = boatTimePerOrderFlag
+            ? Math.max(1, Math.min(boatMax, Math.floor(Number(order.passengers) || 1)))
+            : 1;
+          const timeLine =
+            boatTimePerOrderFlag && String(order.boatDepartureTime || "").trim()
+              ? `<p><strong>${escapeHtml(t("orders_boat_time_label", "Boat departure time"))}:</strong> ${escapeHtml(String(order.boatDepartureTime).trim())}</p>`
+              : boatTimePerOrderFlag
+                ? `<p><strong>${escapeHtml(t("orders_boat_time_label", "Boat departure time"))}:</strong> <em>${escapeHtml(t("orders_boat_time_not_set", "Choose a time (edit)"))}</em></p>`
+                : "";
+          const slotPaxCap = boatTimePerOrderFlag ? maxPassengersForOrderIndex(index) : boatMax;
+          const paxRow = boatTimePerOrderFlag
+            ? `<p class="order-passengers-controls"><strong>${escapeHtml(t("passengers_label", "Passengers"))}:</strong> <button type="button" class="add-guest-btn"${
+                pax <= 1 ? " disabled" : ""
+              } data-order-passengers-action="minus" data-index="${index}">−</button> <span class="order-pax-count">${pax}</span> <button type="button" class="add-guest-btn"${
+                pax >= slotPaxCap ? " disabled" : ""
+              } data-order-passengers-action="plus" data-index="${index}">+</button></p>`
             : "";
-        html += `
+          html += `
           <div class="order-card">
             <div class="order-header">
-              <strong>${escapeHtml(t("order_word", "Order"))} ${index + 1}</strong>
+              <strong class="order-card-title">${escapeHtml(t(cardTitleKey, cardTitleFb))} ${index + 1}</strong>
               <div class="order-actions">
                 <span class="edit-order" data-index="${index}">✏️</span>
                 <span class="delete-order" data-index="${index}">🗑️</span>
               </div>
             </div>
-            ${tierRow}
+            ${timeLine}
+            ${guideLine}
+            ${paxRow}
+            ${
+              prefs.length > 0
+                ? `<p><strong>${escapeHtml(t("preferences_label", "Preferences"))}:</strong> ${escapeHtml(prefs.join(", "))}</p>`
+                : ""
+            }
+          </div>
+        `;
+          return;
+        }
+        const prem = menuUpgradePrice && order.menuTier === "premium";
+        const labS =
+          prem && !uniformTierChoiceLabels
+            ? escapeHtml(t("bruma_premium_label_plate", "Plate"))
+            : defLabS;
+        const labM =
+          prem && !uniformTierChoiceLabels
+            ? escapeHtml(t("bruma_premium_label_dessert", "Dessert"))
+            : defLabM;
+        const labD = defLabD;
+        const tierCardPrem =
+          tierSummaryPremiumKey
+            ? t(tierSummaryPremiumKey, tierSummaryPremium || "")
+            : tierSummaryPremium || t("bruma_order_tier_premium", "Premium · USD 45");
+        const tierCardStd =
+          tierSummaryStandardKey
+            ? t(tierSummaryStandardKey, tierSummaryStandard || "")
+            : tierSummaryStandard || t("bruma_order_tier_standard", "Standard · from USD 35");
+        const tierRow =
+          menuUpgradePrice
+            ? `<p class="order-menu-tier"><strong>${escapeHtml(t("bruma_order_tier_label", "Menu"))}:</strong> ${escapeHtml(
+                prem ? tierCardPrem : tierCardStd
+              )}</p>`
+            : "";
+        const servingNoteRow =
+          menuUpgradePrice && tierServingNotesI18n
+            ? `<p class="order-tier-serving-note">${escapeHtml(
+                t(
+                  prem ? tierServingNotesI18n.premium : tierServingNotesI18n.standard,
+                  prem
+                    ? "Generally enough for about 4 people."
+                    : "Generally enough for about 2–3 people."
+                )
+              )}</p>`
+            : "";
+        const walkLangLabelKey = orderLanguageSummaryLabelKey || "walking_label_language";
+        const walkLangLabelFb = orderLanguageSummaryLabelKey ? "Guided tour" : "Language";
+        const walkLangRow =
+          orderLanguageRadioName && String(order.walkingLanguage || "").trim()
+            ? `<p><strong>${escapeHtml(t(walkLangLabelKey, walkLangLabelFb))}:</strong> ${escapeHtml(
+                getLocalizedChoice(orderLanguageRadioName, order.walkingLanguage)
+              )}</p>`
+            : "";
+        const walkTourT = orderWalkingTourTime(order);
+        const slotsWt = Array.isArray(walkingTourTimeSlots) ? walkingTourTimeSlots : [];
+        const walkTourRadioName = `orderWalkingTourTime_${String(storageKey).replace(/[^a-zA-Z0-9_-]/g, "_")}_${index}`;
+        const walkTourTimeBlock =
+          walkingTourTimePerOrderFlag && slotsWt.length
+            ? `<div class="order-card-walking-tour-times">
+            <p class="orders-boat-time-heading"><strong>${escapeHtml(
+              t("walking_asado_orders_tour_time_label", "Walking tour time")
+            )}</strong></p>
+            <div class="orders-boat-times" role="radiogroup" aria-label="${escapeHtml(
+              t("walking_asado_orders_tour_time_label", "Walking tour time")
+            )}">${slotsWt
+              .map((slot) => {
+                const esc = escapeHtml(slot);
+                const checked = walkTourT === slot ? " checked" : "";
+                return `<label class="orders-boat-time-option"><input type="radio" class="order-walking-tour-time-input" name="${escapeHtml(
+                  walkTourRadioName
+                )}" value="${esc}" data-order-walking-tour-index="${index}"${checked}/> ${esc}</label>`;
+              })
+              .join("")}</div></div>`
+            : "";
+        const wParty =
+          orderWalkingPartyMaxNum > 0 && orderLanguageRadioName ? walkingPartyForOrder(order) : 1;
+        const walkingSlotCap =
+          walkingTourTimePerOrderFlag && walkTourT ? maxWalkingPartyForOrderIndex(index) : orderWalkingPartyMaxNum;
+        const walkingPartyRow =
+          orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
+            ? `<p class="order-passengers-controls"><strong>${escapeHtml(
+                t("walking_asado_quantity_label", "Quantity")
+              )}:</strong> <button type="button" class="add-guest-btn"${
+                wParty <= 1 ? " disabled" : ""
+              } data-walking-party-action="minus" data-index="${index}">−</button> <span class="order-pax-count">${wParty}</span> <button type="button" class="add-guest-btn"${
+                wParty >= walkingSlotCap ? " disabled" : ""
+              } data-walking-party-action="plus" data-index="${index}">+</button></p>`
+            : "";
+        const stdSkipsMainRow =
+          Boolean(standardSkipsMainField && menuUpgradePrice && !prem);
+        const premOmitsSecondSide = prem && !String(order.main || "").trim();
+        const mainRow =
+          stdSkipsMainRow || premOmitsSecondSide
+            ? ""
+            : `<p><strong>${labM}:</strong> ${escapeHtml(getLocalizedChoice(mainName, order.main))}</p>`;
+        const drinkRow = experienceSkipsDrinkField
+          ? ""
+          : `<p><strong>${labD}:</strong> ${escapeHtml(getLocalizedChoice(drinkName, order.drink))}</p>`;
+        const boatHintMenu = t("orders_boat_each_hint", "USD {price} per person").replace(
+          /\{price\}/g,
+          String(boatRate)
+        );
+        const menuBoatPax = orderBoatPax(order);
+        const menuBoatT = orderBoatTime(order);
+        const slotCapMenu = maxPassengersForOrderIndex(index);
+        const slotsMenu = Array.isArray(boatTimeSlots) ? boatTimeSlots : [];
+        const boatMenuRadioName = `orderBoatMenuTime_${String(storageKey).replace(/[^a-zA-Z0-9_-]/g, "_")}_${index}`;
+        const lunchAfterPrefsRow =
+          menuWithPerOrderBoat && boatRate > 0
+            ? `<p class="order-asado-lunch-note">${escapeHtml(
+                t(
+                  "asado_boat_lunch_after_boat",
+                  "Lunch is served at 12:30 after the first boat trip (11:00am departure)."
+                )
+              )}</p>`
+            : "";
+        const menuBoatBlock =
+          menuWithPerOrderBoat && boatRate > 0
+            ? `<div class="order-card-menu-boat">
+            <p class="orders-boat-time-heading"><strong>${escapeHtml(t("orders_boat_section_title", "Boat passengers"))}</strong></p>
+            <p class="orders-boat-hint">${escapeHtml(boatHintMenu)}</p>
+            <div class="orders-boat-times" role="radiogroup" aria-label="${escapeHtml(t("orders_boat_time_label", "Boat departure time"))}">${slotsMenu
+              .map((slot) => {
+                const esc = escapeHtml(slot);
+                const checked = menuBoatT === slot ? " checked" : "";
+                return `<label class="orders-boat-time-option"><input type="radio" class="order-boat-menu-time-input" name="${escapeHtml(
+                  boatMenuRadioName
+                )}" value="${esc}" data-order-boat-menu-index="${index}"${checked}/> ${esc}</label>`;
+              })
+              .join("")}</div>
+            <p class="order-passengers-controls"><strong>${escapeHtml(t("passengers_label", "Passengers"))}:</strong>
+              <button type="button" class="add-guest-btn"${
+                menuBoatPax <= 0 ? " disabled" : ""
+              } data-menu-boat-pax-action="minus" data-index="${index}">−</button>
+              <span class="order-pax-count">${menuBoatPax}</span>
+              <button type="button" class="add-guest-btn"${
+                menuBoatPax >= slotCapMenu ? " disabled" : ""
+              } data-menu-boat-pax-action="plus" data-index="${index}">+</button>
+            </p>
+            <p><strong>${escapeHtml(t("orders_boat_line_total", "Boat subtotal"))}:</strong> ${escapeHtml(curLabel)} ${menuBoatPax * boatRate}</p>
+          </div>`
+            : "";
+        html += `
+          <div class="order-card">
+            <div class="order-header">
+              <strong class="order-card-title">${escapeHtml(t("order_word", "Order"))} ${index + 1}</strong>
+              <div class="order-actions">
+                <span class="edit-order" data-index="${index}">✏️</span>
+                <span class="delete-order" data-index="${index}">🗑️</span>
+              </div>
+            </div>
+            ${tierRow}${servingNoteRow}
             <p><strong>${labS}:</strong> ${escapeHtml(getLocalizedChoice(starterName, order.starter))}</p>
-            <p><strong>${labM}:</strong> ${escapeHtml(getLocalizedChoice(mainName, order.main))}</p>
-            <p><strong>${labD}:</strong> ${escapeHtml(getLocalizedChoice(drinkName, order.drink))}</p>
+            ${mainRow}
+            ${drinkRow}
             ${guideLine}
             <p><strong>${escapeHtml(t("preferences_label", "Preferences"))}:</strong> ${escapeHtml(prefs.join(", ") || "-")}</p>
+            ${walkLangRow}
+            ${walkTourTimeBlock}
+            ${walkingPartyRow}
+            ${lunchAfterPrefsRow}
+            ${menuBoatBlock}
           </div>
         `;
       });
 
       if (orders.length > 0) {
+        if (boatRate > 0 && !menuWithPerOrderBoat) {
+          const bn = getBoatPassengers();
+          const boatSub = bn * boatRate;
+          const boatHint = t("orders_boat_each_hint", "USD {price} per person").replace(/\{price\}/g, String(boatRate));
+          const minusDisabled = bn <= 0 ? " disabled" : "";
+          const plusDisabled = bn >= boatMax ? " disabled" : "";
+          const bSlot = getBoatTimeSlot();
+          const slots = Array.isArray(boatTimeSlots) ? boatTimeSlots : [];
+          const timeField =
+            boatTimeLSKey && slots.length
+              ? `<p class="orders-boat-time-heading"><strong>${escapeHtml(
+                  t("orders_boat_time_label", "Boat departure time")
+                )}</strong></p><div class="orders-boat-times" role="radiogroup" aria-label="${escapeHtml(
+                  t("orders_boat_time_label", "Boat departure time")
+                )}">${slots
+                  .map((slot) => {
+                    const esc = escapeHtml(slot);
+                    const checked = bSlot === slot ? " checked" : "";
+                    return `<label class="orders-boat-time-option"><input type="radio" name="${escapeHtml(
+                      boatTimeRadioName
+                    )}" value="${esc}"${checked}/> ${esc}</label>`;
+                  })
+                  .join("")}</div>`
+              : "";
+          html += `
+          <div class="order-card orders-boat-card">
+            <div class="order-header">
+              <strong class="order-card-title">${escapeHtml(t("orders_boat_section_title", "Boat passengers"))}</strong>
+              <div class="order-actions">
+                <button type="button" class="add-guest-btn"${minusDisabled} data-boat-action="minus">${escapeHtml(
+            t("walking_minus_person", "- Person")
+          )}</button>
+                <button type="button" class="add-guest-btn"${plusDisabled} data-boat-action="plus">${escapeHtml(
+            t("walking_plus_person", "+ Person")
+          )}</button>
+              </div>
+            </div>
+            <p class="orders-boat-hint">${escapeHtml(boatHint)}</p>
+            ${timeField}
+            <p><strong>${escapeHtml(t("walking_label_people", "People"))}:</strong> ${bn}</p>
+            <p><strong>${escapeHtml(t("orders_boat_line_total", "Boat subtotal"))}:</strong> ${escapeHtml(curLabel)} ${boatSub}</p>
+          </div>
+        `;
+        } else if (boatScheduleOnlyFlag && boatTimeLSKey && !boatTimePerOrderFlag) {
+          const bSlotSo = getBoatTimeSlot();
+          const slotsSo = Array.isArray(boatTimeSlots) ? boatTimeSlots : [];
+          const timeFieldSo =
+            slotsSo.length > 0
+              ? `<p class="orders-boat-time-heading"><strong>${escapeHtml(
+                  t("orders_boat_time_label", "Boat departure time")
+                )}</strong></p><div class="orders-boat-times" role="radiogroup" aria-label="${escapeHtml(
+                  t("orders_boat_time_label", "Boat departure time")
+                )}">${slotsSo
+                  .map((slot) => {
+                    const esc = escapeHtml(slot);
+                    const checked = bSlotSo === slot ? " checked" : "";
+                    return `<label class="orders-boat-time-option"><input type="radio" name="${escapeHtml(
+                      boatTimeRadioName
+                    )}" value="${esc}"${checked}/> ${esc}</label>`;
+                  })
+                  .join("")}</div>`
+              : "";
+          html += `
+          <div class="order-card orders-boat-card orders-boat-card--schedule-only">
+            ${timeFieldSo}
+          </div>
+        `;
+        }
+
         let experienceSubtotal;
         let total;
         let ggAmt = 0; // evita errores en lógica existente
@@ -788,13 +2079,31 @@ function initExperience(config) {
 
         } else {
           ggAmt = groupGuideAmount();
-          experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
-          total = experienceSubtotal + ggAmt + transportTotal;
+          experienceSubtotal = groupExperienceSubtotal(orders);
+          const boatTotalLine = boatRate > 0 ? getTotalBoatPassengersPaid() * boatRate : 0;
+          total = experienceSubtotal + ggAmt + transportTotal + boatTotalLine;
         }
         const orderCountLabel =
-          people === 1
-            ? t("guest_order_singular", "guest order")
-            : t("guest_order_plural", "guest orders");
+          boatTimePerOrderFlag && experienceSkipsMenuChoices
+            ? orders.length === 1
+              ? t("booking_singular", "booking")
+              : t("booking_plural", "bookings")
+            : people === 1
+              ? t("guest_order_singular", "guest order")
+              : t("guest_order_plural", "guest orders");
+        const tourPartySum =
+          orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
+            ? orders.reduce((s, o) => s + walkingPartyForOrder(o), 0)
+            : people;
+        const summaryBookings =
+          boatTimePerOrderFlag && experienceSkipsMenuChoices
+            ? `${headcount} ${t("passengers_label", "passengers")} · ${orders.length} ${orderCountLabel}`
+            : orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
+              ? `${tourPartySum} ${t("walking_label_people", "People")} · ${orders.length} ${orderCountLabel}`
+              : `${orders.length} ${orderCountLabel}`;
+        const experienceDetailMid = experienceMenuFlatTotal
+          ? t("orders_menu_package_group_total", "menu package (group total)")
+          : t("experiences_word", "experiences");
         const guideTotalOptional = guideOptional && !groupGuideOptional
           ? orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0)
           : 0;
@@ -806,19 +2115,25 @@ function initExperience(config) {
             guideTotalOptional > 0
               ? ` · ${t("guide_short", "guide")} USD ${guideTotalOptional}`
               : "";
-        } else if (guideFee > 0) {
+        } else if (guideFee > 0 && !(orderWalkingPartyMaxNum > 0 && orderLanguageRadioName)) {
           guideDetail = ` · ${t("guide_short", "guide")} USD ${guideFee}/${t("guest_short", "guest")} ${t("included_short", "incl.")}`;
         }
         const transportDetail =
           transportTotal > 0 ? ` · ${t("transport_word", "transport")} USD ${transportTotal}` : "";
+        const boatPassengersUi = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
+        const boatTotalUi = boatPassengersUi * boatRate;
+        const boatDetail =
+          boatTotalUi > 0
+            ? ` · ${t("orders_boat_short", "boat")} ${curLabel} ${boatTotalUi} (${boatPassengersUi}×${boatRate})`
+            : "";
         html += `
           <div class="total-box">
             <div class="total-left">
               <span class="total-label">${escapeHtml(t("total_label", "Total"))}</span>
-              <span class="total-detail">${orders.length} ${escapeHtml(orderCountLabel)} · ${escapeHtml(t("experiences_word", "experiences"))} USD ${experienceSubtotal}${guideDetail}${transportDetail}</span>
+              <span class="total-detail">${escapeHtml(summaryBookings)} · ${escapeHtml(experienceDetailMid)} ${escapeHtml(curLabel)} ${experienceSubtotal}${boatDetail}${guideDetail}${transportDetail}</span>
             </div>
             <div class="total-right">
-              USD ${total}
+              ${escapeHtml(curLabel)} ${total}
             </div>
             <a href="#" id="bookWithOrder" class="btn total-btn">
               ${escapeHtml(t("book_btn", "Book Now"))}
@@ -831,6 +2146,66 @@ function initExperience(config) {
       syncGroupGuideWrap();
     };
 
+    container.addEventListener("change", (e) => {
+      const t = e.target;
+      if (t && t.classList && t.classList.contains("order-boat-menu-time-input") && t.checked && menuWithPerOrderBoat) {
+        const idx = Number(t.dataset.orderBoatMenuIndex);
+        const slot = String(t.value || "").trim();
+        const list = getOrders();
+        const o = list[idx];
+        if (!o) return;
+        const pax = orderBoatPax(o);
+        if (pax > 0 && !boatTimeSlotHasRoom(slot, pax, idx)) {
+          alert(
+            getI18nText(
+              "orders_boat_slot_full",
+              "This departure time already has the maximum number of passengers. Choose another time or reduce passengers in another booking."
+            )
+          );
+          renderOrders();
+          return;
+        }
+        list[idx] = { ...o, boatDepartureTime: slot };
+        setOrders(list);
+        renderOrders();
+        return;
+      }
+      const wtWalk = e.target;
+      if (
+        wtWalk &&
+        wtWalk.classList &&
+        wtWalk.classList.contains("order-walking-tour-time-input") &&
+        wtWalk.checked &&
+        walkingTourTimePerOrderFlag
+      ) {
+        const idx = Number(wtWalk.dataset.orderWalkingTourIndex);
+        const slotW = String(wtWalk.value || "").trim();
+        const listW = getOrders();
+        const ow = listW[idx];
+        if (!ow) return;
+        const partyW = walkingPartyForOrder(ow);
+        if (!walkingTourSlotHasRoom(slotW, partyW, idx)) {
+          alert(
+            getI18nText(
+              "orders_boat_slot_full",
+              "This departure time already has the maximum number of passengers. Choose another time or reduce passengers in another booking."
+            )
+          );
+          renderOrders();
+          return;
+        }
+        listW[idx] = { ...ow, walkingTourDepartureTime: slotW };
+        setOrders(listW);
+        renderOrders();
+        return;
+      }
+      if (!boatTimeRadioName || !boatTimeLSKey) return;
+      if (t && t.name === boatTimeRadioName && t.type === "radio" && t.checked) {
+        setBoatTimeSlot(t.value);
+        renderOrders();
+      }
+    });
+
     // Event delegation (una sola vez)
     container.addEventListener("click", (e) => {
       const target = e.target;
@@ -839,6 +2214,119 @@ function initExperience(config) {
       if (addBtn) {
         e.preventDefault();
         openPopupForNewOrder();
+        return;
+      }
+
+      const boatActEl = target.closest && target.closest("[data-boat-action]");
+      if (boatActEl && boatLSKey) {
+        e.preventDefault();
+        if (boatActEl.disabled) return;
+        const act = boatActEl.getAttribute("data-boat-action");
+        const curBn = getBoatPassengers();
+        if (act === "minus") {
+          setBoatPassengers(curBn - 1);
+          if (getBoatPassengers() <= 0 && boatTimeLSKey) setBoatTimeSlot("");
+        } else if (act === "plus") {
+          setBoatPassengers(curBn + 1);
+        }
+        renderOrders();
+        return;
+      }
+
+      const walkingPartyEl = target.closest && target.closest("[data-walking-party-action]");
+      if (walkingPartyEl && orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
+        e.preventDefault();
+        if (walkingPartyEl.disabled) return;
+        const idx = Number(walkingPartyEl.dataset.index);
+        const ordList = getOrders();
+        const o = ordList[idx];
+        if (!o) return;
+        let p = walkingPartyForOrder(o);
+        const act = walkingPartyEl.getAttribute("data-walking-party-action");
+        const walkCap =
+          walkingTourTimePerOrderFlag && orderWalkingTourTime(o)
+            ? maxWalkingPartyForOrderIndex(idx)
+            : orderWalkingPartyMaxNum;
+        if (act === "minus") p = Math.max(1, p - 1);
+        else if (act === "plus") {
+          if (p >= walkCap) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_full_short",
+                "No more seats for this departure time. Add another booking with a different time or reduce passengers elsewhere."
+              )
+            );
+            return;
+          }
+          p = Math.min(walkCap, p + 1);
+        }
+        ordList[idx] = { ...o, walkingPartyCount: p };
+        setOrders(ordList);
+        renderOrders();
+        return;
+      }
+
+      const menuBoatPaxEl = target.closest && target.closest("[data-menu-boat-pax-action]");
+      if (menuBoatPaxEl && menuWithPerOrderBoat) {
+        e.preventDefault();
+        if (menuBoatPaxEl.disabled) return;
+        const idx = Number(menuBoatPaxEl.dataset.index);
+        const ordList = getOrders();
+        const o = ordList[idx];
+        if (!o) return;
+        let p = orderBoatPax(o);
+        const act = menuBoatPaxEl.getAttribute("data-menu-boat-pax-action");
+        const t = orderBoatTime(o);
+        const slotCap = t ? maxPassengersForOrderIndex(idx) : boatMax;
+        if (act === "minus") {
+          p = Math.max(0, p - 1);
+        } else if (act === "plus") {
+          if (p >= slotCap) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_full_short",
+                "No more seats for this departure time. Add another booking with a different time or reduce passengers elsewhere."
+              )
+            );
+            return;
+          }
+          p = Math.min(slotCap, p + 1);
+        }
+        const next = { ...o, boatPassengers: p };
+        if (p === 0) next.boatDepartureTime = "";
+        ordList[idx] = next;
+        setOrders(ordList);
+        renderOrders();
+        return;
+      }
+
+      const paxActEl = target.closest && target.closest("[data-order-passengers-action]");
+      if (paxActEl && boatTimePerOrderFlag && experienceSkipsMenuChoices) {
+        e.preventDefault();
+        if (paxActEl.disabled) return;
+        const idx = Number(paxActEl.dataset.index);
+        const ordList = getOrders();
+        const o = ordList[idx];
+        if (!o) return;
+        let p = Math.max(1, Math.min(boatMax, Math.floor(Number(o.passengers) || 1)));
+        const act = paxActEl.getAttribute("data-order-passengers-action");
+        const slotCap = maxPassengersForOrderIndex(idx);
+        if (act === "minus") p = Math.max(1, p - 1);
+        else if (act === "plus") {
+          if (p >= slotCap) {
+            alert(
+              getI18nText(
+                "orders_boat_slot_full_short",
+                "No more seats for this departure time. Add another booking with a different time or reduce passengers elsewhere."
+              )
+            );
+            return;
+          }
+          p = Math.min(slotCap, p + 1);
+        }
+        ordList[idx] = { ...o, passengers: p };
+        setOrders(ordList);
+        renderOrders();
         return;
       }
 
@@ -871,26 +2359,48 @@ function initExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
+        if (!boatBookReady()) return;
         const pendingTab = window.open("about:blank", "_blank");
         (async () => {
-          const people = orders.length;
+          const peopleCount = peopleCountForPayment(orders);
           const transportTotal =
-            vehicleTransportRate > 0 ? groupPrivateTransportTotal(people, vehicleTransportRate) : 0;
-          const experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
+            vehicleTransportRate > 0 ? groupPrivateTransportTotal(peopleCount, vehicleTransportRate) : 0;
+          const experienceSubtotal = groupExperienceSubtotal(orders);
           const ggAmt = groupGuideAmount();
-          const total = experienceSubtotal + ggAmt + transportTotal;
+          const boatPassengersPay = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
+          const boatTotalPay = boatPassengersPay * boatRate;
+          const total = experienceSubtotal + ggAmt + transportTotal + boatTotalPay;
+          const boatTimesPayload = buildBoatTimesPayload(orders);
           let paymentUrl = "";
           try {
             paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
               experience: dynamicPayment?.experienceId || experienceName,
               amount: total,
               currency: dynamicPayment?.currency || "USD",
-              people,
-              orderFingerprint: stableStringify({ orders, total, people, groupGuide: ggAmt }),
-              orderPayload: { orders, total, people, experienceName, groupGuideFlat: ggAmt }
+              people: peopleCount,
+              orderFingerprint: stableStringify({
+                orders,
+                total,
+                people: peopleCount,
+                groupGuide: ggAmt,
+                boatPassengers: boatPassengersPay,
+                boatPerPerson: boatRate,
+                boatDepartureTime: boatTimesPayload
+              }),
+              orderPayload: {
+                orders,
+                total,
+                people: peopleCount,
+                experienceName,
+                groupGuideFlat: ggAmt,
+                boatPassengers: boatPassengersPay,
+                boatPerPerson: boatRate,
+                boatSubtotal: boatTotalPay,
+                boatDepartureTime: boatTimesPayload
+              }
             });
           } catch {}
-          const message = buildWhatsAppMessage(orders, formatDate(new Date()), paymentUrl);
+          const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
           const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
           if (pendingTab && !pendingTab.closed) {
             pendingTab.location.href = waUrl;
@@ -914,6 +2424,12 @@ function initExperience(config) {
 
     document.addEventListener("sacramento:setLanguage", () => renderOrders());
 
+    document.addEventListener("sacramento:visitDateChanged", (e) => {
+      if (!selectedDateKey) return;
+      if (e.detail && e.detail.key && e.detail.key !== selectedDateKey) return;
+      renderOrders();
+    });
+
     if (menuUpgradePrice && menuTierPanelIds) {
       syncMenuTierPanels(true);
     }
@@ -930,23 +2446,45 @@ function initExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
+          if (!boatBookReady()) return;
           const pendingTab = window.open("about:blank", "_blank");
           (async () => {
-            const people = orders.length;
+            const peopleCount = peopleCountForPayment(orders);
             const transportTotal =
-              vehicleTransportRate > 0 ? groupPrivateTransportTotal(people, vehicleTransportRate) : 0;
-            const experienceSubtotal = orders.reduce((s, o) => s + guestExperienceTotal(o), 0);
+              vehicleTransportRate > 0 ? groupPrivateTransportTotal(peopleCount, vehicleTransportRate) : 0;
+            const experienceSubtotal = groupExperienceSubtotal(orders);
             const ggAmt = groupGuideAmount();
-            const total = experienceSubtotal + ggAmt + transportTotal;
+            const boatPassengersPay = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
+            const boatTotalPay = boatPassengersPay * boatRate;
+            const total = experienceSubtotal + ggAmt + transportTotal + boatTotalPay;
+            const boatTimesPayload = buildBoatTimesPayload(orders);
             let paymentUrl = "";
             try {
               paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
                 experience: dynamicPayment?.experienceId || experienceName,
                 amount: total,
                 currency: dynamicPayment?.currency || "USD",
-                people,
-                orderFingerprint: stableStringify({ orders, total, people, groupGuide: ggAmt }),
-                orderPayload: { orders, total, people, experienceName, groupGuideFlat: ggAmt }
+                people: peopleCount,
+                orderFingerprint: stableStringify({
+                  orders,
+                  total,
+                  people: peopleCount,
+                  groupGuide: ggAmt,
+                  boatPassengers: boatPassengersPay,
+                  boatPerPerson: boatRate,
+                  boatDepartureTime: boatTimesPayload
+                }),
+                orderPayload: {
+                  orders,
+                  total,
+                  people: peopleCount,
+                  experienceName,
+                  groupGuideFlat: ggAmt,
+                  boatPassengers: boatPassengersPay,
+                  boatPerPerson: boatRate,
+                  boatSubtotal: boatTotalPay,
+                  boatDepartureTime: boatTimesPayload
+                }
               });
             } catch {}
             const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
@@ -1012,77 +2550,22 @@ function initFoodExperience(config) {
     let editingIndex = null;
     const getI18nText = (key, fallback) => {
       const lang = localStorage.getItem("selectedLanguage") || "en";
+      const tr = sacramentoI18nTable();
       try {
-        if (translations?.[lang]?.[key]) return translations[lang][key];
-        if (translations?.en?.[key]) return translations.en[key];
+        if (tr?.[lang]?.[key]) return tr[lang][key];
+        if (tr?.en?.[key]) return tr.en[key];
       } catch {}
       return fallback;
     };
-    const I18N_PREF_PREFIX = "__i18n__:";
-    const normalizePrefText = (value) =>
-      String(value || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
+    const I18N_PREF_PREFIX = SACRAMENTO_I18N_PREF;
+    const normalizePrefText = sacramentoNormalizePrefText;
     const encodePref = (keyOrLabel) => {
       const raw = String(keyOrLabel || "").trim();
       if (!raw) return "";
       return raw.startsWith(I18N_PREF_PREFIX) ? raw : `${I18N_PREF_PREFIX}${raw}`;
     };
-    const legacyPrefToI18nKey = (value) => {
-      const v = normalizePrefText(value);
-      if (!v) return "";
-      if (
-        v.includes("low salt") ||
-        v.includes("salt free") ||
-        v.includes("salt") ||
-        v.includes("bajo en sal") ||
-        v.includes("sin sal") ||
-        v.includes("sal") ||
-        v.includes("baixo teor de sal")
-      ) {
-        return "bruma_pref_salt";
-      }
-      if (v.includes("vegetarian") || v.includes("vegetariano") || v.includes("vegetariana")) {
-        return "bruma_pref_veg";
-      }
-      if (
-        v.includes("no spicy") ||
-        v.includes("spicy") ||
-        v.includes("sin picante") ||
-        v.includes("picante") ||
-        v.includes("sem comida picante")
-      ) {
-        return "bruma_pref_spicy";
-      }
-      return "";
-    };
-    const decodePref = (storedPref) => {
-      const raw = String(storedPref || "").trim();
-      if (!raw) return "";
-      if (!raw.startsWith(I18N_PREF_PREFIX)) {
-        const legacyKey = legacyPrefToI18nKey(raw);
-        return legacyKey ? getI18nText(legacyKey, raw) : raw;
-      }
-      const key = raw.slice(I18N_PREF_PREFIX.length);
-      return getI18nText(key, key);
-    };
-    const prefEmojiFor = (storedPref) => {
-      const raw = String(storedPref || "").trim();
-      const key = raw.startsWith(I18N_PREF_PREFIX) ? raw.slice(I18N_PREF_PREFIX.length) : legacyPrefToI18nKey(raw);
-      if (key === "bruma_pref_salt") return "🧂";
-      if (key === "bruma_pref_veg") return "🌱";
-      if (key === "bruma_pref_spicy") return "🌶";
-      return "";
-    };
-    const decoratePref = (storedPref) => {
-      const label = decodePref(storedPref);
-      const emoji = prefEmojiFor(storedPref);
-      return emoji ? `${emoji} ${label}` : label;
-    };
+    const decodePref = (storedPref) => sacramentoDecodePrefLabel(storedPref, getI18nText, I18N_PREF_PREFIX);
+    const decoratePref = (storedPref) => sacramentoDecoratePref(storedPref, getI18nText, I18N_PREF_PREFIX);
 
     const FOOD_MEAL_I18N_KEYS = [
       "food_popup_main_1",
@@ -1100,7 +2583,7 @@ function initFoodExperience(config) {
       try {
         ["en", "es", "pt"].forEach((lang) => {
           FOOD_MEAL_I18N_KEYS.forEach((key) => {
-            const t = translations?.[lang]?.[key];
+            const t = sacramentoI18nTable()?.[lang]?.[key];
             if (t) map[normalizePrefText(t)] = key;
           });
         });
@@ -1136,7 +2619,7 @@ function initFoodExperience(config) {
             const raw = String(pref || "").trim();
             if (!raw) return raw;
             if (raw.startsWith(I18N_PREF_PREFIX)) return raw;
-            const legacyKey = legacyPrefToI18nKey(raw);
+            const legacyKey = sacramentoLegacyPrefKey(raw);
             if (!legacyKey) return raw;
             mutated = true;
             return encodePref(legacyKey);
@@ -1326,7 +2809,7 @@ function initFoodExperience(config) {
         html += `
           <div class="order-card">
             <div class="order-header">
-              <h3>${escapeHtml(getI18nText("order_word", "Order"))} ${i + 1}</h3>
+              <h3 class="order-card-title">${escapeHtml(getI18nText("order_word", "Order"))} ${i + 1}</h3>
               <div class="order-actions">
                 <span class="edit-order" data-index="${i}">✏️</span>
                 <span class="delete-order" data-index="${i}">🗑️</span>
@@ -2017,9 +3500,10 @@ function initPackageOrderExperience(config) {
 
   const getI18nText = (key, fallback) => {
     const lang = localStorage.getItem("selectedLanguage") || "en";
+    const tr = sacramentoI18nTable();
     try {
-      if (translations?.[lang]?.[key]) return translations[lang][key];
-      if (translations?.en?.[key]) return translations.en[key];
+      if (tr?.[lang]?.[key]) return tr[lang][key];
+      if (tr?.en?.[key]) return tr.en[key];
     } catch {}
     return fallback;
   };
@@ -2179,6 +3663,14 @@ function initPackageOrderExperience(config) {
       return lookup.get(text) || lookup.get(raw) || text;
     };
 
+    const decoratePkgPref = (storedValue) => {
+      const raw = String(storedValue || "").trim();
+      if (!raw) return "-";
+      const decorated = sacramentoDecoratePref(raw, getI18nText, pkgI18nPrefPrefix);
+      if (decorated && decorated.trim()) return decorated;
+      return getLocalizedPreference(storedValue);
+    };
+
     const getOrders = () => {
       try {
         return JSON.parse(localStorage.getItem(storageKey)) || [];
@@ -2275,7 +3767,7 @@ function initPackageOrderExperience(config) {
         const prefsWa =
           prefs.length === 0
             ? "-"
-            : prefs.map(getLocalizedPreference).filter((p) => p && p !== "-").join(", ") || "-";
+            : prefs.map(decoratePkgPref).filter((p) => p && p !== "-").join(", ") || "-";
 
         ordersText += `*Order ${i + 1}*\nPackage: ${packageLineForOrder(o, orders)}\nPreferences: ${prefsWa}\n\n`;
       });
@@ -2364,7 +3856,7 @@ function initPackageOrderExperience(config) {
         const prefsLine =
           prefsRaw.length === 0
             ? "-"
-            : prefsRaw.map(getLocalizedPreference).filter((p) => p && p !== "-").join(", ") || "-";
+            : prefsRaw.map(decoratePkgPref).filter((p) => p && p !== "-").join(", ") || "-";
         const lineTotal = lineTotalForOrder(order, orders);
 
         const effPkg = getEffectivePackagePricing(order);
@@ -2405,7 +3897,7 @@ function initPackageOrderExperience(config) {
         html += `
           <div class="order-card">
             <div class="order-header">
-              <strong>${escapeHtml(getI18nText("order_word", "Order"))} ${index + 1}</strong>
+              <strong class="order-card-title">${escapeHtml(getI18nText("order_word", "Order"))} ${index + 1}</strong>
               <div class="order-actions">
                 <span class="edit-order" data-index="${index}">✏️</span>
                 <span class="delete-order" data-index="${index}">🗑️</span>

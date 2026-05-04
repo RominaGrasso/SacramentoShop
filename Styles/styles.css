@@ -902,12 +902,96 @@
     cursor: pointer;
   }
 
-.gallery-grid video {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 14px;
-  background: #000;
+  /* Video thumbnails: badge + play so they read as video before opening lightbox */
+  .gallery-video-thumb {
+    position: relative;
+    height: 220px;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.35s ease;
+    outline: none;
+  }
+
+  .gallery-video-thumb:focus-visible {
+    box-shadow: 0 0 0 3px rgba(90, 149, 207, 0.65);
+  }
+
+  .gallery-video-thumb .gallery-grid-video-el {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+    background: #000;
+    vertical-align: top;
+  }
+
+  .gallery-video-thumb .gallery-video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.42) 100%);
+  }
+
+  .gallery-video-thumb .gallery-video-play {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: #2f67a3;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  }
+
+  .gallery-video-thumb .gallery-video-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(47, 103, 163, 0.92);
+    padding: 5px 9px;
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .gallery-video-thumb:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Raw <video> direct child (other pages) — keep clickable if used without wrapper */
+  .gallery-grid > video {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #000;
+    cursor: pointer;
+  }
+
+.lightbox .lightbox-inline-video {
+  display: none;
+  max-width: min(92vw, 960px);
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  vertical-align: middle;
 }
   
   /* efecto premium */
@@ -938,6 +1022,47 @@
     margin: 2px 0 0;
     font-size: 0.9rem;
     color: #666;
+  }
+
+  .price-box-detail {
+    margin-top: 10px !important;
+    line-height: 1.45;
+  }
+
+  .bruma-tier-option-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .bruma-tier-price-line {
+    display: block;
+  }
+
+  .bruma-tier-includes {
+    display: block;
+    font-size: 0.88rem;
+    color: #444;
+    line-height: 1.35;
+  }
+
+  .popup-box .asado-menu-serving-note {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 400;
+    text-align: left;
+    margin: 0 0 14px;
+    line-height: 1.35;
+  }
+
+  /* Asado boat: texto bajo “Side dishes”, celeste, sin negrita */
+  .popup-box .asado-side-dishes-hint {
+    color: #66a6e6;
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 4px 0 10px;
+    text-align: left;
+    line-height: 1.35;
   }
 
   .plaza-hero {
@@ -1855,6 +1980,15 @@
     flex-direction: column;
   }
 
+  .includes-li-note {
+    list-style: none;
+    margin: 8px 0 0;
+    padding-left: 0;
+    font-size: 0.9rem;
+    color: #5c6670;
+    line-height: 1.45;
+  }
+
   .help-icon {
     cursor: pointer;
   }
@@ -1921,9 +2055,20 @@
   }
 
   .order-menu-tier {
-    font-size: 0.9rem;
-    margin: 0 0 8px;
-    color: #2f67a3;
+    font-size: 1rem;
+    margin: 0 0 6px;
+    color: #2c3e50;
+  }
+
+  .order-menu-tier strong {
+    color: #2c3e50;
+  }
+
+  .order-tier-serving-note {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin: 0 0 10px;
+    color: #5c6670;
   }
   
   .popup-box p {
@@ -1985,6 +2130,14 @@
     margin: 10px auto 20px;
     padding-left: 20px;
     max-width: 320px;
+  }
+
+  .popup-list--checks label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-align: left;
   }
   
   .popup-list li {
@@ -2428,6 +2581,12 @@
     text-align: center;
   }
 
+  /* Sunset Boat only — same image as gallery slot 6 (boat4.jpg) */
+  .boat-hero--sunset-boat {
+    background-image: url("../Assets/images/boat4.jpg");
+    background-position: center 55%;
+  }
+
   .bar-hero{
     height:55vh;
     background-image:url("../Assets/images/delrio1.jpg");
@@ -2559,6 +2718,12 @@
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+
+  /* Price title + paragraph stacked (overrides flex row above) */
+  .price-box.price-box--with-blurb {
+    display: inline-block;
+    align-items: stretch;
   }
   
   .price-note {
@@ -2863,6 +3028,17 @@
     margin-bottom: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   }
+
+  /* Prefer color emoji fonts so preference icons render consistently */
+  .order-summary .order-card p {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  }
+
+  /* Order 1, Boat pass, etc.: same blue as .total-box background */
+  .order-summary .order-card-title {
+    color: #2f67a3;
+  }
   
   .order-header {
     display: flex;
@@ -2901,6 +3077,84 @@
     color: #6b7280;
     margin-bottom: 15px;
   }
+
+  .booking-visit-date-row {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .booking-visit-date-row label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .booking-visit-date-row input[type="date"] {
+    max-width: 280px;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: #1f2937;
+  }
+
+  .booking-visit-date-hint {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
+    max-width: 340px;
+    line-height: 1.4;
+  }
+
+  .order-summary-visit-date {
+    font-size: 15px;
+    color: #1e3a5f;
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    background: #eef4fb;
+    border-radius: 10px;
+    border: 1px solid #d4e2f4;
+  }
+
+  .order-summary-visit-date strong {
+    color: #2c3e50;
+  }
+
+  .asado-boat-popup-time {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .asado-boat-popup-time-hint {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0 0 10px;
+    line-height: 1.4;
+  }
+
+  .order-asado-lunch-note {
+    font-size: 13px;
+    color: #374151;
+    margin: 8px 0 14px;
+    line-height: 1.45;
+    padding: 8px 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 3px solid #5a95cf;
+  }
+
+  .order-card-menu-boat {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e8ecf1;
+  }
   
   .primary-btn {
     background: linear-gradient(135deg, #6ea8e5, #5a95cf);
@@ -2922,6 +3176,20 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .walking-summary-mate-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    margin-top: 14px;
+  }
+
+  .walking-mate-price-note {
+    font-size: 0.92rem;
+    color: #2f67a3;
+    font-weight: 600;
+  }
   
   .order-actions span {
     cursor: pointer;
@@ -2935,6 +3203,90 @@
 
   .order-card strong {
     color: #2c3e50;
+  }
+
+  .orders-boat-card .order-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .orders-boat-card .order-actions .add-guest-btn {
+    margin: 0;
+  }
+
+  .orders-boat-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 8px;
+    line-height: 1.4;
+  }
+
+  .orders-boat-time-heading {
+    margin: 0 0 6px;
+    font-size: 0.95rem;
+  }
+
+  .orders-boat-times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin: 0 0 12px;
+  }
+
+  .orders-boat-time-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #2c3e50;
+  }
+
+  .orders-boat-time-option input {
+    margin: 0;
+    accent-color: #5a95cf;
+  }
+
+  /* Walking + Asado order card: horarios sin negrita y aire antes de Cantidad */
+  .order-card-walking-tour-times .orders-boat-time-option {
+    font-weight: 400;
+    color: #4a5568;
+  }
+
+  .order-card-walking-tour-times .orders-boat-times {
+    margin-bottom: 1.35rem;
+  }
+
+  .walking-asado-popup-tour-time label {
+    font-weight: 400;
+    color: #374151;
+  }
+
+  /* Sunset boat popup: heading was tight against time radios (no longer inside .preferences-inside) */
+  .sunset-boat-popup-time {
+    margin-bottom: 10px;
+  }
+
+  .sunset-boat-popup-time .preferences-title {
+    margin: 0 0 1.25rem;
+    color: #66a6e6;
+  }
+
+  .sunset-boat-popup-time .orders-boat-times--popup {
+    justify-content: center;
+    gap: 10px 18px;
+  }
+
+  .order-summary .sunset-boat-passengers-slot-hint {
+    margin: 0 0 14px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: #5c6670;
+    text-align: center;
   }
 
   .total-box {
@@ -3277,5 +3629,6 @@
   background: rgba(90, 149, 207, 0.08);
   border: 1px solid rgba(47, 103, 163, 0.15);
 }
+
 
 

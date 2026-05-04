@@ -145,6 +145,13 @@
 
         <div class="order-start">
           <h3 data-translate="liebres_create_title">Create your order</h3>
+          <div class="booking-visit-date-row">
+            <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+            <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
+            <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+              Pick the day you plan to come so we can coordinate availability in advance.
+            </p>
+          </div>
           <p data-translate="liebres_create_subtitle">Choose tasting options and preferences.</p>
 
           <button id="createMenuBtnLiebres" class="btn primary-btn" type="button" data-translate="liebres_create_btn">
@@ -283,8 +290,9 @@
     </div>
     
     </section>
-    <script src="../Home/index.js?v=20260505"></script>
+    <script src="../Home/index.js?v=20260509"></script>
     <script src="../Home/orders.js"></script>
+    <script src="../Home/booking-date-picker.js"></script>
     <script>
       initExperience({
         experienceName: "Wine tasting at Las Liebres (horseback + vineyard)",
@@ -444,7 +452,6 @@
           <h3 class="preferences-title" data-translate="liebres_preferences_title">Your preferences</h3>
           <label><input type="checkbox" value="Red wine preferred"> 🍷 <span data-translate="liebres_pref_red">Red wine preferred</span></label>
           <label><input type="checkbox" value="White wine preferred"> 🥂 <span data-translate="liebres_pref_white">White wine preferred</span></label>
-          <label><input type="checkbox" value="Vegetarian"> 🌱 <span data-translate="liebres_pref_vegetarian">Vegetarian</span></label>
           <label><input type="checkbox" value="No alcohol"> 🚫 <span data-translate="liebres_pref_no_alcohol">No alcohol</span></label>
         </div>
 

@@ -119,7 +119,9 @@ const translations = {
       coffee_title: "☕ Coffee with stunning views",
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina.",
       plaza_title: "🏛 Plaza de Toros Experience with Anita's coffee",
-      plaza_text: "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line!",
+      plaza_meta_line: "🚗 Transfer included • 🎫 Tickets included • ⏱ Approx. 3 hours",
+      plaza_text:
+        "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line! Anita is a café in the heart of the historic quarter with an incredible view. The experience lasts approximately 3 hours.",
       pharmacies_title: "Pharmacies in Colonia del Sacramento",
       pharmacies_intro:
         "Handy references if you need medication or personal care while visiting. Opening hours can change — please confirm locally.",
@@ -203,11 +205,12 @@ const translations = {
       bruma_about_p1: "Enjoy a unique gastronomic experience at Bruma, a boutique restaurant located in the heart of Colonia's Historic Quarter. Surrounded by cobblestone streets and charming colonial houses, Bruma offers an intimate and relaxed atmosphere.",
       bruma_about_p2_prefix: "The project is run by its owners, ",
       bruma_about_owner_names: "Bruno and Chef Marcelo",
-      bruma_about_p2_middle: " - and the name ",
+      bruma_about_p2_middle: " — and the name ",
       bruma_about_name_word: "Bruma",
       bruma_about_p2_suffix: " comes from combining their names.",
       bruma_about_p3: "The restaurant features a carefully crafted international menu with high-quality ingredients and creative dishes.",
-      bruma_about_p4: "This experience is the perfect lunch stop in Colonia - a moment to relax, enjoy great food, and soak in the essence of the Historic Quarter.",
+      bruma_about_p4:
+        "This experience is the perfect lunch stop in Colonia — a moment to relax, enjoy great food, and soak in the essence of the Historic Quarter.",
       bruma_reel_btn: "🎥 Watch Reel on @_sacramentoadventures",
       bruma_price_title: "From USD 35 per guest · Premium USD 45",
       bruma_included_title: "What's included",
@@ -224,6 +227,8 @@ const translations = {
       bruma_map_title: "Where to find Bruma",
       bruma_map_text: "Use this map as a reference for Bruma's location in Colonia del Sacramento, within the Historic Quarter area.",
       bruma_map_link: "Open in Google Maps",
+      bruma_map_iframe_title: "Map: Bruma, Colonia del Sacramento",
+      wa_float_aria: "WhatsApp",
       bruma_back_home: "Back to Home",
       bruma_popup_title: "Chef's curated menu:",
       bruma_popup_starter: "Starter",
@@ -274,6 +279,234 @@ const translations = {
       guest_order_singular: "guest order",
       guest_order_plural: "guest orders",
       experiences_word: "experiences",
+      orders_menu_package_group_total: "menu package (group total)",
+      orders_boat_section_title: "Boat passengers",
+      orders_boat_each_hint: "USD {price} per person",
+      orders_boat_line_total: "Boat subtotal",
+      orders_boat_short: "boat",
+      orders_boat_time_label: "Boat departure time",
+      orders_boat_time_required: "Please choose a boat departure time.",
+      orders_boat_time_each_required:
+        "Each booking must have a departure time. Please edit the booking that is missing one.",
+      orders_boat_menu_time_required:
+        "Each order with boat passengers needs a departure time. Edit that order to choose a time.",
+      orders_boat_time_popup_required: "Please choose a boat departure time.",
+      orders_boat_slot_full:
+        "This departure time already has the maximum number of passengers. Choose another time or reduce passengers in another booking.",
+      orders_boat_slot_full_short:
+        "No more seats for this departure time. Use a different time or reduce passengers in another booking.",
+      orders_boat_slot_over_capacity:
+        "One departure time has more passengers than allowed. Adjust your bookings before continuing.",
+      orders_boat_time_not_set: "Choose a time (edit this booking)",
+      orders_wa_people_line: "People",
+      orders_wa_intro: "Hello! I'd like to book the {experience} experience:",
+      orders_wa_date_label: "Date",
+      orders_wa_experience_subtotal: "Experience subtotal",
+      orders_wa_total_label: "Total",
+      orders_wa_pay_confirm: "To confirm the reservation, please complete the payment here:",
+      orders_wa_group_coordinate:
+        "We are a group of more than 5 people and would like to coordinate the reservation.",
+      orders_wa_payment_pending:
+        "Payment link could not be generated automatically yet. Please confirm and we will send it right away.",
+      add_passenger: "Add passenger or group",
+      booking_order_label: "Booking",
+      booking_singular: "booking",
+      booking_plural: "bookings",
+      booking_visit_date_label: "Preferred visit date",
+      booking_visit_date_hint:
+        "Pick the day you plan to come so we can coordinate availability in advance.",
+      orders_visit_date_label: "Visit date",
+      passengers_label: "Passengers",
+      gallery_video_badge: "Video",
+      sunset_boat_passengers_per_slot:
+        "Up to {max} passengers allowed per departure time.",
+      sunset_boat_popup_time_title: "Departure time",
+      orders_wa_boat_passengers: "Boat passengers",
+      orders_wa_boat_subtotal: "Boat",
+      orders_wa_boat_time: "Boat departure time",
+      guest_order_label: "Guest",
+      sunset_boat_page_title: "Sunset Boat Experience - Sacramento Adventures",
+      sunset_boat_hero: "🌅🚤 Sunset Boat Experience",
+      sunset_boat_experience_name: "Sunset Boat Experience",
+      sunset_boat_about_title: "About this experience",
+      sunset_boat_about_p:
+        "Enjoy a relaxing boat tour along the Río de la Plata and discover Colonia from a unique perspective. Cruise through calm waters, take in sunset views, and unwind with captain Alejandro.",
+      sunset_boat_steps_title: "How it works",
+      sunset_boat_step_1:
+        "📍 Meeting point: Historic Quarter (shared after booking)",
+      sunset_boat_step_2:
+        "🚤 Boat tour: Navigate the Río de la Plata with captain Alejandro and enjoy views of Colonia from the water.",
+      sunset_boat_step_departures:
+        "⏰ Departure times: 11:00am, 13:30pm, 15:30pm, 17:00pm",
+      sunset_boat_step_3:
+        "🌅 Sunset & relax: Ideal for photos, calm waters, and a memorable end of the day.",
+      sunset_boat_step_4: "⏱️ Duration: About 1.5 hours",
+      sunset_boat_medical: "Medical assistance included",
+      sunset_boat_price_title: "USD 25 per guest",
+      sunset_boat_price_detail:
+        "Price per person for the boat experience. Drinks are not included unless specified in your booking confirmation.",
+      sunset_boat_included_title: "What's included",
+      sunset_boat_include_1: "✔ Scenic boat tour on the Río de la Plata",
+      sunset_boat_include_2: "✔ Captain & host Alejandro",
+      sunset_boat_include_3: "✔ Life jackets and safety briefing",
+      sunset_boat_include_4: "✔ Small-group atmosphere",
+      sunset_boat_create_title: "Book your spot",
+      sunset_boat_create_subtitle:
+        "Choose your visit date below, then add a booking and pick a departure time in the popup. Use +/− on each booking for more than one passenger at the same time.",
+      sunset_boat_create_btn: "+ Add passenger or group",
+      sunset_boat_group_guide_cb:
+        "Include a guide for the whole group (USD 40 total)",
+      sunset_boat_guide_help_btn: "What the guide does",
+      sunset_boat_guide_help_p:
+        "The guide meets your group at the agreed point, accompanies you on the boat experience, helps coordinate with the captain, and can assist with photos and logistics during the visit.",
+      sunset_boat_gallery_title: "Experience Gallery",
+      sunset_boat_map_title: "Colonia & the Río de la Plata",
+      sunset_boat_map_text:
+        "Meeting details are confirmed after booking; this map shows Colonia del Sacramento and the river for orientation.",
+      sunset_boat_map_link: "Open in Google Maps",
+      sunset_boat_map_iframe_title: "Map: Colonia del Sacramento, Uruguay",
+      sunset_boat_popup_title: "Boat tour 🚤",
+      sunset_boat_prefs_title: "Your preferences",
+      sunset_boat_pref_1: "Sunset slot preferred",
+      sunset_boat_pref_2: "Morning or midday slot preferred",
+      sunset_boat_pref_3: "Extra time for photos",
+      sunset_boat_pref_4: "Family with kids",
+      sunset_boat_pref_5: "Prefer calm, relaxed pace",
+      sunset_boat_card_title: "🌅🚤 Sunset Boat Experience",
+      sunset_boat_card_meta_1: "⭐ Relax & scenic experience",
+      sunset_boat_card_meta_2: "🌅 Río de la Plata sunset views",
+      sunset_boat_card_meta_3: "👨‍✈️ Hosted by Alejandro, owner & captain",
+      sunset_boat_card_meta_4: "⏱️ Duration: 1.5 hours",
+      sunset_boat_card_desc:
+        "Enjoy a relaxing boat tour along the Río de la Plata and discover Colonia from a unique perspective. Cruise through calm waters, take in stunning views of the coastline, and experience an unforgettable sunset. A perfect escape to disconnect, unwind, and enjoy nature.",
+      walking_asado_card_title: "Walking Tour + Asado Experience (BBQ)",
+      walking_asado_card_meta_1: "⭐ Premium local experience",
+      walking_asado_card_meta_2: "🏛 Guided walk + 🔥 Asado Experience (BBQ) at El Refugio",
+      walking_asado_card_meta_3: "🚶 All on foot in the Historic Quarter ⏱ Duration: about 4 hours",
+      walking_asado_card_desc:
+        "Pair a guided walking tour of Colonia’s UNESCO Historic Quarter with an Asado Experience (BBQ) at El Refugio — premium meats, wine, and local hospitality. Everything stays on foot in the center while the boat tour is temporarily unavailable — history, stories, and flavor in one experience.",
+      walking_asado_experience_name: "Walking Tour + Asado Experience (BBQ)",
+      walking_asado_hero: "🏛🔥 Walking Tour + Asado Experience (BBQ)",
+      walking_asado_about_title: "About this experience",
+      walking_asado_about_p:
+        "Discover Colonia’s UNESCO-listed Historic Quarter on foot with a professional guide, then sit down to an authentic Asado Experience (BBQ) at El Refugio with Andres — premium cuts, local wine, and a relaxed atmosphere. No boat: the whole flow stays in the old town so you can focus on stories, architecture, and flavor in one seamless half-day.",
+      walking_asado_steps_title: "How it works",
+      walking_asado_step_meeting_title: "Meeting point:",
+      walking_asado_step_meeting_body: "Historic Quarter (exact spot shared after booking)",
+      walking_asado_step_walk_title: "Guided walking tour:",
+      walking_asado_step_walk_body:
+        "Stroll the cobbled streets and main landmarks with your guide; choose English, Spanish, or Portuguese when you build each menu order.",
+      walking_asado_step_asado_title: "Asado experience:",
+      walking_asado_step_asado_body:
+        "Traditional Uruguayan BBQ prepared by Andres at El Refugio with premium meats and wine (menu tier and sides as you select).",
+      walking_asado_step_lunch_title: "Lunch timing:",
+      walking_asado_step_lunch_body:
+        "Lunch is usually coordinated around midday at the restaurant (we confirm exact time with you after booking).",
+      walking_asado_step_footnote: "🚶 Walking tour and asado are on foot in the Historic Quarter — no transfers included.",
+      walking_asado_included_title: "What's included",
+      walking_asado_include_1: "✔ Guided walking tour of the Historic Quarter (language per guest order)",
+      walking_asado_include_2: "✔ Traditional Uruguayan asado (Standard or Premium grill selection)",
+      walking_asado_include_3: "✔ Side dish(es) as per your menu choice",
+      walking_asado_include_4: "Drinks and beverages are not included in the menu price; you can order them on site.",
+      walking_asado_include_5: "✔ Coordination with El Refugio and your hosts",
+      walking_asado_create_title: "Create your menu",
+      walking_asado_create_subtitle:
+        "Choose walking tour language, Standard or Premium menu, then your side dishes and preferences (one order per BBQ menu).",
+      walking_asado_create_btn: "+ Create your menu",
+      walking_asado_order_guided_tour_label: "Guided tour",
+      walking_asado_popup_lang_heading: "Walking tour language",
+      walking_asado_popup_tour_time_heading: "Walking tour departure time",
+      walking_asado_passengers_per_slot: "Up to {max} people per walking tour departure time.",
+      walking_asado_orders_tour_time_label: "Walking tour time",
+      walking_tour_time_popup_required: "Please choose a walking tour departure time.",
+      walking_tour_time_each_required:
+        "Each order needs a walking tour departure time. Edit the order to choose a time.",
+      orders_wa_walking_tour_time: "Walking tour time",
+      walking_asado_price_tour_title: "Guided walking tour · USD 15",
+      walking_asado_price_tour_detail:
+        "Use Quantity under each order in the summary to set how many guests join the walk for that menu (the total updates automatically).",
+      walking_asado_quantity_label: "Quantity",
+      walking_asado_wa_tour_quantity: "Walking tour guests",
+      walking_asado_wa_guide_in_subtotal:
+        "walking tour guide USD 15 × quantity per order is included in the subtotal",
+      asado_boat_order_serving_standard: "Generally enough for about 2–3 people.",
+      asado_boat_order_serving_premium: "Generally enough for about 4 people.",
+      asado_boat_group_guide_cb:
+        "Include a guide for the whole group (USD 40 total)",
+      asado_boat_popup_boat_hint:
+        "If this order includes boat passengers, pick a departure time. Add boat passengers with + on each order in the summary (up to 23 per time slot; use another order for a different time).",
+      asado_boat_lunch_after_boat:
+        "Lunch is served at 12:30 after the first boat trip (11:00am departure).",
+      asado_boat_step_lunch_title: "Lunch:",
+      asado_boat_step_lunch_detail:
+        "Served at 12:30 after the first boat trip — 11:00am departure.",
+      asado_boat_guide_help_btn: "What the guide does",
+      asado_boat_guide_help_p:
+        "The guide meets your group at the agreed meeting point, accompanies you during the asado and boat tour, helps coordinate with your host on site, and can assist with photos and logistics during the visit.",
+      asado_boat_experience_name: "Asado Experience (BBQ) & Boat",
+      asado_boat_hero: "🔥🚤 Asado Experience (BBQ) & Boat Tour",
+      asado_boat_about_title: "About this experience",
+      asado_boat_about_p:
+        "Experience the true essence of Uruguay with a unique combination of gastronomy and nature. Enjoy an authentic asado prepared by Andres in El Refugio restaurant. You will taste premium meats, local wine, and a relaxed atmosphere. Before or after your asado, enjoy a scenic boat tour along the Río de la Plata, discovering Colonia from a completely different perspective.",
+      asado_boat_steps_title: "How it works",
+      asado_boat_step_meeting_title: "Meeting point:",
+      asado_boat_step_meeting_body: "Historic Quarter (shared after booking)",
+      asado_boat_step_asado_title: "Asado experience:",
+      asado_boat_step_asado_body:
+        "Enjoy a traditional Uruguayan BBQ prepared by Andres in \"El Refugio\" with premium meats and wine.",
+      asado_boat_step_boat_title: "Boat tour:",
+      asado_boat_step_boat_body:
+        "Navigate the Río de la Plata and enjoy stunning views of Colonia from the water with captain Alejandro.",
+      asado_boat_step_relax_title: "Relax & enjoy:",
+      asado_boat_step_relax_body: "Perfect moment to unwind, take photos and experience the sunset.",
+      asado_boat_step_walking: "🚶 All activities are within walking distance",
+      asado_boat_price_menu_title: "Standard USD 60 · Premium USD 80 per menu",
+      asado_boat_price_menu_detail:
+        "Includes the BBQ menu for your group (Standard or Premium parrillero) and your choice of side dishes. Generally, the Standard BBQ is enough for about 2–3 people; Premium for about 4. Drinks and beverages are not included — you can order them on site.",
+      asado_boat_price_boat_title: "Boat USD 25 per person",
+      asado_boat_price_boat_detail: "Charged per passenger for the boat tour, in addition to your BBQ menu order(s).",
+      asado_boat_included_title: "What's included",
+      asado_boat_include_1: "✔ Traditional Uruguayan asado (Standard or Premium grill selection)",
+      asado_boat_include_2: "✔ Side dish(es) as per your menu choice",
+      asado_boat_include_3: "Drinks and beverages are not included in the menu price; you can order them on site.",
+      asado_boat_include_4: "✔ Boat tour experience",
+      asado_boat_include_5: "✔ Local host (Alejandro)",
+      asado_boat_create_title: "Create your menu",
+      asado_boat_create_subtitle: "Choose Standard or Premium menu, then your side dishes and preferences",
+      asado_boat_create_btn: "+ Create your menu",
+      asado_boat_popup_title: "Asado menu — chef’s selection:",
+      asado_boat_popup_serving_note:
+        "Generally, the Standard BBQ is enough for about 2–3 people; Premium for about 4.",
+      asado_boat_tier_choose: "Choose your menu",
+      asado_boat_tier_std_line: "Standard — USD 60 per menu",
+      asado_boat_tier_std_includes:
+        "Includes asado, chicken, pork, chorizo, morcilla and chinchulín, and 1 guarnición of your choice.",
+      asado_boat_tier_prm_line: "Premium — USD 80 per menu",
+      asado_boat_tier_prm_includes:
+        "Includes asado, pulpon, pork, pamplona, molleja, kidney, chorizo and morcilla, and 2 guarniciones of your choice.",
+      asado_boat_side_dishes: "Side dishes",
+      asado_boat_side_hint_std: "Standard: up to 1 side dish",
+      asado_boat_side_hint_prm: "Premium: up to 2 side dishes",
+      asado_boat_side_fries: "French fries",
+      asado_boat_side_salad: "Mixed salad",
+      asado_boat_side_mash: "Mashed potatoes",
+      asado_boat_side_grilled: "Grilled vegetables",
+      asado_boat_side_roast: "Oven-roasted potatoes",
+      asado_boat_side_rice: "Rice with vegetables",
+      asado_boat_prefs_title: "Your preferences",
+      asado_boat_pref_help_title: "Dietary notes for the restaurant",
+      asado_boat_label_side: "Side dish",
+      asado_boat_label_second_side: "Second side dish",
+      asado_boat_order_tier_standard: "Standard · USD 60",
+      asado_boat_order_tier_premium: "Premium · USD 80",
+      asado_boat_wa_tier_standard: "Standard (USD 60)",
+      asado_boat_wa_tier_premium: "Premium (USD 80)",
+      orders_alert_distinct_sides:
+        "Please choose two different side dishes for Premium.",
+      orders_alert_sides_standard_one:
+        "Standard: choose exactly 1 side dish.",
+      orders_alert_sides_premium_range:
+        "Premium: choose 1 or 2 side dishes.",
       menu_word: "menu",
       guide_short: "guide",
       guide_accompany_label: "Guide to accompany this guest",
@@ -477,9 +710,11 @@ const translations = {
       walking_step_3: "📸 Hidden gems: Discover secret corners and best photo spots",
       walking_step_4:
         "🌅 End of tour: Finish in the historic area with recommendations to continue exploring",
-      walking_price_title: "USD 13 per guest",
-      walking_price_note:
-        "Spanish: USD 9 · English: USD 13 · Portuguese: USD 13",
+      walking_step_5: "🧉 Optional: Mate Experience for USD 5 extra",
+      walking_mate_experience_title: "Mate Experience · USD 5 extra",
+      walking_mate_experience_body:
+        "Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 5 per person).",
+      walking_price_title: "USD 15 per guest",
       walking_included_title: "What's included",
       walking_include_1: "✔ Guided walking tour with local expert",
       walking_include_2: "✔ Cultural and historical insights",
@@ -495,7 +730,7 @@ const translations = {
       walking_gallery_title: "Experience Gallery",
       walking_back_home: "Back to Home",
       walking_create_title: "Create your walking tour",
-      walking_create_subtitle: "Select language and preferences, then add people to your group",
+      walking_create_subtitle: "Select language and departure time, then add people to your group (up to 15).",
       walking_create_btn: "+ Create walking tour",
       walking_group_title: "Your group",
       walking_group_create_first: "Create your walking tour configuration first.",
@@ -509,7 +744,15 @@ const translations = {
       walking_label_preferences: "Preferences",
       walking_label_note: "Note",
       walking_book_now: "Book Now",
+      walking_mate_add_btn: "Add mate",
+      walking_mate_remove_btn: "Remove mate",
+      walking_mate_price_note: "(USD 5 per person added)",
+      walking_mate_short: "Mate",
+      walking_label_mate: "Mate experience",
+      walking_mate_card_yes: "Yes (+USD 5 per person)",
+      walking_wa_mate: "Mate experience",
       walking_alert_select_language: "Please select a language",
+      walking_alert_select_tour_time: "Please choose a walking tour departure time.",
       walking_alert_create_first: "Please create your walking tour group first.",
       walking_confirm_replace:
         "You already have a group configured for this tour. If you continue, you'll be editing/replacing that group setup.",
@@ -569,6 +812,7 @@ const translations = {
       wa_date_label: "Date",
       wa_people_label: "People",
       wa_language_label: "Language",
+      wa_tour_time_label: "Walking tour time",
       wa_preferences_label: "Preferences",
       wa_total_label: "Total",
       wa_note_label: "Note",
@@ -693,8 +937,9 @@ const translations = {
       about_team_jack_bio:
         "Encarna el compromiso de la marca con una primera impresión cálida y memorable para cada visita.",
       plaza_title: "🏛 Experiencia en la Plaza de Toros con el café de Anita",
+      plaza_meta_line: "🚗 Traslado incluido • 🎫 Entradas incluidas • ⏱ ~3 hs aprox.",
       plaza_text:
-        "Conocé la icónica plaza de toros y su historia con traslado privado y entradas incluidas. ¡Sin hacer fila!",
+        "Conocé la icónica plaza de toros y su historia con traslado privado y entradas incluidas. ¡Sin hacer fila! Anita es un café en el corazón del barrio histórico, tiene una vista increíble. La experiencia es de 3 hs aproximadamente.",
       pharmacies_title: "Farmacias en Colonia del Sacramento",
       pharmacies_intro:
         "Referencias útiles si necesitás medicación o perfumería durante tu visita. Los horarios pueden cambiar — confirmá antes de ir.",
@@ -777,7 +1022,7 @@ const translations = {
       bruma_about_p1: "Disfrutá una experiencia gastronómica única en Bruma, un restaurante boutique ubicado en el corazón del Casco Histórico de Colonia. Rodeado de calles empedradas y casas coloniales, Bruma ofrece un ambiente íntimo y relajado.",
       bruma_about_p2_prefix: "El proyecto está liderado por sus dueños, ",
       bruma_about_owner_names: "Bruno y el Chef Marcelo",
-      bruma_about_p2_middle: " - y el nombre ",
+      bruma_about_p2_middle: " — y el nombre ",
       bruma_about_name_word: "Bruma",
       bruma_about_p2_suffix: " surge de combinar sus nombres.",
       bruma_about_p3: "El restaurante propone una carta internacional cuidadosamente diseñada, con ingredientes de alta calidad y platos creativos.",
@@ -799,6 +1044,8 @@ const translations = {
       bruma_map_title: "Dónde queda Bruma",
       bruma_map_text: "Usá este mapa como referencia de la ubicación de Bruma en Colonia del Sacramento, dentro del área del Casco Histórico.",
       bruma_map_link: "Abrir en Google Maps",
+      bruma_map_iframe_title: "Mapa: Bruma, Colonia del Sacramento",
+      wa_float_aria: "WhatsApp",
       bruma_back_home: "Volver al inicio",
       bruma_popup_title: "Menú curado por el chef:",
       bruma_popup_starter: "Entrada",
@@ -851,6 +1098,234 @@ const translations = {
       guest_order_singular: "pedido de huésped",
       guest_order_plural: "pedidos de huésped",
       experiences_word: "experiencias",
+      orders_menu_package_group_total: "menú (total del grupo)",
+      orders_boat_section_title: "Pasajeros del barco",
+      orders_boat_each_hint: "USD {price} por persona",
+      orders_boat_line_total: "Subtotal barco",
+      orders_boat_short: "barco",
+      orders_boat_time_label: "Horario del barco",
+      orders_boat_time_required: "Elegí un horario de salida del barco.",
+      orders_boat_time_each_required:
+        "Cada reserva debe tener horario de salida del barco. Editá la reserva que no tenga horario.",
+      orders_boat_menu_time_required:
+        "Cada pedido con pasajeros al barco necesita un horario de salida. Editá ese pedido para elegirlo.",
+      orders_boat_time_popup_required: "Elegí un horario de salida del barco.",
+      orders_boat_slot_full:
+        "Este horario ya tiene el máximo de pasajeros permitido. Elegí otro horario o reducí pasajeros en otra reserva.",
+      orders_boat_slot_full_short:
+        "No hay más cupo para este horario. Usá otro horario o reducí pasajeros en otra reserva.",
+      orders_boat_slot_over_capacity:
+        "Un horario supera el máximo de pasajeros permitido. Ajustá las reservas antes de continuar.",
+      orders_boat_time_not_set: "Elegí horario (editar esta reserva)",
+      orders_wa_people_line: "Personas",
+      orders_wa_intro: "¡Hola! Quiero reservar la experiencia {experience}:",
+      orders_wa_date_label: "Fecha",
+      orders_wa_experience_subtotal: "Subtotal de la experiencia",
+      orders_wa_total_label: "Total",
+      orders_wa_pay_confirm: "Para confirmar la reserva, completá el pago acá:",
+      orders_wa_group_coordinate:
+        "Somos un grupo de más de 5 personas y queremos coordinar la reserva.",
+      orders_wa_payment_pending:
+        "El enlace de pago no pudo generarse todavía. Confirmá y te lo enviamos enseguida.",
+      add_passenger: "Agregar pasajero o grupo",
+      booking_order_label: "Reserva",
+      booking_singular: "reserva",
+      booking_plural: "reservas",
+      booking_visit_date_label: "Día preferido de la visita",
+      booking_visit_date_hint:
+        "Elegí el día en que pensás venir para coordinar disponibilidad con anticipación.",
+      orders_visit_date_label: "Fecha de la visita",
+      passengers_label: "Pasajeros",
+      gallery_video_badge: "Vídeo",
+      sunset_boat_passengers_per_slot:
+        "Se permiten hasta {max} pasajeros por horario de salida.",
+      sunset_boat_popup_time_title: "Horario de salida",
+      orders_wa_boat_passengers: "Pasajeros del barco",
+      orders_wa_boat_subtotal: "Barco",
+      orders_wa_boat_time: "Horario del barco",
+      guest_order_label: "Huésped",
+      sunset_boat_page_title: "Experiencia Sunset Boat - Sacramento Adventures",
+      sunset_boat_hero: "🌅🚤 Experiencia Sunset Boat",
+      sunset_boat_experience_name: "Experiencia Sunset Boat",
+      sunset_boat_about_title: "Sobre esta experiencia",
+      sunset_boat_about_p:
+        "Disfrutá de un relajante paseo en barco por el Río de la Plata y descubrí Colonia desde una perspectiva única. Aguas tranquilas, atardeceres y la compañía del capitán Alejandro.",
+      sunset_boat_steps_title: "Cómo funciona",
+      sunset_boat_step_1:
+        "📍 Punto de encuentro: Barrio Histórico (se confirma al reservar)",
+      sunset_boat_step_2:
+        "🚤 Paseo en barco: Navegación por el Río de la Plata con el capitán Alejandro y vistas de Colonia desde el agua.",
+      sunset_boat_step_departures:
+        "⏰ Horarios de salida: 11:00am, 13:30pm, 15:30pm, 17:00pm",
+      sunset_boat_step_3:
+        "🌅 Atardecer y relax: Ideal para fotos, aguas tranquilas y un cierre de día memorable.",
+      sunset_boat_step_4: "⏱️ Duración: Aprox. 1,5 horas",
+      sunset_boat_medical: "Asistencia médica incluida",
+      sunset_boat_price_title: "USD 25 por persona",
+      sunset_boat_price_detail:
+        "Precio por persona por la experiencia en barco. Las bebidas no están incluidas salvo que se indique en la confirmación.",
+      sunset_boat_included_title: "Qué incluye",
+      sunset_boat_include_1: "✔ Paseo escénico en el Río de la Plata",
+      sunset_boat_include_2: "✔ Capitán y anfitrión Alejandro",
+      sunset_boat_include_3: "✔ Chalecos salvavidas y indicaciones de seguridad",
+      sunset_boat_include_4: "✔ Ambiente de grupo reducido",
+      sunset_boat_create_title: "Reservá tu lugar",
+      sunset_boat_create_subtitle:
+        "Elegí la fecha de visita abajo, después agregá una reserva y el horario de salida en el popup. Con +/− en cada reserva podés sumar más de un pasajero al mismo horario.",
+      sunset_boat_create_btn: "+ Agregar pasajero o grupo",
+      sunset_boat_group_guide_cb:
+        "Incluir guía para todo el grupo (USD 40 en total)",
+      sunset_boat_guide_help_btn: "Qué hace el guía",
+      sunset_boat_guide_help_p:
+        "El guía encuentra al grupo en el punto acordado, acompaña la experiencia en barco, ayuda a coordinar con el capitán y puede asistir con fotos y la logística durante la visita.",
+      sunset_boat_gallery_title: "Galería de la experiencia",
+      sunset_boat_map_title: "Colonia y el Río de la Plata",
+      sunset_boat_map_text:
+        "Los detalles del encuentro se confirman al reservar; el mapa orienta sobre Colonia y el río.",
+      sunset_boat_map_link: "Abrir en Google Maps",
+      sunset_boat_map_iframe_title: "Mapa: Colonia del Sacramento, Uruguay",
+      sunset_boat_popup_title: "Paseo en barco 🚤",
+      sunset_boat_prefs_title: "Tus preferencias",
+      sunset_boat_pref_1: "Preferencia horario atardecer",
+      sunset_boat_pref_2: "Preferencia mañana o mediodía",
+      sunset_boat_pref_3: "Más tiempo para fotos",
+      sunset_boat_pref_4: "Familia con niños",
+      sunset_boat_pref_5: "Ritmo tranquilo y relajado",
+      sunset_boat_card_title: "🌅🚤 Experiencia Sunset Boat",
+      sunset_boat_card_meta_1: "⭐ Experiencia relajante y escénica",
+      sunset_boat_card_meta_2: "🌅 Vistas al atardecer en el Río de la Plata",
+      sunset_boat_card_meta_3: "👨‍✈️ Con Alejandro, dueño y capitán",
+      sunset_boat_card_meta_4: "⏱️ Duración: 1,5 horas",
+      sunset_boat_card_desc:
+        "Disfrutá de un relajante paseo en barco por el Río de la Plata y descubrí Colonia desde otra perspectiva. Aguas tranquilas, vistas a la costa y un atardecer inolvidable. Ideal para desconectar y conectar con la naturaleza.",
+      walking_asado_card_title: "🏛🔥 Tour a pie + Experiencia Asado (BBQ)",
+      walking_asado_card_meta_1: "⭐ Experiencia local premium",
+      walking_asado_card_meta_2: "🏛 Recorrido guiado + 🔥 experiencia Asado (BBQ) en El Refugio",
+      walking_asado_card_meta_3: "🚶 Todo a pie en el Casco Histórico ⏱ Duración aprox.: 4 horas",
+      walking_asado_card_desc:
+        "Combiná un paseo guiado por el Barrio Histórico UNESCO de Colonia con una experiencia de asado (BBQ) en El Refugio: carnes selectas, vino y buena onda local. Todo el circuito es a pie en el centro mientras el paseo en barco no esté disponible: historia, relatos y sabor en una misma experiencia.",
+      walking_asado_experience_name: "Tour a pie + Experiencia Asado (BBQ)",
+      walking_asado_hero: "🏛🔥 Tour a pie + Experiencia Asado (BBQ)",
+      walking_asado_about_title: "Sobre esta experiencia",
+      walking_asado_about_p:
+        "Conocé el Casco Histórico declarado Patrimonio de la UNESCO con un guía profesional, y después disfrutá de un asado auténtico en El Refugio con Andrés: cortes selectos, vino local y un ambiente relajado. Sin barco: todo el recorrido queda en el casco para enfocarte en historia, arquitectura y sabor en una misma propuesta.",
+      walking_asado_steps_title: "Cómo funciona",
+      walking_asado_step_meeting_title: "Punto de encuentro:",
+      walking_asado_step_meeting_body: "Casco Histórico (el lugar exacto se comparte al reservar)",
+      walking_asado_step_walk_title: "Recorrido a pie guiado:",
+      walking_asado_step_walk_body:
+        "Calles empedradas y hitos principales con tu guía; elegís inglés, español o portugués al armar cada pedido de menú.",
+      walking_asado_step_asado_title: "Experiencia de asado:",
+      walking_asado_step_asado_body:
+        "Parrilla uruguaya tradicional preparada por Andrés en El Refugio con carnes selectas y vino (nivel de menú y guarniciones según tu elección).",
+      walking_asado_step_lunch_title: "Horario del almuerzo:",
+      walking_asado_step_lunch_body:
+        "En general coordinamos el almuerzo al mediodía en el restaurante (confirmamos el horario exacto después de la reserva).",
+      walking_asado_step_footnote: "🚶 Tour a pie y asado son a pie en el Casco Histórico — no incluye traslados.",
+      walking_asado_included_title: "Qué incluye",
+      walking_asado_include_1: "✔ Recorrido guiado por el Casco Histórico (idioma por pedido de huésped)",
+      walking_asado_include_2: "✔ Asado uruguayo tradicional (selección estándar o premium)",
+      walking_asado_include_3: "✔ Guarnición(es) según tu elección de menú",
+      walking_asado_include_4: "Las bebidas no están incluidas en el precio del menú; podés pedirlas en el lugar.",
+      walking_asado_include_5: "✔ Coordinación con El Refugio y tus anfitriones",
+      walking_asado_create_title: "Creá tu menú",
+      walking_asado_create_subtitle:
+        "Elegí idioma del tour, menú estándar o premium, luego guarniciones y preferencias (un pedido = un menú de parrilla).",
+      walking_asado_create_btn: "+ Crear tu menú",
+      walking_asado_order_guided_tour_label: "Tour Guiado",
+      walking_asado_popup_lang_heading: "Idioma del tour a pie",
+      walking_asado_popup_tour_time_heading: "Horario del tour a pie",
+      walking_asado_passengers_per_slot: "Hasta {max} personas por horario del tour a pie.",
+      walking_asado_orders_tour_time_label: "Horario del tour a pie",
+      walking_tour_time_popup_required: "Elegí un horario para el tour a pie.",
+      walking_tour_time_each_required:
+        "Cada pedido necesita un horario del tour a pie. Editá el pedido para elegir un horario.",
+      orders_wa_walking_tour_time: "Horario del tour a pie",
+      walking_asado_price_tour_title: "Tour a pie guiado · USD 15",
+      walking_asado_price_tour_detail:
+        "Usá Cantidad debajo de cada pedido en el resumen para indicar cuántas personas hacen el tour con ese menú (el total se actualiza solo).",
+      walking_asado_quantity_label: "Cantidad",
+      walking_asado_wa_tour_quantity: "Personas en el tour a pie",
+      walking_asado_wa_guide_in_subtotal:
+        "guía del tour a pie USD 15 × cantidad por pedido incluida en el subtotal",
+      asado_boat_order_serving_standard: "En general alcanza para unas 2–3 personas.",
+      asado_boat_order_serving_premium: "En general alcanza para unas 4 personas.",
+      asado_boat_group_guide_cb:
+        "Incluir guía para todo el grupo (USD 40 en total)",
+      asado_boat_popup_boat_hint:
+        "Si este pedido incluye pasajeros al barco, elegí el horario de salida. Sumá pasajeros con + en cada pedido del resumen (hasta 23 por horario; otro pedido puede usar otro horario).",
+      asado_boat_lunch_after_boat:
+        "El almuerzo se sirve a las 12:30 al finalizar el primer paseo en barco (salida 11:00am).",
+      asado_boat_step_lunch_title: "Almuerzo:",
+      asado_boat_step_lunch_detail:
+        "a las 12:30, después del primer paseo en barco (salida 11:00am).",
+      asado_boat_guide_help_btn: "Qué hace el guía",
+      asado_boat_guide_help_p:
+        "El guía encuentra al grupo en el punto de encuentro acordado, los acompaña durante el asado y el paseo en barco, ayuda a coordinar con el anfitrión en el lugar y puede asistir con fotos y la logística durante la visita.",
+      asado_boat_experience_name: "Experiencia Asado (BBQ) y barco",
+      asado_boat_hero: "🔥🚤 Experiencia Asado (BBQ) y barco",
+      asado_boat_about_title: "Sobre esta experiencia",
+      asado_boat_about_p:
+        "Viví la esencia de Uruguay con una propuesta que une gastronomía y naturaleza. Disfrutá de un asado auténtico preparado por Andrés en el restaurante El Refugio: carnes de primera, vino local y un ambiente relajado. Antes o después del asado, un paseo en barco por el Río de la Plata para descubrir Colonia desde otra perspectiva.",
+      asado_boat_steps_title: "Cómo funciona",
+      asado_boat_step_meeting_title: "Punto de encuentro:",
+      asado_boat_step_meeting_body: "Casco Histórico (se comparte al reservar)",
+      asado_boat_step_asado_title: "Experiencia de asado:",
+      asado_boat_step_asado_body:
+        "Parrilla uruguaya tradicional preparada por Andrés en \"El Refugio\", con carnes selectas y vino.",
+      asado_boat_step_boat_title: "Paseo en barco:",
+      asado_boat_step_boat_body:
+        "Navegación por el Río de la Plata con vistas de Colonia y el capitán Alejandro.",
+      asado_boat_step_relax_title: "Relajar y disfrutar:",
+      asado_boat_step_relax_body: "Un buen momento para descomprimir, sacar fotos y vivir el atardecer.",
+      asado_boat_step_walking: "🚶 Todas las actividades están a poca distancia caminando",
+      asado_boat_price_menu_title: "Menú estándar USD 60 · premium USD 80 por menú",
+      asado_boat_price_menu_detail:
+        "Incluye el menú de parrilla para tu grupo (estándar o premium) y la elección de guarniciones. En general el menú estándar alcanza para unas 2–3 personas; el premium para unas 4. Las bebidas no están incluidas: podés pedirlas en el lugar.",
+      asado_boat_price_boat_title: "Barco USD 25 por persona",
+      asado_boat_price_boat_detail: "Se cobra por pasajero del paseo en barco, además de tu(s) pedido(s) de menú de parrilla.",
+      asado_boat_included_title: "Qué incluye",
+      asado_boat_include_1: "✔ Asado uruguayo tradicional (selección estándar o premium)",
+      asado_boat_include_2: "✔ Guarnición(es) según tu elección de menú",
+      asado_boat_include_3: "Las bebidas no están incluidas en el precio del menú; podés pedirlas en el lugar.",
+      asado_boat_include_4: "✔ Experiencia de paseo en barco",
+      asado_boat_include_5: "✔ Anfitrión local (Alejandro)",
+      asado_boat_create_title: "Creá tu menú",
+      asado_boat_create_subtitle: "Elegí menú estándar o premium, luego tus guarniciones y preferencias",
+      asado_boat_create_btn: "+ Crear tu menú",
+      asado_boat_popup_title: "Menú de asado — selección del chef:",
+      asado_boat_popup_serving_note:
+        "En general la parrilla estándar alcanza para unas 2–3 personas; la premium para unas 4.",
+      asado_boat_tier_choose: "Elegí tu menú",
+      asado_boat_tier_std_line: "Estándar — USD 60 por menú",
+      asado_boat_tier_std_includes:
+        "Incluye asado, pollo, cerdo, chorizo, morcilla y chinchulín, y 1 guarnición a elección.",
+      asado_boat_tier_prm_line: "Premium — USD 80 por menú",
+      asado_boat_tier_prm_includes:
+        "Incluye asado, pulpon, cerdo, pamplona, molleja, riñón, chorizo y morcilla, y 2 guarniciones a elección.",
+      asado_boat_side_dishes: "Guarniciones",
+      asado_boat_side_hint_std: "Estándar: hasta 1 guarnición",
+      asado_boat_side_hint_prm: "Premium: hasta 2 guarniciones",
+      asado_boat_side_fries: "Papas fritas",
+      asado_boat_side_salad: "Ensalada mixta",
+      asado_boat_side_mash: "Puré de papas",
+      asado_boat_side_grilled: "Verduras grilladas",
+      asado_boat_side_roast: "Papas al horno",
+      asado_boat_side_rice: "Arroz con verduras",
+      asado_boat_prefs_title: "Tus preferencias",
+      asado_boat_pref_help_title: "Notas dietéticas para el restaurante",
+      asado_boat_label_side: "Guarnición",
+      asado_boat_label_second_side: "Segunda guarnición",
+      asado_boat_order_tier_standard: "Estándar · USD 60",
+      asado_boat_order_tier_premium: "Premium · USD 80",
+      asado_boat_wa_tier_standard: "Estándar (USD 60)",
+      asado_boat_wa_tier_premium: "Premium (USD 80)",
+      orders_alert_distinct_sides:
+        "En Premium elegí dos guarniciones distintas.",
+      orders_alert_sides_standard_one:
+        "Standard: elegí exactamente 1 guarnición.",
+      orders_alert_sides_premium_range:
+        "Premium: elegí 1 o 2 guarniciones.",
       menu_word: "menú",
       guide_short: "guía",
       guide_accompany_label: "Guía que acompañe a este huésped",
@@ -1054,9 +1529,11 @@ const translations = {
       walking_step_3: "📸 Rincones ocultos: Descubrí lugares secretos y los mejores spots para fotos",
       walking_step_4:
         "🌅 Fin del tour: Terminá en el casco histórico con recomendaciones para seguir explorando",
-      walking_price_title: "USD 9 por persona",
-      walking_price_note:
-        "Español: USD 9 · Inglés: USD 13 · Portugués: USD 13",
+      walking_step_5: "🧉 Opcional: Mate Experience por USD 5 extra",
+      walking_mate_experience_title: "Mate Experience · USD 5 extra",
+      walking_mate_experience_body:
+        "El mate es parte del día a día en Uruguay: compartir el mate, la bombilla y charlar un rato. Este complemento opcional te invita a vivir un momento de mate relajado y a conocer por qué es tan típico de nuestra cultura (USD 5 por persona).",
+      walking_price_title: "USD 10 por persona",
       walking_included_title: "Qué incluye",
       walking_include_1: "✔ Tour guiado a pie con experto local",
       walking_include_2: "✔ Contexto cultural e histórico",
@@ -1072,7 +1549,7 @@ const translations = {
       walking_gallery_title: "Galería de la experiencia",
       walking_back_home: "Volver al inicio",
       walking_create_title: "Creá tu walking tour",
-      walking_create_subtitle: "Seleccioná idioma y preferencias, luego sumá personas al grupo",
+      walking_create_subtitle: "Elegí idioma y horario del tour, luego sumá personas al grupo (hasta 15).",
       walking_create_btn: "+ Crear walking tour",
       walking_group_title: "Tu grupo",
       walking_group_create_first: "Creá primero la configuración del walking tour.",
@@ -1086,7 +1563,15 @@ const translations = {
       walking_label_preferences: "Preferencias",
       walking_label_note: "Nota",
       walking_book_now: "Reservar",
+      walking_mate_add_btn: "Agregar Mate",
+      walking_mate_remove_btn: "Quitar mate",
+      walking_mate_price_note: "(Se suman USD 5 por persona)",
+      walking_mate_short: "Mate",
+      walking_label_mate: "Mate",
+      walking_mate_card_yes: "Sí (USD 5 por persona)",
+      walking_wa_mate: "Experiencia mate",
       walking_alert_select_language: "Seleccioná un idioma",
+      walking_alert_select_tour_time: "Elegí un horario para el tour a pie.",
       walking_alert_create_first: "Primero creá tu grupo de walking tour.",
       walking_confirm_replace:
         "Ya tenés un grupo configurado para este tour. Si continuás, vas a editar/reemplazar esa configuración.",
@@ -1146,6 +1631,7 @@ const translations = {
       wa_date_label: "Fecha",
       wa_people_label: "Personas",
       wa_language_label: "Idioma",
+      wa_tour_time_label: "Horario del tour",
       wa_preferences_label: "Preferencias",
       wa_total_label: "Total",
       wa_note_label: "Nota",
@@ -1270,8 +1756,9 @@ const translations = {
       about_team_jack_bio:
         "Encarna o compromisso da marca com uma primeira impressão calorosa e memorável para cada visita.",
       plaza_title: "🏛 Experiência na Plaza de Toros com o café da Anita",
+      plaza_meta_line: "🚗 Transfer incluído • 🎫 Ingressos incluídos • ⏱ ~3 h aprox.",
       plaza_text:
-        "Explore a icônica praça de touros e sua história com transfer privativo e ingressos incluídos. Pule a fila!",
+        "Explore a icônica praça de touros e sua história com transfer privativo e ingressos incluídos. Pule a fila! Anita é um café no coração do bairro histórico, com uma vista incrível. A experiência tem cerca de 3 horas.",
       pharmacies_title: "Farmácias em Colonia del Sacramento",
       pharmacies_intro:
         "Referências úteis se você precisar de medicamentos ou itens de cuidado pessoal durante a estadia. Os horários podem mudar — confirme localmente.",
@@ -1354,7 +1841,7 @@ const translations = {
       bruma_about_p1: "Desfrute de uma experiência gastronômica única no Bruma, um restaurante boutique localizado no coração do Centro Histórico de Colonia. Cercado por ruas de pedra e casas coloniais charmosas, o Bruma oferece um ambiente íntimo e relaxado.",
       bruma_about_p2_prefix: "O projeto é conduzido pelos seus proprietários, ",
       bruma_about_owner_names: "Bruno e o Chef Marcelo",
-      bruma_about_p2_middle: " - e o nome ",
+      bruma_about_p2_middle: " — e o nome ",
       bruma_about_name_word: "Bruma",
       bruma_about_p2_suffix: " vem da combinação dos nomes deles.",
       bruma_about_p3: "O restaurante oferece um menu internacional cuidadosamente elaborado, com ingredientes de alta qualidade e pratos criativos.",
@@ -1376,6 +1863,8 @@ const translations = {
       bruma_map_title: "Onde fica o Bruma",
       bruma_map_text: "Use este mapa como referência da localização do Bruma em Colonia del Sacramento, dentro da área do Centro Histórico.",
       bruma_map_link: "Abrir no Google Maps",
+      bruma_map_iframe_title: "Mapa: Bruma, Colonia del Sacramento",
+      wa_float_aria: "WhatsApp",
       bruma_back_home: "Voltar para o início",
       bruma_popup_title: "Menu selecionado pelo chef:",
       bruma_popup_starter: "Entrada",
@@ -1428,6 +1917,234 @@ const translations = {
       guest_order_singular: "pedido de hóspede",
       guest_order_plural: "pedidos de hóspede",
       experiences_word: "experiências",
+      orders_menu_package_group_total: "menu (total do grupo)",
+      orders_boat_section_title: "Passageiros do barco",
+      orders_boat_each_hint: "USD {price} por pessoa",
+      orders_boat_line_total: "Subtotal barco",
+      orders_boat_short: "barco",
+      orders_boat_time_label: "Horário do barco",
+      orders_boat_time_required: "Escolha um horário de saída do barco.",
+      orders_boat_time_each_required:
+        "Cada reserva precisa de um horário de saída. Edite a reserva sem horário.",
+      orders_boat_menu_time_required:
+        "Cada pedido com passageiros no barco precisa de um horário de saída. Edite esse pedido para escolher.",
+      orders_boat_time_popup_required: "Escolha um horário de saída do barco.",
+      orders_boat_slot_full:
+        "Este horário já atingiu o máximo de passageiros. Escolha outro horário ou reduza passageiros em outra reserva.",
+      orders_boat_slot_full_short:
+        "Não há mais vagas neste horário. Use outro horário ou reduza passageiros em outra reserva.",
+      orders_boat_slot_over_capacity:
+        "Um horário excede o máximo de passageiros permitido. Ajuste as reservas antes de continuar.",
+      orders_boat_time_not_set: "Escolha o horário (editar esta reserva)",
+      orders_wa_people_line: "Pessoas",
+      orders_wa_intro: "Olá! Gostaria de reservar a experiência {experience}:",
+      orders_wa_date_label: "Data",
+      orders_wa_experience_subtotal: "Subtotal da experiência",
+      orders_wa_total_label: "Total",
+      orders_wa_pay_confirm: "Para confirmar a reserva, conclua o pagamento aqui:",
+      orders_wa_group_coordinate:
+        "Somos um grupo de mais de 5 pessoas e gostaríamos de coordenar a reserva.",
+      orders_wa_payment_pending:
+        "O link de pagamento ainda não pôde ser gerado automaticamente. Confirme e enviaremos em seguida.",
+      add_passenger: "Adicionar passageiro ou grupo",
+      booking_order_label: "Reserva",
+      booking_singular: "reserva",
+      booking_plural: "reservas",
+      booking_visit_date_label: "Data preferida da visita",
+      booking_visit_date_hint:
+        "Escolha o dia em que pretendem vir para podermos combinar disponibilidade com antecedência.",
+      orders_visit_date_label: "Data da visita",
+      passengers_label: "Passageiros",
+      gallery_video_badge: "Vídeo",
+      sunset_boat_passengers_per_slot:
+        "São permitidos até {max} passageiros por horário de saída.",
+      sunset_boat_popup_time_title: "Horário de saída",
+      orders_wa_boat_passengers: "Passageiros do barco",
+      orders_wa_boat_subtotal: "Barco",
+      orders_wa_boat_time: "Horário do barco",
+      guest_order_label: "Hóspede",
+      sunset_boat_page_title: "Experiência Sunset Boat - Sacramento Adventures",
+      sunset_boat_hero: "🌅🚤 Experiência Sunset Boat",
+      sunset_boat_experience_name: "Experiência Sunset Boat",
+      sunset_boat_about_title: "Sobre esta experiência",
+      sunset_boat_about_p:
+        "Aproveite um passeio de barco relaxante pelo Rio da Prata e descubra Colônia sob uma perspectiva única. Águas calmas, pôr do sol e o capitão Alejandro.",
+      sunset_boat_steps_title: "Como funciona",
+      sunset_boat_step_1:
+        "📍 Ponto de encontro: Centro Histórico (confirmado após a reserva)",
+      sunset_boat_step_2:
+        "🚤 Passeio de barco: Navegação pelo Rio da Prata com o capitão Alejandro e vistas de Colônia a partir da água.",
+      sunset_boat_step_departures:
+        "⏰ Horários de saída: 11:00am, 13:30pm, 15:30pm, 17:00pm",
+      sunset_boat_step_3:
+        "🌅 Pôr do sol e relax: Ideal para fotos, águas calmas e um fim de tarde memorável.",
+      sunset_boat_step_4: "⏱️ Duração: Cerca de 1,5 horas",
+      sunset_boat_medical: "Assistência médica incluída",
+      sunset_boat_price_title: "USD 25 por pessoa",
+      sunset_boat_price_detail:
+        "Preço por pessoa pela experiência de barco. Bebidas não inclusas salvo confirmação em contrário.",
+      sunset_boat_included_title: "O que está incluído",
+      sunset_boat_include_1: "✔ Passeio cênico no Rio da Prata",
+      sunset_boat_include_2: "✔ Capitão e anfitrião Alejandro",
+      sunset_boat_include_3: "✔ Coletes salva-vidas e orientações de segurança",
+      sunset_boat_include_4: "✔ Experiência em grupo pequeno",
+      sunset_boat_create_title: "Reserve seu lugar",
+      sunset_boat_create_subtitle:
+        "Escolha a data da visita abaixo, depois adicione uma reserva e o horário de saída no popup. Use +/− em cada reserva para mais de um passageiro no mesmo horário.",
+      sunset_boat_create_btn: "+ Adicionar passageiro ou grupo",
+      sunset_boat_group_guide_cb:
+        "Incluir guia para o grupo inteiro (USD 40 no total)",
+      sunset_boat_guide_help_btn: "O que o guia faz",
+      sunset_boat_guide_help_p:
+        "O guia encontra o grupo no ponto combinado, acompanha a experiência de barco, ajuda a coordenar com o capitão e pode ajudar com fotos e a logística durante a visita.",
+      sunset_boat_gallery_title: "Galeria da experiência",
+      sunset_boat_map_title: "Colônia e o Rio da Prata",
+      sunset_boat_map_text:
+        "Os detalhes do encontro são confirmados após a reserva; o mapa orienta sobre Colônia e o rio.",
+      sunset_boat_map_link: "Abrir no Google Maps",
+      sunset_boat_map_iframe_title: "Mapa: Colônia do Sacramento, Uruguai",
+      sunset_boat_popup_title: "Passeio de barco 🚤",
+      sunset_boat_prefs_title: "Suas preferências",
+      sunset_boat_pref_1: "Preferência horário pôr do sol",
+      sunset_boat_pref_2: "Preferência manhã ou meio-dia",
+      sunset_boat_pref_3: "Mais tempo para fotos",
+      sunset_boat_pref_4: "Família com crianças",
+      sunset_boat_pref_5: "Ritmo calmo e relaxado",
+      sunset_boat_card_title: "🌅🚤 Experiência Sunset Boat",
+      sunset_boat_card_meta_1: "⭐ Experiência relaxante e cênica",
+      sunset_boat_card_meta_2: "🌅 Pôr do sol no Rio da Prata",
+      sunset_boat_card_meta_3: "👨‍✈️ Com Alejandro, proprietário e capitão",
+      sunset_boat_card_meta_4: "⏱️ Duração: 1,5 horas",
+      sunset_boat_card_desc:
+        "Aproveite um passeio relaxante pelo Rio da Prata e descubra Colônia sob outro ângulo. Águas calmas, vistas do litoral e um pôr do sol inesquecível. Perfeito para desconectar e curtir a natureza.",
+      walking_asado_card_title: "🏛🔥 Tour a pé + Experiência Asado (BBQ)",
+      walking_asado_card_meta_1: "⭐ Experiência local premium",
+      walking_asado_card_meta_2: "🏛 Passeio guiado + 🔥 experiência Asado (BBQ) no El Refugio",
+      walking_asado_card_meta_3: "🚶 Tudo a pé no Centro Histórico ⏱ Duração aprox.: 4 horas",
+      walking_asado_card_desc:
+        "Combine um passeio guiado pelo Centro Histórico da UNESCO em Colônia com uma experiência de asado (BBQ) no El Refugio — carnes nobres, vinho e hospitalidade local. Tudo a pé no centro enquanto o passeio de barco estiver indisponível: história, histórias e sabor numa só experiência.",
+      walking_asado_experience_name: "Tour a pé + Experiência Asado (BBQ)",
+      walking_asado_hero: "🏛🔥 Tour a pé + Experiência Asado (BBQ)",
+      walking_asado_about_title: "Sobre esta experiência",
+      walking_asado_about_p:
+        "Explore o Centro Histórico da UNESCO a pé com um guia profissional e depois saboreie um asado autêntico no El Refugio com Andres — cortes nobres, vinho local e clima descontraído. Sem barco: tudo no centro histórico para combinar história, arquitetura e sabor numa só experiência.",
+      walking_asado_steps_title: "Como funciona",
+      walking_asado_step_meeting_title: "Ponto de encontro:",
+      walking_asado_step_meeting_body: "Centro Histórico (local exato informado após a reserva)",
+      walking_asado_step_walk_title: "Tour a pé guiado:",
+      walking_asado_step_walk_body:
+        "Ruas de pedra e principais marcos com o guia; escolha inglês, espanhol ou português ao montar cada pedido de menu.",
+      walking_asado_step_asado_title: "Experiência de asado:",
+      walking_asado_step_asado_body:
+        "Churrasco uruguaio tradicional preparado por Andres no El Refugio com carnes selecionadas e vinho (nível do menu e guarnições conforme sua escolha).",
+      walking_asado_step_lunch_title: "Horário do almoço:",
+      walking_asado_step_lunch_body:
+        "Em geral o almoço é combinado por volta do meio-dia no restaurante (confirmamos o horário exato após a reserva).",
+      walking_asado_step_footnote: "🚶 Tour a pé e asado são no Centro Histórico — sem transfers incluídos.",
+      walking_asado_included_title: "O que está incluído",
+      walking_asado_include_1: "✔ Tour a pé guiado pelo Centro Histórico (idioma por pedido de hóspede)",
+      walking_asado_include_2: "✔ Asado uruguaio tradicional (seleção padrão ou premium)",
+      walking_asado_include_3: "✔ Guarnição(ões) conforme sua escolha de menu",
+      walking_asado_include_4: "Bebidas não estão incluídas no preço do menu; podem ser pedidas no local.",
+      walking_asado_include_5: "✔ Coordenação com o El Refugio e seus anfitriões",
+      walking_asado_create_title: "Monte seu menu",
+      walking_asado_create_subtitle:
+        "Escolha o idioma do tour, menu padrão ou premium, depois guarnições e preferências (um pedido = um menu de churrasco).",
+      walking_asado_create_btn: "+ Montar seu menu",
+      walking_asado_order_guided_tour_label: "Tour Guiado",
+      walking_asado_popup_lang_heading: "Idioma do tour a pé",
+      walking_asado_popup_tour_time_heading: "Horário do tour a pé",
+      walking_asado_passengers_per_slot: "Até {max} pessoas por horário do tour a pé.",
+      walking_asado_orders_tour_time_label: "Horário do tour a pé",
+      walking_tour_time_popup_required: "Escolha um horário para o tour a pé.",
+      walking_tour_time_each_required:
+        "Cada pedido precisa de um horário do tour a pé. Edite o pedido para escolher um horário.",
+      orders_wa_walking_tour_time: "Horário do tour a pé",
+      walking_asado_price_tour_title: "Tour a pé guiado · USD 15",
+      walking_asado_price_tour_detail:
+        "Use Quantidade abaixo de cada pedido no resumo para indicar quantas pessoas fazem o tour com aquele menu (o total atualiza sozinho).",
+      walking_asado_quantity_label: "Quantidade",
+      walking_asado_wa_tour_quantity: "Pessoas no tour a pé",
+      walking_asado_wa_guide_in_subtotal:
+        "guia do tour a pé USD 15 × quantidade por pedido incluída no subtotal",
+      asado_boat_order_serving_standard: "Em geral serve cerca de 2–3 pessoas.",
+      asado_boat_order_serving_premium: "Em geral serve cerca de 4 pessoas.",
+      asado_boat_group_guide_cb:
+        "Incluir guia para o grupo inteiro (USD 40 no total)",
+      asado_boat_popup_boat_hint:
+        "Se este pedido incluir passageiros no barco, escolha o horário de saída. Adicione passageiros com + em cada pedido no resumo (até 23 por horário; outro pedido pode usar outro horário).",
+      asado_boat_lunch_after_boat:
+        "O almoço é servido às 12:30 após o primeiro passeio de barco (saída 11:00am).",
+      asado_boat_step_lunch_title: "Almoço:",
+      asado_boat_step_lunch_detail:
+        "às 12:30, após o primeiro passeio de barco (saída 11:00am).",
+      asado_boat_guide_help_btn: "O que o guia faz",
+      asado_boat_guide_help_p:
+        "O guia encontra o grupo no ponto combinado, acompanha durante o asado e o passeio de barco, ajuda a coordenar com o anfitrião no local e pode ajudar com fotos e a logística durante a visita.",
+      asado_boat_experience_name: "Experiência Asado (BBQ) e barco",
+      asado_boat_hero: "🔥🚤 Experiência Asado (BBQ) e barco",
+      asado_boat_about_title: "Sobre esta experiência",
+      asado_boat_about_p:
+        "Viva a essência do Uruguai com uma combinação de gastronomia e natureza. Desfrute de um asado autêntico preparado por Andres no restaurante El Refugio: carnes nobres, vinho local e ambiente descontraído. Antes ou depois do asado, um passeio de barco pelo Rio da Prata para ver Colônia sob outro ângulo.",
+      asado_boat_steps_title: "Como funciona",
+      asado_boat_step_meeting_title: "Ponto de encontro:",
+      asado_boat_step_meeting_body: "Centro Histórico (informado após a reserva)",
+      asado_boat_step_asado_title: "Experiência de asado:",
+      asado_boat_step_asado_body:
+        "Churrasco uruguaio tradicional preparado por Andres no \"El Refugio\", com carnes selecionadas e vinho.",
+      asado_boat_step_boat_title: "Passeio de barco:",
+      asado_boat_step_boat_body:
+        "Navegação pelo Rio da Prata com vistas de Colônia e o capitão Alejandro.",
+      asado_boat_step_relax_title: "Relaxar e aproveitar:",
+      asado_boat_step_relax_body: "Momento ideal para desacelerar, fotografar e curtir o pôr do sol.",
+      asado_boat_step_walking: "🚶 Todas as atividades ficam a curta distância a pé",
+      asado_boat_price_menu_title: "Menu padrão USD 60 · premium USD 80 por menu",
+      asado_boat_price_menu_detail:
+        "Inclui o menu de churrasco para o seu grupo (padrão ou premium) e a escolha de guarnições. Em geral o menu padrão serve cerca de 2–3 pessoas; o premium cerca de 4. Bebidas não estão incluídas — podem ser pedidas no local.",
+      asado_boat_price_boat_title: "Barco USD 25 por pessoa",
+      asado_boat_price_boat_detail: "Cobrado por passageiro do passeio de barco, além do(s) pedido(s) de menu de churrasco.",
+      asado_boat_included_title: "O que está incluído",
+      asado_boat_include_1: "✔ Asado uruguaio tradicional (seleção padrão ou premium)",
+      asado_boat_include_2: "✔ Guarnição(ões) conforme sua escolha de menu",
+      asado_boat_include_3: "Bebidas não estão incluídas no preço do menu; podem ser pedidas no local.",
+      asado_boat_include_4: "✔ Experiência de passeio de barco",
+      asado_boat_include_5: "✔ Anfitrião local (Alejandro)",
+      asado_boat_create_title: "Monte seu menu",
+      asado_boat_create_subtitle: "Escolha menu padrão ou premium, depois as guarnições e preferências",
+      asado_boat_create_btn: "+ Montar seu menu",
+      asado_boat_popup_title: "Menu de asado — seleção do chef:",
+      asado_boat_popup_serving_note:
+        "Em geral o churrasco padrão serve cerca de 2–3 pessoas; o premium cerca de 4.",
+      asado_boat_tier_choose: "Escolha seu menu",
+      asado_boat_tier_std_line: "Padrão — USD 60 por menu",
+      asado_boat_tier_std_includes:
+        "Inclui asado, frango, porco, chorizo, morcilla e chinchulín, e 1 guarnição à escolha.",
+      asado_boat_tier_prm_line: "Premium — USD 80 por menu",
+      asado_boat_tier_prm_includes:
+        "Inclui asado, pulpon, porco, pamplona, molleja, rim, chorizo e morcilla, e 2 guarnições à escolha.",
+      asado_boat_side_dishes: "Guarnições",
+      asado_boat_side_hint_std: "Padrão: até 1 guarnição",
+      asado_boat_side_hint_prm: "Premium: até 2 guarnições",
+      asado_boat_side_fries: "Batatas fritas",
+      asado_boat_side_salad: "Salada mista",
+      asado_boat_side_mash: "Purê de batatas",
+      asado_boat_side_grilled: "Legumes grelhados",
+      asado_boat_side_roast: "Batatas assadas",
+      asado_boat_side_rice: "Arroz com legumes",
+      asado_boat_prefs_title: "Suas preferências",
+      asado_boat_pref_help_title: "Observações dietéticas para o restaurante",
+      asado_boat_label_side: "Guarnição",
+      asado_boat_label_second_side: "Segunda guarnição",
+      asado_boat_order_tier_standard: "Padrão · USD 60",
+      asado_boat_order_tier_premium: "Premium · USD 80",
+      asado_boat_wa_tier_standard: "Padrão (USD 60)",
+      asado_boat_wa_tier_premium: "Premium (USD 80)",
+      orders_alert_distinct_sides:
+        "No Premium, escolha duas guarnições diferentes.",
+      orders_alert_sides_standard_one:
+        "Standard: escolha exatamente 1 guarnição.",
+      orders_alert_sides_premium_range:
+        "Premium: escolha 1 ou 2 guarnições.",
       menu_word: "menu",
       guide_short: "guia",
       guide_accompany_label: "Guia para acompanhar este hóspede",
@@ -1631,9 +2348,11 @@ const translations = {
       walking_step_3: "📸 Cantos escondidos: Descubra lugares secretos e ótimos pontos para fotos",
       walking_step_4:
         "🌅 Fim do tour: Termine no centro histórico com recomendações para continuar explorando",
-      walking_price_title: "USD 13 por pessoa",
-      walking_price_note:
-        "Espanhol: USD 9 · Inglês: USD 13 · Português: USD 13",
+      walking_step_5: "🧉 Opcional: Mate Experience por USD 5 extra",
+      walking_mate_experience_title: "Mate Experience · USD 5 extra",
+      walking_mate_experience_body:
+        "O mate faz parte do cotidiano no Uruguai: compartilhar a cuia, a bomba e conversar um pouco. Este complemento opcional propõe um momento tranquilo de mate e a chance de entender por que é tão típico da nossa cultura (USD 5 por pessoa).",
+      walking_price_title: "USD 15 por pessoa",
       walking_included_title: "O que inclui",
       walking_include_1: "✔ Tour guiado a pé com especialista local",
       walking_include_2: "✔ Contexto cultural e histórico",
@@ -1649,7 +2368,7 @@ const translations = {
       walking_gallery_title: "Galeria da experiência",
       walking_back_home: "Voltar ao início",
       walking_create_title: "Crie seu walking tour",
-      walking_create_subtitle: "Selecione idioma e preferências, depois adicione pessoas ao grupo",
+      walking_create_subtitle: "Escolha o idioma e o horário do tour, depois adicione pessoas ao grupo (até 15).",
       walking_create_btn: "+ Criar walking tour",
       walking_group_title: "Seu grupo",
       walking_group_create_first: "Crie primeiro a configuração do walking tour.",
@@ -1663,7 +2382,15 @@ const translations = {
       walking_label_preferences: "Preferências",
       walking_label_note: "Nota",
       walking_book_now: "Reservar",
+      walking_mate_add_btn: "Adicionar mate",
+      walking_mate_remove_btn: "Remover mate",
+      walking_mate_price_note: "(Acrescentam-se USD 5 por pessoa)",
+      walking_mate_short: "Mate",
+      walking_label_mate: "Experiência mate",
+      walking_mate_card_yes: "Sim (+USD 5 por pessoa)",
+      walking_wa_mate: "Experiência mate",
       walking_alert_select_language: "Selecione um idioma",
+      walking_alert_select_tour_time: "Escolha um horário para o tour a pé.",
       walking_alert_create_first: "Primeiro crie seu grupo de walking tour.",
       walking_confirm_replace:
         "Você já tem um grupo configurado para este tour. Se continuar, você vai editar/substituir essa configuração.",
@@ -1723,6 +2450,7 @@ const translations = {
       wa_date_label: "Data",
       wa_people_label: "Pessoas",
       wa_language_label: "Idioma",
+      wa_tour_time_label: "Horário do tour",
       wa_preferences_label: "Preferências",
       wa_total_label: "Total",
       wa_note_label: "Nota",
@@ -2205,29 +2933,33 @@ function initRentPopupBehavior() {
   
     document.querySelectorAll("[data-translate]").forEach(el => {
       const key = el.dataset.translate;
-      if (translations[language][key]) {
-        el.textContent = translations[language][key];
+      const dict = translations[language];
+      if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
+        el.textContent = dict[key];
       }
     });
 
     document.querySelectorAll("[data-translate-title]").forEach(el => {
       const key = el.dataset.translateTitle;
-      if (translations[language][key]) {
-        el.setAttribute("title", translations[language][key]);
+      const dict = translations[language];
+      if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
+        el.setAttribute("title", dict[key]);
       }
     });
 
     document.querySelectorAll("[data-translate-aria-label]").forEach(el => {
       const key = el.dataset.translateAriaLabel;
-      if (translations[language][key]) {
-        el.setAttribute("aria-label", translations[language][key]);
+      const dict = translations[language];
+      if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
+        el.setAttribute("aria-label", dict[key]);
       }
     });
 
     document.querySelectorAll("[data-translate-alt]").forEach(el => {
       const key = el.dataset.translateAlt;
-      if (translations[language][key]) {
-        el.setAttribute("alt", translations[language][key]);
+      const dict = translations[language];
+      if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
+        el.setAttribute("alt", dict[key]);
       }
     });
 
@@ -2282,9 +3014,11 @@ function initRentPopupBehavior() {
       
       });
   
-    /* ===== LIGHTBOX PRO ===== */
+    /* ===== LIGHTBOX PRO (imágenes + opcional video en .gallery-grid) ===== */
   
-    const images = document.querySelectorAll(".gallery-grid img");
+    const mediaEls = document.querySelectorAll(
+      ".gallery-grid > img, .gallery-grid > .gallery-video-thumb, .gallery-grid > video"
+    );
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightboxImg");
     const closeBtn = document.getElementById("closeLightbox");
@@ -2292,42 +3026,125 @@ function initRentPopupBehavior() {
     const nextBtn = document.getElementById("nextBtn");
   
     let currentIndex = 0;
-    const imageArray = Array.from(images);
+    const mediaArray = Array.from(mediaEls);
+    let lightboxVideo = null;
   
-    if (images.length && lightbox) {
+    const ensureLightboxVideo = () => {
+      if (!lightbox || !lightboxImg) return null;
+      if (!lightboxVideo) {
+        lightboxVideo = document.createElement("video");
+        lightboxVideo.className = "lightbox-inline-video";
+        lightboxVideo.controls = true;
+        lightboxVideo.playsInline = true;
+        lightboxVideo.setAttribute("playsinline", "");
+        lightboxImg.insertAdjacentElement("afterend", lightboxVideo);
+      }
+      return lightboxVideo;
+    };
   
-      images.forEach((img, index) => {
-        img.addEventListener("click", () => {
+    const pauseLightboxVideo = () => {
+      if (lightboxVideo) {
+        lightboxVideo.pause();
+        lightboxVideo.removeAttribute("src");
+        lightboxVideo.innerHTML = "";
+        lightboxVideo.style.display = "none";
+      }
+    };
+  
+    const getGalleryVideoSrc = (videoEl) => {
+      const srcEl = videoEl.querySelector("source[src]");
+      if (srcEl) {
+        try {
+          return new URL(srcEl.getAttribute("src"), window.location.href).href;
+        } catch {
+          return srcEl.getAttribute("src") || "";
+        }
+      }
+      return videoEl.currentSrc || videoEl.src || "";
+    };
+
+    const videoFromGallerySlot = (slot) => {
+      if (!slot) return null;
+      if (slot.classList?.contains("gallery-video-thumb")) {
+        return slot.querySelector("video.gallery-grid-video-el");
+      }
+      if (slot.tagName === "VIDEO") return slot;
+      return null;
+    };
+  
+    const showMedia = () => {
+      if (!lightboxImg || !mediaArray.length) return;
+      const slot = mediaArray[currentIndex];
+      const gridVideo = videoFromGallerySlot(slot);
+      if (gridVideo) {
+        const v = ensureLightboxVideo();
+        if (!v) return;
+        lightboxImg.style.display = "none";
+        v.style.display = "block";
+        const src = getGalleryVideoSrc(gridVideo);
+        v.innerHTML = "";
+        const s = document.createElement("source");
+        s.src = src;
+        s.type = "video/mp4";
+        v.appendChild(s);
+        v.load();
+      } else if (slot.tagName === "IMG") {
+        pauseLightboxVideo();
+        lightboxImg.style.display = "block";
+        lightboxImg.src = slot.src;
+      }
+    };
+  
+    const closeLightbox = () => {
+      pauseLightboxVideo();
+      if (lightboxImg) lightboxImg.style.display = "block";
+      lightbox?.classList.remove("active");
+    };
+  
+    if (mediaArray.length && lightbox && lightboxImg) {
+      mediaArray.forEach((el, index) => {
+        const open = () => {
           currentIndex = index;
-          showImage();
+          showMedia();
           lightbox.classList.add("active");
-        });
+        };
+        el.addEventListener("click", open);
+        if (el.classList?.contains("gallery-video-thumb")) {
+          el.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              open();
+            }
+          });
+        }
       });
   
-      function showImage() {
-        lightboxImg.src = imageArray[currentIndex].src;
-      }
-  
       function nextImage() {
-        currentIndex = (currentIndex + 1) % imageArray.length;
-        showImage();
+        currentIndex = (currentIndex + 1) % mediaArray.length;
+        showMedia();
       }
   
       function prevImage() {
-        currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
-        showImage();
+        currentIndex = (currentIndex - 1 + mediaArray.length) % mediaArray.length;
+        showMedia();
       }
   
-      nextBtn?.addEventListener("click", nextImage);
-      prevBtn?.addEventListener("click", prevImage);
+      nextBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        nextImage();
+      });
+      prevBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        prevImage();
+      });
   
       closeBtn?.addEventListener("click", () => {
-        lightbox.classList.remove("active");
+        closeLightbox();
       });
   
       lightbox.addEventListener("click", (e) => {
         if (e.target === lightbox) {
-          lightbox.classList.remove("active");
+          closeLightbox();
         }
       });
   
@@ -2336,9 +3153,8 @@ function initRentPopupBehavior() {
   
         if (e.key === "ArrowRight") nextImage();
         if (e.key === "ArrowLeft") prevImage();
-        if (e.key === "Escape") lightbox.classList.remove("active");
+        if (e.key === "Escape") closeLightbox();
       });
-  
     }
   
   });

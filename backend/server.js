@@ -27,6 +27,10 @@ const PLEXO_LIMIT_ISSUERS = String(process.env.PLEXO_LIMIT_ISSUERS || "4,11,15")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
+/** Plexo + Totalnet (Visa): manual pide script CyberSource y el mismo id en CybersourceDeviceFingerprint. */
+const PLEXO_CYBERSOURCE_ORG_ID = (process.env.PLEXO_CYBERSOURCE_ORG_ID || "45ssiuz3").trim();
+/** Prefijo IdComercio para session_id del script (ej. visanetuy_px_1234 u oca_plexo) — lo da Plexo por comercio. */
+const PLEXO_CYBERSOURCE_SESSION_PREFIX = (process.env.PLEXO_CYBERSOURCE_SESSION_PREFIX || "").trim();
 const PLEXO_CHECKOUT_EMAIL = process.env.PLEXO_CHECKOUT_EMAIL || "";
 const PLEXO_CHECKOUT_NAME = process.env.PLEXO_CHECKOUT_NAME || "Sacramento Guest";
 const PLEXO_CHECKOUT_DOC = process.env.PLEXO_CHECKOUT_DOC || "12345678";
@@ -304,6 +308,14 @@ function buildPlexoExpressCheckoutRequest(payload) {
 
   if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
     paymentData.OptionalCommerceId = PLEXO_COMMERCE_ID;
+  }
+
+  const dfRaw =
+    typeof payload.cybersourceDeviceFingerprint === "string"
+      ? payload.cybersourceDeviceFingerprint.trim()
+      : "";
+  if (dfRaw) {
+    paymentData.CybersourceDeviceFingerprint = dfRaw.slice(0, 128);
   }
 
   return {
@@ -951,6 +963,14 @@ app.get("/api/payments/admin/payments/:sessionId", requireAdminAuth, (req, res) 
   });
 });
 
+app.get("/api/payments/plexo-client-hints", (_req, res) => {
+  res.json({
+    paymentMode: PAYMENT_MODE,
+    cybersourceOrgId: PAYMENT_MODE === "plexo" ? PLEXO_CYBERSOURCE_ORG_ID : "",
+    cybersourceSessionPrefix: PAYMENT_MODE === "plexo" ? PLEXO_CYBERSOURCE_SESSION_PREFIX : ""
+  });
+});
+
 app.get("/api/payments/health", (_req, res) => {
   res.json({
     ok: true,
@@ -1069,10 +1089,13 @@ app.post("/api/payments/plexo/commerces/:commerceId/issuers", async (req, res) =
 });
 
 app.post("/api/payments/resolve", async (req, res) => {
-  const { experience, amount, currency = "USD", people, orderPayload } = req.body || {};
+  const { experience, amount, currency = "USD", people, orderPayload, cybersourceDeviceFingerprint } = req.body || {};
   if (!experience || !Number.isFinite(Number(amount)) || Number(amount) <= 0) {
     return res.status(400).json({ error: "Invalid payload: experience/amount required." });
   }
+
+  const dfIn =
+    typeof cybersourceDeviceFingerprint === "string" ? cybersourceDeviceFingerprint.trim().slice(0, 128) : "";
 
   const normalizedPayload = {
     experience: String(experience),
@@ -1080,7 +1103,8 @@ app.post("/api/payments/resolve", async (req, res) => {
     currency: String(currency),
     people: Number.isFinite(Number(people)) ? Number(people) : null,
     orderPayload: orderPayload || null,
-    paymentMode: PAYMENT_MODE
+    paymentMode: PAYMENT_MODE,
+    ...(dfIn ? { cybersourceDeviceFingerprint: dfIn } : {})
   };
 
   const nowIso = new Date().toISOString();

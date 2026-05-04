@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>...</title>
@@ -28,8 +30,9 @@
   <nav class="top-links">
   <a href="../Actividades/aboutus.html"
       target="_blank"
-      rel="noopener noreferrer">
-    👤&nbsp;About Us
+      rel="noopener noreferrer"
+      data-translate="about_us_nav">
+    👤 About Us
   </a>
 </nav>
 
@@ -41,16 +44,16 @@
 
   <nav class="hamburger-menu">
     <ul>
-      <li data-filter="fullday">🧭 Full Day Experiences</li>
-      <li data-filter="gastronomy">🌞 Just for a Day</li>
-      <li data-filter="gastronomy">🌙 Just for a Night</li>
-      <li data-filter="tour">🏛 Guided Tours</li>
-      <li data-filter="gastronomy">🍽 Gastronomy</li>
-      <li data-filter="nature">🐎 Nature and Animals</li>
-      <li data-filter="culture">🥁 Tradition & Culture</li>
-      <li data-filter="sports">🏄 Sports & Adventure</li>
-      <li data-filter="romantic">💕 Romantic</li>
-      <li data-filter="corporate">🏢 Corporate Experiences</li>
+      <li data-filter="fullday" data-translate="nav_cat_fullday">🧭 Full Day Experiences</li>
+      <li data-filter="gastronomy" data-translate="nav_cat_day">🌞 Just for a Day</li>
+      <li data-filter="gastronomy" data-translate="nav_cat_night">🌙 Just for a Night</li>
+      <li data-filter="tour" data-translate="nav_cat_tours">🏛 Guided Tours</li>
+      <li data-filter="gastronomy" data-translate="nav_cat_gastro">🍽 Gastronomy</li>
+      <li data-filter="nature" data-translate="nav_cat_nature">🐎 Nature and Animals</li>
+      <li data-filter="culture" data-translate="nav_cat_culture">🥁 Tradition & Culture</li>
+      <li data-filter="sports" data-translate="nav_cat_sports">🏄 Sports & Adventure</li>
+      <li data-filter="romantic" data-translate="nav_cat_romantic">💕 Romantic</li>
+      <li data-filter="corporate" data-translate="nav_cat_corporate">🏢 Corporate Experiences</li>
     </ul>
   </nav>
 
@@ -59,53 +62,72 @@
     
     <!-- HERO -->
     <section class="boat-hero">
-        <h1>🔥🚤 Asado & Boat Experience</h1>
+        <h1 data-translate="asado_boat_hero">🔥🚤 Asado Experience (BBQ) & Boat Tour</h1>
       </section>
     
     
     <!-- CONTENT -->
     <section class="coffee-content">
     
-      <h2>About this experience</h2>
+      <h2 data-translate="asado_boat_about_title">About this experience</h2>
     
-      <p>
+      <p data-translate="asado_boat_about_p">
         Experience the true essence of Uruguay with a unique combination of gastronomy and nature.
-        Enjoy an authentic <strong>asado</strong> prepared by <strong>Andres</strong> in El Refugio restaurant. You will taste
+        Enjoy an authentic asado prepared by Andres in El Refugio restaurant. You will taste
         premium meats, local wine, and a relaxed atmosphere.
-        Then, embark on a scenic <strong>boat tour</strong> along the Río de la Plata,
+        Before or after your asado, enjoy a scenic boat tour along the Río de la Plata,
         discovering Colonia from a completely different perspective.
       </p>
     
-      <h3 class="experience-steps-title">How it works</h3>
+      <h3 class="experience-steps-title" data-translate="asado_boat_steps_title">How it works</h3>
     
       <div class="experience-steps">
         <ul>
     
           <li>
-            📍 <strong>Meeting point:</strong> Historic Quarter (shared after booking)
+            📍 <strong><span data-translate="asado_boat_step_meeting_title">Meeting point:</span></strong>
+            <span data-translate="asado_boat_step_meeting_body">Historic Quarter (shared after booking)</span>
           </li>
     
           <li>
-            🔥 <strong>Asado experience:</strong> Enjoy a traditional Uruguayan BBQ prepared by Andres in "El Refugio" with premium meats and wine.
+            🔥 <strong><span data-translate="asado_boat_step_asado_title">Asado experience:</span></strong>
+            <span data-translate="asado_boat_step_asado_body">Enjoy a traditional Uruguayan BBQ prepared by Andres in "El Refugio" with premium meats and wine.</span>
           </li>
     
           <li>
-            🚤 <strong>Boat tour:</strong> Navigate the Río de la Plata and enjoy stunning views of Colonia from the water with captain <strong>Alejandro</strong>.
+            🚤 <strong><span data-translate="asado_boat_step_boat_title">Boat tour:</span></strong>
+            <span data-translate="asado_boat_step_boat_body">Navigate the Río de la Plata and enjoy stunning views of Colonia from the water with captain Alejandro.</span>
+          </li>
+
+          <li>
+            🍽 <strong><span data-translate="asado_boat_step_lunch_title">Lunch:</span></strong>
+            <span data-translate="asado_boat_step_lunch_detail">Served at 12:30 after the first boat trip — 11:00am departure.</span>
           </li>
     
           <li>
-            🌅 <strong>Relax & enjoy:</strong> Perfect moment to unwind, take photos and experience the sunset.
+            🌅 <strong><span data-translate="asado_boat_step_relax_title">Relax & enjoy:</span></strong>
+            <span data-translate="asado_boat_step_relax_body">Perfect moment to unwind, take photos and experience the sunset.</span>
           </li>
     
-          <li>🚶 All activities are within walking distance</li>
+          <li data-translate="asado_boat_step_walking">🚶 All activities are within walking distance</li>
     
         </ul>
       </div>
     
     
       <!-- PRICE -->
-      <div class="price-box">
-        <h3>USD 70 per person</h3>
+      <div class="price-box price-box--with-blurb">
+        <h3 data-translate="asado_boat_price_menu_title">Standard USD 60 · Premium USD 80 per menu</h3>
+        <p class="price-box-detail" data-translate="asado_boat_price_menu_detail">
+          Includes the BBQ menu for your group (Standard or Premium parrillero) and your choice of side dishes. Generally, the Standard BBQ is enough for about 2–3 people; Premium for about 4. Drinks and beverages are not included — you can order them on site.
+        </p>
+      </div>
+
+      <div class="price-box price-box--with-blurb">
+        <h3 data-translate="asado_boat_price_boat_title">Boat USD 25 per person</h3>
+        <p class="price-box-detail" data-translate="asado_boat_price_boat_detail">
+          Charged per passenger for the boat tour, in addition to your BBQ menu order(s).
+        </p>
       </div>
     
     
@@ -115,23 +137,29 @@
     
           <!-- IZQUIERDA -->
           <div class="includes-list">
-            <h3>What's included</h3>
+            <h3 data-translate="asado_boat_included_title">What's included</h3>
             <ul>
-              <li>✔ Traditional Uruguayan asado</li>
-              <li>✔ Premium meat selection</li>
-              <li>✔ Wine or beverage included</li>
-              <li>✔ Boat tour experience</li>
-              <li>✔ Local host (Alejandro)</li>
-              <li>✔ Transfer included</li>
+              <li data-translate="asado_boat_include_1">✔ Traditional Uruguayan asado (Standard or Premium grill selection)</li>
+              <li data-translate="asado_boat_include_2">✔ Side dish(es) as per your menu choice</li>
+              <li class="includes-li-note" data-translate="asado_boat_include_3">Drinks and beverages are not included in the menu price; you can order them on site.</li>
+              <li data-translate="asado_boat_include_4">✔ Boat tour experience</li>
+              <li data-translate="asado_boat_include_5">✔ Local host (Alejandro)</li>
             </ul>
           </div>
     
           <!-- DERECHA -->
           <div class="order-start">
-            <h3>Create your menu</h3>
-            <p>Select your preferences and add guest orders</p>
+            <h3 data-translate="asado_boat_create_title">Create your menu</h3>
+            <div class="booking-visit-date-row">
+              <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+              <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
+              <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+                Pick the day you plan to come so we can coordinate availability in advance.
+              </p>
+            </div>
+            <p data-translate="asado_boat_create_subtitle">Choose Standard or Premium menu, then your side dishes and preferences</p>
 
-            <button id="createMenuBtnAsado" class="btn primary-btn" type="button">
+            <button id="createMenuBtnAsado" class="btn primary-btn" type="button" data-translate="asado_boat_create_btn">
               + Create your menu
             </button>
           </div>
@@ -140,14 +168,51 @@
     
       </div>
     
-    <!-- ================= ORDERS ================= -->
+    <!-- ================= ORDERS (guía arriba del resumen, como Las Liebres) ================= -->
+    <div class="liebres-group-guide-wrap" id="asadoBoatGroupGuideWrap" style="display: none">
+      <div class="liebres-group-guide-row">
+        <label class="liebres-guide-label">
+          <input type="checkbox" id="asadoBoatGroupGuide" name="groupGuide" value="1">
+          <span data-translate="asado_boat_group_guide_cb">Include a guide for the whole group (USD 40 total)</span>
+        </label>
+        <div class="liebres-guide-help-wrap">
+          <button
+            type="button"
+            class="liebres-guide-help-btn"
+            id="asadoBoatGroupGuideHelpBtn"
+            aria-expanded="false"
+            aria-controls="asadoBoatGroupGuideHelpPanel"
+            data-translate-title="asado_boat_guide_help_btn"
+            title="What the guide does"
+          >
+            <span aria-hidden="true">ℹ️</span>
+          </button>
+          <div
+            class="liebres-guide-help-panel"
+            id="asadoBoatGroupGuideHelpPanel"
+            role="tooltip"
+            hidden
+          >
+            <p data-translate="asado_boat_guide_help_p">
+              The guide meets your group at the agreed meeting point, accompanies you during the asado and boat tour, helps coordinate with your host on site, and can assist with photos and logistics during the visit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="order-summary" id="orderSummary"></div>
 
-    
+    <div class="experience-support-notice" role="status">
+      <p>
+        <strong data-translate="food_support_title">After your reservation</strong><span data-translate="food_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+      </p>
+    </div>
+
       <!-- GALLERY -->
       <section class="coffee-gallery">
     
-        <h2>Experience Gallery</h2>
+        <h2 data-translate="food_gallery_title">Experience Gallery</h2>
     
         <div class="gallery-grid">
     
@@ -155,27 +220,49 @@
           <img src="../Assets/images/boat1.jpg.webp">
           <img src="../Assets/images/boat2.jpg.webp">
           <img src="../Assets/images/asado13.jpg">
-          <img src="../Assets/images/boat2.jpg.webp">
-          <img src="../Assets/images/boat1.jpg.webp">
+          <img src="../Assets/images/ref1.jpg" alt="El Refugio">
+          <img src="../Assets/images/ref162.jpg" alt="El Refugio">
           <img src="../Assets/images/asado11.jpg">
-          <img src="../Assets/images/asado7.jpg">
-          <img src="../Assets/images/asado6.jpg">
+          <img src="../Assets/images/ref3.jpg" alt="El Refugio">
+          <img src="../Assets/images/ref161.jpg" alt="El Refugio">
 
 
 
         </div>
     
       </section>
+
+    <section class="experience-map food-map-section" aria-labelledby="asadoBoatRefugioMapTitle">
+      <h2 id="asadoBoatRefugioMapTitle" data-translate="food_map_title">Where to find El Refugio</h2>
+      <p>
+        <span data-translate="food_map_text">Use this map as a reference for El Refugio's location in Colonia del Sacramento.</span>
+        <a
+          href="https://www.google.com/maps/search/?api=1&amp;query=El+Refugio+Colonia+del+Sacramento+Uruguay"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-translate="food_map_link"
+        >Open in Google Maps</a>
+      </p>
+      <div class="map-embed">
+        <iframe
+          title="Map: El Refugio, Colonia del Sacramento"
+          data-translate-title="food_map_iframe_title"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=El+Refugio+Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=15">
+        </iframe>
+      </div>
+    </section>
     
     
       <!-- ACTIONS -->
       <div class="coffee-actions">
     
-        <a href="#" id="bookNowBottom" class="btn">
+        <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">
           Book Now
         </a>
     
-        <a href="../Home/index.html" class="btn secondary">
+        <a href="../Home/index.html" class="btn secondary" data-translate="food_back_home">
           Back to Home
         </a>
     
@@ -184,18 +271,74 @@
     </section>
     
     <!-- SCRIPTS -->
-    <script src="../Home/index.js?v=20260505"></script>
+    <script src="../Home/index.js?v=20260516"></script>
+    <script src="../Home/orders.js"></script>
+    <script src="../Home/booking-date-picker.js"></script>
     <script>
-      initPreferencesOrderExperience({
-        experienceName: "Asado & Boat",
-        pricePerPerson: 70,
+      initExperience({
+        experienceName: "Asado Experience (BBQ) & Boat",
+        experienceNameKey: "asado_boat_experience_name",
+        pricePerPerson: 60,
+        menuUpgradePrice: 80,
+        boatPerPersonPrice: 25,
+        boatPassengersMax: 23,
+        boatTimePerOrder: true,
+        boatTimePopupRadioName: "asadoBoatOrderTime",
+        boatTimeSlots: ["11:00am", "13:30pm", "15:30pm", "17:00pm"],
+        standardSkipsMainField: true,
+        standardMainPlaceholder: "",
+        premiumRequireDistinctSides: true,
+        experienceSkipsDrinkField: true,
+        standardSideCheckboxName: "asado_std_side",
+        premiumSideCheckboxName: "asado_prm_side",
+        menuTierRadioName: "asadoMenuTier",
+        premiumChoiceFieldNames: {
+          starter: "ab_prm_starter_legacy",
+          main: "ab_prm_main_legacy",
+          drink: "ab_prm_drink_legacy"
+        },
+        menuTierPanelIds: {
+          standard: "asadoStandardMenu",
+          premium: "asadoPremiumMenu"
+        },
+        uniformTierChoiceLabels: true,
+        totalCurrencyLabel: "USD",
+        tierSummaryStandardKey: "asado_boat_order_tier_standard",
+        tierSummaryPremiumKey: "asado_boat_order_tier_premium",
+        tierWhatsappStandardKey: "asado_boat_wa_tier_standard",
+        tierWhatsappPremiumKey: "asado_boat_wa_tier_premium",
+        tierServingNotesI18n: {
+          standard: "asado_boat_order_serving_standard",
+          premium: "asado_boat_order_serving_premium"
+        },
+        choiceSectionLabelKeys: {
+          starter: "asado_boat_label_side",
+          main: "asado_boat_label_second_side"
+        },
+        choiceSectionLabels: {
+          starter: "Side dish",
+          main: "Second side dish"
+        },
         popupId: "popupAsadoBoat",
         createBtnId: "createMenuBtnAsado",
         closeBtnId: "closeAsadoBoat",
-        saveBtnId: "saveMenu",
+        saveBtnId: "saveMenuAsado",
         orderSummaryId: "orderSummary",
         bookNowBottomId: "bookNowBottom",
         whatsappNumber: "598091642195",
+        storageKey: "orders_asado_boat",
+        guideFeePerPerson: 0,
+        groupGuideOptional: true,
+        groupGuideFlatFee: 40,
+        groupGuideCheckboxId: "asadoBoatGroupGuide",
+        groupGuideWrapId: "asadoBoatGroupGuideWrap",
+        selectedDateKey: "selectedDate",
+        dynamicPayment: {
+          enabled: true,
+          endpoint: "/api/payments/resolve",
+          experienceId: "asado_boat",
+          currency: "USD"
+        },
         paymentLinks: {
           1: "https://pago.handy.uy/details/?sessionId=LINK_70",
           2: "https://pago.handy.uy/details/?sessionId=LINK_140",
@@ -204,6 +347,47 @@
           5: "https://pago.handy.uy/details/?sessionId=LINK_350"
         }
       });
+    </script>
+    <script>
+      (function () {
+        function initAsadoBoatGuideHelp() {
+          const btn = document.getElementById("asadoBoatGroupGuideHelpBtn");
+          const panel = document.getElementById("asadoBoatGroupGuideHelpPanel");
+          if (!btn || !panel) return;
+
+          function close() {
+            panel.hidden = true;
+            btn.setAttribute("aria-expanded", "false");
+          }
+
+          function toggle() {
+            const open = panel.hidden;
+            panel.hidden = !open;
+            btn.setAttribute("aria-expanded", String(open));
+          }
+
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggle();
+          });
+
+          document.addEventListener("click", function (e) {
+            if (panel.hidden) return;
+            if (btn.contains(e.target) || panel.contains(e.target)) return;
+            close();
+          });
+
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") close();
+          });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initAsadoBoatGuideHelp);
+        } else {
+          initAsadoBoatGuideHelp();
+        }
+      })();
     </script>
     
     
@@ -215,26 +399,150 @@
       <button class="lightbox-btn next" id="nextBtn">›</button>
     </div>
 
-    <!-- ================= ASADO BOAT POPUP (PREFERENCES) ================= -->
+    <!-- ================= ASADO BOAT POPUP (mismo patrón que Bruma) ================= -->
     <div class="popup-overlay" id="popupAsadoBoat" aria-hidden="true">
       <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="asadoPopupTitle">
         <button class="close-x" id="closeAsadoBoat" type="button">✕</button>
 
-        <p>
-          <strong class="popup-title" id="asadoPopupTitle">
-            Choose your preferences
-          </strong>
+        <p><strong class="popup-title" id="asadoPopupTitle" data-translate="asado_boat_popup_title">Asado menu — chef’s selection:</strong></p>
+        <p class="asado-menu-serving-note" data-translate="asado_boat_popup_serving_note">
+          Generally, the Standard BBQ is enough for about 2–3 people; Premium for about 4.
         </p>
 
+        <div class="bruma-tier-wrap">
+          <p class="bruma-tier-heading" data-translate="asado_boat_tier_choose">Choose your menu</p>
+
+          <label class="bruma-tier-option">
+            <input type="radio" name="asadoMenuTier" value="standard" checked>
+            <span class="bruma-tier-option-body">
+              <span class="bruma-tier-price-line" data-translate="asado_boat_tier_std_line"><strong>Standard</strong> — USD 60 per menu</span>
+              <span class="bruma-tier-includes" data-translate="asado_boat_tier_std_includes">Includes asado, chicken, pork, chorizo, morcilla and chinchulín, and 1 guarnición of your choice.</span>
+            </span>
+          </label>
+
+          <label class="bruma-tier-option">
+            <input type="radio" name="asadoMenuTier" value="premium">
+            <span class="bruma-tier-option-body">
+              <span class="bruma-tier-price-line" data-translate="asado_boat_tier_prm_line"><strong>Premium</strong> — USD 80 per menu</span>
+              <span class="bruma-tier-includes" data-translate="asado_boat_tier_prm_includes">Includes asado, pulpon, pork, pamplona, molleja, kidney, chorizo and morcilla, and 2 guarniciones of your choice.</span>
+            </span>
+          </label>
+        </div>
+
+        <!-- STANDARD: solo este panel visible al elegir Standard -->
+        <div id="asadoStandardMenu" class="bruma-menu-panel">
+
+          <p><strong data-translate="asado_boat_side_dishes">Side dishes</strong></p>
+          <p class="asado-side-dishes-hint" data-translate="asado_boat_side_hint_std">Standard up to 1 guarnición</p>
+          <ul class="popup-list popup-list--checks">
+            <li>
+              <label>
+                <input type="checkbox" name="asado_std_side" value="French fries">
+                <span data-translate="asado_boat_side_fries">French fries</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_std_side" value="Mixed salad">
+                <span data-translate="asado_boat_side_salad">Mixed salad</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_std_side" value="Mashed potatoes">
+                <span data-translate="asado_boat_side_mash">Mashed potatoes</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_std_side" value="Grilled vegetables">
+                <span data-translate="asado_boat_side_grilled">Grilled vegetables</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_std_side" value="Oven-roasted potatoes">
+                <span data-translate="asado_boat_side_roast">Oven-roasted potatoes</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_std_side" value="Rice with vegetables">
+                <span data-translate="asado_boat_side_rice">Rice with vegetables</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <!-- PREMIUM: solo este panel visible al elegir Premium -->
+        <div id="asadoPremiumMenu" class="bruma-menu-panel" hidden>
+
+          <p><strong data-translate="asado_boat_side_dishes">Side dishes</strong></p>
+          <p class="asado-side-dishes-hint" data-translate="asado_boat_side_hint_prm">Premium up to 2 guarniciones</p>
+          <ul class="popup-list popup-list--checks">
+            <li>
+              <label>
+                <input type="checkbox" name="asado_prm_side" value="French fries">
+                <span data-translate="asado_boat_side_fries">French fries</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_prm_side" value="Mixed salad">
+                <span data-translate="asado_boat_side_salad">Mixed salad</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_prm_side" value="Mashed potatoes">
+                <span data-translate="asado_boat_side_mash">Mashed potatoes</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_prm_side" value="Grilled vegetables">
+                <span data-translate="asado_boat_side_grilled">Grilled vegetables</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_prm_side" value="Oven-roasted potatoes">
+                <span data-translate="asado_boat_side_roast">Oven-roasted potatoes</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="asado_prm_side" value="Rice with vegetables">
+                <span data-translate="asado_boat_side_rice">Rice with vegetables</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="asado-boat-popup-time">
+          <h3 class="preferences-title" id="asadoBoatPopupTimeHeading" data-translate="sunset_boat_popup_time_title">Departure time</h3>
+          <p class="asado-boat-popup-time-hint" data-translate="asado_boat_popup_boat_hint">
+            If this menu includes boat passengers, choose a departure time (you can set different times per order).
+          </p>
+          <div class="orders-boat-times orders-boat-times--popup" role="radiogroup" aria-labelledby="asadoBoatPopupTimeHeading">
+            <label class="orders-boat-time-option"><input type="radio" name="asadoBoatOrderTime" value="11:00am"> 11:00am</label>
+            <label class="orders-boat-time-option"><input type="radio" name="asadoBoatOrderTime" value="13:30pm"> 13:30pm</label>
+            <label class="orders-boat-time-option"><input type="radio" name="asadoBoatOrderTime" value="15:30pm"> 15:30pm</label>
+            <label class="orders-boat-time-option"><input type="radio" name="asadoBoatOrderTime" value="17:00pm"> 17:00pm</label>
+          </div>
+        </div>
+
         <div class="preferences-inside">
-          <label><input type="checkbox" value="Wine"> 🍷 Wine</label>
-          <label><input type="checkbox" value="Vegetarian option"> 🥗 Vegetarian option</label>
-          <label><input type="checkbox" value="No alcohol"> 🚫 No alcohol</label>
-          <label><input type="checkbox" value="Coffee"> ☕ Coffee</label>
+          <h3 class="preferences-title">
+            <span data-translate="asado_boat_prefs_title">Your preferences</span>
+            <span class="help-icon" id="asadoBoatHelp" data-translate-title="asado_boat_pref_help_title" title="Dietary notes for the restaurant">ℹ️</span>
+          </h3>
+          <label><input type="checkbox" value="Low Salt"> 🧂 <span data-translate="bruma_pref_salt">Low salt</span></label>
+          <label><input type="checkbox" value="No spicy food"> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
         </div>
 
         <div class="popup-actions">
-          <button id="saveMenu" class="btn" type="button">
+          <button id="saveMenuAsado" class="btn" type="button" data-translate="save_selection">
             Save selection
           </button>
         </div>
@@ -246,8 +554,10 @@
        class="whatsapp-float"
        target="_blank"
        rel="noopener noreferrer"
+       data-translate-aria-label="wa_float_aria"
        aria-label="WhatsApp">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
     </a>
 
 </body>
+</html>

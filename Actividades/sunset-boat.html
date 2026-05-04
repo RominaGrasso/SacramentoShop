@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title data-translate="sunset_boat_page_title">Sunset Boat Experience - Sacramento Adventures</title>
+
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+ <header>
+
+  <div class="logo-container">
+    <a href="../Home/index.html" class="logo">
+      <img src="../Assets/images/SacramentoLogo2.png"
+           alt="Sacramento Adventures Logo">
+    </a>
+
+  </div>
+
+  <div class="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <nav class="top-links">
+  <a href="../Actividades/aboutus.html"
+      target="_blank"
+      rel="noopener noreferrer">
+    👤&nbsp;About Us
+  </a>
+</nav>
+
+  <div class="language-switch">
+    <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+    <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+    <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+  </div>
+
+  <nav class="hamburger-menu">
+    <ul>
+      <li data-filter="fullday">🧭 Full Day Experiences</li>
+      <li data-filter="gastronomy">🌞 Just for a Day</li>
+      <li data-filter="gastronomy">🌙 Just for a Night</li>
+      <li data-filter="tour">🏛 Guided Tours</li>
+      <li data-filter="gastronomy">🍽 Gastronomy</li>
+      <li data-filter="nature">🐎 Nature and Animals</li>
+      <li data-filter="culture">🥁 Tradition & Culture</li>
+      <li data-filter="sports">🏄 Sports & Adventure</li>
+      <li data-filter="romantic">💕 Romantic</li>
+      <li data-filter="corporate">🏢 Corporate Experiences</li>
+    </ul>
+  </nav>
+
+</header>
+
+
+    <!-- HERO -->
+    <section class="boat-hero boat-hero--sunset-boat">
+        <h1 data-translate="sunset_boat_hero">🌅🚤 Sunset Boat Experience</h1>
+      </section>
+
+
+    <!-- CONTENT -->
+    <section class="coffee-content">
+
+      <h2 data-translate="sunset_boat_about_title">About this experience</h2>
+
+      <p data-translate="sunset_boat_about_p">
+        Enjoy a relaxing boat tour along the Río de la Plata and discover Colonia from a unique perspective.
+        Cruise through calm waters, take in sunset views, and unwind with captain Alejandro.
+      </p>
+
+      <h3 class="experience-steps-title" data-translate="sunset_boat_steps_title">How it works</h3>
+
+      <div class="experience-steps">
+        <ul>
+
+          <li>
+            <span data-translate="sunset_boat_step_1">📍 <strong>Meeting point:</strong> Historic Quarter (shared after booking)</span>
+          </li>
+
+          <li>
+            <span data-translate="sunset_boat_step_2">🚤 <strong>Boat tour:</strong> Navigate the Río de la Plata with captain <strong>Alejandro</strong> and enjoy views of Colonia from the water.</span>
+          </li>
+
+          <li>
+            <span data-translate="sunset_boat_step_departures">⏰ <strong>Departure times:</strong> 11:00am, 13:30pm, 15:30pm, 17:00pm</span>
+          </li>
+
+          <li>
+            <span data-translate="sunset_boat_step_3">🌅 <strong>Sunset &amp; relax:</strong> Ideal for photos, calm waters, and a memorable end of the day.</span>
+          </li>
+
+          <li>
+            <span data-translate="sunset_boat_step_4">⏱️ <strong>Duration:</strong> About 1.5 hours</span>
+          </li>
+
+        </ul>
+      </div>
+
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+
+      <!-- PRICE -->
+      <div class="price-box price-box--with-blurb">
+        <h3 data-translate="sunset_boat_price_title">USD 25 per guest</h3>
+        <p class="price-box-detail" data-translate="sunset_boat_price_detail">
+          Price per person for the boat experience. Drinks are not included unless specified in your booking confirmation.
+        </p>
+      </div>
+
+
+      <div class="coffee-includes">
+
+        <div class="includes-preferences">
+
+          <div class="includes-list">
+            <h3 data-translate="sunset_boat_included_title">What's included</h3>
+            <ul>
+              <li data-translate="sunset_boat_include_1">✔ Scenic boat tour on the Río de la Plata</li>
+              <li data-translate="sunset_boat_include_2">✔ Captain &amp; host Alejandro</li>
+              <li data-translate="sunset_boat_include_3">✔ Life jackets and safety briefing</li>
+              <li data-translate="sunset_boat_include_4">✔ Small-group atmosphere</li>
+            </ul>
+          </div>
+
+          <div class="order-start">
+            <h3 data-translate="sunset_boat_create_title">Book your spot</h3>
+            <div class="booking-visit-date-row">
+              <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+              <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
+              <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+                Pick the day you plan to come so we can coordinate availability in advance.
+              </p>
+            </div>
+            <p data-translate="sunset_boat_create_subtitle">
+              Choose your visit date below, then add a booking and pick a departure time in the popup. Use +/− on each booking for more than one passenger at the same time.
+            </p>
+
+            <button id="createMenuBtnSunsetBoat" class="btn primary-btn" type="button" data-translate="sunset_boat_create_btn">
+              + Add passenger or group
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    <div class="liebres-group-guide-wrap" id="sunsetBoatGroupGuideWrap" style="display: none">
+      <div class="liebres-group-guide-row">
+        <label class="liebres-guide-label">
+          <input type="checkbox" id="sunsetBoatGroupGuide" name="groupGuide" value="1">
+          <span data-translate="sunset_boat_group_guide_cb">Include a guide for the whole group (USD 40 total)</span>
+        </label>
+        <div class="liebres-guide-help-wrap">
+          <button
+            type="button"
+            class="liebres-guide-help-btn"
+            id="sunsetBoatGroupGuideHelpBtn"
+            aria-expanded="false"
+            aria-controls="sunsetBoatGroupGuideHelpPanel"
+            data-translate-title="sunset_boat_guide_help_btn"
+            title="What the guide does"
+          >
+            <span aria-hidden="true">ℹ️</span>
+          </button>
+          <div
+            class="liebres-guide-help-panel"
+            id="sunsetBoatGroupGuideHelpPanel"
+            role="tooltip"
+            hidden
+          >
+            <p data-translate="sunset_boat_guide_help_p">
+              The guide meets your group at the agreed point, accompanies you on the boat experience, helps coordinate with the captain, and can assist with photos and logistics during the visit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary" id="orderSummary"></div>
+
+    <div class="experience-support-notice" role="status">
+      <p>
+        <strong data-translate="food_support_title">After your reservation</strong><span data-translate="food_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+      </p>
+    </div>
+
+      <section class="coffee-gallery">
+
+        <h2 data-translate="sunset_boat_gallery_title">Experience Gallery</h2>
+
+        <div class="gallery-grid">
+
+          <img src="../Assets/images/boat1.jpg.webp" alt="">
+          <div
+            class="gallery-video-thumb"
+            role="button"
+            tabindex="0"
+            title="Boat experience video"
+            aria-label="Video — tap to enlarge"
+          >
+            <video class="gallery-grid-video-el" playsinline preload="metadata" muted poster="../Assets/images/boat4.jpg">
+              <source src="../Assets/images/boat5.mp4" type="video/mp4">
+            </video>
+            <div class="gallery-video-overlay" aria-hidden="true">
+              <span class="gallery-video-play">▶</span>
+            </div>
+            <span class="gallery-video-badge" data-translate="gallery_video_badge">Video</span>
+          </div>
+          <img src="../Assets/images/boat2.jpg.webp" alt="">
+          <img src="../Assets/images/boat3.jpg" alt="">
+          <img src="../Assets/images/colonia.jpg" alt="">
+          <img src="../Assets/images/boat4.jpg" alt="">
+          <div
+            class="gallery-video-thumb"
+            role="button"
+            tabindex="0"
+            title="Boat experience video"
+            aria-label="Video — tap to enlarge"
+          >
+            <video class="gallery-grid-video-el" playsinline preload="metadata" muted poster="../Assets/images/boat3.jpg">
+              <source src="../Assets/images/boat6.mp4" type="video/mp4">
+            </video>
+            <div class="gallery-video-overlay" aria-hidden="true">
+              <span class="gallery-video-play">▶</span>
+            </div>
+            <span class="gallery-video-badge" data-translate="gallery_video_badge">Video</span>
+          </div>
+          <img src="../Assets/images/boat1.jpg.webp" alt="">
+
+        </div>
+
+      </section>
+
+    <section class="experience-map food-map-section" aria-labelledby="sunsetBoatMapTitle">
+      <h2 id="sunsetBoatMapTitle" data-translate="sunset_boat_map_title">Colonia &amp; the Río de la Plata</h2>
+      <p>
+        <span data-translate="sunset_boat_map_text">Meeting details are confirmed after booking; this map shows Colonia del Sacramento and the river for orientation.</span>
+        <a
+          href="https://www.google.com/maps/search/?api=1&amp;query=Colonia+del+Sacramento+Uruguay"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-translate="sunset_boat_map_link"
+        >Open in Google Maps</a>
+      </p>
+      <div class="map-embed">
+        <iframe
+          title="Map: Colonia del Sacramento, Uruguay"
+          data-translate-title="sunset_boat_map_iframe_title"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=13">
+        </iframe>
+      </div>
+    </section>
+
+
+      <div class="coffee-actions">
+
+        <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">
+          Book Now
+        </a>
+
+        <a href="../Home/index.html" class="btn secondary" data-translate="walking_back_home">
+          Back to Home
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- SCRIPTS -->
+    <script src="../Home/index.js?v=20260509"></script>
+    <script src="../Home/orders.js"></script>
+    <script src="../Home/booking-date-picker.js"></script>
+    <script>
+      initExperience({
+        experienceName: "Sunset Boat Experience",
+        experienceNameKey: "sunset_boat_experience_name",
+        pricePerPerson: 25,
+        experienceSkipsMenuChoices: true,
+        boatTimePerOrder: true,
+        boatTimePopupRadioName: "sunsetBoatOrderTime",
+        boatPerPersonPrice: 0,
+        boatTimeSlots: ["11:00am", "13:30pm", "15:30pm", "17:00pm"],
+        boatPassengersMax: 23,
+        experienceSkipsDrinkField: true,
+        starterName: "starter",
+        mainName: "main",
+        drinkName: "drink",
+        popupId: "popupSunsetBoat",
+        createBtnId: "createMenuBtnSunsetBoat",
+        closeBtnId: "closeSunsetBoat",
+        saveBtnId: "saveMenuSunsetBoat",
+        orderSummaryId: "orderSummary",
+        bookNowBottomId: "bookNowBottom",
+        whatsappNumber: "598091642195",
+        storageKey: "orders_sunset_boat",
+        guideFeePerPerson: 0,
+        groupGuideOptional: true,
+        groupGuideFlatFee: 40,
+        groupGuideCheckboxId: "sunsetBoatGroupGuide",
+        groupGuideWrapId: "sunsetBoatGroupGuideWrap",
+        selectedDateKey: "selectedDate",
+        dynamicPayment: {
+          enabled: true,
+          endpoint: "/api/payments/resolve",
+          experienceId: "sunset_boat",
+          currency: "USD"
+        },
+        paymentLinks: {
+          1: "https://pago.handy.uy/details/?sessionId=LINK_BOAT25",
+          2: "https://pago.handy.uy/details/?sessionId=LINK_BOAT50",
+          3: "https://pago.handy.uy/details/?sessionId=LINK_BOAT75",
+          4: "https://pago.handy.uy/details/?sessionId=LINK_BOAT100",
+          5: "https://pago.handy.uy/details/?sessionId=LINK_BOAT125"
+        }
+      });
+    </script>
+    <script>
+      (function () {
+        function initSunsetBoatGuideHelp() {
+          const btn = document.getElementById("sunsetBoatGroupGuideHelpBtn");
+          const panel = document.getElementById("sunsetBoatGroupGuideHelpPanel");
+          if (!btn || !panel) return;
+
+          function close() {
+            panel.hidden = true;
+            btn.setAttribute("aria-expanded", "false");
+          }
+
+          function toggle() {
+            const open = panel.hidden;
+            panel.hidden = !open;
+            btn.setAttribute("aria-expanded", String(open));
+          }
+
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggle();
+          });
+
+          document.addEventListener("click", function (e) {
+            if (panel.hidden) return;
+            if (btn.contains(e.target) || panel.contains(e.target)) return;
+            close();
+          });
+
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") close();
+          });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initSunsetBoatGuideHelp);
+        } else {
+          initSunsetBoatGuideHelp();
+        }
+      })();
+    </script>
+
+
+    <div class="lightbox" id="lightbox">
+      <span class="close-lightbox" id="closeLightbox">✕</span>
+      <button class="lightbox-btn prev" id="prevBtn">‹</button>
+      <img class="lightbox-img" id="lightboxImg">
+      <button class="lightbox-btn next" id="nextBtn">›</button>
+    </div>
+
+    <div class="popup-overlay" id="popupSunsetBoat" aria-hidden="true">
+      <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="sunsetBoatPopupTitle">
+        <button class="close-x" id="closeSunsetBoat" type="button">✕</button>
+
+        <p><strong class="popup-title" id="sunsetBoatPopupTitle" data-translate="sunset_boat_popup_title">Boat tour 🚤</strong></p>
+
+        <div class="sunset-boat-popup-time">
+          <h3 class="preferences-title" id="sunsetBoatPopupTimeHeading" data-translate="sunset_boat_popup_time_title">Departure time</h3>
+          <div class="orders-boat-times orders-boat-times--popup" role="radiogroup" aria-labelledby="sunsetBoatPopupTimeHeading">
+            <label class="orders-boat-time-option"><input type="radio" name="sunsetBoatOrderTime" value="11:00am"> 11:00am</label>
+            <label class="orders-boat-time-option"><input type="radio" name="sunsetBoatOrderTime" value="13:30pm"> 13:30pm</label>
+            <label class="orders-boat-time-option"><input type="radio" name="sunsetBoatOrderTime" value="15:30pm"> 15:30pm</label>
+            <label class="orders-boat-time-option"><input type="radio" name="sunsetBoatOrderTime" value="17:00pm"> 17:00pm</label>
+          </div>
+        </div>
+
+        <div class="popup-actions">
+          <button id="saveMenuSunsetBoat" class="btn" type="button" data-translate="save_selection">
+            Save selection
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/598091642195?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
+       class="whatsapp-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
+    </a>
+
+</body>
+</html>

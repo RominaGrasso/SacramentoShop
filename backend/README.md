@@ -83,3 +83,21 @@ Optional:
 - `POST /api/payments/resolve` will use Plexo `Auth + Uri` flow in this mode.
 - `POST /api/payments/webhook` accepts both generic webhooks and signed Plexo callbacks.
 
+### 3DS / “No fue posible validar el medio de pago con 3DSecure”
+
+Para **Visa vía Totalnet**, la guía de Plexo exige el **device fingerprint** de CyberSource: el navegador debe cargar `https://h.online-metrix.net/fp/tags.js` con un `session_id` único, y el **mismo** valor debe ir en `PaymentData.CybersourceDeviceFingerprint` al crear el Express Checkout.
+
+Este backend ya:
+
+- expone `GET /api/payments/plexo-client-hints` con `cybersourceOrgId` (por defecto de pruebas `45ssiuz3`) y `cybersourceSessionPrefix`;
+- acepta en `POST /api/payments/resolve` el campo opcional `cybersourceDeviceFingerprint`;
+- el frontend (`Home/orders.js`) pide esos hints, genera el `session_id` y lo envía en el resolve **si** `PLEXO_CYBERSOURCE_SESSION_PREFIX` está definido en el servidor.
+
+**Importante:** pedí a Plexo el **prefijo IdComercio** para tu comercio en testing (ejemplos en su doc: cadena tipo `visanetuy_px_…` o `oca_plexo` según procesador) y configurá en Render (o `.env` local):
+
+```env
+PLEXO_CYBERSOURCE_SESSION_PREFIX=tu_prefijo_que_indica_plexo
+```
+
+Sin ese prefijo, la tarjeta de prueba correcta puede seguir fallando en 3DS.
+
