@@ -216,16 +216,17 @@
 
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/bici1.jpg" 
+        <video muted loop playsinline class="card-video">
+          <source src="../Assets/images/bicireal6.mp4" type="video/mp4">
+        </video>
+
+        <img src="../Assets/images/bicireal3.jpeg"
              alt="Bike tour in Colonia del Sacramento">
-  
-        <img src="../Assets/images/bike2.jpg" 
-             alt="Cycling through Historic Quarter">
-  
-        <img src="../Assets/images/bike3.jpg" 
-             alt="Rambla bike ride in Colonia">
-  
-        <img src="../Assets/images/bike4.jpg" 
+
+        <img src="../Assets/images/bicireal1.jpeg"
+             alt="Sunset bike ride in Colonia">
+
+        <img src="../Assets/images/bici1.jpg"
              alt="Guided bicycle experience">
       </div>
   
@@ -275,7 +276,8 @@
   
   </div>
 
-  <div class="card">
+  <!-- Asado + boat: hidden until boat experience is offered again (see .card--hidden-until-boat-returns in styles.css) -->
+  <div class="card card--hidden-until-boat-returns">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -345,8 +347,8 @@
 
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/historic1.jpg" alt="Historic Quarter walking tour in Colonia del Sacramento">
         <img src="../Assets/images/asado12.jpg" alt="Traditional Uruguayan asado">
+        <img src="../Assets/images/historic1.jpg" alt="Historic Quarter walking tour in Colonia del Sacramento">
         <img src="../Assets/images/historic3.jpg" alt="Colonial streets in Colonia">
         <img src="../Assets/images/ref1.jpg" alt="El Refugio restaurant Colonia">
       </div>
@@ -358,7 +360,7 @@
     <div class="card-content">
 
       <h3 data-translate="walking_asado_card_title">
-        Walking Tour + Asado Experience (BBQ)
+        🥩 Walking Tour + Asado Experience (BBQ)
       </h3>
 
       <p class="card-meta" data-translate="walking_asado_card_meta_1">
@@ -415,7 +417,7 @@
         </div>
       
         <div class="card-content">
-          <h3 data-translate="food_title">🚶 Guided Tour, Chivito & Plaza de Toros</h3>
+          <h3 data-translate="food_title">🚶 Walking Tour, Chivito & Plaza de Toros</h3>
     
           <p class="card-meta">
             ⭐ Best value experience in Colonia 
@@ -455,6 +457,106 @@
         </div>
       </div>
 
+      <!-- LA JOSEFINA — YACHTING COLONIA -->
+      <div class="card">
+        <div class="card-image carousel">
+          <div class="carousel-track">
+            <img src="../Assets/images/jose5.jpg" alt="">
+            <img src="../Assets/images/jose6.jpg" alt="">
+            <img src="../Assets/images/jose8.jpg" alt="">
+            <img src="../Assets/images/jose9.jpg" alt="">
+          </div>
+          <button class="carousel-btn prev">‹</button>
+          <button class="carousel-btn next">›</button>
+        </div>
+
+        <div class="card-content">
+          <h3 data-translate="josefina_title">🍽 La Josefina — Lunch or dinner at Colonia Yacht Club</h3>
+
+          <p class="card-meta" data-translate="josefina_meta_view">
+            🌅 Unforgettable Río de la Plata views — the setting is the highlight
+          </p>
+          <p class="card-meta" data-translate="josefina_meta_duration">
+            ⏱ The experience lasts 2 hours
+          </p>
+          <p class="card-meta" data-translate="josefina_meta_favorite">
+            ⭐ A favorite among tourists
+          </p>
+
+          <p class="medical">🛡️ Medical assistance included</p>
+
+          <p class="card-description" data-translate="josefina_text">
+            Lunch or dinner at Restaurante La Josefina, inside the Colonia Yacht Club: exceptional waterfront views, relaxed atmosphere, and one of the most photographed panoramas in town.
+          </p>
+
+          <span class="see-more">See more</span>
+
+          <div class="card-buttons">
+            <a
+              href="../Actividades/la-josefina.html"
+              class="btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-translate="view_btn"
+            >
+              View Details
+            </a>
+
+            <a href="#" class="btn secondary" data-translate="book_btn">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BRUMA -->
+      <div class="card">
+        <div class="discount-badge">🔥 15% OFF</div>
+        <div class="card-image carousel">
+          <div class="carousel-track">
+            <img src="../Assets/images/bruma1.jpg" alt="Bruma restaurant Colonia del Sacramento">
+            <img src="../Assets/images/bruma2.jpg" alt="">
+            <img src="../Assets/images/bruma3.jpg" alt="">
+            <img src="../Assets/images/bruma4.jpg" alt="">
+          </div>
+          <button class="carousel-btn prev">‹</button>
+          <button class="carousel-btn next">›</button>
+        </div>
+
+        <div class="card-content">
+          <h3>🍽 Bruma Restaurant Experience</h3>
+
+          <p class="card-meta">
+            ✨ Perfect after your guided tour
+          </p>
+
+          <p class="card-meta">
+            🍷 International cuisine by Chef Marcelo
+          </p>
+
+          <p class="medical">🛡️ Medical assistance included</p>
+
+          <p class="card-description">
+            Enjoy a unique dining experience at Bruma, a boutique restaurant in the heart of Colonia’s Historic Quarter.
+            Surrounded by cobblestone streets and colonial charm, it offers high-quality international cuisine and a relaxed atmosphere — the perfect complement after a guided tour.
+          </p>
+
+          <span class="see-more">See more</span>
+
+          <div class="card-buttons">
+            <a href="../Actividades/bruma.html"
+               class="btn"
+               target="_blank"
+               rel="noopener noreferrer">
+               View Details
+            </a>
+
+            <a href="#" class="btn secondary">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
 
       <!-- PLAZA DE TOROS Y ANITA -->
 
@@ -754,7 +856,8 @@
   
   </div>
 
-  <div class="card">
+  <!-- Sunset boat card: hidden while not offered; remove card--hidden-sunset-boat to show again -->
+  <div class="card card--hidden-sunset-boat">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -897,58 +1000,6 @@
     </div>
   
   </div>
-  <!-- BRUMA -->
-<div class="card">
-    <div class="discount-badge">🔥 15% OFF</div>
-    <div class="card-image carousel">
-      <div class="carousel-track">
-        <img src="../Assets/images/bruma1.jpg" alt="Bruma restaurant Colonia del Sacramento">
-        <img src="../Assets/images/bruma2.jpg" alt="">
-        <img src="../Assets/images/bruma3.jpg" alt="">
-        <img src="../Assets/images/bruma4.jpg" alt="">
-      </div>
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-    </div>
-  
-    <div class="card-content">
-      <h3>🍽 Bruma Restaurant Experience</h3>
-  
-      <p class="card-meta">
-        ✨ Perfect after your guided tour
-      </p>
-  
-      <p class="card-meta">
-        🍷 International cuisine by Chef Marcelo
-      </p>
-  
-  
-      <p class="medical">🛡️ Medical assistance included</p>
-  
-      <p class="card-description">
-        Enjoy a unique dining experience at Bruma, a boutique restaurant in the heart of Colonia’s Historic Quarter. 
-        Surrounded by cobblestone streets and colonial charm, it offers high-quality international cuisine and a relaxed atmosphere — the perfect complement after a guided tour.
-      </p>
-      
-      <span class="see-more">See more</span>
-
-  
-      <div class="card-buttons">
-        <a href="../Actividades/bruma.html"
-           class="btn"
-           target="_blank"
-           rel="noopener noreferrer">
-           View Details
-        </a>
-  
-        <a href="#" class="btn secondary">
-          Book Now
-        </a>
-      </div>
-    </div>
-  </div>
-
-
 
   <!-- Lupa & Jack -->
   <div class="card">
@@ -1910,7 +1961,7 @@
 
 
 <!-- ================= TRANSLATIONS ================= -->
-<script src="../Home/index.js?v=20260526"></script>
+<script src="../Home/index.js?v=20260531"></script>
 
 
 <!-- ================= CAROUSEL ================= -->
@@ -1946,6 +1997,14 @@
     </script>
     
     
+    <a href="https://wa.me/598091642195?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+       class="taxi-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Taxi">
+      <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
+    </a>
+
     <a href="https://wa.me/598091642195?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
        class="whatsapp-float"
        target="_blank"

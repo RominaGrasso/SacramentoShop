@@ -3,16 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Bike Tour - Sacramento Adventures</title>
-  <link rel="stylesheet" href="../Styles/styles.css">
+  <link rel="stylesheet" href="../Styles/styles.css?v=20260507">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     .order-preferences-list {
-      margin: 0.5rem 0 0.4rem 1.6rem;
+      margin: 0.15rem 0 0.35rem 1.6rem;
       padding-left: 0.8rem;
     }
     .order-preferences-list li {
       margin: 0.28rem 0;
       line-height: 1.35;
+    }
+
+    /* Menos aire entre “Preferences:” y la lista (evita doble margen p + ul) */
+    #bikeOrderSummary .order-card > p {
+      margin-top: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    #bikeOrderSummary .order-card > p + .order-preferences-list {
+      margin-top: 0;
+    }
+
+    /* Aire entre preferencias (lista o “—”) y la nota */
+    #bikeOrderSummary .order-card > p:last-of-type {
+      margin-top: 0.85rem;
     }
     .order-summary .total-box {
       margin-top: 20px;
@@ -26,6 +41,26 @@
       gap: 12px 16px;
       color: #fff;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    #popupBikeGroup .preferences-inside label {
+      font-weight: 600;
+    }
+
+    #popupBikeGroup .bike-popup-optional-prefs {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .experience-steps .bike-how-step {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 0.35em;
+      align-items: baseline;
+    }
+
+    .experience-steps .bike-step-lead {
+      font-weight: 600;
     }
   </style>
 </head>
@@ -80,7 +115,7 @@
 </header>
 
 <!-- ================= HERO ================= -->
-<section class="coffee-hero" style="background-image: url('../Assets/images/bike1.jpg');">
+<section class="coffee-hero" style="background-image: url('../Assets/images/bicireal1.jpeg'); background-position: center 61%;">
 </section>
 
 <!-- ================= CONTENT ================= -->
@@ -110,24 +145,29 @@
   <div class="experience-steps">
     <ul>
 
-      <li>
-        <span data-translate="bike_step_1">🚴 Meeting point: Central location in Colonia (details after booking)</span>
+      <li class="bike-how-step">
+        <span class="bike-step-lead" data-translate="bike_step_1_label">🚴 Meeting point:</span>
+        <span data-translate="bike_step_1_desc">Central location in Colonia (details after booking)</span>
       </li>
 
-      <li>
-        <span data-translate="bike_step_2">🗺 Guided bike tour: Ride through historic streets, waterfront areas and local neighborhoods</span>
+      <li class="bike-how-step">
+        <span class="bike-step-lead" data-translate="bike_step_2_label">🗺 Guided bike tour:</span>
+        <span data-translate="bike_step_2_desc">Ride through historic streets, waterfront areas and local neighborhoods</span>
       </li>
 
-      <li>
-        <span data-translate="bike_step_3">📸 Stops: Scenic viewpoints and photo spots along the way</span>
+      <li class="bike-how-step">
+        <span class="bike-step-lead" data-translate="bike_step_3_label">📸 Stops:</span>
+        <span data-translate="bike_step_3_desc">Scenic viewpoints and photo spots along the way</span>
       </li>
 
-      <li>
-        <span data-translate="bike_step_4">🍩 Local touch: Enjoy a traditional torta frita during the experience</span>
+      <li class="bike-how-step">
+        <span class="bike-step-lead" data-translate="bike_step_4_label">🍩 Local touch:</span>
+        <span data-translate="bike_step_4_desc">Enjoy a traditional torta frita during the experience</span>
       </li>
 
-      <li>
-        <span data-translate="bike_step_5">🌅 End of tour: Return to starting point or continue exploring</span>
+      <li class="bike-how-step">
+        <span class="bike-step-lead" data-translate="bike_step_5_label">🌅 End of tour:</span>
+        <span data-translate="bike_step_5_desc">Return to starting point or continue exploring</span>
       </li>
 
     </ul>
@@ -135,7 +175,7 @@
 
   <!-- PRICE -->
   <div class="price-box">
-    <h3 data-translate="bike_price_title">USD 35 per person</h3>
+    <h3 data-translate="bike_price_title">USD 50 per person</h3>
   </div>
 
   <!-- INCLUDES -->
@@ -180,15 +220,26 @@
     <h2 data-translate="bike_gallery_title">Experience Gallery</h2>
 
     <div class="gallery-grid">
-      <img src="../Assets/images/bike1.jpg">
-      <img src="../Assets/images/bike2.jpg">
-      <img src="../Assets/images/bike3.jpg">
-      <img src="../Assets/images/bike4.jpg">
-      <img src="../Assets/images/bici1.jpg">
-      <img src="../Assets/images/beerbike.jpg">
-      <img src="../Assets/images/fullday1.jpg">
-      <img src="../Assets/images/day1.jpg">
-      <img src="../Assets/images/day2.jpg">
+      <div
+        class="gallery-video-thumb"
+        role="button"
+        tabindex="0"
+        title="Bike tour video"
+        aria-label="Video — tap to enlarge"
+      >
+        <video class="gallery-grid-video-el" playsinline preload="auto" muted>
+          <source src="../Assets/images/bicireal6.mp4?v=20260507" type="video/mp4">
+        </video>
+        <div class="gallery-video-overlay" aria-hidden="true">
+          <span class="gallery-video-play">▶</span>
+        </div>
+        <span class="gallery-video-badge" data-translate="gallery_video_badge">Video</span>
+      </div>
+      <img src="../Assets/images/bicireal4.jpeg" alt="">
+      <img src="../Assets/images/bicireal3.jpeg" alt="">
+      <img src="../Assets/images/bicireal5.jpeg" alt="">
+      <img src="../Assets/images/bicireal1.jpeg" alt="">
+      <img src="../Assets/images/bici1.jpg" alt="">
     </div>
 
   </section>
@@ -207,7 +258,7 @@
   </div>
 
 </section>
-<script src="../Home/index.js?v=20260509"></script>
+<script src="../Home/index.js?v=20260508"></script>
 <script src="../Home/orders.js"></script>
 
 <!-- ================= POPUP BIKE GROUP ================= -->
@@ -222,12 +273,15 @@
       <label><input type="radio" name="bikeTourLanguage" value="Spanish guide"> 🇪🇸 <span data-translate="bike_lang_es">Spanish guide</span></label>
       <label><input type="radio" name="bikeTourLanguage" value="Portuguese guide"> 🇧🇷 <span data-translate="bike_lang_pt">Portuguese guide</span></label>
 
+      <h3 class="preferences-title" style="margin-top: 14px;" data-translate="bike_label_route">Route</h3>
+      <label><input type="radio" name="bikeTourRoute" value="Short route 1hr" checked> 🚴 <span data-translate="bike_pref_1">Short route 1hr</span></label>
+      <label><input type="radio" name="bikeTourRoute" value="Long route 2hs"> ⚡ <span data-translate="bike_pref_2">Long route 2hs</span></label>
+
       <h3 class="preferences-title" style="margin-top: 14px;" data-translate="bike_label_preferences">Preferences</h3>
-      <label><input type="checkbox" value="Short route"> 🚴 <span data-translate="bike_pref_1">Short route</span></label>
-      <label><input type="checkbox" value="Long route"> ⚡ <span data-translate="bike_pref_2">Long route</span></label>
+      <div class="bike-popup-optional-prefs">
       <label><input type="checkbox" value="Include scenic photo stops"> 📸 <span data-translate="bike_pref_3">Include scenic photo stops</span></label>
-      <label><input type="checkbox" value="Family friendly route"> 👨‍👩‍👧 <span data-translate="bike_pref_4">Family friendly route</span></label>
       <label><input type="checkbox" value="Need child bike seat"> 🧒 <span data-translate="bike_pref_5">Need child bike seat</span></label>
+      </div>
       <p id="bikeKidsNote" style="margin-top:12px; font-size:0.92rem; color:#2f67a3; font-weight:600;">
         Children under 5 years old ride free in the child bike seat.
       </p>
@@ -252,7 +306,7 @@
 </div>
 <script>
   (function () {
-    const PRICE_PER_PERSON = 35;
+    const PRICE_PER_PERSON = 50;
     const whatsappNumber = "598091642195";
     const storageKey = "orders_bike_tour_group";
     const getLang = () => (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
@@ -274,7 +328,6 @@
       if (v.includes("short") || v.includes("corto") || v.includes("curta")) return "Short route";
       if (v.includes("long") || v.includes("largo") || v.includes("longa")) return "Long route";
       if (v.includes("photo") || v.includes("foto") || v.includes("panor")) return "Include scenic photo stops";
-      if (v.includes("family") || v.includes("familia") || v.includes("crian")) return "Family friendly route";
       if (v.includes("child bike seat") || v.includes("sillita") || v.includes("cadeirinha")) return "Need child bike seat";
       return "";
     };
@@ -286,10 +339,9 @@
     };
     const localizeBikePreference = (value) => {
       const normalized = normalizeBikePreference(value);
-      if (normalized === "Short route") return t("bike_pref_1", "Short route");
-      if (normalized === "Long route") return t("bike_pref_2", "Long route");
+      if (normalized === "Short route") return t("bike_pref_1", "Short route 1hr");
+      if (normalized === "Long route") return t("bike_pref_2", "Long route 2hs");
       if (normalized === "Include scenic photo stops") return t("bike_pref_3", "Include scenic photo stops");
-      if (normalized === "Family friendly route") return t("bike_pref_4", "Family friendly route");
       if (normalized === "Need child bike seat") return t("bike_pref_5", "Need child bike seat");
       return value;
     };
@@ -308,15 +360,28 @@
     if (!popup || !openBtn || !closeBtn || !saveBtn || !summary) return;
     if (bikeKidsNote) bikeKidsNote.textContent = getKidsNote();
 
+    const ROUTE_SHORT = "Short route";
+    const ROUTE_LONG = "Long route";
+
     const getGroupConfig = () => {
       try {
         const raw = JSON.parse(localStorage.getItem(storageKey));
         if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+          let preferences = Array.isArray(raw.preferences)
+            ? raw.preferences.map(normalizeBikePreference).filter(Boolean)
+            : [];
+          let routeCanon = raw.route ? normalizeBikePreference(raw.route) : "";
+          if (!routeCanon || (routeCanon !== ROUTE_SHORT && routeCanon !== ROUTE_LONG)) {
+            if (preferences.includes(ROUTE_SHORT)) routeCanon = ROUTE_SHORT;
+            else if (preferences.includes(ROUTE_LONG)) routeCanon = ROUTE_LONG;
+          }
+          preferences = preferences.filter((p) => p !== ROUTE_SHORT && p !== ROUTE_LONG);
+          if (!routeCanon) routeCanon = ROUTE_SHORT;
+
           return {
             language: normalizeBikeLanguage(raw.language),
-            preferences: Array.isArray(raw.preferences)
-              ? raw.preferences.map(normalizeBikePreference).filter(Boolean)
-              : [],
+            route: routeCanon,
+            preferences,
             people: Math.max(1, Number(raw.people) || 1)
           };
         }
@@ -330,12 +395,18 @@
       localStorage.setItem(storageKey, JSON.stringify(group));
     };
 
-    const selectedPrefs = () =>
-      Array.from(popup.querySelectorAll(".preferences-inside input[type='checkbox']:checked"))
+    const selectedOptionalPrefs = () =>
+      Array.from(popup.querySelectorAll(".bike-popup-optional-prefs input[type='checkbox']:checked"))
         .map((i) => i.value)
         .filter(Boolean);
     const selectedLanguage = () =>
       popup.querySelector("input[name='bikeTourLanguage']:checked")?.value || "";
+    const selectedRouteCanon = () => {
+      const el = popup.querySelector("input[name='bikeTourRoute']:checked");
+      if (!el) return "";
+      const c = normalizeBikePreference(el.value);
+      return c === ROUTE_SHORT || c === ROUTE_LONG ? c : "";
+    };
 
     const formatDate = () =>
       new Date().toLocaleDateString("en-GB", {
@@ -349,12 +420,14 @@
       const total = PRICE_PER_PERSON * group.people;
       const prefs = Array.isArray(group.preferences) ? group.preferences.map(localizeBikePreference) : [];
       const prefsText = prefs.length ? `- ${prefs.join("\n- ")}` : `- ${t("wa_none", "None")}`;
+      const routeLine = group.route ? localizeBikePreference(group.route) : "";
       const date = formatDate();
       const baseMessage =
         `${t("wa_intro_bike", "Hello! I'd like to book the Bike Tour experience:")}\n\n` +
         `${t("wa_date_label", "Date")}: ${date}\n` +
         `${t("wa_people_label", "People")}: ${group.people}\n` +
         `${t("wa_language_label", "Language")}: ${localizeBikeLanguage(group.language)}\n` +
+        `${t("bike_label_route", "Route")}: ${routeLine || "—"}\n` +
         `${t("wa_preferences_label", "Preferences")}:\n${prefsText}\n\n` +
         `${t("wa_total_label", "Total")}: USD ${total}\n` +
         `${t("wa_note_label", "Note")}: ${getKidsNote()}`;
@@ -438,13 +511,15 @@
 
       const prefItems = group.preferences.length
         ? `<ul class="order-preferences-list">${group.preferences.map((p) => `<li>${localizeBikePreference(p)}</li>`).join("")}</ul>`
-        : "<span>-</span>";
+        : "<span>—</span>";
+      const routeText = group.route ? localizeBikePreference(group.route) : "—";
       const card = document.createElement("div");
       card.className = "order-card";
       card.innerHTML = `
         <div class="order-header"><strong>${t("bike_group_card_title", "Bike Tour Group")}</strong></div>
         <p><strong>${t("bike_label_people", "People")}:</strong> ${group.people}</p>
         <p><strong>${t("bike_label_language", "Language")}:</strong> ${localizeBikeLanguage(group.language)}</p>
+        <p><strong>${t("bike_label_route", "Route")}:</strong> ${routeText}</p>
         <p><strong>${t("bike_label_preferences", "Preferences")}:</strong></p>
         ${prefItems}
         <p><strong>${t("bike_label_note", "Note")}:</strong> ${getKidsNote()}</p>
@@ -499,19 +574,27 @@
         alert(t("bike_alert_select_language", "Please select a language"));
         return;
       }
-      const prefs = selectedPrefs();
+      const routeCanon = selectedRouteCanon();
+      if (!routeCanon) {
+        alert(t("bike_alert_select_route", "Please choose short or long route"));
+        return;
+      }
+      const prefs = selectedOptionalPrefs().map(normalizeBikePreference).filter(Boolean);
       const prev = getGroupConfig();
       setGroupConfig({
         language,
+        route: routeCanon,
         preferences: prefs,
         people: prev?.people || 1
       });
       popup.classList.remove("active");
       popup.style.display = "";
       popup.setAttribute("aria-hidden", "true");
-      popup.querySelectorAll(".preferences-inside input[type='checkbox']").forEach((i) => (i.checked = false));
+      popup.querySelectorAll(".bike-popup-optional-prefs input[type='checkbox']").forEach((i) => (i.checked = false));
       const defaultLanguage = popup.querySelector("input[name='bikeTourLanguage'][value='English guide']");
       if (defaultLanguage) defaultLanguage.checked = true;
+      const defaultRoute = popup.querySelector('input[name="bikeTourRoute"][value="Short route 1hr"]');
+      if (defaultRoute) defaultRoute.checked = true;
       renderSummary();
     });
 
@@ -546,8 +629,15 @@
         radios.forEach((r) => {
           r.checked = r.value === normalizeBikeLanguage(group.language);
         });
-        popup.querySelectorAll(".preferences-inside input[type='checkbox']").forEach((i) => {
-          i.checked = group.preferences.map(normalizeBikePreference).includes(i.value);
+        popup.querySelectorAll("input[name='bikeTourRoute']").forEach((r) => {
+          r.checked = normalizeBikePreference(r.value) === group.route;
+        });
+        if (!popup.querySelector("input[name='bikeTourRoute']:checked")) {
+          const fallback = popup.querySelector('input[name="bikeTourRoute"][value="Short route 1hr"]');
+          if (fallback) fallback.checked = true;
+        }
+        popup.querySelectorAll(".bike-popup-optional-prefs input[type='checkbox']").forEach((i) => {
+          i.checked = group.preferences.includes(normalizeBikePreference(i.value));
         });
         popup.classList.add("active");
         popup.style.display = "flex";
@@ -580,6 +670,14 @@
     renderSummary();
   })();
 </script>
+
+    <a href="https://wa.me/598091642195?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+       class="taxi-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Taxi">
+      <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
+    </a>
 
     <a href="https://wa.me/598091642195?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
        class="whatsapp-float"

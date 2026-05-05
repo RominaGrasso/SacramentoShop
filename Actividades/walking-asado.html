@@ -61,8 +61,8 @@
 
 
     <!-- HERO -->
-    <section class="boat-hero">
-        <h1 data-translate="walking_asado_hero">🏛🔥 Walking Tour + Asado Experience (BBQ)</h1>
+    <section class="boat-hero boat-hero--walking-asado">
+        <h1 data-translate="walking_asado_hero">🥩🏛🔥 Walking Tour + Asado Experience (BBQ)</h1>
       </section>
 
 
@@ -175,15 +175,26 @@
 
         <div class="gallery-grid">
 
-          <img src="../Assets/images/historic1.jpg" alt="">
+          <img src="../Assets/images/asado11.jpg" alt="">
           <img src="../Assets/images/historic2.jpg" alt="">
+          <div
+            class="gallery-video-thumb"
+            role="button"
+            tabindex="0"
+            title="Asado experience video"
+            aria-label="Video — tap to enlarge"
+          >
+            <video class="gallery-grid-video-el" playsinline preload="auto" muted>
+              <source src="../Assets/images/asado1.mp4?v=1" type="video/mp4">
+            </video>
+            <div class="gallery-video-overlay" aria-hidden="true">
+              <span class="gallery-video-play">▶</span>
+            </div>
+            <span class="gallery-video-badge" data-translate="gallery_video_badge">Video</span>
+          </div>
+          <img src="../Assets/images/historic4.jpg" alt="">
           <img src="../Assets/images/asado12.jpg" alt="">
-          <img src="../Assets/images/ref1.jpg" alt="El Refugio">
-          <img src="../Assets/images/matescon1.jpeg" alt="">
-          <img src="../Assets/images/matescon2.jpeg" alt="">
-          <img src="../Assets/images/matescon3.jpeg" alt="">
-          <img src="../Assets/images/matescon4.jpeg" alt="">
-          <img src="../Assets/images/ref3.jpg" alt="El Refugio">
+          <img src="../Assets/images/asado13.jpg" alt="">
 
         </div>
 
@@ -228,12 +239,12 @@
     </section>
 
     <!-- SCRIPTS -->
-    <script src="../Home/index.js?v=20260517"></script>
+    <script src="../Home/index.js?v=20260528"></script>
     <script src="../Home/orders.js"></script>
     <script src="../Home/booking-date-picker.js"></script>
     <script>
       initExperience({
-        experienceName: "Walking Tour + Asado Experience (BBQ)",
+        experienceName: "🥩 Walking Tour + Asado Experience (BBQ)",
         experienceNameKey: "walking_asado_experience_name",
         orderLanguageRadioName: "wkaWalkLang",
         orderLanguageSummaryLabelKey: "walking_asado_order_guided_tour_label",
@@ -456,6 +467,14 @@
       </div>
     </div>
 
+
+    <a href="https://wa.me/598091642195?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+       class="taxi-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Taxi">
+      <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
+    </a>
 
     <a href="https://wa.me/598091642195?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
        class="whatsapp-float"

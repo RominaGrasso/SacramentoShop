@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>La Josefina — Yachting de Colonia | Sacramento Adventures</title>
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+
+    <div class="logo-container">
+      <a href="../Home/index.html" class="logo">
+        <img src="../Assets/images/SacramentoLogo2.png" alt="Sacramento Adventures Logo">
+      </a>
+    </div>
+
+    <div class="menu-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <nav class="top-links">
+      <a href="../Actividades/aboutus.html" target="_blank" rel="noopener noreferrer" data-translate="about_us_nav">
+        👤 About Us
+      </a>
+    </nav>
+
+    <div class="language-switch">
+      <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+      <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
+      <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+    </div>
+
+    <nav class="hamburger-menu">
+      <ul>
+        <li data-filter="fullday" data-translate="nav_cat_fullday">🧭 Full Day Experiences</li>
+        <li data-filter="gastronomy" data-translate="nav_cat_day">🌞 Just for a Day</li>
+        <li data-filter="gastronomy" data-translate="nav_cat_night">🌙 Just for a Night</li>
+        <li data-filter="tour" data-translate="nav_cat_tours">🏛 Guided Tours</li>
+        <li data-filter="gastronomy" data-translate="nav_cat_gastro">🍽 Gastronomy</li>
+        <li data-filter="nature" data-translate="nav_cat_nature">🐎 Nature and Animals</li>
+        <li data-filter="culture" data-translate="nav_cat_culture">🥁 Tradition & Culture</li>
+        <li data-filter="sports" data-translate="nav_cat_sports">🏄 Sports & Adventure</li>
+        <li data-filter="romantic" data-translate="nav_cat_romantic">💕 Romantic</li>
+        <li data-filter="corporate" data-translate="nav_cat_corporate">🏢 Corporate Experiences</li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <section class="food-hero" style="background-image: url('../Assets/images/jose9.jpg'); background-position: center 22%;">
+  </section>
+
+  <section class="coffee-content">
+
+    <h2 data-translate="josefina_page_about_title">About this experience</h2>
+
+    <p data-translate="josefina_page_p1">
+      Enjoy lunch or dinner at Restaurante La Josefina, overlooking the Río de la Plata from the Colonia Yacht Club (Real Club Náutico).
+      The views over the water are the highlight — golden sunsets, passing boats, and a relaxed marina atmosphere.
+    </p>
+    <p data-translate="josefina_page_p2">
+      The restaurant is run by its owners, Pablo and Alejandro.
+    </p>
+    <p data-translate="josefina_page_p3">
+      The menu combines Uruguayan classics and regional favorites — ideal for pairing great food with one of the best panoramas in town.
+    </p>
+    <p data-translate="josefina_page_p4">
+      Plan around two hours for the experience: arrive with time to take in the view, enjoy your meal, and unwind before sunset or under the evening lights.
+    </p>
+
+    <a
+      href="https://www.instagram.com/_sacramentoadventures/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="reel-link-btn"
+      data-translate="bruma_reel_btn"
+    >
+      🎥 Watch Reel on @_sacramentoadventures
+    </a>
+
+    <div class="price-box">
+      <h3 data-translate="josefina_page_price_title">From USD 25 per guest · Premium USD 35</h3>
+    </div>
+
+    <div class="coffee-includes">
+
+      <div class="includes-preferences">
+
+        <div class="includes-list">
+          <h3 data-translate="josefina_page_included_title">What's included</h3>
+          <ul>
+            <li data-translate="josefina_page_include_table">✔ Reserved table at Restaurante La Josefina</li>
+            <li><strong data-translate="josefina_page_include_menu">✔ Full menu: main course, drink and dessert</strong></li>
+            <li data-translate="josefina_page_include_service">✔ Personalized service</li>
+            <li data-translate="josefina_page_include_location">✔ Iconic waterfront views at the Yacht Club</li>
+          </ul>
+        </div>
+
+        <div class="order-start">
+          <h3 data-translate="josefina_page_create_title">Create your menu</h3>
+          <div class="booking-visit-date-row">
+            <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+            <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
+            <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+              Pick the day you plan to come so we can coordinate availability in advance.
+            </p>
+          </div>
+          <p data-translate="josefina_page_create_subtitle">Select standard or premium menu, then your courses and preferences</p>
+
+          <button id="createMenuBtnJosefina" class="btn primary-btn" data-translate="josefina_page_create_btn">
+            + Create your menu
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="order-summary" id="orderSummary"></div>
+
+    <div class="experience-support-notice" role="status">
+      <p>
+        <strong data-translate="josefina_page_support_title">After your reservation</strong><span data-translate="josefina_page_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+      </p>
+    </div>
+
+    <section class="coffee-gallery">
+      <h2 data-translate="josefina_page_gallery_title">Experience Gallery</h2>
+      <div class="gallery-grid">
+        <img src="../Assets/images/jose5.jpg" alt="">
+        <img src="../Assets/images/jose6.jpg" alt="">
+        <img src="../Assets/images/jose8.jpg" alt="">
+        <img src="../Assets/images/jose9.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="experience-map" aria-labelledby="josefinaMapTitle">
+      <h2 id="josefinaMapTitle" data-translate="josefina_page_map_title">Where to find La Josefina</h2>
+      <p>
+        <span data-translate="josefina_page_map_text">Use this map as a reference for La Josefina at the Colonia Yacht Club (Real Club Náutico).</span>
+        <a
+          href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante+La+Josefina+Colonia+del+Sacramento"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-translate="josefina_page_map_link"
+        >Open in Google Maps</a>
+      </p>
+      <div class="map-embed">
+        <iframe
+          data-translate-title="josefina_page_map_iframe_title"
+          title="Map: La Josefina, Colonia del Sacramento"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Restaurante+La+Josefina+Real+Club+Nautico+Colonia&amp;output=embed&amp;z=16">
+        </iframe>
+      </div>
+    </section>
+
+    <div class="coffee-actions">
+      <a href="#" id="bookNowBottomJosefina" class="btn" data-translate="book_btn">Book Now</a>
+      <a href="../Home/index.html" class="btn secondary" data-translate="bruma_back_home">Back to Home</a>
+    </div>
+
+  </section>
+
+  <script src="../Home/index.js?v=20260531"></script>
+  <div class="lightbox" id="lightbox">
+    <span class="close-lightbox" id="closeLightbox">✕</span>
+    <button class="lightbox-btn prev" id="prevBtn">‹</button>
+    <img class="lightbox-img" id="lightboxImg" alt="">
+    <button class="lightbox-btn next" id="nextBtn">›</button>
+  </div>
+
+  <div class="popup-overlay" id="popupJosefina">
+    <div class="popup-box">
+
+      <button class="close-x" id="closeJosefina" type="button">✕</button>
+
+      <p><strong class="popup-title" data-translate="josefina_page_popup_title">Your menu selection</strong></p>
+
+      <div class="bruma-tier-wrap">
+        <p class="bruma-tier-heading" data-translate="josefina_tier_heading">Choose your menu</p>
+
+        <label class="bruma-tier-option">
+          <input type="radio" name="josefinaMenuTier" value="standard" checked>
+          <span data-translate="josefina_tier_standard_option">Standard — from USD 25 per guest</span>
+        </label>
+
+        <label class="bruma-tier-option">
+          <input type="radio" name="josefinaMenuTier" value="premium">
+          <span data-translate="josefina_tier_premium_option">Premium — USD 35 per guest</span>
+        </label>
+      </div>
+
+      <div id="josefinaStandardMenu" class="bruma-menu-panel">
+
+        <p><strong data-translate="josefina_page_popup_starter">Starter</strong></p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="josefina_starter" value="Homemade empanadas (cheese &amp; onion / ham &amp; cheese / corn)">
+              <span data-translate="josefina_starter_1">Homemade empanadas (cheese &amp; onion / ham &amp; cheese / corn)</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_starter" value="Grilled provolone cheese with oregano and tomato jam">
+              <span data-translate="josefina_starter_2">Grilled provolone cheese with oregano and tomato jam</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_starter" value="Seasonal vegetable soup">
+              <span data-translate="josefina_starter_3">Seasonal vegetable soup</span>
+            </label>
+          </li>
+        </ul>
+
+        <p><strong data-translate="josefina_page_popup_main">Main Course</strong></p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="josefina_main" value="Catch of the day with sautéed vegetables or mashed potato">
+              <span data-translate="josefina_main_1">Catch of the day with sautéed vegetables or mashed potato</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_main" value="Grilled beef sirloin with fries or mixed salad">
+              <span data-translate="josefina_main_2">Grilled beef sirloin with fries or mixed salad</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_main" value="Homemade pasta with tomato sauce or filetto">
+              <span data-translate="josefina_main_3">Homemade pasta with tomato sauce or filetto</span>
+            </label>
+          </li>
+        </ul>
+
+        <p><strong data-translate="josefina_page_popup_drink">Drink</strong></p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="josefina_drink" value="Glass of wine (red / rosé / white)">
+              <span data-translate="josefina_drink_1">Glass of wine (red / rosé / white)</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_drink" value="Water, soda or lemonade">
+              <span data-translate="josefina_drink_2">Water, soda or lemonade</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div id="josefinaPremiumMenu" class="bruma-menu-panel" hidden>
+
+        <p><strong data-translate="josefina_prem_platos">Plates</strong></p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_starter" value="Grilled ribeye with fries, salsa criolla &amp; chimichurri">
+              <span data-translate="josefina_prem_starter_1">Grilled ribeye with fries, salsa criolla &amp; chimichurri</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_starter" value="Seafood stew or grilled fish platter (subject to availability)">
+              <span data-translate="josefina_prem_starter_2">Seafood stew or grilled fish platter (subject to availability)</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_starter" value="Surf &amp; turf (beef tenderloin &amp; prawns) with roasted vegetables">
+              <span data-translate="josefina_prem_starter_3">Surf &amp; turf (beef tenderloin &amp; prawns) with roasted vegetables</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_starter" value="Pumpkin ravioli with sage butter &amp; almonds">
+              <span data-translate="josefina_prem_starter_4">Pumpkin ravioli with sage butter &amp; almonds</span>
+            </label>
+          </li>
+        </ul>
+
+        <p><strong data-translate="josefina_prem_postres">Desserts</strong></p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_main" value="Baked cheesecake with red berries">
+              <span data-translate="josefina_prem_main_1">Baked cheesecake with red berries</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_main" value="Pavlova with pastry cream &amp; seasonal fruit">
+              <span data-translate="josefina_prem_main_2">Pavlova with pastry cream &amp; seasonal fruit</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_main" value="Chocolate cake with dulce de leche &amp; English cream">
+              <span data-translate="josefina_prem_main_3">Chocolate cake with dulce de leche &amp; English cream</span>
+            </label>
+          </li>
+        </ul>
+
+        <p><strong data-translate="josefina_prem_bebidas">Drinks</strong></p>
+        <ul class="popup-list">
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_drink" value="Glass of wine (red / white / rosé)">
+              <span data-translate="josefina_prem_drink_1">Glass of wine (red / white / rosé)</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_prm_drink" value="Water, soda or glass of lemonade">
+              <span data-translate="josefina_prem_drink_2">Water, soda or glass of lemonade</span>
+            </label>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="preferences-inside">
+        <h3 class="preferences-title">
+          <span data-translate="bruma_preferences_title">Your preferences</span>
+          <span class="help-icon" id="josefinaHelp">ℹ️</span>
+        </h3>
+
+        <label><input type="checkbox" value="0% Alcohol"> 🍺 <span data-translate="bruma_pref_alcohol">0% Alcohol</span></label>
+        <label><input type="checkbox" value="Low Salt"> 🧂 <span data-translate="bruma_pref_salt">Low Salt</span></label>
+        <label><input type="checkbox" value="No spicy food"> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
+      </div>
+
+      <div class="popup-actions">
+        <button id="saveMenuJosefina" class="btn" type="button" data-translate="bruma_save_selection">Save selection</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../Home/orders.js"></script>
+  <script src="../Home/booking-date-picker.js"></script>
+  <script>
+    initExperience({
+      experienceName: "La Josefina",
+      experienceNameKey: "josefina_experience_name",
+      pricePerPerson: 25,
+      menuUpgradePrice: 35,
+      menuTierRadioName: "josefinaMenuTier",
+      premiumChoiceFieldNames: {
+        starter: "josefina_prm_starter",
+        main: "josefina_prm_main",
+        drink: "josefina_prm_drink"
+      },
+      menuTierPanelIds: {
+        standard: "josefinaStandardMenu",
+        premium: "josefinaPremiumMenu"
+      },
+      popupId: "popupJosefina",
+      closeBtnId: "closeJosefina",
+      createBtnId: "createMenuBtnJosefina",
+      saveBtnId: "saveMenuJosefina",
+      orderSummaryId: "orderSummary",
+      bookNowBottomId: "bookNowBottomJosefina",
+      starterName: "josefina_starter",
+      mainName: "josefina_main",
+      drinkName: "josefina_drink",
+      whatsappNumber: "598091642195",
+      storageKey: "orders_la_josefina",
+      selectedDateKey: "selectedDate",
+      tierSummaryStandardKey: "josefina_order_tier_standard",
+      tierSummaryPremiumKey: "josefina_order_tier_premium",
+      tierWhatsappStandardKey: "josefina_whatsapp_standard",
+      tierWhatsappPremiumKey: "josefina_whatsapp_premium",
+      dynamicPayment: {
+        enabled: true,
+        endpoint: "/api/payments/resolve",
+        experienceId: "la_josefina",
+        currency: "USD"
+      },
+      paymentLinks: {}
+    });
+  </script>
+
+  <a
+    href="https://wa.me/598091642195?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+    class="taxi-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Taxi"
+  >
+    <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
+  </a>
+
+  <a
+    href="https://wa.me/598091642195?text=Hello!%20I'm%20interested%20in%20La%20Josefina%20at%20Yachting%20Colonia."
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-translate-aria-label="wa_float_aria"
+    aria-label="WhatsApp"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
+  </a>
+
+</body>
+</html>
