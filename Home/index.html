@@ -20,7 +20,7 @@
                alt="Sacramento Adventures Logo">
         </a>
       
-        <span class="under-construction">🚧 Work In Progress</span>
+        <span class="under-construction" data-translate="under_construction">🚧 Work In Progress</span>
       </div>
 
     <div class="menu-toggle">
@@ -29,7 +29,7 @@
 
       <nav class="top-links">
         <a href="../Actividades/aboutus.html" target="_blank" rel="noopener noreferrer">
-            👤&nbsp;About Us
+            <span data-translate="header_about_link">👤 About Us</span>
         </a>
       </nav>
   
@@ -42,17 +42,16 @@
     <nav class="hamburger-menu">
 
         <ul>
-            <li data-filter="fullday">🧭 Full Day Experiences</li>
-            <li data-filter="gastronomy">🌞 Just for a Day</li>
-            <li data-filter="gastronomy">🌙 Just for a Night</li>
-            <li data-filter="tour">🏛 Guided Tours</li>
-            <li data-filter="gastronomy">🍽 Gastronomy</li>
-            <li data-filter="nature">🐎 Nature and Animals </li>
-            <li data-filter="culture">🥁 Tradition & Culture</li>
-            <li data-filter="sports">🏄 Sports & Adventure</li>
-            <li data-filter="romantic">💕 Romantic</li>
-            <li data-filter="corporate">🏢 Corporate Experiences</li>
-      
+            <li data-filter="all" data-translate="nav_cat_all">📋 All experiences</li>
+            <li data-filter="fullday" data-translate="nav_cat_fullday">🧭 Full Day Experiences</li>
+            <li data-filter="day" data-translate="nav_cat_day">🌞 Just for a Day</li>
+            <li data-filter="night" data-translate="nav_cat_night">🌙 Just for a Night</li>
+            <li data-filter="tour" data-translate="nav_cat_tours">🏛 Guided Tours</li>
+            <li data-filter="gastronomy" data-translate="nav_cat_gastro">🍽 Gastronomy</li>
+            <li data-filter="nature" data-translate="nav_cat_nature">🐎 Nature and Animals</li>
+            <li data-filter="culture" data-translate="nav_cat_culture">🥁 Tradition & Culture</li>
+            <li data-filter="romantic" data-translate="nav_cat_romantic">💕 Romantic</li>
+            <li data-filter="corporate" data-translate="nav_cat_corporate">🏢 Corporate Experiences</li>
         </ul>
       
       </nav>
@@ -81,21 +80,21 @@
 
       <div class="hero-buttons">
 
-        <a href="#" class="btn" id="exploreBtn">Explore Experiences</a>
+        <a href="#" class="btn" id="exploreBtn" data-translate="explore_btn">Explore Experiences</a>
       
-        <a href="../Actividades/day.html" class="btn" target="_blank">
+        <a href="../Actividades/day.html" class="btn" target="_blank" data-translate="hero_btn_day">
           🌞 Just for a Day
         </a>
       
-        <a href="../Actividades/night.html" class="btn" target="_blank">
+        <a href="../Actividades/night.html" class="btn" target="_blank" data-translate="hero_btn_night">
           🌙 Just for a Night
         </a>
       
-        <a href="../Actividades/aftertour.html" class="btn" target="_blank">
+        <a href="../Actividades/aftertour.html" class="btn" target="_blank" data-translate="hero_btn_aftertour">
           ✨ After Tour
         </a>
 
-        <div class="hero-promo">
+        <div class="hero-promo" data-translate="hero_promo_free_walking">
             🎁 Free walking tour included with "Full Day" & "Just for a Night" experiences
           </div>
       
@@ -113,23 +112,29 @@
 
     <div class="trust-item">
       <i class="fa-solid fa-id-card"></i>
-      Certified guides by Uruguay Ministry of Tourism
+      <span data-translate="trust_certified">Certified guides by Uruguay Ministry of Tourism</span>
     </div>
   
     <div class="divider"></div>
   
     <div class="trust-item">
       <i class="fa-solid fa-globe"></i>
-      Multilingual tours: Spanish, English & Portuguese
+      <span data-translate="trust_multilingual">Multilingual tours: Spanish, English & Portuguese</span>
     </div>
   
     <div class="divider"></div>
   
     <div class="trust-item">
       <i class="fa-solid fa-map-location-dot"></i>
-      Local experts from Colonia del Sacramento
+      <span data-translate="trust_local_experts">Local experts from Colonia del Sacramento</span>
     </div>
   
+  </section>
+
+  <section class="hero-region-tagline" aria-label="Área de actividades">
+    <p class="hero-region-tagline__text" data-translate="hero_tagline_region">
+      Actividades en Colonia del Sacramento y alrededores
+    </p>
   </section>
 
 <!-- EXPERIENCES -->
@@ -137,7 +142,7 @@
 <!-- TOUR GUIADO -->
 <section id="experiences" class="cards">
 
-    <div class="card">
+    <div class="card" data-category="tour day">
 
         <div class="card-image carousel">
           <div class="carousel-track">
@@ -213,7 +218,7 @@
 
       <!-- BICI TOUR -->
 
-  <div class="card">
+  <div class="card" data-category="tour day nature">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -241,14 +246,14 @@
         🚴 Guided Bike Tour Experience
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="bike_meta_1">
         ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese • Traditional torta frita included
       </p>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="bike_meta_2">
         🔥 Active experience • 🌅 Sunset option available
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="bike_text">
         Explore Colonia del Sacramento by bicycle with a relaxed guided tour.
@@ -257,7 +262,7 @@
         Perfect for active travelers.
       </p>
       
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
         <a href="../Actividades/bike.html"
@@ -278,7 +283,7 @@
   </div>
 
   <!-- Asado + boat: hidden until boat experience is offered again (see .card--hidden-until-boat-returns in styles.css) -->
-  <div class="card card--hidden-until-boat-returns">
+  <div class="card card--hidden-until-boat-returns" data-category="gastronomy day nature">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -297,25 +302,25 @@
   
     <div class="card-content">
   
-      <h3>
+      <h3 data-translate="asado_boat_home_title">
         🔥🚤 Asado Experience (BBQ) & Boat Tour
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="asado_boat_home_meta_1">
         ⭐ Premium local experience
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="asado_boat_home_meta_2">
         👨‍✈️ Hosted by Alejandro, owner & captain
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="asado_boat_home_meta_3">
         🚗 Transfer included ⏱ Duration: 4 hours
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
-      <p class="card-description">
+      <p class="card-description" data-translate="asado_boat_home_desc">
         Enjoy an authentic <strong>Uruguayan asado</strong> prepared by <strong>Alejandro</strong>, owner and captain,
         who will guide you through a unique local experience with premium meats, wine, and a relaxed atmosphere.
         Then, set sail on a scenic <strong>boat tour</strong> along the Río de la Plata,
@@ -323,18 +328,19 @@
         A perfect blend of gastronomy, storytelling, and nature.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/asado-boat.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
-        <a href="#" class="btn secondary">
+        <a href="#" class="btn secondary" data-translate="book_btn">
           Book Now
         </a>
   
@@ -344,7 +350,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="tour gastronomy day">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -382,7 +388,7 @@
         Pair a guided walking tour of Colonia’s UNESCO Historic Quarter with an authentic Uruguayan asado at El Refugio — premium meats, wine, and local hospitality. Everything stays on foot in the center while the boat tour is temporarily unavailable — history, stories, and flavor in one experience.
       </p>
 
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
 
       <div class="card-buttons">
 
@@ -405,7 +411,7 @@
   </div>
 
     <!-- CHIVITO -->
-    <div class="card">
+    <div class="card" data-category="tour gastronomy day">
         <div class="card-image carousel">
           <div class="carousel-track">
             <img src="../Assets/images/ref1.jpg" alt="Shawarma experience in Colonia">
@@ -420,17 +426,17 @@
         <div class="card-content">
           <h3 data-translate="food_title">🚶 Walking Tour, Chivito & Plaza de Toros</h3>
     
-          <p class="card-meta">
+          <p class="card-meta" data-translate="food_card_meta_1">
             ⭐ Best value experience in Colonia 
           </p>
-          <p class="card-meta">
+          <p class="card-meta" data-translate="food_card_meta_2">
             🔥 3 experiences in 1
           </p>
-          <p class="card-meta">
+          <p class="card-meta" data-translate="food_card_meta_3">
             🚗 Transfer included ⏱ Duration: 4 hours
             </p>
     
-          <p class="medical">🛡️ Medical assistance included</p>
+          <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
           
       
           <p class="card-description" data-translate="food_text">
@@ -440,7 +446,7 @@
             The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes —
             followed by a visit to the historic Plaza de Toros.    </p>
 
-            <span class="see-more">See more</span>
+            <span class="see-more" data-translate="historic_see_more">See more</span>
       
           <div class="card-buttons">
             <a href="../Actividades/food1.html"
@@ -459,7 +465,7 @@
       </div>
 
       <!-- LA JOSEFINA — YACHTING COLONIA -->
-      <div class="card">
+      <div class="card" data-category="gastronomy day night">
         <div class="card-image carousel">
           <div class="carousel-track">
             <img src="../Assets/images/jose5.jpg" alt="">
@@ -484,13 +490,13 @@
             ⭐ A favorite among tourists
           </p>
 
-          <p class="medical">🛡️ Medical assistance included</p>
+          <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 
           <p class="card-description" data-translate="josefina_text">
             Lunch or dinner at Restaurante La Josefina, inside the Colonia Yacht Club: exceptional waterfront views, relaxed atmosphere, and one of the most photographed panoramas in town.
           </p>
 
-          <span class="see-more">See more</span>
+          <span class="see-more" data-translate="historic_see_more">See more</span>
 
           <div class="card-buttons">
             <a
@@ -511,8 +517,8 @@
       </div>
 
       <!-- BRUMA -->
-      <div class="card">
-        <div class="discount-badge">🔥 15% OFF</div>
+      <div class="card" data-category="gastronomy day">
+        <div class="discount-badge" data-translate="bruma_discount_badge">🔥 15% OFF</div>
         <div class="card-image carousel">
           <div class="carousel-track">
             <img src="../Assets/images/bruma1.jpg" alt="Bruma restaurant Colonia del Sacramento">
@@ -525,34 +531,35 @@
         </div>
 
         <div class="card-content">
-          <h3>🍽 Bruma Restaurant Experience</h3>
+          <h3 data-translate="bruma_home_title">🍽 Bruma Restaurant Experience</h3>
 
-          <p class="card-meta">
+          <p class="card-meta" data-translate="bruma_home_meta_1">
             ✨ Perfect after your guided tour
           </p>
 
-          <p class="card-meta">
+          <p class="card-meta" data-translate="bruma_home_meta_2">
             🍷 International cuisine by Chef Marcelo
           </p>
 
-          <p class="medical">🛡️ Medical assistance included</p>
+          <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 
-          <p class="card-description">
+          <p class="card-description" data-translate="bruma_home_desc">
             Enjoy a unique dining experience at Bruma, a boutique restaurant in the heart of Colonia’s Historic Quarter.
             Surrounded by cobblestone streets and colonial charm, it offers high-quality international cuisine and a relaxed atmosphere — the perfect complement after a guided tour.
           </p>
 
-          <span class="see-more">See more</span>
+          <span class="see-more" data-translate="historic_see_more">See more</span>
 
           <div class="card-buttons">
             <a href="../Actividades/bruma.html"
                class="btn"
                target="_blank"
-               rel="noopener noreferrer">
+               rel="noopener noreferrer"
+               data-translate="view_btn">
                View Details
             </a>
 
-            <a href="#" class="btn secondary">
+            <a href="#" class="btn secondary" data-translate="book_btn">
               Book Now
             </a>
           </div>
@@ -561,7 +568,7 @@
 
       <!-- PLAZA DE TOROS Y ANITA -->
 
-  <div class="card">
+  <div class="card" data-category="tour day gastronomy">
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/plaza.jpg">
@@ -581,12 +588,12 @@
       <p class="card-meta" data-translate="plaza_meta_line">
         🚗 Transfer included • 🎫 Tickets included • ⏱ Approx. 3 hours
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
       <p class="card-description" data-translate="plaza_text">
         Explore the iconic bullring and its history with private transfer and tickets included. Skip the line! Anita is a café in the heart of the historic quarter with an incredible view. The experience lasts approximately 3 hours.
       </p>
       
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
       
       <div class="card-buttons">
         <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">View Details</a>
@@ -597,7 +604,7 @@
 
   <!-- LIEBRES -->
 
-  <div class="card">
+  <div class="card" data-category="gastronomy day romantic">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -628,15 +635,15 @@
         Dining or Lunch at Las Liebres
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="lieb_home_meta_1">
         ⏱ 3 - 4 hours • 🍽 Signature dishes
       </p>
 
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="lieb_home_meta_2">
         🚗 Transfer included • 🌿 Boutique dining experience
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
   
       <p class="card-description" data-translate="lieb_text">
@@ -645,7 +652,7 @@
         Perfect for guests looking for a dedicated dining experience.
       </p>
 
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -668,7 +675,7 @@
   </div>
 
   <!-- HISTORIC QUARTER + LAS LIEBRES -->
-  <div class="card">
+  <div class="card" data-category="tour gastronomy day nature">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -684,34 +691,35 @@
 
     <div class="card-content">
 
-      <h3>
+      <h3 data-translate="home_hist_lieb_title">
         🏛🍷 Historic Quarter + Las Liebres
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_hist_lieb_meta_1">
         🏛 Guided walk in the old town • 🍇 Vineyard &amp; organic garden
       </p>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_hist_lieb_meta_2">
         🍷 Tasting or lunch • ⏱ 3–4 hours duration • 🚗 Transfer included
       </p>
 
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 
-      <p class="card-description">
+      <p class="card-description" data-translate="home_hist_lieb_desc">
         Start with a <strong>guided tour of Colonia’s Historic Quarter</strong>, then continue to
         <strong>Las Liebres</strong> for a guided visit to the <strong>vineyard and garden</strong>, followed by a
         <strong>wine tasting with pairings</strong> or a <strong>full lunch</strong> — your choice when you book.
       </p>
 
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
 
       <div class="card-buttons">
 
         <a href="../Actividades/historic-lasliebres.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
 
@@ -725,7 +733,7 @@
 
   </div>
 
-  <div class="card">
+  <div class="card" data-category="nature fullday gastronomy day">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -747,46 +755,47 @@
   
     <div class="card-content">
   
-      <h3>
+      <h3 data-translate="home_cabalgata_title">
         🐎🍷 Cabalgata &amp; wine tasting — Las Liebres
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_cabalgata_meta_1">
         ⭐ Boutique vineyard experience
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_cabalgata_meta_2">
         🐎 Cabalgata in Riachuelo (outside Colonia) • 🍇 Then Las Liebres vineyard &amp; garden
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_cabalgata_meta_3">
         🍷 3 wines with food pairing
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_cabalgata_meta_4">
         ⏱ Duration: 3–4 hours • 🚗 Transfer included
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
-      <p class="card-description">
+      <p class="card-description" data-translate="home_cabalgata_desc">
         The <strong>cabalgata</strong> is in <strong>Riachuelo</strong> (outside Colonia); a transfer then takes you to
         <strong>Las Liebres</strong> for the vineyard, garden, and tasting. <strong>Juanma and Sabrina</strong> host the ride with their
         horses (and dogs Simón &amp; Estrelli). <strong>About 3–4 hours</strong> — transfer and add-ons are detailed on the booking page.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/lasliebres.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
-        <a href="#" class="btn secondary">
+        <a href="#" class="btn secondary" data-translate="book_btn">
           Book Now
         </a>
   
@@ -796,7 +805,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="gastronomy night romantic">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -812,42 +821,43 @@
   
     <div class="card-content">
   
-      <h3>
+      <h3 data-translate="home_sio_title">
         🍣✨ SIO Sushi Experience
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_sio_meta_1">
         ⭐ Premium dining experience
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_sio_meta_2">
         🍣 International-level sushi in Colonia
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_sio_meta_3">
         📍 Historic Quarter ⏱ Duration: 2 hours
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
-      <p class="card-description">
+      <p class="card-description" data-translate="home_sio_desc">
         Enjoy an unforgettable dinner at <strong>SIO</strong>, one of the most exclusive culinary experiences in Colonia.
         Discover a refined sushi menu crafted with premium ingredients, artistic presentation, and a unique atmosphere.
         Perfect for a special night, combining gastronomy, design, and attention to detail.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/sio-night.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
-        <a href="#" class="btn secondary">
+        <a href="#" class="btn secondary" data-translate="book_btn">
           Book Now
         </a>
   
@@ -858,7 +868,7 @@
   </div>
 
   <!-- Sunset boat card: hidden while not offered; remove card--hidden-sunset-boat to show again -->
-  <div class="card card--hidden-sunset-boat">
+  <div class="card card--hidden-sunset-boat" data-category="nature day night">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -900,7 +910,7 @@
         A perfect escape to disconnect, unwind, and enjoy nature.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -926,7 +936,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="night gastronomy culture">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -953,25 +963,25 @@
   
     <div class="card-content">
   
-      <h3>
+      <h3 data-translate="home_bar_title">
         🍻💃 Colonia Bar Hopping & Night Experience
       </h3>
   
-      <p class="card-meta">
-        ⏱ 3 - 4 hours • 🍸 Cocktails • 🍺 Local beer
+      <p class="card-meta" data-translate="home_bar_meta_1">
+        ⏱️ 3 - 4 hours • 🍸 Cocktails • 🍺 Local beer
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_bar_meta_2">
         📍 Casa Viera • La Chopería • Barbot
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_bar_meta_3">
         💃 Nightclub access included
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
-      <p class="card-description">
+      <p class="card-description" data-translate="home_bar_desc">
         Experience Colonia’s nightlife like a local with a curated bar hopping tour.
         Visit iconic spots like <strong>Casa Viera</strong>, <strong>La Chopería</strong> and <strong>Barbot</strong>,
         enjoying signature cocktails and craft beers along the way.
@@ -980,19 +990,21 @@
         A perfect mix of social vibes, music and unforgettable moments.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/bar.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
         <a href="#"
-           class="btn secondary">
+           class="btn secondary"
+           data-translate="book_btn">
            Book Now
         </a>
   
@@ -1003,7 +1015,7 @@
   </div>
 
   <!-- Lupa & Jack -->
-  <div class="card">
+  <div class="card" data-category="tour day nature culture">
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/lupajack.jpg" 
@@ -1021,16 +1033,16 @@
         🐾🐶 Walk with Lupa & Jack – Experience Colonia Like a Local
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="lupajack_card_meta">
         ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
       </p>
-      <p class="medical">🛡️ Medical assistance included (SIMC)</p>
+      <p class="medical">🛡️ <span data-translate="card_medical_simc">Medical assistance included (SIMC)</span></p>
   
       <p class="card-description" data-translate="lupajack_text">
         We love animals and know how hard it can be to be away from them.
         Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.
       </p>
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
       <div class="card-buttons">
         <a href="../Actividades/lupajack.html" 
            class="btn" 
@@ -1049,7 +1061,7 @@
 
 
   <!-- ASADO EN CASA -->
-  <div class="card">
+  <div class="card" data-category="culture day gastronomy">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1077,21 +1089,21 @@
         🧉 Mate & Asado: Become Uruguayan for a Day
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="mate_asado_meta_1">
         ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
       </p>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="mate_asado_meta_2">
         🔥 2 experiences in 1
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="mate_text">
         Discover the heart of Uruguayan culture through mate and traditional asado. 
         Learn how locals prepare and share mate and enjoy a relaxed barbecue experience.
       </p>
       
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -1115,7 +1127,7 @@
 
   <!-- MATE SOLO -->
   
-  <div class="card">
+  <div class="card" data-category="culture day">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1144,16 +1156,16 @@
         🧉 Traditional Mate Experience
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_shared_meta_activity">
         ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="mateonly_text">
         Discover Uruguay’s most beloved tradition. Learn how to prepare and share mate like locals.
       </p>
       
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -1177,7 +1189,7 @@
 
   <!-- CANDOMBE -->
 
-  <div class="card">
+  <div class="card" data-category="culture day">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1210,16 +1222,16 @@
         🥁 Candombe Drum Experience
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_shared_meta_activity">
         ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="candombe_text">
         Experience the rhythm of Uruguay through candombe. Learn the basics of traditional drumming with local musicians.
       </p>
       
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -1243,7 +1255,7 @@
 
   <!-- ROMANTIC DINNER -->
 
-  <div class="card">
+  <div class="card" data-category="romantic night gastronomy">
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/romantic-dinner.jpg" 
@@ -1263,16 +1275,16 @@
         💕 Romantic Dinner for Two
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_shared_meta_activity">
         ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="romantic_text">
         Enjoy a private candlelight dinner in a charming colonial setting, perfect for couples.
       </p>
       
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
         <a href="../Actividades/romantic.html"
@@ -1290,7 +1302,7 @@
     </div>
   </div>
  <!-- Horseback Riding -->
- <div class="card">
+ <div class="card" data-category="nature day">
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/cab11.jpg" 
@@ -1308,16 +1320,16 @@
         🐎 Horseback Riding Through Colonia’s Countryside
       </h3>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_shared_meta_activity">
         ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
       </p>
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="horse_text">
         Discover the rural side of Colonia on horseback. Enjoy a relaxed ride through nature.
       </p>
       
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
         <a href="../Actividades/cabal.html" 
@@ -1340,7 +1352,7 @@
 
 <!-- FULL DAY 1 -->
 
-  <div class="card">
+  <div class="card" data-category="fullday nature gastronomy day">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1372,18 +1384,18 @@
       </h3>
 
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="fullday_card_meta_lang">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
 
-      <p class="medical">🛡️ Fully insured experience</p>
+      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
   
       <p class="card-description" data-translate="fullday1_text">
         Visit the Kerayvoty Animal Reserve in Juan Lacaze, enjoy a traditional 
   Uruguayan asado in Santa Ana, and relax by the beautiful coastal beaches 
   before returning to Colonia.
       </p>
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -1405,7 +1417,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="fullday nature gastronomy day">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1436,17 +1448,17 @@
         🍇 Full Day Experience 2 – Carmelo City & Wineries
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="fullday_card_meta_lang">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
-      <p class="medical">🛡️ Fully insured experience</p>
+      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
       <p class="card-description" data-translate="fullday2_text">
         Explore the charming town of Carmelo on a full-day experience combining 
         a guided city tour with visits to local wineries. Discover the town’s 
         history, walk along the riverfront, and enjoy wine tastings surrounded 
         by beautiful vineyards in one of Uruguay’s most renowned wine regions.
       </p>
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -1468,7 +1480,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="fullday nature gastronomy day culture">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1499,17 +1511,17 @@
         🧀 Full Day Experience 3 – Colonia Suiza Heritage Tour
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="fullday_card_meta_lang">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
-      <p class="medical">🛡️ Fully insured experience</p>
+      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
       <p class="card-description" data-translate="fullday3_text">
         Discover the Swiss heritage of Nueva Helvecia on this full-day experience. 
         Visit traditional cheese factories, explore the historic town, stop at the 
         Schoenstatt Sanctuary, and see iconic landmarks like the Hotel Suizo while 
         learning about the culture and traditions brought by Swiss immigrants.
       </p>
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -1531,7 +1543,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="fullday nature gastronomy romantic day">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1559,20 +1571,20 @@
     <div class="card-content">
   
       <h3 data-translate="fullday4_title">
-        ✨ Full Fay Experience 4 - Horseback Ride, Dinner & Stargazing Experience
+        ✨ Full Day Experience 4 - Horseback Ride, Dinner & Stargazing Experience
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="fullday_card_meta_lang">
         ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
       </p>
-      <p class="medical">🛡️ Fully insured experience</p>
+      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
       <p class="card-description" data-translate="fullday4_text">
         Enjoy a scenic horseback ride through the countryside, followed by a special 
         dinner at Las Liebres. End the night with a unique stargazing experience led 
         by an astrophotographer who will guide you through the stars and capture 
         unforgettable night sky photos.
       </p>
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
@@ -1594,7 +1606,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="night gastronomy tour">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1613,39 +1625,41 @@
   
     <div class="card-content">
   
-      <h3>
+      <h3 data-translate="home_toros_night_title">
         🛏 🌙 Colonia Night Experience: Dinner, Stay & Plaza de Toros
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_toros_night_meta_1">
         🌙 1 night • 🍽 Dinner included • ☕ Breakfast included
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_toros_night_meta_2">
         🔥 3 experiences in 1
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
-      <p class="card-description">
+      <p class="card-description" data-translate="home_toros_night_desc">
         Enjoy a unique overnight experience in Colonia. Start with a delicious dinner at <strong>Las Liebres</strong>,
         spend the night in a comfortable apartment near <strong>Plaza de Toros</strong>, and wake up
         to breakfast before visiting the iconic bullring with tickets included.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/toros-night.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
         <a href="#"
-           class="btn secondary">
+           class="btn secondary"
+           data-translate="book_btn">
            Book Now
         </a>
   
@@ -1655,7 +1669,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="night gastronomy tour">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1674,41 +1688,42 @@
   
     <div class="card-content">
   
-      <h3>
+      <h3 data-translate="home_mision_title">
         🏛 🌙 Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour
       </h3>
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_mision_meta_pf">
         🐾 Pet friendly
       </p>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_mision_meta_stay">
         🌙 1 night • 🍽 Dinner included • ☕ Breakfast included
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_mision_meta_tour">
         🎁 Guided tour included
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
-      <p class="card-description">
+      <p class="card-description" data-translate="home_mision_desc">
         Step back in time with a unique stay at <strong>La Misión</strong>, a charming posada located in the heart of the historic quarter,
         right in front of Plaza Mayor. Enjoy a refined dinner at <strong>Bruma</strong>, just around the corner, and wake up to a cozy breakfast.
         Complete your experience with a guided walking tour through Colonia’s most iconic streets.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/mision-night.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
-        <a href="#" class="btn secondary">
+        <a href="#" class="btn secondary" data-translate="book_btn">
           Book Now
         </a>
   
@@ -1718,7 +1733,7 @@
   
   </div>
 
-  <div class="card">
+  <div class="card" data-category="night gastronomy tour romantic">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1738,41 +1753,42 @@
   
     <div class="card-content">
   
-      <h3>
+      <h3 data-translate="home_sio_mision_title">
         🍣 🌙 Premium Night Experience: La Misión Stay, SIO Sushi Dinner & Walking Tour
       </h3>
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_mision_meta_pf">
         🐾 Pet friendly
       </p>
       
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_mision_meta_stay">
         🌙 1 night • 🍽 Dinner included • ☕ Breakfast included
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_mision_meta_tour">
         🎁 Guided tour included
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
-      <p class="card-description">
+      <p class="card-description" data-translate="home_sio_mision_desc">
         Experience Colonia at its most exclusive. Stay at <strong>La Misión</strong>, a boutique posada in the heart of the historic quarter,
         and enjoy a world-class sushi dinner at <strong>SIO</strong>, one of the most renowned culinary experiences in Colonia.
         Wake up to a delightful breakfast and complete your night with a guided walking tour through the city's most iconic streets.
       </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/sio-night.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
-        <a href="#" class="btn secondary">
+        <a href="#" class="btn secondary" data-translate="book_btn">
           Book Now
         </a>
   
@@ -1784,7 +1800,7 @@
 
   <!-- CORPORATE SUNSET BOAT EXPERIENCE -->
 
-<div class="card">
+<div class="card" data-category="corporate day gastronomy tour">
 
     <div class="card-image carousel">
       <div class="carousel-track">
@@ -1811,45 +1827,46 @@
   
     <div class="card-content">
 
-        <p class="card-meta">✨ Exclusive corporate experience</p>
+        <p class="card-meta" data-translate="home_corp_boat_badge">✨ Exclusive corporate experience</p>
   
-      <h3>
+      <h3 data-translate="home_corp_boat_title">
         🚤 Sunset Boat Experience & Dinner at Casa Petit
       </h3>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_corp_boat_meta_1">
         🌅 Sunset experience • 🚤 Private boat with Captain Alejandro • 🍽 Dinner included
       </p>
   
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_corp_boat_meta_2">
         🏢 Corporate & private groups • 🚗 Transfers included
       </p>
 
-      <p class="card-meta">
+      <p class="card-meta" data-translate="home_corp_boat_meta_3">
         🎁 Guided tour included
       </p>
   
-      <p class="medical">🛡️ Medical assistance included</p>
+      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
   
-      <p class="card-description">
+      <p class="card-description" data-translate="home_corp_boat_desc">
         Enjoy an exclusive sunset boat experience along the river with Captain Alejandro,
         followed by a premium dinner at Casa Petit by Mercedes. A unique and elegant
         experience designed for corporate groups, team building, or special occasions.
           </p>
   
-      <span class="see-more">See more</span>
+      <span class="see-more" data-translate="historic_see_more">See more</span>
   
       <div class="card-buttons">
   
         <a href="../Actividades/corporate-boat.html"
            class="btn"
            target="_blank"
-           rel="noopener noreferrer">
+           rel="noopener noreferrer"
+           data-translate="view_btn">
            View Details
         </a>
   
-        <a href="#" class="btn secondary">
+        <a href="#" class="btn secondary" data-translate="book_btn">
           Book Now
         </a>
   
@@ -1863,7 +1880,7 @@
 
 <section class="partners">
 
-    <h2>Trusted by</h2>
+    <h2 data-translate="partners_trusted_by">Trusted by</h2>
   
     <div class="logos-slider">
       <div class="logos-track">
@@ -1900,18 +1917,20 @@
   
   </section>
 
-<!-- ================= PHARMACIES (COLONIA) ================= -->
-<section class="pharmacies-home" id="info-util" aria-labelledby="pharmacies-home-title">
+<!-- ================= USEFUL SERVICES (COLONIA) ================= -->
+<section class="services-home pharmacies-home" id="info-util" aria-labelledby="services-home-title">
   <div class="pharmacies-home-inner">
-    <h2 id="pharmacies-home-title" data-translate="pharmacies_title">Pharmacies in Colonia del Sacramento</h2>
-    <p class="pharmacies-home-intro" data-translate="pharmacies_intro">
-      Handy references if you need medication or personal care while visiting. Opening hours can change — please confirm locally.
+    <h2 id="services-home-title" data-translate="services_title">Useful services in Colonia del Sacramento</h2>
+    <p class="pharmacies-home-intro" data-translate="services_intro">
+      Pharmacies, supermarkets near the Historic Quarter, parking, police stations, and local health centres — handy references for your stay. Hours and rates can change; please confirm before you go.
     </p>
+
+    <h3 class="services-home-category" data-translate="services_cat_pharmacies">Pharmacies</h3>
     <ul class="pharmacies-home-grid">
       <li>
         <article class="pharmacy-home-card pharmacy-home-card--24h">
           <div class="pharmacy-home-card-top">
-            <h3>Farmacia del Sacramento</h3>
+            <h4>Farmacia del Sacramento</h4>
             <span class="pharmacy-home-badge" data-translate="pharmacy_24h_badge">24 h</span>
           </div>
           <p class="pharmacy-home-meta" data-translate="pharmacy_c1_meta">Manuel de Lobo 454 · Often 24 hours</p>
@@ -1922,7 +1941,7 @@
       </li>
       <li>
         <article class="pharmacy-home-card">
-          <h3>Farmashop 85</h3>
+          <h4>Farmashop 85</h4>
           <p class="pharmacy-home-meta" data-translate="pharmacy_c2_meta">Gral. Flores 450 (corner Alberto Méndez) · Typically daily 8:00–22:00</p>
           <a class="pharmacy-home-maplink"
              href="https://www.google.com/maps/search/?api=1&amp;query=Farmashop+85+Gral+Flores+450+Colonia+Del+Sacramento+Uruguay"
@@ -1931,7 +1950,7 @@
       </li>
       <li>
         <article class="pharmacy-home-card">
-          <h3>Farmacia Da Costa</h3>
+          <h4>Farmacia Da Costa</h4>
           <p class="pharmacy-home-meta" data-translate="pharmacy_c3_meta">Gral. Flores 329 · Check current hours</p>
           <a class="pharmacy-home-maplink"
              href="https://www.google.com/maps/search/?api=1&amp;query=Farmacia+Da+Costa+Gral+Flores+329+Colonia+Del+Sacramento+Uruguay"
@@ -1940,7 +1959,7 @@
       </li>
       <li>
         <article class="pharmacy-home-card">
-          <h3>Farmacia Artigas</h3>
+          <h4>Farmacia Artigas</h4>
           <p class="pharmacy-home-meta" data-translate="pharmacy_c4_meta">Gral. Flores 308 · Check current hours</p>
           <a class="pharmacy-home-maplink"
              href="https://www.google.com/maps/search/?api=1&amp;query=Farmacia+Artigas+Gral+Flores+308+Colonia+Del+Sacramento+Uruguay"
@@ -1949,10 +1968,107 @@
       </li>
       <li>
         <article class="pharmacy-home-card">
-          <h3>Farmashop 125</h3>
+          <h4>Farmashop 125</h4>
           <p class="pharmacy-home-meta" data-translate="pharmacy_c5_meta">Av. José Batlle y Ordóñez · Check current hours</p>
           <a class="pharmacy-home-maplink"
              href="https://www.google.com/maps/search/?api=1&amp;query=Farmashop+125+Av+Jose+Batlle+y+Ordonez+Colonia+Del+Sacramento+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+    </ul>
+
+    <h3 class="services-home-category" data-translate="services_cat_supermarkets">Supermarkets (Historic Quarter area)</h3>
+    <ul class="pharmacies-home-grid">
+      <li>
+        <article class="pharmacy-home-card">
+          <h4>Super USA</h4>
+          <p class="pharmacy-home-meta" data-translate="services_super_usa_meta">Gral. Flores 388 (corner Intendente Suárez) · Steps from the Historic Quarter · Check current hours</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Super+USA+Gral+Flores+388+Colonia+Del+Sacramento+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+      <li>
+        <article class="pharmacy-home-card">
+          <h4>Supermercado Económico</h4>
+          <p class="pharmacy-home-meta" data-translate="services_super_economico_meta">Gral. Flores 290 · Near the Historic Quarter · Check current hours</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Supermercado+Economico+Gral+Flores+290+Colonia+Del+Sacramento+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+      <li>
+        <article class="pharmacy-home-card">
+          <h4>Micro Macro</h4>
+          <p class="pharmacy-home-meta" data-translate="services_super_micro_meta">Gral. Flores &amp; 18 de Julio area · Groceries and daily essentials · Check current hours</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Micro+Macro+Gral+Flores+Colonia+Del+Sacramento+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+    </ul>
+
+    <h3 class="services-home-category" data-translate="services_cat_parking">Parking</h3>
+    <ul class="pharmacies-home-grid">
+      <li>
+        <article class="pharmacy-home-card">
+          <h4 data-translate="services_park_puerto_title">Parking — port / ferry area</h4>
+          <p class="pharmacy-home-meta" data-translate="services_park_puerto_meta">Near the ferry / port terminals · Paid parking · Confirm rates and hours on site</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Estacionamiento+Puerto+Colonia+del+Sacramento+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+      <li>
+        <article class="pharmacy-home-card">
+          <h4 data-translate="services_park_centro_title">Parking — downtown (Gral. Flores)</h4>
+          <p class="pharmacy-home-meta" data-translate="services_park_centro_meta">Downtown around Gral. Flores · Paid lots and metered street parking · Read local signage</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Estacionamiento+Gral+Flores+Colonia+del+Sacramento+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+    </ul>
+
+    <h3 class="services-home-category" data-translate="services_cat_police">Police stations</h3>
+    <ul class="pharmacies-home-grid">
+      <li>
+        <article class="pharmacy-home-card">
+          <h4>Seccional 1ª Colonia del Sacramento</h4>
+          <p class="pharmacy-home-meta" data-translate="services_police_secc1_meta">Dr. Daniel Fosalba 697 · National Police — 1st precinct Colonia del Sacramento · Open 24/7 · Tel. +598 4520 7258 / +598 4520 7259 · Emergencies: 911</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Seccional+1+Colonia+del+Sacramento+Daniel+Fosalba+697+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+      <li>
+        <article class="pharmacy-home-card">
+          <h4>Jefatura de Policía de Colonia</h4>
+          <p class="pharmacy-home-meta" data-translate="services_police_jefatura_meta">Av. Gral. Flores 364 · Departmental police headquarters (administration) · Typically Mon–Fri 9:00–17:00 · Tel. +598 4520 7100</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Jefatura+de+Policia+de+Colonia+General+Flores+364+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+    </ul>
+
+    <h3 class="services-home-category" data-translate="services_cat_health">Polyclinic &amp; hospital</h3>
+    <ul class="pharmacies-home-grid">
+      <li>
+        <article class="pharmacy-home-card">
+          <h4>Centro de Salud Colonia</h4>
+          <p class="pharmacy-home-meta" data-translate="services_health_centro_meta">Centro de Salud Colonia (outpatient polyclinic, ASSE) · 18 de Julio 462 · Weekday hours typical; call to confirm</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Centro+de+Salud+Colonia+18+de+Julio+462+Colonia+del+Sacramento+Uruguay"
+             target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
+        </article>
+      </li>
+      <li>
+        <article class="pharmacy-home-card">
+          <h4>Hospital de Colonia del Sacramento</h4>
+          <p class="pharmacy-home-meta" data-translate="services_health_hospital_meta">Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Public hospital — emergencies and inpatient care</p>
+          <a class="pharmacy-home-maplink"
+             href="https://www.google.com/maps/search/?api=1&amp;query=Hospital+de+Colonia+del+Sacramento+Batlle+y+Ordonez+596+Uruguay"
              target="_blank" rel="noopener noreferrer" data-translate="food_map_link">Open in Google Maps</a>
         </article>
       </li>
@@ -1998,7 +2114,7 @@
     </script>
     
     
-    <a href="https://wa.me/598091642195?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+    <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
        class="taxi-float"
        target="_blank"
        rel="noopener noreferrer"

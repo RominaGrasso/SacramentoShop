@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="../Styles/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    (function () {
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      document.documentElement.classList.add("js-reveal");
+    })();
+  </script>
 </head>
 
 <body>
@@ -36,13 +42,12 @@
   <nav class="hamburger-menu">
     <ul>
       <li data-filter="fullday" data-translate="nav_cat_fullday">🧭 Full Day Experiences</li>
-      <li data-filter="gastronomy" data-translate="nav_cat_day">🌞 Just for a Day</li>
-      <li data-filter="gastronomy" data-translate="nav_cat_night">🌙 Just for a Night</li>
+      <li data-filter="day" data-translate="nav_cat_day">🌞 Just for a Day</li>
+      <li data-filter="night" data-translate="nav_cat_night">🌙 Just for a Night</li>
       <li data-filter="tour" data-translate="nav_cat_tours">🏛 Guided Tours</li>
       <li data-filter="gastronomy" data-translate="nav_cat_gastro">🍽 Gastronomy</li>
       <li data-filter="nature" data-translate="nav_cat_nature">🐎 Nature and Animals</li>
       <li data-filter="culture" data-translate="nav_cat_culture">🥁 Tradition & Culture</li>
-      <li data-filter="sports" data-translate="nav_cat_sports">🏄 Sports & Adventure</li>
       <li data-filter="romantic" data-translate="nav_cat_romantic">💕 Romantic</li>
       <li data-filter="corporate" data-translate="nav_cat_corporate">🏢 Corporate Experiences</li>
     </ul>
@@ -58,27 +63,23 @@
 <!-- CONTENT -->
 <section class="about-content">
 
-  <h2 data-translate="about_who_h2">Who we are</h2>
+  <h2 class="about-reveal" data-translate="about_who_h2">Who we are</h2>
 
-  <p data-translate="about_who_p">
-    We are a team passionate about creating authentic experiences in Colonia del Sacramento.
-    Our mission is to connect travelers with local culture, gastronomy, and unforgettable moments.
+  <p class="about-intro about-reveal" data-translate="about_who_p">
+    We're a group of young people who genuinely love what we do: bringing quality, good energy, and lasting memories to your time in Colonia del Sacramento. We obsess over the details with trusted partners — because we want you to feel truly taken care of.
   </p>
-
-  <p class="about-team-note" data-translate="about_team_note">
-    We're refreshing team photos — three more teammates coming soon. Scroll down to meet everyone.
-  </p>
-
-  <div class="about-page-actions">
-    <a href="../Home/index.html" class="btn secondary" data-translate="food_back_home">Back to Home</a>
-  </div>
 
   <!-- TEAM GRID -->
   <div class="team-grid">
 
     <!-- 1 -->
-    <div class="team-card">
-      <img src="../Assets/images/romiperfil2.jpg" alt="Romina">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/romiperfil2.jpg" alt="Romina">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com/in/romina-grasso-83371a187/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Romina</h3>
         <p class="role" data-translate="about_team_romina_role">Founder</p>
@@ -89,8 +90,13 @@
       </div>
     </div>
 
-    <div class="team-card">
-      <img src="../Assets/images/maru1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/maru1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com/in/mar%C3%ADa-eugenia-hern%C3%A1ndez-79a8623b2/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Maria Eugenia (Maru)</h3>
         <p class="role" data-translate="about_team_maru_role">Content & social media lead</p>
@@ -100,8 +106,13 @@
       </div>
     </div>
 
-    <div class="team-card">
-      <img src="../Assets/images/team6.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/mati1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Matias</h3>
         <p class="role" data-translate="about_team_matias_role">Code maintenance & support</p>
@@ -113,8 +124,13 @@
     </div>
 
     <!-- 2 -->
-    <div class="team-card">
-      <img src="../Assets/images/team6.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/selenamaite1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com/in/selena-airaldo-654aaa37b/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Selena Maite</h3>
         <p class="role" data-translate="about_team_selena_maite_role">Tour guide</p>
@@ -128,8 +144,13 @@
     
 
     <!-- 3 -->
-    <div class="team-card">
-      <img src="../Assets/images/sele21.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/sele21.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Selena</h3>
         <p class="role" data-translate="about_team_selena_role">Tour guide</p>
@@ -141,8 +162,13 @@
     </div>
 
     <!-- 4 -->
-    <div class="team-card">
-      <img src="../Assets/images/team4.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/lau1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Laura</h3>
         <p class="role" data-translate="about_team_laura_role">Tour guide</p>
@@ -154,8 +180,13 @@
     </div>
 
     <!-- 5 -->
-    <div class="team-card">
-      <img src="../Assets/images/adri1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/adri1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Adrián</h3>
         <p class="role" data-translate="about_team_adrian_role">Tour guide</p>
@@ -167,8 +198,13 @@
     </div>
 
     <!-- 6 -->
-    <div class="team-card">
-      <img src="../Assets/images/alan1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/alan1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+        <p class="team-linkedin-wrap">
+          <a class="team-linkedin-link" href="https://www.linkedin.com/in/alan-clavijo-villegas-84199b407/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
+        </p>
+      </div>
       <div class="team-info">
         <h3>Alan</h3>
         <p class="role" data-translate="about_team_alan_role">Tour guide</p>
@@ -180,8 +216,10 @@
     </div>
 
     <!-- 7 -->
-    <div class="team-card">
-      <img src="../Assets/images/lupa.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/lupa.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+      </div>
       <div class="team-info">
         <h3>Lupa</h3>
         <p class="role" data-translate="about_team_lupa_role">Chief Happiness Officer</p>
@@ -193,8 +231,10 @@
     </div>
 
     <!-- 8 -->
-    <div class="team-card">
-      <img src="../Assets/images/sam3.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/sam3.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+      </div>
       <div class="team-info">
         <h3>Sam</h3>
         <p class="role" data-translate="about_team_sam_role">Walking companion expert</p>
@@ -207,8 +247,10 @@
     </div>
 
     <!-- 9 -->
-    <div class="team-card">
-      <img src="../Assets/images/jack2.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+    <div class="team-card about-reveal">
+      <div class="team-card-aside">
+        <img src="../Assets/images/jack2.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
+      </div>
       <div class="team-info">
         <h3>Jack</h3>
         <p class="role" data-translate="about_team_jack_role">Director of First Impressions</p>
@@ -221,7 +263,7 @@
 
   </div>
 
-  <div class="about-quote-wrap" aria-label="Valores del equipo">
+  <div class="about-quote-wrap about-reveal" aria-label="Valores del equipo">
     <p class="about-quote about-quote--closing" data-translate="about_closing_quote">
       Behind every process, every accomplishment, and every step forward, there is dedication, effort, and a genuine drive to do things right.
     </p>
@@ -229,8 +271,37 @@
 
 </section>
 <script src="../Home/index.js?v=20260514"></script>
+<script>
+  (function () {
+    var nodes = document.querySelectorAll(".about-reveal");
+    if (!nodes.length) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      nodes.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    if (!document.documentElement.classList.contains("js-reveal")) {
+      nodes.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -7% 0px", threshold: 0.08 }
+    );
+    nodes.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 
-    <a href="https://wa.me/598091642195?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+    <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
        class="taxi-float"
        target="_blank"
        rel="noopener noreferrer"
