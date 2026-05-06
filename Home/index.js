@@ -59,6 +59,8 @@ const translations = {
       about_who_h2: "Who we are",
       about_who_p:
         "We are a team passionate about creating authentic experiences in Colonia del Sacramento. Our mission is to connect travelers with local culture, gastronomy, and unforgettable moments.",
+      about_team_note:
+        "We're refreshing team photos — three more teammates coming soon. Scroll down to meet everyone.",
       about_closing_quote:
         "Behind every process, every accomplishment, and every step forward, there is dedication, effort, and a genuine drive to do things right.",
       nav_cat_fullday: "🧭 Full Day Experiences",
@@ -83,11 +85,11 @@ const translations = {
       about_team_matias_role: "Code maintenance & support",
       about_team_matias_bday: "🎂 Feb 1",
       about_team_matias_bio:
-        "Matías is currently studying at UTEC and stands out for his structured and analytical approach to development. He enjoys fully understanding each problem before taking action, which allows him to build clean, efficient, and reliable solutions. His meticulous attention to detail and commitment to quality play a key role in maintaining and improving our platform.",
+        "Matías is currently studying at UTEC and stands out for his structured and analytical approach to development.",
       about_team_selena_maite_role: "Tour guide",
       about_team_selena_maite_bday: "🎂 Jan 31",
       about_team_selena_maite_bio:
-        "She brings strong leadership and character to the team. Her deep knowledge of Colonia's history and culture, combined with a passionate and driven mindset, makes her a key force in shaping authentic experiences.",
+        "She brings strong leadership and character to the team. Her deep knowledge of Colonia's history and culture, combined with a passionate and driven mindset, makes her a key force in shaping authentic experiences and advancing our project.",
       about_team_selena_role: "Tour guide",
       about_team_selena_bday: "🎂 Sep 1",
       about_team_selena_bio:
@@ -964,6 +966,8 @@ const translations = {
       about_who_h2: "Quiénes somos",
       about_who_p:
         "Somos un equipo apasionado por crear experiencias auténticas en Colonia del Sacramento. Nuestra misión es conectar a los viajeros con la cultura local, la gastronomía y momentos inolvidables.",
+      about_team_note:
+        "Estamos actualizando las fotos del equipo: pronto sumamos tres integrantes más. ¡Seguí bajando para conocer al crew!",
       about_closing_quote:
         "Detrás de cada proceso, cada logro y cada avance, hay dedicación, esfuerzo y muchas ganas de hacer las cosas bien.",
       nav_cat_fullday: "🧭 Experiencias de día completo",
@@ -988,11 +992,11 @@ const translations = {
       about_team_matias_role: "Mantenimiento del código y soporte",
       about_team_matias_bday: "🎂 1 feb",
       about_team_matias_bio:
-        "Matías estudia en la UTEC y destaca por su enfoque estructurado y analítico del desarrollo. Le gusta entender bien cada problema antes de actuar, lo que le permite construir soluciones limpias, eficientes y confiables. Su meticulosidad y compromiso con la calidad son clave para mantener y mejorar nuestra plataforma.",
+        "Matías estudia en la UTEC y destaca por su enfoque estructurado y analítico del desarrollo.",
       about_team_selena_maite_role: "Guía turística",
       about_team_selena_maite_bday: "🎂 31 ene",
       about_team_selena_maite_bio:
-        "Aporta liderazgo y carácter al equipo. Su profundo conocimiento de la historia y la cultura de Colonia, junto con una actitud apasionada y empujadora, la convierte en una pieza clave para experiencias auténticas.",
+        "Aporta liderazgo y carácter al equipo. Su profundo conocimiento de la historia y la cultura de Colonia, junto con una actitud apasionada y empujadora, la convierte en una pieza clave para experiencias auténticas y para nuestro proyecto.",
       about_team_selena_role: "Guía turística",
       about_team_selena_bday: "🎂 1 sep",
       about_team_selena_bio:
@@ -1001,11 +1005,11 @@ const translations = {
       about_team_laura_bday: "🎂 6 jul",
       about_team_laura_bio:
         "Combina profesionalismo con una mirada fina sobre gastronomía y vinos. Diseña experiencias de alta calidad con elegancia y atención al detalle en cada momento.",
-      about_team_adrian_role: "Guía turística",
+      about_team_adrian_role: "Guía turístico",
       about_team_adrian_bday: "🎂 23 jun",
       about_team_adrian_bio:
         "Piensa en grande y encara cada desafío con mirada estratégica. Su visión de negocio y sus ideas innovadoras impulsan el proyecto y abren nuevas oportunidades.",
-      about_team_alan_role: "Guía turística",
+      about_team_alan_role: "Guía turístico",
       about_team_alan_bday: "🎂 1 feb",
       about_team_alan_bio:
         "Carismático y orientado a las personas, hace que cada visita se sienta bienvenida y cómoda. Su energía positiva es clave para experiencias memorables.",
@@ -1869,6 +1873,8 @@ const translations = {
       about_who_h2: "Quem somos",
       about_who_p:
         "Somos uma equipe apaixonada por criar experiências autênticas em Colonia del Sacramento. Nossa missão é conectar viajantes à cultura local, à gastronomia e a momentos inesquecíveis.",
+      about_team_note:
+        "Estamos atualizando as fotos da equipe — três integrantes a caminho. Role para conhecer todo mundo!",
       about_closing_quote:
         "Por trás de cada processo, cada conquista e cada avanço, há dedicação, esforço e muita vontade de fazer bem as coisas.",
       nav_cat_fullday: "🧭 Experiências de dia inteiro",
@@ -1893,11 +1899,11 @@ const translations = {
       about_team_matias_role: "Manutenção de código e suporte",
       about_team_matias_bday: "🎂 1 fev",
       about_team_matias_bio:
-        "Matías estuda na UTEC e se destaca pela abordagem estruturada e analítica do desenvolvimento. Gosta de entender bem cada problema antes de agir, o que permite soluções limpas, eficientes e confiáveis. Sua atenção aos detalhes e compromisso com a qualidade são essenciais para manter e evoluir nossa plataforma.",
+        "Matías estuda na UTEC e se destaca pela abordagem estruturada e analítica do desenvolvimento.",
       about_team_selena_maite_role: "Guia turística",
       about_team_selena_maite_bday: "🎂 31 jan",
       about_team_selena_maite_bio:
-        "Traz liderança e personalidade forte para a equipe. Seu profundo conhecimento da história e da cultura de Colonia, somado a uma postura apaixonada e determinada, faz dela uma força central em experiências autênticas.",
+        "Traz liderança e personalidade forte para a equipe. Seu profundo conhecimento da história e da cultura de Colonia, somado a uma postura apaixonada e determinada, faz dela uma força central em experiências autênticas e no nosso projeto.",
       about_team_selena_role: "Guia turística",
       about_team_selena_bday: "🎂 1 set",
       about_team_selena_bio:
@@ -1906,11 +1912,11 @@ const translations = {
       about_team_laura_bday: "🎂 6 jul",
       about_team_laura_bio:
         "Combina profissionalismo com uma compreensão refinada de gastronomia e vinhos. Curadoria de experiências de alta qualidade, com elegância e atenção ao detalhe.",
-      about_team_adrian_role: "Guia turística",
+      about_team_adrian_role: "Guia turístico",
       about_team_adrian_bday: "🎂 23 jun",
       about_team_adrian_bio:
         "Pensa grande e encara cada desafio com visão estratégica. Sua visão de negócios e ideias inovadoras impulsionam o projeto e abrem novas oportunidades.",
-      about_team_alan_role: "Guia turística",
+      about_team_alan_role: "Guia turístico",
       about_team_alan_bday: "🎂 1 fev",
       about_team_alan_bio:
         "Carismático e voltado às pessoas, faz com que cada visitante se sinta bem-vindo e à vontade. Sua energia positiva é fundamental para experiências memoráveis.",
