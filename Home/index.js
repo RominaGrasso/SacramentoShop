@@ -4,6 +4,136 @@ const translations = {
     en: {
       hero_title: "Discover Colonia Like a Local",
       hero_text: "Handpicked experiences for curious travelers.",
+      hero_tagline_region: "Activities in Colonia del Sacramento and the surrounding area",
+      trust_certified: "Certified guides by Uruguay Ministry of Tourism",
+      trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
+      trust_local_experts: "Local experts from Colonia del Sacramento",
+      hero_promo_free_walking:
+        '🎁 Free walking tour included with "Full Day" & "Just for a Night" experiences',
+      hero_btn_day: "🌞 Just for a Day",
+      hero_btn_night: "🌙 Just for a Night",
+      hero_btn_aftertour: "✨ After Tour",
+      header_about_link: "👤 About Us",
+      under_construction: "🚧 Work In Progress",
+      partners_trusted_by: "Trusted by",
+      card_fully_insured: "Fully insured experience",
+      card_medical_simc: "Medical assistance included (SIMC)",
+      bike_meta_1:
+        "⏱ 1.5 hours • 🌍 English • Spanish • Portuguese • Traditional torta frita included",
+      bike_meta_2: "🔥 Active experience • 🌅 Sunset option available",
+      bike_title: "🚴 Guided Bike Tour Experience",
+      bike_text:
+        "Explore Colonia del Sacramento by bicycle with a relaxed guided tour. Ride through the Historic Quarter, the Rambla waterfront and scenic local neighborhoods while discovering the city's history and culture. Perfect for active travelers.",
+      lieb_title: "Dining or Lunch at Las Liebres",
+      lieb_text:
+        "Enjoy an elegant lunch or dinner experience at Las Liebres, a boutique restaurant in Colonia del Sacramento. Enjoy signature dishes in a relaxed and intimate setting, with private transfer included. Perfect for guests looking for a dedicated dining experience.",
+      lupajack_title: "🐾🐶 Walk with Lupa & Jack – Experience Colonia Like a Local",
+      lupajack_text:
+        "We love animals and know how hard it can be to be away from them. Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.",
+      mate_title: "🧉 Mate & Asado: Become Uruguayan for a Day",
+      mate_text:
+        "Discover the heart of Uruguayan culture through mate and traditional asado. Learn how locals prepare and share mate and enjoy a relaxed barbecue experience.",
+      mateonly_title: "🧉 Traditional Mate Experience",
+      mateonly_text:
+        "Discover Uruguay's most beloved tradition. Learn how to prepare and share mate like locals.",
+      candombe_title: "🥁 Candombe Drum Experience",
+      candombe_text:
+        "Experience the rhythm of Uruguay through candombe. Learn the basics of traditional drumming with local musicians.",
+      romantic_title: "💕 Romantic Dinner for Two",
+      romantic_text:
+        "Enjoy a private candlelight dinner in a charming colonial setting, perfect for couples.",
+      horse_title: "🐎 Horseback Riding Through Colonia's Countryside",
+      horse_text:
+        "Discover the rural side of Colonia on horseback. Enjoy a relaxed ride through nature.",
+      asado_boat_home_title: "🔥🚤 Asado Experience (BBQ) & Boat Tour",
+      asado_boat_home_meta_1: "⭐ Premium local experience",
+      asado_boat_home_meta_2: "👨‍✈️ Hosted by Alejandro, owner & captain",
+      asado_boat_home_meta_3: "🚗 Transfer included ⏱ Duration: 4 hours",
+      asado_boat_home_desc:
+        "Enjoy an authentic Uruguayan asado prepared by Alejandro, owner and captain, who will guide you through a unique local experience with premium meats, wine, and a relaxed atmosphere. Then, set sail on a scenic boat tour along the Río de la Plata, discovering Colonia from a completely different perspective. A perfect blend of gastronomy, storytelling, and nature.",
+      food_card_meta_1: "⭐ Best value experience in Colonia",
+      food_card_meta_2: "🔥 3 experiences in 1",
+      food_card_meta_3: "🚗 Transfer included ⏱ Duration: 4 hours",
+      bruma_discount_badge: "🔥 15% OFF",
+      bruma_home_title: "🍽 Bruma Restaurant Experience",
+      bruma_home_meta_1: "✨ Perfect after your guided tour",
+      bruma_home_meta_2: "🍷 International cuisine by Chef Marcelo",
+      bruma_home_desc:
+        "Enjoy a unique dining experience at Bruma, a boutique restaurant in the heart of Colonia’s Historic Quarter. Surrounded by cobblestone streets and colonial charm, it offers high-quality international cuisine and a relaxed atmosphere — the perfect complement after a guided tour.",
+      lieb_home_meta_1: "⏱ 3 - 4 hours • 🍽 Signature dishes",
+      lieb_home_meta_2: "🚗 Transfer included • 🌿 Boutique dining experience",
+      home_hist_lieb_title: "🏛🍷 Historic Quarter + Las Liebres",
+      home_hist_lieb_meta_1: "🏛 Guided walk in the old town • 🍇 Vineyard & organic garden",
+      home_hist_lieb_meta_2: "🍷 Tasting or lunch • ⏱ 3–4 hours duration • 🚗 Transfer included",
+      home_hist_lieb_desc:
+        "Start with a guided tour of Colonia’s Historic Quarter, then continue to Las Liebres for a guided visit to the vineyard and garden, followed by a wine tasting with pairings or a full lunch — your choice when you book.",
+      home_cabalgata_title: "🐎🍷 Cabalgata & wine tasting — Las Liebres",
+      home_cabalgata_meta_1: "⭐ Boutique vineyard experience",
+      home_cabalgata_meta_2:
+        "🐎 Cabalgata in Riachuelo (outside Colonia) • 🍇 Then Las Liebres vineyard & garden",
+      home_cabalgata_meta_3: "🍷 3 wines with food pairing",
+      home_cabalgata_meta_4: "⏱ Duration: 3–4 hours • 🚗 Transfer included",
+      home_cabalgata_desc:
+        "The cabalgata is in Riachuelo (outside Colonia); a transfer then takes you to Las Liebres for the vineyard, garden, and tasting. Juanma and Sabrina host the ride with their horses (and dogs Simón and Estrelli). About 3–4 hours — transfer and add-ons are detailed on the booking page.",
+      home_sio_title: "🍣✨ SIO Sushi Experience",
+      home_sio_meta_1: "⭐ Premium dining experience",
+      home_sio_meta_2: "🍣 International-level sushi in Colonia",
+      home_sio_meta_3: "📍 Historic Quarter ⏱ Duration: 2 hours",
+      home_sio_desc:
+        "Enjoy an unforgettable dinner at SIO, one of the most exclusive culinary experiences in Colonia. Discover a refined sushi menu crafted with premium ingredients, artistic presentation, and a unique atmosphere. Perfect for a special night, combining gastronomy, design, and attention to detail.",
+      home_bar_title: "🍻💃 Colonia Bar Hopping & Night Experience",
+      home_bar_meta_1: "⏱️ 3 - 4 hours • 🍸 Cocktails • 🍺 Local beer",
+      home_bar_meta_2: "📍 Casa Viera • La Chopería • Barbot",
+      home_bar_meta_3: "💃 Nightclub access included",
+      home_bar_desc:
+        "Experience Colonia’s nightlife like a local with a curated bar hopping tour. Visit iconic spots like Casa Viera, La Chopería and Barbot, enjoying signature cocktails and craft beers along the way. After the tour, continue the night with optional drinks at Café del Río and finish dancing at one of the city’s top nightclubs. A perfect mix of social vibes, music and unforgettable moments.",
+      lupajack_card_meta:
+        "⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included",
+      mate_asado_meta_1:
+        "⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included",
+      mate_asado_meta_2: "🔥 2 experiences in 1",
+      home_shared_meta_activity:
+        "⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included",
+      home_toros_night_title:
+        "🛏 🌙 Colonia Night Experience: Dinner, Stay & Plaza de Toros",
+      home_toros_night_meta_1: "🌙 1 night • 🍽 Dinner included • ☕ Breakfast included",
+      home_toros_night_meta_2: "🔥 3 experiences in 1",
+      home_toros_night_desc:
+        "Enjoy a unique overnight experience in Colonia. Start with a delicious dinner at Las Liebres, spend the night in a comfortable apartment near Plaza de Toros, and wake up to breakfast before visiting the iconic bullring with tickets included.",
+      home_mision_title:
+        "🏛 🌙 Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour",
+      home_mision_meta_pf: "🐾 Pet friendly",
+      home_mision_meta_stay: "🌙 1 night • 🍽 Dinner included • ☕ Breakfast included",
+      home_mision_meta_tour: "🎁 Guided tour included",
+      home_mision_desc:
+        "Step back in time with a unique stay at La Misión, a charming posada located in the heart of the historic quarter, right in front of Plaza Mayor. Enjoy a refined dinner at Bruma, just around the corner, and wake up to a cozy breakfast. Complete your experience with a guided walking tour through Colonia’s most iconic streets.",
+      home_sio_mision_title:
+        "🍣 🌙 Premium Night Experience: La Misión Stay, SIO Sushi Dinner & Walking Tour",
+      home_sio_mision_desc:
+        "Experience Colonia at its most exclusive. Stay at La Misión, a boutique posada in the heart of the historic quarter, and enjoy a world-class sushi dinner at SIO, one of the most renowned culinary experiences in Colonia. Wake up to a delightful breakfast and complete your night with a guided walking tour through the city's most iconic streets.",
+      home_corp_boat_badge: "✨ Exclusive corporate experience",
+      home_corp_boat_title: "🚤 Sunset Boat Experience & Dinner at Casa Petit",
+      home_corp_boat_meta_1:
+        "🌅 Sunset experience • 🚤 Private boat with Captain Alejandro • 🍽 Dinner included",
+      home_corp_boat_meta_2: "🏢 Corporate & private groups • 🚗 Transfers included",
+      home_corp_boat_meta_3: "🎁 Guided tour included",
+      home_corp_boat_desc:
+        "Enjoy an exclusive sunset boat experience along the river with Captain Alejandro, followed by a premium dinner at Casa Petit by Mercedes. A unique and elegant experience designed for corporate groups, team building, or special occasions.",
+      fullday_card_meta_lang: "⏱ 4-5 hours • 🌍 English • Spanish • Portuguese",
+      fullday1_title:
+        "🦜 Full Day Experience 1 -  Animal Reserve, Asado & Beach Experience",
+      fullday1_text:
+        "Visit the Kerayvoty Animal Reserve in Juan Lacaze, enjoy a traditional Uruguayan asado in Santa Ana, and relax by the beautiful coastal beaches before returning to Colonia.",
+      fullday2_title: "🍇 Full Day Experience 2 – Carmelo City & Wineries",
+      fullday2_text:
+        "Explore the charming town of Carmelo on a full-day experience combining a guided city tour with visits to local wineries. Discover the town's history, walk along the riverfront, and enjoy wine tastings surrounded by beautiful vineyards in one of Uruguay's most renowned wine regions.",
+      fullday3_title: "🧀 Full Day Experience 3 – Colonia Suiza Heritage Tour",
+      fullday3_text:
+        "Discover the Swiss heritage of Nueva Helvecia on this full-day experience. Visit traditional cheese factories, explore the historic town, stop at the Schoenstatt Sanctuary, and see iconic landmarks like the Hotel Suizo while learning about the culture and traditions brought by Swiss immigrants.",
+      fullday4_title:
+        "✨ Full Day Experience 4 - Horseback Ride, Dinner & Stargazing Experience",
+      fullday4_text:
+        "Enjoy a scenic horseback ride through the countryside, followed by a special dinner at Las Liebres. End the night with a unique stargazing experience led by an astrophotographer who will guide you through the stars and capture unforgettable night sky photos.",
       rent_with_us: "Rent with us!",
       rent_popup_title: "Choose your rental",
       rent_popup_benefit: "With your rental, you get a 2x1 ticket promo for Plaza de Toros.",
@@ -58,11 +188,12 @@ const translations = {
       about_hero_h1: "Meet the Team",
       about_who_h2: "Who we are",
       about_who_p:
-        "We are a team passionate about creating authentic experiences in Colonia del Sacramento. Our mission is to connect travelers with local culture, gastronomy, and unforgettable moments.",
+        "We're a group of young people who genuinely love what we do: bringing quality, good energy, and lasting memories to your time in Colonia del Sacramento. We obsess over the details with trusted partners — because we want you to feel truly taken care of.",
       about_team_note:
         "We're refreshing team photos — three more teammates coming soon. Scroll down to meet everyone.",
       about_closing_quote:
         "Behind every process, every accomplishment, and every step forward, there is dedication, effort, and a genuine drive to do things right.",
+      nav_cat_all: "📋 All experiences",
       nav_cat_fullday: "🧭 Full Day Experiences",
       nav_cat_day: "🌞 Just for a Day",
       nav_cat_night: "🌙 Just for a Night",
@@ -70,9 +201,9 @@ const translations = {
       nav_cat_gastro: "🍽 Gastronomy",
       nav_cat_nature: "🐎 Nature and Animals",
       nav_cat_culture: "🥁 Tradition & Culture",
-      nav_cat_sports: "🏄 Sports & Adventure",
       nav_cat_romantic: "💕 Romantic",
       nav_cat_corporate: "🏢 Corporate Experiences",
+      about_team_linkedin_label: "LinkedIn",
       about_team_photo_alt: "Team member",
       about_team_romina_role: "Founder",
       about_team_romina_bday: "🎂 Oct 16",
@@ -124,9 +255,34 @@ const translations = {
       plaza_meta_line: "🚗 Transfer included • 🎫 Tickets included • ⏱ Approx. 3 hours",
       plaza_text:
         "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line! Anita is a café in the heart of the historic quarter with an incredible view. The experience lasts approximately 3 hours.",
-      pharmacies_title: "Pharmacies in Colonia del Sacramento",
-      pharmacies_intro:
-        "Handy references if you need medication or personal care while visiting. Opening hours can change — please confirm locally.",
+      services_title: "Useful services in Colonia del Sacramento",
+      services_intro:
+        "Pharmacies, supermarkets near the Historic Quarter, parking, police stations, and local health centres — handy references for your stay. Hours and rates can change; please confirm before you go.",
+      services_cat_pharmacies: "Pharmacies",
+      services_cat_supermarkets: "Supermarkets (Historic Quarter area)",
+      services_cat_parking: "Parking",
+      services_cat_police: "Police stations",
+      services_cat_health: "Polyclinic & hospital",
+      services_super_usa_meta:
+        "Gral. Flores 388 (corner Intendente Suárez) · Steps from the Historic Quarter · Check current hours",
+      services_super_economico_meta:
+        "Gral. Flores 290 · Near the Historic Quarter · Check current hours",
+      services_super_micro_meta:
+        "Gral. Flores & 18 de Julio area · Groceries and daily essentials · Check current hours",
+      services_park_puerto_title: "Parking — port / ferry area",
+      services_park_puerto_meta:
+        "Near the ferry / port terminals · Paid parking · Confirm rates and hours on site",
+      services_park_centro_title: "Parking — downtown (Gral. Flores)",
+      services_park_centro_meta:
+        "Downtown around Gral. Flores · Paid lots and metered street parking · Read local signage",
+      services_police_secc1_meta:
+        "Dr. Daniel Fosalba 697 · National Police — 1st precinct Colonia del Sacramento · Open 24/7 · Tel. +598 4520 7258 / +598 4520 7259 · Emergencies: 911",
+      services_police_jefatura_meta:
+        "Av. Gral. Flores 364 · Departmental police headquarters (administration) · Typically Mon–Fri 9:00–17:00 · Tel. +598 4520 7100",
+      services_health_centro_meta:
+        "Centro de Salud Colonia (outpatient polyclinic, ASSE) · 18 de Julio 462 · Weekday hours typical; call to confirm",
+      services_health_hospital_meta:
+        "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Public hospital — emergencies and inpatient care",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Often 24 hours",
       pharmacy_c2_meta: "Gral. Flores 450 (corner Alberto Méndez) · Typically daily 8:00–22:00",
       pharmacy_c3_meta: "Gral. Flores 329 · Check current hours",
@@ -911,6 +1067,136 @@ const translations = {
     es: {
       hero_title: "Descubrí Colonia como un local",
       hero_text: "Experiencias seleccionadas.",
+      hero_tagline_region: "Actividades en Colonia del Sacramento y alrededores",
+      trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
+      trust_multilingual: "Tours multilingües: español, inglés y portugués",
+      trust_local_experts: "Expertos locales en Colonia del Sacramento",
+      hero_promo_free_walking:
+        '🎁 Walking tour de regalo con experiencias "Día completo" y "Solo por una noche"',
+      hero_btn_day: "🌞 Solo por un día",
+      hero_btn_night: "🌙 Solo por una noche",
+      hero_btn_aftertour: "✨ After Tour",
+      header_about_link: "👤 Sobre nosotros",
+      under_construction: "🚧 En construcción",
+      partners_trusted_by: "Confían en nosotros",
+      card_fully_insured: "Experiencia con cobertura incluida",
+      card_medical_simc: "Asistencia médica incluida (SIMC)",
+      bike_meta_1:
+        "⏱ 1,5 hs • 🌍 Inglés • español • portugués • Torta frita tradicional incluida",
+      bike_meta_2: "🔥 Experiencia activa • 🌅 Opción atardecer",
+      bike_title: "🚴 Experiencia de bicicleta guiada",
+      bike_text:
+        "Recorré Colonia del Sacramento en bici con un tour relajado: Casco Histórico, rambla y barrios, con historia y cultura. Ideal para quienes buscan algo activo.",
+      lieb_title: "Almuerzo o cena en Las Liebres",
+      lieb_text:
+        "Experiencia elegante en Las Liebres, restaurante boutique en Colonia. Platos insignia, ambiente íntimo y traslado privado incluido. Para quienes quieren una comida dedicada.",
+      lupajack_title: "🐾🐶 Paseo con Lupa y Jack – Colonia como un local",
+      lupajack_text:
+        "Amamos los animales y sabemos lo que cuesta estar lejos. Acompañanos en un paseo relajado por Colonia con tortas fritas o churros tradicionales.",
+      mate_title: "🧉 Mate y asado: uruguayo por un día",
+      mate_text:
+        "El corazón de la cultura uruguaya: mate y asado. Aprendé cómo se prepara y comparte el mate y disfrutá un asado relajado.",
+      mateonly_title: "🧉 Experiencia tradicional de mate",
+      mateonly_text:
+        "La tradición más querida del Uruguay. Aprendé a preparar y compartir mate como los locales.",
+      candombe_title: "🥁 Experiencia de tambores candombe",
+      candombe_text:
+        "El ritmo del Uruguay: candombe. Introducción a los tambores con músicos locales.",
+      romantic_title: "💕 Cena romántica para dos",
+      romantic_text:
+        "Cena a la luz de velas en un entorno colonial encantador, ideal para parejas.",
+      horse_title: "🐎 Cabalgata por el campo de Colonia",
+      horse_text:
+        "El lado rural de Colonia a caballo. Paseo tranquilo por la naturaleza.",
+      asado_boat_home_title: "🔥🚤 Experiencia de asado (BBQ) y tour en barco",
+      asado_boat_home_meta_1: "⭐ Experiencia local premium",
+      asado_boat_home_meta_2: "👨‍✈️ Con Alejandro, dueño y capitán",
+      asado_boat_home_meta_3: "🚗 Traslado incluido ⏱ Duración: 4 horas",
+      asado_boat_home_desc:
+        "Disfrutá un auténtico asado uruguayo preparado por Alejandro, dueño y capitán, que te guía en una experiencia local con carnes premium, vino y ambiente relajado. Después, navegá un tour escénico por el Río de la Plata y conocé Colonia desde otra perspectiva. Gastronomía, historias y naturaleza en una sola propuesta.",
+      food_card_meta_1: "⭐ Mejor relación precio-calidad en Colonia",
+      food_card_meta_2: "🔥 3 experiencias en 1",
+      food_card_meta_3: "🚗 Traslado incluido ⏱ Duración: 4 horas",
+      bruma_discount_badge: "🔥 15% OFF",
+      bruma_home_title: "🍽 Experiencia restaurante Bruma",
+      bruma_home_meta_1: "✨ Ideal después de tu tour guiado",
+      bruma_home_meta_2: "🍷 Cocina internacional del Chef Marcelo",
+      bruma_home_desc:
+        "Disfrutá una experiencia gastronómica única en Bruma, restaurante boutique en el corazón del Casco Histórico de Colonia. Entre calles empedradas y encanto colonial, ofrece cocina internacional de alta calidad y ambiente relajado — el complemento perfecto después de un tour guiado.",
+      lieb_home_meta_1: "⏱ 3 - 4 horas • 🍽 Platos insignia",
+      lieb_home_meta_2: "🚗 Traslado incluido • 🌿 Experiencia boutique",
+      home_hist_lieb_title: "🏛🍷 Casco Histórico + Las Liebres",
+      home_hist_lieb_meta_1: "🏛 Caminata guiada en la ciudad vieja • 🍇 Viñedo y huerta orgánica",
+      home_hist_lieb_meta_2: "🍷 Degustación o almuerzo • ⏱ 3–4 horas • 🚗 Traslado incluido",
+      home_hist_lieb_desc:
+        "Empezá con un tour guiado por el Casco Histórico de Colonia y seguí a Las Liebres para visitar viñedo y huerta, con degustación con maridajes o almuerzo completo — elegís al reservar.",
+      home_cabalgata_title: "🐎🍷 Cabalgata y degustación — Las Liebres",
+      home_cabalgata_meta_1: "⭐ Experiencia en viñedo boutique",
+      home_cabalgata_meta_2:
+        "🐎 Cabalgata en Riachuelo (fuera de Colonia) • 🍇 Luego viñedo y huerta Las Liebres",
+      home_cabalgata_meta_3: "🍷 3 vinos con maridaje",
+      home_cabalgata_meta_4: "⏱ Duración: 3–4 horas • 🚗 Traslado incluido",
+      home_cabalgata_desc:
+        "La cabalgata es en Riachuelo (fuera de Colonia); un traslado te lleva a Las Liebres para viñedo, huerta y degustación. Juanma y Sabrina reciben el paseo a caballo (con Simón y Estrelli). Unas 3–4 horas — traslado y extras en la página de reserva.",
+      home_sio_title: "🍣✨ Experiencia SIO Sushi",
+      home_sio_meta_1: "⭐ Experiencia gastronómica premium",
+      home_sio_meta_2: "🍣 Sushi de nivel internacional en Colonia",
+      home_sio_meta_3: "📍 Casco Histórico ⏱ Duración: 2 horas",
+      home_sio_desc:
+        "Cená en SIO, una de las experiencias culinarias más exclusivas de Colonia. Menú de sushi refinado, ingredientes premium y presentación cuidada. Ideal para una noche especial.",
+      home_bar_title: "🍻💃 Bar hopping y noche en Colonia",
+      home_bar_meta_1: "⏱️ 3 - 4 horas • 🍸 Cócteles • 🍺 Cerveza artesanal",
+      home_bar_meta_2: "📍 Casa Viera • La Chopería • Barbot",
+      home_bar_meta_3: "💃 Ingreso a boliche incluido",
+      home_bar_desc:
+        "La vida nocturna de Colonia como un local: recorrido por bares icónicos como Casa Viera, La Chopería y Barbot, con cócteles y cervezas. Después podés seguir en Café del Río y cerrar bailando. Buena onda, música y momentos para recordar.",
+      lupajack_card_meta:
+        "⏱ 1,5 hs • 🥁 Clase de tambores • Torta frita tradicional incluida",
+      mate_asado_meta_1:
+        "⏱ 1,5 hs • 🥁 Clase de tambores • Torta frita tradicional incluida",
+      mate_asado_meta_2: "🔥 2 experiencias en 1",
+      home_shared_meta_activity:
+        "⏱ 1,5 hs • 🥁 Clase de tambores • Torta frita tradicional incluida",
+      home_toros_night_title:
+        "🛏 🌙 Noche en Colonia: cena, alojamiento y Plaza de Toros",
+      home_toros_night_meta_1: "🌙 1 noche • 🍽 Cena incluida • ☕ Desayuno incluido",
+      home_toros_night_meta_2: "🔥 3 experiencias en 1",
+      home_toros_night_desc:
+        "Noche única en Colonia: cena en Las Liebres, dormís en un departamento cómodo cerca de Plaza de Toros, desayuno y visita a la plaza de toros con entradas incluidas.",
+      home_mision_title:
+        "🏛 🌙 Noche histórica: La Misión, cena en Bruma y walking tour",
+      home_mision_meta_pf: "🐾 Pet friendly",
+      home_mision_meta_stay: "🌙 1 noche • 🍽 Cena incluida • ☕ Desayuno incluido",
+      home_mision_meta_tour: "🎁 Tour guiado incluido",
+      home_mision_desc:
+        "Hospedaje en La Misión, posada frente a Plaza Mayor; cena en Bruma a la vuelta de la esquina y desayuno. Completá con un walking tour por las calles más icónicas de Colonia.",
+      home_sio_mision_title:
+        "🍣 🌙 Noche premium: La Misión, cena SIO Sushi y walking tour",
+      home_sio_mision_desc:
+        "La experiencia más exclusiva: estadía en La Misión y cena sushi de primer nivel en SIO. Desayuno y walking tour por el casco histórico.",
+      home_corp_boat_badge: "✨ Experiencia corporativa exclusiva",
+      home_corp_boat_title: "🚤 Atardecer en barco y cena en Casa Petit",
+      home_corp_boat_meta_1:
+        "🌅 Atardecer • 🚤 Barco privado con capitán Alejandro • 🍽 Cena incluida",
+      home_corp_boat_meta_2: "🏢 Grupos corporativos y privados • 🚗 Traslados incluidos",
+      home_corp_boat_meta_3: "🎁 Tour guiado incluido",
+      home_corp_boat_desc:
+        "Atardecer exclusivo en el río con el capitán Alejandro y cena premium en Casa Petit by Mercedes. Ideal para empresas, team building o celebraciones.",
+      fullday_card_meta_lang: "⏱ 4-5 horas • 🌍 Inglés • español • portugués",
+      fullday1_title:
+        "🦜 Experiencia día completo 1 — Reserva animal, asado y playa",
+      fullday1_text:
+        "Visitá la reserva animal Kerayvoty en Juan Lacaze, disfrutá un asado uruguayo tradicional en Santa Ana y relajate en playas costeras antes de volver a Colonia.",
+      fullday2_title: "🍇 Experiencia día completo 2 — Carmelo ciudad y bodegas",
+      fullday2_text:
+        "Conocé Carmelo en un día completo que combina city tour guiado con visitas a bodegas locales. Historia, costanera y degustaciones entre viñedos de una de las regiones vitivinícolas más reconocidas del Uruguay.",
+      fullday3_title: "🧀 Experiencia día completo 3 — Herencia suiza (Colonia Suiza)",
+      fullday3_text:
+        "Descubrí el legado suizo de Nueva Helvecia: fábricas de queso, pueblo histórico, Santuario Schoenstatt y lugares emblemáticos como el Hotel Suizo, con la cultura que trajeron los inmigrantes.",
+      fullday4_title:
+        "✨ Experiencia día completo 4 — Cabalgata, cena y observación de estrellas",
+      fullday4_text:
+        "Cabalgata por el campo, cena especial en Las Liebres y cierre con observación de estrellas con un astrofotógrafo que te guía bajo el cielo y captura la noche.",
       rent_with_us: "¡Alquilá con nosotros!",
       rent_popup_title: "Elegí tu alquiler",
       rent_popup_benefit: "Con tu alquiler, tenés promo 2x1 en entradas para Plaza de Toros.",
@@ -965,11 +1251,12 @@ const translations = {
       about_hero_h1: "Conocé al equipo",
       about_who_h2: "Quiénes somos",
       about_who_p:
-        "Somos un equipo apasionado por crear experiencias auténticas en Colonia del Sacramento. Nuestra misión es conectar a los viajeros con la cultura local, la gastronomía y momentos inolvidables.",
+        "Somos un grupo de jóvenes que amamos lo que hacemos: llevar calidad, buena energía y recuerdos que duran a tu paso por Colonia del Sacramento. Nos encanta el detalle y trabajamos con partners de confianza — nos importa que te sientas acompañado de verdad.",
       about_team_note:
         "Estamos actualizando las fotos del equipo: pronto sumamos tres integrantes más. ¡Seguí bajando para conocer al crew!",
       about_closing_quote:
         "Detrás de cada proceso, cada logro y cada avance, hay dedicación, esfuerzo y muchas ganas de hacer las cosas bien.",
+      nav_cat_all: "📋 Todas las experiencias",
       nav_cat_fullday: "🧭 Experiencias de día completo",
       nav_cat_day: "🌞 Solo por un día",
       nav_cat_night: "🌙 Solo por una noche",
@@ -977,9 +1264,9 @@ const translations = {
       nav_cat_gastro: "🍽 Gastronomía",
       nav_cat_nature: "🐎 Naturaleza y animales",
       nav_cat_culture: "🥁 Tradición y cultura",
-      nav_cat_sports: "🏄 Deportes y aventura",
       nav_cat_romantic: "💕 Romántico",
       nav_cat_corporate: "🏢 Experiencias corporativas",
+      about_team_linkedin_label: "LinkedIn",
       about_team_photo_alt: "Integrante del equipo",
       about_team_romina_role: "Fundadora",
       about_team_romina_bday: "🎂 16 oct",
@@ -1029,9 +1316,34 @@ const translations = {
       plaza_meta_line: "🚗 Traslado incluido • 🎫 Entradas incluidas • ⏱ ~3 hs aprox.",
       plaza_text:
         "Conocé la icónica plaza de toros y su historia con traslado privado y entradas incluidas. ¡Sin hacer fila! Anita es un café en el corazón del barrio histórico, tiene una vista increíble. La experiencia es de 3 hs aproximadamente.",
-      pharmacies_title: "Farmacias en Colonia del Sacramento",
-      pharmacies_intro:
-        "Referencias útiles si necesitás medicación o perfumería durante tu visita. Los horarios pueden cambiar — confirmá antes de ir.",
+      services_title: "Servicios útiles en Colonia del Sacramento",
+      services_intro:
+        "Farmacias, supermercados cerca del Barrio Histórico, estacionamientos, comisarías y centros de salud — referencias para tu visita. Los horarios y tarifas pueden cambiar; confirmá antes de ir.",
+      services_cat_pharmacies: "Farmacias",
+      services_cat_supermarkets: "Supermercados (zona Barrio Histórico)",
+      services_cat_parking: "Estacionamientos",
+      services_cat_police: "Comisarías",
+      services_cat_health: "Policlínica y hospital",
+      services_super_usa_meta:
+        "Gral. Flores 388 (esq. Intendente Suárez) · A pasos del Barrio Histórico · Consultá horario actual",
+      services_super_economico_meta:
+        "Gral. Flores 290 · Cerca del Barrio Histórico · Consultá horario actual",
+      services_super_micro_meta:
+        "Zona Gral. Flores y 18 de Julio · Compras diarias y abarrotes · Consultá horario actual",
+      services_park_puerto_title: "Estacionamiento — zona puerto / ferry",
+      services_park_puerto_meta:
+        "Cerca de terminales de ferry / puerto · Estacionamiento pago · Confirmá tarifas y horarios en el lugar",
+      services_park_centro_title: "Estacionamiento — centro (Gral. Flores)",
+      services_park_centro_meta:
+        "Centro en torno a Gral. Flores · Playas de estacionamiento y vía pública tarifada · Respetá la cartelería",
+      services_police_secc1_meta:
+        "Dr. Daniel Fosalba 697 · Policía Nacional — Seccional 1ª Colonia del Sacramento · Atención 24 hs · Tel. 452 07258 / 452 07259 · Emergencias: 911",
+      services_police_jefatura_meta:
+        "Av. Gral. Flores 364 · Jefatura de Policía de Colonia (administración) · En general lun–vie 9 a 17 hs · Tel. 452 07100",
+      services_health_centro_meta:
+        "Centro de Salud Colonia (policlínica ASSE) · 18 de Julio 462 · Horario habitual entre semana; llamá para confirmar",
+      services_health_hospital_meta:
+        "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Hospital público — urgencias e internación",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Suele atender 24 hs",
       pharmacy_c2_meta: "Gral. Flores 450 (esq. Alberto Méndez) · Habitualmente todos los días 8 a 22 hs",
       pharmacy_c3_meta: "Gral. Flores 329 · Consultá horario actual",
@@ -1818,6 +2130,136 @@ const translations = {
     pt: {
       hero_title: "Descubra Colonia",
       hero_text: "Experiências selecionadas.",
+      hero_tagline_region: "Atividades em Colonia del Sacramento e arredores",
+      trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
+      trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
+      trust_local_experts: "Especialistas locais em Colonia del Sacramento",
+      hero_promo_free_walking:
+        '🎁 Walking tour grátis nas experiências "Dia inteiro" e "Só por uma noite"',
+      hero_btn_day: "🌞 Só por um dia",
+      hero_btn_night: "🌙 Só por uma noite",
+      hero_btn_aftertour: "✨ After Tour",
+      header_about_link: "👤 Sobre nós",
+      under_construction: "🚧 Em construção",
+      partners_trusted_by: "Confiam em nós",
+      card_fully_insured: "Experiência com seguro incluído",
+      card_medical_simc: "Assistência médica incluída (SIMC)",
+      bike_meta_1:
+        "⏱ 1,5 h • 🌍 Inglês • espanhol • português • Torta frita tradicional incluída",
+      bike_meta_2: "🔥 Experiência ativa • 🌅 Opção pôr do sol",
+      bike_title: "🚴 Passeio de bicicleta guiado",
+      bike_text:
+        "Explore Colonia del Sacramento de bicicleta com um tour relaxado: Centro Histórico, rambla e bairros, com história e cultura. Perfeito para quem gosta de atividade.",
+      lieb_title: "Almoço ou jantar nas Liebres",
+      lieb_text:
+        "Experiência elegante nas Liebres, restaurante boutique em Colonia. Pratos assinatura, clima íntimo e transfer privado incluído.",
+      lupajack_title: "🐾🐶 Passeio com Lupa e Jack – Colonia como um morador",
+      lupajack_text:
+        "Amamos animais e sabemos como é estar longe deles. Junte-se a um passeio relaxado por Colonia com tortas fritas ou churros.",
+      mate_title: "🧉 Mate e churrasco: uruguaio por um dia",
+      mate_text:
+        "A cultura uruguaia em mate e churrasco tradicional. Aprenda a preparar e compartilhar mate e curta um churrasco descontraído.",
+      mateonly_title: "🧉 Experiência tradicional de mate",
+      mateonly_text:
+        "A tradição mais querida do Uruguai. Aprenda a preparar e compartilhar mate como os locais.",
+      candombe_title: "🥁 Experiência de tambores candombe",
+      candombe_text:
+        "O ritmo do Uruguai no candombe. Noções de tambores com músicos locais.",
+      romantic_title: "💕 Jantar romântico para dois",
+      romantic_text:
+        "Jantar à luz de velas em um ambiente colonial charmoso, perfeito para casais.",
+      horse_title: "🐎 Cavalgada pelo campo de Colonia",
+      horse_text:
+        "O lado rural de Colonia a cavalo. Passeio tranquilo pela natureza.",
+      asado_boat_home_title: "🔥🚤 Experiência de churrasco (BBQ) e passeio de barco",
+      asado_boat_home_meta_1: "⭐ Experiência local premium",
+      asado_boat_home_meta_2: "👨‍✈️ Com Alejandro, proprietário e capitão",
+      asado_boat_home_meta_3: "🚗 Transfer incluído ⏱ Duração: 4 horas",
+      asado_boat_home_desc:
+        "Desfrute de um autêntico churrasco uruguaio preparado por Alejandro, proprietário e capitão, com carnes premium, vinho e clima descontraído. Em seguida, navegue pelo Rio da Prata e veja Colonia sob outro ângulo. Gastronomia, histórias e natureza.",
+      food_card_meta_1: "⭐ Melhor custo-benefício em Colonia",
+      food_card_meta_2: "🔥 3 experiências em 1",
+      food_card_meta_3: "🚗 Transfer incluído ⏱ Duração: 4 horas",
+      bruma_discount_badge: "🔥 15% OFF",
+      bruma_home_title: "🍽 Experiência restaurante Bruma",
+      bruma_home_meta_1: "✨ Perfeito após seu tour guiado",
+      bruma_home_meta_2: "🍷 Cozinha internacional do Chef Marcelo",
+      bruma_home_desc:
+        "Uma experiência gastronômica única no Bruma, restaurante boutique no coração do Centro Histórico de Colonia. Ruas de pedra e charme colonial, alta cozinha internacional e ambiente relaxado — o complemento ideal após um tour.",
+      lieb_home_meta_1: "⏱ 3 - 4 horas • 🍽 Pratos assinatura",
+      lieb_home_meta_2: "🚗 Transfer incluído • 🌿 Jantar boutique",
+      home_hist_lieb_title: "🏛🍷 Centro Histórico + Las Liebres",
+      home_hist_lieb_meta_1: "🏛 Caminhada guiada na cidade velha • 🍇 Vinhedo e horta orgânica",
+      home_hist_lieb_meta_2: "🍷 Degustação ou almoço • ⏱ 3–4 horas • 🚗 Transfer incluído",
+      home_hist_lieb_desc:
+        "Comece com um tour guiado pelo Centro Histórico e siga para Las Liebres: visita ao vinhedo e horta, degustação com harmonizações ou almoço completo — você escolhe na reserva.",
+      home_cabalgata_title: "🐎🍷 Cavalgada e degustação — Las Liebres",
+      home_cabalgata_meta_1: "⭐ Experiência em vinhedo boutique",
+      home_cabalgata_meta_2:
+        "🐎 Cavalgada em Riachuelo (fora de Colonia) • 🍇 Depois vinhedo e horta Las Liebres",
+      home_cabalgata_meta_3: "🍷 3 vinhos com harmonização",
+      home_cabalgata_meta_4: "⏱ Duração: 3–4 horas • 🚗 Transfer incluído",
+      home_cabalgata_desc:
+        "A cavalgada é em Riachuelo; depois transfer para Las Liebres (vinhedo, horta e degustação). Juanma e Sabrina conduzem o passeio a cavalo (com Simón e Estrelli). Cerca de 3–4 horas — detalhes na página de reserva.",
+      home_sio_title: "🍣✨ Experiência SIO Sushi",
+      home_sio_meta_1: "⭐ Experiência gastronômica premium",
+      home_sio_meta_2: "🍣 Sushi de nível internacional em Colonia",
+      home_sio_meta_3: "📍 Centro Histórico ⏱ Duração: 2 horas",
+      home_sio_desc:
+        "Jantar inesquecível no SIO, uma das experiências mais exclusivas de Colonia. Menu refinado, ingredientes premium e atmosfera única — ideal para uma noite especial.",
+      home_bar_title: "🍻💃 Bar hopping e noite em Colonia",
+      home_bar_meta_1: "⏱️ 3 - 4 horas • 🍸 Coquetéis • 🍺 Cerveja artesanal",
+      home_bar_meta_2: "📍 Casa Viera • La Chopería • Barbot",
+      home_bar_meta_3: "💃 Entrada em balada incluída",
+      home_bar_desc:
+        "A noite de Colonia como um morador: roteiro por bares como Casa Viera, La Chopería e Barbot. Depois, opcional no Café del Río e para terminar, dança. Música, encontros e boas lembranças.",
+      lupajack_card_meta:
+        "⏱ 1,5 h • 🥁 Aula de tambores • Torta frita tradicional incluída",
+      mate_asado_meta_1:
+        "⏱ 1,5 h • 🥁 Aula de tambores • Torta frita tradicional incluída",
+      mate_asado_meta_2: "🔥 2 experiências em 1",
+      home_shared_meta_activity:
+        "⏱ 1,5 h • 🥁 Aula de tambores • Torta frita tradicional incluída",
+      home_toros_night_title:
+        "🛏 🌙 Noite em Colonia: jantar, hospedagem e Plaza de Toros",
+      home_toros_night_meta_1: "🌙 1 noite • 🍽 Jantar incluído • ☕ Café da manhã incluído",
+      home_toros_night_meta_2: "🔥 3 experiências em 1",
+      home_toros_night_desc:
+        "Noite única: jantar nas Liebres, pernoite em apartamento perto da Plaza de Toros, café da manhã e visita à praça de touros com ingressos.",
+      home_mision_title:
+        "🏛 🌙 Noite histórica: La Misión, jantar no Bruma e walking tour",
+      home_mision_meta_pf: "🐾 Pet friendly",
+      home_mision_meta_stay: "🌙 1 noite • 🍽 Jantar incluído • ☕ Café da manhã incluído",
+      home_mision_meta_tour: "🎁 Tour guiado incluído",
+      home_mision_desc:
+        "Hospedagem na La Misión, em frente à Plaza Mayor; jantar refinado no Bruma e café da manhã. Complete com walking tour pelas ruas mais icônicas.",
+      home_sio_mision_title:
+        "🍣 🌙 Noite premium: La Misión, jantar SIO Sushi e walking tour",
+      home_sio_mision_desc:
+        "Estadia na La Misión e jantar sushi de alto nível no SIO. Café da manhã e tour a pé pelo centro histórico.",
+      home_corp_boat_badge: "✨ Experiência corporativa exclusiva",
+      home_corp_boat_title: "🚤 Pôr do sol de barco e jantar na Casa Petit",
+      home_corp_boat_meta_1:
+        "🌅 Pôr do sol • 🚤 Barco privado com capitão Alejandro • 🍽 Jantar incluído",
+      home_corp_boat_meta_2: "🏢 Grupos corporativos e privados • 🚗 Transfers incluídos",
+      home_corp_boat_meta_3: "🎁 Tour guiado incluído",
+      home_corp_boat_desc:
+        "Pôr do sol exclusivo no rio com o capitão Alejandro e jantar premium na Casa Petit by Mercedes. Ideal para empresas, team building ou ocasiões especiais.",
+      fullday_card_meta_lang: "⏱ 4-5 horas • 🌍 Inglês • espanhol • português",
+      fullday1_title:
+        "🦜 Experiência dia inteiro 1 — Reserva de animais, churrasco e praia",
+      fullday1_text:
+        "Visite a reserva Kerayvoty em Juan Lacaze, saboreie um churrasco uruguaio tradicional em Santa Ana e relaxe nas praias antes de retornar a Colonia.",
+      fullday2_title: "🍇 Experiência dia inteiro 2 — Carmelo e vinícolas",
+      fullday2_text:
+        "Explore Carmelo em um dia que combina city tour guiado com visitas a vinícolas. História, orla do rio e degustações entre vinhedos de uma das regiões mais conhecidas do Uruguai.",
+      fullday3_title: "🧀 Experiência dia inteiro 3 — Herança suíça (Colonia Suiza)",
+      fullday3_text:
+        "Conheça a herança suíça de Nueva Helvecia: fábricas de queijo, cidade histórica, Santuário Schoenstatt e marcos como o Hotel Suizo, com as tradições dos imigrantes.",
+      fullday4_title:
+        "✨ Experiência dia inteiro 4 — Cavalgada, jantar e observação das estrelas",
+      fullday4_text:
+        "Cavalgada pelo campo, jantar especial nas Liebres e noite de observação com um astrofotógrafo que guia sob o céu e registra a noite.",
       rent_with_us: "Alugue com a gente!",
       rent_popup_title: "Escolha seu aluguel",
       rent_popup_benefit: "Com seu aluguel, você ganha promoção 2x1 nos ingressos da Plaza de Toros.",
@@ -1872,11 +2314,12 @@ const translations = {
       about_hero_h1: "Conheça a equipe",
       about_who_h2: "Quem somos",
       about_who_p:
-        "Somos uma equipe apaixonada por criar experiências autênticas em Colonia del Sacramento. Nossa missão é conectar viajantes à cultura local, à gastronomia e a momentos inesquecíveis.",
+        "Somos um grupo de jovens que ama o que faz: levar qualidade, boa energia e memórias que ficam para a sua passagem por Colonia del Sacramento. Curtimos cada detalhe com parceiros de confiança — porque queremos que você se sinta realmente acolhido.",
       about_team_note:
         "Estamos atualizando as fotos da equipe — três integrantes a caminho. Role para conhecer todo mundo!",
       about_closing_quote:
         "Por trás de cada processo, cada conquista e cada avanço, há dedicação, esforço e muita vontade de fazer bem as coisas.",
+      nav_cat_all: "📋 Todas as experiências",
       nav_cat_fullday: "🧭 Experiências de dia inteiro",
       nav_cat_day: "🌞 Só por um dia",
       nav_cat_night: "🌙 Só por uma noite",
@@ -1884,9 +2327,9 @@ const translations = {
       nav_cat_gastro: "🍽 Gastronomia",
       nav_cat_nature: "🐎 Natureza e animais",
       nav_cat_culture: "🥁 Tradição e cultura",
-      nav_cat_sports: "🏄 Esportes e aventura",
       nav_cat_romantic: "💕 Romântico",
       nav_cat_corporate: "🏢 Experiências corporativas",
+      about_team_linkedin_label: "LinkedIn",
       about_team_photo_alt: "Membro da equipe",
       about_team_romina_role: "Fundadora",
       about_team_romina_bday: "🎂 16 out",
@@ -1936,9 +2379,34 @@ const translations = {
       plaza_meta_line: "🚗 Transfer incluído • 🎫 Ingressos incluídos • ⏱ ~3 h aprox.",
       plaza_text:
         "Explore a icônica praça de touros e sua história com transfer privativo e ingressos incluídos. Pule a fila! Anita é um café no coração do bairro histórico, com uma vista incrível. A experiência tem cerca de 3 horas.",
-      pharmacies_title: "Farmácias em Colonia del Sacramento",
-      pharmacies_intro:
-        "Referências úteis se você precisar de medicamentos ou itens de cuidado pessoal durante a estadia. Os horários podem mudar — confirme localmente.",
+      services_title: "Serviços úteis em Colonia del Sacramento",
+      services_intro:
+        "Farmácias, supermercados perto do Bairro Histórico, estacionamentos, delegacias de polícia e centros de saúde — referências para a sua estadia. Horários e tarifas podem mudar; confirme antes de ir.",
+      services_cat_pharmacies: "Farmácias",
+      services_cat_supermarkets: "Supermercados (zona do Bairro Histórico)",
+      services_cat_parking: "Estacionamentos",
+      services_cat_police: "Delegacias de polícia",
+      services_cat_health: "Policlínica e hospital",
+      services_super_usa_meta:
+        "Gral. Flores 388 (esq. Intendente Suárez) · Perto do Bairro Histórico · Confirme o horário atual",
+      services_super_economico_meta:
+        "Gral. Flores 290 · Próximo ao Bairro Histórico · Confirme o horário atual",
+      services_super_micro_meta:
+        "Região Gral. Flores e 18 de Julio · Compras do dia a dia · Confirme o horário atual",
+      services_park_puerto_title: "Estacionamento — porto / balsa",
+      services_park_puerto_meta:
+        "Perto dos terminais de balsa / porto · Estacionamento pago · Confirme tarifas e horários no local",
+      services_park_centro_title: "Estacionamento — centro (Gral. Flores)",
+      services_park_centro_meta:
+        "Centro na área da Gral. Flores · Estacionamentos pagos e rua tarifada · Observe a sinalização",
+      services_police_secc1_meta:
+        "Dr. Daniel Fosalba 697 · Polícia Nacional — 1ª Seccional Colonia del Sacramento · Atendimento 24 h · Tel. +598 4520 7258 / +598 4520 7259 · Emergências: 911",
+      services_police_jefatura_meta:
+        "Av. Gral. Flores 364 · Comando da Polícia do departamento (administração) · Em geral seg–sex 9h–17h · Tel. +598 4520 7100",
+      services_health_centro_meta:
+        "Centro de Saúde Colonia (policlínica ASSE) · 18 de Julio 462 · Horário típico em dias úteis; ligue para confirmar",
+      services_health_hospital_meta:
+        "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Hospital público — urgências e internação",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Frequentemente 24 h",
       pharmacy_c2_meta: "Gral. Flores 450 (esq. Alberto Méndez) · Em geral todos os dias 8h–22h",
       pharmacy_c3_meta: "Gral. Flores 329 · Confirme o horário atual",
@@ -3429,7 +3897,11 @@ function initRentPopupBehavior() {
     if (exploreBtn) {
       exploreBtn.addEventListener("click", e => {
         e.preventDefault();
-        document.getElementById("experiences")?.scrollIntoView({
+        const section = document.getElementById("experiences");
+        section?.querySelectorAll(".card").forEach((card) => {
+          card.style.removeProperty("display");
+        });
+        section?.scrollIntoView({
           behavior: "smooth"
         });
       });
@@ -3494,32 +3966,42 @@ function initRentPopupBehavior() {
     }
   
   
-    /* ===== FILTER CARDS ===== */
+    /* ===== FILTER CARDS (home: #experiences .card + data-category tokens) ===== */
     const filters = document.querySelectorAll(".hamburger-menu li");
-    const cards = document.querySelectorAll(".card");
-  
-    filters.forEach(filter => {
-      filter.addEventListener("click", () => {
-  
-        const category = filter.dataset.filter;
-  
-        cards.forEach(card => {
-  
+    const experienceSection = document.getElementById("experiences");
+    const cards = experienceSection
+      ? experienceSection.querySelectorAll(".card")
+      : document.querySelectorAll("#experiences .card");
+
+    filters.forEach((filterEl) => {
+      filterEl.addEventListener("click", () => {
+        const menuEl = document.querySelector(".hamburger-menu");
+        if (menuEl) menuEl.style.display = "none";
+
+        if (experienceSection) {
+          experienceSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        const category = filterEl.dataset.filter;
+        if (!category) return;
+
+        cards.forEach((card) => {
           if (category === "all") {
-            card.style.display = "block";
+            card.style.removeProperty("display");
             return;
           }
-  
-          const cardCategories = card.dataset.category;
-  
-          if (cardCategories && cardCategories.includes(category)) {
-            card.style.display = "block";
+
+          const tokens = (card.dataset.category || "")
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+          if (tokens.includes(category)) {
+            card.style.removeProperty("display");
           } else {
             card.style.display = "none";
           }
-  
         });
-  
       });
     });
   
