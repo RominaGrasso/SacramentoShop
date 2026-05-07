@@ -10,6 +10,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    .josefina-promo-price,
+    .josefina-menu-promo-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.35rem 0.55rem;
+      margin: 0;
+    }
+
+    .josefina-price-old {
+      color: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      opacity: 0.85;
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: #d25b5b;
+    }
+
+    .josefina-price-new {
+      color: #ff7e7e;
+      font-size: inherit;
+      font-weight: 700;
+      text-shadow: 0 1px 0 rgba(255, 126, 126, 0.12);
+    }
+
+    .josefina-price-detail {
+      flex-basis: 100%;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .josefina-menu-promo-heading {
+      justify-content: flex-start;
+      gap: 0.25rem 0.45rem;
+    }
+
+    .josefina-menu-promo-heading .josefina-price-new {
+      font-size: inherit;
+    }
+
     /* Modal un poco más ancho solo en esta página (el global suele ser 400–500px). */
     #popupJosefina .popup-box.josefina-menu-popup {
       max-width: min(34rem, 94vw);
@@ -100,6 +143,29 @@
       display: none;
     }
 
+    .josefina-hero-promo-wrap {
+      position: relative;
+    }
+
+    .josefina-hero-discount-badge {
+      top: auto;
+      bottom: 22px;
+      left: 22px;
+      font-size: 1rem;
+      padding: 12px 22px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (max-width: 600px) {
+      .josefina-hero-discount-badge {
+        font-size: 0.88rem;
+        padding: 9px 16px;
+        bottom: 14px;
+        left: 14px;
+      }
+    }
+
     @media (min-width: 480px) {
       .josefina-chivito-nested {
         display: grid;
@@ -156,7 +222,8 @@
 
   </header>
 
-  <section class="food-hero" style="background-image: url('../Assets/images/jose9.jpg'); background-position: center 22%;">
+  <section class="food-hero josefina-hero-promo-wrap" style="background-image: url('../Assets/images/jose9.jpg'); background-position: center 22%;">
+    <div class="discount-badge josefina-hero-discount-badge" data-translate="josefina_launch_badge">🚀 Precio lanzamiento · 30% OFF</div>
   </section>
 
   <section class="coffee-content">
@@ -188,7 +255,11 @@
     </a>
 
     <div class="price-box">
-      <h3 data-translate="josefina_page_price_title">USD 35 per guest · Full menu (main, drink &amp; dessert)</h3>
+      <h3 class="josefina-promo-price">
+        <span class="josefina-price-old" data-translate="josefina_price_original">USD 50</span>
+        <span class="josefina-price-new" data-translate="josefina_price_discount">USD 35 per guest</span>
+        <span class="josefina-price-detail" data-translate="josefina_price_detail">Full menu (main, drink &amp; dessert)</span>
+      </h3>
     </div>
 
     <div class="coffee-includes">
@@ -285,7 +356,12 @@
       <button class="close-x" id="closeJosefina" type="button">✕</button>
 
       <p><strong class="popup-title" data-translate="josefina_page_popup_title">Your menu selection</strong></p>
-      <p class="bruma-tier-heading" data-translate="josefina_menu_heading">Gastronomic menu · USD 35 per guest</p>
+      <p class="bruma-tier-heading josefina-menu-promo-heading">
+        <span data-translate="josefina_menu_heading_label">Gastronomic menu</span>
+        <span>·</span>
+        <span class="josefina-price-old" data-translate="josefina_price_original">USD 50</span>
+        <span class="josefina-price-new" data-translate="josefina_price_discount">USD 35 per guest</span>
+      </p>
 
       <div id="josefinaMenuPanel" class="bruma-menu-panel">
 
