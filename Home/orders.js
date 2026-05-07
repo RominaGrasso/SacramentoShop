@@ -288,6 +288,10 @@ function initExperience(config) {
     experienceNameKey = null,
     /** Optional { starter, main, drink } translation keys for order summary / WhatsApp labels. */
     choiceSectionLabelKeys = null,
+    /** Optional `(order) => void` after popup fields are filled when editing an order. */
+    afterFillPopupForEdit = null,
+    /** Optional `() => void` after popup is opened for a new order (radios may be cleared). */
+    afterOpenPopupForNewOrder = null,
     popupId = "popupBruma",
     closeBtnId = "closeBruma",
     saveBtnId = "saveMenu",
@@ -871,6 +875,20 @@ function initExperience(config) {
           });
         }
       });
+      if (fieldName === "josefina_main" && popup) {
+        [
+          "josefina_chivito_protein",
+          "josefina_sorrentino_sauce",
+          "josefina_fish_garnish"
+        ].forEach((subName) => {
+          popup.querySelectorAll(`input[name="${subName}"]`).forEach((input) => {
+            const value = String(input.dataset.josefinaMainValue || "").trim();
+            const sumKey = input.dataset.translateSummaryKey;
+            if (!value || !sumKey) return;
+            map.set(value, getI18nText(sumKey, value));
+          });
+        });
+      }
       return map;
     };
     const getSecondaryFieldName = (fieldName) => {
@@ -1040,6 +1058,13 @@ function initExperience(config) {
       editingIndex = null;
       saveBtn.textContent = getI18nText("save_selection", "Save selection");
       recheckLoneRadios();
+      if (typeof afterOpenPopupForNewOrder === "function") {
+        try {
+          afterOpenPopupForNewOrder();
+        } catch (err) {
+          console.error(err);
+        }
+      }
     }
 
     if (createBtn && popup && saveBtn) {
@@ -1718,6 +1743,14 @@ function initExperience(config) {
 
       const og = optionalGuideEl();
       if (og && !groupGuideOptional) og.checked = Boolean(order.includeGuide);
+
+      if (typeof afterFillPopupForEdit === "function") {
+        try {
+          afterFillPopupForEdit(order);
+        } catch (err) {
+          console.error(err);
+        }
+      }
     };
 
     const renderOrders = () => {
