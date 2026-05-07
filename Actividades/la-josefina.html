@@ -4,11 +4,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta charset="UTF-8">
   <title>La Josefina — Yachting de Colonia | Sacramento Adventures</title>
-  <link rel="icon" href="../Assets/images/favicon.png" type="image/png">
+  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
 
   <link rel="stylesheet" href="../Styles/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Modal un poco más ancho solo en esta página (el global suele ser 400–500px). */
+    #popupJosefina .popup-box.josefina-menu-popup {
+      max-width: min(34rem, 94vw);
+      width: 94%;
+      padding: 1.35rem 1.35rem 1.5rem;
+    }
+
+    /* .popup-list li es flex en fila: platos con subopciones (label + extras) → forzar columna. */
+    .josefina-main-chivito-block,
+    .josefina-main-sorrentinos-block,
+    .josefina-main-fish-block {
+      flex-direction: column;
+      align-items: stretch;
+      align-self: stretch;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .josefina-main-chivito-block > label.josefina-chivito-main-label,
+    .josefina-main-sorrentinos-block > label.josefina-chivito-main-label,
+    .josefina-main-fish-block > label.josefina-chivito-main-label {
+      width: 100%;
+    }
+
+    .josefina-chivito-text-wrap {
+      display: block;
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+      line-height: 1.45;
+    }
+
+    /* El global pinta solo el primer span hijo del radio; forzamos título azul al elegir y texto secundario neutro. */
+    #popupJosefina .josefina-chivito-main-label input:checked + .josefina-chivito-text-wrap {
+      color: #5c6670;
+      font-weight: 400;
+    }
+
+    #popupJosefina .josefina-chivito-text-wrap .josefina-chivito-title {
+      display: block;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    #popupJosefina .josefina-chivito-main-label input:checked + .josefina-chivito-text-wrap .josefina-chivito-title {
+      color: #5a95cf;
+    }
+
+    #popupJosefina .josefina-chivito-text-wrap .josefina-chivito-desc {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.95em;
+      font-weight: 400;
+      color: #5c6670;
+      line-height: 1.45;
+    }
+
+    .josefina-chivito-protein-hint {
+      margin: 0.65rem 0 0.15rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.35;
+      opacity: 0.95;
+      text-align: left;
+      width: 100%;
+    }
+
+    .josefina-chivito-nested {
+      list-style: none;
+      margin: 0.35rem 0 0;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background: rgba(90, 149, 207, 0.07);
+      border: 1px solid rgba(47, 103, 163, 0.14);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .josefina-chivito-nested li {
+      margin-bottom: 0.5rem;
+    }
+
+    .josefina-chivito-nested li:last-child {
+      margin-bottom: 0;
+    }
+
+    .josefina-subchoice-extras.josefina-subchoice-extras--hidden {
+      display: none;
+    }
+
+    @media (min-width: 480px) {
+      .josefina-chivito-nested {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.35rem 1rem;
+        padding: 0.85rem 1.1rem;
+      }
+
+      .josefina-chivito-nested li {
+        margin-bottom: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -64,7 +168,7 @@
       The views over the water are the highlight — golden sunsets, passing boats, and a relaxed marina atmosphere.
     </p>
     <p data-translate="josefina_page_p2">
-      The restaurant is run by its owners, Pablo and Alejandro.
+      The restaurant is run by its owners, Pablo and Luis. Luis is incredibly friendly and welcoming, and Pablo is wonderful — often working alongside his son, Guzmán. They take great care of the place and their team, and they'll make sure you have an experience like no other.
     </p>
     <p data-translate="josefina_page_p3">
       The menu combines Uruguayan classics and regional favorites — ideal for pairing great food with one of the best panoramas in town.
@@ -84,7 +188,7 @@
     </a>
 
     <div class="price-box">
-      <h3 data-translate="josefina_page_price_title">From USD 25 per guest · Premium USD 35</h3>
+      <h3 data-translate="josefina_page_price_title">USD 35 per guest · Full menu (main, drink &amp; dessert)</h3>
     </div>
 
     <div class="coffee-includes">
@@ -110,7 +214,7 @@
               Pick the day you plan to come so we can coordinate availability in advance.
             </p>
           </div>
-          <p data-translate="josefina_page_create_subtitle">Select standard or premium menu, then your courses and preferences</p>
+          <p data-translate="josefina_page_create_subtitle">Choose your main course, drink and dessert (La Josefina Yachting Club menu)</p>
 
           <button id="createMenuBtnJosefina" class="btn primary-btn" data-translate="josefina_page_create_btn">
             + Create your menu
@@ -176,157 +280,221 @@
   </div>
 
   <div class="popup-overlay" id="popupJosefina">
-    <div class="popup-box">
+    <div class="popup-box josefina-menu-popup">
 
       <button class="close-x" id="closeJosefina" type="button">✕</button>
 
       <p><strong class="popup-title" data-translate="josefina_page_popup_title">Your menu selection</strong></p>
+      <p class="bruma-tier-heading" data-translate="josefina_menu_heading">Gastronomic menu · USD 35 per guest</p>
 
-      <div class="bruma-tier-wrap">
-        <p class="bruma-tier-heading" data-translate="josefina_tier_heading">Choose your menu</p>
+      <div id="josefinaMenuPanel" class="bruma-menu-panel">
 
-        <label class="bruma-tier-option">
-          <input type="radio" name="josefinaMenuTier" value="standard" checked>
-          <span data-translate="josefina_tier_standard_option">Standard — from USD 25 per guest</span>
-        </label>
+        <p><strong data-translate="josefina_choice_main">Main course</strong></p>
+        <ul class="popup-list">
+          <li class="josefina-main-chivito-block">
+            <label class="josefina-chivito-main-label">
+              <input
+                type="radio"
+                name="josefina_main"
+                id="josefinaMainChivito"
+                value="Chivito El Yachting — beef (ham, mozzarella, fried egg, lettuce, tomato; ciabatta &amp; fries)"
+                checked
+              >
+              <span class="josefina-chivito-text-wrap">
+                <span class="josefina-chivito-title" data-translate="josefina_menu_main_chivito_title">Chivito El Yachting</span>
+                <span class="josefina-chivito-desc" data-translate="josefina_menu_main_chivito_desc">Ham, mozzarella, fried egg, lettuce, tomato · ciabatta &amp; fries</span>
+              </span>
+            </label>
+            <div class="josefina-subchoice-extras" id="josefinaChivitoExtras">
+            <p class="josefina-chivito-protein-hint" data-translate="josefina_chivito_protein_hint">Choose the protein</p>
+            <ul class="popup-list josefina-chivito-nested" id="josefinaChivitoProteins">
+              <li>
+                <label>
+                  <input
+                    type="radio"
+                    name="josefina_chivito_protein"
+                    value="beef"
+                    checked
+                    data-josefina-main-value="Chivito El Yachting — beef (ham, mozzarella, fried egg, lettuce, tomato; ciabatta &amp; fries)"
+                    data-translate-summary-key="josefina_menu_main_1"
+                  >
+                  <span data-translate="josefina_chivito_protein_beef">Beef</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input
+                    type="radio"
+                    name="josefina_chivito_protein"
+                    value="chicken"
+                    data-josefina-main-value="Chivito El Yachting — chicken (ham, mozzarella, fried egg, lettuce, tomato; ciabatta &amp; fries)"
+                    data-translate-summary-key="josefina_menu_main_2"
+                  >
+                  <span data-translate="josefina_chivito_protein_chicken">Chicken</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input
+                    type="radio"
+                    name="josefina_chivito_protein"
+                    value="pork"
+                    data-josefina-main-value="Chivito El Yachting — pork (ham, mozzarella, fried egg, lettuce, tomato; ciabatta &amp; fries)"
+                    data-translate-summary-key="josefina_menu_main_3"
+                  >
+                  <span data-translate="josefina_chivito_protein_pork">Pork</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input
+                    type="radio"
+                    name="josefina_chivito_protein"
+                    value="fish"
+                    data-josefina-main-value="Chivito El Yachting — fish of the day (ham, mozzarella, fried egg, lettuce, tomato; ciabatta &amp; fries)"
+                    data-translate-summary-key="josefina_menu_main_4"
+                  >
+                  <span data-translate="josefina_chivito_protein_fish">Fish of the day</span>
+                </label>
+              </li>
+            </ul>
+            </div>
+          </li>
+          <li class="josefina-main-sorrentinos-block">
+            <label class="josefina-chivito-main-label">
+              <input
+                type="radio"
+                name="josefina_main"
+                id="josefinaMainSorrentinos"
+                value="Ham and cheese sorrentinos — Bolognese sauce"
+                data-legacy-values="Ham and cheese sorrentinos — Bolognese sauce|Ham and cheese sorrentinos — pink sauce"
+              >
+              <span class="josefina-chivito-text-wrap">
+                <span class="josefina-chivito-title" data-translate="josefina_menu_main_sorrentinos_title">Ham and cheese sorrentinos</span>
+                <span class="josefina-chivito-desc" data-translate="josefina_menu_main_sorrentinos_desc">Bolognese or pink sauce</span>
+              </span>
+            </label>
+            <div class="josefina-subchoice-extras josefina-subchoice-extras--hidden" id="josefinaSorrentinosExtras">
+              <p class="josefina-chivito-protein-hint" data-translate="josefina_sorrentino_sauce_hint">Choose the sauce</p>
+              <ul class="popup-list josefina-chivito-nested" id="josefinaSorrentinosSauces">
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="josefina_sorrentino_sauce"
+                      value="bolognese"
+                      checked
+                      data-josefina-main-value="Ham and cheese sorrentinos — Bolognese sauce"
+                      data-translate-summary-key="josefina_menu_main_5"
+                    >
+                    <span data-translate="josefina_sorrentino_sauce_bolognese">Bolognese sauce</span>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="josefina_sorrentino_sauce"
+                      value="pink"
+                      data-josefina-main-value="Ham and cheese sorrentinos — pink sauce"
+                      data-translate-summary-key="josefina_menu_main_6"
+                    >
+                    <span data-translate="josefina_sorrentino_sauce_pink">Pink sauce</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="josefina-main-fish-block">
+            <label class="josefina-chivito-main-label">
+              <input
+                type="radio"
+                name="josefina_main"
+                id="josefinaMainFish"
+                value="Fish of the day with garnish — fresh salad"
+                data-legacy-values="Fish of the day with garnish — fresh salad|Fish of the day with garnish — french fries"
+              >
+              <span class="josefina-chivito-text-wrap">
+                <span class="josefina-chivito-title" data-translate="josefina_menu_main_fish_title">Fish of the day with garnish</span>
+                <span class="josefina-chivito-desc" data-translate="josefina_menu_main_fish_desc">Fresh salad or french fries</span>
+              </span>
+            </label>
+            <div class="josefina-subchoice-extras josefina-subchoice-extras--hidden" id="josefinaFishExtras">
+              <p class="josefina-chivito-protein-hint" data-translate="josefina_fish_garnish_hint">Choose the side</p>
+              <ul class="popup-list josefina-chivito-nested" id="josefinaFishSides">
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="josefina_fish_garnish"
+                      value="salad"
+                      checked
+                      data-josefina-main-value="Fish of the day with garnish — fresh salad"
+                      data-translate-summary-key="josefina_menu_main_7"
+                    >
+                    <span data-translate="josefina_fish_garnish_salad">Fresh salad</span>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="josefina_fish_garnish"
+                      value="fries"
+                      data-josefina-main-value="Fish of the day with garnish — french fries"
+                      data-translate-summary-key="josefina_menu_main_8"
+                    >
+                    <span data-translate="josefina_fish_garnish_fries">French fries</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
 
-        <label class="bruma-tier-option">
-          <input type="radio" name="josefinaMenuTier" value="premium">
-          <span data-translate="josefina_tier_premium_option">Premium — USD 35 per guest</span>
-        </label>
-      </div>
-
-      <div id="josefinaStandardMenu" class="bruma-menu-panel">
-
-        <p><strong data-translate="josefina_page_popup_starter">Starter</strong></p>
+        <p><strong data-translate="josefina_choice_drink">Drink (choose one)</strong></p>
         <ul class="popup-list">
           <li>
             <label>
-              <input type="radio" name="josefina_starter" value="Homemade empanadas (cheese &amp; onion / ham &amp; cheese / corn)">
-              <span data-translate="josefina_starter_1">Homemade empanadas (cheese &amp; onion / ham &amp; cheese / corn)</span>
+              <input type="radio" name="josefina_drink" value="Pepsi line soft drink" checked>
+              <span data-translate="josefina_menu_drink_1">Pepsi line soft drink</span>
             </label>
           </li>
           <li>
             <label>
-              <input type="radio" name="josefina_starter" value="Grilled provolone cheese with oregano and tomato jam">
-              <span data-translate="josefina_starter_2">Grilled provolone cheese with oregano and tomato jam</span>
+              <input type="radio" name="josefina_drink" value="Glass of wine">
+              <span data-translate="josefina_menu_drink_2">Glass of wine</span>
             </label>
           </li>
           <li>
             <label>
-              <input type="radio" name="josefina_starter" value="Seasonal vegetable soup">
-              <span data-translate="josefina_starter_3">Seasonal vegetable soup</span>
+              <input type="radio" name="josefina_drink" value="Water — still or sparkling">
+              <span data-translate="josefina_menu_drink_3">Water — still or sparkling</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="josefina_drink" value="Lemonade or orange juice">
+              <span data-translate="josefina_menu_drink_4">Lemonade or orange juice</span>
             </label>
           </li>
         </ul>
 
-        <p><strong data-translate="josefina_page_popup_main">Main Course</strong></p>
+        <p><strong data-translate="josefina_choice_dessert">Dessert (choose one)</strong></p>
         <ul class="popup-list">
           <li>
             <label>
-              <input type="radio" name="josefina_main" value="Catch of the day with sautéed vegetables or mashed potato">
-              <span data-translate="josefina_main_1">Catch of the day with sautéed vegetables or mashed potato</span>
+              <input type="radio" name="josefina_dessert" value="Flan with dulce de leche" checked>
+              <span data-translate="josefina_menu_dessert_1">Flan with dulce de leche</span>
             </label>
           </li>
           <li>
             <label>
-              <input type="radio" name="josefina_main" value="Grilled beef sirloin with fries or mixed salad">
-              <span data-translate="josefina_main_2">Grilled beef sirloin with fries or mixed salad</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_main" value="Homemade pasta with tomato sauce or filetto">
-              <span data-translate="josefina_main_3">Homemade pasta with tomato sauce or filetto</span>
+              <input type="radio" name="josefina_dessert" value="Fruit salad">
+              <span data-translate="josefina_menu_dessert_2">Fruit salad</span>
             </label>
           </li>
         </ul>
-
-        <p><strong data-translate="josefina_page_popup_drink">Drink</strong></p>
-        <ul class="popup-list">
-          <li>
-            <label>
-              <input type="radio" name="josefina_drink" value="Glass of wine (red / rosé / white)">
-              <span data-translate="josefina_drink_1">Glass of wine (red / rosé / white)</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_drink" value="Water, soda or lemonade">
-              <span data-translate="josefina_drink_2">Water, soda or lemonade</span>
-            </label>
-          </li>
-        </ul>
-      </div>
-
-      <div id="josefinaPremiumMenu" class="bruma-menu-panel" hidden>
-
-        <p><strong data-translate="josefina_prem_platos">Plates</strong></p>
-        <ul class="popup-list">
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_starter" value="Grilled ribeye with fries, salsa criolla &amp; chimichurri">
-              <span data-translate="josefina_prem_starter_1">Grilled ribeye with fries, salsa criolla &amp; chimichurri</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_starter" value="Seafood stew or grilled fish platter (subject to availability)">
-              <span data-translate="josefina_prem_starter_2">Seafood stew or grilled fish platter (subject to availability)</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_starter" value="Surf &amp; turf (beef tenderloin &amp; prawns) with roasted vegetables">
-              <span data-translate="josefina_prem_starter_3">Surf &amp; turf (beef tenderloin &amp; prawns) with roasted vegetables</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_starter" value="Pumpkin ravioli with sage butter &amp; almonds">
-              <span data-translate="josefina_prem_starter_4">Pumpkin ravioli with sage butter &amp; almonds</span>
-            </label>
-          </li>
-        </ul>
-
-        <p><strong data-translate="josefina_prem_postres">Desserts</strong></p>
-        <ul class="popup-list">
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_main" value="Baked cheesecake with red berries">
-              <span data-translate="josefina_prem_main_1">Baked cheesecake with red berries</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_main" value="Pavlova with pastry cream &amp; seasonal fruit">
-              <span data-translate="josefina_prem_main_2">Pavlova with pastry cream &amp; seasonal fruit</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_main" value="Chocolate cake with dulce de leche &amp; English cream">
-              <span data-translate="josefina_prem_main_3">Chocolate cake with dulce de leche &amp; English cream</span>
-            </label>
-          </li>
-        </ul>
-
-        <p><strong data-translate="josefina_prem_bebidas">Drinks</strong></p>
-        <ul class="popup-list">
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_drink" value="Glass of wine (red / white / rosé)">
-              <span data-translate="josefina_prem_drink_1">Glass of wine (red / white / rosé)</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="josefina_prm_drink" value="Water, soda or glass of lemonade">
-              <span data-translate="josefina_prem_drink_2">Water, soda or glass of lemonade</span>
-            </label>
-          </li>
-        </ul>
-
       </div>
 
       <div class="preferences-inside">
@@ -350,45 +518,171 @@
   <script src="../Home/orders.js"></script>
   <script src="../Home/booking-date-picker.js"></script>
   <script>
-    initExperience({
-      experienceName: "La Josefina",
-      experienceNameKey: "josefina_experience_name",
-      pricePerPerson: 25,
-      menuUpgradePrice: 35,
-      menuTierRadioName: "josefinaMenuTier",
-      premiumChoiceFieldNames: {
-        starter: "josefina_prm_starter",
-        main: "josefina_prm_main",
-        drink: "josefina_prm_drink"
-      },
-      menuTierPanelIds: {
-        standard: "josefinaStandardMenu",
-        premium: "josefinaPremiumMenu"
-      },
-      popupId: "popupJosefina",
-      closeBtnId: "closeJosefina",
-      createBtnId: "createMenuBtnJosefina",
-      saveBtnId: "saveMenuJosefina",
-      orderSummaryId: "orderSummary",
-      bookNowBottomId: "bookNowBottomJosefina",
-      starterName: "josefina_starter",
-      mainName: "josefina_main",
-      drinkName: "josefina_drink",
-      whatsappNumber: "598091642195",
-      storageKey: "orders_la_josefina",
-      selectedDateKey: "selectedDate",
-      tierSummaryStandardKey: "josefina_order_tier_standard",
-      tierSummaryPremiumKey: "josefina_order_tier_premium",
-      tierWhatsappStandardKey: "josefina_whatsapp_standard",
-      tierWhatsappPremiumKey: "josefina_whatsapp_premium",
-      dynamicPayment: {
-        enabled: true,
-        endpoint: "/api/payments/resolve",
-        experienceId: "la_josefina",
-        currency: "USD"
-      },
-      paymentLinks: {}
-    });
+    (function () {
+      const POPUP_ID = "popupJosefina";
+
+      const SUBCHOICE_PAIRS = [
+        ["josefinaMainChivito", "josefina_chivito_protein"],
+        ["josefinaMainSorrentinos", "josefina_sorrentino_sauce"],
+        ["josefinaMainFish", "josefina_fish_garnish"]
+      ];
+
+      const SUBCHOICE_WRAPS = [
+        ["josefinaMainChivito", "josefinaChivitoExtras"],
+        ["josefinaMainSorrentinos", "josefinaSorrentinosExtras"],
+        ["josefinaMainFish", "josefinaFishExtras"]
+      ];
+
+      function syncSubMain(mainId, subInputName) {
+        const main = document.getElementById(mainId);
+        if (!main || !main.checked) return;
+        const p = document.querySelector(`#${POPUP_ID} input[name="${subInputName}"]:checked`);
+        if (p && p.dataset.josefinaMainValue) main.value = p.dataset.josefinaMainValue;
+      }
+
+      function syncAllSubMains() {
+        SUBCHOICE_PAIRS.forEach(([mid, sub]) => syncSubMain(mid, sub));
+      }
+
+      function toggleAllSubchoiceExtras() {
+        SUBCHOICE_WRAPS.forEach(([mainId, wrapId]) => {
+          const main = document.getElementById(mainId);
+          const wrap = document.getElementById(wrapId);
+          if (!wrap) return;
+          wrap.classList.toggle("josefina-subchoice-extras--hidden", !(main && main.checked));
+        });
+      }
+
+      function onJosefinaMainChanged() {
+        syncAllSubMains();
+        toggleAllSubchoiceExtras();
+      }
+
+      function matchSubRadiosFromStarter(popupEl, subInputName, starter, fallbackValue) {
+        let matched = false;
+        if (!popupEl) return;
+        popupEl.querySelectorAll(`input[name="${subInputName}"]`).forEach((p) => {
+          const v = String(p.dataset.josefinaMainValue || "").trim();
+          const on = v === starter;
+          p.checked = on;
+          if (on) matched = true;
+        });
+        if (!matched) {
+          const fb = popupEl.querySelector(`input[name="${subInputName}"][value="${fallbackValue}"]`);
+          if (fb) fb.checked = true;
+        }
+      }
+
+      function wireJosefinaMainSubchoices() {
+        const popup = document.getElementById(POPUP_ID);
+        if (!popup) return;
+        popup.addEventListener("change", (e) => {
+          const t = e.target;
+          if (!t || !t.name) return;
+          if (t.name === "josefina_chivito_protein") {
+            const m = document.getElementById("josefinaMainChivito");
+            if (m) m.checked = true;
+            syncAllSubMains();
+            toggleAllSubchoiceExtras();
+            return;
+          }
+          if (t.name === "josefina_sorrentino_sauce") {
+            const m = document.getElementById("josefinaMainSorrentinos");
+            if (m) m.checked = true;
+            syncAllSubMains();
+            toggleAllSubchoiceExtras();
+            return;
+          }
+          if (t.name === "josefina_fish_garnish") {
+            const m = document.getElementById("josefinaMainFish");
+            if (m) m.checked = true;
+            syncAllSubMains();
+            toggleAllSubchoiceExtras();
+            return;
+          }
+          if (t.name === "josefina_main") onJosefinaMainChanged();
+        });
+        const saveBtn = document.getElementById("saveMenuJosefina");
+        if (saveBtn) saveBtn.addEventListener("click", syncAllSubMains, true);
+        toggleAllSubchoiceExtras();
+      }
+
+      document.addEventListener("DOMContentLoaded", wireJosefinaMainSubchoices);
+
+      initExperience({
+        experienceName: "La Josefina",
+        experienceNameKey: "josefina_experience_name",
+        pricePerPerson: 35,
+        choiceSectionLabelKeys: {
+          starter: "josefina_choice_main",
+          main: "josefina_choice_dessert",
+          drink: "josefina_choice_drink"
+        },
+        popupId: POPUP_ID,
+        closeBtnId: "closeJosefina",
+        createBtnId: "createMenuBtnJosefina",
+        saveBtnId: "saveMenuJosefina",
+        orderSummaryId: "orderSummary",
+        bookNowBottomId: "bookNowBottomJosefina",
+        starterName: "josefina_main",
+        mainName: "josefina_dessert",
+        drinkName: "josefina_drink",
+        whatsappNumber: "598091642195",
+        storageKey: "orders_la_josefina",
+        selectedDateKey: "selectedDate",
+        afterOpenPopupForNewOrder() {
+          const popup = document.getElementById(POPUP_ID);
+          const ch = document.getElementById("josefinaMainChivito");
+          if (!popup || !ch) return;
+          ch.checked = true;
+          popup.querySelectorAll('input[name="josefina_chivito_protein"]').forEach((r) => {
+            r.checked = r.value === "beef";
+          });
+          popup.querySelectorAll('input[name="josefina_sorrentino_sauce"]').forEach((r) => {
+            r.checked = r.value === "bolognese";
+          });
+          popup.querySelectorAll('input[name="josefina_fish_garnish"]').forEach((r) => {
+            r.checked = r.value === "salad";
+          });
+          syncAllSubMains();
+          toggleAllSubchoiceExtras();
+        },
+        afterFillPopupForEdit(order) {
+          const popupEl = document.getElementById(POPUP_ID);
+          const starter = String(order && order.starter ? order.starter : "").trim();
+          const ch = document.getElementById("josefinaMainChivito");
+          const sor = document.getElementById("josefinaMainSorrentinos");
+          const fish = document.getElementById("josefinaMainFish");
+
+          if (ch && starter.indexOf("Chivito El Yachting") !== -1) {
+            ch.checked = true;
+            ch.value = starter;
+            matchSubRadiosFromStarter(popupEl, "josefina_chivito_protein", starter, "beef");
+            syncSubMain("josefinaMainChivito", "josefina_chivito_protein");
+          }
+          if (sor && starter.indexOf("Ham and cheese sorrentinos") !== -1) {
+            sor.checked = true;
+            sor.value = starter;
+            matchSubRadiosFromStarter(popupEl, "josefina_sorrentino_sauce", starter, "bolognese");
+            syncSubMain("josefinaMainSorrentinos", "josefina_sorrentino_sauce");
+          }
+          if (fish && starter.indexOf("Fish of the day with garnish") !== -1) {
+            fish.checked = true;
+            fish.value = starter;
+            matchSubRadiosFromStarter(popupEl, "josefina_fish_garnish", starter, "salad");
+            syncSubMain("josefinaMainFish", "josefina_fish_garnish");
+          }
+          toggleAllSubchoiceExtras();
+        },
+        dynamicPayment: {
+          enabled: true,
+          endpoint: "/api/payments/resolve",
+          experienceId: "la_josefina",
+          currency: "USD"
+        },
+        paymentLinks: {}
+      });
+    })();
   </script>
 
   <a
