@@ -4452,12 +4452,15 @@
   }
 }
 
-/* Plexo smoke test panel (?plexo_test=1 en Home/index.html) */
+/* Plexo smoke test panel (Home/index.html, bajo la franja celeste) */
 .plexo-payment-test {
+  position: relative;
+  z-index: 5;
   max-width: 720px;
   margin: 16px auto 8px;
   padding: 0 40px;
   box-sizing: border-box;
+  scroll-margin-top: 12px;
 }
 
 .plexo-payment-test__inner {
@@ -4466,12 +4469,6 @@
   border-radius: 10px;
   padding: 16px 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.plexo-payment-test__gate {
-  background: #f8fafc;
-  border-radius: 8px;
-  padding: 4px 2px;
 }
 
 .plexo-payment-test__title {
