@@ -131,6 +131,28 @@
   
   </section>
 
+  <!-- Plexo: prueba USD 0.20 — agregar ?plexo_test=1 (o ?plexo_test) a la URL y recargar -->
+  <section id="plexo-payment-test" class="plexo-payment-test" aria-label="Plexo payment test">
+    <div class="plexo-payment-test__inner">
+      <div id="plexo-payment-test-gate" class="plexo-payment-test__gate">
+        <p class="plexo-payment-test__title"><strong>Prueba de pago Plexo</strong> — USD 0.20</p>
+        <p class="plexo-payment-test__hint">
+          Para ver el botón de checkout, agregá al final de la dirección
+          <code>?plexo_test=1</code> y recargá la página.
+          Ejemplo: <code class="plexo-payment-test__url-sample"></code>
+        </p>
+        <p class="plexo-payment-test__hint">
+          También podés usar solo <code>?plexo_test</code> o el ancla <code>#plexo_test</code>.
+        </p>
+      </div>
+      <div id="plexo-payment-test-active" class="plexo-payment-test__active" hidden>
+        <p class="plexo-payment-test__title"><strong>Prueba de pago Plexo</strong> — USD 0.20</p>
+        <button type="button" class="btn" id="plexo-payment-test-btn">Abrir checkout de prueba</button>
+        <p class="plexo-payment-test__status" id="plexo-payment-test-status" role="status"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="hero-region-tagline" aria-label="Área de actividades">
     <p class="hero-region-tagline__text" data-translate="hero_tagline_region">
       Actividades en Colonia del Sacramento y alrededores
@@ -2130,6 +2152,92 @@
        aria-label="WhatsApp">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
     </a>
+
+    <script>
+    (function () {
+      function paymentsApiBase() {
+        if (typeof window !== "undefined" && window.SACRAMENTO_PAYMENTS_API_BASE) {
+          return String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "");
+        }
+        return "https://sacramento-payments-test.onrender.com";
+      }
+      function plexoTestEnabled() {
+        var params = new URLSearchParams(window.location.search || "");
+        if (params.get("plexo_test") === "0") return false;
+        if (params.has("plexo_test")) return true;
+        if ((window.location.hash || "").replace(/^#/, "") === "plexo_test") return true;
+        return false;
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        var gate = document.getElementById("plexo-payment-test-gate");
+        var active = document.getElementById("plexo-payment-test-active");
+        var sampleEl = document.querySelector(".plexo-payment-test__url-sample");
+        if (sampleEl && window.location.pathname) {
+          try {
+            var u = new URL(window.location.href);
+            u.searchParams.set("plexo_test", "1");
+            sampleEl.textContent = u.pathname + u.search;
+          } catch (e) {
+            sampleEl.textContent = "?plexo_test=1";
+          }
+        }
+        var btn = document.getElementById("plexo-payment-test-btn");
+        var statusEl = document.getElementById("plexo-payment-test-status");
+        if (!gate || !active || !btn || !statusEl) return;
+        if (plexoTestEnabled()) {
+          gate.hidden = true;
+          active.hidden = false;
+        } else {
+          gate.hidden = false;
+          active.hidden = true;
+          return;
+        }
+        btn.addEventListener("click", function () {
+          statusEl.textContent = "Generando enlace…";
+          btn.disabled = true;
+          var base = paymentsApiBase();
+          fetch(base + "/api/payments/resolve", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              experience: "plexo_prod_smoke_test",
+              amount: 0.2,
+              currency: "USD",
+              people: 1,
+              orderPayload: { purpose: "Plexo production smoke test", amountUsd: 0.2 }
+            })
+          })
+            .then(function (r) {
+              return r.json().then(function (data) {
+                return { ok: r.ok, data: data };
+              });
+            })
+            .then(function (_ref) {
+              var ok = _ref.ok;
+              var data = _ref.data;
+              if (!ok) {
+                statusEl.textContent = (data && (data.detail || data.error)) || "Error al crear el link";
+                btn.disabled = false;
+                return;
+              }
+              var url = data.paymentUrl || data.url || "";
+              if (!url) {
+                statusEl.textContent = "Respuesta sin paymentUrl";
+                btn.disabled = false;
+                return;
+              }
+              statusEl.textContent = "Abriendo checkout…";
+              window.open(url, "_blank", "noopener,noreferrer");
+              btn.disabled = false;
+            })
+            .catch(function (e) {
+              statusEl.textContent = e && e.message ? e.message : "Error de red";
+              btn.disabled = false;
+            });
+        });
+      });
+    })();
+    </script>
     
     </body>
     </html>
