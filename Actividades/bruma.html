@@ -8,6 +8,75 @@
   <link rel="stylesheet" href="../Styles/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .bruma-promo-price {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0;
+    }
+
+    .bruma-promo-price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.35rem 0.55rem;
+    }
+
+    .bruma-price-tier-label {
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .bruma-price-old {
+      color: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      opacity: 0.85;
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: #d25b5b;
+    }
+
+    .bruma-price-new {
+      color: #ff7e7e;
+      font-size: inherit;
+      font-weight: 700;
+      text-shadow: 0 1px 0 rgba(255, 126, 126, 0.12);
+    }
+
+    .bruma-tier-option-text {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem 0.45rem;
+    }
+
+    .bruma-hero-promo-wrap {
+      position: relative;
+    }
+
+    .bruma-hero-discount-badge {
+      top: auto;
+      bottom: 22px;
+      left: 22px;
+      font-size: 1rem;
+      padding: 12px 22px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (max-width: 600px) {
+      .bruma-hero-discount-badge {
+        font-size: 0.88rem;
+        padding: 9px 16px;
+        bottom: 14px;
+        left: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
  
@@ -58,7 +127,8 @@
 </header>
     
     <!-- ================= HERO ================= -->
-    <section class="food-hero" style="background-image: url('../Assets/images/bruman1.jpg');">
+    <section class="food-hero bruma-hero-promo-wrap" style="background-image: url('../Assets/images/bruman1.jpg');">
+      <div class="discount-badge bruma-hero-discount-badge" data-translate="bruma_discount_badge">🚀 Launch price · 22% OFF</div>
     </section>
     
     <!-- ================= CONTENT ================= -->
@@ -95,7 +165,18 @@
     
       <!-- PRICE -->
       <div class="price-box">
-        <h3 data-translate="bruma_price_title">From USD 35 per guest · Premium USD 45</h3>
+        <h3 class="bruma-promo-price">
+          <span class="bruma-promo-price-row">
+            <span class="bruma-price-tier-label" data-translate="bruma_price_standard_label">Standard</span>
+            <span class="bruma-price-old" data-translate="bruma_price_standard_original">USD 45</span>
+            <span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 35 per guest</span>
+          </span>
+          <span class="bruma-promo-price-row">
+            <span class="bruma-price-tier-label" data-translate="bruma_price_premium_label">Premium</span>
+            <span class="bruma-price-old" data-translate="bruma_price_premium_original">USD 60</span>
+            <span class="bruma-price-new" data-translate="bruma_price_premium_discount">USD 50 per guest</span>
+          </span>
+        </h3>
       </div>
     
       <div class="coffee-includes">
@@ -216,12 +297,22 @@
 
             <label class="bruma-tier-option">
               <input type="radio" name="brumaMenuTier" value="standard" checked>
-              <span data-translate="bruma_tier_standard_option">Standard — from USD 35 per guest</span>
+              <span class="bruma-tier-option-text">
+                <span data-translate="bruma_price_standard_label">Standard</span>
+                <span>—</span>
+                <span class="bruma-price-old" data-translate="bruma_price_standard_original">USD 45</span>
+                <span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 35 per guest</span>
+              </span>
             </label>
 
             <label class="bruma-tier-option">
               <input type="radio" name="brumaMenuTier" value="premium">
-              <span data-translate="bruma_tier_premium_option">Premium — USD 45 per guest</span>
+              <span class="bruma-tier-option-text">
+                <span data-translate="bruma_price_premium_label">Premium</span>
+                <span>—</span>
+                <span class="bruma-price-old" data-translate="bruma_price_premium_original">USD 60</span>
+                <span class="bruma-price-new" data-translate="bruma_price_premium_discount">USD 50 per guest</span>
+              </span>
             </label>
           </div>
 
@@ -388,7 +479,7 @@
         initExperience({
           experienceName: "Bruma",
           pricePerPerson: 35,
-          menuUpgradePrice: 45,
+          menuUpgradePrice: 50,
           menuTierRadioName: "brumaMenuTier",
           premiumChoiceFieldNames: {
             starter: "prm_starter",
