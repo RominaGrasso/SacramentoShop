@@ -445,6 +445,10 @@
         `;
       });
       html += `
+        <div class="romantic-order-actions">
+          <button type="button" id="editRomanticOrder" class="add-guest-btn">Editar menú</button>
+          <button type="button" id="deleteRomanticOrder" class="add-guest-btn">Eliminar pedido</button>
+        </div>
         <div class="total-box">
           <div class="total-left">
             <span class="total-label">Total</span>
@@ -453,8 +457,6 @@
           <div class="total-right">USD ${TOTAL_USD}</div>
           <a href="#" id="bookRomanticWithOrder" class="btn total-btn">Reservar</a>
         </div>
-        <button type="button" id="editRomanticOrder" class="add-guest-btn">Editar menú</button>
-        <button type="button" id="deleteRomanticOrder" class="add-guest-btn">Eliminar pedido</button>
       `;
       summary.innerHTML = html;
     }
