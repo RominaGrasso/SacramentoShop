@@ -223,6 +223,7 @@
 </div>
 
 <script src="../Home/index.js?v=20260510icons"></script>
+<script src="../Home/orders.js"></script>
 <script src="../Home/booking-date-picker.js"></script>
 <script>
   (function () {
@@ -230,6 +231,12 @@
     const DATE_KEY = "selectedDateRomantic";
     const TOTAL_USD = 140;
     const WHATSAPP_NUMBER = "598091642195";
+    const PAYMENT_CONFIG = {
+      enabled: true,
+      endpoint: "/api/payments/resolve",
+      experienceId: "romantic",
+      currency: "USD"
+    };
     const sections = [
       {
         key: "starter",
@@ -463,7 +470,49 @@
       summary.innerHTML = html;
     }
 
-    function buildWhatsAppMessage() {
+    function bookingTotals(bookings) {
+      return {
+        people: bookings.length * 2,
+        total: bookings.length * TOTAL_USD
+      };
+    }
+
+    async function resolveRomanticPaymentLink(bookings) {
+      if (typeof resolveDynamicPaymentLink !== "function") return "";
+      const date = formatDate(getVisitDate());
+      const totals = bookingTotals(bookings);
+      const fingerprintPayload = {
+        bookings,
+        date,
+        people: totals.people,
+        total: totals.total
+      };
+      const fingerprint =
+        typeof stableStringify === "function"
+          ? stableStringify(fingerprintPayload)
+          : JSON.stringify(fingerprintPayload);
+
+      try {
+        return await resolveDynamicPaymentLink(PAYMENT_CONFIG, {
+          experience: PAYMENT_CONFIG.experienceId,
+          amount: totals.total,
+          currency: PAYMENT_CONFIG.currency,
+          people: totals.people,
+          orderFingerprint: fingerprint,
+          orderPayload: {
+            bookings,
+            date,
+            people: totals.people,
+            total: totals.total,
+            experienceName: "Casa Viera — Romantic Dinner"
+          }
+        });
+      } catch {
+        return "";
+      }
+    }
+
+    function buildWhatsAppMessage(paymentLink = "") {
       const bookings = getStoredBookings();
       if (!bookings.length) return "";
       const date = formatDate(getVisitDate());
@@ -474,9 +523,14 @@
         }).join("\n\n");
         return `*Menú pareja ${pairIndex + 1}*\n${pairLines}`;
       }).join("\n\n");
-      const people = bookings.length * 2;
-      const total = bookings.length * TOTAL_USD;
-      return `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: ${people}\n\n${orderLines}\n\nTotal: USD ${total}`;
+      const totals = bookingTotals(bookings);
+      let message = `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: ${totals.people}\n\n${orderLines}\n\nTotal: USD ${totals.total}`;
+      if (paymentLink) {
+        message += `\n\nPara confirmar la reserva, completá el pago acá:\n${paymentLink}`;
+      } else {
+        message += "\n\nNo pude generar el link de pago automáticamente. Por favor enviámelo para confirmar la reserva.";
+      }
+      return message;
     }
 
     function book() {
@@ -484,8 +538,18 @@
         openPopup();
         return;
       }
-      const message = buildWhatsAppMessage();
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+      const bookings = getStoredBookings();
+      const pendingTab = window.open("about:blank", "_blank");
+      (async () => {
+        const paymentLink = await resolveRomanticPaymentLink(bookings);
+        const message = buildWhatsAppMessage(paymentLink);
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        if (pendingTab && !pendingTab.closed) {
+          pendingTab.location.href = url;
+        } else {
+          window.open(url, "_blank");
+        }
+      })();
     }
 
     renderStep(step1, 1);
