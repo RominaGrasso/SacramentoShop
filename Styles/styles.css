@@ -577,6 +577,18 @@
     color: #475569;
   }
 
+  .card [data-card-meta~="video"] .card-meta__ic {
+    color: #d946ef;
+  }
+
+  .card [data-card-meta~="camera"] .card-meta__ic {
+    color: #2563eb;
+  }
+
+  .card [data-card-meta~="check"] .card-meta__ic {
+    color: #16a34a;
+  }
+
   .card .card-meta__ic use {
     pointer-events: none;
   }
@@ -3701,6 +3713,68 @@
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(47, 103, 163, 0.35);
   filter: brightness(1.03);
+}
+
+.activity-meta-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.activity-meta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.activity-meta-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #1e3a5f;
+}
+
+.reel-link-btn.activity-icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reel-link-btn.activity-icon-link .activity-meta-icon {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+[data-card-meta~="video"] .activity-meta-icon {
+  color: #d946ef;
+}
+
+[data-card-meta~="landmark"] .activity-meta-icon {
+  color: #7c6a4b;
+}
+
+[data-card-meta~="walk"] .activity-meta-icon {
+  color: #16a34a;
+}
+
+[data-card-meta~="camera"] .activity-meta-icon {
+  color: #2563eb;
+}
+
+[data-card-meta~="sunset"] .activity-meta-icon {
+  color: #e08d23;
+}
+
+[data-card-meta~="cup"] .activity-meta-icon {
+  color: #2f8f4e;
+}
+
+[data-card-meta~="check"] .activity-meta-icon {
+  color: #16a34a;
+}
+
+[data-card-meta~="globe"] .activity-meta-icon {
+  color: #1496a3;
 }
   
   .order-floating-btn {
