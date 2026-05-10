@@ -213,15 +213,6 @@
       <div class="romantic-popup-step" id="romanticStep1" data-person="1"></div>
       <div class="romantic-popup-step" id="romanticStep2" data-person="2" hidden></div>
 
-      <div class="preferences-inside romantic-shared-preferences" id="romanticSharedPreferences" hidden>
-        <h3 class="preferences-title">
-          <span>Preferencias generales</span>
-        </h3>
-        <label><input type="checkbox" name="romantic_preferences" value="Sin alcohol"> 🚫 <span>Sin alcohol</span></label>
-        <label><input type="checkbox" name="romantic_preferences" value="Vegetariano"> 🥗 <span>Vegetariano</span></label>
-        <label><input type="checkbox" name="romantic_preferences" value="Sin gluten"> 🚫 <span>Sin gluten</span></label>
-      </div>
-
       <div class="popup-actions romantic-popup-actions">
         <button id="romanticBackStep" class="btn secondary" type="button" hidden>Volver</button>
         <button id="romanticNextStep" class="btn" type="button">Siguiente</button>
@@ -290,7 +281,6 @@
     const stepIndicator = document.getElementById("romanticStepIndicator");
     const step1 = document.getElementById("romanticStep1");
     const step2 = document.getElementById("romanticStep2");
-    const prefsWrap = document.getElementById("romanticSharedPreferences");
     const backBtn = document.getElementById("romanticBackStep");
     const nextBtn = document.getElementById("romanticNextStep");
     const saveBtn = document.getElementById("saveRomanticMenu");
@@ -315,7 +305,7 @@
     const getVisitDate = () => localStorage.getItem(DATE_KEY) || dateInput?.value || "";
 
     function renderStep(container, personNumber) {
-      container.innerHTML = sections.map((section) => `
+      const menuHtml = sections.map((section) => `
         <div class="bruma-menu-panel romantic-menu-section">
           <p><strong>${escapeHtml(section.title)}</strong></p>
           <ul class="popup-list">
@@ -330,6 +320,17 @@
           </ul>
         </div>
       `).join("");
+
+      container.innerHTML = `${menuHtml}
+        <div class="preferences-inside romantic-person-preferences">
+          <h3 class="preferences-title">
+            <span>Preferencias persona ${personNumber}</span>
+          </h3>
+          <label><input type="checkbox" name="romantic_p${personNumber}_preferences" value="Sin alcohol"> 🚫 <span>Sin alcohol</span></label>
+          <label><input type="checkbox" name="romantic_p${personNumber}_preferences" value="Vegetariano"> 🥗 <span>Vegetariano</span></label>
+          <label><input type="checkbox" name="romantic_p${personNumber}_preferences" value="Sin gluten"> 🚫 <span>Sin gluten</span></label>
+        </div>
+      `;
     }
 
     function getPersonOrder(personNumber) {
@@ -342,15 +343,16 @@
       return order;
     }
 
-    function getPreferences() {
-      return Array.from(popup.querySelectorAll('input[name="romantic_preferences"]:checked')).map((input) => input.value);
+    function getPersonPreferences(personNumber) {
+      return Array.from(
+        popup.querySelectorAll(`input[name="romantic_p${personNumber}_preferences"]:checked`)
+      ).map((input) => input.value);
     }
 
     function setStep(step) {
       currentStep = step;
       step1.hidden = step !== 1;
       step2.hidden = step !== 2;
-      prefsWrap.hidden = step !== 2;
       backBtn.hidden = step !== 2;
       nextBtn.hidden = step !== 1;
       saveBtn.hidden = step !== 2;
@@ -376,10 +378,10 @@
             input.checked = input.value === value;
           });
         });
-      });
-      const prefs = new Set(Array.isArray(data.preferences) ? data.preferences : []);
-      popup.querySelectorAll('input[name="romantic_preferences"]').forEach((input) => {
-        input.checked = prefs.has(input.value);
+        const prefs = new Set(Array.isArray(order.preferences) ? order.preferences : []);
+        popup.querySelectorAll(`input[name="romantic_p${personNumber}_preferences"]`).forEach((input) => {
+          input.checked = prefs.has(input.value);
+        });
       });
     }
 
@@ -431,18 +433,17 @@
 
       html += `<p class="order-summary-visit-date"><strong>Fecha de la visita:</strong> ${escapeHtml(visitDate)}</p>`;
       booking.orders.forEach((order, index) => {
+        const prefs = Array.isArray(order.preferences) ? order.preferences : [];
         html += `
           <div class="order-card romantic-person-summary">
             <div class="order-header">
               <strong class="order-card-title">Pedido persona ${index + 1}</strong>
             </div>
             ${sections.map((section) => `<p><strong>${escapeHtml(section.label)}:</strong> ${escapeHtml(order[section.key])}</p>`).join("")}
+            <p><strong>Preferencias:</strong> ${escapeHtml(prefs.length ? prefs.join(", ") : "-")}</p>
           </div>
         `;
       });
-      if (booking.preferences && booking.preferences.length) {
-        html += `<p><strong>Preferencias:</strong> ${escapeHtml(booking.preferences.join(", "))}</p>`;
-      }
       html += `
         <div class="total-box">
           <div class="total-left">
@@ -464,12 +465,12 @@
       const date = formatDate(getVisitDate());
       const orderLines = booking.orders.map((order, index) => {
         const details = sections.map((section) => `${section.label}: ${order[section.key]}`).join("\n");
-        return `*Pedido persona ${index + 1}*\n${details}`;
+        const prefs = Array.isArray(order.preferences) && order.preferences.length
+          ? `\nPreferencias: ${order.preferences.join(", ")}`
+          : "\nPreferencias: -";
+        return `*Pedido persona ${index + 1}*\n${details}${prefs}`;
       }).join("\n\n");
-      const prefLine = booking.preferences && booking.preferences.length
-        ? `\n\nPreferencias: ${booking.preferences.join(", ")}`
-        : "";
-      return `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: 2\n\n${orderLines}${prefLine}\n\nTotal: USD ${TOTAL_USD}`;
+      return `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: 2\n\n${orderLines}\n\nTotal: USD ${TOTAL_USD}`;
     }
 
     function book() {
@@ -505,8 +506,10 @@
     saveBtn?.addEventListener("click", () => {
       if (!validateStep(1) || !validateStep(2)) return;
       setStoredBooking({
-        orders: [getPersonOrder(1), getPersonOrder(2)],
-        preferences: getPreferences()
+        orders: [
+          { ...getPersonOrder(1), preferences: getPersonPreferences(1) },
+          { ...getPersonOrder(2), preferences: getPersonPreferences(2) }
+        ]
       });
       closePopup();
       renderSummary();
