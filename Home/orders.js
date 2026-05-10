@@ -2169,7 +2169,7 @@ function initExperience(config) {
               ${escapeHtml(curLabel)} ${total}
             </div>
             <a href="#" id="bookWithOrder" class="btn total-btn">
-              ${escapeHtml(t("book_btn", "Book Now"))}
+              ${escapeHtml(t("book_btn", "Reserve"))}
             </a>
           </div>
         `;
@@ -2868,7 +2868,7 @@ function initFoodExperience(config) {
               USD ${total}
             </div>
             <a href="#" id="bookWithOrder" class="btn total-btn">
-              ${escapeHtml(getI18nText("book_btn", "Book Now"))}
+              ${escapeHtml(getI18nText("book_btn", "Reserve"))}
             </a>
           </div>
         `;
@@ -3314,7 +3314,7 @@ function initPreferencesOrderExperience(config) {
       book.href = "#";
       book.id = "bookWithOrder";
       book.className = "btn total-btn";
-      book.textContent = "Book Now";
+      book.textContent = "Reserve";
       totalBox.appendChild(book);
 
       container.appendChild(totalBox);
@@ -3996,7 +3996,7 @@ function initPackageOrderExperience(config) {
               USD ${escapeHtml(formatMoney(total))}
             </div>
             <a href="#" id="bookWithOrder" class="btn total-btn">
-              ${escapeHtml(getI18nText("book_btn", "Book Now"))}
+              ${escapeHtml(getI18nText("book_btn", "Reserve"))}
             </a>
           </div>
         `;

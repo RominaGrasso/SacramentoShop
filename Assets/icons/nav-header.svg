@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- About / team: inherits color via currentColor -->
+  <symbol id="nav-about" viewBox="0 0 24 24">
+    <circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 20v-1a6 6 0 0 1 12 0v1"/>
+  </symbol>
+
+  <!-- Mini flags (fixed fills; readable at ~18�13) -->
+  <symbol id="flag-us" viewBox="0 0 20 14">
+    <rect width="20" height="14" fill="#B22234"/>
+    <path fill="#fff" d="M0 2h20v2H0zm0 4h20v2H0zm0 4h20v2H0z"/>
+    <rect width="8" height="8" fill="#3C3B6E"/>
+    <circle cx="2.5" cy="2" r="0.45" fill="#fff"/>
+    <circle cx="4.5" cy="2" r="0.45" fill="#fff"/>
+    <circle cx="6.5" cy="2" r="0.45" fill="#fff"/>
+    <circle cx="3.5" cy="3.5" r="0.45" fill="#fff"/>
+    <circle cx="5.5" cy="3.5" r="0.45" fill="#fff"/>
+    <circle cx="2.5" cy="5" r="0.45" fill="#fff"/>
+    <circle cx="4.5" cy="5" r="0.45" fill="#fff"/>
+    <circle cx="6.5" cy="5" r="0.45" fill="#fff"/>
+  </symbol>
+
+  <symbol id="flag-uy" viewBox="0 0 20 14">
+    <rect width="20" height="2" fill="#0038a8"/>
+    <rect y="2" width="20" height="2" fill="#fff"/>
+    <rect y="4" width="20" height="2" fill="#0038a8"/>
+    <rect y="6" width="20" height="2" fill="#fff"/>
+    <rect y="8" width="20" height="2" fill="#0038a8"/>
+    <rect y="10" width="20" height="2" fill="#fff"/>
+    <rect y="12" width="20" height="2" fill="#0038a8"/>
+    <circle cx="4" cy="7" r="2" fill="#fcd116"/>
+  </symbol>
+
+  <symbol id="flag-br" viewBox="0 0 20 14">
+    <rect width="20" height="14" fill="#009b3a"/>
+    <path d="M10 2.5 17 7 10 11.5 3 7z" fill="#ffdf00"/>
+    <circle cx="10" cy="7" r="3" fill="#002776"/>
+  </symbol>
+</svg>

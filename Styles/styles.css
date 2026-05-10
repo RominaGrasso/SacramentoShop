@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+
 /* RESET */
 * {
     margin: 0;
@@ -127,10 +129,34 @@
     font-size: 0.85rem;
   }
   
-  /* tamaño bandera */
-  .lang-btn span {
-    font-size: 16px;
-    line-height: 1;
+  .lang-flag-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 13px;
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  }
+
+  .lang-btn.active .lang-flag-icon {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45);
+  }
+
+  .nav-about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .nav-about-icon {
+    flex-shrink: 0;
+    color: #5a95cf;
+  }
+
+  .nav-about-link:hover .nav-about-icon {
+    color: #3d7ab8;
   }
   
   /* ================= HERO ================= */
@@ -287,8 +313,20 @@
     margin-bottom: 6px; /* antes 12 */
   }
   
-  .card-content .card-meta {
-    margin: 4px 0; /* 👈 más compacto */
+  .card-content .card-meta-stack {
+    margin: 6px 0 10px;
+  }
+
+  .card-content .card-meta-line {
+    margin: 0;
+  }
+
+  .card .card-content > .card-meta-line {
+    margin: 4px 0;
+  }
+
+  .card .card-meta-stack .card-meta-line {
+    margin: 0;
   }
   
   .card-content p {
@@ -317,7 +355,189 @@
     flex: 1;
     text-align: center;
   }
-  
+
+  /* Experience cards: Montserrat regular (body), bold (titles) */
+  .card .card-content {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 400;
+  }
+
+  .card .card-content h3 {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 700;
+  }
+
+  .card .card-content p,
+  .card .card-content .card-meta-line,
+  .card .card-content .card-description,
+  .card .card-content .medical,
+  .card .card-content .see-more,
+  .card .card-buttons .btn {
+    font-family: inherit;
+  }
+
+  .card .card-content .card-meta-line,
+  .card .card-content .card-description {
+    font-weight: 500;
+  }
+
+  .card .card-content .see-more {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .card > .discount-badge {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Home cards: meta stacks + icons (one icon per line, Lucide-style weight in SVG) */
+  .card .card-meta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .card .card-meta-line[data-card-meta],
+  .card > .discount-badge[data-card-meta] {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* Medical / insured row: same pill feel as "Experience details", greener */
+  .card .medical[data-card-meta] {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 6px;
+    margin: 0 0 12px;
+    padding: 6px 12px;
+    border: 1px solid rgba(4, 140, 92, 0.32);
+    border-radius: 999px;
+    background: #cef3dc;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.45;
+    color: #054d28;
+    box-shadow: 0 1px 2px rgba(4, 122, 80, 0.12);
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card .medical[data-card-meta]:hover {
+    background: #bfebd1;
+    border-color: rgba(4, 140, 92, 0.45);
+    box-shadow: 0 2px 6px rgba(4, 122, 80, 0.14);
+  }
+
+  .card .medical[data-card-meta] .card-meta__ic {
+    color: #04945f;
+  }
+
+  .card .medical[data-card-meta] span[data-translate] {
+    color: #054d28;
+    line-height: 1.45;
+  }
+
+  .card .sprite-row {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    margin-top: 1px;
+  }
+
+  .card .card-meta__ic {
+    display: block;
+    flex-shrink: 0;
+    color: #1e3a5f;
+  }
+
+  .card .card-meta__ic use {
+    pointer-events: none;
+  }
+
+  .card .card-meta__text,
+  .card .discount-badge__text {
+    flex: 1;
+    min-width: 0;
+    color: #334155;
+    line-height: 1.45;
+  }
+
+  .card .card-info-toggle {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    width: max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    gap: 6px;
+    margin: 0 0 12px;
+    padding: 6px 12px;
+    border: 1px solid rgba(30, 58, 95, 0.12);
+    border-radius: 999px;
+    background: #e8eef6;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.45;
+    color: #1e3a5f;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(30, 58, 95, 0.12);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  /* Match medical row: same icon column width as .sprite-row (22px) */
+  .card .card-info-toggle__ic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    flex-shrink: 0;
+    font-size: 1rem;
+    line-height: 1;
+    opacity: 0.9;
+  }
+
+  .card .card-info-toggle:hover {
+    background: #dce6f2;
+    border-color: rgba(30, 58, 95, 0.2);
+    color: #0f2744;
+    box-shadow: 0 2px 6px rgba(30, 58, 95, 0.14);
+  }
+
+  .card .card-info-toggle[aria-expanded="true"] {
+    background: #dce6f2;
+    border-color: rgba(30, 58, 95, 0.18);
+    box-shadow: 0 1px 2px rgba(30, 58, 95, 0.12);
+  }
+
+  .card .card-info-toggle:focus-visible {
+    outline: 2px solid #1e3a5f;
+    outline-offset: 2px;
+  }
+
+  .card .card-meta-details {
+    margin: 0 0 12px;
+  }
+
+  .card .card-meta-details[hidden] {
+    display: none !important;
+  }
+
+  .card .card-meta-line--badge .card-meta__ic {
+    width: 22px;
+    height: 22px;
+  }
+
   /* ================= RESPONSIVE ================= */
   
   @media (max-width: 768px) {
@@ -1221,6 +1441,30 @@
     max-width: 680px;
     width: min(94%, 680px);
     text-align: left;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 400;
+  }
+
+  .popup-box.rent-popup-box * {
+    font-family: inherit;
+  }
+
+  .popup-box.rent-popup-box .fa-solid,
+  .popup-box.rent-popup-box .fas,
+  .popup-box.rent-popup-box .fa-regular,
+  .popup-box.rent-popup-box .far {
+    font-family: "Font Awesome 6 Free" !important;
+  }
+
+  .popup-box.rent-popup-box .fa-brands,
+  .popup-box.rent-popup-box .fab {
+    font-family: "Font Awesome 6 Brands" !important;
+  }
+
+  .popup-box.rent-popup-box .popup-title,
+  .popup-box.rent-popup-box h3 {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 700;
   }
 
   .rent-popup-benefit {
@@ -1495,13 +1739,14 @@
     object-position: center 80%;
   }
 
-  .card-content .card-meta {
-    font-size: 0.85rem;
-    color: #666;
-    margin: 6px 0 14px 0;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
+  .card-content .card-meta-stack {
+    font-size: 0.9rem;
+  }
+
+  .card-content .card-meta-line {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
   }
 
   .whatsapp-float {
@@ -1673,10 +1918,28 @@
   }
   
   .hamburger-menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px 20px;
     cursor: pointer;
     font-size: 0.95rem;
     transition: 0.2s;
+  }
+
+  .hamburger-menu .nav-cat-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    color: #5a95cf;
+  }
+
+  .hamburger-menu .nav-cat-icon use {
+    pointer-events: none;
+  }
+
+  .hamburger-menu li:hover .nav-cat-icon {
+    color: #66a6e6;
   }
   
   .hamburger-menu li:hover {
@@ -1691,7 +1954,7 @@
     background: white;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    width: 220px;
+    width: min(280px, calc(100vw - 32px));
     display: none;
     z-index: 999;
   }
@@ -1814,6 +2077,10 @@
         color: white;
         transform: translateY(-2px);
         box-shadow: 0 6px 14px rgba(90,149,207,0.3);
+      }
+
+      .top-links a:hover .nav-about-icon {
+        color: white;
       }
 
         .experience-steps-title{
@@ -2127,18 +2394,23 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-  
-    background: #eaf7ee;
-    color: #2e7d32;
-  
+    margin: 8px 0 12px;
+    padding: 6px 12px;
+    border: 1px solid rgba(4, 140, 92, 0.32);
+    border-radius: 999px;
+    background: #cef3dc;
+    color: #054d28;
     font-weight: 600;
-    font-size: 0.8rem;
-  
-    padding: 5px 10px;
-    border-radius: 8px;
-  
-    margin-bottom: 10px;
-    margin: 8px 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+    box-shadow: 0 1px 2px rgba(4, 122, 80, 0.12);
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-content .medical:hover {
+    background: #bfebd1;
+    border-color: rgba(4, 140, 92, 0.45);
+    box-shadow: 0 2px 6px rgba(4, 122, 80, 0.14);
   }
 
   .preferences-box {
@@ -2520,6 +2792,7 @@
     padding: 8px 14px !important;
     border-radius: 20px !important;
     font-size: 0.85rem !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     color: white !important;
   
@@ -4452,12 +4725,15 @@
   }
 }
 
-/* Plexo smoke test panel (?plexo_test=1 en Home/index.html) */
+/* Plexo smoke test panel (Home/index.html, bajo la franja celeste) */
 .plexo-payment-test {
+  position: relative;
+  z-index: 5;
   max-width: 720px;
   margin: 16px auto 8px;
   padding: 0 40px;
   box-sizing: border-box;
+  scroll-margin-top: 12px;
 }
 
 .plexo-payment-test__inner {
@@ -4466,12 +4742,6 @@
   border-radius: 10px;
   padding: 16px 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.plexo-payment-test__gate {
-  background: #f8fafc;
-  border-radius: 8px;
-  padding: 4px 2px;
 }
 
 .plexo-payment-test__title {
@@ -4506,5 +4776,100 @@
   }
 }
 
+/* =============================================================================
+   Activity pages (Actividades/*.html): Montserrat — headings bold, body regular
+   Add class="page-actividad" on <body> (combine with night-page etc. if needed).
+   ============================================================================= */
+
+body.page-actividad {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+body.page-actividad * {
+  font-family: inherit;
+}
+
+/* Font Awesome: inherit would break icon glyphs */
+body.page-actividad .fa-solid,
+body.page-actividad .fas,
+body.page-actividad .fa-regular,
+body.page-actividad .far {
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+body.page-actividad .fa-brands,
+body.page-actividad .fab {
+  font-family: "Font Awesome 6 Brands" !important;
+}
+
+body.page-actividad h1,
+body.page-actividad h2,
+body.page-actividad h3,
+body.page-actividad h4,
+body.page-actividad h5,
+body.page-actividad h6 {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+/* Header text logo (when present) */
+body.page-actividad header h2,
+body.page-actividad header .logo-main {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+body.page-actividad header .logo-sub {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+/* About page blocks that used Playfair */
+body.page-actividad .about-content .about-intro,
+body.page-actividad .about-quote {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+/* ===== Home (index): Montserrat en cabecera, hero, barra de confianza, franja regional, bloque Plexo ===== */
+body.page-home header,
+body.page-home .hero,
+body.page-home .trust-bar,
+body.page-home .hero-region-tagline,
+body.page-home .plexo-payment-test {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+body.page-home header *,
+body.page-home .hero *,
+body.page-home .trust-bar *,
+body.page-home .hero-region-tagline *,
+body.page-home .plexo-payment-test * {
+  font-family: inherit;
+}
+
+body.page-home .fa-solid,
+body.page-home .fas,
+body.page-home .fa-regular,
+body.page-home .far {
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+body.page-home .fa-brands,
+body.page-home .fab {
+  font-family: "Font Awesome 6 Brands" !important;
+}
+
+body.page-home .hero-content h1 {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+body.page-home .hero-region-tagline__text {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+}
 
 
