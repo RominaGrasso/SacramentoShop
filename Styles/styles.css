@@ -457,123 +457,123 @@
     color: #1e3a5f;
   }
 
-  .card .card-meta__ic--star {
+  .card [data-card-meta~="star"] .card-meta__ic {
     color: #d4a017;
   }
 
-  .card .card-meta__ic--cup {
+  .card [data-card-meta~="cup"] .card-meta__ic {
     color: #2f8f4e;
   }
 
-  .card .card-meta__ic--clock {
+  .card [data-card-meta~="clock"] .card-meta__ic {
     color: #4f7fd9;
   }
 
-  .card .card-meta__ic--globe {
+  .card [data-card-meta~="globe"] .card-meta__ic {
     color: #1496a3;
   }
 
-  .card .card-meta__ic--shield {
+  .card [data-card-meta~="shield"] .card-meta__ic {
     color: #04945f;
   }
 
-  .card .card-meta__ic--utensils {
+  .card [data-card-meta~="utensils"] .card-meta__ic {
     color: #c97a24;
   }
 
-  .card .card-meta__ic--fire {
+  .card [data-card-meta~="fire"] .card-meta__ic {
     color: #e4572e;
   }
 
-  .card .card-meta__ic--sunset {
+  .card [data-card-meta~="sunset"] .card-meta__ic {
     color: #e08d23;
   }
 
-  .card .card-meta__ic--sparkles {
+  .card [data-card-meta~="sparkles"] .card-meta__ic {
     color: #9b5de5;
   }
 
-  .card .card-meta__ic--wine {
+  .card [data-card-meta~="wine"] .card-meta__ic {
     color: #8e2452;
   }
 
-  .card .card-meta__ic--captain {
+  .card [data-card-meta~="captain"] .card-meta__ic {
     color: #1d4ed8;
   }
 
-  .card .card-meta__ic--car {
+  .card [data-card-meta~="car"] .card-meta__ic {
     color: #2f6fb7;
   }
 
-  .card .card-meta__ic--landmark {
+  .card [data-card-meta~="landmark"] .card-meta__ic {
     color: #7c6a4b;
   }
 
-  .card .card-meta__ic--walk {
+  .card [data-card-meta~="walk"] .card-meta__ic {
     color: #16a34a;
   }
 
-  .card .card-meta__ic--ticket {
+  .card [data-card-meta~="ticket"] .card-meta__ic {
     color: #b45309;
   }
 
-  .card .card-meta__ic--leaf {
+  .card [data-card-meta~="leaf"] .card-meta__ic {
     color: #2f9e44;
   }
 
-  .card .card-meta__ic--grapes {
+  .card [data-card-meta~="grapes"] .card-meta__ic {
     color: #7c3aed;
   }
 
-  .card .card-meta__ic--horse {
+  .card [data-card-meta~="horse"] .card-meta__ic {
     color: #8b5a2b;
   }
 
-  .card .card-meta__ic--sushi {
+  .card [data-card-meta~="sushi"] .card-meta__ic {
     color: #e85d75;
   }
 
-  .card .card-meta__ic--mappin {
+  .card [data-card-meta~="mappin"] .card-meta__ic {
     color: #dc2626;
   }
 
-  .card .card-meta__ic--cocktail {
+  .card [data-card-meta~="cocktail"] .card-meta__ic {
     color: #db2777;
   }
 
-  .card .card-meta__ic--beer {
+  .card [data-card-meta~="beer"] .card-meta__ic {
     color: #d97706;
   }
 
-  .card .card-meta__ic--dance {
+  .card [data-card-meta~="dance"] .card-meta__ic {
     color: #a855f7;
   }
 
-  .card .card-meta__ic--drum {
+  .card [data-card-meta~="drum"] .card-meta__ic {
     color: #b45309;
   }
 
-  .card .card-meta__ic--moon {
+  .card [data-card-meta~="moon"] .card-meta__ic {
     color: #6366f1;
   }
 
-  .card .card-meta__ic--coffee {
+  .card [data-card-meta~="coffee"] .card-meta__ic {
     color: #8b5e34;
   }
 
-  .card .card-meta__ic--paw {
+  .card [data-card-meta~="paw"] .card-meta__ic {
     color: #795548;
   }
 
-  .card .card-meta__ic--gift {
+  .card [data-card-meta~="gift"] .card-meta__ic {
     color: #e11d48;
   }
 
-  .card .card-meta__ic--boat {
+  .card [data-card-meta~="boat"] .card-meta__ic {
     color: #0ea5e9;
   }
 
-  .card .card-meta__ic--office {
+  .card [data-card-meta~="office"] .card-meta__ic {
     color: #475569;
   }
 
