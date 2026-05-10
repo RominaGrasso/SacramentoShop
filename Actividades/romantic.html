@@ -285,6 +285,7 @@
     const nextBtn = document.getElementById("romanticNextStep");
     const saveBtn = document.getElementById("saveRomanticMenu");
     let currentStep = 1;
+    let editingPairIndex = null;
 
     const escapeHtml = (value) => String(value || "").replace(/[&<>"]/g, (ch) => ({
       "&": "&amp;",
@@ -385,25 +386,39 @@
       });
     }
 
-    function getStoredBooking() {
+    function getStoredBookings() {
       try {
         const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-        return parsed && Array.isArray(parsed.orders) ? parsed : null;
+        if (Array.isArray(parsed)) {
+          return parsed.filter((booking) => booking && Array.isArray(booking.orders));
+        }
+        if (parsed && Array.isArray(parsed.orders)) {
+          return [parsed];
+        }
+        return [];
       } catch {
-        return null;
+        return [];
       }
     }
 
-    function setStoredBooking(data) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    function setStoredBookings(bookings) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
     }
 
-    function clearStoredBooking() {
-      localStorage.removeItem(STORAGE_KEY);
+    function deleteStoredBooking(index) {
+      const bookings = getStoredBookings();
+      bookings.splice(index, 1);
+      if (bookings.length) {
+        setStoredBookings(bookings);
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
     }
 
-    function openPopup() {
-      fillForm(getStoredBooking());
+    function openPopup(pairIndex = null) {
+      editingPairIndex = Number.isInteger(pairIndex) ? pairIndex : null;
+      const bookings = getStoredBookings();
+      fillForm(editingPairIndex !== null ? bookings[editingPairIndex] : null);
       setStep(1);
       popup.classList.add("active");
     }
@@ -422,39 +437,47 @@
     }
 
     function renderSummary() {
-      const booking = getStoredBooking();
+      const bookings = getStoredBookings();
       const visitDate = formatDate(getVisitDate());
       let html = `<h3>Tu pedido</h3>`;
-      if (!booking) {
+      if (!bookings.length) {
         html += `<p class="order-summary-visit-date"><strong>Fecha de la visita:</strong> ${escapeHtml(visitDate)}</p>`;
         summary.innerHTML = html;
         return;
       }
 
       html += `<p class="order-summary-visit-date"><strong>Fecha de la visita:</strong> ${escapeHtml(visitDate)}</p>`;
-      booking.orders.forEach((order, index) => {
-        const prefs = Array.isArray(order.preferences) ? order.preferences : [];
+      bookings.forEach((booking, pairIndex) => {
         html += `
-          <div class="order-card romantic-person-summary">
+          <div class="order-card romantic-person-summary romantic-pair-summary">
             <div class="order-header">
-              <strong class="order-card-title">Pedido persona ${index + 1}</strong>
+              <strong class="order-card-title">Menú pareja ${pairIndex + 1}</strong>
             </div>
-            ${sections.map((section) => `<p><strong>${escapeHtml(section.label)}:</strong> ${escapeHtml(order[section.key])}</p>`).join("")}
-            <p><strong>Preferencias:</strong> ${escapeHtml(prefs.length ? prefs.join(", ") : "-")}</p>
+            ${booking.orders.map((order, personIndex) => {
+              const prefs = Array.isArray(order.preferences) ? order.preferences : [];
+              return `
+                <div class="romantic-person-summary__person">
+                  <p><strong>Pedido persona ${personIndex + 1}</strong></p>
+                  ${sections.map((section) => `<p><strong>${escapeHtml(section.label)}:</strong> ${escapeHtml(order[section.key])}</p>`).join("")}
+                  <p><strong>Preferencias:</strong> ${escapeHtml(prefs.length ? prefs.join(", ") : "-")}</p>
+                </div>
+              `;
+            }).join("")}
+            <div class="romantic-order-actions">
+              <button type="button" class="add-guest-btn edit-romantic-pair" data-pair-index="${pairIndex}">Editar menú</button>
+              <button type="button" class="add-guest-btn delete-romantic-pair" data-pair-index="${pairIndex}">Eliminar pedido</button>
+            </div>
           </div>
         `;
       });
+      const total = bookings.length * TOTAL_USD;
       html += `
-        <div class="romantic-order-actions">
-          <button type="button" id="editRomanticOrder" class="add-guest-btn">Editar menú</button>
-          <button type="button" id="deleteRomanticOrder" class="add-guest-btn">Eliminar pedido</button>
-        </div>
         <div class="total-box">
           <div class="total-left">
             <span class="total-label">Total</span>
-            <span class="total-detail">Hasta dos pedidos · menú para dos</span>
+            <span class="total-detail">${bookings.length} menú${bookings.length === 1 ? "" : "s"} para dos · USD ${TOTAL_USD} cada uno</span>
           </div>
-          <div class="total-right">USD ${TOTAL_USD}</div>
+          <div class="total-right">USD ${total}</div>
           <a href="#" id="bookRomanticWithOrder" class="btn total-btn">Reservar</a>
         </div>
       `;
@@ -462,21 +485,26 @@
     }
 
     function buildWhatsAppMessage() {
-      const booking = getStoredBooking();
-      if (!booking) return "";
+      const bookings = getStoredBookings();
+      if (!bookings.length) return "";
       const date = formatDate(getVisitDate());
-      const orderLines = booking.orders.map((order, index) => {
-        const details = sections.map((section) => `${section.label}: ${order[section.key]}`).join("\n");
-        const prefs = Array.isArray(order.preferences) && order.preferences.length
-          ? `\nPreferencias: ${order.preferences.join(", ")}`
-          : "\nPreferencias: -";
-        return `*Pedido persona ${index + 1}*\n${details}${prefs}`;
+      const orderLines = bookings.map((booking, pairIndex) => {
+        const pairLines = booking.orders.map((order, personIndex) => {
+          const details = sections.map((section) => `${section.label}: ${order[section.key]}`).join("\n");
+          const prefs = Array.isArray(order.preferences) && order.preferences.length
+            ? `\nPreferencias: ${order.preferences.join(", ")}`
+            : "\nPreferencias: -";
+          return `*Pedido persona ${personIndex + 1}*\n${details}${prefs}`;
+        }).join("\n\n");
+        return `*Menú pareja ${pairIndex + 1}*\n${pairLines}`;
       }).join("\n\n");
-      return `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: 2\n\n${orderLines}\n\nTotal: USD ${TOTAL_USD}`;
+      const people = bookings.length * 2;
+      const total = bookings.length * TOTAL_USD;
+      return `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: ${people}\n\n${orderLines}\n\nTotal: USD ${total}`;
     }
 
     function book() {
-      if (!getStoredBooking()) {
+      if (!getStoredBookings().length) {
         openPopup();
         return;
       }
@@ -496,7 +524,7 @@
       });
     }
 
-    createBtn?.addEventListener("click", openPopup);
+    createBtn?.addEventListener("click", () => openPopup());
     closeBtn?.addEventListener("click", closePopup);
     popup?.addEventListener("click", (event) => {
       if (event.target === popup) closePopup();
@@ -507,20 +535,32 @@
     backBtn?.addEventListener("click", () => setStep(1));
     saveBtn?.addEventListener("click", () => {
       if (!validateStep(1) || !validateStep(2)) return;
-      setStoredBooking({
+      const newBooking = {
         orders: [
           { ...getPersonOrder(1), preferences: getPersonPreferences(1) },
           { ...getPersonOrder(2), preferences: getPersonPreferences(2) }
         ]
-      });
+      };
+      const bookings = getStoredBookings();
+      if (editingPairIndex !== null) {
+        bookings[editingPairIndex] = newBooking;
+      } else {
+        bookings.push(newBooking);
+      }
+      setStoredBookings(bookings);
+      editingPairIndex = null;
       closePopup();
       renderSummary();
     });
 
     summary?.addEventListener("click", (event) => {
-      if (event.target.closest("#editRomanticOrder")) openPopup();
-      if (event.target.closest("#deleteRomanticOrder")) {
-        clearStoredBooking();
+      const editBtn = event.target.closest(".edit-romantic-pair");
+      if (editBtn) {
+        openPopup(Number(editBtn.dataset.pairIndex));
+      }
+      const deleteBtn = event.target.closest(".delete-romantic-pair");
+      if (deleteBtn) {
+        deleteStoredBooking(Number(deleteBtn.dataset.pairIndex));
         renderSummary();
       }
       if (event.target.closest("#bookRomanticWithOrder")) {
