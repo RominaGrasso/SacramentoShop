@@ -457,6 +457,22 @@
     color: #1e3a5f;
   }
 
+  #home-walking-tour-card [data-card-meta="star"] .card-meta__ic {
+    color: #d4a017;
+  }
+
+  #home-walking-tour-card [data-card-meta="cup"] .card-meta__ic {
+    color: #2f8f4e;
+  }
+
+  #home-walking-tour-card [data-card-meta="clock"] .card-meta__ic {
+    color: #4f7fd9;
+  }
+
+  #home-walking-tour-card [data-card-meta="globe"] .card-meta__ic {
+    color: #1496a3;
+  }
+
   .card .card-meta__ic use {
     pointer-events: none;
   }
