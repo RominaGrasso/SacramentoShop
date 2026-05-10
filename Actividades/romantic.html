@@ -322,16 +322,7 @@
         </div>
       `).join("");
 
-      container.innerHTML = `${menuHtml}
-        <div class="preferences-inside romantic-person-preferences">
-          <h3 class="preferences-title">
-            <span>Preferencias persona ${personNumber}</span>
-          </h3>
-          <label><input type="checkbox" name="romantic_p${personNumber}_preferences" value="Sin alcohol"> 🚫 <span>Sin alcohol</span></label>
-          <label><input type="checkbox" name="romantic_p${personNumber}_preferences" value="Vegetariano"> 🥗 <span>Vegetariano</span></label>
-          <label><input type="checkbox" name="romantic_p${personNumber}_preferences" value="Sin gluten"> 🚫 <span>Sin gluten</span></label>
-        </div>
-      `;
+      container.innerHTML = menuHtml;
     }
 
     function getPersonOrder(personNumber) {
@@ -342,12 +333,6 @@
         order[section.key] = selected.value;
       }
       return order;
-    }
-
-    function getPersonPreferences(personNumber) {
-      return Array.from(
-        popup.querySelectorAll(`input[name="romantic_p${personNumber}_preferences"]:checked`)
-      ).map((input) => input.value);
     }
 
     function setStep(step) {
@@ -378,10 +363,6 @@
           popup.querySelectorAll(`input[name="romantic_p${personNumber}_${section.key}"]`).forEach((input) => {
             input.checked = input.value === value;
           });
-        });
-        const prefs = new Set(Array.isArray(order.preferences) ? order.preferences : []);
-        popup.querySelectorAll(`input[name="romantic_p${personNumber}_preferences"]`).forEach((input) => {
-          input.checked = prefs.has(input.value);
         });
       });
     }
@@ -454,12 +435,10 @@
               <strong class="order-card-title">Menú pareja ${pairIndex + 1}</strong>
             </div>
             ${booking.orders.map((order, personIndex) => {
-              const prefs = Array.isArray(order.preferences) ? order.preferences : [];
               return `
                 <div class="romantic-person-summary__person">
                   <p class="romantic-person-summary__title"><strong class="order-card-title" style="color: #66a6e6 !important;">Pedido persona ${personIndex + 1}</strong></p>
                   ${sections.map((section) => `<p><strong>${escapeHtml(section.label)}:</strong> ${escapeHtml(order[section.key])}</p>`).join("")}
-                  <p><strong>Preferencias:</strong> ${escapeHtml(prefs.length ? prefs.join(", ") : "-")}</p>
                 </div>
               `;
             }).join("")}
@@ -491,10 +470,7 @@
       const orderLines = bookings.map((booking, pairIndex) => {
         const pairLines = booking.orders.map((order, personIndex) => {
           const details = sections.map((section) => `${section.label}: ${order[section.key]}`).join("\n");
-          const prefs = Array.isArray(order.preferences) && order.preferences.length
-            ? `\nPreferencias: ${order.preferences.join(", ")}`
-            : "\nPreferencias: -";
-          return `*Pedido persona ${personIndex + 1}*\n${details}${prefs}`;
+          return `*Pedido persona ${personIndex + 1}*\n${details}`;
         }).join("\n\n");
         return `*Menú pareja ${pairIndex + 1}*\n${pairLines}`;
       }).join("\n\n");
@@ -537,8 +513,8 @@
       if (!validateStep(1) || !validateStep(2)) return;
       const newBooking = {
         orders: [
-          { ...getPersonOrder(1), preferences: getPersonPreferences(1) },
-          { ...getPersonOrder(2), preferences: getPersonPreferences(2) }
+          getPersonOrder(1),
+          getPersonOrder(2)
         ]
       };
       const bookings = getStoredBookings();
