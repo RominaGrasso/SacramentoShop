@@ -124,66 +124,209 @@
 
 <!-- HERO -->
 <section class="romantic-hero">
-  <h1>💕 Romantic Dinner Premium</h1>
+  <h1>Casa Viera — Romantic Dinner</h1>
 </section>
 
 <!-- CONTENT -->
-<section class="romantic-content">
+<section class="coffee-content romantic-content">
 
-  <h2>An Unforgettable Night in Colonia</h2>
+  <h2>Una noche especial en Casa Viera</h2>
 
   <p>
-    Surprise your partner with a private candlelight dinner in one of Colonia’s most charming colonial settings.
-    Designed for couples seeking intimacy, elegance, and a magical atmosphere.
+    Disfrutá una cena romántica para dos en Casa Viera, en el Casco Histórico de Colonia.
+    La experiencia incluye una mesa reservada, un menú completo y una ambientación íntima para compartir una noche especial.
   </p>
 
   <p>
-    Whether you're celebrating an anniversary, a honeymoon, or planning a surprise proposal,
-    this premium experience creates memories that last forever.
+    Cada pareja elige una entrada, un plato principal, un postre y una bebida del menú.
+    El costo del menú para dos personas es de <strong>USD 140</strong>.
   </p>
 
-  <!-- INCLUDES -->
-  <div class="romantic-includes">
-    <h2>What’s Included</h2>
-    <ul>
-      <li>🍷 Bottle of premium local wine</li>
-      <li>🕯 Private candlelight table setup</li>
-      <li>🥂 Three-course gourmet dinner</li>
-      <li>🎶 Soft background music</li>
-      <li>📸 Complimentary couple photo</li>
-    </ul>
+  <div class="price-box">
+    <h3>USD 140 por pareja</h3>
+    <p class="price-box-detail">Menú completo para dos: entrada, principal, postre y bebida.</p>
   </div>
 
-  <!-- ITINERARY -->
-  <div class="itinerary">
-    <h2>The Experience</h2>
-
-    <p>
-      Your evening begins with a warm welcome and a glass of sparkling wine.
-      As the sun sets over Colonia, your private table awaits — elegantly decorated
-      with candles and floral details.
-    </p>
-
-    <p>
-      Enjoy a carefully curated three-course dinner prepared with fresh, local ingredients.
-      Relax, toast, and let the atmosphere do the magic.
-    </p>
-
-    <p>
-      For special occasions, we can assist in organizing proposal surprises or personalized details.
-    </p>
-    <div class="card-buttons romantic-buttons">
-        <a href="#" class="btn">
-          Reserve
-        </a>
-      
-        <a href="../Home/index.html" class="btn secondary">
-          Back to Home
-        </a>
+  <div class="coffee-includes">
+    <div class="includes-preferences">
+      <div class="includes-list">
+        <h3>Qué incluye</h3>
+        <ul>
+          <li>✔ Mesa reservada en Casa Viera</li>
+          <li><strong>✔ Menú completo para dos personas</strong></li>
+          <li>✔ Una entrada a elección</li>
+          <li>✔ Un plato principal a elección</li>
+          <li>✔ Un postre a elección</li>
+          <li>✔ Una bebida a elección</li>
+        </ul>
       </div>
 
+      <div class="order-start">
+        <h3>Creá tu menú</h3>
+        <div class="booking-visit-date-row">
+          <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+          <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDateRomantic" autocomplete="off" />
+          <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+            Pick the day you plan to come so we can coordinate availability in advance.
+          </p>
+        </div>
+        <p>Elegí una opción de cada sección para armar el menú para dos.</p>
+        <button id="createRomanticMenuBtn" class="btn primary-btn" type="button">
+          + Crear menú
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-summary" id="romanticOrderSummary"></div>
+
+  <div class="experience-support-notice" role="status">
+    <p>
+      <strong>Luego de tu reserva</strong>, una persona de soporte se pondrá en contacto para guiarte con los detalles de la experiencia y resolver tus dudas antes de la visita.
+    </p>
+  </div>
+
+  <div class="coffee-actions">
+    <a href="#" id="bookNowBottomRomantic" class="btn">Reservar</a>
+    <a href="../Home/index.html" class="btn secondary">Volver al inicio</a>
+  </div>
+
 </section>
+
+<div class="popup-overlay" id="popupRomantic">
+  <div class="popup-box">
+
+    <button class="close-x" id="closeRomantic" type="button">✕</button>
+
+    <p><strong class="popup-title">Menú Casa Viera para dos</strong></p>
+    <p class="bruma-tier-heading">
+      <span>Elegí una opción de cada sección</span>
+      <span>·</span>
+      <span class="josefina-price-new">USD 140</span>
+    </p>
+
+    <div class="bruma-menu-panel">
+      <p><strong>Entradas (1) a elección</strong></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="romantic_starter" value="Mix de quesos locales gratinados, mermelada de tomates y ají, focaccia">
+            <span>Mix de quesos locales gratinados, mermelada de tomates y ají, focaccia</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="romantic_starter" value="Falafel, emulsión de cilantro, menta y lima">
+            <span>Falafel, emulsión de cilantro, menta y lima</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="romantic_starter" value="Langostinos al ajillo, marinados en mostaza Dijon, salsa muhammara, mizuna">
+            <span>Langostinos al ajillo, marinados en mostaza Dijon, salsa muhammara, mizuna</span>
+          </label>
+        </li>
+      </ul>
+
+      <p><strong>Principal (1) a elección</strong></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="romantic_main" value="Lasaña bolognesa, bechamel, quesos gratinados, pesto de albahaca y rúcula">
+            <span>Lasaña bolognesa, bechamel, quesos gratinados, pesto de albahaca y rúcula</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="romantic_main" value="Pesca del día, puré de remolachas, queso de cabra, salsa criollita fresca de mango, jengibre, tomate y lima">
+            <span>Pesca del día, puré de remolachas, queso de cabra, salsa criollita fresca de mango, jengibre, tomate y lima</span>
+          </label>
+        </li>
+      </ul>
+
+      <p><strong>Postre (1) a elección</strong></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="romantic_dessert" value="Sable de cacao, caramelo de naranja, ganache de chocolate, sal en escama">
+            <span>Sable de cacao, caramelo de naranja, ganache de chocolate, sal en escama</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="romantic_dessert" value="Tiramisú con vainillas en café, crema de mascarpone, cacao">
+            <span>Tiramisú con vainillas en café, crema de mascarpone, cacao</span>
+          </label>
+        </li>
+      </ul>
+
+      <p><strong>Bebidas (1) a elección</strong></p>
+      <ul class="popup-list">
+        <li>
+          <label>
+            <input type="radio" name="romantic_drink" value="Agua sin gas">
+            <span>Agua sin gas</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="romantic_drink" value="Gaseosa línea Coca">
+            <span>Gaseosa línea Coca</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="romantic_drink" value="1 copa de vino Los Cerros de San Juan">
+            <span>1 copa de vino Los Cerros de San Juan</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <div class="preferences-inside">
+      <h3 class="preferences-title">
+        <span>Preferencias</span>
+      </h3>
+      <label><input type="checkbox" value="Sin alcohol"> 🚫 <span>Sin alcohol</span></label>
+      <label><input type="checkbox" value="Vegetariano"> 🥗 <span>Vegetariano</span></label>
+      <label><input type="checkbox" value="Sin gluten"> 🚫 <span>Sin gluten</span></label>
+    </div>
+
+    <div class="popup-actions">
+      <button id="saveRomanticMenu" class="btn" type="button">Guardar selección</button>
+    </div>
+  </div>
+</div>
+
 <script src="../Home/index.js?v=20260510icons"></script>
+<script src="../Home/orders.js"></script>
+<script src="../Home/booking-date-picker.js"></script>
+<script>
+  initExperience({
+    experienceName: "Casa Viera — Romantic Dinner",
+    pricePerPerson: 140,
+    peoplePerOrder: 2,
+    popupId: "popupRomantic",
+    closeBtnId: "closeRomantic",
+    saveBtnId: "saveRomanticMenu",
+    createBtnId: "createRomanticMenuBtn",
+    orderSummaryId: "romanticOrderSummary",
+    bookNowBottomId: "bookNowBottomRomantic",
+    selectedDateKey: "selectedDateRomantic",
+    storageKey: "orders_romantic",
+    starterName: "romantic_starter",
+    mainName: "romantic_main",
+    dessertName: "romantic_dessert",
+    drinkName: "romantic_drink",
+    choiceSectionLabels: {
+      starter: "Entrada",
+      main: "Principal",
+      dessert: "Postre",
+      drink: "Bebida"
+    },
+    whatsappNumber: "598091642195"
+  });
+</script>
 
     <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
        class="taxi-float"

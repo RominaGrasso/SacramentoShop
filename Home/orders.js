@@ -279,6 +279,8 @@ function sacramentoDecoratePref(raw, getI18nText, prefix = SACRAMENTO_I18N_PREF)
 function initExperience(config) {
   const {
     pricePerPerson,
+    /** Number of real guests represented by one saved order/package (default: 1). */
+    peoplePerOrder = 1,
     guideFeePerPerson = 0,
     transportPerVehicle = 0,
     dynamicPayment = null,
@@ -286,7 +288,7 @@ function initExperience(config) {
     experienceName = "experience",
     /** Optional i18n key for experienceName (uses global translations). */
     experienceNameKey = null,
-    /** Optional { starter, main, drink } translation keys for order summary / WhatsApp labels. */
+    /** Optional { starter, main, dessert, drink } translation keys for order summary / WhatsApp labels. */
     choiceSectionLabelKeys = null,
     /** Optional `(order) => void` after popup fields are filled when editing an order. */
     afterFillPopupForEdit = null,
@@ -303,6 +305,7 @@ function initExperience(config) {
     storageKey = "orders",
     starterName = "starter",
     mainName = "main",
+    dessertName = null,
     drinkName = "drink",
     /** Optional labels for order summary / WhatsApp (defaults: Starter / Main / Drink). */
     choiceSectionLabels = null,
@@ -417,6 +420,7 @@ function initExperience(config) {
   document.addEventListener("DOMContentLoaded", () => {
     let editingIndex = null;
     const curLabel = totalCurrencyLabel || "USD";
+    const packagePeople = Math.max(1, Math.min(50, Math.floor(Number(peoplePerOrder) || 1)));
     const boatRate = Math.max(0, Number(boatPerPersonPrice) || 0);
     const boatMax = Math.max(1, Math.min(200, Number(boatPassengersMax) || 50));
     const boatTimePerOrderFlag =
@@ -716,7 +720,7 @@ function initExperience(config) {
       if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
         return ordersArr.reduce((s, o) => s + walkingPartyForOrder(o), 0);
       }
-      return ordersArr.length;
+      return ordersArr.length * packagePeople;
     };
 
     const buildBoatTimesPayload = (ordersArr) => {
@@ -1016,7 +1020,7 @@ function initExperience(config) {
         const radios = popup.querySelectorAll(`input[name="${name}"]`);
         if (radios.length === 1) radios[0].checked = true;
       };
-      [starterName, mainName, drinkName].forEach(check);
+      [starterName, mainName, dessertName, drinkName].filter(Boolean).forEach(check);
       if (premiumChoiceFieldNames) {
         [premiumChoiceFieldNames.starter, premiumChoiceFieldNames.main, premiumChoiceFieldNames.drink].forEach(
           check
@@ -1184,6 +1188,7 @@ function initExperience(config) {
         let starterText = "";
         let mainText = "";
         let drinkText = "";
+        let dessertText = "";
 
         if (usePrmSidesCb) {
           const sides = Array.from(
@@ -1242,6 +1247,7 @@ function initExperience(config) {
           let starter;
           let main;
           let drink;
+          let dessert;
 
           if (tierPremium && premiumChoiceFieldNames) {
             starter = popup.querySelector(`input[name="${premiumChoiceFieldNames.starter}"]:checked`);
@@ -1250,10 +1256,16 @@ function initExperience(config) {
           } else {
             starter = popup.querySelector(`input[name="${starterName}"]:checked`);
             main = popup.querySelector(`input[name="${mainName}"]:checked`);
+            dessert = dessertName ? popup.querySelector(`input[name="${dessertName}"]:checked`) : null;
             drink = popup.querySelector(`input[name="${drinkName}"]:checked`);
           }
 
-          if (!starter || (!experienceSkipsDrinkField && !drink) || (!skipMainStandard && !main)) {
+          if (
+            !starter ||
+            (!experienceSkipsDrinkField && !drink) ||
+            (!skipMainStandard && !main) ||
+            (dessertName && !tierPremium && !dessert)
+          ) {
             alert(getI18nText("orders_alert_select_each", "Please select one option from each category"));
             return;
           }
@@ -1268,6 +1280,9 @@ function initExperience(config) {
                 ? ""
                 : String(standardMainPlaceholder);
           }
+          dessertText = dessertName && dessert
+            ? dessert.value || dessert.nextElementSibling?.textContent?.trim()
+            : "";
           drinkText = experienceSkipsDrinkField
             ? ""
             : drink.value || drink.nextElementSibling?.textContent?.trim();
@@ -1370,6 +1385,7 @@ function initExperience(config) {
         const order = {
           starter: starterText,
           main: mainText,
+          ...(dessertName && dessertText ? { dessert: dessertText } : {}),
           drink: drinkText,
           preferences,
           ...(guideOptional && !groupGuideOptional ? { includeGuide } : {}),
@@ -1428,6 +1444,9 @@ function initExperience(config) {
       const labM = Lk.main
         ? getI18nText(Lk.main, Ls.main || "Main")
         : Ls.main || "Main";
+      const labDessert = Lk.dessert
+        ? getI18nText(Lk.dessert, Ls.dessert || "Dessert")
+        : Ls.dessert || "Dessert";
       const labD = Lk.drink
         ? getI18nText(Lk.drink, Ls.drink || "Drink")
         : Ls.drink || "Drink";
@@ -1489,6 +1508,10 @@ function initExperience(config) {
           const drinkPart = experienceSkipsDrinkField
             ? ""
             : `\n${labD}: ${getLocalizedChoice(drinkName, o.drink)}`;
+          const dessertPart =
+            dessertName && String(o.dessert || "").trim()
+              ? `\n${labDessert}: ${getLocalizedChoice(dessertName, o.dessert)}`
+              : "";
           const menuBoatWa =
             menuWithPerOrderBoat && boatRate > 0
               ? (() => {
@@ -1515,7 +1538,7 @@ function initExperience(config) {
             orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
               ? `\n${getI18nText("walking_asado_wa_tour_quantity", "Walking tour guests")}: ${walkingPartyForOrder(o)}`
               : "";
-          return `*${getI18nText("order_word", "Order")} ${i + 1}*${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}`;
+          return `*${getI18nText("order_word", "Order")} ${i + 1}*${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${dessertPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}`;
         })
         .join("\n\n");
 
@@ -1690,6 +1713,16 @@ function initExperience(config) {
           });
         }
 
+        if (dessertName) {
+          popup.querySelectorAll(`input[name="${dessertName}"]`).forEach((input) => {
+            const labelText = input.nextElementSibling?.textContent?.trim();
+            input.checked =
+              labelText === order.dessert ||
+              input.value === order.dessert ||
+              storedMatchesRadio(input, order.dessert);
+          });
+        }
+
         if (!experienceSkipsDrinkField) {
           popup.querySelectorAll(`input[name="${drinkName}"]`).forEach((input) => {
             const labelText = input.nextElementSibling?.textContent?.trim();
@@ -1769,7 +1802,7 @@ function initExperience(config) {
       const headcount =
         boatTimePerOrderFlag && experienceSkipsMenuChoices
           ? orders.reduce((s, o) => s + orderBoatPax(o), 0)
-          : people;
+          : people * packagePeople;
       const transportParty = boatTimePerOrderFlag && experienceSkipsMenuChoices ? headcount : people;
       const transportTotal =
         vehicleTransportRate > 0
@@ -1820,6 +1853,9 @@ function initExperience(config) {
       );
       const defLabM = escapeHtml(
         Lk.main ? t(Lk.main, Ls.main || "Main") : Ls.main || t("main_label", "Main")
+      );
+      const defLabDessert = escapeHtml(
+        Lk.dessert ? t(Lk.dessert, Ls.dessert || "Dessert") : Ls.dessert || t("dessert_label", "Dessert")
       );
       const defLabD = escapeHtml(
         Lk.drink ? t(Lk.drink, Ls.drink || "Drink") : Ls.drink || t("drink_label", "Drink")
@@ -1961,6 +1997,10 @@ function initExperience(config) {
         const drinkRow = experienceSkipsDrinkField
           ? ""
           : `<p><strong>${labD}:</strong> ${escapeHtml(getLocalizedChoice(drinkName, order.drink))}</p>`;
+        const dessertRow =
+          dessertName && String(order.dessert || "").trim()
+            ? `<p><strong>${defLabDessert}:</strong> ${escapeHtml(getLocalizedChoice(dessertName, order.dessert))}</p>`
+            : "";
         const boatHintMenu = t("orders_boat_each_hint", "USD {price} per person").replace(
           /\{price\}/g,
           String(boatRate)
@@ -2017,6 +2057,7 @@ function initExperience(config) {
             ${tierRow}${servingNoteRow}
             <p><strong>${labS}:</strong> ${escapeHtml(getLocalizedChoice(starterName, order.starter))}</p>
             ${mainRow}
+            ${dessertRow}
             ${drinkRow}
             ${guideLine}
             <p><strong>${escapeHtml(t("preferences_label", "Preferences"))}:</strong> ${escapeHtml(prefs.join(", ") || "-")}</p>
@@ -2133,6 +2174,8 @@ function initExperience(config) {
             ? `${headcount} ${t("passengers_label", "passengers")} · ${orders.length} ${orderCountLabel}`
             : orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
               ? `${tourPartySum} ${t("walking_label_people", "People")} · ${orders.length} ${orderCountLabel}`
+              : packagePeople > 1
+                ? `${headcount} ${t("walking_label_people", "People")} · ${orders.length} ${orderCountLabel}`
               : `${orders.length} ${orderCountLabel}`;
         const experienceDetailMid = experienceMenuFlatTotal
           ? t("orders_menu_package_group_total", "menu package (group total)")
