@@ -194,138 +194,342 @@
 </section>
 
 <div class="popup-overlay" id="popupRomantic">
-  <div class="popup-box">
+  <div class="popup-box romantic-menu-popup">
 
     <button class="close-x" id="closeRomantic" type="button">✕</button>
 
     <p><strong class="popup-title">Menú Casa Viera para dos</strong></p>
     <p class="bruma-tier-heading">
-      <span>Elegí una opción de cada sección</span>
+      <span id="romanticStepTitle">Pedido persona 1</span>
       <span>·</span>
-      <span class="josefina-price-new">USD 140</span>
+      <span class="josefina-price-new">USD 140 hasta dos pedidos</span>
     </p>
 
-    <div class="bruma-menu-panel">
-      <p><strong>Entradas (1) a elección</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="romantic_starter" value="Mix de quesos locales gratinados, mermelada de tomates y ají, focaccia">
-            <span>Mix de quesos locales gratinados, mermelada de tomates y ají, focaccia</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="romantic_starter" value="Falafel, emulsión de cilantro, menta y lima">
-            <span>Falafel, emulsión de cilantro, menta y lima</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="romantic_starter" value="Langostinos al ajillo, marinados en mostaza Dijon, salsa muhammara, mizuna">
-            <span>Langostinos al ajillo, marinados en mostaza Dijon, salsa muhammara, mizuna</span>
-          </label>
-        </li>
-      </ul>
-
-      <p><strong>Principal (1) a elección</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="romantic_main" value="Lasaña bolognesa, bechamel, quesos gratinados, pesto de albahaca y rúcula">
-            <span>Lasaña bolognesa, bechamel, quesos gratinados, pesto de albahaca y rúcula</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="romantic_main" value="Pesca del día, puré de remolachas, queso de cabra, salsa criollita fresca de mango, jengibre, tomate y lima">
-            <span>Pesca del día, puré de remolachas, queso de cabra, salsa criollita fresca de mango, jengibre, tomate y lima</span>
-          </label>
-        </li>
-      </ul>
-
-      <p><strong>Postre (1) a elección</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="romantic_dessert" value="Sable de cacao, caramelo de naranja, ganache de chocolate, sal en escama">
-            <span>Sable de cacao, caramelo de naranja, ganache de chocolate, sal en escama</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="romantic_dessert" value="Tiramisú con vainillas en café, crema de mascarpone, cacao">
-            <span>Tiramisú con vainillas en café, crema de mascarpone, cacao</span>
-          </label>
-        </li>
-      </ul>
-
-      <p><strong>Bebidas (1) a elección</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="romantic_drink" value="Agua sin gas">
-            <span>Agua sin gas</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="romantic_drink" value="Gaseosa línea Coca">
-            <span>Gaseosa línea Coca</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="romantic_drink" value="1 copa de vino Los Cerros de San Juan">
-            <span>1 copa de vino Los Cerros de San Juan</span>
-          </label>
-        </li>
-      </ul>
+    <div class="romantic-step-indicator" aria-live="polite">
+      <span id="romanticStepIndicator">Paso 1 de 2</span>
     </div>
 
-    <div class="preferences-inside">
-      <h3 class="preferences-title">
-        <span>Preferencias</span>
-      </h3>
-      <label><input type="checkbox" value="Sin alcohol"> 🚫 <span>Sin alcohol</span></label>
-      <label><input type="checkbox" value="Vegetariano"> 🥗 <span>Vegetariano</span></label>
-      <label><input type="checkbox" value="Sin gluten"> 🚫 <span>Sin gluten</span></label>
-    </div>
+    <form id="romanticMenuForm">
+      <div class="romantic-popup-step" id="romanticStep1" data-person="1"></div>
+      <div class="romantic-popup-step" id="romanticStep2" data-person="2" hidden></div>
 
-    <div class="popup-actions">
-      <button id="saveRomanticMenu" class="btn" type="button">Guardar selección</button>
-    </div>
+      <div class="preferences-inside romantic-shared-preferences" id="romanticSharedPreferences" hidden>
+        <h3 class="preferences-title">
+          <span>Preferencias generales</span>
+        </h3>
+        <label><input type="checkbox" name="romantic_preferences" value="Sin alcohol"> 🚫 <span>Sin alcohol</span></label>
+        <label><input type="checkbox" name="romantic_preferences" value="Vegetariano"> 🥗 <span>Vegetariano</span></label>
+        <label><input type="checkbox" name="romantic_preferences" value="Sin gluten"> 🚫 <span>Sin gluten</span></label>
+      </div>
+
+      <div class="popup-actions romantic-popup-actions">
+        <button id="romanticBackStep" class="btn secondary" type="button" hidden>Volver</button>
+        <button id="romanticNextStep" class="btn" type="button">Siguiente</button>
+        <button id="saveRomanticMenu" class="btn" type="button" hidden>Guardar selección</button>
+      </div>
+    </form>
   </div>
 </div>
 
 <script src="../Home/index.js?v=20260510icons"></script>
-<script src="../Home/orders.js"></script>
 <script src="../Home/booking-date-picker.js"></script>
 <script>
-  initExperience({
-    experienceName: "Casa Viera — Romantic Dinner",
-    pricePerPerson: 140,
-    peoplePerOrder: 2,
-    popupId: "popupRomantic",
-    closeBtnId: "closeRomantic",
-    saveBtnId: "saveRomanticMenu",
-    createBtnId: "createRomanticMenuBtn",
-    orderSummaryId: "romanticOrderSummary",
-    bookNowBottomId: "bookNowBottomRomantic",
-    selectedDateKey: "selectedDateRomantic",
-    storageKey: "orders_romantic",
-    starterName: "romantic_starter",
-    mainName: "romantic_main",
-    dessertName: "romantic_dessert",
-    drinkName: "romantic_drink",
-    choiceSectionLabels: {
-      starter: "Entrada",
-      main: "Principal",
-      dessert: "Postre",
-      drink: "Bebida"
-    },
-    whatsappNumber: "598091642195"
-  });
+  (function () {
+    const STORAGE_KEY = "orders_romantic_pair";
+    const DATE_KEY = "selectedDateRomantic";
+    const TOTAL_USD = 140;
+    const WHATSAPP_NUMBER = "598091642195";
+    const sections = [
+      {
+        key: "starter",
+        title: "Entradas (1) a elección",
+        label: "Entrada",
+        options: [
+          "Mix de quesos locales gratinados, mermelada de tomates y ají, focaccia",
+          "Falafel, emulsión de cilantro, menta y lima",
+          "Langostinos al ajillo, marinados en mostaza Dijon, salsa muhammara, mizuna"
+        ]
+      },
+      {
+        key: "main",
+        title: "Principal (1) a elección",
+        label: "Principal",
+        options: [
+          "Lasaña bolognesa, bechamel, quesos gratinados, pesto de albahaca y rúcula",
+          "Pesca del día, puré de remolachas, queso de cabra, salsa criollita fresca de mango, jengibre, tomate y lima"
+        ]
+      },
+      {
+        key: "dessert",
+        title: "Postre (1) a elección",
+        label: "Postre",
+        options: [
+          "Sable de cacao, caramelo de naranja, ganache de chocolate, sal en escama",
+          "Tiramisú con vainillas en café, crema de mascarpone, cacao"
+        ]
+      },
+      {
+        key: "drink",
+        title: "Bebidas (1) a elección",
+        label: "Bebida",
+        options: [
+          "Agua sin gas",
+          "Gaseosa línea Coca",
+          "1 copa de vino Los Cerros de San Juan"
+        ]
+      }
+    ];
+
+    const popup = document.getElementById("popupRomantic");
+    const closeBtn = document.getElementById("closeRomantic");
+    const createBtn = document.getElementById("createRomanticMenuBtn");
+    const summary = document.getElementById("romanticOrderSummary");
+    const bookBtn = document.getElementById("bookNowBottomRomantic");
+    const dateInput = document.getElementById("bookingVisitDate");
+    const stepTitle = document.getElementById("romanticStepTitle");
+    const stepIndicator = document.getElementById("romanticStepIndicator");
+    const step1 = document.getElementById("romanticStep1");
+    const step2 = document.getElementById("romanticStep2");
+    const prefsWrap = document.getElementById("romanticSharedPreferences");
+    const backBtn = document.getElementById("romanticBackStep");
+    const nextBtn = document.getElementById("romanticNextStep");
+    const saveBtn = document.getElementById("saveRomanticMenu");
+    let currentStep = 1;
+
+    const escapeHtml = (value) => String(value || "").replace(/[&<>"]/g, (ch) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;"
+    }[ch]));
+
+    const formatDate = (value) => {
+      if (!value) return new Date().toLocaleDateString("es-UY", { day: "2-digit", month: "long", year: "numeric" });
+      if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        const [y, m, d] = value.split("-").map(Number);
+        return new Date(y, m - 1, d).toLocaleDateString("es-UY", { day: "2-digit", month: "long", year: "numeric" });
+      }
+      return value;
+    };
+
+    const getVisitDate = () => localStorage.getItem(DATE_KEY) || dateInput?.value || "";
+
+    function renderStep(container, personNumber) {
+      container.innerHTML = sections.map((section) => `
+        <div class="bruma-menu-panel romantic-menu-section">
+          <p><strong>${escapeHtml(section.title)}</strong></p>
+          <ul class="popup-list">
+            ${section.options.map((option) => `
+              <li>
+                <label>
+                  <input type="radio" name="romantic_p${personNumber}_${section.key}" value="${escapeHtml(option)}">
+                  <span>${escapeHtml(option)}</span>
+                </label>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+      `).join("");
+    }
+
+    function getPersonOrder(personNumber) {
+      const order = {};
+      for (const section of sections) {
+        const selected = popup.querySelector(`input[name="romantic_p${personNumber}_${section.key}"]:checked`);
+        if (!selected) return null;
+        order[section.key] = selected.value;
+      }
+      return order;
+    }
+
+    function getPreferences() {
+      return Array.from(popup.querySelectorAll('input[name="romantic_preferences"]:checked')).map((input) => input.value);
+    }
+
+    function setStep(step) {
+      currentStep = step;
+      step1.hidden = step !== 1;
+      step2.hidden = step !== 2;
+      prefsWrap.hidden = step !== 2;
+      backBtn.hidden = step !== 2;
+      nextBtn.hidden = step !== 1;
+      saveBtn.hidden = step !== 2;
+      stepTitle.textContent = step === 1 ? "Pedido persona 1" : "Pedido persona 2";
+      stepIndicator.textContent = step === 1 ? "Paso 1 de 2" : "Paso 2 de 2";
+    }
+
+    function resetForm() {
+      popup.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach((input) => {
+        input.checked = false;
+      });
+    }
+
+    function fillForm(data) {
+      resetForm();
+      if (!data || !Array.isArray(data.orders)) return;
+      data.orders.forEach((order, index) => {
+        const personNumber = index + 1;
+        sections.forEach((section) => {
+          const value = order?.[section.key];
+          if (!value) return;
+          popup.querySelectorAll(`input[name="romantic_p${personNumber}_${section.key}"]`).forEach((input) => {
+            input.checked = input.value === value;
+          });
+        });
+      });
+      const prefs = new Set(Array.isArray(data.preferences) ? data.preferences : []);
+      popup.querySelectorAll('input[name="romantic_preferences"]').forEach((input) => {
+        input.checked = prefs.has(input.value);
+      });
+    }
+
+    function getStoredBooking() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        return parsed && Array.isArray(parsed.orders) ? parsed : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function setStoredBooking(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function clearStoredBooking() {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
+    function openPopup() {
+      fillForm(getStoredBooking());
+      setStep(1);
+      popup.classList.add("active");
+    }
+
+    function closePopup() {
+      popup.classList.remove("active");
+    }
+
+    function validateStep(personNumber) {
+      const missing = sections.find((section) => !popup.querySelector(`input[name="romantic_p${personNumber}_${section.key}"]:checked`));
+      if (missing) {
+        alert(`Elegí una opción en ${missing.label} para la persona ${personNumber}.`);
+        return false;
+      }
+      return true;
+    }
+
+    function renderSummary() {
+      const booking = getStoredBooking();
+      const visitDate = formatDate(getVisitDate());
+      let html = `<h3>Tu pedido</h3>`;
+      if (!booking) {
+        html += `<p class="order-summary-visit-date"><strong>Fecha de la visita:</strong> ${escapeHtml(visitDate)}</p>`;
+        summary.innerHTML = html;
+        return;
+      }
+
+      html += `<p class="order-summary-visit-date"><strong>Fecha de la visita:</strong> ${escapeHtml(visitDate)}</p>`;
+      booking.orders.forEach((order, index) => {
+        html += `
+          <div class="order-card romantic-person-summary">
+            <div class="order-header">
+              <strong class="order-card-title">Pedido persona ${index + 1}</strong>
+            </div>
+            ${sections.map((section) => `<p><strong>${escapeHtml(section.label)}:</strong> ${escapeHtml(order[section.key])}</p>`).join("")}
+          </div>
+        `;
+      });
+      if (booking.preferences && booking.preferences.length) {
+        html += `<p><strong>Preferencias:</strong> ${escapeHtml(booking.preferences.join(", "))}</p>`;
+      }
+      html += `
+        <div class="total-box">
+          <div class="total-left">
+            <span class="total-label">Total</span>
+            <span class="total-detail">Hasta dos pedidos · menú para dos</span>
+          </div>
+          <div class="total-right">USD ${TOTAL_USD}</div>
+          <a href="#" id="bookRomanticWithOrder" class="btn total-btn">Reservar</a>
+        </div>
+        <button type="button" id="editRomanticOrder" class="add-guest-btn">Editar menú</button>
+        <button type="button" id="deleteRomanticOrder" class="add-guest-btn">Eliminar pedido</button>
+      `;
+      summary.innerHTML = html;
+    }
+
+    function buildWhatsAppMessage() {
+      const booking = getStoredBooking();
+      if (!booking) return "";
+      const date = formatDate(getVisitDate());
+      const orderLines = booking.orders.map((order, index) => {
+        const details = sections.map((section) => `${section.label}: ${order[section.key]}`).join("\n");
+        return `*Pedido persona ${index + 1}*\n${details}`;
+      }).join("\n\n");
+      const prefLine = booking.preferences && booking.preferences.length
+        ? `\n\nPreferencias: ${booking.preferences.join(", ")}`
+        : "";
+      return `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: 2\n\n${orderLines}${prefLine}\n\nTotal: USD ${TOTAL_USD}`;
+    }
+
+    function book() {
+      if (!getStoredBooking()) {
+        openPopup();
+        return;
+      }
+      const message = buildWhatsAppMessage();
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+    }
+
+    renderStep(step1, 1);
+    renderStep(step2, 2);
+
+    if (dateInput) {
+      const storedDate = localStorage.getItem(DATE_KEY);
+      if (storedDate) dateInput.value = storedDate;
+      dateInput.addEventListener("change", () => {
+        if (dateInput.value) localStorage.setItem(DATE_KEY, dateInput.value);
+        renderSummary();
+      });
+    }
+
+    createBtn?.addEventListener("click", openPopup);
+    closeBtn?.addEventListener("click", closePopup);
+    popup?.addEventListener("click", (event) => {
+      if (event.target === popup) closePopup();
+    });
+    nextBtn?.addEventListener("click", () => {
+      if (validateStep(1)) setStep(2);
+    });
+    backBtn?.addEventListener("click", () => setStep(1));
+    saveBtn?.addEventListener("click", () => {
+      if (!validateStep(1) || !validateStep(2)) return;
+      setStoredBooking({
+        orders: [getPersonOrder(1), getPersonOrder(2)],
+        preferences: getPreferences()
+      });
+      closePopup();
+      renderSummary();
+    });
+
+    summary?.addEventListener("click", (event) => {
+      if (event.target.closest("#editRomanticOrder")) openPopup();
+      if (event.target.closest("#deleteRomanticOrder")) {
+        clearStoredBooking();
+        renderSummary();
+      }
+      if (event.target.closest("#bookRomanticWithOrder")) {
+        event.preventDefault();
+        book();
+      }
+    });
+    bookBtn?.addEventListener("click", (event) => {
+      event.preventDefault();
+      book();
+    });
+
+    renderSummary();
+  })();
 </script>
 
     <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
