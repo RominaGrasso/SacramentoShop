@@ -457,7 +457,7 @@
               const prefs = Array.isArray(order.preferences) ? order.preferences : [];
               return `
                 <div class="romantic-person-summary__person">
-                  <p><strong>Pedido persona ${personIndex + 1}</strong></p>
+                  <p class="romantic-person-summary__title"><strong>Pedido persona ${personIndex + 1}</strong></p>
                   ${sections.map((section) => `<p><strong>${escapeHtml(section.label)}:</strong> ${escapeHtml(order[section.key])}</p>`).join("")}
                   <p><strong>Preferencias:</strong> ${escapeHtml(prefs.length ? prefs.join(", ") : "-")}</p>
                 </div>

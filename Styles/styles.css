@@ -3759,6 +3759,11 @@
   margin: 0;
 }
 
+.romantic-person-summary__title,
+.romantic-person-summary__title strong {
+  color: #66a6e6;
+}
+
 .reel-link-btn.activity-icon-link {
   display: inline-flex;
   align-items: center;
