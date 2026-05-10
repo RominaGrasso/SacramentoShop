@@ -457,20 +457,124 @@
     color: #1e3a5f;
   }
 
-  #home-walking-tour-card [data-card-meta="star"] .card-meta__ic {
+  .card .card-meta__ic--star {
     color: #d4a017;
   }
 
-  #home-walking-tour-card [data-card-meta="cup"] .card-meta__ic {
+  .card .card-meta__ic--cup {
     color: #2f8f4e;
   }
 
-  #home-walking-tour-card [data-card-meta="clock"] .card-meta__ic {
+  .card .card-meta__ic--clock {
     color: #4f7fd9;
   }
 
-  #home-walking-tour-card [data-card-meta="globe"] .card-meta__ic {
+  .card .card-meta__ic--globe {
     color: #1496a3;
+  }
+
+  .card .card-meta__ic--shield {
+    color: #04945f;
+  }
+
+  .card .card-meta__ic--utensils {
+    color: #c97a24;
+  }
+
+  .card .card-meta__ic--fire {
+    color: #e4572e;
+  }
+
+  .card .card-meta__ic--sunset {
+    color: #e08d23;
+  }
+
+  .card .card-meta__ic--sparkles {
+    color: #9b5de5;
+  }
+
+  .card .card-meta__ic--wine {
+    color: #8e2452;
+  }
+
+  .card .card-meta__ic--captain {
+    color: #1d4ed8;
+  }
+
+  .card .card-meta__ic--car {
+    color: #2f6fb7;
+  }
+
+  .card .card-meta__ic--landmark {
+    color: #7c6a4b;
+  }
+
+  .card .card-meta__ic--walk {
+    color: #16a34a;
+  }
+
+  .card .card-meta__ic--ticket {
+    color: #b45309;
+  }
+
+  .card .card-meta__ic--leaf {
+    color: #2f9e44;
+  }
+
+  .card .card-meta__ic--grapes {
+    color: #7c3aed;
+  }
+
+  .card .card-meta__ic--horse {
+    color: #8b5a2b;
+  }
+
+  .card .card-meta__ic--sushi {
+    color: #e85d75;
+  }
+
+  .card .card-meta__ic--mappin {
+    color: #dc2626;
+  }
+
+  .card .card-meta__ic--cocktail {
+    color: #db2777;
+  }
+
+  .card .card-meta__ic--beer {
+    color: #d97706;
+  }
+
+  .card .card-meta__ic--dance {
+    color: #a855f7;
+  }
+
+  .card .card-meta__ic--drum {
+    color: #b45309;
+  }
+
+  .card .card-meta__ic--moon {
+    color: #6366f1;
+  }
+
+  .card .card-meta__ic--coffee {
+    color: #8b5e34;
+  }
+
+  .card .card-meta__ic--paw {
+    color: #795548;
+  }
+
+  .card .card-meta__ic--gift {
+    color: #e11d48;
+  }
+
+  .card .card-meta__ic--boat {
+    color: #0ea5e9;
+  }
+
+  .card .card-meta__ic--office {
+    color: #475569;
   }
 
   .card .card-meta__ic use {
