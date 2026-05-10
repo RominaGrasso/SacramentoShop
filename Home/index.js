@@ -3838,6 +3838,164 @@ function initRentPopupBehavior() {
     });
   }
 
+  const activityEmojiIconMap = [
+    ["🛡️", "shield"],
+    ["🍽️", "utensils"],
+    ["🗺️", "map"],
+    ["🛏️", "bed"],
+    ["🏟️", "stadium"],
+    ["🌶️", "pepper"],
+    ["🕯️", "candle"],
+    ["🇪🇸", "globe"],
+    ["🇧🇷", "globe"],
+    ["✔", "check"],
+    ["✅", "check"],
+    ["⭐", "star"],
+    ["🧉", "cup"],
+    ["⏱", "clock"],
+    ["🌐", "globe"],
+    ["🌍", "globe"],
+    ["🛡", "shield"],
+    ["🔥", "fire"],
+    ["🚤", "boat"],
+    ["📍", "mappin"],
+    ["🍽", "utensils"],
+    ["🌅", "sunset"],
+    ["🚶", "walk"],
+    ["🎥", "video"],
+    ["📸", "camera"],
+    ["🏛", "landmark"],
+    ["🍷", "wine"],
+    ["🍺", "beer"],
+    ["🍸", "cocktail"],
+    ["🍹", "cocktail"],
+    ["💃", "dance"],
+    ["🍯", "honey"],
+    ["🚴", "bike"],
+    ["🗺", "map"],
+    ["🍩", "donut"],
+    ["🧒", "child"],
+    ["🧂", "salt"],
+    ["🌶", "pepper"],
+    ["🌊", "water"],
+    ["🌳", "tree"],
+    ["🌿", "leaf"],
+    ["🍇", "grapes"],
+    ["🍣", "sushi"],
+    ["🍵", "tea"],
+    ["☕", "coffee"],
+    ["🎁", "gift"],
+    ["🎂", "cake"],
+    ["🎵", "music"],
+    ["🎶", "music"],
+    ["🏟", "stadium"],
+    ["🏨", "hotel"],
+    ["🐎", "horse"],
+    ["🐾", "paw"],
+    ["💕", "heart"],
+    ["🕯", "candle"],
+    ["📶", "wifi"],
+    ["🚐", "van"],
+    ["🚕", "car"],
+    ["🚗", "car"],
+    ["🚫", "ban"],
+    ["🌙", "moon"],
+    ["🛏", "bed"],
+    ["🥂", "champagne"],
+    ["🥗", "salad"],
+    ["🥛", "milk"],
+    ["🥩", "meat"],
+    ["🗑️", "trash"],
+    ["🗑", "trash"]
+  ];
+
+  function createActivityEmojiIcon(iconId) {
+    const wrap = document.createElement("span");
+    wrap.className = "activity-emoji-icon";
+    wrap.setAttribute("data-card-meta", iconId);
+    wrap.setAttribute("aria-hidden", "true");
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "activity-meta-icon");
+    svg.setAttribute("width", "20");
+    svg.setAttribute("height", "20");
+    svg.setAttribute("focusable", "false");
+
+    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", `../Assets/icons/card-meta.svg#${iconId}`);
+    svg.appendChild(use);
+    wrap.appendChild(svg);
+    return wrap;
+  }
+
+  function decorateActivityEmojiIcons(root = document.body) {
+    if (!root) return;
+    const skipSelector = "script, style, textarea, option, svg, .activity-emoji-icon";
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !activityEmojiIconMap.some(([emoji]) => node.nodeValue.includes(emoji))) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        const parent = node.parentElement;
+        if (!parent || parent.closest(skipSelector)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(node => {
+      const text = node.nodeValue;
+      const fragment = document.createDocumentFragment();
+      let i = 0;
+      let changed = false;
+
+      while (i < text.length) {
+        const match = activityEmojiIconMap.find(([emoji]) => text.startsWith(emoji, i));
+        if (match) {
+          fragment.appendChild(createActivityEmojiIcon(match[1]));
+          i += match[0].length;
+          changed = true;
+        } else {
+          const next = activityEmojiIconMap
+            .map(([emoji]) => {
+              const index = text.indexOf(emoji, i + 1);
+              return index === -1 ? text.length : index;
+            })
+            .reduce((min, index) => Math.min(min, index), text.length);
+          fragment.appendChild(document.createTextNode(text.slice(i, next)));
+          i = next;
+        }
+      }
+
+      if (changed) node.replaceWith(fragment);
+    });
+  }
+
+  let activityEmojiObserverStarted = false;
+  let activityEmojiDecorateQueued = false;
+
+  function queueDecorateActivityEmojiIcons() {
+    if (activityEmojiDecorateQueued) return;
+    activityEmojiDecorateQueued = true;
+    window.requestAnimationFrame(() => {
+      activityEmojiDecorateQueued = false;
+      decorateActivityEmojiIcons();
+    });
+  }
+
+  function startActivityEmojiIconObserver() {
+    if (activityEmojiObserverStarted || !document.body) return;
+    activityEmojiObserverStarted = true;
+    const observer = new MutationObserver(() => queueDecorateActivityEmojiIcons());
+    observer.observe(document.body, {
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
+  }
+
   function setLanguage(language) {
   
     if (!translations[language]) language = "en";
@@ -3892,6 +4050,7 @@ function initRentPopupBehavior() {
     });
 
     mountCardMetaIcons();
+    decorateActivityEmojiIcons();
   }
 
   function initCardExperienceDetailsToggles() {
@@ -3921,6 +4080,7 @@ function initRentPopupBehavior() {
     /* ===== LANGUAGE ===== */
     const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
     setLanguage(savedLanguage);
+    startActivityEmojiIconObserver();
   
     document.querySelectorAll(".lang-btn").forEach(button => {
       button.addEventListener("click", () => {

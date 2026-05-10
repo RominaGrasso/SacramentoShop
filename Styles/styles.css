@@ -3727,11 +3727,25 @@
 }
 
 .activity-meta-icon {
+  display: inline-block;
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   margin-top: 2px;
   color: #1e3a5f;
+  vertical-align: -0.2em;
+}
+
+.activity-emoji-icon {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0.12em;
+  line-height: 1;
+  vertical-align: -0.18em;
+}
+
+.activity-emoji-icon .activity-meta-icon {
+  margin-top: 0;
 }
 
 .reel-link-btn.activity-icon-link {
@@ -3747,6 +3761,18 @@
 
 [data-card-meta~="video"] .activity-meta-icon {
   color: #d946ef;
+}
+
+[data-card-meta~="star"] .activity-meta-icon {
+  color: #d4a017;
+}
+
+[data-card-meta~="clock"] .activity-meta-icon {
+  color: #4f7fd9;
+}
+
+[data-card-meta~="mappin"] .activity-meta-icon {
+  color: #dc2626;
 }
 
 [data-card-meta~="landmark"] .activity-meta-icon {
@@ -3775,6 +3801,165 @@
 
 [data-card-meta~="globe"] .activity-meta-icon {
   color: #1496a3;
+}
+
+[data-card-meta~="shield"] .activity-meta-icon {
+  color: #04945f;
+}
+
+[data-card-meta~="fire"] .activity-meta-icon {
+  color: #e4572e;
+}
+
+[data-card-meta~="boat"] .activity-meta-icon {
+  color: #0ea5e9;
+}
+
+[data-card-meta~="utensils"] .activity-meta-icon {
+  color: #c97a24;
+}
+
+[data-card-meta~="wine"] .activity-meta-icon {
+  color: #8e2452;
+}
+
+[data-card-meta~="beer"] .activity-meta-icon {
+  color: #d97706;
+}
+
+[data-card-meta~="cocktail"] .activity-meta-icon {
+  color: #db2777;
+}
+
+[data-card-meta~="dance"] .activity-meta-icon {
+  color: #a855f7;
+}
+
+[data-card-meta~="honey"] .activity-meta-icon {
+  color: #d97706;
+}
+
+[data-card-meta~="bike"] .activity-meta-icon {
+  color: #16a34a;
+}
+
+[data-card-meta~="map"] .activity-meta-icon {
+  color: #0f766e;
+}
+
+[data-card-meta~="donut"] .activity-meta-icon {
+  color: #d946ef;
+}
+
+[data-card-meta~="child"] .activity-meta-icon {
+  color: #f59e0b;
+}
+
+[data-card-meta~="salt"] .activity-meta-icon {
+  color: #64748b;
+}
+
+[data-card-meta~="pepper"] .activity-meta-icon {
+  color: #dc2626;
+}
+
+[data-card-meta~="water"] .activity-meta-icon {
+  color: #2563eb;
+}
+
+[data-card-meta~="tree"] .activity-meta-icon,
+[data-card-meta~="leaf"] .activity-meta-icon {
+  color: #2f9e44;
+}
+
+[data-card-meta~="grapes"] .activity-meta-icon {
+  color: #7c3aed;
+}
+
+[data-card-meta~="sushi"] .activity-meta-icon {
+  color: #e85d75;
+}
+
+[data-card-meta~="tea"] .activity-meta-icon {
+  color: #2f8f4e;
+}
+
+[data-card-meta~="coffee"] .activity-meta-icon {
+  color: #8b5e34;
+}
+
+[data-card-meta~="gift"] .activity-meta-icon {
+  color: #e11d48;
+}
+
+[data-card-meta~="cake"] .activity-meta-icon {
+  color: #ec4899;
+}
+
+[data-card-meta~="music"] .activity-meta-icon {
+  color: #8b5cf6;
+}
+
+[data-card-meta~="stadium"] .activity-meta-icon {
+  color: #64748b;
+}
+
+[data-card-meta~="hotel"] .activity-meta-icon {
+  color: #475569;
+}
+
+[data-card-meta~="horse"] .activity-meta-icon {
+  color: #8b5a2b;
+}
+
+[data-card-meta~="paw"] .activity-meta-icon {
+  color: #795548;
+}
+
+[data-card-meta~="heart"] .activity-meta-icon {
+  color: #e11d48;
+}
+
+[data-card-meta~="candle"] .activity-meta-icon {
+  color: #f59e0b;
+}
+
+[data-card-meta~="wifi"] .activity-meta-icon {
+  color: #2563eb;
+}
+
+[data-card-meta~="van"] .activity-meta-icon,
+[data-card-meta~="car"] .activity-meta-icon {
+  color: #2f6fb7;
+}
+
+[data-card-meta~="ban"] .activity-meta-icon {
+  color: #dc2626;
+}
+
+[data-card-meta~="bed"] .activity-meta-icon,
+[data-card-meta~="moon"] .activity-meta-icon {
+  color: #6366f1;
+}
+
+[data-card-meta~="champagne"] .activity-meta-icon {
+  color: #b45309;
+}
+
+[data-card-meta~="salad"] .activity-meta-icon {
+  color: #22c55e;
+}
+
+[data-card-meta~="milk"] .activity-meta-icon {
+  color: #94a3b8;
+}
+
+[data-card-meta~="meat"] .activity-meta-icon {
+  color: #b91c1c;
+}
+
+[data-card-meta~="trash"] .activity-meta-icon {
+  color: #dc2626;
 }
   
   .order-floating-btn {
