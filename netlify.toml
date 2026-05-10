@@ -1,0 +1,15 @@
+# Publicar todo el repo para que ../Styles, ../Assets y ../Home/index.js
+# resuelvan bien desde Home/index.html y Actividades/*.html
+[build]
+  publish = "."
+
+# Si alguien entra con /home/ (minúsculas), llevar a la home real
+[[redirects]]
+  from = "/home"
+  to = "/Home/index.html"
+  status = 302
+
+[[redirects]]
+  from = "/home/"
+  to = "/Home/index.html"
+  status = 302

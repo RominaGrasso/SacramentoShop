@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body>
+<body class="page-home">
 
 <!-- ================= HEADER ================= -->
 <header>
@@ -30,30 +30,101 @@
       </div>
 
       <nav class="top-links">
-        <a href="../Actividades/aboutus.html" target="_blank" rel="noopener noreferrer">
-            <span data-translate="header_about_link">👤 About Us</span>
+        <a href="../Actividades/aboutus.html" target="_blank" rel="noopener noreferrer" class="nav-about-link">
+            <svg class="nav-about-icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#nav-about"/></svg>
+            <span data-translate="header_about_link">About Us</span>
         </a>
       </nav>
   
     <div class="language-switch">
-      <button type="button" class="lang-btn" data-lang="en">🇺🇸 EN</button>
-      <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
-      <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+      <button type="button" class="lang-btn" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
+      <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
+      <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
     </div>
 
     <nav class="hamburger-menu">
 
         <ul>
-            <li data-filter="all" data-translate="nav_cat_all">📋 All experiences</li>
-            <li data-filter="fullday" data-translate="nav_cat_fullday">🧭 Full Day Experiences</li>
-            <li data-filter="day" data-translate="nav_cat_day">🌞 Just for a Day</li>
-            <li data-filter="night" data-translate="nav_cat_night">🌙 Just for a Night</li>
-            <li data-filter="tour" data-translate="nav_cat_tours">🏛 Guided Tours</li>
-            <li data-filter="gastronomy" data-translate="nav_cat_gastro">🍽 Gastronomy</li>
-            <li data-filter="nature" data-translate="nav_cat_nature">🐎 Nature and Animals</li>
-            <li data-filter="culture" data-translate="nav_cat_culture">🥁 Tradition & Culture</li>
-            <li data-filter="romantic" data-translate="nav_cat_romantic">💕 Romantic</li>
-            <li data-filter="corporate" data-translate="nav_cat_corporate">🏢 Corporate Experiences</li>
+
+            <li data-filter="all">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-all"/></svg>
+
+              <span data-translate="nav_cat_all">All experiences</span>
+
+            </li>
+
+            <li data-filter="fullday">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
+
+              <span data-translate="nav_cat_fullday">Full Day Experiences</span>
+
+            </li>
+
+            <li data-filter="day">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
+
+              <span data-translate="nav_cat_day">Just for a Day</span>
+
+            </li>
+
+            <li data-filter="night">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
+
+              <span data-translate="nav_cat_night">Just for a Night</span>
+
+            </li>
+
+            <li data-filter="tour">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
+
+              <span data-translate="nav_cat_tours">Guided Tours</span>
+
+            </li>
+
+            <li data-filter="gastronomy">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
+
+              <span data-translate="nav_cat_gastro">Gastronomy</span>
+
+            </li>
+
+            <li data-filter="nature">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
+
+              <span data-translate="nav_cat_nature">Nature and Animals</span>
+
+            </li>
+
+            <li data-filter="culture">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
+
+              <span data-translate="nav_cat_culture">Tradition & Culture</span>
+
+            </li>
+
+            <li data-filter="romantic">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
+
+              <span data-translate="nav_cat_romantic">Romantic</span>
+
+            </li>
+
+            <li data-filter="corporate">
+
+              <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
+
+              <span data-translate="nav_cat_corporate">Corporate Experiences</span>
+
+            </li>
         </ul>
       
       </nav>
@@ -83,15 +154,15 @@
       <div class="hero-buttons">
 
         <a href="../Actividades/day.html" class="btn" target="_blank" data-translate="hero_btn_day">
-          🌞 Just for a Day
+          Just for a Day
         </a>
       
         <a href="../Actividades/night.html" class="btn" target="_blank" data-translate="hero_btn_night">
-          🌙 Just for a Night
+          Just for a Night
         </a>
       
         <a href="../Actividades/aftertour.html" class="btn" target="_blank" data-translate="hero_btn_aftertour">
-          ✨ After Tour
+          After Tour
         </a>
 
         <div class="hero-promo" data-translate="hero_promo_free_walking">
@@ -152,7 +223,7 @@
 <!-- TOUR GUIADO -->
 <section id="experiences" class="cards">
 
-    <div class="card" data-category="tour day">
+    <div class="card" data-category="tour day" id="home-walking-tour-card">
 
         <div class="card-image carousel">
           <div class="carousel-track">
@@ -183,22 +254,29 @@
         <div class="card-content">
       
           <h3 data-translate="historic_title">
-            🏛 Guided Historic Quarter Walking Tour
+            Guided Historic Quarter Walking Tour
           </h3>
 
-          <p class="card-meta" data-translate="historic_meta_popular">
+          <button type="button" class="card-info-toggle" id="walking-tour-info-toggle" aria-expanded="false" aria-controls="walking-tour-meta-panel">
+            <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+            <span data-translate="walking_card_info_toggle">Experience details</span>
+          </button>
+          <div class="card-meta-details" id="walking-tour-meta-panel" hidden>
+          <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="historic_meta_popular">
             ⭐ Most popular experience 
-          </p>
+          </span></p>
 
-          <p class="card-meta" data-translate="historic_card_mate">
+          <p class="card-meta-line" data-card-meta="cup"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="historic_card_mate">
             🧉 Optional mate available
-          </p>
-      
-          <p class="card-meta" data-translate="historic_meta_duration">
-            ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese 
-            </p>
+          </span></p>
+  
+          <div class="card-meta-stack">
+          <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="historic_meta_duration_t">1.5 hours</span></p>
+          <p class="card-meta-line" data-card-meta="globe"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="historic_meta_duration_l">English • Spanish • Portuguese</span></p>
+          </div>
+          </div>
 
-            <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+            <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
     
                 <p class="card-description" data-translate="walking_about_p">
                     Explore Colonia del Sacramento’s UNESCO World Heritage historic district with a knowledgeable local guide. Walk through cobblestone streets, discover hidden corners, and hear the fascinating stories behind the city’s Portuguese and Spanish past.
@@ -213,11 +291,11 @@
                target="_blank"
                rel="noopener noreferrer"
                data-translate="view_btn">
-               View Details
+               Explore
             </a>
       
             <a href="#" class="btn secondary" data-translate="book_btn">
-              Book Now
+              Reserve
             </a>
       
           </div>
@@ -253,17 +331,26 @@
   
     <div class="card-content">
       <h3 data-translate="bike_title">
-        🚴 Guided Bike Tour Experience
+        Guided Bike Tour Experience
       </h3>
 
-      <p class="card-meta" data-translate="bike_meta_1">
-        ⏱ 1.5 hours • 🌍 English • Spanish • Portuguese • Traditional torta frita included
-      </p>
+      <button type="button" class="card-info-toggle" id="home-bike-info-toggle" aria-expanded="false" aria-controls="home-bike-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-bike-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="bike_meta_1_t">1.5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="globe"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="bike_meta_1_l">English • Spanish • Portuguese</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="bike_meta_1_f">Traditional torta frita included</span></p>
+      </div>
 
-      <p class="card-meta" data-translate="bike_meta_2">
-        🔥 Active experience • 🌅 Sunset option available
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="fire"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="bike_meta_2_a">Active experience</span></p>
+      <p class="card-meta-line" data-card-meta="sunset"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="bike_meta_2_b">Sunset option available</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="bike_text">
         Explore Colonia del Sacramento by bicycle with a relaxed guided tour.
@@ -280,11 +367,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
       </div>
   
@@ -294,7 +381,7 @@
 
   <!-- LA JOSEFINA — YACHTING COLONIA -->
   <div class="card" data-category="gastronomy day night">
-    <div class="discount-badge" data-translate="josefina_launch_badge">🚀 Precio lanzamiento · 30% OFF</div>
+    <div class="discount-badge"><span class="discount-badge__text" data-translate="josefina_launch_badge">Launch price · 30% OFF</span></div>
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/jose5.jpg" alt="">
@@ -307,19 +394,25 @@
     </div>
 
     <div class="card-content">
-      <h3 data-translate="josefina_title">🍽 La Josefina — Lunch or dinner at Colonia Yacht Club</h3>
+      <h3 data-translate="josefina_title">La Josefina — Lunch or dinner at Colonia Yacht Club</h3>
 
-      <p class="card-meta" data-translate="josefina_meta_view">
+      <button type="button" class="card-info-toggle" id="home-josefina-info-toggle" aria-expanded="false" aria-controls="home-josefina-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-josefina-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="sunset"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="josefina_meta_view">
         🌅 Unforgettable Río de la Plata views — the setting is the highlight
-      </p>
-      <p class="card-meta" data-translate="josefina_meta_duration">
+      </span></p>
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="josefina_meta_duration">
         ⏱ The experience lasts 2 hours
-      </p>
-      <p class="card-meta" data-translate="josefina_meta_favorite">
+      </span></p>
+      <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="josefina_meta_favorite">
         ⭐ A favorite among tourists
-      </p>
+      </span></p>
+      </div>
 
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 
       <p class="card-description" data-translate="josefina_text">
         Lunch or dinner at Restaurante La Josefina, inside the Colonia Yacht Club: exceptional waterfront views, relaxed atmosphere, and one of the most photographed panoramas in town.
@@ -335,11 +428,11 @@
           rel="noopener noreferrer"
           data-translate="view_btn"
         >
-          View Details
+          Explore
         </a>
 
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
       </div>
     </div>
@@ -347,7 +440,7 @@
 
   <!-- BRUMA -->
   <div class="card" data-category="gastronomy day">
-    <div class="discount-badge" data-translate="bruma_discount_badge">🔥 10% OFF</div>
+    <div class="discount-badge"><span class="discount-badge__text" data-translate="bruma_discount_badge">Launch price · 22% OFF</span></div>
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/bruma1.jpg" alt="Bruma restaurant Colonia del Sacramento">
@@ -360,17 +453,23 @@
     </div>
 
     <div class="card-content">
-      <h3 data-translate="bruma_home_title">🍽 Bruma Restaurant Experience</h3>
+      <h3 data-translate="bruma_home_title">Bruma Restaurant Experience</h3>
 
-      <p class="card-meta" data-translate="bruma_home_meta_1">
+      <button type="button" class="card-info-toggle" id="home-bruma-info-toggle" aria-expanded="false" aria-controls="home-bruma-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-bruma-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="sparkles"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="bruma_home_meta_1">
         ✨ Perfect after your guided tour
-      </p>
+      </span></p>
 
-      <p class="card-meta" data-translate="bruma_home_meta_2">
+      <p class="card-meta-line" data-card-meta="wine"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="bruma_home_meta_2">
         🍷 International cuisine by Chef Marcelo
-      </p>
+      </span></p>
+      </div>
 
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 
       <p class="card-description" data-translate="bruma_home_desc">
         Enjoy a unique dining experience at Bruma, a boutique restaurant in the heart of Colonia’s Historic Quarter.
@@ -385,11 +484,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
 
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
       </div>
     </div>
@@ -416,22 +515,29 @@
     <div class="card-content">
   
       <h3 data-translate="asado_boat_home_title">
-        🔥🚤 Asado Experience (BBQ) & Boat Tour
+        Asado Experience (BBQ) & Boat Tour
       </h3>
   
-      <p class="card-meta" data-translate="asado_boat_home_meta_1">
+      <button type="button" class="card-info-toggle" id="home-asado-boat-info-toggle" aria-expanded="false" aria-controls="home-asado-boat-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-asado-boat-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="asado_boat_home_meta_1">
         ⭐ Premium local experience
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="asado_boat_home_meta_2">
+      <p class="card-meta-line" data-card-meta="captain"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="asado_boat_home_meta_2">
         👨‍✈️ Hosted by Alejandro, owner & captain
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="asado_boat_home_meta_3">
-        🚗 Transfer included ⏱ Duration: 4 hours
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="car"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="asado_boat_home_meta_3_transfer">Transfer included</span></p>
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="asado_boat_home_meta_3_time">Duration: 4 hours</span></p>
+      </div>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="asado_boat_home_desc">
         Enjoy an authentic <strong>Uruguayan asado</strong> prepared by <strong>Alejandro</strong>, owner and captain,
@@ -450,11 +556,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -480,22 +586,27 @@
     <div class="card-content">
 
       <h3 data-translate="walking_asado_card_title">
-        🥩 Walking Tour + Asado Experience (BBQ)
+        Walking Tour + Asado Experience (BBQ)
       </h3>
 
-      <p class="card-meta" data-translate="walking_asado_card_meta_1">
+      <button type="button" class="card-info-toggle" id="home-walking-asado-info-toggle" aria-expanded="false" aria-controls="home-walking-asado-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-walking-asado-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="walking_asado_card_meta_1">
         ⭐ Premium local experience
-      </p>
+      </span></p>
 
-      <p class="card-meta" data-translate="walking_asado_card_meta_2">
-        🏛 Guided walk + 🔥 traditional asado at El Refugio
-      </p>
+      <p class="card-meta-line" data-card-meta="landmark"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="walking_asado_card_meta_2">Guided walk + traditional asado at El Refugio</span></p>
 
-      <p class="card-meta" data-translate="walking_asado_card_meta_3">
-        🚶 All on foot in the Historic Quarter ⏱ Duration: about 4 hours
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="walk"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="walking_asado_card_meta_3_a">All on foot in the Historic Quarter</span></p>
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="walking_asado_card_meta_3_b">Duration: about 4 hours</span></p>
+      </div>
+      </div>
 
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 
       <p class="card-description" data-translate="walking_asado_card_desc">
         Pair a guided walking tour of Colonia’s UNESCO Historic Quarter with an authentic Uruguayan asado at El Refugio — premium meats, wine, and local hospitality. Everything stays on foot in the center while the boat tour is temporarily unavailable — history, stories, and flavor in one experience.
@@ -510,11 +621,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
 
         <a href="../Actividades/walking-asado.html" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
 
       </div>
@@ -537,19 +648,26 @@
         </div>
       
         <div class="card-content">
-          <h3 data-translate="food_title">🚶 Walking Tour, Chivito & Plaza de Toros</h3>
+          <h3 data-translate="food_title">Walking Tour, Chivito & Plaza de Toros</h3>
     
-          <p class="card-meta" data-translate="food_card_meta_1">
+          <button type="button" class="card-info-toggle" id="home-food-info-toggle" aria-expanded="false" aria-controls="home-food-meta-panel">
+            <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+            <span data-translate="walking_card_info_toggle">Experience details</span>
+          </button>
+          <div class="card-meta-details" id="home-food-meta-panel" hidden>
+          <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="food_card_meta_1">
             ⭐ Best value experience in Colonia 
-          </p>
-          <p class="card-meta" data-translate="food_card_meta_2">
+          </span></p>
+          <p class="card-meta-line" data-card-meta="fire"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="food_card_meta_2">
             🔥 3 experiences in 1
-          </p>
-          <p class="card-meta" data-translate="food_card_meta_3">
-            🚗 Transfer included ⏱ Duration: 4 hours
-            </p>
+          </span></p>
+          <div class="card-meta-stack">
+          <p class="card-meta-line" data-card-meta="car"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="food_card_meta_3_transfer">Transfer included</span></p>
+          <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="food_card_meta_3_time">Duration: 4 hours</span></p>
+          </div>
+          </div>
     
-          <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+          <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
           
       
           <p class="card-description" data-translate="food_text">
@@ -567,11 +685,11 @@
                target="_blank"
                rel="noopener noreferrer"
                data-translate="view_btn">
-               View Details
+               Explore
             </a>
       
             <a href="#" class="btn secondary" data-translate="book_btn">
-              Book Now
+              Reserve
             </a>
           </div>
         </div>
@@ -595,11 +713,19 @@
     
   
     <div class="card-content">
-      <h3 data-translate="plaza_title">🏛 Plaza de Toros Experience with Anita's coffee</h3>
-      <p class="card-meta" data-translate="plaza_meta_line">
-        🚗 Transfer included • 🎫 Tickets included • ⏱ Approx. 3 hours
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <h3 data-translate="plaza_title">Plaza de Toros Experience with Anita's coffee</h3>
+      <button type="button" class="card-info-toggle" id="home-plaza-info-toggle" aria-expanded="false" aria-controls="home-plaza-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-plaza-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="car"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="plaza_meta_transfer">Transfer included</span></p>
+      <p class="card-meta-line" data-card-meta="ticket"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="plaza_meta_tickets">Tickets included</span></p>
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="plaza_meta_time">Approx. 3 hours</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
       <p class="card-description" data-translate="plaza_text">
         Explore the iconic bullring and its history with private transfer and tickets included. Skip the line! Anita is a café in the heart of the historic quarter with an incredible view. The experience lasts approximately 3 hours.
       </p>
@@ -607,8 +733,8 @@
       <span class="see-more" data-translate="historic_see_more">See more</span>
       
       <div class="card-buttons">
-        <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">View Details</a>
-        <a href="#" class="btn secondary" data-translate="book_btn">Book Now</a>
+        <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">Explore</a>
+        <a href="#" class="btn secondary" data-translate="book_btn">Reserve</a>
       </div>
     </div>
   </div>
@@ -646,15 +772,23 @@
         Dining or Lunch at Las Liebres
       </h3>
 
-      <p class="card-meta" data-translate="lieb_home_meta_1">
-        ⏱ 3 - 4 hours • 🍽 Signature dishes
-      </p>
+      <button type="button" class="card-info-toggle" id="home-lieb-info-toggle" aria-expanded="false" aria-controls="home-lieb-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-lieb-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="lieb_home_meta_1_time">3 - 4 hours</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="lieb_home_meta_1_food">Signature dishes</span></p>
+      </div>
 
 
-      <p class="card-meta" data-translate="lieb_home_meta_2">
-        🚗 Transfer included • 🌿 Boutique dining experience
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="car"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="lieb_home_meta_2_transfer">Transfer included</span></p>
+      <p class="card-meta-line" data-card-meta="leaf"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="lieb_home_meta_2_style">Boutique dining experience</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
   
       <p class="card-description" data-translate="lieb_text">
@@ -672,11 +806,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -703,18 +837,27 @@
     <div class="card-content">
 
       <h3 data-translate="home_hist_lieb_title">
-        🏛🍷 Historic Quarter + Las Liebres
+        Historic Quarter + Las Liebres
       </h3>
 
-      <p class="card-meta" data-translate="home_hist_lieb_meta_1">
-        🏛 Guided walk in the old town • 🍇 Vineyard &amp; organic garden
-      </p>
+      <button type="button" class="card-info-toggle" id="home-hist-lieb-info-toggle" aria-expanded="false" aria-controls="home-hist-lieb-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-hist-lieb-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="landmark"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_1_town">Guided walk in the old town</span></p>
+      <p class="card-meta-line" data-card-meta="grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_1_vine">Vineyard & organic garden</span></p>
+      </div>
 
-      <p class="card-meta" data-translate="home_hist_lieb_meta_2">
-        🍷 Tasting or lunch • ⏱ 3–4 hours duration • 🚗 Transfer included
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="wine"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_2_taste">Tasting or lunch</span></p>
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_2_time">3–4 hours duration</span></p>
+      <p class="card-meta-line" data-card-meta="car"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_2_transfer">Transfer included</span></p>
+      </div>
+      </div>
 
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 
       <p class="card-description" data-translate="home_hist_lieb_desc">
         Start with a <strong>guided tour of Colonia’s Historic Quarter</strong>, then continue to
@@ -731,11 +874,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
 
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
 
       </div>
@@ -767,26 +910,34 @@
     <div class="card-content">
   
       <h3 data-translate="home_cabalgata_title">
-        🐎🍷 Cabalgata &amp; wine tasting — Las Liebres
+        Cabalgata &amp; wine tasting — Las Liebres
       </h3>
   
-      <p class="card-meta" data-translate="home_cabalgata_meta_1">
+      <button type="button" class="card-info-toggle" id="home-cabalgata-info-toggle" aria-expanded="false" aria-controls="home-cabalgata-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-cabalgata-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_1">
         ⭐ Boutique vineyard experience
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="home_cabalgata_meta_2">
-        🐎 Cabalgata in Riachuelo (outside Colonia) • 🍇 Then Las Liebres vineyard &amp; garden
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="horse"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_ride">Cabalgata in Riachuelo (outside Colonia)</span></p>
+      <p class="card-meta-line" data-card-meta="grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_vine">Then Las Liebres vineyard & garden</span></p>
+      </div>
   
-      <p class="card-meta" data-translate="home_cabalgata_meta_3">
+      <p class="card-meta-line" data-card-meta="wine"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_3">
         🍷 3 wines with food pairing
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="home_cabalgata_meta_4">
-        ⏱ Duration: 3–4 hours • 🚗 Transfer included
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_4_time">Duration: 3–4 hours</span></p>
+      <p class="card-meta-line" data-card-meta="car"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_4_transfer">Transfer included</span></p>
+      </div>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="home_cabalgata_desc">
         The <strong>cabalgata</strong> is in <strong>Riachuelo</strong> (outside Colonia); a transfer then takes you to
@@ -803,11 +954,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -833,22 +984,29 @@
     <div class="card-content">
   
       <h3 data-translate="home_sio_title">
-        🍣✨ SIO Sushi Experience
+        SIO Sushi Experience
       </h3>
   
-      <p class="card-meta" data-translate="home_sio_meta_1">
+      <button type="button" class="card-info-toggle" id="home-sio-info-toggle" aria-expanded="false" aria-controls="home-sio-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-sio-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_sio_meta_1">
         ⭐ Premium dining experience
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="home_sio_meta_2">
+      <p class="card-meta-line" data-card-meta="sushi"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_sio_meta_2">
         🍣 International-level sushi in Colonia
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="home_sio_meta_3">
-        📍 Historic Quarter ⏱ Duration: 2 hours
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="mappin"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_sio_meta_3_place">Historic Quarter</span></p>
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_sio_meta_3_time">Duration: 2 hours</span></p>
+      </div>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="home_sio_desc">
         Enjoy an unforgettable dinner at <strong>SIO</strong>, one of the most exclusive culinary experiences in Colonia.
@@ -865,11 +1023,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -895,25 +1053,31 @@
   
     <div class="card-content">
   
-      <h3 data-translate="sunset_boat_card_title">🌅🚤 Sunset Boat Experience</h3>
+      <h3 data-translate="sunset_boat_card_title">Sunset Boat Experience</h3>
   
-      <p class="card-meta" data-translate="sunset_boat_card_meta_1">
+      <button type="button" class="card-info-toggle" id="home-sunset-boat-info-toggle" aria-expanded="false" aria-controls="home-sunset-boat-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-sunset-boat-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="star"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="sunset_boat_card_meta_1">
         ⭐ Relax & scenic experience
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="sunset_boat_card_meta_2">
+      <p class="card-meta-line" data-card-meta="sunset"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="sunset_boat_card_meta_2">
         🌅 Río de la Plata sunset views
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="sunset_boat_card_meta_3">
+      <p class="card-meta-line" data-card-meta="captain"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="sunset_boat_card_meta_3">
         👨‍✈️ Hosted by Alejandro, owner & captain
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="sunset_boat_card_meta_4">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="sunset_boat_card_meta_4">
         ⏱️ Duration: 1.5 hours
-      </p>
+      </span></p>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="sunset_boat_card_desc">
         Enjoy a relaxing boat tour along the Río de la Plata and discover Colonia from a unique perspective.
@@ -930,7 +1094,7 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="../Actividades/sunset-boat.html"
@@ -938,7 +1102,7 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -975,22 +1139,30 @@
     <div class="card-content">
   
       <h3 data-translate="home_bar_title">
-        🍻💃 Colonia Bar Hopping & Night Experience
+        Colonia Bar Hopping & Night Experience
       </h3>
   
-      <p class="card-meta" data-translate="home_bar_meta_1">
-        ⏱️ 3 - 4 hours • 🍸 Cocktails • 🍺 Local beer
-      </p>
+      <button type="button" class="card-info-toggle" id="home-bar-info-toggle" aria-expanded="false" aria-controls="home-bar-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-bar-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_bar_meta_1_time">3 - 4 hours</span></p>
+      <p class="card-meta-line" data-card-meta="cocktail"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_bar_meta_1_cocktails">Cocktails</span></p>
+      <p class="card-meta-line" data-card-meta="beer"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_bar_meta_1_beer">Local beer</span></p>
+      </div>
   
-      <p class="card-meta" data-translate="home_bar_meta_2">
+      <p class="card-meta-line" data-card-meta="mappin"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_bar_meta_2">
         📍 Casa Viera • La Chopería • Barbot
-      </p>
+      </span></p>
   
-      <p class="card-meta" data-translate="home_bar_meta_3">
+      <p class="card-meta-line" data-card-meta="dance"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_bar_meta_3">
         💃 Nightclub access included
-      </p>
+      </span></p>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="home_bar_desc">
         Experience Colonia’s nightlife like a local with a curated bar hopping tour.
@@ -1010,13 +1182,13 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#"
            class="btn secondary"
            data-translate="book_btn">
-           Book Now
+           Reserve
         </a>
   
       </div>
@@ -1041,13 +1213,21 @@
   
     <div class="card-content">
       <h3 data-translate="lupajack_title">
-        🐾🐶 Walk with Lupa & Jack – Experience Colonia Like a Local
+        Walk with Lupa & Jack – Experience Colonia Like a Local
       </h3>
 
-      <p class="card-meta" data-translate="lupajack_card_meta">
-        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
-      </p>
-      <p class="medical">🛡️ <span data-translate="card_medical_simc">Medical assistance included (SIMC)</span></p>
+      <button type="button" class="card-info-toggle" id="home-lupajack-info-toggle" aria-expanded="false" aria-controls="home-lupajack-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-lupajack-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="lupajack_card_meta_t">1.5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="drum"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="lupajack_card_meta_d">Drum lesson</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="lupajack_card_meta_f">Traditional torta frita included</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="card_medical_simc">Medical assistance included (SIMC)</span></p>
   
       <p class="card-description" data-translate="lupajack_text">
         We love animals and know how hard it can be to be away from them.
@@ -1060,11 +1240,11 @@
            target="_blank" 
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
       </div>
     </div>
@@ -1097,17 +1277,25 @@
     <div class="card-content">
   
       <h3 data-translate="mate_title">
-        🧉 Mate & Asado: Become Uruguayan for a Day
+        Mate & Asado: Become Uruguayan for a Day
       </h3>
 
-      <p class="card-meta" data-translate="mate_asado_meta_1">
-        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
-      </p>
+      <button type="button" class="card-info-toggle" id="home-mate-asado-info-toggle" aria-expanded="false" aria-controls="home-mate-asado-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-mate-asado-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="mate_asado_meta_1_t">1.5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="drum"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="mate_asado_meta_1_d">Drum lesson</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="mate_asado_meta_1_f">Traditional torta frita included</span></p>
+      </div>
 
-      <p class="card-meta" data-translate="mate_asado_meta_2">
+      <p class="card-meta-line" data-card-meta="fire"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="mate_asado_meta_2">
         🔥 2 experiences in 1
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      </span></p>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="mate_text">
         Discover the heart of Uruguayan culture through mate and traditional asado. 
@@ -1123,11 +1311,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1164,13 +1352,20 @@
     <div class="card-content">
   
       <h3 data-translate="mateonly_title">
-        🧉 Traditional Mate Experience
+        Traditional Mate Experience
       </h3>
 
-      <p class="card-meta" data-translate="home_shared_meta_activity">
-        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <button type="button" class="card-info-toggle" id="home-mateonly-info-toggle" aria-expanded="false" aria-controls="home-mateonly-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-mateonly-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="mateonly_home_meta_t">About 1–1.5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="cup"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="mateonly_home_meta_m">Mate ritual & tasting with locals</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="mateonly_text">
         Discover Uruguay’s most beloved tradition. Learn how to prepare and share mate like locals.
@@ -1185,11 +1380,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1230,13 +1425,21 @@
     <div class="card-content">
   
       <h3 data-translate="candombe_title">
-        🥁 Candombe Drum Experience
+        Candombe Drum Experience
       </h3>
   
-      <p class="card-meta" data-translate="home_shared_meta_activity">
-        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <button type="button" class="card-info-toggle" id="home-candombe-info-toggle" aria-expanded="false" aria-controls="home-candombe-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-candombe-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_shared_meta_t">1.5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="drum"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_shared_meta_d">Drum lesson</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_shared_meta_f">Traditional torta frita included</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="candombe_text">
         Experience the rhythm of Uruguay through candombe. Learn the basics of traditional drumming with local musicians.
@@ -1251,11 +1454,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1266,7 +1469,7 @@
 
   <!-- ROMANTIC DINNER -->
 
-  <div class="card" data-category="romantic night gastronomy" hidden>
+  <div class="card" data-category="romantic night gastronomy">
     <div class="card-image carousel">
       <div class="carousel-track">
         <img src="../Assets/images/romantic-dinner.jpg" 
@@ -1283,16 +1486,24 @@
     <div class="card-content">
       <h3 data-translate="romantic_title">
 
-        💕 Romantic Dinner for Two
+        Casa Viera — Romantic Dinner
       </h3>
 
-      <p class="card-meta" data-translate="home_shared_meta_activity">
-        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <button type="button" class="card-info-toggle" id="home-romantic-info-toggle" aria-expanded="false" aria-controls="home-romantic-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-romantic-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="mappin"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="romantic_home_meta_place">Casa Viera</span></p>
+      <p class="card-meta-line" data-card-meta="moon"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="romantic_home_meta_evening">Evening</span></p>
+      <p class="card-meta-line" data-card-meta="wine"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="romantic_home_meta_menu">Three-course dinner & premium wine</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="romantic_text">
-        Enjoy a private candlelight dinner in a charming colonial setting, perfect for couples.
+        Private candlelight dinner at Casa Viera in the Historic Quarter — elegant setting, gourmet menu, perfect for couples.
       </p>
       
       <span class="see-more" data-translate="historic_see_more">See more</span>
@@ -1303,11 +1514,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
       </div>
     </div>
@@ -1328,13 +1539,20 @@
   
     <div class="card-content">
       <h3 data-translate="horse_title">
-        🐎 Horseback Riding Through Colonia’s Countryside
+        Horseback Riding Through Colonia’s Countryside
       </h3>
 
-      <p class="card-meta" data-translate="home_shared_meta_activity">
-        ⏱ 1.5 hours • 🥁 Drum lesson • Traditional torta frita included
-      </p>
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <button type="button" class="card-info-toggle" id="home-horse-info-toggle" aria-expanded="false" aria-controls="home-horse-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-horse-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="horse_home_meta_t">About 2 hours</span></p>
+      <p class="card-meta-line" data-card-meta="leaf"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="horse_home_meta_n">Countryside trails & nature</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="horse_text">
         Discover the rural side of Colonia on horseback. Enjoy a relaxed ride through nature.
@@ -1348,11 +1566,11 @@
            target="_blank" 
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
       </div>
     </div>
@@ -1391,15 +1609,21 @@
     <div class="card-content">
   
       <h3 data-translate="fullday1_title">
-        🦜 Full Day Experience 1 -  Animal Reserve, Asado & Beach Experience
+        Full Day Experience 1 -  Animal Reserve, Asado & Beach Experience
       </h3>
 
-  
-      <p class="card-meta" data-translate="fullday_card_meta_lang">
-        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
-      </p>
+      <button type="button" class="card-info-toggle" id="home-fullday1-info-toggle" aria-expanded="false" aria-controls="home-fullday1-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-fullday1-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_time">4-5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="globe"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_langs">English • Spanish • Portuguese</span></p>
+      </div>
+      </div>
 
-      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="card_fully_insured">Fully insured experience</span></p>
   
       <p class="card-description" data-translate="fullday1_text">
         Visit the Kerayvoty Animal Reserve in Juan Lacaze, enjoy a traditional 
@@ -1415,11 +1639,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1456,13 +1680,20 @@
     <div class="card-content">
   
       <h3 data-translate="fullday2_title">
-        🍇 Full Day Experience 2 – Carmelo City & Wineries
+        Full Day Experience 2 – Carmelo City & Wineries
       </h3>
   
-      <p class="card-meta" data-translate="fullday_card_meta_lang">
-        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
-      </p>
-      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
+      <button type="button" class="card-info-toggle" id="home-fullday2-info-toggle" aria-expanded="false" aria-controls="home-fullday2-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-fullday2-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_time">4-5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="globe"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_langs">English • Spanish • Portuguese</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="card_fully_insured">Fully insured experience</span></p>
       <p class="card-description" data-translate="fullday2_text">
         Explore the charming town of Carmelo on a full-day experience combining 
         a guided city tour with visits to local wineries. Discover the town’s 
@@ -1478,11 +1709,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1519,13 +1750,20 @@
     <div class="card-content">
   
       <h3 data-translate="fullday3_title">
-        🧀 Full Day Experience 3 – Colonia Suiza Heritage Tour
+        Full Day Experience 3 – Colonia Suiza Heritage Tour
       </h3>
   
-      <p class="card-meta" data-translate="fullday_card_meta_lang">
-        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
-      </p>
-      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
+      <button type="button" class="card-info-toggle" id="home-fullday3-info-toggle" aria-expanded="false" aria-controls="home-fullday3-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-fullday3-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_time">4-5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="globe"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_langs">English • Spanish • Portuguese</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="card_fully_insured">Fully insured experience</span></p>
       <p class="card-description" data-translate="fullday3_text">
         Discover the Swiss heritage of Nueva Helvecia on this full-day experience. 
         Visit traditional cheese factories, explore the historic town, stop at the 
@@ -1541,11 +1779,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1582,13 +1820,20 @@
     <div class="card-content">
   
       <h3 data-translate="fullday4_title">
-        ✨ Full Day Experience 4 - Horseback Ride, Dinner & Stargazing Experience
+        Full Day Experience 4 - Horseback Ride, Dinner & Stargazing Experience
       </h3>
   
-      <p class="card-meta" data-translate="fullday_card_meta_lang">
-        ⏱ 4-5 hours • 🌍 English • Spanish • Portuguese
-      </p>
-      <p class="medical">🛡️ <span data-translate="card_fully_insured">Fully insured experience</span></p>
+      <button type="button" class="card-info-toggle" id="home-fullday4-info-toggle" aria-expanded="false" aria-controls="home-fullday4-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-fullday4-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="clock"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_time">4-5 hours</span></p>
+      <p class="card-meta-line" data-card-meta="globe"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="fullday_card_meta_langs">English • Spanish • Portuguese</span></p>
+      </div>
+      </div>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="card_fully_insured">Fully insured experience</span></p>
       <p class="card-description" data-translate="fullday4_text">
         Enjoy a scenic horseback ride through the countryside, followed by a special 
         dinner at Las Liebres. End the night with a unique stargazing experience led 
@@ -1604,11 +1849,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1637,18 +1882,26 @@
     <div class="card-content">
   
       <h3 data-translate="home_toros_night_title">
-        🛏 🌙 Colonia Night Experience: Dinner, Stay & Plaza de Toros
+        Colonia Night Experience: Dinner, Stay & Plaza de Toros
       </h3>
   
-      <p class="card-meta" data-translate="home_toros_night_meta_1">
-        🌙 1 night • 🍽 Dinner included • ☕ Breakfast included
-      </p>
+      <button type="button" class="card-info-toggle" id="home-toros-night-info-toggle" aria-expanded="false" aria-controls="home-toros-night-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-toros-night-meta-panel" hidden>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="moon"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_toros_night_meta_1_night">1 night</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_toros_night_meta_1_dinner">Dinner included</span></p>
+      <p class="card-meta-line" data-card-meta="coffee"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_toros_night_meta_1_breakfast">Breakfast included</span></p>
+      </div>
   
-      <p class="card-meta" data-translate="home_toros_night_meta_2">
+      <p class="card-meta-line" data-card-meta="fire"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_toros_night_meta_2">
         🔥 3 experiences in 1
-      </p>
+      </span></p>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="home_toros_night_desc">
         Enjoy a unique overnight experience in Colonia. Start with a delicious dinner at <strong>Las Liebres</strong>,
@@ -1665,13 +1918,13 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#"
            class="btn secondary"
            data-translate="book_btn">
-           Book Now
+           Reserve
         </a>
   
       </div>
@@ -1700,21 +1953,29 @@
     <div class="card-content">
   
       <h3 data-translate="home_mision_title">
-        🏛 🌙 Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour
+        Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour
       </h3>
-      <p class="card-meta" data-translate="home_mision_meta_pf">
+      <button type="button" class="card-info-toggle" id="home-mision-info-toggle" aria-expanded="false" aria-controls="home-mision-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-mision-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="paw"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_pf">
         🐾 Pet friendly
-      </p>
+      </span></p>
 
-      <p class="card-meta" data-translate="home_mision_meta_stay">
-        🌙 1 night • 🍽 Dinner included • ☕ Breakfast included
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="moon"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_stay_night">1 night</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_stay_dinner">Dinner included</span></p>
+      <p class="card-meta-line" data-card-meta="coffee"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_stay_breakfast">Breakfast included</span></p>
+      </div>
   
-      <p class="card-meta" data-translate="home_mision_meta_tour">
+      <p class="card-meta-line" data-card-meta="gift"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_tour">
         🎁 Guided tour included
-      </p>
+      </span></p>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="home_mision_desc">
         Step back in time with a unique stay at <strong>La Misión</strong>, a charming posada located in the heart of the historic quarter,
@@ -1731,11 +1992,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1765,21 +2026,29 @@
     <div class="card-content">
   
       <h3 data-translate="home_sio_mision_title">
-        🍣 🌙 Premium Night Experience: La Misión Stay, SIO Sushi Dinner & Walking Tour
+        Premium Night Experience: La Misión Stay, SIO Sushi Dinner & Walking Tour
       </h3>
-      <p class="card-meta" data-translate="home_mision_meta_pf">
+      <button type="button" class="card-info-toggle" id="home-sio-mision-info-toggle" aria-expanded="false" aria-controls="home-sio-mision-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-sio-mision-meta-panel" hidden>
+      <p class="card-meta-line" data-card-meta="paw"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_pf">
         🐾 Pet friendly
-      </p>
+      </span></p>
       
-      <p class="card-meta" data-translate="home_mision_meta_stay">
-        🌙 1 night • 🍽 Dinner included • ☕ Breakfast included
-      </p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="moon"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_stay_night">1 night</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_stay_dinner">Dinner included</span></p>
+      <p class="card-meta-line" data-card-meta="coffee"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_stay_breakfast">Breakfast included</span></p>
+      </div>
   
-      <p class="card-meta" data-translate="home_mision_meta_tour">
+      <p class="card-meta-line" data-card-meta="gift"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_mision_meta_tour">
         🎁 Guided tour included
-      </p>
+      </span></p>
+      </div>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="home_sio_mision_desc">
         Experience Colonia at its most exclusive. Stay at <strong>La Misión</strong>, a boutique posada in the heart of the historic quarter,
@@ -1796,11 +2065,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>
@@ -1838,25 +2107,34 @@
   
     <div class="card-content">
 
-        <p class="card-meta" data-translate="home_corp_boat_badge">✨ Exclusive corporate experience</p>
-  
       <h3 data-translate="home_corp_boat_title">
-        🚤 Sunset Boat Experience & Dinner at Casa Petit
+        Sunset Boat Experience & Dinner at Casa Petit
       </h3>
-  
-      <p class="card-meta" data-translate="home_corp_boat_meta_1">
-        🌅 Sunset experience • 🚤 Private boat with Captain Alejandro • 🍽 Dinner included
-      </p>
-  
-      <p class="card-meta" data-translate="home_corp_boat_meta_2">
-        🏢 Corporate & private groups • 🚗 Transfers included
-      </p>
 
-      <p class="card-meta" data-translate="home_corp_boat_meta_3">
-        🎁 Guided tour included
-      </p>
+      <button type="button" class="card-info-toggle" id="home-corp-boat-info-toggle" aria-expanded="false" aria-controls="home-corp-boat-meta-panel">
+        <span class="card-info-toggle__ic" aria-hidden="true">ⓘ</span>
+        <span data-translate="walking_card_info_toggle">Experience details</span>
+      </button>
+      <div class="card-meta-details" id="home-corp-boat-meta-panel" hidden>
+        <p class="card-meta-line card-meta-line--badge" data-card-meta="sparkles"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_corp_boat_badge">✨ Exclusive corporate experience</span></p>
   
-      <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="sunset"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_corp_boat_meta_1_sunset">Sunset experience</span></p>
+      <p class="card-meta-line" data-card-meta="boat"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_corp_boat_meta_1_boat">Private boat with Captain Alejandro</span></p>
+      <p class="card-meta-line" data-card-meta="utensils"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_corp_boat_meta_1_dinner">Dinner included</span></p>
+      </div>
+  
+      <div class="card-meta-stack">
+      <p class="card-meta-line" data-card-meta="office"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_corp_boat_meta_2_groups">Corporate & private groups</span></p>
+      <p class="card-meta-line" data-card-meta="car"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_corp_boat_meta_2_transfer">Transfers included</span></p>
+      </div>
+
+      <p class="card-meta-line" data-card-meta="gift"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_corp_boat_meta_3">
+        🎁 Guided tour included
+      </span></p>
+      </div>
+  
+      <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
   
       <p class="card-description" data-translate="home_corp_boat_desc">
@@ -1874,11 +2152,11 @@
            target="_blank"
            rel="noopener noreferrer"
            data-translate="view_btn">
-           View Details
+           Explore
         </a>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
-          Book Now
+          Reserve
         </a>
   
       </div>

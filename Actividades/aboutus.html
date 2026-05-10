@@ -17,7 +17,7 @@
   </script>
 </head>
 
-<body>
+<body class="page-actividad">
 
  <!-- ================= HEADER ================= -->
  <header>
@@ -36,22 +36,85 @@
   </div>
 
   <div class="language-switch">
-    <button type="button" class="lang-btn active" data-lang="en">🇺🇸 EN</button>
-    <button type="button" class="lang-btn" data-lang="es">🇺🇾 ES</button>
-    <button type="button" class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+    <button type="button" class="lang-btn active" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
+    <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
+    <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
   </div>
 
   <nav class="hamburger-menu">
     <ul>
-      <li data-filter="fullday" data-translate="nav_cat_fullday">🧭 Full Day Experiences</li>
-      <li data-filter="day" data-translate="nav_cat_day">🌞 Just for a Day</li>
-      <li data-filter="night" data-translate="nav_cat_night">🌙 Just for a Night</li>
-      <li data-filter="tour" data-translate="nav_cat_tours">🏛 Guided Tours</li>
-      <li data-filter="gastronomy" data-translate="nav_cat_gastro">🍽 Gastronomy</li>
-      <li data-filter="nature" data-translate="nav_cat_nature">🐎 Nature and Animals</li>
-      <li data-filter="culture" data-translate="nav_cat_culture">🥁 Tradition & Culture</li>
-      <li data-filter="romantic" data-translate="nav_cat_romantic">💕 Romantic</li>
-      <li data-filter="corporate" data-translate="nav_cat_corporate">🏢 Corporate Experiences</li>
+
+      <li data-filter="fullday">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
+
+        <span data-translate="nav_cat_fullday">Full Day Experiences</span>
+
+      </li>
+
+      <li data-filter="day">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
+
+        <span data-translate="nav_cat_day">Just for a Day</span>
+
+      </li>
+
+      <li data-filter="night">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
+
+        <span data-translate="nav_cat_night">Just for a Night</span>
+
+      </li>
+
+      <li data-filter="tour">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
+
+        <span data-translate="nav_cat_tours">Guided Tours</span>
+
+      </li>
+
+      <li data-filter="gastronomy">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
+
+        <span data-translate="nav_cat_gastro">Gastronomy</span>
+
+      </li>
+
+      <li data-filter="nature">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
+
+        <span data-translate="nav_cat_nature">Nature and Animals</span>
+
+      </li>
+
+      <li data-filter="culture">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
+
+        <span data-translate="nav_cat_culture">Tradition & Culture</span>
+
+      </li>
+
+      <li data-filter="romantic">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
+
+        <span data-translate="nav_cat_romantic">Romantic</span>
+
+      </li>
+
+      <li data-filter="corporate">
+
+        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
+
+        <span data-translate="nav_cat_corporate">Corporate Experiences</span>
+
+      </li>
     </ul>
   </nav>
 
