@@ -3328,6 +3328,80 @@
     z-index:1;
   }
 
+  .barbot-hero {
+    height: 55vh;
+    min-height: 260px;
+    background-image: url("../Assets/images/barbot1.jpg");
+    background-size: cover;
+    background-position: center 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .barbot-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .barbot-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    max-width: 42rem;
+  }
+
+  .barbot-hero-inner h1 {
+    color: #fff;
+    font-size: clamp(1.45rem, 4vw, 2.35rem);
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  .barbot-hero-badge.discount-badge {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0;
+  }
+
+  .page-barbot-brewpub .coffee-content .medical {
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .barbot-combo-box {
+    margin: 2rem 0;
+    padding: 1.25rem 1.35rem;
+    border-radius: 12px;
+    background: rgba(90, 149, 207, 0.09);
+    border: 1px solid rgba(47, 103, 163, 0.15);
+  }
+
+  .barbot-combo-box h3 {
+    margin-top: 0;
+    margin-bottom: 0.65rem;
+  }
+
+  .barbot-combo-box p {
+    margin-bottom: 1rem;
+  }
+
+  .barbot-combo-box .btn {
+    display: inline-block;
+  }
+
   .partners {
     padding: 40px 20px;
     text-align: center;
