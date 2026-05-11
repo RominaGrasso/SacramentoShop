@@ -313,7 +313,8 @@ function buildPlexoExpressCheckoutRequest(payload) {
     Items: [
       {
         Amount: amount,
-        ClientItemReferenceId: "Item-1",
+        /** Avoid "…-1" suffix — some gateways mis-parse trailing digits as issuer ids. */
+        ClientItemReferenceId: "SacramentoExpressItem",
         Description: String(payload.experience || "Booking"),
         Name: String(payload.experience || "Booking"),
         Quantity: 1
@@ -998,6 +999,10 @@ app.get("/api/payments/health", (_req, res) => {
     plexoReady: PAYMENT_MODE !== "plexo" ? undefined : Boolean(plexoMaterial),
     /** Valor efectivo en runtime (0 = no se envía OptionalCommerceId al gateway). */
     plexoCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_COMMERCE_ID : undefined,
+    /** Lista efectiva enviada en AuthorizationData.LimitIssuers (vacío = no se envía el campo). */
+    plexoLimitIssuersEffective: PAYMENT_MODE === "plexo" ? PLEXO_LIMIT_ISSUERS : undefined,
+    /** Valor crudo de env (undefined = se aplicó default interno o vacío omitido). */
+    plexoLimitIssuersEnvRaw: PAYMENT_MODE === "plexo" ? process.env.PLEXO_LIMIT_ISSUERS ?? null : undefined,
     plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined,
     plexoAdminTokenConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_ADMIN_TOKEN) : undefined
   });
