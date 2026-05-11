@@ -22,11 +22,29 @@ const PLEXO_PFX_PATH = process.env.PLEXO_PFX_PATH || "";
 const PLEXO_PFX_BASE64 = process.env.PLEXO_PFX_BASE64 || "";
 const PLEXO_REDIRECT_URL = process.env.PLEXO_REDIRECT_URL || "https://rominagrasso.github.io/SacramentoShop/Home/index.html";
 const PLEXO_COMMERCE_ID = Number(process.env.PLEXO_COMMERCE_ID || 0);
-/** Comma-separated issuer ids (manual ejemplo: 4,11,15,30,32). Vacío = no enviar. */
-const PLEXO_LIMIT_ISSUERS = String(process.env.PLEXO_LIMIT_ISSUERS || "4,11,15")
-  .split(",")
-  .map((s) => s.trim())
-  .filter(Boolean);
+/** Comma-separated issuer ids (manual ejemplo: 4,11,15,30,32). Env vacío "" = no enviar LimitIssuers. Sin definir = default 4,11,15. */
+function computePlexoLimitIssuers() {
+  const raw = process.env.PLEXO_LIMIT_ISSUERS;
+  if (raw !== undefined && raw !== null && String(raw).trim() === "") {
+    return [];
+  }
+  const csv =
+    raw === undefined || raw === null ? "4,11,15" : String(raw).trim() || "4,11,15";
+  const parts = csv
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const droppedOne = parts.includes("1");
+  const withoutUnsupportedOne = parts.filter((id) => id !== "1");
+  if (droppedOne) {
+    // Issuer 1 is often confused with facilitador ids; Plexo rejects if commerce has no issuer 1.
+    console.warn(
+      "[plexo] Removed issuer id 1 from PLEXO_LIMIT_ISSUERS (not configured for this commerce). Use 4,11,15 or omit."
+    );
+  }
+  return withoutUnsupportedOne;
+}
+const PLEXO_LIMIT_ISSUERS = computePlexoLimitIssuers();
 /** Plexo + Totalnet (Visa): manual pide script CyberSource y el mismo id en CybersourceDeviceFingerprint. */
 const PLEXO_CYBERSOURCE_ORG_ID = (process.env.PLEXO_CYBERSOURCE_ORG_ID || "45ssiuz3").trim();
 /** Prefijo IdComercio para session_id del script (ej. visanetuy_px_1234 u oca_plexo) — lo da Plexo por comercio. */
@@ -574,7 +592,8 @@ async function createPlexoPaymentLink(payload) {
       JSON.stringify({
         envPlexoCommerceId: PLEXO_COMMERCE_ID,
         sentInAuth: reqInner?.AuthorizationData?.OptionalCommerceId ?? null,
-        sentInPayment: reqInner?.PaymentData?.OptionalCommerceId ?? null
+        sentInPayment: reqInner?.PaymentData?.OptionalCommerceId ?? null,
+        limitIssuers: reqInner?.AuthorizationData?.LimitIssuers ?? null
       })
     );
   }
@@ -1203,5 +1222,11 @@ app.post("/api/payments/webhook", (req, res) => {
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Payments backend listening on http://localhost:${PORT}`);
+  if (PAYMENT_MODE === "plexo") {
+    // eslint-disable-next-line no-console
+    console.log(
+      `[plexo] Ready: OptionalCommerceId=${PLEXO_COMMERCE_ID} LimitIssuers=${JSON.stringify(PLEXO_LIMIT_ISSUERS)} (empty = field omitted)`
+    );
+  }
 });
 
