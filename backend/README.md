@@ -62,7 +62,8 @@ Set in `.env`:
 - `PLEXO_GATEWAY_URL=https://testing.plexo.com.uy:4043/SecurePaymentGateway.svc` (testing)
 - `PLEXO_CLIENT_NAME=<ClientName>`
 - `PLEXO_CERT_PASSWORD=<pfx password>`
-- `PLEXO_COMMERCE_ID=<commerce id>`
+- `PLEXO_COMMERCE_ID=<CommerceId>` — id de comercio en Plexo para operaciones tipo **issuers** (`/Commerce/Issuer`, etc.). Con Handy suele ser el de negocio (ej. **65264**).
+- `PLEXO_OPTIONAL_COMMERCE_ID=<id>` — **solo** para **ExpressCheckout**: va en `AuthorizationData.OptionalCommerceId` y `PaymentData.OptionalCommerceId`. Si no lo definís, se reutiliza `PLEXO_COMMERCE_ID`. Con Handy/Handy+Plexo a veces es distinto (ej. **66059** mientras `PLEXO_COMMERCE_ID` es **65264**).
 - `PLEXO_REDIRECT_URL=<frontend redirect URL>`
 - `PLEXO_PFX_PATH=/etc/secrets/SacramentoAdventurestest.pfx` (Render Secret File) **or** `PLEXO_PFX_BASE64=<base64>`
 
