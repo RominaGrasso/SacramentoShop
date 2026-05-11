@@ -45,6 +45,15 @@ function computePlexoLimitIssuers() {
   return withoutUnsupportedOne;
 }
 const PLEXO_LIMIT_ISSUERS = computePlexoLimitIssuers();
+/** Si es true, ExpressCheckout no envía LimitIssuers (prueba diagnóstica; reinicio requerido). */
+function isPlexoExpressOmitLimitIssuers() {
+  return /^(1|true|yes)$/i.test(String(process.env.PLEXO_EXPRESS_OMIT_LIMIT_ISSUERS || "").trim());
+}
+
+function effectiveLimitIssuersForExpressCheckout() {
+  if (isPlexoExpressOmitLimitIssuers()) return [];
+  return PLEXO_LIMIT_ISSUERS;
+}
 /** Plexo + Totalnet (Visa): manual pide script CyberSource y el mismo id en CybersourceDeviceFingerprint. */
 const PLEXO_CYBERSOURCE_ORG_ID = (process.env.PLEXO_CYBERSOURCE_ORG_ID || "45ssiuz3").trim();
 /** Prefijo IdComercio para session_id del script (ej. visanetuy_px_1234 u oca_plexo) — lo da Plexo por comercio. */
@@ -292,8 +301,9 @@ function buildPlexoExpressCheckoutRequest(payload) {
     })
   };
 
-  if (PLEXO_LIMIT_ISSUERS.length > 0) {
-    authorizationData.LimitIssuers = PLEXO_LIMIT_ISSUERS;
+  const limitIssuers = effectiveLimitIssuersForExpressCheckout();
+  if (limitIssuers.length > 0) {
+    authorizationData.LimitIssuers = limitIssuers;
   }
 
   if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
@@ -585,8 +595,20 @@ async function createPlexoPaymentLink(payload) {
   // Plexo exposes ExpressCheckout at /ExpressCheckout (not /Operation/ExpressCheckout — that path 404s).
   const endpoint = `${base}/ExpressCheckout`;
   const requestBody = signPlexoPayload(buildPlexoExpressCheckoutRequest(payload));
+  const reqInner = requestBody?.Object?.Object?.Request;
+  // eslint-disable-next-line no-console
+  console.log(
+    "[plexo-express-out]",
+    JSON.stringify({
+      limitIssuers: reqInner?.AuthorizationData?.LimitIssuers ?? null,
+      optionalCommerceAuth: reqInner?.AuthorizationData?.OptionalCommerceId ?? null,
+      optionalCommercePay: reqInner?.PaymentData?.OptionalCommerceId ?? null,
+      currencyId: reqInner?.PaymentData?.CurrencyId ?? null,
+      installments: reqInner?.PaymentData?.Installments ?? null,
+      omitLimitIssuersFlag: isPlexoExpressOmitLimitIssuers()
+    })
+  );
   if (PAYMENT_DEBUG_LOG) {
-    const reqInner = requestBody?.Object?.Object?.Request;
     // eslint-disable-next-line no-console
     console.log(
       "[plexo-req] OptionalCommerceId",
@@ -1001,6 +1023,9 @@ app.get("/api/payments/health", (_req, res) => {
     plexoCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_COMMERCE_ID : undefined,
     /** Lista efectiva enviada en AuthorizationData.LimitIssuers (vacío = no se envía el campo). */
     plexoLimitIssuersEffective: PAYMENT_MODE === "plexo" ? PLEXO_LIMIT_ISSUERS : undefined,
+    /** Lo que realmente enviará ExpressCheckout (tras PLEXO_EXPRESS_OMIT_LIMIT_ISSUERS). */
+    plexoExpressLimitIssuersEffective: PAYMENT_MODE === "plexo" ? effectiveLimitIssuersForExpressCheckout() : undefined,
+    plexoExpressOmitLimitIssuers: PAYMENT_MODE === "plexo" ? isPlexoExpressOmitLimitIssuers() : undefined,
     /** Valor crudo de env (undefined = se aplicó default interno o vacío omitido). */
     plexoLimitIssuersEnvRaw: PAYMENT_MODE === "plexo" ? process.env.PLEXO_LIMIT_ISSUERS ?? null : undefined,
     plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined,
