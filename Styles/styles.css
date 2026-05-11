@@ -3354,19 +3354,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.85rem;
     padding: 1.5rem;
     text-align: center;
-    max-width: 42rem;
+    max-width: 36rem;
   }
 
   .barbot-hero-inner h1 {
     color: #fff;
-    font-size: clamp(1.45rem, 4vw, 2.35rem);
-    line-height: 1.2;
+    font-size: clamp(1.35rem, 3.8vw, 2.1rem);
+    line-height: 1.25;
     margin: 0;
     font-weight: 700;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  .barbot-hero-deck {
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 34rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
   }
 
   .barbot-hero-badge.discount-badge {
@@ -3376,30 +3385,85 @@
     margin: 0;
   }
 
+  .page-barbot-brewpub .coffee-content {
+    max-width: 46rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .page-barbot-brewpub .coffee-content .medical {
-    margin-top: 0.5rem;
-    margin-bottom: 1.25rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1.35rem;
   }
 
-  .barbot-combo-box {
-    margin: 2rem 0;
-    padding: 1.25rem 1.35rem;
-    border-radius: 12px;
-    background: rgba(90, 149, 207, 0.09);
-    border: 1px solid rgba(47, 103, 163, 0.15);
+  .barbot-page-content > h2 {
+    margin-top: 0.25rem;
   }
 
-  .barbot-combo-box h3 {
-    margin-top: 0;
+  .barbot-lead {
+    font-size: 1.06rem;
+    line-height: 1.65;
+    margin-bottom: 1.35rem;
+  }
+
+  .barbot-award-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin: 0 0 1.25rem;
+  }
+
+  .barbot-award-row .card-meta-line {
+    margin: 0;
+    flex: 1 1 220px;
+  }
+
+  .barbot-varieties-callout {
+    margin: 0 0 1.35rem;
+    padding: 1rem 1.15rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(90, 149, 207, 0.11), rgba(47, 103, 163, 0.06));
+    border: 1px solid rgba(47, 103, 163, 0.18);
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
+
+  .barbot-section-subtitle {
+    margin-top: 1.75rem;
+  }
+
+  .barbot-moments ul li {
     margin-bottom: 0.65rem;
+    line-height: 1.5;
   }
 
-  .barbot-combo-box p {
-    margin-bottom: 1rem;
+  .barbot-addon {
+    margin: 2rem 0;
+    padding: 1rem 1.15rem;
+    border-radius: 10px;
+    background: rgba(120, 130, 140, 0.06);
+    border: 1px dashed rgba(90, 99, 108, 0.35);
   }
 
-  .barbot-combo-box .btn {
+  .barbot-addon--subtle .barbot-addon__label {
+    font-weight: 700;
+    margin: 0 0 0.45rem;
+    font-size: 1rem;
+    color: #4a5563;
+  }
+
+  .barbot-addon--subtle .barbot-addon__text {
+    margin: 0 0 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #5c6670;
+  }
+
+  .barbot-addon__btn {
     display: inline-block;
+    font-size: 0.95rem;
   }
 
   .partners {

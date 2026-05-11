@@ -333,20 +333,26 @@ const translations = {
       barbot_home_img_1_alt: "Barbot Brewpub craft beer in Colonia",
       barbot_home_img_2_alt: "Barbot Brewpub interior",
       barbot_home_img_3_alt: "Bonavena Strong Ale beer",
-      barbot_page_hero_title: "Barbot Brewpub — craft beer in the Historic Quarter",
-      barbot_page_about_p:
-        "Barbot Brewpub in Colonia del Sacramento recently took gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja (Brazil). Their brewpub sits in the UNESCO-listed Historic Quarter — ideal for a pint between sightseeing stops. Visit on your own schedule or weave it into our Bar Hopping route.",
-      barbot_page_step_1: "📍 Find them in the Historic Quarter — check opening hours before you go.",
-      barbot_page_step_2: "🍺 Ask what’s on tap; Bonavena Strong Ale is their award-winning medal brew.",
-      barbot_page_step_3: "🌙 Pair with our Bar Hopping night or explore Colonia by day and relax here after.",
-      barbot_page_highlights_title: "Highlights",
-      barbot_page_highlight_1: "✔ Warm brewpub atmosphere with rotating taps",
-      barbot_page_highlight_2: "✔ Bonavena Strong Ale — gold at IV Copa Sul-Americana de Cerveja",
-      barbot_page_highlight_3: "✔ Easy to combine with walking tours and Bar Hopping",
-      barbot_page_combo_title: "Night out: Bar Hopping",
-      barbot_page_combo_text:
-        "Barbot is one of the stops on our curated nightlife circuit — alongside Casa Viera, La Chopería, and more.",
-      barbot_page_combo_btn: "Explore Bar Hopping",
+      barbot_page_about_heading: "Your craft beer moment in Colonia",
+      barbot_page_story_p:
+        "You’ve strolled the cobblestones and the lighthouse — now slow down where locals and travelers share the same table. Barbot Brewpub pours honest craft beer in the heart of Colonia’s UNESCO-listed Historic Quarter: relaxed lighting, real conversation, no rush. Their Bonavena Strong Ale took gold at Brazil’s IV Copa Sul-Americana de Cerveja — a judges’ medal that backs up what’s in your glass. Whether you’re hunting that winning pint or simply trading stories after a day of sightseeing, this is the reward your feet were asking for.",
+      barbot_page_varieties_p:
+        "Roughly 20 beer varieties flow through taps and bottles — IPAs, lagers, seasonals and more — so one stop can feel like a mini tasting tour without leaving the brewpub.",
+      barbot_page_why_title: "Why travelers pause here",
+      barbot_page_moment_1:
+        "🏛️ You’re already in the Historic Quarter — step inside between monuments without breaking the spell.",
+      barbot_page_moment_2:
+        "🍺 Taste the headline act: Bonavena Strong Ale, gold at IV Copa Sul-Americana de Cerveja — then compare it against dozens of other labels on the board.",
+      barbot_page_moment_3:
+        "🕐 Your tempo: a flight, a single pint, or a lazy round — this isn’t a packaged pub crawl; it’s your evening.",
+      barbot_page_highlights_title: "At a glance",
+      barbot_page_highlight_1: "✔ ~20 beer varieties — taps and bottles to explore",
+      barbot_page_highlight_2: "✔ Gold-medal Bonavena Strong Ale — IV Copa Sul-Americana de Cerveja",
+      barbot_page_highlight_3: "✔ Brewpub soul inside Colonia’s UNESCO Historic Quarter",
+      barbot_page_addon_title: "Want a guided night out instead?",
+      barbot_page_addon_text:
+        "Our Bar Hopping route strings together several venues in one night — Barbot can appear on that itinerary. Different vibe and timing; book it separately if you’re craving the full crawl.",
+      barbot_page_addon_btn: "View Bar Hopping night",
       josefina_title: "La Josefina — Lunch or dinner at Colonia Yacht Club",
       josefina_meta_view: "Unforgettable Río de la Plata views — the setting is the highlight",
       josefina_meta_duration: "The experience lasts 2 hours",
@@ -1473,20 +1479,26 @@ const translations = {
       barbot_home_img_1_alt: "Cerveza artesanal Barbot Brewpub en Colonia",
       barbot_home_img_2_alt: "Interior del Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveza Bonavena Strong Ale",
-      barbot_page_hero_title: "Cervecería Barbot — cerveza artesanal en el Casco Histórico",
-      barbot_page_about_p:
-        "Barbot Brewpub en Colonia del Sacramento ganó medalla de oro con Bonavena Strong Ale en la IV Copa Sul-Americana de Cerveja (Brasil). Su brewpub está en el Casco Histórico declarado Patrimonio UNESCO — ideal para una pinta entre visitas. Pasá por tu cuenta o integralo a nuestra ruta de Bar Hopping.",
-      barbot_page_step_1: "📍 Ubicación en el Casco Histórico — consultá horarios antes de ir.",
-      barbot_page_step_2: "🍺 Preguntá qué hay en chopera; Bonavena Strong Ale es la medalla de oro.",
-      barbot_page_step_3: "🌙 Combiná con nuestra experiencia de bares nocturna o con un día de recorridos.",
-      barbot_page_highlights_title: "Destacados",
-      barbot_page_highlight_1: "✔ Ambiente de brewpub y estilos rotativos",
-      barbot_page_highlight_2: "✔ Bonavena Strong Ale — oro en la IV Copa Sul-Americana de Cerveja",
-      barbot_page_highlight_3: "✔ Se combina fácil con tours a pie y Bar Hopping",
-      barbot_page_combo_title: "Noche: Bar Hopping",
-      barbot_page_combo_text:
-        "Barbot es una de las paradas de nuestra ruta nocturna — junto a Casa Viera, La Chopería y más.",
-      barbot_page_combo_btn: "Ver Bar Hopping",
+      barbot_page_about_heading: "Tu momento cervecero en Colonia",
+      barbot_page_story_p:
+        "Ya caminaste el Casco y el faro — ahora frená donde turistas y locales comparten la misma mesa. Barbot Brewpub es cerveza artesanal en el corazón del barrio UNESCO de Colonia: luz baja, charla real, sin apuro. La Bonavena Strong Ale ganó oro en la IV Copa Sul-Americana de Cerveja (Brasil): una medalla de jurado que respalda lo que hay en la copa. Vayas tras esa pinta ganadora o solo quieras cerrar el día con algo memorable, acá está la recompensa que tus pies pedían.",
+      barbot_page_varieties_p:
+        "Hay alrededor de 20 variedades entre chopera y botellas — IPAs, lagers, temporadas y más — así que una sola parada puede saber a mini degustación sin salir del brewpub.",
+      barbot_page_why_title: "Por qué los viajeros se detienen acá",
+      barbot_page_moment_1:
+        "🏛️ Estás en pleno Casco Histórico: entrás entre monumentos sin cortar el encanto.",
+      barbot_page_moment_2:
+        "🍺 Probá la estrella: Bonavena Strong Ale, oro en la IV Copa Sul-Americana de Cerveja — y comparala con decenas de etiquetas en la carta.",
+      barbot_page_moment_3:
+        "🕐 Tu ritmo: degustación, una pinta o una ronda tranquila — esto no es un pub crawl armado; es tu noche.",
+      barbot_page_highlights_title: "En resumen",
+      barbot_page_highlight_1: "✔ ~20 variedades — chopera y botellas para explorar",
+      barbot_page_highlight_2: "✔ Bonavena Strong Ale — oro en IV Copa Sul-Americana de Cerveja",
+      barbot_page_highlight_3: "✔ Brewpub en el Casco Histórico UNESCO de Colonia",
+      barbot_page_addon_title: "¿Preferís una noche guiada de bares?",
+      barbot_page_addon_text:
+        "Nuestra experiencia de Bar Hopping une varios lugares en una misma noche — Barbot puede figurar ahí. Otro formato y reserva aparte si querés el recorrido completo.",
+      barbot_page_addon_btn: "Ver Bar Hopping nocturno",
       josefina_title: "La Josefina — Almuerzo o cena en el Yachting de Colonia",
       josefina_meta_view: "Vistas espectaculares al Río de la Plata — lo más destacado es el entorno",
       josefina_meta_duration: "La experiencia dura 2 horas",
@@ -2612,20 +2624,26 @@ const translations = {
       barbot_home_img_1_alt: "Cerveja artesanal Barbot Brewpub em Colonia",
       barbot_home_img_2_alt: "Interior do Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveja Bonavena Strong Ale",
-      barbot_page_hero_title: "Cervejaria Barbot — cerveja artesanal no Centro Histórico",
-      barbot_page_about_p:
-        "O Barbot Brewpub em Colonia del Sacramento conquistou ouro com a Bonavena Strong Ale na IV Copa Sul-Americana de Cerveja (Brasil). O brewpub fica no Centro Histórico UNESCO — perfeito para uma pinta entre um passeio e outro. Visite por conta própria ou encaixe na nossa rota de Bar Hopping.",
-      barbot_page_step_1: "📍 Localização no Centro Histórico — confira horário de funcionamento.",
-      barbot_page_step_2: "🍺 Pergunte o que está nas torneiras; Bonavena Strong Ale é a cerveja premiada.",
-      barbot_page_step_3: "🌙 Combine com nossa experiência de bares à noite ou com um dia de passeios.",
-      barbot_page_highlights_title: "Destaques",
-      barbot_page_highlight_1: "✔ Ambiente de brewpub e chopes em rotação",
+      barbot_page_about_heading: "Seu momento cervejeiro em Colonia",
+      barbot_page_story_p:
+        "Depois do farol e das ruas de pedra, vale parar onde moradores e viajantes dividem a mesma mesa. O Barbot Brewpub serve cerveja artesanal de verdade no coração do Centro Histórico UNESCO de Colonia: clima descontraído, conversa sem pressa. A Bonavena Strong Ale ganhou ouro na IV Copa Sul-Americana de Cerveja (Brasil): medalha de jurados que confirma o que está no copo. Quer caçar aquela pint premiada ou só encerrar o passeio com estilo — este é o troco que o dia merecia.",
+      barbot_page_varieties_p:
+        "São cerca de 20 variedades entre torneiras e garrafas — IPAs, lagers, sazonais e mais — para uma única visita parecer uma mini degustação sem sair do brewpub.",
+      barbot_page_why_title: "Por que viajantes fazem esta parada",
+      barbot_page_moment_1:
+        "🏛️ Você já está no Centro Histórico — entra entre um monumento e outro sem perder a magia.",
+      barbot_page_moment_2:
+        "🍺 Prove o destaque: Bonavena Strong Ale, ouro na IV Copa Sul-Americana de Cerveja — e compare com dezenas de rótulos no cardápio.",
+      barbot_page_moment_3:
+        "🕐 Seu ritmo: flight, uma pinta ou uma rodada tranquila — não é um pub crawl empacotado; é a sua noite.",
+      barbot_page_highlights_title: "Em resumo",
+      barbot_page_highlight_1: "✔ ~20 variedades — torneiras e garrafas para explorar",
       barbot_page_highlight_2: "✔ Bonavena Strong Ale — ouro na IV Copa Sul-Americana de Cerveja",
-      barbot_page_highlight_3: "✔ Combina bem com city tour e Bar Hopping",
-      barbot_page_combo_title: "À noite: Bar Hopping",
-      barbot_page_combo_text:
-        "Barbot é uma das paradas do nosso roteiro noturno — com Casa Viera, La Chopería e mais.",
-      barbot_page_combo_btn: "Ver Bar Hopping",
+      barbot_page_highlight_3: "✔ Brewpub no Centro Histórico UNESCO de Colonia",
+      barbot_page_addon_title: "Prefere uma noite guiada entre bares?",
+      barbot_page_addon_text:
+        "Nossa experiência Bar Hopping costuma ligar vários endereços na mesma noite — o Barbot pode entrar nesse roteiro. Formato diferente e reserva à parte se você quer o circuito completo.",
+      barbot_page_addon_btn: "Ver Bar Hopping à noite",
       josefina_title: "La Josefina — Almoço ou jantar no Yachting de Colonia",
       josefina_meta_view: "Vista incrível para o Rio da Prata — o cenário é o grande destaque",
       josefina_meta_duration: "A experiência dura 2 horas",
