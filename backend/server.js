@@ -21,7 +21,28 @@ const PLEXO_CERT_FINGERPRINT = (process.env.PLEXO_CERT_FINGERPRINT || "").toUppe
 const PLEXO_PFX_PATH = process.env.PLEXO_PFX_PATH || "";
 const PLEXO_PFX_BASE64 = process.env.PLEXO_PFX_BASE64 || "";
 const PLEXO_REDIRECT_URL = process.env.PLEXO_REDIRECT_URL || "https://rominagrasso.github.io/SacramentoShop/Home/index.html";
+/**
+ * CommerceId de Plexo (ej. comercio Handy / facilitador). Va en rutas tipo /Commerce/Issuer y body AddIssuerCommerce.
+ * Handy/Plexo: suele ser el id "de negocio" (ej. 65264).
+ */
 const PLEXO_COMMERCE_ID = Number(process.env.PLEXO_COMMERCE_ID || 0);
+/**
+ * OptionalCommerceId en ExpressCheckout (AuthorizationData + PaymentData). Multicomercio / contexto de checkout.
+ * Si no se define, se usa PLEXO_COMMERCE_ID (compat instalaciones con un solo id).
+ * Handy/Plexo: ej. 66059 mientras PLEXO_COMMERCE_ID sea 65264.
+ */
+const PLEXO_OPTIONAL_COMMERCE_ID = Number(process.env.PLEXO_OPTIONAL_COMMERCE_ID || 0);
+
+function plexoOptionalCommerceIdForExpressCheckout() {
+  if (Number.isFinite(PLEXO_OPTIONAL_COMMERCE_ID) && PLEXO_OPTIONAL_COMMERCE_ID > 0) {
+    return PLEXO_OPTIONAL_COMMERCE_ID;
+  }
+  if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
+    return PLEXO_COMMERCE_ID;
+  }
+  return 0;
+}
+
 /** Comma-separated issuer ids (manual ejemplo: 4,11,15,30,32). Env vacío "" = no enviar LimitIssuers. Sin definir = default 4,11,15. */
 function computePlexoLimitIssuers() {
   const raw = process.env.PLEXO_LIMIT_ISSUERS;
@@ -306,8 +327,9 @@ function buildPlexoExpressCheckoutRequest(payload) {
     authorizationData.LimitIssuers = limitIssuers;
   }
 
-  if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
-    authorizationData.OptionalCommerceId = PLEXO_COMMERCE_ID;
+  const optionalCommerceExpress = plexoOptionalCommerceIdForExpressCheckout();
+  if (Number.isFinite(optionalCommerceExpress) && optionalCommerceExpress > 0) {
+    authorizationData.OptionalCommerceId = optionalCommerceExpress;
   }
 
   const paymentData = {
@@ -335,8 +357,8 @@ function buildPlexoExpressCheckoutRequest(payload) {
     }
   };
 
-  if (Number.isFinite(PLEXO_COMMERCE_ID) && PLEXO_COMMERCE_ID > 0) {
-    paymentData.OptionalCommerceId = PLEXO_COMMERCE_ID;
+  if (Number.isFinite(optionalCommerceExpress) && optionalCommerceExpress > 0) {
+    paymentData.OptionalCommerceId = optionalCommerceExpress;
   }
 
   const dfRaw =
@@ -600,6 +622,8 @@ async function createPlexoPaymentLink(payload) {
   console.log(
     "[plexo-express-out]",
     JSON.stringify({
+      envCommerceId: PLEXO_COMMERCE_ID,
+      envOptionalCommerceId: PLEXO_OPTIONAL_COMMERCE_ID,
       limitIssuers: reqInner?.AuthorizationData?.LimitIssuers ?? null,
       optionalCommerceAuth: reqInner?.AuthorizationData?.OptionalCommerceId ?? null,
       optionalCommercePay: reqInner?.PaymentData?.OptionalCommerceId ?? null,
@@ -613,7 +637,8 @@ async function createPlexoPaymentLink(payload) {
     console.log(
       "[plexo-req] OptionalCommerceId",
       JSON.stringify({
-        envPlexoCommerceId: PLEXO_COMMERCE_ID,
+        envCommerceId: PLEXO_COMMERCE_ID,
+        envOptionalCommerceId: PLEXO_OPTIONAL_COMMERCE_ID,
         sentInAuth: reqInner?.AuthorizationData?.OptionalCommerceId ?? null,
         sentInPayment: reqInner?.PaymentData?.OptionalCommerceId ?? null,
         limitIssuers: reqInner?.AuthorizationData?.LimitIssuers ?? null
@@ -1019,8 +1044,13 @@ app.get("/api/payments/health", (_req, res) => {
     mode: PAYMENT_MODE,
     ttlMinutes: LINK_TTL_MINUTES,
     plexoReady: PAYMENT_MODE !== "plexo" ? undefined : Boolean(plexoMaterial),
-    /** Valor efectivo en runtime (0 = no se envía OptionalCommerceId al gateway). */
+    /** CommerceId (API issuers / AddIssuer; ej. 65264). */
     plexoCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_COMMERCE_ID : undefined,
+    /** OptionalCommerceId dedicado a ExpressCheckout; 0 = se usa solo PLEXO_COMMERCE_ID si aplica. */
+    plexoOptionalCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_OPTIONAL_COMMERCE_ID : undefined,
+    /** Valor que irá en AuthorizationData/PaymentData OptionalCommerceId en ExpressCheckout. */
+    plexoExpressOptionalCommerceIdEffective:
+      PAYMENT_MODE === "plexo" ? plexoOptionalCommerceIdForExpressCheckout() : undefined,
     /** Lista efectiva enviada en AuthorizationData.LimitIssuers (vacío = no se envía el campo). */
     plexoLimitIssuersEffective: PAYMENT_MODE === "plexo" ? PLEXO_LIMIT_ISSUERS : undefined,
     /** Lo que realmente enviará ExpressCheckout (tras PLEXO_EXPRESS_OMIT_LIMIT_ISSUERS). */
@@ -1255,7 +1285,7 @@ app.listen(PORT, () => {
   if (PAYMENT_MODE === "plexo") {
     // eslint-disable-next-line no-console
     console.log(
-      `[plexo] Ready: OptionalCommerceId=${PLEXO_COMMERCE_ID} LimitIssuers=${JSON.stringify(PLEXO_LIMIT_ISSUERS)} (empty = field omitted)`
+      `[plexo] Ready: CommerceId=${PLEXO_COMMERCE_ID} OptionalCommerceId(express)=${plexoOptionalCommerceIdForExpressCheckout()} LimitIssuers=${JSON.stringify(PLEXO_LIMIT_ISSUERS)} (empty = field omitted)`
     );
   }
 });
