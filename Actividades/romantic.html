@@ -124,66 +124,498 @@
 
 <!-- HERO -->
 <section class="romantic-hero">
-  <h1>💕 Romantic Dinner Premium</h1>
+  <h1>Casa Viera — Romantic Dinner</h1>
 </section>
 
 <!-- CONTENT -->
-<section class="romantic-content">
+<section class="coffee-content romantic-content">
 
-  <h2>An Unforgettable Night in Colonia</h2>
+  <h2>Una noche especial en Casa Viera</h2>
 
   <p>
-    Surprise your partner with a private candlelight dinner in one of Colonia’s most charming colonial settings.
-    Designed for couples seeking intimacy, elegance, and a magical atmosphere.
+    Disfrutá una cena romántica para dos en Casa Viera, en el Casco Histórico de Colonia.
+    La experiencia incluye una mesa reservada, un menú completo y una ambientación íntima para compartir una noche especial.
   </p>
 
   <p>
-    Whether you're celebrating an anniversary, a honeymoon, or planning a surprise proposal,
-    this premium experience creates memories that last forever.
+    Cada pareja elige una entrada, un plato principal, un postre y una bebida del menú.
+    El costo del menú para dos personas es de <strong>USD 140</strong>.
   </p>
 
-  <!-- INCLUDES -->
-  <div class="romantic-includes">
-    <h2>What’s Included</h2>
-    <ul>
-      <li>🍷 Bottle of premium local wine</li>
-      <li>🕯 Private candlelight table setup</li>
-      <li>🥂 Three-course gourmet dinner</li>
-      <li>🎶 Soft background music</li>
-      <li>📸 Complimentary couple photo</li>
-    </ul>
+  <div class="price-box">
+    <h3>USD 140 por pareja</h3>
+    <p class="price-box-detail">Menú completo para dos: entrada, principal, postre y bebida.</p>
   </div>
 
-  <!-- ITINERARY -->
-  <div class="itinerary">
-    <h2>The Experience</h2>
-
-    <p>
-      Your evening begins with a warm welcome and a glass of sparkling wine.
-      As the sun sets over Colonia, your private table awaits — elegantly decorated
-      with candles and floral details.
-    </p>
-
-    <p>
-      Enjoy a carefully curated three-course dinner prepared with fresh, local ingredients.
-      Relax, toast, and let the atmosphere do the magic.
-    </p>
-
-    <p>
-      For special occasions, we can assist in organizing proposal surprises or personalized details.
-    </p>
-    <div class="card-buttons romantic-buttons">
-        <a href="#" class="btn">
-          Reserve
-        </a>
-      
-        <a href="../Home/index.html" class="btn secondary">
-          Back to Home
-        </a>
+  <div class="coffee-includes">
+    <div class="includes-preferences">
+      <div class="includes-list">
+        <h3>Qué incluye</h3>
+        <ul>
+          <li>✔ Mesa reservada en Casa Viera</li>
+          <li><strong>✔ Menú completo para dos personas</strong></li>
+          <li>✔ Una entrada a elección</li>
+          <li>✔ Un plato principal a elección</li>
+          <li>✔ Un postre a elección</li>
+          <li>✔ Una bebida a elección</li>
+        </ul>
       </div>
 
+      <div class="order-start">
+        <h3>Creá tu menú</h3>
+        <div class="booking-visit-date-row">
+          <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+          <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDateRomantic" autocomplete="off" />
+          <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+            Pick the day you plan to come so we can coordinate availability in advance.
+          </p>
+        </div>
+        <p>Elegí una opción de cada sección para armar el menú para dos.</p>
+        <button id="createRomanticMenuBtn" class="btn primary-btn" type="button">
+          + Crear menú
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-summary" id="romanticOrderSummary"></div>
+
+  <div class="experience-support-notice" role="status">
+    <p>
+      <strong>Luego de tu reserva</strong>, una persona de soporte se pondrá en contacto para guiarte con los detalles de la experiencia y resolver tus dudas antes de la visita.
+    </p>
+  </div>
+
+  <div class="coffee-actions">
+    <a href="#" id="bookNowBottomRomantic" class="btn">Reservar</a>
+    <a href="../Home/index.html" class="btn secondary">Volver al inicio</a>
+  </div>
+
 </section>
+
+<div class="popup-overlay" id="popupRomantic">
+  <div class="popup-box romantic-menu-popup">
+
+    <button class="close-x" id="closeRomantic" type="button">✕</button>
+
+    <p><strong class="popup-title">Menú Casa Viera para dos</strong></p>
+    <p class="bruma-tier-heading">
+      <span id="romanticStepTitle">Pedido persona 1</span>
+      <span>·</span>
+      <span class="josefina-price-new">USD 140 hasta dos pedidos</span>
+    </p>
+
+    <div class="romantic-step-indicator" aria-live="polite">
+      <span id="romanticStepIndicator">Paso 1 de 2</span>
+    </div>
+
+    <form id="romanticMenuForm">
+      <div class="romantic-popup-step" id="romanticStep1" data-person="1"></div>
+      <div class="romantic-popup-step" id="romanticStep2" data-person="2" hidden></div>
+
+      <div class="popup-actions romantic-popup-actions">
+        <button id="romanticBackStep" class="btn secondary" type="button" hidden>Volver</button>
+        <button id="romanticNextStep" class="btn" type="button">Siguiente</button>
+        <button id="saveRomanticMenu" class="btn" type="button" hidden>Guardar selección</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script src="../Home/index.js?v=20260510icons"></script>
+<script src="../Home/orders.js"></script>
+<script src="../Home/booking-date-picker.js"></script>
+<script>
+  (function () {
+    const STORAGE_KEY = "orders_romantic_pair";
+    const DATE_KEY = "selectedDateRomantic";
+    const TOTAL_USD = 140;
+    const WHATSAPP_NUMBER = "598091642195";
+    const PAYMENT_CONFIG = {
+      enabled: true,
+      endpoint: "/api/payments/resolve",
+      experienceId: "romantic",
+      currency: "USD"
+    };
+    const sections = [
+      {
+        key: "starter",
+        title: "Entradas (1) a elección",
+        label: "Entrada",
+        options: [
+          "Mix de quesos locales gratinados, mermelada de tomates y ají, focaccia",
+          "Falafel, emulsión de cilantro, menta y lima",
+          "Langostinos al ajillo, marinados en mostaza Dijon, salsa muhammara, mizuna"
+        ]
+      },
+      {
+        key: "main",
+        title: "Principal (1) a elección",
+        label: "Principal",
+        options: [
+          "Lasaña bolognesa, bechamel, quesos gratinados, pesto de albahaca y rúcula",
+          "Pesca del día, puré de remolachas, queso de cabra, salsa criollita fresca de mango, jengibre, tomate y lima"
+        ]
+      },
+      {
+        key: "dessert",
+        title: "Postre (1) a elección",
+        label: "Postre",
+        options: [
+          "Sable de cacao, caramelo de naranja, ganache de chocolate, sal en escama",
+          "Tiramisú con vainillas en café, crema de mascarpone, cacao"
+        ]
+      },
+      {
+        key: "drink",
+        title: "Bebidas (1) a elección",
+        label: "Bebida",
+        options: [
+          "Agua sin gas",
+          "Gaseosa línea Coca",
+          "1 copa de vino Los Cerros de San Juan"
+        ]
+      }
+    ];
+
+    const popup = document.getElementById("popupRomantic");
+    const closeBtn = document.getElementById("closeRomantic");
+    const createBtn = document.getElementById("createRomanticMenuBtn");
+    const summary = document.getElementById("romanticOrderSummary");
+    const bookBtn = document.getElementById("bookNowBottomRomantic");
+    const dateInput = document.getElementById("bookingVisitDate");
+    const stepTitle = document.getElementById("romanticStepTitle");
+    const stepIndicator = document.getElementById("romanticStepIndicator");
+    const step1 = document.getElementById("romanticStep1");
+    const step2 = document.getElementById("romanticStep2");
+    const backBtn = document.getElementById("romanticBackStep");
+    const nextBtn = document.getElementById("romanticNextStep");
+    const saveBtn = document.getElementById("saveRomanticMenu");
+    let currentStep = 1;
+    let editingPairIndex = null;
+
+    const escapeHtml = (value) => String(value || "").replace(/[&<>"]/g, (ch) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;"
+    }[ch]));
+
+    const formatDate = (value) => {
+      if (!value) return new Date().toLocaleDateString("es-UY", { day: "2-digit", month: "long", year: "numeric" });
+      if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        const [y, m, d] = value.split("-").map(Number);
+        return new Date(y, m - 1, d).toLocaleDateString("es-UY", { day: "2-digit", month: "long", year: "numeric" });
+      }
+      return value;
+    };
+
+    const getVisitDate = () => localStorage.getItem(DATE_KEY) || dateInput?.value || "";
+
+    function renderStep(container, personNumber) {
+      const menuHtml = sections.map((section) => `
+        <div class="bruma-menu-panel romantic-menu-section">
+          <p><strong>${escapeHtml(section.title)}</strong></p>
+          <ul class="popup-list">
+            ${section.options.map((option) => `
+              <li>
+                <label>
+                  <input type="radio" name="romantic_p${personNumber}_${section.key}" value="${escapeHtml(option)}">
+                  <span>${escapeHtml(option)}</span>
+                </label>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+      `).join("");
+
+      container.innerHTML = menuHtml;
+    }
+
+    function getPersonOrder(personNumber) {
+      const order = {};
+      for (const section of sections) {
+        const selected = popup.querySelector(`input[name="romantic_p${personNumber}_${section.key}"]:checked`);
+        if (!selected) return null;
+        order[section.key] = selected.value;
+      }
+      return order;
+    }
+
+    function setStep(step) {
+      currentStep = step;
+      step1.hidden = step !== 1;
+      step2.hidden = step !== 2;
+      backBtn.hidden = step !== 2;
+      nextBtn.hidden = step !== 1;
+      saveBtn.hidden = step !== 2;
+      stepTitle.textContent = step === 1 ? "Pedido persona 1" : "Pedido persona 2";
+      stepIndicator.textContent = step === 1 ? "Paso 1 de 2" : "Paso 2 de 2";
+    }
+
+    function resetForm() {
+      popup.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach((input) => {
+        input.checked = false;
+      });
+    }
+
+    function fillForm(data) {
+      resetForm();
+      if (!data || !Array.isArray(data.orders)) return;
+      data.orders.forEach((order, index) => {
+        const personNumber = index + 1;
+        sections.forEach((section) => {
+          const value = order?.[section.key];
+          if (!value) return;
+          popup.querySelectorAll(`input[name="romantic_p${personNumber}_${section.key}"]`).forEach((input) => {
+            input.checked = input.value === value;
+          });
+        });
+      });
+    }
+
+    function getStoredBookings() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        if (Array.isArray(parsed)) {
+          return parsed.filter((booking) => booking && Array.isArray(booking.orders));
+        }
+        if (parsed && Array.isArray(parsed.orders)) {
+          return [parsed];
+        }
+        return [];
+      } catch {
+        return [];
+      }
+    }
+
+    function setStoredBookings(bookings) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
+    }
+
+    function deleteStoredBooking(index) {
+      const bookings = getStoredBookings();
+      bookings.splice(index, 1);
+      if (bookings.length) {
+        setStoredBookings(bookings);
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+
+    function openPopup(pairIndex = null) {
+      editingPairIndex = Number.isInteger(pairIndex) ? pairIndex : null;
+      const bookings = getStoredBookings();
+      fillForm(editingPairIndex !== null ? bookings[editingPairIndex] : null);
+      setStep(1);
+      popup.classList.add("active");
+    }
+
+    function closePopup() {
+      popup.classList.remove("active");
+    }
+
+    function validateStep(personNumber) {
+      const missing = sections.find((section) => !popup.querySelector(`input[name="romantic_p${personNumber}_${section.key}"]:checked`));
+      if (missing) {
+        alert(`Elegí una opción en ${missing.label} para la persona ${personNumber}.`);
+        return false;
+      }
+      return true;
+    }
+
+    function renderSummary() {
+      const bookings = getStoredBookings();
+      const visitDate = formatDate(getVisitDate());
+      let html = `<h3>Tu pedido</h3>`;
+      if (!bookings.length) {
+        html += `<p class="order-summary-visit-date"><strong>Fecha de la visita:</strong> ${escapeHtml(visitDate)}</p>`;
+        summary.innerHTML = html;
+        return;
+      }
+
+      html += `<p class="order-summary-visit-date"><strong>Fecha de la visita:</strong> ${escapeHtml(visitDate)}</p>`;
+      bookings.forEach((booking, pairIndex) => {
+        html += `
+          <div class="order-card romantic-person-summary romantic-pair-summary">
+            <div class="order-header">
+              <strong class="order-card-title">Menú pareja ${pairIndex + 1}</strong>
+            </div>
+            ${booking.orders.map((order, personIndex) => {
+              return `
+                <div class="romantic-person-summary__person">
+                  <p class="romantic-person-summary__title"><strong class="order-card-title" style="color: #66a6e6 !important;">Pedido persona ${personIndex + 1}</strong></p>
+                  ${sections.map((section) => `<p><strong>${escapeHtml(section.label)}:</strong> ${escapeHtml(order[section.key])}</p>`).join("")}
+                </div>
+              `;
+            }).join("")}
+            <div class="romantic-order-actions">
+              <button type="button" class="add-guest-btn edit-romantic-pair" data-pair-index="${pairIndex}">Editar menú</button>
+              <button type="button" class="add-guest-btn delete-romantic-pair" data-pair-index="${pairIndex}">Eliminar pedido</button>
+            </div>
+          </div>
+        `;
+      });
+      const total = bookings.length * TOTAL_USD;
+      html += `
+        <div class="total-box">
+          <div class="total-left">
+            <span class="total-label">Total</span>
+            <span class="total-detail">${bookings.length} menú${bookings.length === 1 ? "" : "s"} para dos · USD ${TOTAL_USD} cada uno</span>
+          </div>
+          <div class="total-right">USD ${total}</div>
+          <a href="#" id="bookRomanticWithOrder" class="btn total-btn">Reservar</a>
+        </div>
+      `;
+      summary.innerHTML = html;
+    }
+
+    function bookingTotals(bookings) {
+      return {
+        people: bookings.length * 2,
+        total: bookings.length * TOTAL_USD
+      };
+    }
+
+    async function resolveRomanticPaymentLink(bookings) {
+      if (typeof resolveDynamicPaymentLink !== "function") return "";
+      const date = formatDate(getVisitDate());
+      const totals = bookingTotals(bookings);
+      const fingerprintPayload = {
+        bookings,
+        date,
+        people: totals.people,
+        total: totals.total
+      };
+      const fingerprint =
+        typeof stableStringify === "function"
+          ? stableStringify(fingerprintPayload)
+          : JSON.stringify(fingerprintPayload);
+
+      try {
+        return await resolveDynamicPaymentLink(PAYMENT_CONFIG, {
+          experience: PAYMENT_CONFIG.experienceId,
+          amount: totals.total,
+          currency: PAYMENT_CONFIG.currency,
+          people: totals.people,
+          orderFingerprint: fingerprint,
+          orderPayload: {
+            bookings,
+            date,
+            people: totals.people,
+            total: totals.total,
+            experienceName: "Casa Viera — Romantic Dinner"
+          }
+        });
+      } catch {
+        return "";
+      }
+    }
+
+    function buildWhatsAppMessage(paymentLink = "") {
+      const bookings = getStoredBookings();
+      if (!bookings.length) return "";
+      const date = formatDate(getVisitDate());
+      const orderLines = bookings.map((booking, pairIndex) => {
+        const pairLines = booking.orders.map((order, personIndex) => {
+          const details = sections.map((section) => `${section.label}: ${order[section.key]}`).join("\n");
+          return `*Pedido persona ${personIndex + 1}*\n${details}`;
+        }).join("\n\n");
+        return `*Menú pareja ${pairIndex + 1}*\n${pairLines}`;
+      }).join("\n\n");
+      const totals = bookingTotals(bookings);
+      let message = `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: ${totals.people}\n\n${orderLines}\n\nTotal: USD ${totals.total}`;
+      if (paymentLink) {
+        message += `\n\nPara confirmar la reserva, completá el pago acá:\n${paymentLink}`;
+      } else {
+        message += "\n\nNo pude generar el link de pago automáticamente. Por favor enviámelo para confirmar la reserva.";
+      }
+      return message;
+    }
+
+    function book() {
+      if (!getStoredBookings().length) {
+        openPopup();
+        return;
+      }
+      const bookings = getStoredBookings();
+      const pendingTab = window.open("about:blank", "_blank");
+      (async () => {
+        const paymentLink = await resolveRomanticPaymentLink(bookings);
+        const message = buildWhatsAppMessage(paymentLink);
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        if (pendingTab && !pendingTab.closed) {
+          pendingTab.location.href = url;
+        } else {
+          window.open(url, "_blank");
+        }
+      })();
+    }
+
+    renderStep(step1, 1);
+    renderStep(step2, 2);
+
+    if (dateInput) {
+      const storedDate = localStorage.getItem(DATE_KEY);
+      if (storedDate) dateInput.value = storedDate;
+      dateInput.addEventListener("change", () => {
+        if (dateInput.value) localStorage.setItem(DATE_KEY, dateInput.value);
+        renderSummary();
+      });
+    }
+
+    createBtn?.addEventListener("click", () => openPopup());
+    closeBtn?.addEventListener("click", closePopup);
+    popup?.addEventListener("click", (event) => {
+      if (event.target === popup) closePopup();
+    });
+    nextBtn?.addEventListener("click", () => {
+      if (validateStep(1)) setStep(2);
+    });
+    backBtn?.addEventListener("click", () => setStep(1));
+    saveBtn?.addEventListener("click", () => {
+      if (!validateStep(1) || !validateStep(2)) return;
+      const newBooking = {
+        orders: [
+          getPersonOrder(1),
+          getPersonOrder(2)
+        ]
+      };
+      const bookings = getStoredBookings();
+      if (editingPairIndex !== null) {
+        bookings[editingPairIndex] = newBooking;
+      } else {
+        bookings.push(newBooking);
+      }
+      setStoredBookings(bookings);
+      editingPairIndex = null;
+      closePopup();
+      renderSummary();
+    });
+
+    summary?.addEventListener("click", (event) => {
+      const editBtn = event.target.closest(".edit-romantic-pair");
+      if (editBtn) {
+        openPopup(Number(editBtn.dataset.pairIndex));
+      }
+      const deleteBtn = event.target.closest(".delete-romantic-pair");
+      if (deleteBtn) {
+        deleteStoredBooking(Number(deleteBtn.dataset.pairIndex));
+        renderSummary();
+      }
+      if (event.target.closest("#bookRomanticWithOrder")) {
+        event.preventDefault();
+        book();
+      }
+    });
+    bookBtn?.addEventListener("click", (event) => {
+      event.preventDefault();
+      book();
+    });
+
+    renderSummary();
+  })();
+</script>
 
     <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
        class="taxi-float"

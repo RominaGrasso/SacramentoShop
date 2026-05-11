@@ -3748,6 +3748,22 @@
   margin-top: 0;
 }
 
+.romantic-order-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 10px;
+}
+
+.romantic-order-actions .add-guest-btn {
+  margin: 0;
+}
+
+.romantic-person-summary__title,
+.romantic-person-summary__title strong {
+  color: #66a6e6;
+}
+
 .reel-link-btn.activity-icon-link {
   display: inline-flex;
   align-items: center;
