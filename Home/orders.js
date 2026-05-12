@@ -276,6 +276,30 @@ function sacramentoDecoratePref(raw, getI18nText, prefix = SACRAMENTO_I18N_PREF)
   return emoji ? `${emoji} ${label}` : label;
 }
 
+/** Sum guests across room rows `{ guests: n }[]` (0 if invalid). */
+function sacramentoCalculateGuestsFromRooms(roomRows) {
+  if (!Array.isArray(roomRows)) return 0;
+  return roomRows.reduce((s, r) => s + Math.max(0, Math.floor(Number(r && r.guests) || 0)), 0);
+}
+
+/** Total room cost using `priceByOccupancy` keyed by guest count per room (e.g. `"2"` → 75). */
+function sacramentoCalculateRoomRowsCost(roomRows, priceByOccupancy) {
+  if (!Array.isArray(roomRows) || !priceByOccupancy || typeof priceByOccupancy !== "object") return 0;
+  return roomRows.reduce((sum, row) => {
+    const g = Math.max(0, Math.floor(Number(row && row.guests) || 0));
+    if (g <= 0) return sum;
+    const p = Number(priceByOccupancy[String(g)]);
+    return sum + (Number.isFinite(p) ? p : 0);
+  }, 0);
+}
+
+/** Guests from rooms when >0, otherwise `fallbackCount` (e.g. menu orders count). */
+function sacramentoCalculateTotalGuestsFromState(roomRows, fallbackCount) {
+  const fromRooms = sacramentoCalculateGuestsFromRooms(roomRows);
+  if (fromRooms > 0) return fromRooms;
+  return Math.max(0, Math.floor(Number(fallbackCount) || 0));
+}
+
 function initExperience(config) {
   const {
     pricePerPerson,
@@ -406,7 +430,13 @@ function initExperience(config) {
     walkingTourTimePerOrder = false,
     walkingTourTimeSlots = null,
     walkingTourSlotMax = 15,
-    walkingTourTimePopupRadioName = null
+    walkingTourTimePopupRadioName = null,
+    /**
+     * Optional room-first booking for hotel + dinner packages.
+     * `{ hostElementId, priceByOccupancy, occupancyOptions?, maxRooms?, minRooms?, defaultOccupancy? }`
+     * — persists `${storageKey}_roomBooking`, requires one menu order per derived guest.
+     */
+    roomBooking = null
   } = config || {};
 
   if (!pricePerPerson) {
@@ -417,6 +447,57 @@ function initExperience(config) {
   document.addEventListener("DOMContentLoaded", () => {
     let editingIndex = null;
     const curLabel = totalCurrencyLabel || "USD";
+    const rbCfg = roomBooking && typeof roomBooking === "object" && roomBooking.hostElementId ? roomBooking : null;
+    const rbHost = rbCfg ? document.getElementById(String(rbCfg.hostElementId)) : null;
+    const rb = rbCfg && rbHost ? rbCfg : null;
+    const roomsStorageKey = rb ? `${storageKey}_roomBooking` : null;
+
+    const getRoomRows = () => {
+      if (!roomsStorageKey) return [];
+      try {
+        const raw = JSON.parse(localStorage.getItem(roomsStorageKey) || "{}");
+        const rooms = Array.isArray(raw.rooms) ? raw.rooms : [];
+        return rooms
+          .map((r) => ({ guests: Math.max(0, Math.floor(Number(r && r.guests) || 0)) }))
+          .filter((r) => r.guests > 0);
+      } catch {
+        return [];
+      }
+    };
+
+    const setRoomRows = (rows) => {
+      if (!roomsStorageKey) return;
+      const clean = (Array.isArray(rows) ? rows : [])
+        .map((r) => ({ guests: Math.max(0, Math.floor(Number(r && r.guests) || 0)) }))
+        .filter((r) => r.guests > 0);
+      localStorage.setItem(roomsStorageKey, JSON.stringify({ rooms: clean }));
+    };
+
+    const occupancyOptsResolved = () => {
+      const def = [1, 2, 3];
+      if (!rb || !Array.isArray(rb.occupancyOptions) || rb.occupancyOptions.length === 0) return def;
+      return rb.occupancyOptions
+        .map((n) => Math.max(1, Math.min(20, Math.floor(Number(n) || 1))))
+        .filter((n, i, a) => a.indexOf(n) === i)
+        .sort((a, b) => a - b);
+    };
+
+    const defaultOccResolved = () => {
+      const opts = occupancyOptsResolved();
+      const want = Math.max(1, Math.floor(Number(rb && rb.defaultOccupancy) || 2));
+      return opts.includes(want) ? want : opts[0];
+    };
+
+    const ensureDefaultRooms = () => {
+      if (!rb) return;
+      if (getRoomRows().length === 0) {
+        setRoomRows([{ guests: defaultOccResolved() }]);
+      }
+    };
+
+    const calculateGuestsFromRooms = () => sacramentoCalculateGuestsFromRooms(getRoomRows());
+    const calculateTotalRoomCost = () => sacramentoCalculateRoomRowsCost(getRoomRows(), rb ? rb.priceByOccupancy : {});
+
     const boatRate = Math.max(0, Number(boatPerPersonPrice) || 0);
     const boatMax = Math.max(1, Math.min(200, Number(boatPassengersMax) || 50));
     const boatTimePerOrderFlag =
@@ -716,6 +797,10 @@ function initExperience(config) {
       if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
         return ordersArr.reduce((s, o) => s + walkingPartyForOrder(o), 0);
       }
+      if (rb) {
+        const g = calculateGuestsFromRooms();
+        if (g > 0) return g;
+      }
       return ordersArr.length;
     };
 
@@ -987,6 +1072,62 @@ function initExperience(config) {
       return anyPremium ? prem : std;
     };
 
+    const calculateTotalGuests = () => {
+      if (rb) return calculateGuestsFromRooms();
+      return peopleCountForPayment(getOrders());
+    };
+
+    const calculateFinalPrice = (ordersArg) => {
+      const list = Array.isArray(ordersArg) ? ordersArg : getOrders();
+      const menuSub = groupExperienceSubtotal(list);
+      const ggAmt = groupGuideAmount();
+      const pc = peopleCountForPayment(list);
+      const transportTot =
+        vehicleTransportRate > 0 ? groupPrivateTransportTotal(pc, vehicleTransportRate) : 0;
+      const boatTot = boatRate > 0 ? getTotalBoatPassengersPaid() * boatRate : 0;
+      const roomsTot = calculateTotalRoomCost();
+      return menuSub + ggAmt + transportTot + boatTot + roomsTot;
+    };
+
+    const canOpenAnotherMenu = () => {
+      if (!rb) return true;
+      const need = calculateGuestsFromRooms();
+      if (need <= 0) {
+        alert(getI18nText("orders_room_configure_first", "Configure your rooms first."));
+        return false;
+      }
+      if (getOrders().length >= need) {
+        alert(
+          getI18nText(
+            "orders_room_all_menus",
+            "You already have one menu per guest. Edit or remove an order to change selections."
+          )
+        );
+        return false;
+      }
+      return true;
+    };
+
+    const experienceBookReady = () => {
+      if (!boatBookReady()) return false;
+      if (!rb) return true;
+      const need = calculateGuestsFromRooms();
+      if (need <= 0) {
+        alert(getI18nText("orders_room_configure_first", "Configure your rooms first."));
+        return false;
+      }
+      if (getOrders().length !== need) {
+        alert(
+          getI18nText(
+            "orders_room_one_menu_each",
+            "Add exactly one menu per guest before reserving (see Your order)."
+          )
+        );
+        return false;
+      }
+      return true;
+    };
+
     const popup = document.getElementById(popupId);
     const closeBtn = document.getElementById(closeBtnId);
     const saveBtn = document.getElementById(saveBtnId);
@@ -994,6 +1135,129 @@ function initExperience(config) {
     const container = document.getElementById(orderSummaryId);
 
     if (!popup || !closeBtn || !saveBtn || !createBtn || !container) return;
+
+    const renderRoomBookingPanel = () => {
+      if (!rb || !rbHost) return;
+      ensureDefaultRooms();
+      const rows = getRoomRows();
+      const opts = occupancyOptsResolved();
+      const maxRooms = Math.max(1, Math.min(20, Math.floor(Number(rb.maxRooms) || 8)));
+      const minRooms = Math.max(1, Math.min(maxRooms, Math.floor(Number(rb.minRooms) || 1)));
+      const defOcc = defaultOccResolved();
+
+      let inner = `<h3>${escapeHtml(getI18nText("orders_room_block_title", "Rooms"))}</h3>`;
+      inner += `<div class="room-booking-rows">`;
+      rows.forEach((row, idx) => {
+        const g = Math.max(1, row.guests || defOcc);
+        const price = Number(rb.priceByOccupancy[String(g)]);
+        const priceShow = Number.isFinite(price) ? price : 0;
+        inner += `<div class="booking-visit-date-row room-booking-row" data-room-idx="${idx}">`;
+        inner += `<span class="room-booking-room-label">${escapeHtml(getI18nText("orders_room_label", "Room"))} ${
+          idx + 1
+        }</span>`;
+        inner += `<label class="room-booking-guests-label">${escapeHtml(
+          getI18nText("orders_room_guests_label", "Guests")
+        )}<select class="room-booking-select" data-room-guests="${idx}" aria-label="${escapeHtml(
+          getI18nText("orders_room_guests_label", "Guests")
+        )}">`;
+        opts.forEach((o) => {
+          inner += `<option value="${o}"${o === g ? " selected" : ""}>${o}</option>`;
+        });
+        inner += `</select></label>`;
+        inner += `<span class="room-row-price">${escapeHtml(curLabel)} ${priceShow}</span>`;
+        if (rows.length > minRooms) {
+          inner += `<button type="button" class="btn secondary room-remove-btn" data-room-remove="${idx}" aria-label="${escapeHtml(
+            getI18nText("orders_room_remove", "Remove room")
+          )}">×</button>`;
+        }
+        inner += `</div>`;
+      });
+      inner += `</div>`;
+      if (rows.length < maxRooms) {
+        inner += `<button type="button" class="btn primary-btn room-add-btn">+ ${escapeHtml(
+          getI18nText("orders_room_add", "Add room")
+        )}</button>`;
+      }
+      const tg = calculateGuestsFromRooms();
+      const totalRoom = calculateTotalRoomCost();
+      inner += `<p class="room-booking-foot">${escapeHtml(
+        getI18nText("orders_room_guests_total", "Total guests")
+      )}: <strong>${tg}</strong> · ${escapeHtml(getI18nText("orders_rooms_subtotal", "Rooms subtotal"))}: ${escapeHtml(
+        curLabel
+      )} <strong>${totalRoom}</strong></p>`;
+      inner += `<p class="booking-visit-date-hint room-booking-hint">${escapeHtml(
+        getI18nText("orders_room_summary_hint", "Create one menu per guest in the order summary below.")
+      )}</p>`;
+      rbHost.innerHTML = inner;
+    };
+
+    let roomBookingEventsBound = false;
+    const bindRoomBookingEventsOnce = () => {
+      if (!rb || !rbHost || roomBookingEventsBound) return;
+      roomBookingEventsBound = true;
+      rbHost.addEventListener("change", (e) => {
+        const sel = e.target && e.target.closest && e.target.closest("select[data-room-guests]");
+        if (!sel) return;
+        const idx = Number(sel.getAttribute("data-room-guests"));
+        const val = Math.max(1, Math.floor(Number(sel.value) || 1));
+        const rows = getRoomRows().map((r) => ({ ...r }));
+        if (!rows[idx]) return;
+        rows[idx] = { guests: val };
+        const nextG = sacramentoCalculateGuestsFromRooms(rows);
+        if (nextG < getOrders().length) {
+          alert(
+            getI18nText(
+              "orders_room_reduce_blocked",
+              "Remove or edit menu orders first before lowering the guest count."
+            )
+          );
+          renderRoomBookingPanel();
+          return;
+        }
+        setRoomRows(rows);
+        renderRoomBookingPanel();
+        renderOrders();
+      });
+      rbHost.addEventListener("click", (e) => {
+        const add = e.target.closest && e.target.closest(".room-add-btn");
+        if (add) {
+          e.preventDefault();
+          const maxR = Math.max(1, Math.min(20, Math.floor(Number(rb.maxRooms) || 8)));
+          const rows = [...getRoomRows(), { guests: defaultOccResolved() }];
+          if (rows.length > maxR) return;
+          setRoomRows(rows);
+          renderRoomBookingPanel();
+          renderOrders();
+          return;
+        }
+        const rm = e.target.closest && e.target.closest("[data-room-remove]");
+        if (rm) {
+          e.preventDefault();
+          const idx = Number(rm.getAttribute("data-room-remove"));
+          const rows = getRoomRows().filter((_, j) => j !== idx);
+          const minR = Math.max(1, Math.min(20, Math.floor(Number(rb.minRooms) || 1)));
+          if (rows.length < minR) return;
+          const nextG = sacramentoCalculateGuestsFromRooms(rows);
+          if (nextG < getOrders().length) {
+            alert(
+              getI18nText(
+                "orders_room_reduce_blocked",
+                "Remove or edit menu orders first before removing capacity."
+              )
+            );
+            return;
+          }
+          setRoomRows(rows);
+          renderRoomBookingPanel();
+          renderOrders();
+        }
+      });
+    };
+
+    if (rb && rbHost) {
+      bindRoomBookingEventsOnce();
+      renderRoomBookingPanel();
+    }
 
     const syncMenuTierPanels = (standardSelected) => {
       if (!menuTierPanelIds?.standard || !menuTierPanelIds?.premium) return;
@@ -1069,6 +1333,7 @@ function initExperience(config) {
 
     if (createBtn && popup && saveBtn) {
       createBtn.addEventListener("click", () => {
+        if (!canOpenAnotherMenu()) return;
         openPopupForNewOrder();
       });
     }
@@ -1141,7 +1406,15 @@ function initExperience(config) {
             ...(boatTimePerOrderFlag
               ? { boatDepartureTime, passengers: existingPassengers }
               : {}),
-            ...(guideOptional && !groupGuideOptional ? { includeGuide } : {})
+            ...(guideOptional && !groupGuideOptional ? { includeGuide } : {}),
+            ...(rb
+              ? {
+                  guestId:
+                    editingIndex !== null
+                      ? String((orders[editingIndex] && orders[editingIndex].guestId) || String(editingIndex + 1))
+                      : String(orders.length + 1)
+                }
+              : {})
           };
           if (
             boatTimePerOrderFlag &&
@@ -1374,6 +1647,14 @@ function initExperience(config) {
           preferences,
           ...(guideOptional && !groupGuideOptional ? { includeGuide } : {}),
           ...(menuUpgradePrice ? { menuTier: tierPremium ? "premium" : "standard" } : {}),
+          ...(rb
+            ? {
+                guestId:
+                  editingIndex !== null
+                    ? String((orders[editingIndex] && orders[editingIndex].guestId) || String(editingIndex + 1))
+                    : String(orders.length + 1)
+              }
+            : {}),
           ...(menuWithPerOrderBoat
             ? { boatDepartureTime: boatDepartureTimeMenu, boatPassengers: boatPassengersMenu }
             : {}),
@@ -1418,7 +1699,8 @@ function initExperience(config) {
         vehicleTransportRate > 0 ? groupPrivateTransportTotal(peopleCount, vehicleTransportRate) : 0;
       const boatPassengersWa = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
       const boatTotalWa = boatPassengersWa * boatRate;
-      const total = experienceSubtotal + gg + transportTotal + boatTotalWa;
+      const roomCostWa = rb ? calculateTotalRoomCost() : 0;
+      const total = experienceSubtotal + gg + transportTotal + boatTotalWa + roomCostWa;
 
       const Ls = choiceSectionLabels || {};
       const Lk = choiceSectionLabelKeys || {};
@@ -1436,11 +1718,17 @@ function initExperience(config) {
       const tierWaPremLine =
         tierWhatsappPremiumKey
           ? getI18nText(tierWhatsappPremiumKey, tierWhatsappPremium || "")
-          : tierWhatsappPremium || getI18nText("bruma_whatsapp_premium", "Premium (USD 45)");
+          : tierWhatsappPremium ||
+            (menuUpgradePrice != null
+              ? `${getI18nText("tier_word_premium", "Premium")} (${curLabel} ${Number(menuUpgradePrice) || 0})`
+              : getI18nText("bruma_whatsapp_premium", "Premium (USD 45)"));
       const tierWaStdLine =
         tierWhatsappStandardKey
           ? getI18nText(tierWhatsappStandardKey, tierWhatsappStandard || "")
-          : tierWhatsappStandard || getI18nText("bruma_whatsapp_standard", "Standard (from USD 35)");
+          : tierWhatsappStandard ||
+            (menuUpgradePrice != null
+              ? `${getI18nText("tier_word_standard", "Standard")} (${curLabel} ${Number(pricePerPerson) || 0})`
+              : getI18nText("bruma_whatsapp_standard", "Standard (from USD 35)"));
       const ordersText = orders
         .map((o, i) => {
           const prefs = (Array.isArray(o.preferences) ? o.preferences : [])
@@ -1515,7 +1803,10 @@ function initExperience(config) {
             orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
               ? `\n${getI18nText("walking_asado_wa_tour_quantity", "Walking tour guests")}: ${walkingPartyForOrder(o)}`
               : "";
-          return `*${getI18nText("order_word", "Order")} ${i + 1}*${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}`;
+          const orderHead = rb
+            ? `*${getI18nText("orders_wa_guest_slot", "Guest")} ${String((o && o.guestId) || i + 1)}*`
+            : `*${getI18nText("order_word", "Order")} ${i + 1}*`;
+          return `${orderHead}${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}`;
         })
         .join("\n\n");
 
@@ -1528,6 +1819,21 @@ function initExperience(config) {
       );
       const waIntro = waIntroRaw.replace(/\{experience\}/g, expName);
       let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${dateStr}\n${getI18nText("orders_wa_people_line", "People")}: ${peopleCount}`;
+      if (rb && getRoomRows().length > 0) {
+        const rows = getRoomRows();
+        const roomLines = rows
+          .map((r, i) => {
+            const g = r.guests;
+            const pr = Number(rb.priceByOccupancy[String(g)]);
+            const pshow = Number.isFinite(pr) ? pr : 0;
+            return `${getI18nText("orders_room_label", "Room")} ${i + 1}: ${g} ${getI18nText(
+              "orders_wa_room_guests_suffix",
+              "guest(s)"
+            )} — ${curLabel} ${pshow}`;
+          })
+          .join("\n");
+        message += `\n${roomLines}\n${getI18nText("orders_wa_rooms_subtotal_label", "Rooms subtotal")}: ${curLabel} ${roomCostWa}`;
+      }
       if (boatTotalWa > 0) {
         message += `\n${getI18nText("orders_wa_boat_passengers", "Boat passengers")}: ${boatPassengersWa}`;
         if (!menuWithPerOrderBoat) {
@@ -1567,6 +1873,9 @@ function initExperience(config) {
       }
       if (boatTotalWa > 0) {
         message += `${getI18nText("orders_wa_boat_subtotal", "Boat")} (${boatPassengersWa} × ${curLabel} ${boatRate}): ${curLabel} ${boatTotalWa}\n`;
+      }
+      if (roomCostWa > 0) {
+        message += `${getI18nText("orders_wa_rooms_line", "Overnight rooms")}: ${curLabel} ${roomCostWa}\n`;
       }
       message += `${getI18nText("orders_wa_total_label", "Total")}: ${curLabel} ${total}`;
 
@@ -1770,7 +2079,12 @@ function initExperience(config) {
         boatTimePerOrderFlag && experienceSkipsMenuChoices
           ? orders.reduce((s, o) => s + orderBoatPax(o), 0)
           : people;
-      const transportParty = boatTimePerOrderFlag && experienceSkipsMenuChoices ? headcount : people;
+      const transportParty =
+        rb && calculateGuestsFromRooms() > 0
+          ? calculateGuestsFromRooms()
+          : boatTimePerOrderFlag && experienceSkipsMenuChoices
+            ? headcount
+            : people;
       const transportTotal =
         vehicleTransportRate > 0
           ? groupPrivateTransportTotal(transportParty, vehicleTransportRate)
@@ -1783,8 +2097,10 @@ function initExperience(config) {
         const addLabel = experienceSkipsMenuChoices
           ? t("add_passenger", "Add passenger or group")
           : t("add_order", "Add Order");
+        const atCapacity =
+          rb && calculateGuestsFromRooms() > 0 && orders.length >= calculateGuestsFromRooms();
         html = `
-          <button id="addGuestBtn" class="add-guest-btn">
+          <button id="addGuestBtn" class="add-guest-btn"${atCapacity ? " disabled" : ""}>
             + ${escapeHtml(addLabel)}
           </button>
           <h3>${escapeHtml(t("your_order", "Your order"))}</h3>
@@ -1795,6 +2111,19 @@ function initExperience(config) {
         html += `<p class="order-summary-visit-date"><strong>${escapeHtml(
           t("orders_visit_date_label", "Visit date")
         )}:</strong> ${escapeHtml(getDateForBooking())}</p>`;
+      }
+
+      if (rb) {
+        const need = calculateGuestsFromRooms();
+        const cov =
+          need <= 0
+            ? t("orders_room_configure_first", "Configure your rooms above.")
+            : `${t("orders_menus_progress", "Menus")}: ${orders.length}/${need} — ${
+                orders.length === need
+                  ? t("orders_coverage_complete", "Complete")
+                  : t("orders_coverage_incomplete", "Incomplete")
+              }`;
+        html += `<p class="orders-menu-coverage">${escapeHtml(cov)}</p>`;
       }
 
       if (boatTimePerOrderFlag) {
@@ -1886,11 +2215,17 @@ function initExperience(config) {
         const tierCardPrem =
           tierSummaryPremiumKey
             ? t(tierSummaryPremiumKey, tierSummaryPremium || "")
-            : tierSummaryPremium || t("bruma_order_tier_premium", "Premium · USD 45");
+            : tierSummaryPremium ||
+              (menuUpgradePrice != null
+                ? `${t("tier_word_premium", "Premium")} · ${curLabel} ${Number(menuUpgradePrice) || 0}`
+                : t("bruma_order_tier_premium", "Premium · USD 45"));
         const tierCardStd =
           tierSummaryStandardKey
             ? t(tierSummaryStandardKey, tierSummaryStandard || "")
-            : tierSummaryStandard || t("bruma_order_tier_standard", "Standard · from USD 35");
+            : tierSummaryStandard ||
+              (menuUpgradePrice != null
+                ? `${t("tier_word_standard", "Standard")} · ${curLabel} ${Number(pricePerPerson) || 0}`
+                : t("bruma_order_tier_standard", "Standard · from USD 35"));
         const tierRow =
           menuUpgradePrice
             ? `<p class="order-menu-tier"><strong>${escapeHtml(t("bruma_order_tier_label", "Menu"))}:</strong> ${escapeHtml(
@@ -2005,10 +2340,13 @@ function initExperience(config) {
             <p><strong>${escapeHtml(t("orders_boat_line_total", "Boat subtotal"))}:</strong> ${escapeHtml(curLabel)} ${menuBoatPax * boatRate}</p>
           </div>`
             : "";
+        const cardTitleTxt = rb
+          ? `${escapeHtml(t("orders_wa_guest_slot", "Guest"))} ${escapeHtml(String(order.guestId || index + 1))}`
+          : `${escapeHtml(t("order_word", "Order"))} ${index + 1}`;
         html += `
           <div class="order-card">
             <div class="order-header">
-              <strong class="order-card-title">${escapeHtml(t("order_word", "Order"))} ${index + 1}</strong>
+              <strong class="order-card-title">${cardTitleTxt}</strong>
               <div class="order-actions">
                 <span class="edit-order" data-index="${index}">✏️</span>
                 <span class="delete-order" data-index="${index}">🗑️</span>
@@ -2099,23 +2437,10 @@ function initExperience(config) {
         `;
         }
 
-        let experienceSubtotal;
-        let total;
-        let ggAmt = 0; // evita errores en lógica existente
-
-        if (storageKey === "orders_mision") {
-          const base = calculateBaseMision(people);
-          const menus = calculateMenus(orders);
-
-          experienceSubtotal = menus;
-          total = base + menus;
-
-        } else {
-          ggAmt = groupGuideAmount();
-          experienceSubtotal = groupExperienceSubtotal(orders);
-          const boatTotalLine = boatRate > 0 ? getTotalBoatPassengersPaid() * boatRate : 0;
-          total = experienceSubtotal + ggAmt + transportTotal + boatTotalLine;
-        }
+        const ggAmt = groupGuideAmount();
+        const experienceSubtotal = groupExperienceSubtotal(orders);
+        const roomCostUi = calculateTotalRoomCost();
+        const total = calculateFinalPrice(orders);
         const orderCountLabel =
           boatTimePerOrderFlag && experienceSkipsMenuChoices
             ? orders.length === 1
@@ -2128,12 +2453,18 @@ function initExperience(config) {
           orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
             ? orders.reduce((s, o) => s + walkingPartyForOrder(o), 0)
             : people;
+        const needGuestsUi = rb ? calculateGuestsFromRooms() : 0;
         const summaryBookings =
-          boatTimePerOrderFlag && experienceSkipsMenuChoices
-            ? `${headcount} ${t("passengers_label", "passengers")} · ${orders.length} ${orderCountLabel}`
-            : orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
-              ? `${tourPartySum} ${t("walking_label_people", "People")} · ${orders.length} ${orderCountLabel}`
-              : `${orders.length} ${orderCountLabel}`;
+          rb && needGuestsUi > 0
+            ? `${needGuestsUi} ${t("orders_summary_guests_word", "guests")} · ${orders.length}/${needGuestsUi} ${t(
+                "orders_summary_menus_word",
+                "menus"
+              )}`
+            : boatTimePerOrderFlag && experienceSkipsMenuChoices
+              ? `${headcount} ${t("passengers_label", "passengers")} · ${orders.length} ${orderCountLabel}`
+              : orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
+                ? `${tourPartySum} ${t("walking_label_people", "People")} · ${orders.length} ${orderCountLabel}`
+                : `${orders.length} ${orderCountLabel}`;
         const experienceDetailMid = experienceMenuFlatTotal
           ? t("orders_menu_package_group_total", "menu package (group total)")
           : t("experiences_word", "experiences");
@@ -2159,11 +2490,13 @@ function initExperience(config) {
           boatTotalUi > 0
             ? ` · ${t("orders_boat_short", "boat")} ${curLabel} ${boatTotalUi} (${boatPassengersUi}×${boatRate})`
             : "";
+        const roomDetail =
+          roomCostUi > 0 ? ` · ${t("orders_rooms_short", "rooms")} ${curLabel} ${roomCostUi}` : "";
         html += `
           <div class="total-box">
             <div class="total-left">
               <span class="total-label">${escapeHtml(t("total_label", "Total"))}</span>
-              <span class="total-detail">${escapeHtml(summaryBookings)} · ${escapeHtml(experienceDetailMid)} ${escapeHtml(curLabel)} ${experienceSubtotal}${boatDetail}${guideDetail}${transportDetail}</span>
+              <span class="total-detail">${escapeHtml(summaryBookings)} · ${escapeHtml(experienceDetailMid)} ${escapeHtml(curLabel)} ${experienceSubtotal}${roomDetail}${boatDetail}${guideDetail}${transportDetail}</span>
             </div>
             <div class="total-right">
               ${escapeHtml(curLabel)} ${total}
@@ -2246,6 +2579,7 @@ function initExperience(config) {
       const addBtn = target.closest && target.closest("#addGuestBtn");
       if (addBtn) {
         e.preventDefault();
+        if (!canOpenAnotherMenu()) return;
         openPopupForNewOrder();
         return;
       }
@@ -2392,7 +2726,7 @@ function initExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
-        if (!boatBookReady()) return;
+        if (!experienceBookReady()) return;
         const pendingTab = window.open("about:blank", "_blank");
         (async () => {
           const peopleCount = peopleCountForPayment(orders);
@@ -2402,7 +2736,7 @@ function initExperience(config) {
           const ggAmt = groupGuideAmount();
           const boatPassengersPay = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
           const boatTotalPay = boatPassengersPay * boatRate;
-          const total = experienceSubtotal + ggAmt + transportTotal + boatTotalPay;
+          const total = calculateFinalPrice(orders);
           const boatTimesPayload = buildBoatTimesPayload(orders);
           let paymentUrl = "";
           try {
@@ -2418,7 +2752,9 @@ function initExperience(config) {
                 groupGuide: ggAmt,
                 boatPassengers: boatPassengersPay,
                 boatPerPerson: boatRate,
-                boatDepartureTime: boatTimesPayload
+                boatDepartureTime: boatTimesPayload,
+                rooms: rb ? getRoomRows() : null,
+                roomSubtotal: rb ? calculateTotalRoomCost() : 0
               }),
               orderPayload: {
                 orders,
@@ -2429,7 +2765,9 @@ function initExperience(config) {
                 boatPassengers: boatPassengersPay,
                 boatPerPerson: boatRate,
                 boatSubtotal: boatTotalPay,
-                boatDepartureTime: boatTimesPayload
+                boatDepartureTime: boatTimesPayload,
+                rooms: rb ? getRoomRows() : null,
+                roomSubtotal: rb ? calculateTotalRoomCost() : 0
               }
             });
           } catch {}
@@ -2467,6 +2805,19 @@ function initExperience(config) {
       syncMenuTierPanels(true);
     }
 
+    window.__SACRAMENTO_BOOKING__ = {
+      calculateGuestsFromRooms,
+      calculateTotalGuests,
+      calculateFinalPrice,
+      calculateTotalRoomCost,
+      getRoomRows,
+      sacramentoCalculateGuestsFromRooms,
+      sacramentoCalculateRoomRowsCost,
+      sacramentoCalculateTotalGuestsFromState
+    };
+
+    window.renderOrders = renderOrders;
+
     renderOrders();
 
     if (bookNowBottomId) {
@@ -2479,7 +2830,7 @@ function initExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
-          if (!boatBookReady()) return;
+          if (!experienceBookReady()) return;
           const pendingTab = window.open("about:blank", "_blank");
           (async () => {
             const peopleCount = peopleCountForPayment(orders);
@@ -2489,7 +2840,7 @@ function initExperience(config) {
             const ggAmt = groupGuideAmount();
             const boatPassengersPay = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
             const boatTotalPay = boatPassengersPay * boatRate;
-            const total = experienceSubtotal + ggAmt + transportTotal + boatTotalPay;
+            const total = calculateFinalPrice(orders);
             const boatTimesPayload = buildBoatTimesPayload(orders);
             let paymentUrl = "";
             try {
@@ -2505,7 +2856,9 @@ function initExperience(config) {
                   groupGuide: ggAmt,
                   boatPassengers: boatPassengersPay,
                   boatPerPerson: boatRate,
-                  boatDepartureTime: boatTimesPayload
+                  boatDepartureTime: boatTimesPayload,
+                  rooms: rb ? getRoomRows() : null,
+                  roomSubtotal: rb ? calculateTotalRoomCost() : 0
                 }),
                 orderPayload: {
                   orders,
@@ -2516,7 +2869,9 @@ function initExperience(config) {
                   boatPassengers: boatPassengersPay,
                   boatPerPerson: boatRate,
                   boatSubtotal: boatTotalPay,
-                  boatDepartureTime: boatTimesPayload
+                  boatDepartureTime: boatTimesPayload,
+                  rooms: rb ? getRoomRows() : null,
+                  roomSubtotal: rb ? calculateTotalRoomCost() : 0
                 }
               });
             } catch {}
@@ -2536,6 +2891,7 @@ function initExperience(config) {
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         renderOrders();
+        if (rb && rbHost) renderRoomBookingPanel();
         if (popup.classList.contains("active")) {
           saveBtn.textContent =
             editingIndex !== null
@@ -4233,26 +4589,3 @@ function initPackageOrderExperience(config) {
     renderOrders();
   });
 } 
-
-//Calculo de costos La mision night experences. 
-function calculateBaseMision(people) {
-  const BASE = {
-    1: 75,
-    2: 75,
-    3: 95
-  };
-  return BASE[people] || 0;
-}
-
-function calculateMenus(orders) {
-  const MENU = {
-    standard: 40,
-    premium: 60
-  };
-
-  return orders.reduce((sum, o) => {
-    return sum + (o.menuTier === "premium"
-      ? MENU.premium
-      : MENU.standard);
-  }, 0);
-}
