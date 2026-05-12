@@ -70,6 +70,7 @@ Set in `.env`:
 Optional:
 
 - `PLEXO_CERT_FINGERPRINT=<thumbprint>` if you need to force a fingerprint manually.
+- `PLEXO_EXPRESS_MAX_INSTALLMENTS=6` — `PaymentData.Installments` en ExpressCheckout (default **6**; `1` = solo contado). La UI de cuotas también depende del comercio / moneda (USD) en Handy.
 
 ### Render recommendation for certificate
 
