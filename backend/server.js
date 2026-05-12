@@ -75,6 +75,21 @@ function effectiveLimitIssuersForExpressCheckout() {
   if (isPlexoExpressOmitLimitIssuers()) return [];
   return PLEXO_LIMIT_ISSUERS;
 }
+
+/**
+ * PaymentData.Installments en ExpressCheckout: Plexo lo documenta como cantidad de cuotas.
+ * Antes se enviaba 1 (solo contado y sin selector). Valor más alto suele habilitar elección hasta ese tope en la página de pago.
+ * Default 6. Para solo contado: PLEXO_EXPRESS_MAX_INSTALLMENTS=1
+ */
+function effectivePlexoExpressMaxInstallments() {
+  const raw = process.env.PLEXO_EXPRESS_MAX_INSTALLMENTS;
+  if (raw === undefined || raw === null || String(raw).trim() === "") return 6;
+  const n = parseInt(String(raw).trim(), 10);
+  if (!Number.isFinite(n) || n < 1) return 1;
+  if (n > 24) return 24;
+  return Math.floor(n);
+}
+
 /** Plexo + Totalnet (Visa): manual pide script CyberSource y el mismo id en CybersourceDeviceFingerprint. */
 const PLEXO_CYBERSOURCE_ORG_ID = (process.env.PLEXO_CYBERSOURCE_ORG_ID || "45ssiuz3").trim();
 /** Prefijo IdComercio para session_id del script (ej. visanetuy_px_1234 u oca_plexo) — lo da Plexo por comercio. */
@@ -341,7 +356,7 @@ function buildPlexoExpressCheckoutRequest(payload) {
       TaxedAmount: amount,
       InvoiceNumber: invoiceNumber
     },
-    Installments: 1,
+    Installments: effectivePlexoExpressMaxInstallments(),
     Items: [
       {
         Amount: amount,
@@ -1058,6 +1073,10 @@ app.get("/api/payments/health", (_req, res) => {
     plexoExpressOmitLimitIssuers: PAYMENT_MODE === "plexo" ? isPlexoExpressOmitLimitIssuers() : undefined,
     /** Valor crudo de env (undefined = se aplicó default interno o vacío omitido). */
     plexoLimitIssuersEnvRaw: PAYMENT_MODE === "plexo" ? process.env.PLEXO_LIMIT_ISSUERS ?? null : undefined,
+    plexoExpressMaxInstallmentsEffective:
+      PAYMENT_MODE === "plexo" ? effectivePlexoExpressMaxInstallments() : undefined,
+    plexoExpressMaxInstallmentsEnvRaw:
+      PAYMENT_MODE === "plexo" ? process.env.PLEXO_EXPRESS_MAX_INSTALLMENTS ?? null : undefined,
     plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined,
     plexoAdminTokenConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_ADMIN_TOKEN) : undefined
   });
@@ -1285,7 +1304,7 @@ app.listen(PORT, () => {
   if (PAYMENT_MODE === "plexo") {
     // eslint-disable-next-line no-console
     console.log(
-      `[plexo] Ready: CommerceId=${PLEXO_COMMERCE_ID} OptionalCommerceId(express)=${plexoOptionalCommerceIdForExpressCheckout()} LimitIssuers=${JSON.stringify(PLEXO_LIMIT_ISSUERS)} (empty = field omitted)`
+      `[plexo] Ready: CommerceId=${PLEXO_COMMERCE_ID} OptionalCommerceId(express)=${plexoOptionalCommerceIdForExpressCheckout()} Installments(max)=${effectivePlexoExpressMaxInstallments()} LimitIssuers=${JSON.stringify(PLEXO_LIMIT_ISSUERS)} (empty = field omitted)`
     );
   }
 });
