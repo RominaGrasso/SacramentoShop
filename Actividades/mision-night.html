@@ -177,6 +177,8 @@
     <h3>Single & Doble USD 75 . Triple USD 95</h3>
   </div>
 
+  <div id="misionRoomBooking" class="order-start room-booking-host" aria-label="Room selection"></div>
+
   <div class="coffee-includes">
 
     <div class="includes-preferences">
@@ -308,8 +310,6 @@
     </a>
 
   </div>
-
-  <div id="orderSummary"></div>
 
 </section>
 
@@ -521,6 +521,15 @@
 
     // 💾 storage (IMPORTANTE: distinto a bruma)
     storageKey: "orders_mision",
+
+    roomBooking: {
+      hostElementId: "misionRoomBooking",
+      priceByOccupancy: { "1": 75, "2": 75, "3": 95 },
+      occupancyOptions: [1, 2, 3],
+      maxRooms: 6,
+      minRooms: 1,
+      defaultOccupancy: 2
+    },
 
     // 💳 pagos (lo dejamos igual por ahora)
     dynamicPayment: {

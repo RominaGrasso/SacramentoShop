@@ -4235,6 +4235,103 @@
     line-height: 1.4;
   }
 
+  /* Room booking panel: same visual family as .order-start / “Create your menu” */
+  .order-start.room-booking-host {
+    max-width: min(520px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .order-start.room-booking-host .room-booking-rows {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    max-width: 380px;
+    margin: 8px auto 0;
+  }
+
+  .order-start.room-booking-host .room-booking-row.booking-visit-date-row {
+    margin-bottom: 0;
+    padding: 14px 16px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box;
+    gap: 10px;
+  }
+
+  .order-start.room-booking-host .room-booking-room-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .order-start.room-booking-host .room-booking-guests-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+    width: 100%;
+  }
+
+  .order-start.room-booking-host select.room-booking-select {
+    max-width: 280px;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: #1f2937;
+  }
+
+  .order-start.room-booking-host .room-row-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .order-start.room-booking-host .room-remove-btn {
+    min-width: 42px;
+    padding: 8px 12px;
+    line-height: 1.1;
+  }
+
+  .order-start.room-booking-host .room-add-btn {
+    margin-top: 6px;
+  }
+
+  .order-start.room-booking-host .room-booking-foot {
+    margin: 18px auto 0;
+    max-width: 380px;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #1e3a5f;
+    padding: 10px 14px;
+    background: #eef4fb;
+    border-radius: 10px;
+    border: 1px solid #d4e2f4;
+    text-align: center;
+  }
+
+  .order-start.room-booking-host .room-booking-hint {
+    margin: 12px auto 0;
+    max-width: 380px;
+    text-align: center;
+  }
+
+  .order-summary .orders-menu-coverage {
+    margin: 0.35rem 0 0.75rem;
+    font-size: 0.95rem;
+  }
+
   .order-summary-visit-date {
     font-size: 15px;
     color: #1e3a5f;
