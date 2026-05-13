@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sacramento Adventures — Payment pending</title>
+  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-payment-result page-payment-pending">
+  <header class="payment-result-header">
+    <a href="index.html" class="payment-result-header__logo" aria-label="Sacramento Adventures home">
+      <img src="../Assets/images/sacramento-logo-new.svg" alt="Sacramento Adventures">
+    </a>
+  </header>
+
+  <main class="payment-result">
+    <div class="payment-result__card payment-result__card--neutral">
+      <div class="payment-result__icon payment-result__icon--neutral" aria-hidden="true">…</div>
+      <h1 class="payment-result__title" data-translate="payment_pending_title">Payment pending</h1>
+      <p class="payment-result__lead" data-translate="payment_pending_lead">We have not confirmed your payment yet.</p>
+      <p class="payment-result__body" data-translate="payment_pending_body">
+        If you completed the payment, our team will contact you once it is confirmed. You can also message us on WhatsApp.
+      </p>
+      <div class="payment-result__actions">
+        <a href="index.html" class="payment-result__btn" data-translate="payment_pending_home_btn">Back to experiences</a>
+        <a href="#" id="paymentWaBtn" class="payment-result__btn secondary" target="_blank" rel="noopener noreferrer" data-translate="payment_success_wa_btn">Contact us on WhatsApp</a>
+      </div>
+    </div>
+  </main>
+
+  <script>window.SACRAMENTO_I18N_ONLY = true;</script>
+  <script src="index.js"></script>
+  <script src="payment-pages.js"></script>
+</body>
+</html>

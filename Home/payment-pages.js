@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  const POLL_INTERVAL_MS = 1500;
+  const POLL_MAX_MS = 50000;
+
   function sacramentoI18nTable() {
     if (typeof translations !== "undefined" && translations) return translations;
     if (typeof window !== "undefined" && window.__SACRAMENTO_TRANSLATIONS) return window.__SACRAMENTO_TRANSLATIONS;
@@ -21,6 +24,53 @@
     return fallback;
   }
 
+  function paymentsApiBase() {
+    if (typeof window === "undefined") return "";
+    if (window.SACRAMENTO_PAYMENTS_API_BASE) {
+      return String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "");
+    }
+    const host = window.location?.hostname || "";
+    if (host === "localhost" || host === "127.0.0.1") {
+      return "http://localhost:8787";
+    }
+    return "https://sacramento-payments-test.onrender.com";
+  }
+
+  function resultApiCandidates(ref) {
+    const path = `/api/payments/result?ref=${encodeURIComponent(ref)}`;
+    const base = paymentsApiBase();
+    const host = window.location?.hostname || "";
+    const list = [`${base}${path}`];
+    if ((host === "localhost" || host === "127.0.0.1") && window.location?.protocol !== "file:") {
+      list.unshift(path);
+    }
+    return [...new Set(list)];
+  }
+
+  async function fetchPaymentResult(ref) {
+    const candidates = resultApiCandidates(ref);
+    let lastError = null;
+    for (const url of candidates) {
+      try {
+        const res = await fetch(url, { method: "GET", headers: { Accept: "application/json" } });
+        if (!res.ok) {
+          lastError = new Error(`HTTP ${res.status}`);
+          continue;
+        }
+        return await res.json();
+      } catch (err) {
+        lastError = err;
+      }
+    }
+    throw lastError || new Error("result_fetch_failed");
+  }
+
+  function pageForOutcome(outcome) {
+    if (outcome === "success") return "payment-success.html";
+    if (outcome === "pending") return "payment-pending.html";
+    return "payment-failed.html";
+  }
+
   function applyWhatsAppLink() {
     const waBtn = document.getElementById("paymentWaBtn");
     if (!waBtn) return;
@@ -31,25 +81,7 @@
     waBtn.href = "https://wa.me/598091642195?text=" + encodeURIComponent(text);
   }
 
-  function classifyPlexoReturnOutcome(params) {
-    const state = params.get("CurrentState") || params.get("currentState") || params.get("Status") || params.get("status");
-    const stateNum = Number(state);
-    if (Number.isFinite(stateNum)) {
-      if (stateNum === 1) return "success";
-      if ([2, 10, 20, 21, 22, 23, 998, 999].includes(stateNum)) return "failed";
-    }
-    const resultCode = Number(params.get("ResultCode") || params.get("resultCode"));
-    if (Number.isFinite(resultCode) && ![0, 1, 2].includes(resultCode)) return "failed";
-    const cancelled = String(params.get("cancelled") || params.get("canceled") || params.get("cancel") || "").toLowerCase();
-    if (cancelled === "1" || cancelled === "true" || cancelled === "yes") return "failed";
-    const denied = String(params.get("denied") || params.get("error") || params.get("failed") || "").toLowerCase();
-    if (denied === "1" || denied === "true" || denied === "yes") return "failed";
-    const successFlag = String(params.get("success") || params.get("paid") || "").toLowerCase();
-    if (successFlag === "1" || successFlag === "true" || successFlag === "yes") return "success";
-    return "success";
-  }
-
-  function runReturnRouter() {
+  function readRefFromLocation() {
     const params = new URLSearchParams(window.location.search);
     const hash = window.location.hash.replace(/^\?/, "").replace(/^#/, "");
     if (hash) {
@@ -57,10 +89,34 @@
         if (!params.has(k)) params.set(k, v);
       });
     }
-    const outcome = classifyPlexoReturnOutcome(params);
-    const target = outcome === "success" ? "payment-success.html" : "payment-failed.html";
-    const tail = params.toString() ? `?${params.toString()}` : "";
-    window.location.replace(`${target}${tail}`);
+    return String(params.get("ref") || "").trim();
+  }
+
+  async function pollPaymentResult(ref) {
+    const started = Date.now();
+    while (Date.now() - started < POLL_MAX_MS) {
+      const data = await fetchPaymentResult(ref);
+      const outcome = String(data?.outcome || "processing");
+      if (outcome !== "processing") {
+        window.location.replace(pageForOutcome(outcome));
+        return;
+      }
+      await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
+    }
+    window.location.replace("payment-pending.html");
+  }
+
+  async function runReturnRouter() {
+    const ref = readRefFromLocation();
+    if (!ref) {
+      window.location.replace("payment-failed.html");
+      return;
+    }
+    try {
+      await pollPaymentResult(ref);
+    } catch {
+      window.location.replace("payment-pending.html");
+    }
   }
 
   function bindRetry() {
