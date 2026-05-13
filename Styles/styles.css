@@ -2650,7 +2650,9 @@
     right: 0;
     top: calc(100% + 6px);
     z-index: 30;
-    width: min(320px, calc(100% - 48px));
+    /* 100% here was the narrow icon wrap — use viewport-based width so the tooltip stays readable */
+    width: min(320px, calc(100vw - 24px));
+    box-sizing: border-box;
     margin: 0;
     padding: 12px 14px;
     background: #fff;
