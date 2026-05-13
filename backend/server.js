@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import forge from "node-forge";
-import { findReusableLink, upsertLink, updateStatusBySessionId, listPayments, getPaymentBySessionId } from "./store.js";
+import { findReusableLink, upsertLink, updateStatusBySessionId, updatePaymentByFingerprint, updatePaymentBySessionId, findPaymentByFingerprint, listPayments, getPaymentBySessionId } from "./store.js";
 
 dotenv.config({ path: "backend/.env" });
 
@@ -205,35 +205,99 @@ function plexoStateLabel(value) {
   return map.get(n) || String(n);
 }
 
-/** Plexo browser return (RedirectUri): infer success vs failed/cancelled from query params. */
-function classifyPlexoReturnOutcome(query) {
-  const p = query && typeof query === "object" ? query : {};
-  const state = p.CurrentState ?? p.currentState ?? p.Status ?? p.status;
-  const stateNum = Number(state);
-  if (Number.isFinite(stateNum)) {
-    if (stateNum === 1) return "success";
-    if ([2, 10, 20, 21, 22, 23, 998, 999].includes(stateNum)) return "failed";
-  }
-  const resultCode = Number(p.ResultCode ?? p.resultCode);
-  if (Number.isFinite(resultCode) && ![0, 1, 2].includes(resultCode)) return "failed";
-  const cancelled = String(p.cancelled ?? p.canceled ?? p.cancel ?? "").toLowerCase();
-  if (cancelled === "1" || cancelled === "true" || cancelled === "yes") return "failed";
-  const denied = String(p.denied ?? p.error ?? p.failed ?? "").toLowerCase();
-  if (denied === "1" || denied === "true" || denied === "yes") return "failed";
-  const successFlag = String(p.success ?? p.paid ?? "").toLowerCase();
-  if (successFlag === "1" || successFlag === "true" || successFlag === "yes") return "success";
-  // ExpressCheckout: redirect back without params usually means checkout finished.
-  return "success";
+/** Plexo TransactionResult → internal paymentStatus (authoritative for post-checkout UX). */
+function mapPlexoResultCodeToPaymentStatus(resultCode) {
+  const code = Number(resultCode);
+  if (!Number.isFinite(code)) return "processing";
+  if (code === 0) return "approved";
+  if ([1, 2, 3, 100].includes(code)) return "pending";
+  return "failed";
 }
 
-function effectivePlexoRedirectUri() {
+function mapPaymentStatusToOutcome(paymentStatus) {
+  const s = String(paymentStatus || "").toLowerCase();
+  if (s === "approved") return "success";
+  if (s === "failed") return "failed";
+  if (s === "pending") return "pending";
+  return "processing";
+}
+
+function extractPlexoResultCode(node) {
+  if (!node || typeof node !== "object") return null;
+  const candidates = [
+    node.ResultCode,
+    node.resultCode,
+    node.Status,
+    node.status,
+    node.Response?.ResultCode,
+    node.Response?.Status
+  ];
+  for (const c of candidates) {
+    const n = Number(c);
+    if (Number.isFinite(n)) return n;
+  }
+  return null;
+}
+
+function extractPlexoClientReference(node) {
+  if (!node || typeof node !== "object") return "";
+  return String(
+    pickFirstNonEmpty(
+      pickFirstByPaths(node, [
+        ["ClientReferenceId"],
+        ["PaymentData", "ClientReferenceId"],
+        ["Request", "PaymentData", "ClientReferenceId"],
+        ["Response", "ClientReferenceId"]
+      ])
+    ) || ""
+  ).trim();
+}
+
+function correlatePaymentFromPlexoWebhook(body) {
+  const node = body?.Object?.Object || {};
+  const fingerprint = extractPlexoClientReference(node);
+  if (fingerprint) {
+    const byRef = findPaymentByFingerprint(fingerprint);
+    if (byRef) return { payment: byRef, fingerprint };
+  }
+  const txId = pickFirstNonEmpty(
+    node.TransactionId,
+    node.SessionId,
+    node.Id,
+    body?.Object?.Object?.Response?.Id
+  );
+  if (txId) {
+    const bySession = getPaymentBySessionId(String(txId));
+    if (bySession) {
+      return { payment: bySession, fingerprint: bySession.fingerprint || fingerprint || null };
+    }
+  }
+  if (fingerprint) return { payment: null, fingerprint };
+  return { payment: null, fingerprint: null };
+}
+
+function effectivePlexoRedirectUri(fingerprint) {
   const explicit = String(PLEXO_REDIRECT_URL || "").trim();
-  if (explicit) return explicit;
-  return `${PLEXO_FRONTEND_BASE_URL}/Home/payment-return.html`;
+  const base = explicit || `${PLEXO_FRONTEND_BASE_URL}/Home/payment-return.html`;
+  const ref = String(fingerprint || "").trim();
+  if (!ref) return base;
+  try {
+    const url = new URL(base);
+    url.searchParams.set("ref", ref);
+    return url.toString();
+  } catch {
+    const sep = base.includes("?") ? "&" : "?";
+    return `${base}${sep}ref=${encodeURIComponent(ref)}`;
+  }
 }
 
 function paymentResultPageUrl(outcome) {
-  const page = outcome === "success" ? "payment-success.html" : "payment-failed.html";
+  const page =
+    outcome === "success"
+      ? "payment-success.html"
+      : outcome === "pending"
+        ? "payment-pending.html"
+        : "payment-failed.html";
   return `${PLEXO_FRONTEND_BASE_URL}/Home/${page}`;
 }
 
@@ -357,7 +421,7 @@ function buildPlexoExpressCheckoutRequest(payload) {
     Action: 64, // ExpressCheckout
     Type: 0,
     MetaReference: metaReference.slice(0, 128),
-    RedirectUri: effectivePlexoRedirectUri(),
+    RedirectUri: effectivePlexoRedirectUri(traceId),
     DoNotUseCallback: false,
     ClientInformation: {
       Name: PLEXO_CHECKOUT_NAME,
@@ -950,7 +1014,8 @@ function extractMaskedCardInfo(...sources) {
 function buildAttemptMetaFromPlexoWebhook(payload) {
   const plexoPayload = payload?.Object?.Object || {};
   const responseObj = payload?.Object?.Object?.Response || {};
-  const status = plexoStateLabel(plexoPayload?.CurrentState || plexoPayload?.Status || 1);
+  const resultCode = extractPlexoResultCode(plexoPayload);
+  const paymentStatus = mapPlexoResultCodeToPaymentStatus(resultCode);
   const card = extractMaskedCardInfo(plexoPayload, responseObj, payload);
   const payerName = pickFirstNonEmpty(
     pickFirstByPaths(plexoPayload, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
@@ -971,7 +1036,7 @@ function buildAttemptMetaFromPlexoWebhook(payload) {
   );
 
   return {
-    status,
+    status: paymentStatus,
     source: "webhook_plexo",
     gateway: "plexo",
     card,
@@ -987,7 +1052,7 @@ function buildAttemptMetaFromPlexoWebhook(payload) {
     raw: {
       currentState: plexoPayload?.CurrentState,
       statusCode: plexoPayload?.Status,
-      resultCode: plexoPayload?.ResultCode
+      resultCode
     }
   };
 }
@@ -1121,10 +1186,50 @@ app.get("/api/payments/health", (_req, res) => {
   });
 });
 
+/** Public read: post-checkout outcome by order fingerprint (`ref` in RedirectUri). */
+app.get("/api/payments/result", (req, res) => {
+  const ref = String(req.query.ref || "").trim();
+  if (!ref) {
+    return res.status(400).json({ error: "ref is required" });
+  }
+  const payment = findPaymentByFingerprint(ref);
+  if (!payment) {
+    return res.json({
+      ref,
+      found: false,
+      paymentStatus: null,
+      outcome: "pending",
+      updatedAt: null,
+      plexoResultCode: null
+    });
+  }
+  const paymentStatus = String(payment.paymentStatus || "awaiting_payment");
+  return res.json({
+    ref,
+    found: true,
+    paymentStatus,
+    outcome: mapPaymentStatusToOutcome(paymentStatus),
+    updatedAt: payment.updatedAt || payment.createdAt || null,
+    plexoResultCode: payment.plexoResultCode ?? null
+  });
+});
+
 /** Browser return after Plexo Express Checkout (optional RedirectUri target on the API host). */
 app.get("/payment/return", (req, res) => {
-  const outcome = classifyPlexoReturnOutcome(req.query);
-  res.redirect(302, paymentResultPageUrl(outcome));
+  const ref = String(req.query.ref || "").trim();
+  if (ref) {
+    const payment = findPaymentByFingerprint(ref);
+    const paymentStatus = payment?.paymentStatus || "awaiting_payment";
+    const outcome = mapPaymentStatusToOutcome(paymentStatus);
+    if (outcome === "processing") {
+      return res.redirect(
+        302,
+        `${PLEXO_FRONTEND_BASE_URL}/Home/payment-return.html?ref=${encodeURIComponent(ref)}`
+      );
+    }
+    return res.redirect(302, paymentResultPageUrl(outcome));
+  }
+  return res.redirect(302, `${PLEXO_FRONTEND_BASE_URL}/Home/payment-return.html`);
 });
 
 app.get("/api/payments/plexo/commerces", async (req, res) => {
@@ -1283,6 +1388,7 @@ app.post("/api/payments/resolve", async (req, res) => {
       paymentUrl: created.paymentUrl,
       sessionId: created.sessionId,
       status: "active",
+      paymentStatus: "awaiting_payment",
       createdAt: nowIso,
       updatedAt: nowIso,
       expiresAt
@@ -1310,15 +1416,32 @@ app.post("/api/payments/resolve", async (req, res) => {
 app.post("/api/payments/webhook", (req, res) => {
   const plexoPayload = req.body?.Object?.Object;
   if (plexoPayload && req.body?.Signature) {
-    const txId =
-      plexoPayload?.TransactionId ||
-      plexoPayload?.SessionId ||
-      plexoPayload?.Id ||
-      req.body?.Object?.Object?.Response?.Id;
+    const { payment, fingerprint } = correlatePaymentFromPlexoWebhook(req.body);
+    const resultCode = extractPlexoResultCode(plexoPayload);
+    const paymentStatus = mapPlexoResultCodeToPaymentStatus(resultCode);
     const attempt = buildAttemptMetaFromPlexoWebhook(req.body);
-    const status = attempt.status;
-    if (txId) {
-      updateStatusBySessionId(String(txId), status, attempt);
+    const plexoTransactionId =
+      pickFirstNonEmpty(plexoPayload?.TransactionId, plexoPayload?.SessionId, plexoPayload?.Id) ||
+      undefined;
+    const patch = {
+      paymentStatus,
+      plexoResultCode: resultCode,
+      plexoTransactionId
+    };
+    let updated = false;
+    if (fingerprint) {
+      updated = updatePaymentByFingerprint(fingerprint, patch, attempt);
+    }
+    if (!updated && payment?.sessionId) {
+      updated = updatePaymentBySessionId(payment.sessionId, patch, attempt);
+    }
+    if (!updated && PAYMENT_DEBUG_LOG) {
+      // eslint-disable-next-line no-console
+      console.warn("[plexo-webhook] payment record not found for callback", {
+        fingerprint,
+        plexoTransactionId,
+        resultCode
+      });
     }
     if (PAYMENT_MODE === "plexo" && plexoMaterial) {
       const ack = signPlexoPayload({

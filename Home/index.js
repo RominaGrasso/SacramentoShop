@@ -1265,6 +1265,12 @@ const translations = {
       payment_failed_retry_btn: "Try again",
       payment_failed_home_btn: "Back to experiences",
       payment_return_redirecting: "Redirecting…",
+      payment_return_verifying: "Verifying your payment…",
+      payment_pending_title: "Payment pending",
+      payment_pending_lead: "We have not confirmed your payment yet.",
+      payment_pending_body:
+        "If you completed the payment, our team will contact you once it is confirmed. You can also message us on WhatsApp.",
+      payment_pending_home_btn: "Back to experiences",
       payment_wa_prefill: "Hello! I have a question about my Sacramento Adventures payment."
     },
     es: {
@@ -2530,6 +2536,12 @@ const translations = {
       payment_failed_retry_btn: "Intentar de nuevo",
       payment_failed_home_btn: "Volver a experiencias",
       payment_return_redirecting: "Redirigiendo…",
+      payment_return_verifying: "Verificando tu pago…",
+      payment_pending_title: "Pago pendiente",
+      payment_pending_lead: "Todavía no confirmamos tu pago.",
+      payment_pending_body:
+        "Si completaste el pago, nuestro equipo se pondrá en contacto cuando esté confirmado. También podés escribirnos por WhatsApp.",
+      payment_pending_home_btn: "Volver a experiencias",
       payment_wa_prefill: "¡Hola! Tengo una consulta sobre mi pago en Sacramento Adventures."
     },
     pt: {
@@ -3795,6 +3807,12 @@ const translations = {
       payment_failed_retry_btn: "Tentar novamente",
       payment_failed_home_btn: "Voltar às experiências",
       payment_return_redirecting: "Redirecionando…",
+      payment_return_verifying: "Verificando seu pagamento…",
+      payment_pending_title: "Pagamento pendente",
+      payment_pending_lead: "Ainda não confirmamos seu pagamento.",
+      payment_pending_body:
+        "Se você concluiu o pagamento, nossa equipe entrará em contato quando for confirmado. Você também pode nos escrever no WhatsApp.",
+      payment_pending_home_btn: "Voltar às experiências",
       payment_wa_prefill: "Olá! Tenho uma dúvida sobre meu pagamento na Sacramento Adventures."
     }
   };
