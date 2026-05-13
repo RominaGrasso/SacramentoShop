@@ -318,12 +318,16 @@
         lunch_ceibo: "https://pago.handy.uy/details/?sessionId=LINK_LL_LUNCH_CEIBO",
         dinner_vinedo: "https://pago.handy.uy/details/?sessionId=LINK_LL_DINNER_VINEDO",
         dinner_ceibo: "https://pago.handy.uy/details/?sessionId=LINK_LL_DINNER_CEIBO"
+      },
+      packageComposite: {
+        menuRadioName: "liebresDiningMenu",
+        mealRadioName: "liebresDiningMeal"
       }
     });
   </script>
 
   <div class="popup-overlay" id="popupLiebresDining" aria-hidden="true">
-    <div class="popup-box food-menu-popup-box" role="dialog" aria-modal="true" aria-labelledby="liebresDiningPopupTitle">
+    <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="liebresDiningPopupTitle">
       <button class="close-x" id="closeLiebresDining" type="button">✕</button>
 
       <p>
@@ -332,62 +336,34 @@
         </strong>
       </p>
 
-      <p class="food-menu-section-title"><strong data-translate="liebres_dining_popup_package_title">Package</strong> <small data-translate="liebres_dining_popup_package_note">(price per guest; transport share appears in summary)</small></p>
-      <ul class="popup-list">
-        <li class="food-menu-option">
-          <label class="food-menu-option-label">
-            <input type="radio" name="packageId" value="lunch_vinedo">
-            <span class="food-menu-option-main" data-translate="liebres_dining_pkg_lunch_vinedo_main">Lunch — Propuesta Viñedo 🍇 USD 65</span>
-            <span class="food-menu-option-sub" data-translate="liebres_dining_pkg_lunch_vinedo_sub">Balanced menu selection</span>
-          </label>
-          <div class="food-menu-whatyouget">
-            <h4 data-translate="food_popup_what_you_get">What you get:</h4>
-            <ul>
+      <p>
+        <strong data-translate="liebres_dining_popup_package_title">Menu</strong>
+        <small data-translate="liebres_dining_popup_package_note">(price per guest; transport share appears in summary)</small>
+      </p>
+
+      <ul class="popup-list liebres-dining-popup-menu">
+        <li class="liebres-dining-menu-li">
+          <div class="liebres-dining-pkg-stack">
+            <label>
+              <input type="radio" name="liebresDiningMenu" value="vinedo">
+              <span data-translate="liebres_dining_pkg_vinedo_menu_line">Viñedo menu 🍇 — USD 65</span>
+            </label>
+            <p class="liebres-dining-pkg-subline"><small data-translate="liebres_dining_pkg_lunch_vinedo_sub">Balanced menu selection</small></p>
+            <ul class="liebres-dining-pkg-bullets">
               <li data-translate="liebres_dining_pkg_vinedo_item_1">Starter, main and dessert from the Viñedo menu</li>
               <li data-translate="liebres_dining_pkg_item_2">Plus water/soft drink</li>
               <li data-translate="liebres_dining_pkg_item_3">One glass of wine and coffee or tea</li>
             </ul>
           </div>
         </li>
-        <li class="food-menu-option">
-          <label class="food-menu-option-label">
-            <input type="radio" name="packageId" value="lunch_ceibo">
-            <span class="food-menu-option-main" data-translate="liebres_dining_pkg_lunch_ceibo_main">Lunch — Propuesta Ceibo 🌳 USD 80</span>
-            <span class="food-menu-option-sub" data-translate="liebres_dining_pkg_lunch_ceibo_sub">Premium menu selection</span>
-          </label>
-          <div class="food-menu-whatyouget">
-            <h4 data-translate="food_popup_what_you_get">What you get:</h4>
-            <ul>
-              <li data-translate="liebres_dining_pkg_ceibo_item_1">Premium starter, main and dessert from the Ceibo menu</li>
-              <li data-translate="liebres_dining_pkg_item_2">Plus water/soft drink</li>
-              <li data-translate="liebres_dining_pkg_item_3">One glass of wine and coffee or tea</li>
-            </ul>
-          </div>
-        </li>
-        <li class="food-menu-option">
-          <label class="food-menu-option-label">
-            <input type="radio" name="packageId" value="dinner_vinedo">
-            <span class="food-menu-option-main" data-translate="liebres_dining_pkg_dinner_vinedo_main">Dinner — Propuesta Viñedo 🍇 USD 65</span>
-            <span class="food-menu-option-sub" data-translate="liebres_dining_pkg_dinner_vinedo_sub">Balanced menu selection</span>
-          </label>
-          <div class="food-menu-whatyouget">
-            <h4 data-translate="food_popup_what_you_get">What you get:</h4>
-            <ul>
-              <li data-translate="liebres_dining_pkg_vinedo_item_1">Starter, main and dessert from the Viñedo menu</li>
-              <li data-translate="liebres_dining_pkg_item_2">Plus water/soft drink</li>
-              <li data-translate="liebres_dining_pkg_item_3">One glass of wine and coffee or tea</li>
-            </ul>
-          </div>
-        </li>
-        <li class="food-menu-option">
-          <label class="food-menu-option-label">
-            <input type="radio" name="packageId" value="dinner_ceibo">
-            <span class="food-menu-option-main" data-translate="liebres_dining_pkg_dinner_ceibo_main">Dinner — Propuesta Ceibo 🌳 USD 80</span>
-            <span class="food-menu-option-sub" data-translate="liebres_dining_pkg_dinner_ceibo_sub">Premium menu selection</span>
-          </label>
-          <div class="food-menu-whatyouget">
-            <h4 data-translate="food_popup_what_you_get">What you get:</h4>
-            <ul>
+        <li class="liebres-dining-menu-li">
+          <div class="liebres-dining-pkg-stack">
+            <label>
+              <input type="radio" name="liebresDiningMenu" value="ceibo">
+              <span data-translate="liebres_dining_pkg_ceibo_menu_line">Ceibo menu 🌳 — USD 80</span>
+            </label>
+            <p class="liebres-dining-pkg-subline"><small data-translate="liebres_dining_pkg_lunch_ceibo_sub">Premium menu selection</small></p>
+            <ul class="liebres-dining-pkg-bullets">
               <li data-translate="liebres_dining_pkg_ceibo_item_1">Premium starter, main and dessert from the Ceibo menu</li>
               <li data-translate="liebres_dining_pkg_item_2">Plus water/soft drink</li>
               <li data-translate="liebres_dining_pkg_item_3">One glass of wine and coffee or tea</li>
@@ -395,6 +371,29 @@
           </div>
         </li>
       </ul>
+
+      <div id="liebresDiningMealWrap" class="liebres-dining-meal-wrap">
+        <p class="liebres-dining-meal-heading">
+          <strong data-translate="liebres_dining_meal_heading">Lunch or dinner</strong>
+        </p>
+        <div class="liebres-dining-meal-options">
+          <label class="liebres-dining-meal-option">
+            <input type="radio" name="liebresDiningMeal" value="lunch" checked>
+            <span data-translate="liebres_dining_meal_lunch">Lunch</span>
+          </label>
+          <label class="liebres-dining-meal-option">
+            <input type="radio" name="liebresDiningMeal" value="dinner">
+            <span data-translate="liebres_dining_meal_dinner">Dinner</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="liebres-dining-pkg-id-sync" aria-hidden="true">
+        <input type="radio" name="packageId" value="lunch_vinedo" tabindex="-1">
+        <input type="radio" name="packageId" value="lunch_ceibo" tabindex="-1">
+        <input type="radio" name="packageId" value="dinner_vinedo" tabindex="-1">
+        <input type="radio" name="packageId" value="dinner_ceibo" tabindex="-1">
+      </div>
 
       <div class="preferences-inside">
         <h3 class="preferences-title" data-translate="bruma_preferences_title">Your preferences</h3>

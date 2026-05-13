@@ -163,23 +163,35 @@
 
     <div class="experience-steps">
       <ul>
-        <li data-translate="liebres_step_1">
-          🚐 Private pick-up: A private transfer collects you at your hotel or the bus terminal.
+        <li class="liebres-step-item">
+          🚐
+          <strong data-translate="liebres_step_1_title">Private pick-up:</strong>
+          <span data-translate="liebres_step_1_desc">A private transfer collects you at your hotel or the bus terminal.</span>
         </li>
-        <li data-translate="liebres_step_2">
-          🐎 Cabalgata in Riachuelo: Guided ride in the Riachuelo countryside, outside Colonia. Juanma and Sabrina's horses and (often) Simón and Estrelli join you on the trail.
+        <li class="liebres-step-item">
+          🐎
+          <strong data-translate="liebres_step_2_title">Cabalgata in Riachuelo:</strong>
+          <span data-translate="liebres_step_2_desc">Guided ride in the Riachuelo countryside, outside Colonia. Juanma and Sabrina's horses and (often) Simón and Estrelli join you on the trail.</span>
         </li>
-        <li data-translate="liebres_step_3">
-          🚗 Transfer to Las Liebres: After the ride in Riachuelo, a private vehicle takes you directly to Comarca Las Liebres.
+        <li class="liebres-step-item">
+          🚗
+          <strong data-translate="liebres_step_3_title">Transfer to Las Liebres:</strong>
+          <span data-translate="liebres_step_3_desc">After the ride in Riachuelo, a private vehicle takes you directly to Comarca Las Liebres.</span>
         </li>
-        <li data-translate="liebres_step_4">
-          🍇 Vineyard &amp; garden: Guided walk through the vines and organic garden at Las Liebres.
+        <li class="liebres-step-item">
+          🍇
+          <strong data-translate="liebres_step_4_title">Vineyard &amp; garden:</strong>
+          <span data-translate="liebres_step_4_desc">Guided walk through the vines and organic garden at Las Liebres.</span>
         </li>
-        <li data-translate="liebres_step_5">
-          🍷 Wine tasting: Three wines with food pairings — confirm any dietary notes when you create your order.
+        <li class="liebres-step-item">
+          🍷
+          <strong data-translate="liebres_step_5_title">Wine tasting:</strong>
+          <span data-translate="liebres_step_5_desc">Three wines with food pairings — confirm any dietary notes when you create your order.</span>
         </li>
-        <li data-translate="liebres_step_6">
-          🏨 Return: The same private service picks you up when you finish and drops you at your hotel or the terminal.
+        <li class="liebres-step-item">
+          🏨
+          <strong data-translate="liebres_step_6_title">Return:</strong>
+          <span data-translate="liebres_step_6_desc">The same private service picks you up when you finish and drops you at your hotel or the terminal.</span>
         </li>
       </ul>
     </div>
@@ -383,6 +395,10 @@
         selectedDateKey: "selectedDate",
         whatsappNumber: "598091642195",
         storageKey: "orders_lasliebres_wine",
+        horsebackDepartureInPopup: {
+          radioName: "liebresHorseTime",
+          summaryLabelKey: "liebres_horseback_time_label"
+        },
         dynamicPayment: {
           enabled: true,
           endpoint: "/api/payments/resolve",
@@ -460,14 +476,43 @@
               <input
                 type="radio"
                 name="starter"
-                value="Riachuelo — guided countryside trail (~45 min)"
-                data-legacy-values="Guided ride — countryside trail (~45 min)"
+                value="Riachuelo — guided countryside trail (~1 hr)"
+                data-legacy-values="Guided ride — countryside trail (~45 min),Guided ride — countryside trail (~1 hr)"
                 checked
               >
-              <span data-translate="liebres_starter_1">Riachuelo — guided countryside trail (~45 min)</span>
+              <span data-translate="liebres_starter_1">Riachuelo — guided countryside trail (~1 hr)</span>
             </label>
           </li>
         </ul>
+
+        <div class="liebres-horse-times-wrap">
+          <p class="liebres-horse-times-title">
+            <strong data-translate="liebres_popup_horseback_times_title">Horseback departure time</strong>
+          </p>
+          <p class="liebres-horse-times-note">
+            <small data-translate="liebres_popup_horseback_times_note">Pick one slot for Riachuelo (11:00, 12:00 or 13:00).</small>
+          </p>
+          <ul class="popup-list liebres-horse-times-list">
+            <li>
+              <label>
+                <input type="radio" name="liebresHorseTime" value="11:00" checked>
+                <span data-translate="liebres_horse_time_11">11:00</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="liebresHorseTime" value="12:00">
+                <span data-translate="liebres_horse_time_12">12:00</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="liebresHorseTime" value="13:00">
+                <span data-translate="liebres_horse_time_13">13:00</span>
+              </label>
+            </li>
+          </ul>
+        </div>
 
         <p>
           <strong data-translate="liebres_popup_tasting_strong">Tasting</strong>
