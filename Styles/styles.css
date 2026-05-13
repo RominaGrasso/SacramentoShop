@@ -3593,10 +3593,62 @@
     white-space: nowrap;
   }
 
+  .barbot-qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .barbot-qty-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #66a6e6;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .barbot-qty-btn:hover {
+    background-color: #4f8ed1;
+    transform: translateY(-1px);
+  }
+
+  .barbot-qty-btn:active {
+    transform: translateY(0);
+  }
+
+  .barbot-qty-stepper input[type="number"] {
+    width: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.35rem 0.25rem;
+    border: 1px solid rgba(90, 149, 207, 0.45);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2f67a3;
+    -moz-appearance: textfield;
+  }
+
+  .barbot-qty-stepper input[type="number"]::-webkit-outer-spin-button,
+  .barbot-qty-stepper input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   .popup-box--barbot .barbot-food-row__qty input {
-    width: 3.5rem;
-    min-width: 3rem;
-    padding: 0.35rem 0.4rem;
+    width: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.35rem 0.25rem;
     border: 1px solid rgba(90, 149, 207, 0.45);
     border-radius: 8px;
     text-align: center;
@@ -3666,6 +3718,10 @@
     gap: 0.35rem;
     font-weight: 600;
     color: #2d3748;
+  }
+
+  .barbot-popup-field .barbot-qty-stepper {
+    align-self: flex-start;
   }
 
   .barbot-popup-field input {

@@ -209,11 +209,19 @@
     <div class="barbot-popup-fields">
       <label class="barbot-popup-field">
         <span data-translate="barbot_popup_full_label">Full pints (USD 7 each)</span>
-        <input type="number" id="barbotPopupFull" min="0" max="30" step="1" value="0" inputmode="numeric" />
+        <div class="barbot-qty-stepper">
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+          <input type="number" id="barbotPopupFull" min="0" max="30" step="1" value="0" inputmode="numeric" />
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+        </div>
       </label>
       <label class="barbot-popup-field">
         <span data-translate="barbot_popup_half_label">Half pints (USD 5 each)</span>
-        <input type="number" id="barbotPopupHalf" min="0" max="30" step="1" value="0" inputmode="numeric" />
+        <div class="barbot-qty-stepper">
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+          <input type="number" id="barbotPopupHalf" min="0" max="30" step="1" value="0" inputmode="numeric" />
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+        </div>
       </label>
     </div>
 
@@ -224,21 +232,33 @@
         <span class="barbot-food-row__label" data-translate="barbot_food_pizza">Pizza</span>
         <label class="barbot-food-row__qty">
           <span data-translate="barbot_food_qty_label">Qty</span>
-          <input type="number" id="barbotPopupPizza" min="0" max="30" step="1" value="0" inputmode="numeric" />
+          <div class="barbot-qty-stepper">
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+            <input type="number" id="barbotPopupPizza" min="0" max="30" step="1" value="0" inputmode="numeric" />
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+          </div>
         </label>
       </li>
       <li class="barbot-food-row">
         <span class="barbot-food-row__label" data-translate="barbot_food_burger">Barbot burger</span>
         <label class="barbot-food-row__qty">
           <span data-translate="barbot_food_qty_label">Qty</span>
-          <input type="number" id="barbotPopupBurger" min="0" max="30" step="1" value="0" inputmode="numeric" />
+          <div class="barbot-qty-stepper">
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+            <input type="number" id="barbotPopupBurger" min="0" max="30" step="1" value="0" inputmode="numeric" />
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+          </div>
         </label>
       </li>
       <li class="barbot-food-row">
         <span class="barbot-food-row__label" data-translate="barbot_food_fries">Fries with cheese cream</span>
         <label class="barbot-food-row__qty">
           <span data-translate="barbot_food_qty_label">Qty</span>
-          <input type="number" id="barbotPopupFries" min="0" max="30" step="1" value="0" inputmode="numeric" />
+          <div class="barbot-qty-stepper">
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+            <input type="number" id="barbotPopupFries" min="0" max="30" step="1" value="0" inputmode="numeric" />
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+          </div>
         </label>
       </li>
     </ul>
