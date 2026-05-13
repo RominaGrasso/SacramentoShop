@@ -1023,6 +1023,12 @@
     max-width: min(1400px, calc(100vw - 32px));
     width: 100%;
     box-sizing: border-box;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 400;
+  }
+
+  .pharmacies-home * {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
 
   .pharmacies-home-inner {
@@ -1091,6 +1097,22 @@
     border-color: rgba(46, 170, 100, 0.35);
     background: linear-gradient(145deg, #eef8f1 0%, #ffffff 55%);
     box-shadow: 0 8px 26px rgba(46, 170, 100, 0.14);
+  }
+
+  .pharmacy-home-card--recommended {
+    border-color: rgba(102, 166, 230, 0.45);
+    background: linear-gradient(145deg, #f0f6fc 0%, #ffffff 55%);
+    box-shadow: 0 8px 26px rgba(102, 166, 230, 0.16);
+  }
+
+  .pharmacy-home-card--recommended:hover {
+    box-shadow: 0 14px 34px rgba(102, 166, 230, 0.22);
+  }
+
+  .pharmacy-home-badge--recommended {
+    color: #2f5a8a;
+    background: #dce8f6;
+    border-color: rgba(102, 166, 230, 0.55);
   }
 
   .pharmacy-home-card-top {
@@ -2878,6 +2900,30 @@
     position: relative;
   }
   
+  /* Romantic dinner card: light pill circle (like Experience details); heart uses Premium salmon gradient */
+  .card > .card-heart-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    width: 46px;
+    height: 46px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e8eef6;
+    border: 1px solid rgba(30, 58, 95, 0.12);
+    box-shadow: 0 1px 2px rgba(30, 58, 95, 0.12);
+    pointer-events: none;
+  }
+
+  .card > .card-heart-badge svg {
+    display: block;
+    flex-shrink: 0;
+  }
+
   .discount-badge {
     position: absolute;
     top: 16px;
@@ -4840,6 +4886,10 @@
   height: 62px;
 }
 
+.partners .logos-track img[src*="joselogo"] {
+  height: 58px;
+}
+
 .partners .logos-track img[src*="brumalogo"],
 .partners .logos-track img[src*="logorefugio"],
 .partners .logos-track img[src*="casapetitlogo"] {
@@ -5908,57 +5958,6 @@
   }
 }
 
-/* Plexo smoke test panel (Home/index.html, bajo la franja celeste) */
-.plexo-payment-test {
-  position: relative;
-  z-index: 5;
-  max-width: 720px;
-  margin: 16px auto 8px;
-  padding: 0 40px;
-  box-sizing: border-box;
-  scroll-margin-top: 12px;
-}
-
-.plexo-payment-test__inner {
-  background: #fff;
-  border: 1px solid #c5d9f0;
-  border-radius: 10px;
-  padding: 16px 18px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.plexo-payment-test__title {
-  font-size: 1rem;
-  margin-bottom: 6px;
-  color: #1f387f;
-}
-
-.plexo-payment-test__hint {
-  font-size: 0.85rem;
-  color: #555;
-  margin-bottom: 12px;
-}
-
-.plexo-payment-test__hint code {
-  font-size: 0.8rem;
-  background: #f0f4fa;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.plexo-payment-test__status {
-  margin-top: 12px;
-  font-size: 0.9rem;
-  color: #333;
-  min-height: 1.2em;
-}
-
-@media (max-width: 768px) {
-  .plexo-payment-test {
-    padding: 0 14px;
-  }
-}
-
 /* =============================================================================
    Activity pages (Actividades/*.html): Montserrat — headings bold, body regular
    Add class="page-actividad" on <body> (combine with night-page etc. if needed).
@@ -6015,12 +6014,11 @@ body.page-actividad .about-quote {
   font-weight: 400;
 }
 
-/* ===== Home (index): Montserrat en cabecera, hero, barra de confianza, franja regional, bloque Plexo ===== */
+/* ===== Home (index): Montserrat en cabecera, hero, barra de confianza, franja regional ===== */
 body.page-home header,
 body.page-home .hero,
 body.page-home .trust-bar,
-body.page-home .hero-region-tagline,
-body.page-home .plexo-payment-test {
+body.page-home .hero-region-tagline {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
 }
@@ -6028,8 +6026,7 @@ body.page-home .plexo-payment-test {
 body.page-home header *,
 body.page-home .hero *,
 body.page-home .trust-bar *,
-body.page-home .hero-region-tagline *,
-body.page-home .plexo-payment-test * {
+body.page-home .hero-region-tagline * {
   font-family: inherit;
 }
 
