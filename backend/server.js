@@ -20,7 +20,11 @@ const PLEXO_CERT_PASSWORD = process.env.PLEXO_CERT_PASSWORD || "";
 const PLEXO_CERT_FINGERPRINT = (process.env.PLEXO_CERT_FINGERPRINT || "").toUpperCase().replace(/[^A-F0-9]/g, "");
 const PLEXO_PFX_PATH = process.env.PLEXO_PFX_PATH || "";
 const PLEXO_PFX_BASE64 = process.env.PLEXO_PFX_BASE64 || "";
-const PLEXO_REDIRECT_URL = process.env.PLEXO_REDIRECT_URL || "https://rominagrasso.github.io/SacramentoShop/Home/index.html";
+/** Static site root (GitHub Pages or local static server) for post-checkout result pages. */
+const PLEXO_FRONTEND_BASE_URL = (
+  process.env.PLEXO_FRONTEND_BASE_URL || "https://rominagrasso.github.io/SacramentoShop"
+).replace(/\/+$/, "");
+const PLEXO_REDIRECT_URL = process.env.PLEXO_REDIRECT_URL || "";
 /**
  * CommerceId de Plexo (ej. comercio Handy / facilitador). Va en rutas tipo /Commerce/Issuer y body AddIssuerCommerce.
  * Handy/Plexo: suele ser el id "de negocio" (ej. 65264).
@@ -201,6 +205,38 @@ function plexoStateLabel(value) {
   return map.get(n) || String(n);
 }
 
+/** Plexo browser return (RedirectUri): infer success vs failed/cancelled from query params. */
+function classifyPlexoReturnOutcome(query) {
+  const p = query && typeof query === "object" ? query : {};
+  const state = p.CurrentState ?? p.currentState ?? p.Status ?? p.status;
+  const stateNum = Number(state);
+  if (Number.isFinite(stateNum)) {
+    if (stateNum === 1) return "success";
+    if ([2, 10, 20, 21, 22, 23, 998, 999].includes(stateNum)) return "failed";
+  }
+  const resultCode = Number(p.ResultCode ?? p.resultCode);
+  if (Number.isFinite(resultCode) && ![0, 1, 2].includes(resultCode)) return "failed";
+  const cancelled = String(p.cancelled ?? p.canceled ?? p.cancel ?? "").toLowerCase();
+  if (cancelled === "1" || cancelled === "true" || cancelled === "yes") return "failed";
+  const denied = String(p.denied ?? p.error ?? p.failed ?? "").toLowerCase();
+  if (denied === "1" || denied === "true" || denied === "yes") return "failed";
+  const successFlag = String(p.success ?? p.paid ?? "").toLowerCase();
+  if (successFlag === "1" || successFlag === "true" || successFlag === "yes") return "success";
+  // ExpressCheckout: redirect back without params usually means checkout finished.
+  return "success";
+}
+
+function effectivePlexoRedirectUri() {
+  const explicit = String(PLEXO_REDIRECT_URL || "").trim();
+  if (explicit) return explicit;
+  return `${PLEXO_FRONTEND_BASE_URL}/Home/payment-return.html`;
+}
+
+function paymentResultPageUrl(outcome) {
+  const page = outcome === "success" ? "payment-success.html" : "payment-failed.html";
+  return `${PLEXO_FRONTEND_BASE_URL}/Home/${page}`;
+}
+
 function readPfxBytes() {
   if (PLEXO_PFX_BASE64) return Buffer.from(PLEXO_PFX_BASE64, "base64");
   if (PLEXO_PFX_PATH) {
@@ -321,7 +357,7 @@ function buildPlexoExpressCheckoutRequest(payload) {
     Action: 64, // ExpressCheckout
     Type: 0,
     MetaReference: metaReference.slice(0, 128),
-    RedirectUri: PLEXO_REDIRECT_URL,
+    RedirectUri: effectivePlexoRedirectUri(),
     DoNotUseCallback: false,
     ClientInformation: {
       Name: PLEXO_CHECKOUT_NAME,
@@ -1060,6 +1096,8 @@ app.get("/api/payments/health", (_req, res) => {
     mode: PAYMENT_MODE,
     ttlMinutes: LINK_TTL_MINUTES,
     plexoReady: PAYMENT_MODE !== "plexo" ? undefined : Boolean(plexoMaterial),
+    plexoFrontendBaseUrl: PAYMENT_MODE === "plexo" ? PLEXO_FRONTEND_BASE_URL : undefined,
+    plexoRedirectUriEffective: PAYMENT_MODE === "plexo" ? effectivePlexoRedirectUri() : undefined,
     /** CommerceId (API issuers / AddIssuer; ej. 65264). */
     plexoCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_COMMERCE_ID : undefined,
     /** OptionalCommerceId dedicado a ExpressCheckout; 0 = se usa solo PLEXO_COMMERCE_ID si aplica. */
@@ -1081,6 +1119,12 @@ app.get("/api/payments/health", (_req, res) => {
     plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined,
     plexoAdminTokenConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_ADMIN_TOKEN) : undefined
   });
+});
+
+/** Browser return after Plexo Express Checkout (optional RedirectUri target on the API host). */
+app.get("/payment/return", (req, res) => {
+  const outcome = classifyPlexoReturnOutcome(req.query);
+  res.redirect(302, paymentResultPageUrl(outcome));
 });
 
 app.get("/api/payments/plexo/commerces", async (req, res) => {
