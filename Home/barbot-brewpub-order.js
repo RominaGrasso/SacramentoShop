@@ -482,6 +482,21 @@
       if (e.target === overlay) closePopup();
     });
 
+    overlay.addEventListener("click", (e) => {
+      const qtyBtn = e.target.closest("[data-barbot-qty-action]");
+      if (!qtyBtn || !overlay.contains(qtyBtn)) return;
+      e.preventDefault();
+      const stepper = qtyBtn.closest(".barbot-qty-stepper");
+      const input = stepper?.querySelector('input[type="number"]');
+      if (!input) return;
+      const act = qtyBtn.getAttribute("data-barbot-qty-action");
+      const max = Number(input.max) || 30;
+      let v = clampQty(input.value);
+      if (act === "plus") v = Math.min(max, v + 1);
+      if (act === "minus") v = Math.max(0, v - 1);
+      input.value = String(v);
+    });
+
     saveBtn?.addEventListener("click", () => {
       const sel = readSelectionsFromPopup();
       if (!orderHasItems(sel)) {

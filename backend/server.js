@@ -78,12 +78,13 @@ function effectiveLimitIssuersForExpressCheckout() {
 
 /**
  * PaymentData.Installments en ExpressCheckout: Plexo lo documenta como cantidad de cuotas.
- * Antes se enviaba 1 (solo contado y sin selector). Valor más alto suele habilitar elección hasta ese tope en la página de pago.
- * Default 6. Para solo contado: PLEXO_EXPRESS_MAX_INSTALLMENTS=1
+ * Enviar 1 permite que el comercio (config en Handy) ofrezca cuotas seleccionables en el checkout.
+ * Valores > 1 pueden forzar un número fijo de cuotas en la UI. Default 1.
+ * Override: PLEXO_EXPRESS_MAX_INSTALLMENTS
  */
 function effectivePlexoExpressMaxInstallments() {
   const raw = process.env.PLEXO_EXPRESS_MAX_INSTALLMENTS;
-  if (raw === undefined || raw === null || String(raw).trim() === "") return 6;
+  if (raw === undefined || raw === null || String(raw).trim() === "") return 1;
   const n = parseInt(String(raw).trim(), 10);
   if (!Number.isFinite(n) || n < 1) return 1;
   if (n > 24) return 24;
