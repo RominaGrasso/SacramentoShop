@@ -1251,7 +1251,21 @@ const translations = {
       wa_none: "None",
       wa_payment_prompt: "To confirm the reservation, please complete the payment here:",
       wa_payment_fallback: "Please share payment instructions to confirm this booking.",
-      total_label: "Total"
+      total_label: "Total",
+      payment_success_title: "Payment confirmed",
+      payment_success_lead: "Thank you — your payment was received successfully.",
+      payment_success_body:
+        "Our team will contact you shortly with your booking confirmation and next steps. Please keep an eye on your email and WhatsApp.",
+      payment_success_home_btn: "Back to experiences",
+      payment_success_wa_btn: "Contact us on WhatsApp",
+      payment_failed_title: "Payment not completed",
+      payment_failed_lead: "The payment was not completed or was cancelled.",
+      payment_failed_body:
+        "No charge was confirmed. You can try again from your booking link or message us if you need help.",
+      payment_failed_retry_btn: "Try again",
+      payment_failed_home_btn: "Back to experiences",
+      payment_return_redirecting: "Redirecting…",
+      payment_wa_prefill: "Hello! I have a question about my Sacramento Adventures payment."
     },
     es: {
       hero_title: "Descubrí Colonia como un local",
@@ -2502,7 +2516,21 @@ const translations = {
       wa_none: "Ninguna",
       wa_payment_prompt: "Para confirmar la reserva, completá el pago aquí:",
       wa_payment_fallback: "Por favor compartan instrucciones de pago para confirmar esta reserva.",
-      total_label: "Total"
+      total_label: "Total",
+      payment_success_title: "Pago confirmado",
+      payment_success_lead: "Gracias — recibimos tu pago correctamente.",
+      payment_success_body:
+        "Nuestro equipo se pondrá en contacto pronto con la confirmación de tu reserva y los próximos pasos. Revisá tu correo y WhatsApp.",
+      payment_success_home_btn: "Volver a experiencias",
+      payment_success_wa_btn: "Escribinos por WhatsApp",
+      payment_failed_title: "Pago no completado",
+      payment_failed_lead: "El pago no se completó o fue cancelado.",
+      payment_failed_body:
+        "No se confirmó ningún cobro. Podés intentar de nuevo desde tu enlace de reserva o escribirnos si necesitás ayuda.",
+      payment_failed_retry_btn: "Intentar de nuevo",
+      payment_failed_home_btn: "Volver a experiencias",
+      payment_return_redirecting: "Redirigiendo…",
+      payment_wa_prefill: "¡Hola! Tengo una consulta sobre mi pago en Sacramento Adventures."
     },
     pt: {
       hero_title: "Descubra Colonia",
@@ -3753,7 +3781,21 @@ const translations = {
       wa_none: "Nenhuma",
       wa_payment_prompt: "Para confirmar a reserva, finalize o pagamento aqui:",
       wa_payment_fallback: "Por favor, compartilhe instruções de pagamento para confirmar esta reserva.",
-      total_label: "Total"
+      total_label: "Total",
+      payment_success_title: "Pagamento confirmado",
+      payment_success_lead: "Obrigado — seu pagamento foi recebido com sucesso.",
+      payment_success_body:
+        "Nossa equipe entrará em contato em breve com a confirmação da reserva e os próximos passos. Fique de olho no e-mail e no WhatsApp.",
+      payment_success_home_btn: "Voltar às experiências",
+      payment_success_wa_btn: "Fale conosco no WhatsApp",
+      payment_failed_title: "Pagamento não concluído",
+      payment_failed_lead: "O pagamento não foi concluído ou foi cancelado.",
+      payment_failed_body:
+        "Nenhuma cobrança foi confirmada. Você pode tentar novamente pelo link da reserva ou nos escrever se precisar de ajuda.",
+      payment_failed_retry_btn: "Tentar novamente",
+      payment_failed_home_btn: "Voltar às experiências",
+      payment_return_redirecting: "Redirecionando…",
+      payment_wa_prefill: "Olá! Tenho uma dúvida sobre meu pagamento na Sacramento Adventures."
     }
   };
   window.__SACRAMENTO_TRANSLATIONS = translations;
@@ -4480,6 +4522,12 @@ function initRentPopupBehavior() {
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+  if (window.SACRAMENTO_I18N_ONLY) {
+    const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
+    setLanguage(savedLanguage);
+    return;
+  }
+
   injectRentBadgeInActivityHero();
   initRentPopupBehavior();
 
