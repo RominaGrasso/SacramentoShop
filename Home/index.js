@@ -1457,7 +1457,7 @@ const translations = {
       payment_pending_title: "Payment pending",
       payment_pending_lead: "We have not confirmed your payment yet.",
       payment_pending_body:
-        "If you completed the payment, our team will contact you once it is confirmed. You can also message us on WhatsApp.",
+        "If you completed the payment, confirmation can take a few minutes. Our team will contact you once it is confirmed. You can also message us on WhatsApp.",
       payment_pending_home_btn: "Back to experiences",
       payment_wa_prefill: "Hello! I have a question about my Sacramento Adventures payment."
     },
@@ -2915,7 +2915,7 @@ const translations = {
       payment_pending_title: "Pago pendiente",
       payment_pending_lead: "Todavía no confirmamos tu pago.",
       payment_pending_body:
-        "Si completaste el pago, nuestro equipo se pondrá en contacto cuando esté confirmado. También podés escribirnos por WhatsApp.",
+        "Si completaste el pago, la confirmación puede tardar unos minutos. Nuestro equipo se pondrá en contacto cuando esté confirmado. También podés escribirnos por WhatsApp.",
       payment_pending_home_btn: "Volver a experiencias",
       payment_wa_prefill: "¡Hola! Tengo una consulta sobre mi pago en Sacramento Adventures."
     },
@@ -4374,7 +4374,7 @@ const translations = {
       payment_pending_title: "Pagamento pendente",
       payment_pending_lead: "Ainda não confirmamos seu pagamento.",
       payment_pending_body:
-        "Se você concluiu o pagamento, nossa equipe entrará em contato quando for confirmado. Você também pode nos escrever no WhatsApp.",
+        "Se você concluiu o pagamento, a confirmação pode levar alguns minutos. Nossa equipe entrará em contato quando for confirmado. Você também pode nos escrever no WhatsApp.",
       payment_pending_home_btn: "Voltar às experiências",
       payment_wa_prefill: "Olá! Tenho uma dúvida sobre meu pagamento na Sacramento Adventures."
     }

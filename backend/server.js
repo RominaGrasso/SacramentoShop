@@ -205,15 +205,6 @@ function plexoStateLabel(value) {
   return map.get(n) || String(n);
 }
 
-/** Plexo TransactionResult → internal paymentStatus (gateway API responses; not purchase webhooks). */
-function mapPlexoResultCodeToPaymentStatus(resultCode) {
-  const code = Number(resultCode);
-  if (!Number.isFinite(code)) return "processing";
-  if (code === 0) return "approved";
-  if ([1, 2, 3, 100].includes(code)) return "pending";
-  return "failed";
-}
-
 function mapPaymentStatusToOutcome(paymentStatus) {
   const s = String(paymentStatus || "").toLowerCase();
   if (s === "approved") return "success";
@@ -262,6 +253,7 @@ function resolvePlexoPaymentStatusFromPurchase(node) {
   const transactionCode = Number(purchase.TransactionCode ?? purchase.transactionCode);
   const message =
     pickFirstNonEmpty(
+      purchase.TransactionResultText,
       purchase.TransactionMessage,
       purchase.Message,
       purchase.ErrorMessage,
@@ -295,23 +287,6 @@ function resolvePlexoPaymentStatusFromPurchase(node) {
     resolved: true,
     message
   };
-}
-
-function extractPlexoResultCode(node) {
-  if (!node || typeof node !== "object") return null;
-  const candidates = [
-    node.ResultCode,
-    node.resultCode,
-    node.Status,
-    node.status,
-    node.Response?.ResultCode,
-    node.Response?.Status
-  ];
-  for (const c of candidates) {
-    const n = Number(c);
-    if (Number.isFinite(n)) return n;
-  }
-  return null;
 }
 
 function extractPlexoPurchaseClientReference(node) {
@@ -1111,9 +1086,35 @@ function extractMaskedCardInfo(...sources) {
 function buildAttemptMetaFromPlexoWebhook(payload) {
   const plexoPayload = payload?.Object?.Object || {};
   const responseObj = payload?.Object?.Object?.Response || {};
+  const purchase = extractPlexoPurchaseTransaction(plexoPayload);
   const purchaseOutcome = resolvePlexoPaymentStatusFromPurchase(plexoPayload);
   const paymentStatus = purchaseOutcome.resolved ? purchaseOutcome.paymentStatus : undefined;
   const card = extractMaskedCardInfo(plexoPayload, responseObj, payload);
+  const transactionResultText =
+    pickFirstNonEmpty(purchase?.TransactionResultText, purchase?.transactionResultText) || undefined;
+  const authorization =
+    pickFirstNonEmpty(
+      purchase?.Authorization,
+      purchase?.authorization,
+      plexoPayload?.Authorization,
+      plexoPayload?.authorization
+    ) || undefined;
+  const cardIssuer =
+    pickFirstNonEmpty(
+      purchase?.CardIssuer,
+      purchase?.cardIssuer,
+      purchase?.IssuerName,
+      plexoPayload?.CardIssuer,
+      plexoPayload?.cardIssuer
+    ) || undefined;
+  const cardType =
+    pickFirstNonEmpty(
+      purchase?.CardType,
+      purchase?.cardType,
+      plexoPayload?.CardType,
+      plexoPayload?.cardType,
+      card.brand
+    ) || undefined;
   const payerName = pickFirstNonEmpty(
     pickFirstByPaths(plexoPayload, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
     pickFirstByPaths(responseObj, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
@@ -1150,6 +1151,10 @@ function buildAttemptMetaFromPlexoWebhook(payload) {
       purchaseStatus: purchaseOutcome.purchaseStatus,
       transactionCode: purchaseOutcome.transactionCode,
       transactionMessage: purchaseOutcome.message,
+      transactionResultText,
+      authorization,
+      cardIssuer,
+      cardType,
       resolved: purchaseOutcome.resolved,
       currentState: plexoPayload?.CurrentState,
       statusCode: plexoPayload?.Status
@@ -1514,12 +1519,6 @@ app.post("/api/payments/resolve", async (req, res) => {
 });
 
 app.post("/api/payments/webhook", (req, res) => {
-  // TEMP: Plexo webhook payload inspection — remove after debugging
-  // eslint-disable-next-line no-console
-  console.log("[PLEXO WEBHOOK BODY]", JSON.stringify(req.body, null, 2));
-  // eslint-disable-next-line no-console
-  console.log("[PLEXO WEBHOOK QUERY]", req.query);
-
   const plexoPayload = req.body?.Object?.Object;
   if (plexoPayload && req.body?.Signature) {
     const respondPlexoAck = () => {
@@ -1544,36 +1543,21 @@ app.post("/api/payments/webhook", (req, res) => {
 
     const { payment, fingerprint, lookupKey, lookupSource } = correlatePaymentFromPlexoWebhook(req.body);
     const purchaseClientReferenceId = extractPlexoPurchaseClientReference(plexoPayload);
-    // TEMP: correlate webhook → stored payment (order ref = Purchase.ClientReferenceId, not Plexo cert Fingerprint)
-    // eslint-disable-next-line no-console
-    console.log("[plexo-webhook] correlate", {
-      lookupKey,
-      lookupSource,
-      purchaseClientReferenceId,
-      plexoCertFingerprint: plexoPayload?.Fingerprint ?? null,
-      matched: Boolean(payment),
-      matchedSessionId: payment?.sessionId ?? null,
-      matchedStoredFingerprint: payment?.fingerprint ?? null,
-      matchedPaymentStatus: payment?.paymentStatus ?? null
-    });
-
     const purchaseOutcome = resolvePlexoPaymentStatusFromPurchase(plexoPayload);
     const plexoTransactionId =
       pickFirstNonEmpty(plexoPayload?.TransactionId, plexoPayload?.SessionId, plexoPayload?.Id) ||
       undefined;
 
     if (!purchaseOutcome.resolved) {
-      if (PAYMENT_DEBUG_LOG) {
-        // eslint-disable-next-line no-console
-        console.warn("[plexo-webhook] purchase present but outcome unresolved, skipping status update", {
-          lookupKey,
-          lookupSource,
-          fingerprint,
-          plexoTransactionId,
-          purchaseStatus: purchaseOutcome.purchaseStatus,
-          transactionCode: purchaseOutcome.transactionCode
-        });
-      }
+      // eslint-disable-next-line no-console
+      console.warn("[plexo-webhook] purchase present but outcome unresolved, skipping status update", {
+        lookupKey,
+        lookupSource,
+        fingerprint,
+        plexoTransactionId,
+        purchaseStatus: purchaseOutcome.purchaseStatus,
+        transactionCode: purchaseOutcome.transactionCode
+      });
       return respondPlexoAck();
     }
 
@@ -1607,16 +1591,7 @@ app.post("/api/payments/webhook", (req, res) => {
     if (!updated && payment?.sessionId) {
       updated = updatePaymentBySessionId(payment.sessionId, patch, attempt);
     }
-    if (updated) {
-      // eslint-disable-next-line no-console
-      console.log("[plexo-webhook] payment updated", {
-        lookupKey: updateKey,
-        lookupSource,
-        paymentStatus: patch.paymentStatus,
-        sessionId: payment?.sessionId ?? null,
-        plexoTransactionId
-      });
-    } else {
+    if (!updated) {
       // eslint-disable-next-line no-console
       console.warn("[plexo-webhook] payment not found", {
         lookupKey: updateKey,
