@@ -2,7 +2,9 @@
   "use strict";
 
   const POLL_INTERVAL_MS = 1500;
-  const POLL_MAX_MS = 50000;
+  const POLL_MAX_MS = 45000;
+  const WATCHDOG_MS = 45000;
+  const FETCH_TIMEOUT_MS = 8000;
 
   function sacramentoI18nTable() {
     if (typeof translations !== "undefined" && translations) return translations;
@@ -47,12 +49,75 @@
     return [...new Set(list)];
   }
 
+  function readLocationParams() {
+    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash.replace(/^\?/, "").replace(/^#/, "");
+    if (hash) {
+      new URLSearchParams(hash).forEach((v, k) => {
+        if (!params.has(k)) params.set(k, v);
+      });
+    }
+    return params;
+  }
+
+  function readRefFromLocation() {
+    const params = readLocationParams();
+    return String(
+      params.get("ref") || params.get("ClientReferenceId") || params.get("clientReferenceId") || ""
+    ).trim();
+  }
+
+  function hasExplicitCancelOrError() {
+    const params = readLocationParams();
+    const truthy = (v) => {
+      const s = String(v || "")
+        .trim()
+        .toLowerCase();
+      return s && s !== "0" && s !== "false" && s !== "no";
+    };
+    for (const key of ["cancel", "cancelled", "canceled", "aborted", "abort"]) {
+      if (truthy(params.get(key))) return true;
+    }
+    if (truthy(params.get("error")) || truthy(params.get("ErrorMessage")) || truthy(params.get("errorMessage"))) {
+      return true;
+    }
+    const resultCode = Number(params.get("ResultCode") ?? params.get("resultCode"));
+    if (Number.isFinite(resultCode) && resultCode === 2) return true;
+    const status = String(params.get("status") || params.get("payment_status") || "")
+      .trim()
+      .toLowerCase();
+    if (["cancelled", "canceled", "failed", "error", "rejected", "declined"].includes(status)) return true;
+    return false;
+  }
+
+  function deriveOutcomeFromPaymentStatus(paymentStatus) {
+    const s = String(paymentStatus || "").toLowerCase();
+    if (s === "approved") return "success";
+    if (s === "failed") return "failed";
+    if (s === "pending" || s === "awaiting_payment") return "pending";
+    return "processing";
+  }
+
+  function resolveOutcome(data) {
+    if (data?.outcome != null && String(data.outcome).trim() !== "") {
+      return String(data.outcome);
+    }
+    if (data?.paymentStatus != null) {
+      return deriveOutcomeFromPaymentStatus(data.paymentStatus);
+    }
+    return "processing";
+  }
+
   async function fetchPaymentResult(ref) {
     const candidates = resultApiCandidates(ref);
     let lastError = null;
     for (const url of candidates) {
       try {
-        const res = await fetch(url, { method: "GET", headers: { Accept: "application/json" } });
+        const res = await fetch(url, {
+          method: "GET",
+          headers: { Accept: "application/json" },
+          signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
+        });
         if (!res.ok) {
           lastError = new Error(`HTTP ${res.status}`);
           continue;
@@ -81,22 +146,11 @@
     waBtn.href = "https://wa.me/598091642195?text=" + encodeURIComponent(text);
   }
 
-  function readRefFromLocation() {
-    const params = new URLSearchParams(window.location.search);
-    const hash = window.location.hash.replace(/^\?/, "").replace(/^#/, "");
-    if (hash) {
-      new URLSearchParams(hash).forEach((v, k) => {
-        if (!params.has(k)) params.set(k, v);
-      });
-    }
-    return String(params.get("ref") || "").trim();
-  }
-
   async function pollPaymentResult(ref) {
     const started = Date.now();
     while (Date.now() - started < POLL_MAX_MS) {
       const data = await fetchPaymentResult(ref);
-      const outcome = String(data?.outcome || "processing");
+      const outcome = resolveOutcome(data);
       if (outcome !== "processing") {
         window.location.replace(pageForOutcome(outcome));
         return;
@@ -107,15 +161,29 @@
   }
 
   async function runReturnRouter() {
+    if (hasExplicitCancelOrError()) {
+      window.location.replace("payment-failed.html");
+      return;
+    }
+
     const ref = readRefFromLocation();
     if (!ref) {
       window.location.replace("payment-failed.html");
       return;
     }
+
+    const watchdog = window.setTimeout(() => {
+      if (document.body?.classList.contains("page-payment-return")) {
+        window.location.replace("payment-pending.html");
+      }
+    }, WATCHDOG_MS);
+
     try {
       await pollPaymentResult(ref);
     } catch {
       window.location.replace("payment-pending.html");
+    } finally {
+      window.clearTimeout(watchdog);
     }
   }
 
@@ -132,13 +200,19 @@
     });
   }
 
-  window.SacramentoPaymentPages = { getI18nText, runReturnRouter, bindRetry, applyWhatsAppLink };
-
-  document.addEventListener("DOMContentLoaded", () => {
+  function boot() {
     applyWhatsAppLink();
     bindRetry();
     if (document.body.classList.contains("page-payment-return")) {
       runReturnRouter();
     }
-  });
+  }
+
+  window.SacramentoPaymentPages = { getI18nText, runReturnRouter, bindRetry, applyWhatsAppLink };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
 })();
