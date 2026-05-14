@@ -5501,5 +5501,53 @@ body.page-home .hero-region-tagline__text {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 700;
 }
+ /* ===============================
+   LA MISION - ROOM BOOKING
+================================= */
+
+#misionRoomBooking {
+background: #fff7ef;
+  border-left: 6px solid #6aa0e1;
+  border-radius: 18px;
+  padding: 2rem;
+  max-width: 720px;
+  margin: 2.5rem auto;
+  text-align: center;
+}
+
+#misionRoomBooking h3 {
+  color: #1f3c68;
+  margin-bottom: 1.5rem;
+}
+
+#misionRoomBooking .room-booking-row {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+#misionRoomBooking select {
+  width: 100%;
+  max-width: 350px;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #d4dce7;
+  font-size: 1rem;
+}
+
+#misionRoomBooking .room-booking-foot {
+  background: #eef3fb;
+  border: 1px solid #c8d8f0;
+  border-radius: 14px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+#misionRoomBooking .room-add-btn {
+  margin-top: 1rem;
+}
 
 
