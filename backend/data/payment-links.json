@@ -1,0 +1,111 @@
+[
+  {
+    "fingerprint": "ac060ba9d72ab87163dbbcba9c6b81af0aab75c327612f72ca5141f94221e3b3",
+    "experience": "bruma",
+    "amount": 40,
+    "currency": "USD",
+    "people": 1,
+    "orderPayload": {
+      "orders": [
+        {
+          "main": "test"
+        }
+      ]
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_ac060ba9d72ab871&amount=40&currency=USD",
+    "sessionId": "mock_ac060ba9d72ab871",
+    "status": "active",
+    "createdAt": "2026-04-19T17:11:34.298Z",
+    "updatedAt": "2026-04-19T17:11:34.298Z",
+    "expiresAt": "2026-04-20T17:11:34.301Z"
+  },
+  {
+    "fingerprint": "f8bf55593e9054a86df80bb826e2b7bd05b20e6f5093d112caf879d0a1977e77",
+    "experience": "lasliebres",
+    "amount": 220,
+    "currency": "USD",
+    "people": 2,
+    "orderPayload": {
+      "orders": [
+        {
+          "packageId": "degustacion_almuerzo",
+          "packageLabel": "Tasting + lunch (Viñedo)",
+          "packagePrice": 85,
+          "preferences": [
+            "Red wine preferred"
+          ]
+        },
+        {
+          "packageId": "degustacion_almuerzo",
+          "packageLabel": "Tasting + lunch (Viñedo)",
+          "packagePrice": 105,
+          "preferences": [
+            "Red wine preferred",
+            "White wine preferred",
+            "Vegetarian"
+          ]
+        }
+      ],
+      "total": 220,
+      "experienceName": "Las Liebres"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_f8bf55593e9054a8&amount=220&currency=USD",
+    "sessionId": "mock_f8bf55593e9054a8",
+    "status": "active",
+    "createdAt": "2026-04-19T17:29:09.948Z",
+    "updatedAt": "2026-04-19T17:29:09.948Z",
+    "expiresAt": "2026-04-20T17:29:09.954Z"
+  },
+  {
+    "fingerprint": "d66c3853bbb9cb50a57b7f0015c69811870fe5f9768415b54f107052dd0386e2",
+    "experience": "bruma",
+    "amount": 120,
+    "currency": "USD",
+    "people": 2,
+    "orderPayload": {
+      "orders": [
+        {
+          "starter": "Pumpkin ravioli with sage butter & almonds",
+          "main": "Baked cheesecake with red berries",
+          "drink": "Glass of wine (red / white / rosé)",
+          "preferences": [
+            "Low Salt"
+          ],
+          "menuTier": "premium"
+        },
+        {
+          "starter": "Grilled ribeye with homemade fries, salsa criolla & chimichurri",
+          "main": "Pavlova with pastry cream & seasonal fruit",
+          "drink": "Glass of wine (red / white / rosé)",
+          "preferences": [
+            "0% Alcohol"
+          ],
+          "menuTier": "premium"
+        }
+      ],
+      "total": 120,
+      "people": 2,
+      "experienceName": "Bruma",
+      "groupGuideFlat": 0
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_d66c3853bbb9cb50&amount=120&currency=USD",
+    "sessionId": "mock_d66c3853bbb9cb50",
+    "status": "active",
+    "createdAt": "2026-04-21T17:54:27.474Z",
+    "updatedAt": "2026-04-21T17:54:27.474Z",
+    "expiresAt": "2026-04-22T17:54:27.482Z"
+  },
+  {
+    "fingerprint": "201cce269700abc",
+    "experience": "barbot_brewpub",
+    "amount": 34,
+    "currency": "USD",
+    "paymentUrl": "https://example.com",
+    "sessionId": "sess_test_1",
+    "status": "active",
+    "paymentStatus": "approved",
+    "createdAt": "2026-05-14T19:32:42.454Z",
+    "updatedAt": "2026-05-14T19:32:42.490Z",
+    "paymentAttempts": []
+  }
+]
