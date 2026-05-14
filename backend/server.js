@@ -1414,6 +1414,12 @@ app.post("/api/payments/resolve", async (req, res) => {
 });
 
 app.post("/api/payments/webhook", (req, res) => {
+  // TEMP: Plexo webhook payload inspection — remove after debugging
+  // eslint-disable-next-line no-console
+  console.log("[PLEXO WEBHOOK BODY]", JSON.stringify(req.body, null, 2));
+  // eslint-disable-next-line no-console
+  console.log("[PLEXO WEBHOOK QUERY]", req.query);
+
   const plexoPayload = req.body?.Object?.Object;
   if (plexoPayload && req.body?.Signature) {
     const { payment, fingerprint } = correlatePaymentFromPlexoWebhook(req.body);
