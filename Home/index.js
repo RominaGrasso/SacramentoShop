@@ -436,56 +436,98 @@ const translations = {
       barbot_home_meta_1: "Gold at IV Copa Sul-Americana de Cerveja",
       barbot_home_meta_2: "Bonavena Strong Ale",
       barbot_home_desc:
-        "Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter — perfect for a pint when you’re in town.",
+        "Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter - perfect for a pint when you’re in town.",
       barbot_home_img_1_alt: "Barbot Brewpub craft beer in Colonia",
       barbot_home_img_2_alt: "Barbot Brewpub interior",
       barbot_home_img_3_alt: "Bonavena Strong Ale beer",
       barbot_page_about_heading: "Your craft beer moment in Colonia",
-      barbot_page_story_p:
-        "You’ve strolled the cobblestones and the lighthouse — now slow down where locals and travelers share the same table. Barbot Brewpub pours honest craft beer in the heart of Colonia’s UNESCO-listed Historic Quarter: relaxed lighting, real conversation, no rush. Their Bonavena Strong Ale took gold at Brazil’s IV Copa Sul-Americana de Cerveja — a judges’ medal that backs up what’s in your glass. Whether you’re hunting that winning pint or simply trading stories after a day of sightseeing, this is the reward your feet were asking for.",
+      barbot_page_story_p_before:
+        "You’ve strolled the cobblestones and the lighthouse - now slow down where locals and travelers share the same table. Barbot Brewpub pours honest craft beer in the heart of Colonia’s UNESCO-listed Historic Quarter: relaxed lighting, real conversation, no rush. ",
+      barbot_page_story_p_highlight:
+        "Their Bonavena Strong Ale took gold at Brazil’s IV Copa Sul-Americana de Cerveja - a judges’ medal that backs up what’s in your glass.",
+      barbot_page_story_p_after:
+        " Whether you’re hunting that winning pint or simply trading stories after a day of sightseeing, this is the reward your feet were asking for.",
+      barbot_awards_btn: "Discover our awards from the last two years",
+      barbot_awards_bba_title: "Brazilian Beer Awards",
+      barbot_awards_guarani_title: "Copa Guaraní de cervezas",
+      barbot_awards_sbc_title: "South Beer Cup the Champions",
+      barbot_awards_arojo_title: "Aro Rojo, México",
+      barbot_awards_sulamericana_title: "Copa Sulamericana de Cerveja",
+      barbot_awards_uruguaya_title: "Copa Uruguaya 2025",
+      barbot_awards_sbc_2026_note: "South Beer 2026 is happening these days too 🤩",
+      barbot_awards_arojo_2026_note:
+        "2026 edition is on this week (May 2026) 🙏 Wish us luck!",
+      barbot_medal_bronze: "Bronze",
+      barbot_medal_silver: "Silver",
+      barbot_medal_gold: "Gold",
+      barbot_medal_best_uy: "Best Uruguayan Brewery",
       barbot_page_varieties_p:
-        "Roughly 20 beer varieties flow through taps and bottles — IPAs, lagers, seasonals and more — so one stop can feel like a mini tasting tour without leaving the brewpub.",
+        "Roughly 20 beer varieties flow through taps and bottles - IPAs, lagers, seasonals and more - so one stop can feel like a mini tasting tour without leaving the brewpub.",
       barbot_page_why_title: "Why travelers pause here",
-      barbot_page_moment_1:
-        "🏛️ You’re already in the Historic Quarter — step inside between monuments without breaking the spell.",
-      barbot_page_moment_2:
-        "🍺 Taste the headline act: Bonavena Strong Ale, gold at IV Copa Sul-Americana de Cerveja — then compare it against dozens of other labels on the board.",
-      barbot_page_moment_3:
-        "🕐 Your tempo: a flight, a single pint, or a lazy round — this isn’t a packaged pub crawl; it’s your evening.",
+      barbot_page_moment_1_title: "You’re already in the Historic Quarter:",
+      barbot_page_moment_1_desc:
+        "Step inside between monuments without breaking the spell.",
+      barbot_page_moment_2_title: "Taste the headline act:",
+      barbot_page_moment_2_desc:
+        "Bonavena Strong Ale, gold at IV Copa Sul-Americana de Cerveja - then compare it against dozens of other labels on the board.",
+      barbot_page_moment_3_title: "Your tempo:",
+      barbot_page_moment_3_desc:
+        "A flight, a single pint, or a lazy round - this isn’t a packaged pub crawl; it’s your evening.",
       barbot_create_title: "Create your experience",
       barbot_create_subtitle:
-        "Pick your visit date, then open the window with the button: there you choose drinks and food.",
+        "Pick your visit date, then choose Classic (USD 34) or Premium (USD 40) menu and your courses.",
       barbot_create_btn: "+ Create your experience",
-      barbot_popup_title: "Drinks & food at Barbot",
-      barbot_popup_drinks_hint: "How many full pints and half pints?",
-      barbot_popup_full_label: "Full pints (USD 7 each)",
-      barbot_popup_half_label: "Half pints (USD 5 each)",
-      barbot_food_heading: "Food",
-      barbot_food_hint: "Each option is USD 10. Enter a quantity for anything you’d like.",
-      barbot_food_qty_label: "Qty",
-      barbot_food_pizza: "Pizza",
-      barbot_food_burger: "Barbot burger",
-      barbot_food_fries: "Fries with cheese cream",
-      barbot_beer_at_bar_note: "Beer style is chosen at the bar.",
+      barbot_experience_name: "Barbot Brewpub",
+      barbot_popup_title: "Build your menu at Barbot",
+      barbot_tier_heading: "Choose your menu",
+      barbot_tier_classic_label: "Classic",
+      barbot_tier_classic_price: "USD 34 per guest",
+      barbot_tier_premium_label: "Premium",
+      barbot_tier_premium_price: "USD 40 per guest",
+      barbot_order_tier_standard: "Classic menu · USD 34",
+      barbot_order_tier_premium: "Premium menu · USD 40",
+      barbot_wa_tier_standard: "Classic menu (USD 34)",
+      barbot_wa_tier_premium: "Premium menu (USD 40)",
+      barbot_choice_entrada: "Starter",
+      barbot_choice_principal: "Main course",
+      barbot_choice_postre: "Dessert",
+      barbot_choice_bebida: "Drink",
+      barbot_std_entrada_1:
+        "Beef or provolone & onion empanada - golden pastry, slow-cooked filling, classic brewpub starter.",
+      barbot_std_main_1:
+        "Chorizos a la Malta Barbot - house sausages braised in Barbot malta beer with onions and rustic garnish.",
+      barbot_std_main_2:
+        "Uruguayan Chivito Barbot - beef, ham, mozzarella, fried egg, lettuce and tomato on house bread with fries.",
+      barbot_std_dessert_1: "Two crepes with dulce de leche - thin warm crepes, generous caramel spread.",
+      barbot_std_dessert_2:
+        "One crepe with dulce de leche + ice cream scoop - crepe, caramel and a ball of ice cream.",
+      barbot_std_dessert_3: "Homemade flan with dulce de leche - creamy baked custard with caramel sauce.",
+      barbot_std_drink_1: "Pint of Barbot Classic beer - flagship lager-style house brew from the tap.",
+      barbot_std_drink_2: "Coca-Cola line soft drink - chilled soda (Coca-Cola family).",
+      barbot_std_drink_3: "Mineral water - still or sparkling, served cold.",
+      barbot_std_drink_4:
+        "Pint of Barbot malt or ginger ale - non-alcoholic house malt or ginger ale on tap.",
+      barbot_prm_entrada_1:
+        "Two beef and/or provolone & onion empanadas - pair of golden empanadas, mix and match fillings.",
+      barbot_prm_entrada_2:
+        "Homemade cured meats board - artisan charcuterie, pickles and bread for sharing.",
+      barbot_prm_main_1:
+        "Barbot braised pork shoulder - slow-braised bondiola until tender, finished with house beer glaze.",
+      barbot_prm_main_2:
+        "Uruguayan Chivito Barbot - beef, ham, mozzarella, fried egg, lettuce and tomato on house bread with fries.",
+      barbot_prm_main_3: "Mushroom risotto - creamy arborio rice, seasonal mushrooms, parmesan and herbs.",
+      barbot_prm_drink_1:
+        "Pint of Barbot Special or Strong beer - rotating special or strong ale from the tap (incl. award-winning styles).",
       barbot_table_reserved_web_note: "A table is reserved for you with your web purchase.",
-      barbot_summary_empty:
-        "Use “Create your experience” or “Add order” to save drinks and food here. You’ll see each order as a card and the total below, like our other experiences.",
-      barbot_summary_visit: "Visit date",
-      barbot_summary_drinks_heading: "Drinks",
-      barbot_summary_food_heading: "Food",
-      barbot_summary_total: "Estimated total (USD)",
-      barbot_order_subtotal: "Subtotal",
-      barbot_unit_full: "Full pint",
-      barbot_unit_half: "Half pint",
-      barbot_people_label: "People",
-      barbot_reserve_needs_items: "Add at least one drink or food item in the window before saving.",
-      barbot_reserve_needs_orders: "Add at least one order (save in the window) before reserving.",
-      barbot_wa_preface: "Hello! I’d like to book Barbot Brewpub with this selection:",
       barbot_page_map_title: "Where to find Barbot Brewpub",
       barbot_page_map_text:
         "Use this map as a reference for Barbot Brewpub in Colonia del Sacramento, in the Historic Quarter.",
       barbot_page_map_link: "Open in Google Maps",
       barbot_page_map_iframe_title: "Map: Barbot Brewpub, Colonia del Sacramento",
+      barbot_gal_4_alt: "Barbot Brewpub craft beer and atmosphere",
+      barbot_gal_5_alt: "Barbot Brewpub dining and taproom",
+      barbot_gal_6_alt: "Barbot Brewpub experience in Colonia",
+      barbot_gal_9_alt: "Barbot Brewpub taproom and craft beer in Colonia",
       josefina_title: "La Josefina · Lunch or dinner at Colonia Yacht Club",
       josefina_meta_view: "Unforgettable Río de la Plata views — the setting is the highlight",
       josefina_meta_duration: "The experience lasts 2 hours",
@@ -1855,56 +1897,98 @@ const translations = {
       barbot_home_meta_1: "Oro en la IV Copa Sul-Americana de Cerveja",
       barbot_home_meta_2: "Bonavena Strong Ale",
       barbot_home_desc:
-        "Barbot Brewpub ganó medalla de oro con Bonavena Strong Ale en la IV Copa Sul-Americana de Cerveja. Su brewpub está en el Casco Histórico de Colonia — ideal para una pinta cuando estés en la ciudad.",
+        "Barbot Brewpub ganó medalla de oro con Bonavena Strong Ale en la IV Copa Sul-Americana de Cerveja. Su brewpub está en el Casco Histórico de Colonia - ideal para una pinta cuando estés en la ciudad.",
       barbot_home_img_1_alt: "Cerveza artesanal Barbot Brewpub en Colonia",
       barbot_home_img_2_alt: "Interior del Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveza Bonavena Strong Ale",
       barbot_page_about_heading: "Tu momento cervecero en Colonia",
-      barbot_page_story_p:
-        "Ya caminaste el Casco y el faro — ahora frená donde turistas y locales comparten la misma mesa. Barbot Brewpub es cerveza artesanal en el corazón del barrio UNESCO de Colonia: luz baja, charla real, sin apuro. La Bonavena Strong Ale ganó oro en la IV Copa Sul-Americana de Cerveja (Brasil): una medalla de jurado que respalda lo que hay en la copa. Vayas tras esa pinta ganadora o solo quieras cerrar el día con algo memorable, acá está la recompensa que tus pies pedían.",
+      barbot_page_story_p_before:
+        "Ya caminaste el Casco y el faro - ahora frená donde turistas y locales comparten la misma mesa. Barbot Brewpub es cerveza artesanal en el corazón del barrio UNESCO de Colonia: luz baja, charla real, sin apuro. ",
+      barbot_page_story_p_highlight:
+        "La Bonavena Strong Ale ganó oro en la IV Copa Sul-Americana de Cerveja (Brasil): una medalla de jurado que respalda lo que hay en la copa.",
+      barbot_page_story_p_after:
+        " Vayas tras esa pinta ganadora o solo quieras cerrar el día con algo memorable, acá está la recompensa que tus pies pedían.",
+      barbot_awards_btn: "Conocé nuestros premios de los últimos dos años",
+      barbot_awards_bba_title: "Brazilian Beer Awards",
+      barbot_awards_guarani_title: "Copa Guaraní de cervezas",
+      barbot_awards_sbc_title: "South Beer Cup the Champions",
+      barbot_awards_arojo_title: "Aro Rojo, México",
+      barbot_awards_sulamericana_title: "Copa Sulamericana de Cerveja",
+      barbot_awards_uruguaya_title: "Copa Uruguaya 2025",
+      barbot_awards_sbc_2026_note: "La South Beer 2026 se juega en estos días también 🤩",
+      barbot_awards_arojo_2026_note:
+        "Se está jugando esta semana (mayo 2026) 🙏 ¡Deseános suerte!",
+      barbot_medal_bronze: "Bronce",
+      barbot_medal_silver: "Plata",
+      barbot_medal_gold: "Oro",
+      barbot_medal_best_uy: "Mejor Cervecería Uruguaya",
       barbot_page_varieties_p:
-        "Hay alrededor de 20 variedades entre chopera y botellas — IPAs, lagers, temporadas y más — así que una sola parada puede saber a mini degustación sin salir del brewpub.",
+        "Hay alrededor de 20 variedades entre chopera y botellas - IPAs, lagers, temporadas y más - así que una sola parada puede saber a mini degustación sin salir del brewpub.",
       barbot_page_why_title: "Por qué los viajeros se detienen acá",
-      barbot_page_moment_1:
-        "🏛️ Estás en pleno Casco Histórico: entrás entre monumentos sin cortar el encanto.",
-      barbot_page_moment_2:
-        "🍺 Probá la estrella: Bonavena Strong Ale, oro en la IV Copa Sul-Americana de Cerveja — y comparala con decenas de etiquetas en la carta.",
-      barbot_page_moment_3:
-        "🕐 Tu ritmo: degustación, una pinta o una ronda tranquila — esto no es un pub crawl armado; es tu noche.",
+      barbot_page_moment_1_title: "Estás en pleno Casco Histórico:",
+      barbot_page_moment_1_desc: "entrás entre monumentos sin cortar el encanto.",
+      barbot_page_moment_2_title: "Probá la estrella:",
+      barbot_page_moment_2_desc:
+        "Bonavena Strong Ale, oro en la IV Copa Sul-Americana de Cerveja - y comparala con decenas de etiquetas en la carta.",
+      barbot_page_moment_3_title: "Tu ritmo:",
+      barbot_page_moment_3_desc:
+        "degustación, una pinta o una ronda tranquila - esto no es un pub crawl armado; es tu noche.",
       barbot_create_title: "Creá tu experiencia",
       barbot_create_subtitle:
-        "Elegí la fecha y tocá el botón: en la ventana cargás bebida y comida.",
+        "Elegí la fecha y después el menú Clásico (USD 34) o Premium (USD 40) con tus platos.",
       barbot_create_btn: "+ Creá tu experiencia",
-      barbot_popup_title: "Bebida y comida en Barbot",
-      barbot_popup_drinks_hint: "¿Cuántas pintas enteras y medias pintas?",
-      barbot_popup_full_label: "Pintas enteras (USD 7 c/u)",
-      barbot_popup_half_label: "Medias pintas (USD 5 c/u)",
-      barbot_food_heading: "Comida",
-      barbot_food_hint: "Cada opción sale USD 10. Indicá la cantidad que quieras.",
-      barbot_food_qty_label: "Cant.",
-      barbot_food_pizza: "Pizza",
-      barbot_food_burger: "Hamburguesa Barbot",
-      barbot_food_fries: "Papas con crema de queso",
-      barbot_beer_at_bar_note: "El tipo de cerveza lo elegís en el bar.",
+      barbot_experience_name: "Barbot Brewpub",
+      barbot_popup_title: "Armá tu menú en Barbot",
+      barbot_tier_heading: "Elegí tu menú",
+      barbot_tier_classic_label: "Clásico",
+      barbot_tier_classic_price: "USD 34 por persona",
+      barbot_tier_premium_label: "Premium",
+      barbot_tier_premium_price: "USD 40 por persona",
+      barbot_order_tier_standard: "Menú clásico · USD 34",
+      barbot_order_tier_premium: "Menú premium · USD 40",
+      barbot_wa_tier_standard: "Menú clásico (USD 34)",
+      barbot_wa_tier_premium: "Menú premium (USD 40)",
+      barbot_choice_entrada: "Entrada",
+      barbot_choice_principal: "Principal",
+      barbot_choice_postre: "Postre",
+      barbot_choice_bebida: "Bebida",
+      barbot_std_entrada_1:
+        "1 empanada de carne o provolone y cebolla - masa dorada, relleno cocido a fuego lento, clásico del brewpub.",
+      barbot_std_main_1:
+        "Chorizos a la Malta Barbot - chorizos de la casa braseados en malta Barbot con cebolla y guarnición rústica.",
+      barbot_std_main_2:
+        "Chivito Uruguayo Barbot - carne, jamón, mozzarella, huevo frito, lechuga y tomate en pan de la casa con papas fritas.",
+      barbot_std_dessert_1: "Panqueque (2) con dulce de leche - crepes tibios y abundante dulce de leche.",
+      barbot_std_dessert_2:
+        "Panqueque (1) con dulce de leche + bocha de helado - crepe, caramelo y una bola de helado.",
+      barbot_std_dessert_3: "Flan casero con dulce de leche - custard horneado cremoso con caramelo.",
+      barbot_std_drink_1: "1 pinta de cerveza Barbot Clásica - estilo lager insignia de la casa en chopera.",
+      barbot_std_drink_2: "1 refresco línea Coca-Cola - gaseosa fría (familia Coca-Cola).",
+      barbot_std_drink_3: "1 agua mineral - con o sin gas, bien fría.",
+      barbot_std_drink_4:
+        "1 pinta de malta o ginger ale Barbot - malta o ginger ale sin alcohol de la casa en chopera.",
+      barbot_prm_entrada_1:
+        "2 empanadas de carne y/o provolone y cebolla - par de empanadas doradas, combiná rellenos.",
+      barbot_prm_entrada_2:
+        "Tabla de fiambres caseros - charcutería artesanal, pickles y pan para compartir.",
+      barbot_prm_main_1:
+        "Bondiola braseada Barbot - bondiola cocida a fuego lento hasta quedar tierna, glaseada con cerveza de la casa.",
+      barbot_prm_main_2:
+        "Chivito Uruguayo Barbot - carne, jamón, mozzarella, huevo frito, lechuga y tomate en pan de la casa con papas fritas.",
+      barbot_prm_main_3:
+        "Risotto de hongos - arroz arborio cremoso, hongos de estación, parmesano y hierbas.",
+      barbot_prm_drink_1:
+        "1 pinta de cerveza Barbot Especial o Fuerte - especial rotativa o strong ale en chopera (incl. estilos premiados).",
       barbot_table_reserved_web_note: "Incluye mesa reservada con tu compra por web.",
-      barbot_summary_empty:
-        "Usá “Creá tu experiencia” o “Agregar pedido” para guardar bebida y comida acá. Vas a ver cada pedido en una tarjeta y el total abajo, como en nuestras otras experiencias.",
-      barbot_summary_visit: "Fecha de visita",
-      barbot_summary_drinks_heading: "Bebidas",
-      barbot_summary_food_heading: "Comida",
-      barbot_summary_total: "Total estimado (USD)",
-      barbot_order_subtotal: "Subtotal",
-      barbot_unit_full: "Pinta entera",
-      barbot_unit_half: "Media pinta",
-      barbot_people_label: "Personas",
-      barbot_reserve_needs_items: "Agregá al menos una bebida o comida en la ventana antes de guardar.",
-      barbot_reserve_needs_orders: "Agregá al menos un pedido (guardá en la ventana) antes de reservar.",
-      barbot_wa_preface: "Hola! Quiero reservar en Barbot Brewpub con esta selección:",
       barbot_page_map_title: "Dónde queda Barbot Brewpub",
       barbot_page_map_text:
         "Usá este mapa como referencia de Barbot Brewpub en Colonia del Sacramento, en el Casco Histórico.",
       barbot_page_map_link: "Abrir en Google Maps",
       barbot_page_map_iframe_title: "Mapa: Barbot Brewpub, Colonia del Sacramento",
+      barbot_gal_4_alt: "Cerveza artesanal y ambiente en Barbot Brewpub",
+      barbot_gal_5_alt: "Comedor y chopera en Barbot Brewpub",
+      barbot_gal_6_alt: "Experiencia Barbot Brewpub en Colonia",
+      barbot_gal_9_alt: "Chopera y cerveza artesanal en Barbot Brewpub, Colonia",
       josefina_title: "La Josefina · Almuerzo o cena en el Yachting de Colonia",
       josefina_meta_view: "Vistas espectaculares al Río de la Plata — lo más destacado es el entorno",
       josefina_meta_duration: "La experiencia dura 2 horas",
@@ -3271,56 +3355,98 @@ const translations = {
       barbot_home_meta_1: "Ouro na IV Copa Sul-Americana de Cerveja",
       barbot_home_meta_2: "Bonavena Strong Ale",
       barbot_home_desc:
-        "O Barbot Brewpub conquistou ouro com a Bonavena Strong Ale na IV Copa Sul-Americana de Cerveja. O brewpub fica no Centro Histórico de Colonia — perfeito para uma pinta.",
+        "O Barbot Brewpub conquistou ouro com a Bonavena Strong Ale na IV Copa Sul-Americana de Cerveja. O brewpub fica no Centro Histórico de Colonia - perfeito para uma pinta.",
       barbot_home_img_1_alt: "Cerveja artesanal Barbot Brewpub em Colonia",
       barbot_home_img_2_alt: "Interior do Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveja Bonavena Strong Ale",
       barbot_page_about_heading: "Seu momento cervejeiro em Colonia",
-      barbot_page_story_p:
-        "Depois do farol e das ruas de pedra, vale parar onde moradores e viajantes dividem a mesma mesa. O Barbot Brewpub serve cerveja artesanal de verdade no coração do Centro Histórico UNESCO de Colonia: clima descontraído, conversa sem pressa. A Bonavena Strong Ale ganhou ouro na IV Copa Sul-Americana de Cerveja (Brasil): medalha de jurados que confirma o que está no copo. Quer caçar aquela pint premiada ou só encerrar o passeio com estilo — este é o troco que o dia merecia.",
+      barbot_page_story_p_before:
+        "Depois do farol e das ruas de pedra, vale parar onde moradores e viajantes dividem a mesma mesa. O Barbot Brewpub serve cerveja artesanal de verdade no coração do Centro Histórico UNESCO de Colonia: clima descontraído, conversa sem pressa. ",
+      barbot_page_story_p_highlight:
+        "A Bonavena Strong Ale ganhou ouro na IV Copa Sul-Americana de Cerveja (Brasil): medalha de jurados que confirma o que está no copo.",
+      barbot_page_story_p_after:
+        " Quer caçar aquela pint premiada ou só encerrar o passeio com estilo - este é o troco que o dia merecia.",
+      barbot_awards_btn: "Conheça nossos prêmios dos últimos dois anos",
+      barbot_awards_bba_title: "Brazilian Beer Awards",
+      barbot_awards_guarani_title: "Copa Guaraní de cervejas",
+      barbot_awards_sbc_title: "South Beer Cup the Champions",
+      barbot_awards_arojo_title: "Aro Rojo, México",
+      barbot_awards_sulamericana_title: "Copa Sulamericana de Cerveja",
+      barbot_awards_uruguaya_title: "Copa Uruguaya 2025",
+      barbot_awards_sbc_2026_note: "A South Beer 2026 também está rolando nestes dias 🤩",
+      barbot_awards_arojo_2026_note:
+        "A edição 2026 está rolando nesta semana (maio de 2026) 🙏 Torça por nós!",
+      barbot_medal_bronze: "Bronze",
+      barbot_medal_silver: "Prata",
+      barbot_medal_gold: "Ouro",
+      barbot_medal_best_uy: "Melhor Cervejaria Uruguaia",
       barbot_page_varieties_p:
-        "São cerca de 20 variedades entre torneiras e garrafas — IPAs, lagers, sazonais e mais — para uma única visita parecer uma mini degustação sem sair do brewpub.",
+        "São cerca de 20 variedades entre torneiras e garrafas - IPAs, lagers, sazonais e mais - para uma única visita parecer uma mini degustação sem sair do brewpub.",
       barbot_page_why_title: "Por que viajantes fazem esta parada",
-      barbot_page_moment_1:
-        "🏛️ Você já está no Centro Histórico — entra entre um monumento e outro sem perder a magia.",
-      barbot_page_moment_2:
-        "🍺 Prove o destaque: Bonavena Strong Ale, ouro na IV Copa Sul-Americana de Cerveja — e compare com dezenas de rótulos no cardápio.",
-      barbot_page_moment_3:
-        "🕐 Seu ritmo: flight, uma pinta ou uma rodada tranquila — não é um pub crawl empacotado; é a sua noite.",
+      barbot_page_moment_1_title: "Você já está no Centro Histórico:",
+      barbot_page_moment_1_desc: "entra entre um monumento e outro sem perder a magia.",
+      barbot_page_moment_2_title: "Prove o destaque:",
+      barbot_page_moment_2_desc:
+        "Bonavena Strong Ale, ouro na IV Copa Sul-Americana de Cerveja - e compare com dezenas de rótulos no cardápio.",
+      barbot_page_moment_3_title: "Seu ritmo:",
+      barbot_page_moment_3_desc:
+        "flight, uma pinta ou uma rodada tranquila - não é um pub crawl empacotado; é a sua noite.",
       barbot_create_title: "Monte sua experiência",
       barbot_create_subtitle:
-        "Escolha a data e use o botão: na janela você escolhe bebida e comida.",
+        "Escolha a data e depois o menu Clássico (USD 34) ou Premium (USD 40) com seus pratos.",
       barbot_create_btn: "+ Monte sua experiência",
-      barbot_popup_title: "Bebida e comida no Barbot",
-      barbot_popup_drinks_hint: "Quantas pintas cheias e meias pintas?",
-      barbot_popup_full_label: "Pintas cheias (USD 7 cada)",
-      barbot_popup_half_label: "Meias pintas (USD 5 cada)",
-      barbot_food_heading: "Comida",
-      barbot_food_hint: "Cada opção custa USD 10. Informe a quantidade desejada.",
-      barbot_food_qty_label: "Qtd",
-      barbot_food_pizza: "Pizza",
-      barbot_food_burger: "Hambúrguer Barbot",
-      barbot_food_fries: "Batatas com creme de queijo",
-      barbot_beer_at_bar_note: "O tipo de cerveja você escolhe no bar.",
+      barbot_experience_name: "Barbot Brewpub",
+      barbot_popup_title: "Monte seu menu no Barbot",
+      barbot_tier_heading: "Escolha seu menu",
+      barbot_tier_classic_label: "Clássico",
+      barbot_tier_classic_price: "USD 34 por pessoa",
+      barbot_tier_premium_label: "Premium",
+      barbot_tier_premium_price: "USD 40 por pessoa",
+      barbot_order_tier_standard: "Menu clássico · USD 34",
+      barbot_order_tier_premium: "Menu premium · USD 40",
+      barbot_wa_tier_standard: "Menu clássico (USD 34)",
+      barbot_wa_tier_premium: "Menu premium (USD 40)",
+      barbot_choice_entrada: "Entrada",
+      barbot_choice_principal: "Principal",
+      barbot_choice_postre: "Sobremesa",
+      barbot_choice_bebida: "Bebida",
+      barbot_std_entrada_1:
+        "1 empanada de carne ou provolone e cebola - massa dourada, recheio cozido lentamente, clássico do brewpub.",
+      barbot_std_main_1:
+        "Linguiças à Malta Barbot - linguiças da casa braseadas em malta Barbot com cebola e guarnição rústica.",
+      barbot_std_main_2:
+        "Chivito Uruguayo Barbot - carne, presunto, mozzarella, ovo frito, alface e tomate no pão da casa com batatas fritas.",
+      barbot_std_dessert_1: "Panqueca (2) com doce de leite - crepes mornos e generoso doce de leite.",
+      barbot_std_dessert_2:
+        "Panqueca (1) com doce de leite + bola de sorvete - crepe, caramelo e uma bola de sorvete.",
+      barbot_std_dessert_3: "Pudim caseiro com doce de leite - creme assado com calda de caramelo.",
+      barbot_std_drink_1: "1 pinta de cerveja Barbot Clássica - lager insignia da casa no tap.",
+      barbot_std_drink_2: "1 refrigerante linha Coca-Cola - gelado (família Coca-Cola).",
+      barbot_std_drink_3: "1 água mineral - com ou sem gás, bem gelada.",
+      barbot_std_drink_4:
+        "1 pinta de malta ou ginger ale Barbot - malta ou ginger ale sem álcool da casa no tap.",
+      barbot_prm_entrada_1:
+        "2 empanadas de carne e/ou provolone e cebola - par de empanadas douradas, combine recheios.",
+      barbot_prm_entrada_2:
+        "Tábua de frios caseiros - charcutaria artesanal, pickles e pão para compartilhar.",
+      barbot_prm_main_1:
+        "Bondiola braseada Barbot - porco cozido lentamente até ficar macio, finalizado com glaze de cerveja da casa.",
+      barbot_prm_main_2:
+        "Chivito Uruguayo Barbot - carne, presunto, mozzarella, ovo frito, alface e tomate no pão da casa com batatas fritas.",
+      barbot_prm_main_3:
+        "Risoto de cogumelos - arroz arbóreo cremoso, cogumelos da estação, parmesão e ervas.",
+      barbot_prm_drink_1:
+        "1 pinta de cerveja Barbot Especial ou Forte - especial rotativa ou strong ale no tap (incl. estilos premiados).",
       barbot_table_reserved_web_note: "Inclui mesa reservada com a compra pelo site.",
-      barbot_summary_empty:
-        "Use “Monte sua experiência” ou “Adicionar pedido” para salvar bebida e comida aqui. Cada pedido aparece num cartão e o total embaixo, como nas outras experiências.",
-      barbot_summary_visit: "Data da visita",
-      barbot_summary_drinks_heading: "Bebidas",
-      barbot_summary_food_heading: "Comida",
-      barbot_summary_total: "Total estimado (USD)",
-      barbot_order_subtotal: "Subtotal",
-      barbot_unit_full: "Pinta cheia",
-      barbot_unit_half: "Meia pinta",
-      barbot_people_label: "Pessoas",
-      barbot_reserve_needs_items: "Inclua ao menos uma bebida ou comida na janela antes de salvar.",
-      barbot_reserve_needs_orders: "Adicione ao menos um pedido (salve na janela) antes de reservar.",
-      barbot_wa_preface: "Olá! Gostaria de reservar no Barbot Brewpub com esta seleção:",
       barbot_page_map_title: "Onde fica o Barbot Brewpub",
       barbot_page_map_text:
         "Use este mapa como referência do Barbot Brewpub em Colonia del Sacramento, no Centro Histórico.",
       barbot_page_map_link: "Abrir no Google Maps",
       barbot_page_map_iframe_title: "Mapa: Barbot Brewpub, Colonia del Sacramento",
+      barbot_gal_4_alt: "Cerveja artesanal e ambiente no Barbot Brewpub",
+      barbot_gal_5_alt: "Salão e taproom no Barbot Brewpub",
+      barbot_gal_6_alt: "Experiência Barbot Brewpub em Colonia",
+      barbot_gal_9_alt: "Taproom e cerveja artesanal no Barbot Brewpub, Colonia",
       josefina_title: "La Josefina · Almoço ou jantar no Yachting de Colonia",
       josefina_meta_view: "Vista incrível para o Rio da Prata — o cenário é o grande destaque",
       josefina_meta_duration: "A experiência dura 2 horas",

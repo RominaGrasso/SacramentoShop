@@ -3596,18 +3596,164 @@
     margin-bottom: 1.35rem;
   }
 
-  .barbot-award-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem 1rem;
-    align-items: stretch;
-    justify-content: flex-start;
+  .barbot-lead strong {
+    font-weight: 600;
+  }
+
+  .barbot-awards-wrap {
     margin: 0 0 1.25rem;
   }
 
-  .barbot-award-row .card-meta-line {
+  .barbot-awards-details {
+    border: none;
+  }
+
+  .barbot-awards-trigger {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    cursor: pointer;
     margin: 0;
-    flex: 1 1 220px;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(176, 132, 18, 0.45);
+    background: linear-gradient(135deg, #f4df9b, #e8c24a 55%, #d4a72c);
+    color: #3d2e08;
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.35;
+    box-shadow: 0 4px 14px rgba(180, 130, 20, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .barbot-awards-trigger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(180, 130, 20, 0.28);
+  }
+
+  .barbot-awards-trigger:focus-visible {
+    outline: 3px solid rgba(90, 149, 207, 0.55);
+    outline-offset: 3px;
+  }
+
+  .barbot-awards-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .barbot-awards-trigger__icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .barbot-awards-panel {
+    margin-top: 1rem;
+    padding: 1.1rem 1.15rem 1.2rem;
+    border-radius: 14px;
+    background: linear-gradient(160deg, rgba(255, 251, 235, 0.98), rgba(248, 241, 220, 0.92));
+    border: 1px solid rgba(176, 132, 18, 0.22);
+    box-shadow: 0 8px 24px rgba(47, 103, 163, 0.08);
+  }
+
+  .barbot-awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.85rem 1rem;
+  }
+
+  .barbot-awards-card {
+    padding: 0.85rem 0.95rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(47, 103, 163, 0.12);
+  }
+
+  .barbot-awards-card__title {
+    margin: 0 0 0.55rem;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #2f67a3;
+    line-height: 1.35;
+  }
+
+  .barbot-awards-year + .barbot-awards-year {
+    margin-top: 0.65rem;
+  }
+
+  .barbot-awards-year__label {
+    margin: 0 0 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+
+  .barbot-awards-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .barbot-awards-list li {
+    font-size: 0.94rem;
+    line-height: 1.45;
+    color: #374151;
+  }
+
+  .barbot-awards-inline-year {
+    margin-left: 0.2rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .barbot-awards-note {
+    margin: 0.65rem 0 0;
+    padding: 0.55rem 0.65rem;
+    border-radius: 8px;
+    background: rgba(90, 149, 207, 0.1);
+    border: 1px dashed rgba(47, 103, 163, 0.22);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: #1f4f84;
+  }
+
+  .barbot-medal {
+    display: inline-block;
+    margin-right: 0.35rem;
+    padding: 0.12rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  .barbot-medal--bronze {
+    color: #5c3b1e;
+    background: linear-gradient(135deg, #f0c9a0, #c98a52);
+  }
+
+  .barbot-medal--silver {
+    color: #3f4a57;
+    background: linear-gradient(135deg, #eef2f7, #b8c3d1);
+  }
+
+  .barbot-medal--gold {
+    color: #4a3708;
+    background: linear-gradient(135deg, #ffe9a8, #e4b429);
+  }
+
+  .barbot-medal--special {
+    color: #1f4f84;
+    background: linear-gradient(135deg, rgba(90, 149, 207, 0.22), rgba(47, 103, 163, 0.14));
+    text-transform: none;
+    font-size: 0.78rem;
   }
 
   .barbot-varieties-callout {
@@ -3627,6 +3773,42 @@
   .barbot-moments ul li {
     margin-bottom: 0.65rem;
     line-height: 1.5;
+  }
+
+  .page-barbot-brewpub .barbot-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .page-barbot-brewpub .gallery-grid-slot--empty {
+    display: block;
+    height: 220px;
+    border-radius: 14px;
+    background: rgba(90, 149, 207, 0.08);
+    border: 1px dashed rgba(90, 149, 207, 0.22);
+  }
+
+  @media (max-width: 480px) {
+    .page-barbot-brewpub .barbot-awards-trigger {
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .page-barbot-brewpub .barbot-awards-panel {
+      padding: 0.9rem 0.75rem 1rem;
+    }
+
+    .page-barbot-brewpub .barbot-gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-barbot-brewpub .barbot-gallery-grid img,
+    .page-barbot-brewpub .barbot-gallery-grid .gallery-grid-slot--empty {
+      height: 160px;
+    }
   }
 
   .page-barbot-brewpub .coffee-includes {
