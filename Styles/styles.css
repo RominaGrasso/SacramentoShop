@@ -1023,6 +1023,12 @@
     max-width: min(1400px, calc(100vw - 32px));
     width: 100%;
     box-sizing: border-box;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 400;
+  }
+
+  .pharmacies-home * {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
 
   .pharmacies-home-inner {
@@ -1091,6 +1097,22 @@
     border-color: rgba(46, 170, 100, 0.35);
     background: linear-gradient(145deg, #eef8f1 0%, #ffffff 55%);
     box-shadow: 0 8px 26px rgba(46, 170, 100, 0.14);
+  }
+
+  .pharmacy-home-card--recommended {
+    border-color: rgba(102, 166, 230, 0.45);
+    background: linear-gradient(145deg, #f0f6fc 0%, #ffffff 55%);
+    box-shadow: 0 8px 26px rgba(102, 166, 230, 0.16);
+  }
+
+  .pharmacy-home-card--recommended:hover {
+    box-shadow: 0 14px 34px rgba(102, 166, 230, 0.22);
+  }
+
+  .pharmacy-home-badge--recommended {
+    color: #2f5a8a;
+    background: #dce8f6;
+    border-color: rgba(102, 166, 230, 0.55);
   }
 
   .pharmacy-home-card-top {
@@ -1774,6 +1796,7 @@
   .toros-night-hero,
   .mision-night-hero,
   .sio-night-hero,
+  .sio-hero,
   .bar-hero,
   .historic-lasliebres-hero,
   .liebres-dining-hero,
@@ -2627,7 +2650,9 @@
     right: 0;
     top: calc(100% + 6px);
     z-index: 30;
-    width: min(320px, calc(100% - 48px));
+    /* 100% here was the narrow icon wrap — use viewport-based width so the tooltip stays readable */
+    width: min(320px, calc(100vw - 24px));
+    box-sizing: border-box;
     margin: 0;
     padding: 12px 14px;
     background: #fff;
@@ -2662,6 +2687,26 @@
   .liebres-guide-label input {
     margin-top: 4px;
     flex-shrink: 0;
+  }
+
+  .liebres-horse-times-wrap {
+    margin: 14px 0 18px;
+  }
+
+  .liebres-horse-times-title {
+    margin: 0 0 6px;
+    color: #66a6e6;
+  }
+
+  .liebres-horse-times-note {
+    margin: 0 0 10px;
+    opacity: 0.9;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .liebres-horse-times-list {
+    margin-bottom: 0;
   }
 
   .preferences-inside h3 {
@@ -2857,6 +2902,30 @@
     position: relative;
   }
   
+  /* Romantic dinner card: light pill circle (like Experience details); heart uses Premium salmon gradient */
+  .card > .card-heart-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+    width: 46px;
+    height: 46px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e8eef6;
+    border: 1px solid rgba(30, 58, 95, 0.12);
+    box-shadow: 0 1px 2px rgba(30, 58, 95, 0.12);
+    pointer-events: none;
+  }
+
+  .card > .card-heart-badge svg {
+    display: block;
+    flex-shrink: 0;
+  }
+
   .discount-badge {
     position: absolute;
     top: 16px;
@@ -3087,6 +3156,33 @@
     z-index: 1;
     text-align: center;
   }
+
+  .sio-hero {
+    background-image: url("../Assets/images/sio1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .sio-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .sio-hero h1 {
+    color: white;
+    font-size: 2.5rem;
+    z-index: 1;
+    text-align: center;
+  }
+
   .all-services {
     margin-top: 20px;
   }
@@ -3439,31 +3535,201 @@
     line-height: 1.5;
   }
 
-  .barbot-addon {
-    margin: 2rem 0;
-    padding: 1rem 1.15rem;
-    border-radius: 10px;
-    background: rgba(120, 130, 140, 0.06);
-    border: 1px dashed rgba(90, 99, 108, 0.35);
+  .page-barbot-brewpub .coffee-includes {
+    margin-top: 0.35rem;
   }
 
-  .barbot-addon--subtle .barbot-addon__label {
+  .popup-box.popup-box--barbot {
+    position: relative;
+    text-align: left;
+    max-width: 26rem;
+  }
+
+  .popup-box--barbot .popup-title {
+    text-align: center;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .barbot-popup-section-label {
+    margin: 0 0 0.15rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    margin: 0 0 0.45rem;
-    font-size: 1rem;
-    color: #4a5563;
+    color: #2f67a3;
+    text-align: left;
   }
 
-  .barbot-addon--subtle .barbot-addon__text {
-    margin: 0 0 0.85rem;
+  .barbot-popup-section-label--spaced {
+    margin-top: 1rem;
+  }
+
+  .barbot-food-list--popup {
+    list-style: none;
+    margin: 0 0 0.5rem;
+    padding: 0;
+  }
+
+  .popup-box--barbot .barbot-food-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .popup-box--barbot .barbot-food-row__label {
+    flex: 1;
+    font-weight: 600;
+    color: #2d3748;
     font-size: 0.95rem;
-    line-height: 1.5;
+  }
+
+  .popup-box--barbot .barbot-food-row__qty {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
     color: #5c6670;
+    white-space: nowrap;
   }
 
-  .barbot-addon__btn {
-    display: inline-block;
+  .barbot-qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .barbot-qty-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #66a6e6;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .barbot-qty-btn:hover {
+    background-color: #4f8ed1;
+    transform: translateY(-1px);
+  }
+
+  .barbot-qty-btn:active {
+    transform: translateY(0);
+  }
+
+  .barbot-qty-stepper input[type="number"] {
+    width: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.35rem 0.25rem;
+    border: 1px solid rgba(90, 149, 207, 0.45);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2f67a3;
+    -moz-appearance: textfield;
+  }
+
+  .barbot-qty-stepper input[type="number"]::-webkit-outer-spin-button,
+  .barbot-qty-stepper input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .popup-box--barbot .barbot-food-row__qty input {
+    width: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.35rem 0.25rem;
+    border: 1px solid rgba(90, 149, 207, 0.45);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .page-barbot-brewpub .barbot-summary-lines {
+    margin: 0.25rem 0 0.85rem 1rem;
+    padding: 0;
+    color: #3a4a5c;
+    line-height: 1.45;
+  }
+
+  .page-barbot-brewpub .barbot-summary-total {
+    margin: 0.5rem 0 0;
+    font-size: 1.05rem;
+    color: #2f67a3;
+  }
+
+  .page-barbot-brewpub .barbot-summary-empty {
+    margin: 0 0 0.5rem;
+    color: #5c6670;
     font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .barbot-popup-hint {
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    color: #4a5563;
+    line-height: 1.45;
+  }
+
+  .barbot-popup-beer-note,
+  .page-barbot-brewpub .barbot-order-beer-note {
+    margin: 0.35rem 0 0;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: #5c6670;
+    font-style: italic;
+  }
+
+  .page-barbot-brewpub .barbot-order-beer-note + .barbot-order-beer-note {
+    margin-top: 0.15rem;
+  }
+
+  .popup-box--barbot .barbot-popup-beer-note {
+    text-align: left;
+    margin-top: 0.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .popup-box--barbot .barbot-popup-beer-note + .barbot-popup-beer-note {
+    margin-top: -0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .barbot-popup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .barbot-popup-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+
+  .barbot-popup-field .barbot-qty-stepper {
+    align-self: flex-start;
+  }
+
+  .barbot-popup-field input {
+    max-width: 8rem;
+    padding: 0.45rem 0.5rem;
+    border: 1px solid rgba(90, 149, 207, 0.45);
+    border-radius: 8px;
+    font-size: 1rem;
   }
 
   .partners {
@@ -3701,6 +3967,8 @@
   }
   
   #saveMenu,
+  #openSioSpecialMenuBtn,
+  #saveSioSpecialMenu,
   .popup-box .popup-actions > button.btn {
     background: linear-gradient(135deg, #5a95cf, #6faee3);
     color: white;
@@ -3713,6 +3981,8 @@
   }
   
   #saveMenu:hover,
+  #openSioSpecialMenuBtn:hover,
+  #saveSioSpecialMenu:hover,
   .popup-box .popup-actions > button.btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(90,149,207,0.3);
@@ -4601,6 +4871,14 @@
   display: flex;
 }
 
+.popup-overlay#popupBarbot.active {
+  z-index: 10000;
+}
+
+.popup-overlay#popupSioSpecial.active {
+  z-index: 10000;
+}
+
 /* 🔥 CLAVE */
 .popup-box {
   background: white;
@@ -4666,6 +4944,10 @@
   height: 62px;
 }
 
+.partners .logos-track img[src*="joselogo"] {
+  height: 58px;
+}
+
 .partners .logos-track img[src*="brumalogo"],
 .partners .logos-track img[src*="logorefugio"],
 .partners .logos-track img[src*="casapetitlogo"] {
@@ -4719,10 +5001,14 @@
   cursor: pointer;
 }
 
-/* espacio entre secciones */
+/* espacio entre secciones (menú turístico — sin caja) */
 #touristOptions p {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+#touristOptions p:first-child {
+  margin-top: 0;
 }
 
 /* radios alineados mejor */
@@ -4732,6 +5018,116 @@
 
 #touristOptions {
   text-align: left;
+}
+
+/* Las Liebres dining popup — mismo ritmo que #popupLiebres (lista vertical, radio + span en azul al elegir) */
+#popupLiebresDining .popup-box {
+  position: relative;
+}
+
+#popupLiebresDining .popup-title {
+  text-align: center;
+}
+
+#popupLiebresDining .liebres-dining-pkg-id-sync {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#popupLiebresDining .liebres-dining-menu-li .liebres-dining-pkg-bullets {
+  display: none;
+  margin-top: 0.35rem;
+}
+
+#popupLiebresDining .liebres-dining-menu-li:has(input[name="liebresDiningMenu"]:checked) .liebres-dining-pkg-bullets {
+  display: block;
+}
+
+#popupLiebresDining .liebres-dining-meal-wrap {
+  margin: 0.5rem 0 1rem;
+  padding: 0 4px;
+  text-align: center;
+}
+
+#popupLiebresDining .liebres-dining-meal-heading {
+  margin: 0 0 0.45rem;
+  font-size: 0.98rem;
+}
+
+#popupLiebresDining .liebres-dining-meal-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+}
+
+#popupLiebresDining .liebres-dining-meal-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+#popupLiebresDining .liebres-dining-meal-option input[type="radio"] {
+  margin: 0;
+  accent-color: #5a95cf;
+}
+
+#popupLiebresDining .liebres-dining-meal-option input:checked + span {
+  color: #5a95cf;
+  font-weight: 600;
+}
+
+#popupLiebresDining .popup-list > li {
+  display: block;
+  align-items: initial;
+  margin-bottom: 14px;
+}
+
+#popupLiebresDining .liebres-dining-pkg-stack {
+  text-align: left;
+}
+
+#popupLiebresDining .popup-list label > span {
+  font-weight: 600;
+}
+
+#popupLiebresDining .liebres-dining-pkg-subline {
+  margin: 0.3rem 0 0.35rem;
+  padding-left: 2.05rem;
+}
+
+#popupLiebresDining .liebres-dining-pkg-subline small {
+  color: #5a6b7c;
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+#popupLiebresDining .liebres-dining-pkg-bullets {
+  margin: 0.1rem 0 0;
+  padding: 0 0 0 1.35rem;
+  list-style: disc;
+  list-style-position: outside;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #4a5a6a;
+}
+
+/* Nested li match .popup-list li { display: flex } — flex hides list markers */
+#popupLiebresDining .liebres-dining-pkg-bullets li {
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: outside;
+  align-items: unset;
+  margin-bottom: 0.18rem;
 }
 
 .food-menu-popup-box {
@@ -4754,22 +5150,29 @@
   margin: 8px 0 6px;
 }
 
-.food-menu-popup-box .popup-list li.food-menu-option {
+/* food1: mismo conflicto que actividad .popup-list li { flex } + viñetas dentro del detalle */
+#popupBruma .food-menu-popup-box .popup-list > li.food-menu-option {
   display: block !important;
   align-items: initial !important;
+  flex-direction: column;
+}
+
+#popupBruma .food-menu-popup-box .popup-list label.food-menu-option-label {
+  display: grid !important;
+}
+
+#popupBruma .food-menu-whatyouget ul > li {
+  display: list-item !important;
+  align-items: unset !important;
 }
 
 .food-menu-option {
   display: block;
   align-items: initial;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  transition: background 0.2s ease;
-}
-
-.food-menu-option:hover {
-  background: rgba(90, 149, 207, 0.06);
+  margin: 0 0 14px;
+  padding: 0;
+  border-radius: 0;
+  transition: none;
 }
 
 .food-menu-option-label {
@@ -4799,44 +5202,41 @@
 }
 
 .food-menu-whatyouget {
-  margin-left: 0;
-  margin-top: 10px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: rgba(111, 178, 240, 0.16);
-  border: 1px solid rgba(90, 149, 207, 0.28);
   display: none;
+  margin: 0.35rem 0 0;
+  padding: 0 0 0 2.05rem;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
-}
-
-.food-menu-whatyouget h4 {
-  margin: 0 0 10px;
-  color: #5a95cf;
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1.1;
+  border: none;
+  background: none;
+  border-radius: 0;
+  text-align: left;
 }
 
 .food-menu-whatyouget ul {
   margin: 0;
-  padding-left: 18px;
-  color: #1f2f46;
-  font-size: 1.05rem;
-  line-height: 1.35;
+  padding: 0 0 0 1.35rem;
+  list-style: disc;
+  list-style-position: outside;
+  color: #4a5a6a;
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 .food-menu-whatyouget li {
   display: list-item !important;
-  list-style: disc;
+  list-style-type: disc;
   list-style-position: outside;
-  font-size: 0.92rem;
-  font-weight: 600;
+  align-items: unset !important;
+  font-weight: 500;
+  margin-bottom: 0.18rem;
 }
 
 .food-menu-whatyouget li.no-bullet {
   list-style: none;
-  margin-left: -18px;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .food-menu-option:has(input[type="radio"]:checked) .food-menu-whatyouget {
@@ -4844,10 +5244,269 @@
 }
 
 .food-tourist-options {
-  border-radius: 12px;
-  padding: 12px 14px;
-  background: rgba(90, 149, 207, 0.08);
-  border: 1px solid rgba(47, 103, 163, 0.15);
+  margin: 0.75rem 0 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  text-align: left;
+}
+
+/* SIO: fecha + menú en la misma columna derecha (compacto) */
+.sio-includes-menus .sio-page-booking--inline {
+  width: 100%;
+  max-width: 15.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sio-includes-menus .sio-page-booking__title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #2f67a3;
+  margin: 0 0 0.4rem;
+  line-height: 1.25;
+}
+
+.sio-includes-menus .sio-page-booking--inline .booking-visit-date-row {
+  margin-top: 0;
+}
+
+.sio-includes-menus .sio-page-booking--inline .booking-visit-date-row label {
+  font-size: 0.82rem;
+}
+
+.sio-includes-menus .sio-page-booking--inline .booking-visit-date-row input[type="date"] {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.45rem;
+}
+
+.sio-includes-menus .sio-page-booking--inline .booking-visit-date-hint {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-top: 0.35rem;
+}
+
+/* SIO activity — single menu button in What's included */
+.sio-includes-menus {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.sio-includes-menus .btn {
+  text-align: center;
+}
+
+/* SIO special menu — premium modal with hero image */
+#popupSioSpecial .sio-special-menu-popup {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  max-width: min(26rem, 92vw);
+  width: 92%;
+  border-radius: 16px;
+  background: #141416;
+  box-shadow:
+    0 28px 64px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(212, 175, 95, 0.22);
+  border: none;
+}
+
+#popupSioSpecial .sio-special-menu-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 8;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #faf6ef;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#popupSioSpecial .sio-special-menu-close:hover {
+  background: rgba(0, 0, 0, 0.58);
+  transform: scale(1.05);
+}
+
+#popupSioSpecial .sio-special-menu-hero {
+  position: relative;
+  height: clamp(7.5rem, 32vw, 10.5rem);
+  overflow: hidden;
+}
+
+#popupSioSpecial .sio-special-menu-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+#popupSioSpecial .sio-special-menu-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.38) 55%,
+    rgba(0, 0, 0, 0.62) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+#popupSioSpecial .sio-special-menu-hero__title-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0.85rem 1.25rem 1rem;
+  text-align: center;
+}
+
+#popupSioSpecial .sio-special-menu-hero__title {
+  display: block;
+  margin: 0;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 4.2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #faf6ef;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+  line-height: 1.2;
+}
+
+#popupSioSpecial .sio-special-menu-body {
+  padding: 1.15rem 1.35rem 1.35rem;
+  background: linear-gradient(180deg, #faf8f4 0%, #f2ebe3 100%);
+  border-top: 1px solid rgba(180, 140, 70, 0.28);
+}
+
+#popupSioSpecial .sio-special-menu-body .popup-list li {
+  color: #2a2826;
+  font-size: 0.95rem;
+}
+
+#popupSioSpecial .sio-special-menu-legend {
+  color: #1a4a6e;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+#popupSioSpecial .sio-special-menu-radio-label {
+  color: #3a3633;
+  font-size: 0.93rem;
+}
+
+#popupSioSpecial .sio-special-menu-popup-actions {
+  margin-top: 1.1rem;
+  padding-top: 0.25rem;
+}
+
+#popupSioSpecial .sio-special-menu-popup-actions .btn {
+  min-width: 11rem;
+  box-shadow: 0 8px 22px rgba(47, 103, 163, 0.28);
+}
+
+/* SIO special menu modal: emoji leads + drink fieldset */
+#popupSioSpecial .popup-box .sio-special-menu-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 100%;
+  text-align: left;
+}
+
+#popupSioSpecial .popup-box .sio-special-menu-list > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-bottom: 12px;
+}
+
+#popupSioSpecial .sio-special-menu-list .sio-special-menu-ico {
+  flex-shrink: 0;
+  line-height: 1.45;
+  font-size: 1.05em;
+}
+
+#popupSioSpecial .sio-special-menu-list > li .sio-special-menu-fieldset {
+  flex: 1;
+  min-width: 0;
+}
+
+#popupSioSpecial .sio-special-menu-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-inline-size: 0;
+}
+
+#popupSioSpecial .sio-special-menu-legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2f67a3;
+}
+
+#popupSioSpecial .sio-special-menu-drink-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+#popupSioSpecial .sio-special-menu-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+
+#popupSioSpecial .sio-special-menu-radio-label input {
+  width: auto;
+  margin: 0;
+  accent-color: #5a95cf;
+}
+
+#popupSioSpecial .sio-special-menu-form-error {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c53030;
+  text-align: center;
+}
+
+#popupSioSpecial .sio-special-menu-form-error[hidden] {
+  display: none;
+}
+
+/* SIO page — “How it works” (emoji + bold lead) */
+.sio-page .experience-steps.sio-how-steps li {
+  margin-bottom: 14px;
+  line-height: 1.55;
+}
+
+.sio-page .experience-steps.sio-how-steps li strong {
+  font-weight: 600;
 }
 
 /* ===== Responsive: tablets y móvil (incl. 360px / 320px) ===== */
@@ -5116,7 +5775,8 @@
 
   .boat-hero h1,
   .boat-hero-corp h1,
-  .sio-night-hero h1 {
+  .sio-night-hero h1,
+  .sio-hero h1 {
     font-size: clamp(1.25rem, 5.5vw, 2rem);
     padding: 0 12px;
     max-width: 100%;
@@ -5127,6 +5787,7 @@
   .toros-night-hero,
   .mision-night-hero,
   .sio-night-hero,
+  .sio-hero,
   .boat-hero,
   .boat-hero-corp,
   .bar-hero,
@@ -5355,57 +6016,6 @@
   }
 }
 
-/* Plexo smoke test panel (Home/index.html, bajo la franja celeste) */
-.plexo-payment-test {
-  position: relative;
-  z-index: 5;
-  max-width: 720px;
-  margin: 16px auto 8px;
-  padding: 0 40px;
-  box-sizing: border-box;
-  scroll-margin-top: 12px;
-}
-
-.plexo-payment-test__inner {
-  background: #fff;
-  border: 1px solid #c5d9f0;
-  border-radius: 10px;
-  padding: 16px 18px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.plexo-payment-test__title {
-  font-size: 1rem;
-  margin-bottom: 6px;
-  color: #1f387f;
-}
-
-.plexo-payment-test__hint {
-  font-size: 0.85rem;
-  color: #555;
-  margin-bottom: 12px;
-}
-
-.plexo-payment-test__hint code {
-  font-size: 0.8rem;
-  background: #f0f4fa;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.plexo-payment-test__status {
-  margin-top: 12px;
-  font-size: 0.9rem;
-  color: #333;
-  min-height: 1.2em;
-}
-
-@media (max-width: 768px) {
-  .plexo-payment-test {
-    padding: 0 14px;
-  }
-}
-
 /* =============================================================================
    Activity pages (Actividades/*.html): Montserrat — headings bold, body regular
    Add class="page-actividad" on <body> (combine with night-page etc. if needed).
@@ -5462,12 +6072,11 @@ body.page-actividad .about-quote {
   font-weight: 400;
 }
 
-/* ===== Home (index): Montserrat en cabecera, hero, barra de confianza, franja regional, bloque Plexo ===== */
+/* ===== Home (index): Montserrat en cabecera, hero, barra de confianza, franja regional ===== */
 body.page-home header,
 body.page-home .hero,
 body.page-home .trust-bar,
-body.page-home .hero-region-tagline,
-body.page-home .plexo-payment-test {
+body.page-home .hero-region-tagline {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
 }
@@ -5475,8 +6084,7 @@ body.page-home .plexo-payment-test {
 body.page-home header *,
 body.page-home .hero *,
 body.page-home .trust-bar *,
-body.page-home .hero-region-tagline *,
-body.page-home .plexo-payment-test * {
+body.page-home .hero-region-tagline * {
   font-family: inherit;
 }
 
@@ -5550,4 +6158,163 @@ background: #fff7ef;
   margin-top: 1rem;
 }
 
+/* ===== Payment result pages (post Plexo checkout) ===== */
+body.page-payment-result {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: linear-gradient(165deg, #f4f8fc 0%, #eef4fa 45%, #f8f8f8 100%);
+  color: #333;
+}
+
+.payment-result-header {
+  display: flex;
+  justify-content: center;
+  padding: 22px 24px 12px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.payment-result-header__logo img {
+  display: block;
+  height: 60px;
+  width: auto;
+}
+
+@media (min-width: 480px) {
+  .payment-result-header__logo img {
+    height: 68px;
+  }
+}
+
+.payment-result {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 48px;
+}
+
+.payment-result__card {
+  width: min(520px, 100%);
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 28px 32px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(90, 149, 207, 0.12);
+  border: 1px solid rgba(102, 166, 230, 0.18);
+}
+
+.payment-result__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.payment-result__icon--success {
+  background: rgba(76, 175, 120, 0.14);
+  color: #2e8b57;
+}
+
+.payment-result__icon--failed {
+  background: rgba(220, 90, 90, 0.12);
+  color: #c44;
+}
+
+.payment-result__icon--neutral {
+  background: rgba(102, 166, 230, 0.14);
+  color: #5a95cf;
+}
+
+.payment-result__title {
+  font-size: clamp(1.5rem, 4vw, 1.85rem);
+  font-weight: 700;
+  color: #2f67a3;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.payment-result__lead {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.payment-result__body {
+  font-size: 0.98rem;
+  color: #555;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.payment-result__status {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5a95cf;
+}
+
+.payment-result__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-result__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #6ea8e5, #5a95cf);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(90, 149, 207, 0.3);
+}
+
+.payment-result__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(90, 149, 207, 0.35);
+}
+
+.payment-result__btn.secondary {
+  background: #e6ebf2;
+  color: #2f67a3;
+  box-shadow: 0 4px 12px rgba(90, 149, 207, 0.15);
+}
+
+.payment-result__btn.secondary:hover {
+  box-shadow: 0 8px 18px rgba(90, 149, 207, 0.22);
+}
+
+@media (min-width: 480px) {
+  .payment-result__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .payment-result__btn {
+    width: auto;
+    min-width: 180px;
+    flex: 1 1 auto;
+  }
+}
 

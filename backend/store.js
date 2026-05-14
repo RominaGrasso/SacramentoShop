@@ -61,14 +61,84 @@ export function upsertLink(entry) {
   return entry;
 }
 
-export function updateStatusBySessionId(sessionId, status, attempt = null) {
+export function getPaymentBySessionId(sessionId) {
+  if (!sessionId) return null;
+  const items = readAll();
+  const item = items.find((x) => String(x.sessionId || "") === String(sessionId));
+  if (!item) return null;
+  return { ...item };
+}
+
+export function findPaymentByFingerprint(fingerprint) {
+  const ref = String(fingerprint || "").trim();
+  if (!ref) return null;
+  const matches = readAll().filter((x) => String(x.fingerprint || "") === ref);
+  if (!matches.length) return null;
+  matches.sort((a, b) => {
+    const ta = new Date(a.updatedAt || a.createdAt || 0).getTime();
+    const tb = new Date(b.updatedAt || b.createdAt || 0).getTime();
+    return tb - ta;
+  });
+  return { ...matches[0] };
+}
+
+/**
+ * @param {string} fingerprint
+ * @param {object} patch — e.g. paymentStatus, plexoResultCode, plexoTransactionId
+ * @param {object|null} attempt — paymentAttempts entry metadata
+ */
+export function updatePaymentByFingerprint(fingerprint, patch = {}, attempt = null) {
+  const ref = String(fingerprint || "").trim();
+  if (!ref) return false;
+  const items = readAll();
+  let idx = -1;
+  let bestTime = -1;
+  items.forEach((x, i) => {
+    if (String(x.fingerprint || "") !== ref) return;
+    const t = new Date(x.updatedAt || x.createdAt || 0).getTime();
+    if (t >= bestTime) {
+      bestTime = t;
+      idx = i;
+    }
+  });
+  if (idx < 0) return false;
+  const nowIso = new Date().toISOString();
+  items[idx] = { ...items[idx], ...patch, updatedAt: nowIso };
+  if (!Array.isArray(items[idx].paymentAttempts)) {
+    items[idx].paymentAttempts = [];
+  }
+  if (attempt && typeof attempt === "object") {
+    items[idx].paymentAttempts.push({
+      at: nowIso,
+      status: patch.paymentStatus || items[idx].paymentStatus || "unknown",
+      source: attempt.source || "webhook",
+      gateway: attempt.gateway || undefined,
+      card: attempt.card || undefined,
+      payer: attempt.payer || undefined,
+      issuer: attempt.issuer || undefined,
+      reference: attempt.reference || undefined,
+      note: attempt.note || undefined,
+      raw: attempt.raw || undefined
+    });
+    if (items[idx].paymentAttempts.length > 100) {
+      items[idx].paymentAttempts = items[idx].paymentAttempts.slice(-100);
+    }
+  }
+  writeAll(items);
+  return true;
+}
+
+export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = null) {
   if (!sessionId) return false;
   const items = readAll();
   const idx = items.findIndex((x) => x.sessionId === sessionId);
   if (idx < 0) return false;
-  items[idx].status = status;
   const nowIso = new Date().toISOString();
-  items[idx].updatedAt = nowIso;
+  const patch =
+    typeof patchOrStatus === "object" && patchOrStatus !== null
+      ? patchOrStatus
+      : { paymentStatus: String(patchOrStatus), status: String(patchOrStatus) };
+  items[idx] = { ...items[idx], ...patch, updatedAt: nowIso };
   if (!Array.isArray(items[idx].paymentAttempts)) {
     items[idx].paymentAttempts = [];
   }
@@ -76,7 +146,7 @@ export function updateStatusBySessionId(sessionId, status, attempt = null) {
     attempt && typeof attempt === "object"
       ? {
           at: nowIso,
-          status,
+          status: patch.paymentStatus || patch.status || items[idx].paymentStatus || "unknown",
           source: attempt.source || "status_update",
           gateway: attempt.gateway || undefined,
           card: attempt.card || undefined,
@@ -88,12 +158,17 @@ export function updateStatusBySessionId(sessionId, status, attempt = null) {
         }
       : {
           at: nowIso,
-          status,
+          status: patch.paymentStatus || patch.status || "status_update",
           source: "status_update"
         }
   );
   writeAll(items);
   return true;
+}
+
+/** @deprecated alias — use updatePaymentBySessionId with patch object */
+export function updateStatusBySessionId(sessionId, status, attempt = null) {
+  return updatePaymentBySessionId(sessionId, { paymentStatus: status, status }, attempt);
 }
 
 export function appendPaymentAttemptBySessionId(sessionId, attempt = {}) {
@@ -107,7 +182,7 @@ export function appendPaymentAttemptBySessionId(sessionId, attempt = {}) {
   }
   const entry = {
     at: nowIso,
-    status: attempt.status || items[idx].status || "unknown",
+    status: attempt.status || items[idx].paymentStatus || items[idx].status || "unknown",
     source: attempt.source || "webhook",
     gateway: attempt.gateway || undefined,
     card: attempt.card || undefined,
@@ -118,21 +193,12 @@ export function appendPaymentAttemptBySessionId(sessionId, attempt = {}) {
     raw: attempt.raw || undefined
   };
   items[idx].paymentAttempts.push(entry);
-  /** Evita crecer indefinidamente. */
   if (items[idx].paymentAttempts.length > 100) {
     items[idx].paymentAttempts = items[idx].paymentAttempts.slice(-100);
   }
   items[idx].updatedAt = nowIso;
   writeAll(items);
   return true;
-}
-
-export function getPaymentBySessionId(sessionId) {
-  if (!sessionId) return null;
-  const items = readAll();
-  const item = items.find((x) => String(x.sessionId || "") === String(sessionId));
-  if (!item) return null;
-  return { ...item };
 }
 
 /**

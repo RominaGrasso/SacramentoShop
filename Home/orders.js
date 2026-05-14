@@ -432,6 +432,11 @@ function initExperience(config) {
     walkingTourSlotMax = 15,
     walkingTourTimePopupRadioName = null,
     /**
+     * Optional `{ radioName, summaryLabelKey? }` — popup radios for cabalgata / horseback slot;
+     * stored per order as `horsebackDepartureTime` (chosen radio `value`).
+     */
+    horsebackDepartureInPopup = null,
+    /**
      * Optional room-first booking for hotel + dinner packages.
      * `{ hostElementId, priceByOccupancy, occupancyOptions?, maxRooms?, minRooms?, defaultOccupancy? }`
      * — persists `${storageKey}_roomBooking`, requires one menu order per derived guest.
@@ -565,6 +570,17 @@ function initExperience(config) {
             `walkingTourTimePopup_${String(storageKey).replace(/[^a-zA-Z0-9_-]/g, "_")}`
         ).slice(0, 120)
       : "";
+    const horseCfg =
+      horsebackDepartureInPopup &&
+      typeof horsebackDepartureInPopup === "object" &&
+      String(horsebackDepartureInPopup.radioName || "").trim()
+        ? {
+            radioName: String(horsebackDepartureInPopup.radioName).trim().slice(0, 120),
+            summaryLabelKey: String(
+              horsebackDepartureInPopup.summaryLabelKey || "liebres_horseback_time_label"
+            ).trim()
+          }
+        : null;
     const orderWalkingTourTime = (o) => String(o && o.walkingTourDepartureTime ? o.walkingTourDepartureTime : "").trim();
     const walkingPartyForOrder = (o) => {
       if (!orderWalkingPartyMaxNum || !orderLanguageRadioName) return 1;
@@ -635,6 +651,21 @@ function initExperience(config) {
               getI18nText(
                 "orders_boat_slot_over_capacity",
                 "One departure time has more passengers than allowed. Please adjust bookings before continuing."
+              )
+            );
+            return false;
+          }
+        }
+      }
+      if (horseCfg) {
+        const ordH = getOrders();
+        if (ordH.length === 0) return true;
+        for (let i = 0; i < ordH.length; i++) {
+          if (!String(ordH[i]?.horsebackDepartureTime || "").trim()) {
+            alert(
+              getI18nText(
+                "liebres_horseback_time_each_required",
+                "Each order needs a horseback departure time. Edit the order to choose a time."
               )
             );
             return false;
@@ -1288,6 +1319,7 @@ function initExperience(config) {
       }
       if (boatTimePopupRadioNameResolved) check(boatTimePopupRadioNameResolved);
       if (walkingTourTimePopupRadioNameResolved) check(walkingTourTimePopupRadioNameResolved);
+      if (horseCfg) check(horseCfg.radioName);
     };
 
     function openPopupForNewOrder() {
@@ -1322,6 +1354,15 @@ function initExperience(config) {
       editingIndex = null;
       saveBtn.textContent = getI18nText("save_selection", "Save selection");
       recheckLoneRadios();
+      if (horseCfg) {
+        popup.querySelectorAll(`input[name="${horseCfg.radioName}"]`).forEach((r) => {
+          r.checked = false;
+        });
+        const defHorse =
+          popup.querySelector(`input[name="${horseCfg.radioName}"][value="11:00"]`) ||
+          popup.querySelector(`input[name="${horseCfg.radioName}"]`);
+        if (defHorse) defHorse.checked = true;
+      }
       if (typeof afterOpenPopupForNewOrder === "function") {
         try {
           afterOpenPopupForNewOrder();
@@ -1564,6 +1605,21 @@ function initExperience(config) {
           popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
         ).map((el) => (el.value || el.parentElement.textContent.trim()));
 
+        let horsebackDepartureTimeMenu = "";
+        if (horseCfg) {
+          const selH = popup.querySelector(`input[name="${horseCfg.radioName}"]:checked`);
+          horsebackDepartureTimeMenu = selH ? String(selH.value || "").trim() : "";
+          if (!horsebackDepartureTimeMenu) {
+            alert(
+              getI18nText(
+                "liebres_horseback_time_required",
+                "Please choose a horseback departure time."
+              )
+            );
+            return;
+          }
+        }
+
         let walkingLanguage = "";
         if (orderLanguageRadioName) {
           const lr = popup.querySelector(`input[name="${orderLanguageRadioName}"]:checked`);
@@ -1660,6 +1716,9 @@ function initExperience(config) {
             : {}),
           ...(walkingTourTimePerOrderFlag && walkingTourDepartureTimeMenu
             ? { walkingTourDepartureTime: walkingTourDepartureTimeMenu }
+            : {}),
+          ...(horseCfg && horsebackDepartureTimeMenu
+            ? { horsebackDepartureTime: horsebackDepartureTimeMenu }
             : {}),
           ...(orderLanguageRadioName && walkingLanguage ? { walkingLanguage } : {}),
           ...(orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
@@ -1803,10 +1862,17 @@ function initExperience(config) {
             orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
               ? `\n${getI18nText("walking_asado_wa_tour_quantity", "Walking tour guests")}: ${walkingPartyForOrder(o)}`
               : "";
+          const horseTimeWa =
+            horseCfg && String(o && o.horsebackDepartureTime ? o.horsebackDepartureTime : "").trim()
+              ? `\n${getI18nText(
+                  horseCfg.summaryLabelKey || "liebres_horseback_time_label",
+                  "Horseback departure time"
+                )}: ${String(o.horsebackDepartureTime).trim()}`
+              : "";
           const orderHead = rb
             ? `*${getI18nText("orders_wa_guest_slot", "Guest")} ${String((o && o.guestId) || i + 1)}*`
             : `*${getI18nText("order_word", "Order")} ${i + 1}*`;
-          return `${orderHead}${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}`;
+          return `${orderHead}${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}${horseTimeWa}`;
         })
         .join("\n\n");
 
@@ -2025,6 +2091,17 @@ function initExperience(config) {
         popup.querySelectorAll(`input[name="${walkingTourTimePopupRadioNameResolved}"]`).forEach((input) => {
           input.checked = String(input.value).trim() === orderWalkingTourTime(order);
         });
+      }
+
+      if (horseCfg) {
+        const h = String(order.horsebackDepartureTime || "").trim();
+        popup.querySelectorAll(`input[name="${horseCfg.radioName}"]`).forEach((input) => {
+          input.checked = String(input.value).trim() === h;
+        });
+        if (!h) {
+          const def = popup.querySelector(`input[name="${horseCfg.radioName}"][value="11:00"]`);
+          if (def) def.checked = true;
+        }
       }
 
       if (orderLanguageRadioName && String(order.walkingLanguage || "").trim()) {
@@ -2253,6 +2330,13 @@ function initExperience(config) {
             : "";
         const walkTourT = orderWalkingTourTime(order);
         const slotsWt = Array.isArray(walkingTourTimeSlots) ? walkingTourTimeSlots : [];
+        const horseTimeCard = String(order.horsebackDepartureTime || "").trim();
+        const horseRow =
+          horseCfg && horseTimeCard
+            ? `<p><strong>${escapeHtml(
+                t(horseCfg.summaryLabelKey || "liebres_horseback_time_label", "Horseback departure time")
+              )}:</strong> ${escapeHtml(horseTimeCard)}</p>`
+            : "";
         const walkTourRadioName = `orderWalkingTourTime_${String(storageKey).replace(/[^a-zA-Z0-9_-]/g, "_")}_${index}`;
         const walkTourTimeBlock =
           walkingTourTimePerOrderFlag && slotsWt.length
@@ -2354,6 +2438,7 @@ function initExperience(config) {
             </div>
             ${tierRow}${servingNoteRow}
             <p><strong>${labS}:</strong> ${escapeHtml(getLocalizedChoice(starterName, order.starter))}</p>
+            ${horseRow}
             ${mainRow}
             ${drinkRow}
             ${guideLine}
@@ -3869,7 +3954,12 @@ function initPackageOrderExperience(config) {
     groupGuideCheckboxId = null,
     groupGuideWrapId = null,
     dynamicPayment = null,
-    paymentLinksByPackage = {}
+    paymentLinksByPackage = {},
+    /**
+     * Optional two-step package UI: menu radios + meal radios sync to hidden `packageRadioName` values
+     * (e.g. lunch_vinedo). `{ menuRadioName, mealRadioName, parsePackageId?, packageIdFromParts? }`
+     */
+    packageComposite = null
   } = config || {};
 
   const vehicleTransportRate =
@@ -3931,6 +4021,84 @@ function initPackageOrderExperience(config) {
     const container = document.getElementById(orderSummaryId);
 
     if (!popup || !createBtn || !closeBtn || !saveBtn || !container) return;
+
+    const pcRaw = packageComposite && typeof packageComposite === "object" ? packageComposite : null;
+    const pc =
+      pcRaw && pcRaw.menuRadioName && pcRaw.mealRadioName
+        ? {
+            menuRadioName: String(pcRaw.menuRadioName),
+            mealRadioName: String(pcRaw.mealRadioName),
+            parsePackageId:
+              typeof pcRaw.parsePackageId === "function"
+                ? pcRaw.parsePackageId
+                : (id) => {
+                    const s = String(id || "");
+                    const m = s.match(/^(lunch|dinner)_(vinedo|ceibo)$/);
+                    return m ? { meal: m[1], menu: m[2] } : null;
+                  },
+            packageIdFromParts:
+              typeof pcRaw.packageIdFromParts === "function"
+                ? pcRaw.packageIdFromParts
+                : (meal, menu) => `${meal}_${menu}`
+          }
+        : null;
+    const syncCompositePickerToHidden = () => {
+      if (!pc || !popup) return;
+      const menu = popup.querySelector(`input[name="${pc.menuRadioName}"]:checked`);
+      popup.querySelectorAll(`input[name="${packageRadioName}"]`).forEach((r) => {
+        r.checked = false;
+      });
+      if (!menu) {
+        return;
+      }
+      let meal = popup.querySelector(`input[name="${pc.mealRadioName}"]:checked`);
+      if (!meal) {
+        const lunch = popup.querySelector(`input[name="${pc.mealRadioName}"][value="lunch"]`);
+        if (lunch) {
+          lunch.checked = true;
+          meal = lunch;
+        }
+      }
+      if (!meal) return;
+      const pid = pc.packageIdFromParts(meal.value, menu.value);
+      const target = popup.querySelector(`input[name="${packageRadioName}"][value="${pid}"]`);
+      if (target) target.checked = true;
+    };
+
+    const applyOrderPackageIdToComposite = (packageId) => {
+      if (!pc || !popup) return;
+      const parsed = pc.parsePackageId(packageId);
+      popup.querySelectorAll(`input[name="${pc.menuRadioName}"]`).forEach((r) => {
+        r.checked = false;
+      });
+      popup.querySelectorAll(`input[name="${pc.mealRadioName}"]`).forEach((r) => {
+        r.checked = false;
+      });
+      if (!parsed) {
+        syncCompositePickerToHidden();
+        return;
+      }
+      const mEl = popup.querySelector(`input[name="${pc.menuRadioName}"][value="${parsed.menu}"]`);
+      const mealEl = popup.querySelector(`input[name="${pc.mealRadioName}"][value="${parsed.meal}"]`);
+      if (mEl) mEl.checked = true;
+      if (mealEl) mealEl.checked = true;
+      syncCompositePickerToHidden();
+    };
+
+    if (pc) {
+      popup.addEventListener("change", (e) => {
+        const t = e.target;
+        if (!(t instanceof HTMLInputElement) || t.type !== "radio") return;
+        if (t.name !== pc.menuRadioName && t.name !== pc.mealRadioName) return;
+        if (t.name === pc.menuRadioName) {
+          if (!popup.querySelector(`input[name="${pc.mealRadioName}"]:checked`)) {
+            const lunch = popup.querySelector(`input[name="${pc.mealRadioName}"][value="lunch"]`);
+            if (lunch) lunch.checked = true;
+          }
+        }
+        syncCompositePickerToHidden();
+      });
+    }
 
     const guideFee = Math.max(0, Number(guideFeePerPerson) || 0);
     const optionalGuideEl = () =>
@@ -4082,6 +4250,11 @@ function initPackageOrderExperience(config) {
       const og = optionalGuideEl();
       if (og) og.checked = false;
       saveBtn.textContent = getI18nText("save_selection", "Save selection");
+      if (pc) {
+        const lunch = popup.querySelector(`input[name="${pc.mealRadioName}"][value="lunch"]`);
+        if (lunch) lunch.checked = true;
+        syncCompositePickerToHidden();
+      }
     };
 
     const resetPopup = () => {
@@ -4392,13 +4565,17 @@ function initPackageOrderExperience(config) {
         editingIndex = idx;
         clearPopupForm();
 
-        popup.querySelectorAll(`input[name="${packageRadioName}"]`).forEach((r) => {
-          if (order.packageId != null) {
-            r.checked = r.value === String(order.packageId);
-          } else {
-            r.checked = false;
-          }
-        });
+        if (pc) {
+          applyOrderPackageIdToComposite(order.packageId);
+        } else {
+          popup.querySelectorAll(`input[name="${packageRadioName}"]`).forEach((r) => {
+            if (order.packageId != null) {
+              r.checked = r.value === String(order.packageId);
+            } else {
+              r.checked = false;
+            }
+          });
+        }
 
         const prefsSet = new Set(Array.isArray(order.preferences) ? order.preferences : []);
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((cb) => {
@@ -4588,4 +4765,440 @@ function initPackageOrderExperience(config) {
 
     renderOrders();
   });
-} 
+}
+
+/**
+ * SIO Special Night — Especial Trufado popup (drink choice) + Bruma-style order summary (localStorage + Add order + WhatsApp).
+ */
+function initSioSpecialNightOrders(userConfig) {
+  const config = {
+    storageKey: "orders_sio_special",
+    selectedDateKey: "selectedDateSio",
+    orderSummaryId: "sioOrderSummary",
+    popupId: "popupSioSpecial",
+    openBtnId: "openSioSpecialMenuBtn",
+    closeBtnId: "closeSioSpecial",
+    formId: "sioSpecialMenuForm",
+    formErrorId: "sioSpecialMenuFormError",
+    saveBtnId: "saveSioSpecialMenu",
+    drinkRadioName: "sioSpecialDrink",
+    whatsappNumber: "598091642195",
+    experienceNameKey: "sio_hero_h1",
+    experienceNameFallback: "SIO Sushi Experience",
+    bookNowBottomId: null,
+    /** USD per Special Night menu order (same package × headcount / orders). */
+    unitPriceUsd: 70,
+    /** Same pattern as Bruma / food1: POST `/api/payments/resolve` → Plexo checkout URL in WhatsApp. */
+    dynamicPayment: null,
+    ...userConfig
+  };
+
+  const run = () => {
+    const summaryEl = document.getElementById(config.orderSummaryId);
+    const overlay = document.getElementById(config.popupId);
+    const openBtn = document.getElementById(config.openBtnId);
+    const closeBtn = document.getElementById(config.closeBtnId);
+    const form = document.getElementById(config.formId);
+    const formError = document.getElementById(config.formErrorId);
+    const saveBtn = document.getElementById(config.saveBtnId);
+    if (!summaryEl || !overlay || !openBtn || !closeBtn || !form || !formError || !saveBtn) return;
+
+    let editingIndex = null;
+
+    const escapeHtml = (str) =>
+      String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+
+    const getI18nText = (key, fallback) => {
+      const lang = localStorage.getItem("selectedLanguage") || "en";
+      const tr = sacramentoI18nTable();
+      try {
+        if (tr?.[lang]?.[key]) return tr[lang][key];
+        if (tr?.en?.[key]) return tr.en[key];
+      } catch {
+        /* ignore */
+      }
+      return fallback;
+    };
+
+    const getOrders = () => {
+      try {
+        const raw = localStorage.getItem(config.storageKey);
+        const arr = JSON.parse(raw || "[]");
+        return Array.isArray(arr) ? arr : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const setOrders = (arr) => {
+      localStorage.setItem(config.storageKey, JSON.stringify(arr));
+    };
+
+    const formatDate = (d) =>
+      d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+
+    const getDateForBooking = () => {
+      const stored = config.selectedDateKey ? localStorage.getItem(config.selectedDateKey) : null;
+      if (stored && /^\d{4}-\d{2}-\d{2}$/.test(stored)) {
+        const [y, m, d] = stored.split("-").map(Number);
+        const parsed = new Date(y, m - 1, d);
+        if (!Number.isNaN(parsed.getTime())) return formatDate(parsed);
+      }
+      if (stored) return stored;
+      return formatDate(new Date());
+    };
+
+    const drinkDisplay = (choice) => {
+      const c = String(choice || "").trim();
+      if (c === "juice") return getI18nText("sio_special_menu_drink_juice", "Juice");
+      if (c === "wine") return getI18nText("sio_special_menu_drink_wine", "Glass of Deicas wine");
+      return "—";
+    };
+
+    const fillPopupForEdit = (order) => {
+      const c = String(order?.drinkChoice || "").trim();
+      form.querySelectorAll(`input[name="${config.drinkRadioName}"]`).forEach((r) => {
+        r.checked = c && r.value === c;
+      });
+    };
+
+    const closePopup = () => {
+      overlay.classList.remove("active");
+      overlay.setAttribute("aria-hidden", "true");
+      openBtn.focus();
+    };
+
+    const syncSaveBtnLabel = () => {
+      saveBtn.textContent =
+        editingIndex !== null
+          ? getI18nText("update_order", "Update order")
+          : getI18nText("save_selection", "Save selection");
+    };
+
+    const openPopup = () => {
+      overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
+      formError.hidden = true;
+      if (editingIndex === null) {
+        form.querySelectorAll(`input[name="${config.drinkRadioName}"]`).forEach((r) => {
+          r.checked = false;
+        });
+      } else {
+        const orders = getOrders();
+        fillPopupForEdit(orders[editingIndex]);
+      }
+      syncSaveBtnLabel();
+      closeBtn.focus();
+    };
+
+    const openPopupForNewOrder = () => {
+      editingIndex = null;
+      openPopup();
+    };
+
+    const buildWhatsAppMessage = (paymentLinkOverride = "") => {
+      const orders = getOrders();
+      const intro = getI18nText(
+        "sio_wa_intro",
+        "Hello! I’d like to book the SIO Special Night menu:"
+      );
+      const visit = getI18nText("orders_visit_date_label", "Visit date");
+      const orderWord = getI18nText("order_word", "Order");
+      const expName = getI18nText(config.experienceNameKey, config.experienceNameFallback);
+      const labMenu = getI18nText("sio_order_summary_menu_label", "Menu");
+      const labRoll = getI18nText("sio_order_summary_roll_label", "Roll");
+      const labDrink = getI18nText("drink_label", "Drink");
+      const labDessert = getI18nText("dessert_word", "Dessert");
+      const menuLine = getI18nText("sio_special_menu_line_trufa", "Especial Trufado");
+      const rollLine = getI18nText("sio_special_menu_item_roll", "Roll x 10 (your choice)");
+      const dessertLine = getI18nText("sio_special_menu_item_dessert", "Dessert");
+      const unitUsd = Math.max(0, Number(config.unitPriceUsd) || 0);
+      const totalUsd = orders.length * unitUsd;
+      const waTotalLabel = getI18nText("wa_total_label", "Total");
+
+      let msg = `${intro}\n*${expName}*\n\n*${visit}:* ${getDateForBooking()}\n\n`;
+      orders.forEach((o, i) => {
+        msg += `*${orderWord} ${i + 1}*\n`;
+        msg += `${labMenu}: ${menuLine}\n`;
+        msg += `${labRoll}: ${rollLine}\n`;
+        msg += `${labDrink}: ${drinkDisplay(o.drinkChoice)}\n`;
+        msg += `${labDessert}: ${dessertLine}\n\n`;
+      });
+      if (orders.length > 0 && unitUsd > 0) {
+        msg += `*${waTotalLabel}:* USD ${totalUsd} (${orders.length} × USD ${unitUsd})\n`;
+      }
+      if (paymentLinkOverride) {
+        const cta =
+          getI18nText("wa_payment_cta", "") ||
+          getI18nText(
+            "wa_payment_prompt",
+            "To confirm the reservation, please complete the payment here:"
+          );
+        msg += `\n${cta}\n${paymentLinkOverride}`;
+        msg += `\n\n${getI18nText(
+          "food_post_payment_note",
+          "After payment, we will send your reservation details and instructions."
+        )}`;
+      }
+      return msg;
+    };
+
+    const openWhatsAppWithPlexoLink = () => {
+      const orders = getOrders();
+      if (orders.length === 0) return;
+      const unitUsd = Math.max(0, Number(config.unitPriceUsd) || 0);
+      const totalUsd = orders.length * unitUsd;
+      const dp = config.dynamicPayment;
+      const pendingTab = window.open("about:blank", "_blank");
+      (async () => {
+        let finalMessage = buildWhatsAppMessage("");
+        try {
+          if (dp && dp.enabled && totalUsd > 0) {
+            const paymentUrl = await resolveDynamicPaymentLink(dp, {
+              experience: dp.experienceId || "sio_special_night",
+              amount: totalUsd,
+              currency: dp.currency || "USD",
+              people: orders.length,
+              orderFingerprint: stableStringify({
+                storageKey: config.storageKey,
+                orders,
+                total: totalUsd
+              }),
+              orderPayload: {
+                kind: "sio_special_night",
+                orders,
+                totalUsd,
+                visitDate: getDateForBooking()
+              }
+            });
+            if (paymentUrl) {
+              finalMessage = buildWhatsAppMessage(paymentUrl);
+            }
+          }
+        } catch {
+          /* WhatsApp sin enlace si el backend / Plexo no responde */
+        }
+        const waUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
+        if (pendingTab && !pendingTab.closed) {
+          pendingTab.location.href = waUrl;
+        } else {
+          window.open(waUrl, "_blank");
+        }
+      })();
+    };
+
+    const renderOrders = () => {
+      const orders = getOrders();
+      const t = (k, f) => getI18nText(k, f);
+
+      let html = "";
+      if (orders.length > 0) {
+        html += `<button type="button" id="addGuestBtn" class="add-guest-btn">+ ${escapeHtml(
+          t("add_order", "Add Order")
+        )}</button>`;
+      }
+      html += `<h3>${escapeHtml(t("your_order", "Your order"))}</h3>`;
+
+      if (config.selectedDateKey) {
+        html += `<p class="order-summary-visit-date"><strong>${escapeHtml(
+          t("orders_visit_date_label", "Visit date")
+        )}:</strong> ${escapeHtml(getDateForBooking())}</p>`;
+      }
+
+      const labMenu = t("sio_order_summary_menu_label", "Menu");
+      const labRoll = t("sio_order_summary_roll_label", "Roll");
+      const labDrink = t("drink_label", "Drink");
+      const labDessert = t("dessert_word", "Dessert");
+      const menuLine = t("sio_special_menu_line_trufa", "Especial Trufado");
+      const rollLine = t("sio_special_menu_item_roll", "Roll x 10 (your choice)");
+      const dessertLine = t("sio_special_menu_item_dessert", "Dessert");
+
+      orders.forEach((o, i) => {
+        html += `
+          <div class="order-card">
+            <div class="order-header">
+              <h3 class="order-card-title">${escapeHtml(t("order_word", "Order"))} ${i + 1}</h3>
+              <div class="order-actions">
+                <span class="edit-order" data-index="${i}">✏️</span>
+                <span class="delete-order" data-index="${i}">🗑️</span>
+              </div>
+            </div>
+            <p><strong>${escapeHtml(labMenu)}:</strong> ${escapeHtml(menuLine)}</p>
+            <p><strong>${escapeHtml(labRoll)}:</strong> ${escapeHtml(rollLine)}</p>
+            <p><strong>${escapeHtml(labDrink)}:</strong> ${escapeHtml(drinkDisplay(o.drinkChoice))}</p>
+            <p><strong>${escapeHtml(labDessert)}:</strong> ${escapeHtml(dessertLine)}</p>
+          </div>`;
+      });
+
+      if (orders.length > 0) {
+        const unitUsd = Math.max(0, Number(config.unitPriceUsd) || 0);
+        const totalUsd = orders.length * unitUsd;
+        const sub = t("orders_sio_ready_sub", "Tap Reserve to send your choices by WhatsApp.");
+        const totalLabel = t("total_label", "Total");
+        const multHint =
+          unitUsd > 0 ? `(${orders.length} × USD ${unitUsd})` : "";
+        html += `
+          <div class="total-box">
+            <div class="total-left">
+              <span class="total-label">${escapeHtml(totalLabel)}</span>
+              ${multHint ? `<span class="total-detail">${escapeHtml(multHint)}</span>` : ""}
+              <span class="total-detail">${escapeHtml(sub)}</span>
+            </div>
+            ${
+              unitUsd > 0
+                ? `<div class="total-right">USD ${totalUsd}</div>`
+                : ""
+            }
+            <a href="#" id="bookWithOrder" class="btn total-btn">${escapeHtml(t("book_btn", "Reserve"))}</a>
+          </div>`;
+      }
+
+      summaryEl.innerHTML = html;
+    };
+
+    summaryEl.addEventListener("click", (e) => {
+      const addBtn = e.target.closest("#addGuestBtn");
+      if (addBtn) {
+        e.preventDefault();
+        openPopupForNewOrder();
+        return;
+      }
+
+      const delEl = e.target.closest(".delete-order");
+      if (delEl) {
+        e.preventDefault();
+        const idx = Number(delEl.dataset.index);
+        const orders = getOrders();
+        if (!Number.isFinite(idx) || idx < 0 || idx >= orders.length) return;
+        orders.splice(idx, 1);
+        setOrders(orders);
+        if (editingIndex !== null) {
+          if (editingIndex === idx) {
+            editingIndex = null;
+            closePopup();
+          } else if (editingIndex > idx) {
+            editingIndex -= 1;
+          }
+        }
+        renderOrders();
+        return;
+      }
+
+      const editEl = e.target.closest(".edit-order");
+      if (editEl) {
+        e.preventDefault();
+        const idx = Number(editEl.dataset.index);
+        const orders = getOrders();
+        const order = orders[idx];
+        if (!order) return;
+        editingIndex = idx;
+        openPopup();
+        return;
+      }
+
+      const bookEl = e.target.closest("#bookWithOrder");
+      if (bookEl) {
+        e.preventDefault();
+        openWhatsAppWithPlexoLink();
+      }
+    });
+
+    openBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openPopupForNewOrder();
+    });
+
+    closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      editingIndex = null;
+      closePopup();
+    });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        editingIndex = null;
+        closePopup();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("active")) {
+        editingIndex = null;
+        closePopup();
+      }
+    });
+
+    form.querySelectorAll(`input[name="${config.drinkRadioName}"]`).forEach((radio) => {
+      radio.addEventListener("change", () => {
+        formError.hidden = true;
+      });
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const sel = form.querySelector(`input[name="${config.drinkRadioName}"]:checked`);
+      if (!sel) {
+        formError.hidden = false;
+        return;
+      }
+      formError.hidden = true;
+      const order = { drinkChoice: sel.value };
+      const orders = getOrders();
+      if (editingIndex !== null) {
+        orders[editingIndex] = order;
+        editingIndex = null;
+      } else {
+        orders.push(order);
+      }
+      setOrders(orders);
+      closePopup();
+      renderOrders();
+    });
+
+    if (config.bookNowBottomId) {
+      const footerBook = document.getElementById(config.bookNowBottomId);
+      if (footerBook) {
+        footerBook.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (getOrders().length === 0) {
+            alert(getI18nText("orders_alert_create_first", "Please create your order first."));
+            return;
+          }
+          openWhatsAppWithPlexoLink();
+        });
+      }
+    }
+
+    document.addEventListener("sacramento:setLanguage", () => {
+      renderOrders();
+      if (overlay.classList.contains("active")) syncSaveBtnLabel();
+    });
+
+    document.addEventListener("sacramento:visitDateChanged", (e) => {
+      if (!config.selectedDateKey) return;
+      if (e.detail && e.detail.key && e.detail.key !== config.selectedDateKey) return;
+      renderOrders();
+    });
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        window.requestAnimationFrame(() => {
+          renderOrders();
+          if (overlay.classList.contains("active")) syncSaveBtnLabel();
+        });
+      });
+    });
+
+    renderOrders();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+}

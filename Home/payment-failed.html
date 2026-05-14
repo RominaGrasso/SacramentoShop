@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sacramento Adventures — Payment not completed</title>
+  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-payment-result page-payment-failed">
+  <header class="payment-result-header">
+    <a href="index.html" class="payment-result-header__logo" aria-label="Sacramento Adventures home">
+      <img src="../Assets/images/sacramento-logo-new.svg" alt="Sacramento Adventures">
+    </a>
+  </header>
+
+  <main class="payment-result">
+    <div class="payment-result__card payment-result__card--failed">
+      <div class="payment-result__icon payment-result__icon--failed" aria-hidden="true">!</div>
+      <h1 class="payment-result__title" data-translate="payment_failed_title">Payment not completed</h1>
+      <p class="payment-result__lead" data-translate="payment_failed_lead">The payment was not completed or was cancelled.</p>
+      <p class="payment-result__body" data-translate="payment_failed_body">
+        No charge was confirmed. You can try again from your booking link or message us if you need help.
+      </p>
+      <div class="payment-result__actions">
+        <button type="button" id="paymentRetryBtn" class="payment-result__btn" data-translate="payment_failed_retry_btn">Try again</button>
+        <a href="index.html" class="payment-result__btn secondary" data-translate="payment_failed_home_btn">Back to experiences</a>
+      </div>
+    </div>
+  </main>
+
+  <script>window.SACRAMENTO_I18N_ONLY = true;</script>
+  <script src="index.js"></script>
+  <script src="payment-pages.js"></script>
+</body>
+</html>

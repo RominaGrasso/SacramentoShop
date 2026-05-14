@@ -17,7 +17,6 @@ const translations = {
       under_construction: "🚧 Work In Progress",
       partners_trusted_by: "Trusted by",
       card_fully_insured: "Fully insured experience",
-      card_medical_simc: "Medical assistance included (SIMC)",
       bike_meta_1_t: "1.5 hours",
       bike_meta_1_l: "English • Spanish • Portuguese",
       bike_meta_1_f: "Traditional torta frita included",
@@ -26,10 +25,10 @@ const translations = {
       bike_title: "Guided Bike Tour Experience",
       bike_text:
         "Explore Colonia del Sacramento by bicycle with a relaxed guided tour. Ride through the Historic Quarter, the Rambla waterfront and scenic local neighborhoods while discovering the city's history and culture. Perfect for active travelers.",
-      lieb_title: "Dining or Lunch at Las Liebres",
+      lieb_title: "Dining Experience at Las Liebres",
       lieb_text:
         "Enjoy an elegant lunch or dinner experience at Las Liebres, a boutique restaurant in Colonia del Sacramento. Enjoy signature dishes in a relaxed and intimate setting, with private transfer included. Perfect for guests looking for a dedicated dining experience.",
-      lupajack_title: "Walk with Lupa & Jack – Experience Colonia Like a Local",
+      lupajack_title: "Walk with Lupa & Jack · Experience Colonia Like a Local",
       lupajack_text:
         "We love animals and know how hard it can be to be away from them. Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.",
       mate_title: "Mate & Asado: Become Uruguayan for a Day",
@@ -41,7 +40,7 @@ const translations = {
       candombe_title: "Candombe Drum Experience",
       candombe_text:
         "Experience the rhythm of Uruguay through candombe. Learn the basics of traditional drumming with local musicians.",
-      romantic_title: "Casa Viera — Romantic Dinner",
+      romantic_title: "Casa Viera · Romantic Dinner",
       romantic_home_meta_place: "Casa Viera",
       romantic_home_meta_evening: "Evening",
       romantic_home_meta_menu: "Three-course dinner & premium wine",
@@ -80,7 +79,7 @@ const translations = {
       home_hist_lieb_meta_2_transfer: "Transfer included",
       home_hist_lieb_desc:
         "Start with a guided tour of Colonia’s Historic Quarter, then continue to Las Liebres for a guided visit to the vineyard and garden, followed by a wine tasting with pairings or a full lunch — your choice when you book.",
-      home_cabalgata_title: "Cabalgata & wine tasting — Las Liebres",
+      home_cabalgata_title: "Cabalgata & wine tasting · Las Liebres",
       home_cabalgata_meta_1: "Boutique vineyard experience",
       home_cabalgata_meta_2_ride: "Cabalgata in Riachuelo (outside Colonia)",
       home_cabalgata_meta_2_vine: "Then Las Liebres vineyard & garden",
@@ -90,20 +89,66 @@ const translations = {
       home_cabalgata_desc:
         "The cabalgata is in Riachuelo (outside Colonia); a transfer then takes you to Las Liebres for the vineyard, garden, and tasting. Juanma and Sabrina host the ride with their horses (and dogs Simón and Estrelli). About 3–4 hours — transfer and add-ons are detailed on the booking page.",
       home_sio_title: "SIO Sushi Experience",
+      home_sio_premium_badge: "Premium",
       home_sio_meta_1: "Premium dining experience",
       home_sio_meta_2: "International-level sushi in Colonia",
-      home_sio_meta_3_place: "Historic Quarter",
+      home_sio_meta_3_place: "Colonia del Sacramento",
       home_sio_meta_3_time: "Duration: 2 hours",
       home_sio_desc:
         "Enjoy an unforgettable dinner at SIO, one of the most exclusive culinary experiences in Colonia. Discover a refined sushi menu crafted with premium ingredients, artistic presentation, and a unique atmosphere. Perfect for a special night, combining gastronomy, design, and attention to detail.",
-      home_bar_title: "Colonia Bar Hopping & Night Experience",
-      home_bar_meta_1_time: "3 - 4 hours",
-      home_bar_meta_1_cocktails: "Cocktails",
-      home_bar_meta_1_beer: "Local beer",
-      home_bar_meta_2: "Casa Viera • La Chopería • Barbot",
-      home_bar_meta_3: "Nightclub access included",
-      home_bar_desc:
-        "Experience Colonia’s nightlife like a local with a curated bar hopping tour. Visit iconic spots like Casa Viera, La Chopería and Barbot, enjoying signature cocktails and craft beers along the way. After the tour, continue the night with optional drinks at Café del Río and finish dancing at one of the city’s top nightclubs. A perfect mix of social vibes, music and unforgettable moments.",
+      sio_hero_h1: "SIO Sushi Experience",
+      sio_about_title: "About this experience",
+      sio_about_p:
+        "Enjoy an unforgettable dinner at SIO, one of the most exclusive culinary experiences in Colonia. Discover a refined sushi menu crafted with premium ingredients, artistic presentation, and a unique atmosphere. Perfect for a special night, combining gastronomy, design, and attention to detail.",
+      sio_reel_btn: "🎥 SIO on Instagram",
+      sio_steps_title: "How it works",
+      sio_step_1_title: "Your table:",
+      sio_step_1_body:
+        "A table is reserved for you at SIO in Colonia del Sacramento — arrive at your booking time and your seat will be ready.",
+      sio_step_2_title: "4-step tasting menu:",
+      sio_step_2_body:
+        "The experience includes a four-course degustation menu with seasonal ingredients, precise technique, and presentation that matches the dining room.",
+      sio_step_3_title: "Take your time:",
+      sio_step_3_body:
+        "Allow about two hours to enjoy the full menu at a relaxed pace — ideal for a date night, a celebration, or the standout dinner of your trip.",
+      sio_price_h3: "Special Night · USD 70",
+      sio_included_title: "What's included",
+      sio_include_1: "✔ Dinner experience at SIO (chef-driven menu; courses may vary by season)",
+      sio_include_2: "✔ Premium ingredients and attentive service",
+      sio_include_3: "✔ Design-led dining room",
+      sio_include_4: "✔ Perfect for a special evening or celebration",
+      sio_gallery_title: "Experience Gallery",
+      sio_map_title: "Where to find SIO",
+      sio_map_text:
+        "SIO is in Colonia del Sacramento — open the map for the exact location and directions.",
+      sio_map_link: "Open in Google Maps",
+      sio_map_iframe_title: "Map: SIO, Colonia del Sacramento",
+      sio_back_home: "Back to Home",
+      sio_gal_alt_1: "SIO sushi bar and interior",
+      sio_gal_alt_2: "SIO signature plating",
+      sio_gal_alt_3: "SIO dining detail",
+      sio_gal_alt_4: "SIO restaurant atmosphere",
+      sio_gal_alt_5: "SIO chef preparation",
+      sio_gal_alt_6: "SIO experience in Colonia",
+      sio_gal_alt_7: "SIO sushi selection",
+      sio_gal_alt_8: "SIO dining moment",
+      sio_gal_alt_9: "SIO tasting scene",
+      sio_special_menu_btn: "View Special Menu",
+      sio_special_menu_close_aria: "Close",
+      sio_special_menu_popup_title: "Special Night",
+      sio_special_menu_line_trufa: "Especial Trufado",
+      sio_special_menu_item_roll: "Roll x 10 (your choice)",
+      sio_special_menu_drink_legend: "Drink — choose one",
+      sio_special_menu_drink_juice: "🧃 Juice",
+      sio_special_menu_drink_wine: "🍷 Glass of Deicas wine",
+      sio_special_menu_item_dessert: "Dessert",
+      sio_special_menu_save_error: "Please choose juice or wine.",
+      sio_booking_block_title: "Book your Special Night menu",
+      sio_order_summary_menu_label: "Menu",
+      sio_order_summary_roll_label: "Roll",
+      sio_wa_intro: "Hello! I’d like to book the SIO Special Night menu:",
+      orders_sio_ready_label: "Ready to reserve",
+      orders_sio_ready_sub: "Tap Reserve to send your choices by WhatsApp.",
       lupajack_card_meta_t: "1.5 hours",
       lupajack_card_meta_d: "Drum lesson",
       lupajack_card_meta_f: "Traditional torta frita included",
@@ -118,14 +163,6 @@ const translations = {
       mateonly_home_meta_m: "Mate ritual & tasting with locals",
       horse_home_meta_t: "About 2 hours",
       horse_home_meta_n: "Countryside trails & nature",
-      home_toros_night_title:
-        "Colonia Night Experience: Dinner, Stay & Plaza de Toros",
-      home_toros_night_meta_1_night: "1 night",
-      home_toros_night_meta_1_dinner: "Dinner included",
-      home_toros_night_meta_1_breakfast: "Breakfast included",
-      home_toros_night_meta_2: "3 experiences in 1",
-      home_toros_night_desc:
-        "Enjoy a unique overnight experience in Colonia. Start with a delicious dinner at Las Liebres, spend the night in a comfortable apartment near Plaza de Toros, and wake up to breakfast before visiting the iconic bullring with tickets included.",
       home_mision_title:
         "Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour",
       home_mision_meta_pf: "Pet friendly",
@@ -138,7 +175,7 @@ const translations = {
       home_sio_mision_title:
         "Premium Night Experience: La Misión Stay, SIO Sushi Dinner & Walking Tour",
       home_sio_mision_desc:
-        "Experience Colonia at its most exclusive. Stay at La Misión, a boutique posada in the heart of the historic quarter, and enjoy a world-class sushi dinner at SIO, one of the most renowned culinary experiences in Colonia. Wake up to a delightful breakfast and complete your night with a guided walking tour through the city's most iconic streets.",
+        "Experience Colonia at its most exclusive. Stay at La Misión, a boutique posada in Colonia, and enjoy a world-class sushi dinner at SIO, one of the most renowned culinary experiences in the city. Wake up to a delightful breakfast and complete your stay with a guided walking tour.",
       home_corp_boat_badge: "Exclusive corporate experience",
       home_corp_boat_title: "Sunset Boat Experience & Dinner at Casa Petit",
       home_corp_boat_meta_1_sunset: "Sunset experience",
@@ -152,17 +189,17 @@ const translations = {
       fullday_card_meta_time: "4-5 hours",
       fullday_card_meta_langs: "English • Spanish • Portuguese",
       fullday1_title:
-        "Full Day Experience 1 -  Animal Reserve, Asado & Beach Experience",
+        "Full Day Experience 1 · Animal Reserve, Asado & Beach Experience",
       fullday1_text:
         "Visit the Kerayvoty Animal Reserve in Juan Lacaze, enjoy a traditional Uruguayan asado in Santa Ana, and relax by the beautiful coastal beaches before returning to Colonia.",
-      fullday2_title: "Full Day Experience 2 – Carmelo City & Wineries",
+      fullday2_title: "Full Day Experience 2 · Carmelo City & Wineries",
       fullday2_text:
         "Explore the charming town of Carmelo on a full-day experience combining a guided city tour with visits to local wineries. Discover the town's history, walk along the riverfront, and enjoy wine tastings surrounded by beautiful vineyards in one of Uruguay's most renowned wine regions.",
-      fullday3_title: "Full Day Experience 3 – Colonia Suiza Heritage Tour",
+      fullday3_title: "Full Day Experience 3 · Colonia Suiza Heritage Tour",
       fullday3_text:
         "Discover the Swiss heritage of Nueva Helvecia on this full-day experience. Visit traditional cheese factories, explore the historic town, stop at the Schoenstatt Sanctuary, and see iconic landmarks like the Hotel Suizo while learning about the culture and traditions brought by Swiss immigrants.",
       fullday4_title:
-        "Full Day Experience 4 - Horseback Ride, Dinner & Stargazing Experience",
+        "Full Day Experience 4 · Horseback Ride, Dinner & Stargazing Experience",
       fullday4_text:
         "Enjoy a scenic horseback ride through the countryside, followed by a special dinner at Las Liebres. End the night with a unique stargazing experience led by an astrophotographer who will guide you through the stars and capture unforgettable night sky photos.",
       rent_with_us: "Rent with us!",
@@ -244,10 +281,10 @@ const translations = {
       about_team_maru_bday: "🎂 Feb 27",
       about_team_maru_bio:
         "Maru is a highly entrepreneurial and detail-oriented professional, known for her creativity and strong sense of responsibility. She brings ideas to life with a refined and organized approach, ensuring every detail is thoughtfully executed.",
-      about_team_matias_role: "Code maintenance & support",
-      about_team_matias_bday: "🎂 Feb 1",
+      about_team_matias_role: "Web support assistant",
+      about_team_matias_bday: "🎂 Oct 15",
       about_team_matias_bio:
-        "Matías is currently studying at UTEC and stands out for his structured and analytical approach to development.",
+        "Contributes to specific project tasks to improve the user experience.",
       about_team_selena_maite_role: "Tour guide",
       about_team_selena_maite_bday: "🎂 Jan 31",
       about_team_selena_maite_bio:
@@ -290,7 +327,11 @@ const translations = {
         "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line! Anita is a café in the heart of the historic quarter with an incredible view. The experience lasts approximately 3 hours.",
       services_title: "Useful services in Colonia del Sacramento",
       services_intro:
-        "Pharmacies, supermarkets near the Historic Quarter, parking, police stations, and local health centres — handy references for your stay. Hours and rates can change; please confirm before you go.",
+        "Recommended currency exchange, pharmacies, supermarkets near the Historic Quarter, parking, police stations, and local health centres — handy references for your stay. Hours and rates can change; please confirm before you go.",
+      services_cat_exchange: "Currency exchange",
+      services_exchange_recommended_badge: "Recommended",
+      services_exchange_aguerrebere_meta:
+        "Gral. Flores 222 · Historic Quarter · Currency exchange, money transfers, Redpagos & ATM ·  Typically Mon–Fri 8:30–20:30, Sat 8:30–16:30 — confirm before you go",
       services_cat_pharmacies: "Pharmacies",
       services_cat_supermarkets: "Supermarkets (Historic Quarter area)",
       services_cat_parking: "Parking",
@@ -325,11 +366,11 @@ const translations = {
       food_title: "Walking Tour, Chivito & Plaza de Toros",
       food_text: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes — followed by a visit to the historic Plaza de Toros.",
       barbot_home_badge: "Gold medal · Strong Ale",
-      barbot_home_title: "Barbot Brewpub — award-winning craft beer",
+      barbot_home_title: "Barbot Brewpub · award-winning craft beer",
       barbot_home_meta_1: "Gold at IV Copa Sul-Americana de Cerveja",
       barbot_home_meta_2: "Bonavena Strong Ale",
       barbot_home_desc:
-        "Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter — perfect for a pint when you’re in town. Pair it with our Bar Hopping experience or stop by on your own.",
+        "Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter — perfect for a pint when you’re in town.",
       barbot_home_img_1_alt: "Barbot Brewpub craft beer in Colonia",
       barbot_home_img_2_alt: "Barbot Brewpub interior",
       barbot_home_img_3_alt: "Bonavena Strong Ale beer",
@@ -345,21 +386,47 @@ const translations = {
         "🍺 Taste the headline act: Bonavena Strong Ale, gold at IV Copa Sul-Americana de Cerveja — then compare it against dozens of other labels on the board.",
       barbot_page_moment_3:
         "🕐 Your tempo: a flight, a single pint, or a lazy round — this isn’t a packaged pub crawl; it’s your evening.",
-      barbot_page_highlights_title: "At a glance",
-      barbot_page_highlight_1: "✔ ~20 beer varieties — taps and bottles to explore",
-      barbot_page_highlight_2: "✔ Gold-medal Bonavena Strong Ale — IV Copa Sul-Americana de Cerveja",
-      barbot_page_highlight_3: "✔ Brewpub soul inside Colonia’s UNESCO Historic Quarter",
-      barbot_page_addon_title: "Want a guided night out instead?",
-      barbot_page_addon_text:
-        "Our Bar Hopping route strings together several venues in one night — Barbot can appear on that itinerary. Different vibe and timing; book it separately if you’re craving the full crawl.",
-      barbot_page_addon_btn: "View Bar Hopping night",
-      josefina_title: "La Josefina — Lunch or dinner at Colonia Yacht Club",
+      barbot_create_title: "Create your experience",
+      barbot_create_subtitle:
+        "Pick your visit date, then open the window with the button: there you choose drinks and food.",
+      barbot_create_btn: "+ Create your experience",
+      barbot_popup_title: "Drinks & food at Barbot",
+      barbot_popup_drinks_hint: "How many full pints and half pints?",
+      barbot_popup_full_label: "Full pints (USD 7 each)",
+      barbot_popup_half_label: "Half pints (USD 5 each)",
+      barbot_food_heading: "Food",
+      barbot_food_hint: "Each option is USD 10. Enter a quantity for anything you’d like.",
+      barbot_food_qty_label: "Qty",
+      barbot_food_pizza: "Pizza",
+      barbot_food_burger: "Barbot burger",
+      barbot_food_fries: "Fries with cheese cream",
+      barbot_beer_at_bar_note: "Beer style is chosen at the bar.",
+      barbot_table_reserved_web_note: "A table is reserved for you with your web purchase.",
+      barbot_summary_empty:
+        "Use “Create your experience” or “Add order” to save drinks and food here. You’ll see each order as a card and the total below, like our other experiences.",
+      barbot_summary_visit: "Visit date",
+      barbot_summary_drinks_heading: "Drinks",
+      barbot_summary_food_heading: "Food",
+      barbot_summary_total: "Estimated total (USD)",
+      barbot_order_subtotal: "Subtotal",
+      barbot_unit_full: "Full pint",
+      barbot_unit_half: "Half pint",
+      barbot_people_label: "People",
+      barbot_reserve_needs_items: "Add at least one drink or food item in the window before saving.",
+      barbot_reserve_needs_orders: "Add at least one order (save in the window) before reserving.",
+      barbot_wa_preface: "Hello! I’d like to book Barbot Brewpub with this selection:",
+      barbot_page_map_title: "Where to find Barbot Brewpub",
+      barbot_page_map_text:
+        "Use this map as a reference for Barbot Brewpub in Colonia del Sacramento, in the Historic Quarter.",
+      barbot_page_map_link: "Open in Google Maps",
+      barbot_page_map_iframe_title: "Map: Barbot Brewpub, Colonia del Sacramento",
+      josefina_title: "La Josefina · Lunch or dinner at Colonia Yacht Club",
       josefina_meta_view: "Unforgettable Río de la Plata views — the setting is the highlight",
       josefina_meta_duration: "The experience lasts 2 hours",
       josefina_meta_favorite: "A favorite among tourists",
       josefina_text:
         "Lunch or dinner at Restaurante La Josefina, inside the Colonia Yacht Club: exceptional waterfront views, relaxed atmosphere, and one of the most photographed panoramas in town.",
-      josefina_hero: "🍽 La Josefina — Lunch or dinner at Colonia Yacht Club",
+      josefina_hero: "🍽 La Josefina · Lunch or dinner at Colonia Yacht Club",
       josefina_about_p:
         "Enjoy lunch or dinner at Restaurante La Josefina, located inside the Colonia Yacht Club (Real Club Náutico). The star of the visit is the setting: wide-open views over the Río de la Plata, golden light, and a relaxed marina atmosphere — perfect for travelers who want great food with an unforgettable panorama.",
       josefina_price_title: "Lunch or dinner · approx. 2 hours · Reservations recommended",
@@ -599,7 +666,7 @@ const translations = {
       josefina_page_p1:
         "Enjoy lunch or dinner at Restaurante La Josefina, overlooking the Río de la Plata from the Colonia Yacht Club (Real Club Náutico). The views over the water are the highlight — golden sunsets, passing boats, and a relaxed marina atmosphere.",
       josefina_page_p2:
-        "The restaurant is run by its owners, Pablo and Luis. Luis is incredibly friendly and welcoming, and Pablo is wonderful — often working alongside his son, Guzmán. They take great care of the place and their team, and they'll make sure you have an experience like no other.",
+        "The restaurant is run by its owners, Pablo and Luis. Luis is incredibly friendly and welcoming, and Pablo is wonderful — often working alongside his son, Guzmán.",
       josefina_page_p3:
         "The menu combines Uruguayan classics and regional favorites — ideal for pairing great food with one of the best panoramas in town.",
       josefina_page_p4:
@@ -920,7 +987,7 @@ const translations = {
       liebres_about_p:
         "You'll be welcomed by Juanma and Sabrina, who look after six horses and a young filly for your cabalgata, and their two dogs — Simón and Estrelli — who are part of the day and often tag along between stops. The cabalgata takes place in Riachuelo, on the outskirts of Colonia. After the ride, a private transfer takes you to Las Liebres for a walk through the vineyard and organic garden and a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Andres, the manager, will be waiting to welcome your group at Las Liebres. Plan on about 3 to 4 hours for the full experience (ride, transfers, visit, and tasting).",
       liebres_reel_btn: "🎥 Watch Reel on @_sacramentoadventures",
-      liebres_dining_experience_name: "Dining at Las Liebres",
+      liebres_dining_experience_name: "Dining Experience at Las Liebres",
       liebres_dining_about_title: "About this experience",
       liebres_dining_about_p:
         "Enjoy a lunch or dinner experience at Las Liebres, a boutique restaurant in Colonia del Sacramento. This activity focuses on the gastronomic menu and restaurant atmosphere, with private transfer included. Andres, the manager, will be waiting to welcome your group at Las Liebres. You can choose your preferred meal format when you create your order.",
@@ -945,7 +1012,7 @@ const translations = {
         "✔ Private round-trip transfer (hotel or terminal; see summary)",
       liebres_dining_create_title: "Create your order",
       liebres_dining_create_subtitle:
-        "Choose lunch or dinner and menu style (Viñedo or Ceibo), then add preferences.",
+        "Choose Viñedo or Ceibo, then lunch or dinner, and add preferences.",
       liebres_dining_create_btn: "+ Create your order",
       liebres_dining_guide_help_aria:
         "More information about the optional group guide",
@@ -959,10 +1026,15 @@ const translations = {
       liebres_dining_map_iframe_title:
         "Map: Las Liebres, Colonia del Sacramento",
       liebres_dining_back_home: "Back to Home",
-      liebres_dining_popup_title: "Choose lunch or dinner",
-      liebres_dining_popup_package_title: "Package",
+      liebres_dining_popup_title: "Choose menu & meal",
+      liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(price per guest; transport share appears in summary)",
+      liebres_dining_pkg_vinedo_menu_line: "Viñedo menu 🍇 — USD 65",
+      liebres_dining_pkg_ceibo_menu_line: "Ceibo menu 🌳 — USD 80",
+      liebres_dining_meal_heading: "Lunch or dinner",
+      liebres_dining_meal_lunch: "Lunch",
+      liebres_dining_meal_dinner: "Dinner",
       liebres_dining_pkg_lunch_vinedo_main:
         "Lunch — Viñedo menu 🍇 USD 65",
       liebres_dining_pkg_lunch_vinedo_label: "Lunch — Viñedo menu",
@@ -987,18 +1059,20 @@ const translations = {
       liebres_dining_pkg_item_3: "One glass of wine and coffee or tea",
       liebres_dining_pref_no_alcohol: "No alcohol",
       liebres_steps_title: "How it works",
-      liebres_step_1:
-        "🚐 Private pick-up: A private transfer collects you at your hotel or the bus terminal.",
-      liebres_step_2:
-        "🐎 Cabalgata in Riachuelo: Guided ride in the Riachuelo countryside, outside Colonia. Juanma and Sabrina's horses and (often) Simón and Estrelli join you on the trail.",
-      liebres_step_3:
-        "🚗 Transfer to Las Liebres: After the ride in Riachuelo, a private vehicle takes you directly to Comarca Las Liebres.",
-      liebres_step_4:
-        "🍇 Vineyard & garden: Guided walk through the vines and organic garden at Las Liebres.",
-      liebres_step_5:
-        "🍷 Wine tasting: Three wines with food pairings — confirm any dietary notes when you create your order.",
-      liebres_step_6:
-        "🏨 Return: The same private service picks you up when you finish and drops you at your hotel or the terminal.",
+      liebres_step_1_title: "Private pick-up:",
+      liebres_step_1_desc: "A private transfer collects you at your hotel or the bus terminal.",
+      liebres_step_2_title: "Cabalgata in Riachuelo:",
+      liebres_step_2_desc:
+        "Guided ride in the Riachuelo countryside, outside Colonia. Juanma and Sabrina's horses and (often) Simón and Estrelli join you on the trail.",
+      liebres_step_3_title: "Transfer to Las Liebres:",
+      liebres_step_3_desc: "After the ride in Riachuelo, a private vehicle takes you directly to Comarca Las Liebres.",
+      liebres_step_4_title: "Vineyard & garden:",
+      liebres_step_4_desc: "Guided walk through the vines and organic garden at Las Liebres.",
+      liebres_step_5_title: "Wine tasting:",
+      liebres_step_5_desc: "Three wines with food pairings — confirm any dietary notes when you create your order.",
+      liebres_step_6_title: "Return:",
+      liebres_step_6_desc:
+        "The same private service picks you up when you finish and drops you at your hotel or the terminal.",
       liebres_price_title: "USD 85 per guest + optional group guide",
       liebres_price_p:
         "The experience includes cabalgata in Riachuelo (outside Colonia), transfer to Las Liebres, vineyard & garden visit, and three-wine tasting with pairings. Allow roughly 3 to 4 hours door-to-door. Private transport is billed by vehicle: USD 40 total for 1–4 guests (one vehicle); USD 80 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.",
@@ -1039,7 +1113,16 @@ const translations = {
       liebres_popup_title: "Your ride, tasting & preferences",
       liebres_popup_horseback_strong: "Horseback",
       liebres_popup_horseback_note: "(included — Riachuelo, outside Colonia)",
-      liebres_starter_1: "Riachuelo — guided countryside trail (~45 min)",
+      liebres_popup_horseback_times_title: "Horseback departure time",
+      liebres_popup_horseback_times_note: "Pick one slot for Riachuelo (11:00, 12:00 or 13:00).",
+      liebres_horse_time_11: "11:00",
+      liebres_horse_time_12: "12:00",
+      liebres_horse_time_13: "13:00",
+      liebres_horseback_time_label: "Horseback departure time",
+      liebres_horseback_time_required: "Please choose a horseback departure time.",
+      liebres_horseback_time_each_required:
+        "Each order needs a horseback departure time. Edit the order to choose a time.",
+      liebres_starter_1: "Riachuelo — guided countryside trail (~1 hr)",
       liebres_popup_tasting_strong: "Tasting",
       liebres_popup_tasting_note: "(same price — pick one pairing style)",
       liebres_main_1: "Three wines — seasonal kitchen pairings (standard)",
@@ -1222,7 +1305,27 @@ const translations = {
       wa_none: "None",
       wa_payment_prompt: "To confirm the reservation, please complete the payment here:",
       wa_payment_fallback: "Please share payment instructions to confirm this booking.",
-      total_label: "Total"
+      total_label: "Total",
+      payment_success_title: "Payment confirmed",
+      payment_success_lead: "Thank you — your payment was received successfully.",
+      payment_success_body:
+        "Our team will contact you shortly with your booking confirmation and next steps. Please keep an eye on your email and WhatsApp.",
+      payment_success_home_btn: "Back to experiences",
+      payment_success_wa_btn: "Contact us on WhatsApp",
+      payment_failed_title: "Payment not completed",
+      payment_failed_lead: "The payment was not completed or was cancelled.",
+      payment_failed_body:
+        "No charge was confirmed. You can try again from your booking link or message us if you need help.",
+      payment_failed_retry_btn: "Try again",
+      payment_failed_home_btn: "Back to experiences",
+      payment_return_redirecting: "Redirecting…",
+      payment_return_verifying: "Verifying your payment…",
+      payment_pending_title: "Payment pending",
+      payment_pending_lead: "We have not confirmed your payment yet.",
+      payment_pending_body:
+        "If you completed the payment, our team will contact you once it is confirmed. You can also message us on WhatsApp.",
+      payment_pending_home_btn: "Back to experiences",
+      payment_wa_prefill: "Hello! I have a question about my Sacramento Adventures payment."
     },
     es: {
       hero_title: "Descubrí Colonia como un local",
@@ -1240,7 +1343,6 @@ const translations = {
       under_construction: "🚧 En construcción",
       partners_trusted_by: "Confían en nosotros",
       card_fully_insured: "Experiencia con cobertura incluida",
-      card_medical_simc: "Asistencia médica incluida (SIMC)",
       bike_meta_1_t: "1,5 hs",
       bike_meta_1_l: "Inglés • español • portugués",
       bike_meta_1_f: "Torta frita tradicional incluida",
@@ -1249,10 +1351,10 @@ const translations = {
       bike_title: "Experiencia de bicicleta guiada",
       bike_text:
         "Recorré Colonia del Sacramento en bici con un tour relajado: Casco Histórico, rambla y barrios, con historia y cultura. Ideal para quienes buscan algo activo.",
-      lieb_title: "Almuerzo o cena en Las Liebres",
+      lieb_title: "Experiencia gastronómica en Las Liebres",
       lieb_text:
         "Experiencia elegante en Las Liebres, restaurante boutique en Colonia. Platos insignia, ambiente íntimo y traslado privado incluido. Para quienes quieren una comida dedicada.",
-      lupajack_title: "Paseo con Lupa y Jack – Colonia como un local",
+      lupajack_title: "Paseo con Lupa y Jack · Colonia como un local",
       lupajack_text:
         "Amamos los animales y sabemos lo que cuesta estar lejos. Acompañanos en un paseo relajado por Colonia con tortas fritas o churros tradicionales.",
       mate_title: "Mate y asado: uruguayo por un día",
@@ -1264,7 +1366,7 @@ const translations = {
       candombe_title: "Experiencia de tambores candombe",
       candombe_text:
         "El ritmo del Uruguay: candombe. Introducción a los tambores con músicos locales.",
-      romantic_title: "Casa Viera — Cena romántica",
+      romantic_title: "Casa Viera · Cena romántica",
       romantic_home_meta_place: "Casa Viera",
       romantic_home_meta_evening: "Noche",
       romantic_home_meta_menu: "Cena de tres tiempos y vino premium",
@@ -1303,7 +1405,7 @@ const translations = {
       home_hist_lieb_meta_2_transfer: "Traslado incluido",
       home_hist_lieb_desc:
         "Empezá con un tour guiado por el Casco Histórico de Colonia y seguí a Las Liebres para visitar viñedo y huerta, con degustación con maridajes o almuerzo completo — elegís al reservar.",
-      home_cabalgata_title: "Cabalgata y degustación — Las Liebres",
+      home_cabalgata_title: "Cabalgata y degustación · Las Liebres",
       home_cabalgata_meta_1: "Experiencia en viñedo boutique",
       home_cabalgata_meta_2_ride: "Cabalgata en Riachuelo (fuera de Colonia)",
       home_cabalgata_meta_2_vine: "Luego viñedo y huerta Las Liebres",
@@ -1313,20 +1415,66 @@ const translations = {
       home_cabalgata_desc:
         "La cabalgata es en Riachuelo (fuera de Colonia); un traslado te lleva a Las Liebres para viñedo, huerta y degustación. Juanma y Sabrina reciben el paseo a caballo (con Simón y Estrelli). Unas 3–4 horas — traslado y extras en la página de reserva.",
       home_sio_title: "Experiencia SIO Sushi",
+      home_sio_premium_badge: "Premium",
       home_sio_meta_1: "Experiencia gastronómica premium",
       home_sio_meta_2: "Sushi de nivel internacional en Colonia",
-      home_sio_meta_3_place: "Casco Histórico",
+      home_sio_meta_3_place: "Colonia del Sacramento",
       home_sio_meta_3_time: "Duración: 2 horas",
       home_sio_desc:
         "Cená en SIO, una de las experiencias culinarias más exclusivas de Colonia. Menú de sushi refinado, ingredientes premium y presentación cuidada. Ideal para una noche especial.",
-      home_bar_title: "Bar hopping y noche en Colonia",
-      home_bar_meta_1_time: "3 - 4 horas",
-      home_bar_meta_1_cocktails: "Cócteles",
-      home_bar_meta_1_beer: "Cerveza artesanal",
-      home_bar_meta_2: "Casa Viera • La Chopería • Barbot",
-      home_bar_meta_3: "Ingreso a boliche incluido",
-      home_bar_desc:
-        "La vida nocturna de Colonia como un local: recorrido por bares icónicos como Casa Viera, La Chopería y Barbot, con cócteles y cervezas. Después podés seguir en Café del Río y cerrar bailando. Buena onda, música y momentos para recordar.",
+      sio_hero_h1: "Experiencia SIO Sushi",
+      sio_about_title: "Sobre esta experiencia",
+      sio_about_p:
+        "Cená en SIO, una de las experiencias culinarias más exclusivas de Colonia. Menú de sushi refinado, ingredientes premium y presentación cuidada. Ideal para una noche especial.",
+      sio_reel_btn: "🎥 SIO en Instagram",
+      sio_steps_title: "Cómo funciona",
+      sio_step_1_title: "Tu mesa:",
+      sio_step_1_body:
+        "Mesa reservada a tu nombre en SIO, en Colonia del Sacramento — llegás a la hora acordada y tu lugar ya está preparado.",
+      sio_step_2_title: "Menú degustación de 4 pasos:",
+      sio_step_2_body:
+        "La experiencia incluye un menú degustación en cuatro pasos, con ingredientes de temporada, técnica precisa y presentación a la altura del salón.",
+      sio_step_3_title: "Reservá el tiempo:",
+      sio_step_3_body:
+        "Calculá unas dos horas para disfrutar el menú con calma — ideal para una cena en pareja, una celebración o la cena más memorable del viaje.",
+      sio_price_h3: "Noche especial · USD 70",
+      sio_included_title: "Qué incluye",
+      sio_include_1: "✔ Experiencia de cena en SIO (menú del chef; los platos pueden variar según temporada)",
+      sio_include_2: "✔ Ingredientes premium y servicio atento",
+      sio_include_3: "✔ Salón con diseño cuidado",
+      sio_include_4: "✔ Ideal para una noche especial o celebración",
+      sio_gallery_title: "Galería de la experiencia",
+      sio_map_title: "Dónde queda SIO",
+      sio_map_text:
+        "SIO está en Colonia del Sacramento — abrí el mapa para ver la ubicación exacta y cómo llegar.",
+      sio_map_link: "Abrir en Google Maps",
+      sio_map_iframe_title: "Mapa: SIO, Colonia del Sacramento",
+      sio_back_home: "Volver al inicio",
+      sio_gal_alt_1: "SIO bar de sushi e interior",
+      sio_gal_alt_2: "Emplatado destacado en SIO",
+      sio_gal_alt_3: "Detalle del comedor SIO",
+      sio_gal_alt_4: "Ambiente del restaurante SIO",
+      sio_gal_alt_5: "Preparación en SIO",
+      sio_gal_alt_6: "Experiencia SIO en Colonia",
+      sio_gal_alt_7: "Selección de sushi en SIO",
+      sio_gal_alt_8: "Momento en el comedor SIO",
+      sio_gal_alt_9: "Escena de degustación en SIO",
+      sio_special_menu_btn: "Ver menú especial",
+      sio_special_menu_close_aria: "Cerrar",
+      sio_special_menu_popup_title: "Noche especial",
+      sio_special_menu_line_trufa: "Especial Trufado",
+      sio_special_menu_item_roll: "Roll x 10 (a elección)",
+      sio_special_menu_drink_legend: "Bebida — elegí una opción",
+      sio_special_menu_drink_juice: "🧃 Jugo",
+      sio_special_menu_drink_wine: "🍷 Copa de vino Deicas",
+      sio_special_menu_item_dessert: "Postre",
+      sio_special_menu_save_error: "Elegí jugo o copa de vino Deicas.",
+      sio_booking_block_title: "Reservá tu menú Noche especial",
+      sio_order_summary_menu_label: "Menú",
+      sio_order_summary_roll_label: "Roll",
+      sio_wa_intro: "Hola! Quiero reservar el menú Noche especial en SIO:",
+      orders_sio_ready_label: "Listo para reservar",
+      orders_sio_ready_sub: "Tocá Reservar para enviar tu pedido por WhatsApp.",
       lupajack_card_meta_t: "1,5 hs",
       lupajack_card_meta_d: "Clase de tambores",
       lupajack_card_meta_f: "Torta frita tradicional incluida",
@@ -1341,14 +1489,6 @@ const translations = {
       mateonly_home_meta_m: "Ritual de mate y degustación con locales",
       horse_home_meta_t: "Unas 2 horas",
       horse_home_meta_n: "Senderos campestres y naturaleza",
-      home_toros_night_title:
-        "Noche en Colonia: cena, alojamiento y Plaza de Toros",
-      home_toros_night_meta_1_night: "1 noche",
-      home_toros_night_meta_1_dinner: "Cena incluida",
-      home_toros_night_meta_1_breakfast: "Desayuno incluido",
-      home_toros_night_meta_2: "3 experiencias en 1",
-      home_toros_night_desc:
-        "Noche única en Colonia: cena en Las Liebres, dormís en un departamento cómodo cerca de Plaza de Toros, desayuno y visita a la plaza de toros con entradas incluidas.",
       home_mision_title:
         "Noche histórica: La Misión, cena en Bruma y walking tour",
       home_mision_meta_pf: "Pet friendly",
@@ -1361,7 +1501,7 @@ const translations = {
       home_sio_mision_title:
         "Noche premium: La Misión, cena SIO Sushi y walking tour",
       home_sio_mision_desc:
-        "La experiencia más exclusiva: estadía en La Misión y cena sushi de primer nivel en SIO. Desayuno y walking tour por el casco histórico.",
+        "La experiencia más exclusiva: estadía en La Misión y cena sushi de primer nivel en SIO. Desayuno y walking tour guiado por Colonia.",
       home_corp_boat_badge: "Experiencia corporativa exclusiva",
       home_corp_boat_title: "Atardecer en barco y cena en Casa Petit",
       home_corp_boat_meta_1_sunset: "Atardecer",
@@ -1375,17 +1515,17 @@ const translations = {
       fullday_card_meta_time: "4-5 horas",
       fullday_card_meta_langs: "Inglés • español • portugués",
       fullday1_title:
-        "Experiencia día completo 1 — Reserva animal, asado y playa",
+        "Experiencia día completo 1 · Reserva animal, asado y playa",
       fullday1_text:
         "Visitá la reserva animal Kerayvoty en Juan Lacaze, disfrutá un asado uruguayo tradicional en Santa Ana y relajate en playas costeras antes de volver a Colonia.",
-      fullday2_title: "Experiencia día completo 2 — Carmelo ciudad y bodegas",
+      fullday2_title: "Experiencia día completo 2 · Carmelo ciudad y bodegas",
       fullday2_text:
         "Conocé Carmelo en un día completo que combina city tour guiado con visitas a bodegas locales. Historia, costanera y degustaciones entre viñedos de una de las regiones vitivinícolas más reconocidas del Uruguay.",
-      fullday3_title: "Experiencia día completo 3 — Herencia suiza (Colonia Suiza)",
+      fullday3_title: "Experiencia día completo 3 · Herencia suiza (Colonia Suiza)",
       fullday3_text:
         "Descubrí el legado suizo de Nueva Helvecia: fábricas de queso, pueblo histórico, Santuario Schoenstatt y lugares emblemáticos como el Hotel Suizo, con la cultura que trajeron los inmigrantes.",
       fullday4_title:
-        "Experiencia día completo 4 — Cabalgata, cena y observación de estrellas",
+        "Experiencia día completo 4 · Cabalgata, cena y observación de estrellas",
       fullday4_text:
         "Cabalgata por el campo, cena especial en Las Liebres y cierre con observación de estrellas con un astrofotógrafo que te guía bajo el cielo y captura la noche.",
       rent_with_us: "¡Alquilá con nosotros!",
@@ -1467,10 +1607,10 @@ const translations = {
       about_team_maru_bday: "🎂 27 feb",
       about_team_maru_bio:
         "Maru es una profesional muy emprendedora y detallista, reconocida por su creatividad y sentido de la responsabilidad. Lleva las ideas a la práctica con un enfoque refinado y ordenado, cuidando cada detalle de punta a punta.",
-      about_team_matias_role: "Mantenimiento del código y soporte",
-      about_team_matias_bday: "🎂 1 feb",
+      about_team_matias_role: "Auxiliar de Soporte Web",
+      about_team_matias_bday: "🎂 15 oct",
       about_team_matias_bio:
-        "Matías estudia en la UTEC y destaca por su enfoque estructurado y analítico del desarrollo.",
+        "Colabora con tareas específicas del proyecto para mejorar la experiencia de usuario.",
       about_team_selena_maite_role: "Guía turística",
       about_team_selena_maite_bday: "🎂 31 ene",
       about_team_selena_maite_bio:
@@ -1511,7 +1651,11 @@ const translations = {
         "Conocé la icónica plaza de toros y su historia con traslado privado y entradas incluidas. ¡Sin hacer fila! Anita es un café en el corazón del barrio histórico, tiene una vista increíble. La experiencia es de 3 hs aproximadamente.",
       services_title: "Servicios útiles en Colonia del Sacramento",
       services_intro:
-        "Farmacias, supermercados cerca del Barrio Histórico, estacionamientos, comisarías y centros de salud — referencias para tu visita. Los horarios y tarifas pueden cambiar; confirmá antes de ir.",
+        "Casa de cambio recomendada, farmacias, supermercados cerca del Barrio Histórico, estacionamientos, comisarías y centros de salud — referencias para tu visita. Los horarios y tarifas pueden cambiar; confirmá antes de ir.",
+      services_cat_exchange: "Casa de cambio",
+      services_exchange_recommended_badge: "Recomendado",
+      services_exchange_aguerrebere_meta:
+        "Gral. Flores 222 · Barrio Histórico · Cambio de divisas, transferencias, Redpagos y cajero automático ·  En general lun–vie 8:30–20:30, sáb 8:30–16:30 — confirmá antes de ir",
       services_cat_pharmacies: "Farmacias",
       services_cat_supermarkets: "Supermercados (zona Barrio Histórico)",
       services_cat_parking: "Estacionamientos",
@@ -1549,11 +1693,11 @@ const translations = {
       update_order: "Actualizar pedido",
       food_title: "Tour a pie, Chivito y Plaza de Toros",
       barbot_home_badge: "Medalla de oro · Strong Ale",
-      barbot_home_title: "Cervecería Barbot — cerveza artesanal premiada",
+      barbot_home_title: "Cervecería Barbot · cerveza artesanal premiada",
       barbot_home_meta_1: "Oro en la IV Copa Sul-Americana de Cerveja",
       barbot_home_meta_2: "Bonavena Strong Ale",
       barbot_home_desc:
-        "Barbot Brewpub ganó medalla de oro con Bonavena Strong Ale en la IV Copa Sul-Americana de Cerveja. Su brewpub está en el Casco Histórico de Colonia — ideal para una pinta cuando estés en la ciudad. Combiná con nuestra experiencia de bares nocturna o pasá por tu cuenta.",
+        "Barbot Brewpub ganó medalla de oro con Bonavena Strong Ale en la IV Copa Sul-Americana de Cerveja. Su brewpub está en el Casco Histórico de Colonia — ideal para una pinta cuando estés en la ciudad.",
       barbot_home_img_1_alt: "Cerveza artesanal Barbot Brewpub en Colonia",
       barbot_home_img_2_alt: "Interior del Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveza Bonavena Strong Ale",
@@ -1569,21 +1713,47 @@ const translations = {
         "🍺 Probá la estrella: Bonavena Strong Ale, oro en la IV Copa Sul-Americana de Cerveja — y comparala con decenas de etiquetas en la carta.",
       barbot_page_moment_3:
         "🕐 Tu ritmo: degustación, una pinta o una ronda tranquila — esto no es un pub crawl armado; es tu noche.",
-      barbot_page_highlights_title: "En resumen",
-      barbot_page_highlight_1: "✔ ~20 variedades — chopera y botellas para explorar",
-      barbot_page_highlight_2: "✔ Bonavena Strong Ale — oro en IV Copa Sul-Americana de Cerveja",
-      barbot_page_highlight_3: "✔ Brewpub en el Casco Histórico UNESCO de Colonia",
-      barbot_page_addon_title: "¿Preferís una noche guiada de bares?",
-      barbot_page_addon_text:
-        "Nuestra experiencia de Bar Hopping une varios lugares en una misma noche — Barbot puede figurar ahí. Otro formato y reserva aparte si querés el recorrido completo.",
-      barbot_page_addon_btn: "Ver Bar Hopping nocturno",
-      josefina_title: "La Josefina — Almuerzo o cena en el Yachting de Colonia",
+      barbot_create_title: "Creá tu experiencia",
+      barbot_create_subtitle:
+        "Elegí la fecha y tocá el botón: en la ventana cargás bebida y comida.",
+      barbot_create_btn: "+ Creá tu experiencia",
+      barbot_popup_title: "Bebida y comida en Barbot",
+      barbot_popup_drinks_hint: "¿Cuántas pintas enteras y medias pintas?",
+      barbot_popup_full_label: "Pintas enteras (USD 7 c/u)",
+      barbot_popup_half_label: "Medias pintas (USD 5 c/u)",
+      barbot_food_heading: "Comida",
+      barbot_food_hint: "Cada opción sale USD 10. Indicá la cantidad que quieras.",
+      barbot_food_qty_label: "Cant.",
+      barbot_food_pizza: "Pizza",
+      barbot_food_burger: "Hamburguesa Barbot",
+      barbot_food_fries: "Papas con crema de queso",
+      barbot_beer_at_bar_note: "El tipo de cerveza lo elegís en el bar.",
+      barbot_table_reserved_web_note: "Incluye mesa reservada con tu compra por web.",
+      barbot_summary_empty:
+        "Usá “Creá tu experiencia” o “Agregar pedido” para guardar bebida y comida acá. Vas a ver cada pedido en una tarjeta y el total abajo, como en nuestras otras experiencias.",
+      barbot_summary_visit: "Fecha de visita",
+      barbot_summary_drinks_heading: "Bebidas",
+      barbot_summary_food_heading: "Comida",
+      barbot_summary_total: "Total estimado (USD)",
+      barbot_order_subtotal: "Subtotal",
+      barbot_unit_full: "Pinta entera",
+      barbot_unit_half: "Media pinta",
+      barbot_people_label: "Personas",
+      barbot_reserve_needs_items: "Agregá al menos una bebida o comida en la ventana antes de guardar.",
+      barbot_reserve_needs_orders: "Agregá al menos un pedido (guardá en la ventana) antes de reservar.",
+      barbot_wa_preface: "Hola! Quiero reservar en Barbot Brewpub con esta selección:",
+      barbot_page_map_title: "Dónde queda Barbot Brewpub",
+      barbot_page_map_text:
+        "Usá este mapa como referencia de Barbot Brewpub en Colonia del Sacramento, en el Casco Histórico.",
+      barbot_page_map_link: "Abrir en Google Maps",
+      barbot_page_map_iframe_title: "Mapa: Barbot Brewpub, Colonia del Sacramento",
+      josefina_title: "La Josefina · Almuerzo o cena en el Yachting de Colonia",
       josefina_meta_view: "Vistas espectaculares al Río de la Plata — lo más destacado es el entorno",
       josefina_meta_duration: "La experiencia dura 2 horas",
       josefina_meta_favorite: "Favorito de los turistas",
       josefina_text:
         "Almuerzo o cena en el Restaurante La Josefina, en el Yachting Club de Colonia: vistas al agua, ambiente relajado y uno de los panoramas más buscados por quienes visitan la ciudad.",
-      josefina_hero: "🍽 La Josefina — Almuerzo o cena en el Yachting de Colonia",
+      josefina_hero: "🍽 La Josefina · Almuerzo o cena en el Yachting de Colonia",
       josefina_about_p:
         "Disfrutá un almuerzo o una cena en el Restaurante La Josefina, dentro del Real Club Náutico de Colonia. Lo más valioso es el lugar: la luz sobre el Río de la Plata, la vista abierta y el clima del puerto deportivo — ideal para combinar buena mesa con un paisaje inolvidable.",
       josefina_price_title: "Almuerzo o cena · aprox. 2 horas · Se recomienda reservar",
@@ -1821,7 +1991,7 @@ const translations = {
       josefina_page_p1:
         "Disfrutá un almuerzo o una cena en el Restaurante La Josefina, con vista al Río de la Plata desde el Yacht Club de Colonia (Real Club Náutico). Lo más destacado es el entorno: atardeceres, el movimiento del agua y el ambiente del puerto deportivo.",
       josefina_page_p2:
-        "El restaurante está a cargo de sus dueños, Pablo y Luis. Luis es hiper simpático y muy agradable; Pablo es excelente y suele estar junto a su hijo Guzmán. Saben cuidar de su lugar y de sus empleados y harán que tengas una experiencia inigualable.",
+        "El restaurante está a cargo de sus dueños, Pablo y Luis. Luis es hiper simpático y muy agradable; Pablo es excelente y suele estar junto a su hijo Guzmán.",
       josefina_page_p3:
         "La carta combina clásicos uruguayos y propuestas regionales — ideal para acompañar la vista más buscada del lugar.",
       josefina_page_p4:
@@ -2142,7 +2312,7 @@ const translations = {
       liebres_about_p:
         "Te recibirán Juanma y Sabrina, que cuidan seis caballos y una potranca para tu cabalgata, y sus dos perros — Simón y Estrelli — que forman parte del día y suelen acompañar entre paradas. La cabalgata es en Riachuelo, en las afueras de Colonia. Después del paseo, un traslado privado te lleva a Las Liebres para recorrer el viñedo y la huerta orgánica y degustar tres vinos uruguayos maridados con platos de temporada de la cocina. Andres, el gerente, va a estar esperando para recibir al grupo en Las Liebres. Calculá unas 3 a 4 horas para toda la experiencia (cabalgata, traslados, visita y degustación).",
       liebres_reel_btn: "🎥 Ver reel en @_sacramentoadventures",
-      liebres_dining_experience_name: "Almuerzo o cena en Las Liebres",
+      liebres_dining_experience_name: "Experiencia gastronómica en Las Liebres",
       liebres_dining_about_title: "Sobre esta experiencia",
       liebres_dining_about_p:
         "Disfrutá una experiencia de almuerzo o cena en Las Liebres, un restaurante boutique en Colonia del Sacramento. Esta actividad está enfocada en el menú gastronómico y el ambiente del restaurante, con traslado privado incluido. Andres, el gerente, te estará esperando para recibir al grupo en Las Liebres. Podés elegir el formato de comida al crear tu pedido.",
@@ -2167,7 +2337,7 @@ const translations = {
         "✔ Traslado privado ida y vuelta (hotel o terminal; ver resumen)",
       liebres_dining_create_title: "Creá tu pedido",
       liebres_dining_create_subtitle:
-        "Elegí almuerzo o cena y estilo de menú (Viñedo o Ceibo), luego agregá preferencias.",
+        "Elegí Viñedo o Ceibo, luego almuerzo o cena, y agregá preferencias.",
       liebres_dining_create_btn: "+ Crear tu pedido",
       liebres_dining_guide_help_aria:
         "Más información sobre la guía opcional para el grupo",
@@ -2181,10 +2351,15 @@ const translations = {
       liebres_dining_map_iframe_title:
         "Mapa: Las Liebres, Colonia del Sacramento",
       liebres_dining_back_home: "Volver al inicio",
-      liebres_dining_popup_title: "Elegí almuerzo o cena",
-      liebres_dining_popup_package_title: "Paquete",
+      liebres_dining_popup_title: "Elegí menú y almuerzo o cena",
+      liebres_dining_popup_package_title: "Menú",
       liebres_dining_popup_package_note:
         "(precio por huésped; el prorrateo de transporte aparece en el resumen)",
+      liebres_dining_pkg_vinedo_menu_line: "Menú Viñedo 🍇 — USD 65",
+      liebres_dining_pkg_ceibo_menu_line: "Menú Ceibo 🌳 — USD 80",
+      liebres_dining_meal_heading: "Almuerzo o cena",
+      liebres_dining_meal_lunch: "Almuerzo",
+      liebres_dining_meal_dinner: "Cena",
       liebres_dining_pkg_lunch_vinedo_main:
         "Almuerzo — Propuesta Viñedo 🍇 USD 65",
       liebres_dining_pkg_lunch_vinedo_label: "Almuerzo — Propuesta Viñedo",
@@ -2209,18 +2384,19 @@ const translations = {
       liebres_dining_pkg_item_3: "Una copa de vino y café o té",
       liebres_dining_pref_no_alcohol: "Sin alcohol",
       liebres_steps_title: "Cómo funciona",
-      liebres_step_1:
-        "🚐 Traslado privado: Un vehículo privado te busca en tu hotel o en la terminal de ómnibus.",
-      liebres_step_2:
-        "🐎 Cabalgata en Riachuelo: Paseo guiado por el campo de Riachuelo, fuera de Colonia. Los caballos de Juanma y Sabrina y (a menudo) Simón y Estrelli te acompañan en el sendero.",
-      liebres_step_3:
-        "🚗 Traslado a Las Liebres: Después de la cabalgata en Riachuelo, un vehículo privado te lleva directo a Comarca Las Liebres.",
-      liebres_step_4:
-        "🍇 Viñedo y huerta: Recorrida guiada por las cepas y la huerta orgánica en Las Liebres.",
-      liebres_step_5:
-        "🍷 Degustación de vinos: Tres vinos con maridajes — indicá restricciones alimentarias al armar tu pedido.",
-      liebres_step_6:
-        "🏨 Regreso: El mismo servicio privado te busca al terminar y te deja en tu hotel o en la terminal.",
+      liebres_step_1_title: "Traslado privado:",
+      liebres_step_1_desc: "Un vehículo privado te busca en tu hotel o en la terminal de ómnibus.",
+      liebres_step_2_title: "Cabalgata en Riachuelo:",
+      liebres_step_2_desc:
+        "Paseo guiado por el campo de Riachuelo, fuera de Colonia. Los caballos de Juanma y Sabrina y (a menudo) Simón y Estrelli te acompañan en el sendero.",
+      liebres_step_3_title: "Traslado a Las Liebres:",
+      liebres_step_3_desc: "Después de la cabalgata en Riachuelo, un vehículo privado te lleva directo a Comarca Las Liebres.",
+      liebres_step_4_title: "Viñedo y huerta:",
+      liebres_step_4_desc: "Recorrida guiada por las cepas y la huerta orgánica en Las Liebres.",
+      liebres_step_5_title: "Degustación de vinos:",
+      liebres_step_5_desc: "Tres vinos con maridajes — indicá restricciones alimentarias al armar tu pedido.",
+      liebres_step_6_title: "Regreso:",
+      liebres_step_6_desc: "El mismo servicio privado te busca al terminar y te deja en tu hotel o en la terminal.",
       liebres_price_title: "USD 85 por huésped + guía grupal opcional",
       liebres_price_p:
         "La experiencia incluye cabalgata en Riachuelo (fuera de Colonia), traslado a Las Liebres, visita al viñedo y huerta, y degustación de tres vinos con maridajes. Calculá unas 3 a 4 horas puerta a puerta. El transporte privado se factura por vehículo: USD 40 en total para 1–4 huéspedes (un vehículo); USD 80 en total para 5–8 huéspedes (dos vehículos). Sumá un pedido por huésped — el resumen y el total se actualizan solos.",
@@ -2261,7 +2437,16 @@ const translations = {
       liebres_popup_title: "Tu cabalgata, degustación y preferencias",
       liebres_popup_horseback_strong: "Cabalgata",
       liebres_popup_horseback_note: "(incluida — Riachuelo, fuera de Colonia)",
-      liebres_starter_1: "Riachuelo — sendero guiado por el campo (~45 min)",
+      liebres_popup_horseback_times_title: "Horario de la cabalgata",
+      liebres_popup_horseback_times_note: "Elegí un turno para Riachuelo (11, 12 o 13 h).",
+      liebres_horse_time_11: "11:00",
+      liebres_horse_time_12: "12:00",
+      liebres_horse_time_13: "13:00",
+      liebres_horseback_time_label: "Horario de cabalgata",
+      liebres_horseback_time_required: "Elegí un horario para la cabalgata.",
+      liebres_horseback_time_each_required:
+        "Cada pedido necesita un horario de cabalgata. Editá el pedido para elegirlo.",
+      liebres_starter_1: "Riachuelo — sendero guiado por el campo (~1 h)",
       liebres_popup_tasting_strong: "Degustación",
       liebres_popup_tasting_note: "(mismo precio — elegí un estilo de maridaje)",
       liebres_main_1: "Tres vinos — maridajes de cocina de temporada (estándar)",
@@ -2444,7 +2629,27 @@ const translations = {
       wa_none: "Ninguna",
       wa_payment_prompt: "Para confirmar la reserva, completá el pago aquí:",
       wa_payment_fallback: "Por favor compartan instrucciones de pago para confirmar esta reserva.",
-      total_label: "Total"
+      total_label: "Total",
+      payment_success_title: "Pago confirmado",
+      payment_success_lead: "Gracias — recibimos tu pago correctamente.",
+      payment_success_body:
+        "Nuestro equipo se pondrá en contacto pronto con la confirmación de tu reserva y los próximos pasos. Revisá tu correo y WhatsApp.",
+      payment_success_home_btn: "Volver a experiencias",
+      payment_success_wa_btn: "Escribinos por WhatsApp",
+      payment_failed_title: "Pago no completado",
+      payment_failed_lead: "El pago no se completó o fue cancelado.",
+      payment_failed_body:
+        "No se confirmó ningún cobro. Podés intentar de nuevo desde tu enlace de reserva o escribirnos si necesitás ayuda.",
+      payment_failed_retry_btn: "Intentar de nuevo",
+      payment_failed_home_btn: "Volver a experiencias",
+      payment_return_redirecting: "Redirigiendo…",
+      payment_return_verifying: "Verificando tu pago…",
+      payment_pending_title: "Pago pendiente",
+      payment_pending_lead: "Todavía no confirmamos tu pago.",
+      payment_pending_body:
+        "Si completaste el pago, nuestro equipo se pondrá en contacto cuando esté confirmado. También podés escribirnos por WhatsApp.",
+      payment_pending_home_btn: "Volver a experiencias",
+      payment_wa_prefill: "¡Hola! Tengo una consulta sobre mi pago en Sacramento Adventures."
     },
     pt: {
       hero_title: "Descubra Colonia",
@@ -2462,7 +2667,6 @@ const translations = {
       under_construction: "🚧 Em construção",
       partners_trusted_by: "Confiam em nós",
       card_fully_insured: "Experiência com seguro incluído",
-      card_medical_simc: "Assistência médica incluída (SIMC)",
       bike_meta_1_t: "1,5 h",
       bike_meta_1_l: "Inglês • espanhol • português",
       bike_meta_1_f: "Torta frita tradicional incluída",
@@ -2471,10 +2675,10 @@ const translations = {
       bike_title: "Passeio de bicicleta guiado",
       bike_text:
         "Explore Colonia del Sacramento de bicicleta com um tour relaxado: Centro Histórico, rambla e bairros, com história e cultura. Perfeito para quem gosta de atividade.",
-      lieb_title: "Almoço ou jantar nas Liebres",
+      lieb_title: "Experiência gastronômica no Las Liebres",
       lieb_text:
         "Experiência elegante nas Liebres, restaurante boutique em Colonia. Pratos assinatura, clima íntimo e transfer privado incluído.",
-      lupajack_title: "Passeio com Lupa e Jack – Colonia como um morador",
+      lupajack_title: "Passeio com Lupa e Jack · Colonia como um morador",
       lupajack_text:
         "Amamos animais e sabemos como é estar longe deles. Junte-se a um passeio relaxado por Colonia com tortas fritas ou churros.",
       mate_title: "Mate e churrasco: uruguaio por um dia",
@@ -2486,7 +2690,7 @@ const translations = {
       candombe_title: "Experiência de tambores candombe",
       candombe_text:
         "O ritmo do Uruguai no candombe. Noções de tambores com músicos locais.",
-      romantic_title: "Casa Viera — Jantar romântico",
+      romantic_title: "Casa Viera · Jantar romântico",
       romantic_home_meta_place: "Casa Viera",
       romantic_home_meta_evening: "Noite",
       romantic_home_meta_menu: "Jantar de três pratos e vinho premium",
@@ -2525,7 +2729,7 @@ const translations = {
       home_hist_lieb_meta_2_transfer: "Transfer incluído",
       home_hist_lieb_desc:
         "Comece com um tour guiado pelo Centro Histórico e siga para Las Liebres: visita ao vinhedo e horta, degustação com harmonizações ou almoço completo — você escolhe na reserva.",
-      home_cabalgata_title: "Cavalgada e degustação — Las Liebres",
+      home_cabalgata_title: "Cavalgada e degustação · Las Liebres",
       home_cabalgata_meta_1: "Experiência em vinhedo boutique",
       home_cabalgata_meta_2_ride: "Cavalgada em Riachuelo (fora de Colonia)",
       home_cabalgata_meta_2_vine: "Depois vinhedo e horta Las Liebres",
@@ -2535,20 +2739,66 @@ const translations = {
       home_cabalgata_desc:
         "A cavalgada é em Riachuelo; depois transfer para Las Liebres (vinhedo, horta e degustação). Juanma e Sabrina conduzem o passeio a cavalo (com Simón e Estrelli). Cerca de 3–4 horas — detalhes na página de reserva.",
       home_sio_title: "Experiência SIO Sushi",
+      home_sio_premium_badge: "Premium",
       home_sio_meta_1: "Experiência gastronômica premium",
       home_sio_meta_2: "Sushi de nível internacional em Colonia",
-      home_sio_meta_3_place: "Centro Histórico",
+      home_sio_meta_3_place: "Colonia del Sacramento",
       home_sio_meta_3_time: "Duração: 2 horas",
       home_sio_desc:
         "Jantar inesquecível no SIO, uma das experiências mais exclusivas de Colonia. Menu refinado, ingredientes premium e atmosfera única — ideal para uma noite especial.",
-      home_bar_title: "Bar hopping e noite em Colonia",
-      home_bar_meta_1_time: "3 - 4 horas",
-      home_bar_meta_1_cocktails: "Coquetéis",
-      home_bar_meta_1_beer: "Cerveja artesanal",
-      home_bar_meta_2: "Casa Viera • La Chopería • Barbot",
-      home_bar_meta_3: "Entrada em balada incluída",
-      home_bar_desc:
-        "A noite de Colonia como um morador: roteiro por bares como Casa Viera, La Chopería e Barbot. Depois, opcional no Café del Río e para terminar, dança. Música, encontros e boas lembranças.",
+      sio_hero_h1: "Experiência SIO Sushi",
+      sio_about_title: "Sobre esta experiência",
+      sio_about_p:
+        "Jantar inesquecível no SIO, uma das experiências mais exclusivas de Colonia. Menu refinado, ingredientes premium e atmosfera única — ideal para uma noite especial.",
+      sio_reel_btn: "🎥 SIO no Instagram",
+      sio_steps_title: "Como funciona",
+      sio_step_1_title: "Sua mesa:",
+      sio_step_1_body:
+        "Mesa reservada em seu nome no SIO, em Colonia del Sacramento — chegue no horário combinado e seu lugar estará preparado.",
+      sio_step_2_title: "Menu degustação em 4 passos:",
+      sio_step_2_body:
+        "A experiência inclui um menu degustação em quatro momentos, com ingredientes da estação, técnica precisa e apresentação à altura do salão.",
+      sio_step_3_title: "Reserve o tempo:",
+      sio_step_3_body:
+        "Reserve cerca de duas horas para apreciar o menu com calma — perfeito para um jantar a dois, uma comemoração ou o jantar mais marcante da viagem.",
+      sio_price_h3: "Noite especial · USD 70",
+      sio_included_title: "O que está incluído",
+      sio_include_1: "✔ Experiência de jantar no SIO (menu do chef; pratos podem variar conforme a estação)",
+      sio_include_2: "✔ Ingredientes premium e serviço atencioso",
+      sio_include_3: "✔ Salão com design cuidado",
+      sio_include_4: "✔ Perfeito para uma noite especial ou celebração",
+      sio_gallery_title: "Galeria da experiência",
+      sio_map_title: "Onde fica o SIO",
+      sio_map_text:
+        "O SIO fica em Colonia del Sacramento — abra o mapa para ver a localização exata e como chegar.",
+      sio_map_link: "Abrir no Google Maps",
+      sio_map_iframe_title: "Mapa: SIO, Colonia del Sacramento",
+      sio_back_home: "Voltar para o início",
+      sio_gal_alt_1: "SIO bar de sushi e interior",
+      sio_gal_alt_2: "Prato em destaque no SIO",
+      sio_gal_alt_3: "Detalhe do salão SIO",
+      sio_gal_alt_4: "Ambiente do restaurante SIO",
+      sio_gal_alt_5: "Preparação no SIO",
+      sio_gal_alt_6: "Experiência SIO em Colonia",
+      sio_gal_alt_7: "Seleção de sushi no SIO",
+      sio_gal_alt_8: "Momento no salão SIO",
+      sio_gal_alt_9: "Momento de degustação no SIO",
+      sio_special_menu_btn: "Ver menu especial",
+      sio_special_menu_close_aria: "Fechar",
+      sio_special_menu_popup_title: "Noite especial",
+      sio_special_menu_line_trufa: "Especial Trufado",
+      sio_special_menu_item_roll: "Roll x 10 (à escolha)",
+      sio_special_menu_drink_legend: "Bebida — escolha uma opção",
+      sio_special_menu_drink_juice: "🧃 Suco",
+      sio_special_menu_drink_wine: "🍷 Taça de vinho Deicas",
+      sio_special_menu_item_dessert: "Sobremesa",
+      sio_special_menu_save_error: "Escolha suco ou taça de vinho Deicas.",
+      sio_booking_block_title: "Reserve seu menu Noite especial",
+      sio_order_summary_menu_label: "Menu",
+      sio_order_summary_roll_label: "Roll",
+      sio_wa_intro: "Olá! Gostaria de reservar o menu Noite especial no SIO:",
+      orders_sio_ready_label: "Pronto para reservar",
+      orders_sio_ready_sub: "Toque em Reservar para enviar seu pedido pelo WhatsApp.",
       lupajack_card_meta_t: "1,5 h",
       lupajack_card_meta_d: "Aula de tambores",
       lupajack_card_meta_f: "Torta frita tradicional incluída",
@@ -2563,14 +2813,6 @@ const translations = {
       mateonly_home_meta_m: "Ritual do mate e degustação com locais",
       horse_home_meta_t: "Cerca de 2 horas",
       horse_home_meta_n: "Trilhas rurais e natureza",
-      home_toros_night_title:
-        "Noite em Colonia: jantar, hospedagem e Plaza de Toros",
-      home_toros_night_meta_1_night: "1 noite",
-      home_toros_night_meta_1_dinner: "Jantar incluído",
-      home_toros_night_meta_1_breakfast: "Café da manhã incluído",
-      home_toros_night_meta_2: "3 experiências em 1",
-      home_toros_night_desc:
-        "Noite única: jantar nas Liebres, pernoite em apartamento perto da Plaza de Toros, café da manhã e visita à praça de touros com ingressos.",
       home_mision_title:
         "Noite histórica: La Misión, jantar no Bruma e walking tour",
       home_mision_meta_pf: "Pet friendly",
@@ -2583,7 +2825,7 @@ const translations = {
       home_sio_mision_title:
         "Noite premium: La Misión, jantar SIO Sushi e walking tour",
       home_sio_mision_desc:
-        "Estadia na La Misión e jantar sushi de alto nível no SIO. Café da manhã e tour a pé pelo centro histórico.",
+        "Estadia na La Misión e jantar sushi de alto nível no SIO. Café da manhã e tour a pé guiado por Colonia.",
       home_corp_boat_badge: "Experiência corporativa exclusiva",
       home_corp_boat_title: "Pôr do sol de barco e jantar na Casa Petit",
       home_corp_boat_meta_1_sunset: "Pôr do sol",
@@ -2597,17 +2839,17 @@ const translations = {
       fullday_card_meta_time: "4-5 horas",
       fullday_card_meta_langs: "Inglês • espanhol • português",
       fullday1_title:
-        "Experiência dia inteiro 1 — Reserva de animais, churrasco e praia",
+        "Experiência dia inteiro 1 · Reserva de animais, churrasco e praia",
       fullday1_text:
         "Visite a reserva Kerayvoty em Juan Lacaze, saboreie um churrasco uruguaio tradicional em Santa Ana e relaxe nas praias antes de retornar a Colonia.",
-      fullday2_title: "Experiência dia inteiro 2 — Carmelo e vinícolas",
+      fullday2_title: "Experiência dia inteiro 2 · Carmelo e vinícolas",
       fullday2_text:
         "Explore Carmelo em um dia que combina city tour guiado com visitas a vinícolas. História, orla do rio e degustações entre vinhedos de uma das regiões mais conhecidas do Uruguai.",
-      fullday3_title: "Experiência dia inteiro 3 — Herança suíça (Colonia Suiza)",
+      fullday3_title: "Experiência dia inteiro 3 · Herança suíça (Colonia Suiza)",
       fullday3_text:
         "Conheça a herança suíça de Nueva Helvecia: fábricas de queijo, cidade histórica, Santuário Schoenstatt e marcos como o Hotel Suizo, com as tradições dos imigrantes.",
       fullday4_title:
-        "Experiência dia inteiro 4 — Cavalgada, jantar e observação das estrelas",
+        "Experiência dia inteiro 4 · Cavalgada, jantar e observação das estrelas",
       fullday4_text:
         "Cavalgada pelo campo, jantar especial nas Liebres e noite de observação com um astrofotógrafo que guia sob o céu e registra a noite.",
       rent_with_us: "Alugue com a gente!",
@@ -2689,10 +2931,10 @@ const translations = {
       about_team_maru_bday: "🎂 27 fev",
       about_team_maru_bio:
         "Maru é uma profissional muito empreendedora e detalhista, reconhecida pela criatividade e senso de responsabilidade. Transforma ideias em realidade com refinamento e organização, cuidando de cada etapa.",
-      about_team_matias_role: "Manutenção de código e suporte",
-      about_team_matias_bday: "🎂 1 fev",
+      about_team_matias_role: "Auxiliar de suporte web",
+      about_team_matias_bday: "🎂 15 out",
       about_team_matias_bio:
-        "Matías estuda na UTEC e se destaca pela abordagem estruturada e analítica do desenvolvimento.",
+        "Colabora em tarefas específicas do projeto para melhorar a experiência do usuário.",
       about_team_selena_maite_role: "Guia turística",
       about_team_selena_maite_bday: "🎂 31 jan",
       about_team_selena_maite_bio:
@@ -2733,7 +2975,11 @@ const translations = {
         "Explore a icônica praça de touros e sua história com transfer privativo e ingressos incluídos. Pule a fila! Anita é um café no coração do bairro histórico, com uma vista incrível. A experiência tem cerca de 3 horas.",
       services_title: "Serviços úteis em Colonia del Sacramento",
       services_intro:
-        "Farmácias, supermercados perto do Bairro Histórico, estacionamentos, delegacias de polícia e centros de saúde — referências para a sua estadia. Horários e tarifas podem mudar; confirme antes de ir.",
+        "Câmbio recomendado, farmácias, supermercados perto do Bairro Histórico, estacionamentos, delegacias de polícia e centros de saúde — referências para a sua estadia. Horários e tarifas podem mudar; confirme antes de ir.",
+      services_cat_exchange: "Câmbio",
+      services_exchange_recommended_badge: "Recomendado",
+      services_exchange_aguerrebere_meta:
+        "Gral. Flores 222 · Bairro Histórico · Câmbio, transferências, Redpagos e caixa eletrônico ·  Em geral seg–sex 8:30–20:30, sáb 8:30–16:30 — confirme antes de ir",
       services_cat_pharmacies: "Farmácias",
       services_cat_supermarkets: "Supermercados (zona do Bairro Histórico)",
       services_cat_parking: "Estacionamentos",
@@ -2771,11 +3017,11 @@ const translations = {
       update_order: "Atualizar pedido",
       food_title: "Tour a pé, Chivito e Plaza de Toros",
       barbot_home_badge: "Medalha de ouro · Strong Ale",
-      barbot_home_title: "Cervejaria Barbot — cerveja artesanal premiada",
+      barbot_home_title: "Cervejaria Barbot · cerveja artesanal premiada",
       barbot_home_meta_1: "Ouro na IV Copa Sul-Americana de Cerveja",
       barbot_home_meta_2: "Bonavena Strong Ale",
       barbot_home_desc:
-        "O Barbot Brewpub conquistou ouro com a Bonavena Strong Ale na IV Copa Sul-Americana de Cerveja. O brewpub fica no Centro Histórico de Colonia — perfeito para uma pinta. Combine com nossa experiência de bares à noite ou visite por conta própria.",
+        "O Barbot Brewpub conquistou ouro com a Bonavena Strong Ale na IV Copa Sul-Americana de Cerveja. O brewpub fica no Centro Histórico de Colonia — perfeito para uma pinta.",
       barbot_home_img_1_alt: "Cerveja artesanal Barbot Brewpub em Colonia",
       barbot_home_img_2_alt: "Interior do Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveja Bonavena Strong Ale",
@@ -2791,21 +3037,47 @@ const translations = {
         "🍺 Prove o destaque: Bonavena Strong Ale, ouro na IV Copa Sul-Americana de Cerveja — e compare com dezenas de rótulos no cardápio.",
       barbot_page_moment_3:
         "🕐 Seu ritmo: flight, uma pinta ou uma rodada tranquila — não é um pub crawl empacotado; é a sua noite.",
-      barbot_page_highlights_title: "Em resumo",
-      barbot_page_highlight_1: "✔ ~20 variedades — torneiras e garrafas para explorar",
-      barbot_page_highlight_2: "✔ Bonavena Strong Ale — ouro na IV Copa Sul-Americana de Cerveja",
-      barbot_page_highlight_3: "✔ Brewpub no Centro Histórico UNESCO de Colonia",
-      barbot_page_addon_title: "Prefere uma noite guiada entre bares?",
-      barbot_page_addon_text:
-        "Nossa experiência Bar Hopping costuma ligar vários endereços na mesma noite — o Barbot pode entrar nesse roteiro. Formato diferente e reserva à parte se você quer o circuito completo.",
-      barbot_page_addon_btn: "Ver Bar Hopping à noite",
-      josefina_title: "La Josefina — Almoço ou jantar no Yachting de Colonia",
+      barbot_create_title: "Monte sua experiência",
+      barbot_create_subtitle:
+        "Escolha a data e use o botão: na janela você escolhe bebida e comida.",
+      barbot_create_btn: "+ Monte sua experiência",
+      barbot_popup_title: "Bebida e comida no Barbot",
+      barbot_popup_drinks_hint: "Quantas pintas cheias e meias pintas?",
+      barbot_popup_full_label: "Pintas cheias (USD 7 cada)",
+      barbot_popup_half_label: "Meias pintas (USD 5 cada)",
+      barbot_food_heading: "Comida",
+      barbot_food_hint: "Cada opção custa USD 10. Informe a quantidade desejada.",
+      barbot_food_qty_label: "Qtd",
+      barbot_food_pizza: "Pizza",
+      barbot_food_burger: "Hambúrguer Barbot",
+      barbot_food_fries: "Batatas com creme de queijo",
+      barbot_beer_at_bar_note: "O tipo de cerveja você escolhe no bar.",
+      barbot_table_reserved_web_note: "Inclui mesa reservada com a compra pelo site.",
+      barbot_summary_empty:
+        "Use “Monte sua experiência” ou “Adicionar pedido” para salvar bebida e comida aqui. Cada pedido aparece num cartão e o total embaixo, como nas outras experiências.",
+      barbot_summary_visit: "Data da visita",
+      barbot_summary_drinks_heading: "Bebidas",
+      barbot_summary_food_heading: "Comida",
+      barbot_summary_total: "Total estimado (USD)",
+      barbot_order_subtotal: "Subtotal",
+      barbot_unit_full: "Pinta cheia",
+      barbot_unit_half: "Meia pinta",
+      barbot_people_label: "Pessoas",
+      barbot_reserve_needs_items: "Inclua ao menos uma bebida ou comida na janela antes de salvar.",
+      barbot_reserve_needs_orders: "Adicione ao menos um pedido (salve na janela) antes de reservar.",
+      barbot_wa_preface: "Olá! Gostaria de reservar no Barbot Brewpub com esta seleção:",
+      barbot_page_map_title: "Onde fica o Barbot Brewpub",
+      barbot_page_map_text:
+        "Use este mapa como referência do Barbot Brewpub em Colonia del Sacramento, no Centro Histórico.",
+      barbot_page_map_link: "Abrir no Google Maps",
+      barbot_page_map_iframe_title: "Mapa: Barbot Brewpub, Colonia del Sacramento",
+      josefina_title: "La Josefina · Almoço ou jantar no Yachting de Colonia",
       josefina_meta_view: "Vista incrível para o Rio da Prata — o cenário é o grande destaque",
       josefina_meta_duration: "A experiência dura 2 horas",
       josefina_meta_favorite: "Favorita entre os turistas",
       josefina_text:
         "Almoço ou jantar no Restaurante La Josefina, no Yacht Club de Colonia: vistas para a água, clima descontraído e um dos cenários mais fotografados da cidade.",
-      josefina_hero: "🍽 La Josefina — Almoço ou jantar no Yacht Club de Colonia",
+      josefina_hero: "🍽 La Josefina · Almoço ou jantar no Yacht Club de Colonia",
       josefina_about_p:
         "Aproveite almoço ou jantar no Restaurante La Josefina, dentro do Real Club Náutico de Colonia. O grande atrativo é o ambiente: a luz sobre o Rio da Prata, a vista aberta e a atmosfera da marina — perfeito para quem quer boa comida com uma paisagem inesquecível.",
       josefina_price_title: "Almoço ou jantar · cerca de 2 horas · Reserva recomendada",
@@ -3044,7 +3316,7 @@ const translations = {
       josefina_page_p1:
         "Aproveite almoço ou jantar no Restaurante La Josefina, com vista para o Rio da Prata no Yacht Club de Colonia (Real Club Náutico). O grande destaque é o cenário: luz dourada, o rio e o clima descontraído da marina.",
       josefina_page_p2:
-        "O restaurante é administrado por seus proprietários, Pablo e Luis. Luis é super simpático e agradável; Pablo é ótimo e costuma estar ao lado do filho Guzmán. Sabem cuidar do espaço e de quem trabalha com eles e vão proporcionar uma experiência inigualável.",
+        "O restaurante é administrado por seus proprietários, Pablo e Luis. Luis é super simpático e agradável; Pablo é ótimo e costuma estar ao lado do filho Guzmán.",
       josefina_page_p3:
         "O cardápio combina clássicos uruguaios e sabores regionais — perfeito para acompanhar uma das vistas mais bonitas da cidade.",
       josefina_page_p4:
@@ -3365,7 +3637,7 @@ const translations = {
       liebres_about_p:
         "Você será recebido por Juanma e Sabrina, que cuidam de seis cavalos e uma potranca para a sua cavalgada, e pelos dois cães — Simón e Estrelli — que fazem parte do dia e costumam acompanhar entre uma parada e outra. A cavalgada é em Riachuelo, nos arredores de Colonia. Depois do passeio, um transfer privativo leva você até Las Liebres para caminhar pelo vinhedo e horta orgânica e degustar três vinhos uruguaios harmonizados com pratos sazonais da cozinha. Andres, o gerente, estará esperando para receber o grupo em Las Liebres. Reserve cerca de 3 a 4 horas para a experiência completa (cavalgada, transfers, visita e degustação).",
       liebres_reel_btn: "🎥 Ver reel em @_sacramentoadventures",
-      liebres_dining_experience_name: "Almoço ou jantar no Las Liebres",
+      liebres_dining_experience_name: "Experiência gastronômica no Las Liebres",
       liebres_dining_about_title: "Sobre esta experiência",
       liebres_dining_about_p:
         "Aproveite uma experiência de almoço ou jantar no Las Liebres, um restaurante boutique em Colonia del Sacramento. Esta atividade foca no menu gastronômico e no ambiente do restaurante, com transfer privado incluído. Andres, o gerente, estará esperando para receber seu grupo no Las Liebres. Você pode escolher o formato da refeição ao criar seu pedido.",
@@ -3390,7 +3662,7 @@ const translations = {
         "✔ Transfer privado de ida e volta (hotel ou terminal; ver resumo)",
       liebres_dining_create_title: "Monte seu pedido",
       liebres_dining_create_subtitle:
-        "Escolha almoço ou jantar e estilo de menu (Viñedo ou Ceibo), depois adicione preferências.",
+        "Escolha Viñedo ou Ceibo, depois almoço ou jantar, e adicione preferências.",
       liebres_dining_create_btn: "+ Montar pedido",
       liebres_dining_guide_help_aria:
         "Mais informações sobre o guia opcional para o grupo",
@@ -3404,10 +3676,15 @@ const translations = {
       liebres_dining_map_iframe_title:
         "Mapa: Las Liebres, Colonia del Sacramento",
       liebres_dining_back_home: "Voltar para o início",
-      liebres_dining_popup_title: "Escolha almoço ou jantar",
-      liebres_dining_popup_package_title: "Pacote",
+      liebres_dining_popup_title: "Escolha menu e refeição",
+      liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(preço por hóspede; o rateio do transporte aparece no resumo)",
+      liebres_dining_pkg_vinedo_menu_line: "Menu Viñedo 🍇 — USD 65",
+      liebres_dining_pkg_ceibo_menu_line: "Menu Ceibo 🌳 — USD 80",
+      liebres_dining_meal_heading: "Almoço ou jantar",
+      liebres_dining_meal_lunch: "Almoço",
+      liebres_dining_meal_dinner: "Jantar",
       liebres_dining_pkg_lunch_vinedo_main:
         "Almoço — Proposta Viñedo 🍇 USD 65",
       liebres_dining_pkg_lunch_vinedo_label: "Almoço — Proposta Viñedo",
@@ -3432,18 +3709,19 @@ const translations = {
       liebres_dining_pkg_item_3: "Uma taça de vinho e café ou chá",
       liebres_dining_pref_no_alcohol: "Sem álcool",
       liebres_steps_title: "Como funciona",
-      liebres_step_1:
-        "🚐 Transfer privativo: Um veículo privativo busca você no hotel ou no terminal de ônibus.",
-      liebres_step_2:
-        "🐎 Cavalgada em Riachuelo: Passeio guiado pelo campo de Riachuelo, fora de Colonia. Os cavalos de Juanma e Sabrina e (muitas vezes) Simón e Estrelli acompanham na trilha.",
-      liebres_step_3:
-        "🚗 Transfer para Las Liebres: Depois da cavalgada em Riachuelo, um veículo privativo leva você direto à Comarca Las Liebres.",
-      liebres_step_4:
-        "🍇 Vinhedo e horta: Caminhada guiada pelas videiras e horta orgânica em Las Liebres.",
-      liebres_step_5:
-        "🍷 Degustação de vinhos: Três vinhos com harmonizações — informe restrições alimentares ao montar seu pedido.",
-      liebres_step_6:
-        "🏨 Retorno: O mesmo serviço privativo busca você ao final e deixa no hotel ou no terminal.",
+      liebres_step_1_title: "Transfer privativo:",
+      liebres_step_1_desc: "Um veículo privativo busca você no hotel ou no terminal de ônibus.",
+      liebres_step_2_title: "Cavalgada em Riachuelo:",
+      liebres_step_2_desc:
+        "Passeio guiado pelo campo de Riachuelo, fora de Colonia. Os cavalos de Juanma e Sabrina e (muitas vezes) Simón e Estrelli acompanham na trilha.",
+      liebres_step_3_title: "Transfer para Las Liebres:",
+      liebres_step_3_desc: "Depois da cavalgada em Riachuelo, um veículo privativo leva você direto à Comarca Las Liebres.",
+      liebres_step_4_title: "Vinhedo e horta:",
+      liebres_step_4_desc: "Caminhada guiada pelas videiras e horta orgânica em Las Liebres.",
+      liebres_step_5_title: "Degustação de vinhos:",
+      liebres_step_5_desc: "Três vinhos com harmonizações — informe restrições alimentares ao montar seu pedido.",
+      liebres_step_6_title: "Retorno:",
+      liebres_step_6_desc: "O mesmo serviço privativo busca você ao final e deixa no hotel ou no terminal.",
       liebres_price_title: "USD 85 por hóspede + guia de grupo opcional",
       liebres_price_p:
         "A experiência inclui cavalgada em Riachuelo (fora de Colonia), transfer para Las Liebres, visita ao vinhedo e horta, e degustação de três vinhos com harmonizações. Calcule cerca de 3 a 4 horas porta a porta. O transporte privativo é cobrado por veículo: USD 40 no total para 1–4 hóspedes (um veículo); USD 80 no total para 5–8 hóspedes (dois veículos). Adicione um pedido por hóspede — o resumo e o total são atualizados automaticamente.",
@@ -3484,7 +3762,16 @@ const translations = {
       liebres_popup_title: "Sua cavalgada, degustação e preferências",
       liebres_popup_horseback_strong: "Cavalgada",
       liebres_popup_horseback_note: "(incluída — Riachuelo, fora de Colonia)",
-      liebres_starter_1: "Riachuelo — trilha guiada pelo campo (~45 min)",
+      liebres_popup_horseback_times_title: "Horário da cavalgada",
+      liebres_popup_horseback_times_note: "Escolha um horário para Riachuelo (11, 12 ou 13 h).",
+      liebres_horse_time_11: "11:00",
+      liebres_horse_time_12: "12:00",
+      liebres_horse_time_13: "13:00",
+      liebres_horseback_time_label: "Horário da cavalgada",
+      liebres_horseback_time_required: "Escolha um horário para a cavalgada.",
+      liebres_horseback_time_each_required:
+        "Cada pedido precisa de um horário de cavalgada. Edite o pedido para escolher.",
+      liebres_starter_1: "Riachuelo — trilha guiada pelo campo (~1 h)",
       liebres_popup_tasting_strong: "Degustação",
       liebres_popup_tasting_note: "(mesmo preço — escolha um estilo de harmonização)",
       liebres_main_1: "Três vinhos — harmonizações da cozinha sazonal (padrão)",
@@ -3667,7 +3954,27 @@ const translations = {
       wa_none: "Nenhuma",
       wa_payment_prompt: "Para confirmar a reserva, finalize o pagamento aqui:",
       wa_payment_fallback: "Por favor, compartilhe instruções de pagamento para confirmar esta reserva.",
-      total_label: "Total"
+      total_label: "Total",
+      payment_success_title: "Pagamento confirmado",
+      payment_success_lead: "Obrigado — seu pagamento foi recebido com sucesso.",
+      payment_success_body:
+        "Nossa equipe entrará em contato em breve com a confirmação da reserva e os próximos passos. Fique de olho no e-mail e no WhatsApp.",
+      payment_success_home_btn: "Voltar às experiências",
+      payment_success_wa_btn: "Fale conosco no WhatsApp",
+      payment_failed_title: "Pagamento não concluído",
+      payment_failed_lead: "O pagamento não foi concluído ou foi cancelado.",
+      payment_failed_body:
+        "Nenhuma cobrança foi confirmada. Você pode tentar novamente pelo link da reserva ou nos escrever se precisar de ajuda.",
+      payment_failed_retry_btn: "Tentar novamente",
+      payment_failed_home_btn: "Voltar às experiências",
+      payment_return_redirecting: "Redirecionando…",
+      payment_return_verifying: "Verificando seu pagamento…",
+      payment_pending_title: "Pagamento pendente",
+      payment_pending_lead: "Ainda não confirmamos seu pagamento.",
+      payment_pending_body:
+        "Se você concluiu o pagamento, nossa equipe entrará em contato quando for confirmado. Você também pode nos escrever no WhatsApp.",
+      payment_pending_home_btn: "Voltar às experiências",
+      payment_wa_prefill: "Olá! Tenho uma dúvida sobre meu pagamento na Sacramento Adventures."
     }
   };
   window.__SACRAMENTO_TRANSLATIONS = translations;
@@ -3684,7 +3991,7 @@ function injectRentBadgeInActivityHero() {
   if (document.querySelector(".hero-rent-badge")) return;
 
   const hero = document.querySelector(
-    ".coffee-hero, .food-hero, .plaza-hero, .horse-hero, .boat-hero, .romantic-hero, .day-hero, .night-hero, .toros-night-hero, .mision-night-hero, .sio-night-hero, .bar-hero, .historic-lasliebres-hero, .liebres-dining-hero, .liebres-hero, .about-hero"
+    ".coffee-hero, .food-hero, .plaza-hero, .horse-hero, .boat-hero, .romantic-hero, .day-hero, .night-hero, .toros-night-hero, .mision-night-hero, .sio-night-hero, .sio-hero, .bar-hero, .historic-lasliebres-hero, .liebres-dining-hero, .liebres-hero, .about-hero"
   );
 
   if (!hero) return;
@@ -4394,6 +4701,12 @@ function initRentPopupBehavior() {
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+  if (window.SACRAMENTO_I18N_ONLY) {
+    const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
+    setLanguage(savedLanguage);
+    return;
+  }
+
   injectRentBadgeInActivityHero();
   initRentPopupBehavior();
 

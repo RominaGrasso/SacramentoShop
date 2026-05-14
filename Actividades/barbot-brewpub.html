@@ -89,9 +89,9 @@
     <div class="discount-badge barbot-hero-badge">
       <span class="discount-badge__text" data-translate="barbot_home_badge">Gold medal · Strong Ale</span>
     </div>
-    <h1 id="barbot-hero-title" data-translate="barbot_home_title">Barbot Brewpub — award-winning craft beer</h1>
+    <h1 id="barbot-hero-title" data-translate="barbot_home_title">Barbot Brewpub · award-winning craft beer</h1>
     <p class="barbot-hero-deck" data-translate="barbot_home_desc">
-      Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter — perfect for a pint when you’re in town. Pair it with our Bar Hopping experience or stop by on your own.
+      Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter — perfect for a pint when you’re in town.
     </p>
   </div>
 </section>
@@ -114,11 +114,6 @@
     Roughly 20 beer varieties flow through taps and bottles — IPAs, lagers, seasonals and more — so one stop can feel like a mini tasting tour without leaving the brewpub.
   </p>
 
-  <p class="medical" data-card-meta="shield">
-    <span class="sprite-row" aria-hidden="true"></span>
-    <span data-translate="sunset_boat_medical">Medical assistance included</span>
-  </p>
-
   <h3 class="experience-steps-title barbot-section-subtitle" data-translate="barbot_page_why_title">Why travelers pause here</h3>
 
   <div class="experience-steps barbot-moments">
@@ -130,21 +125,31 @@
   </div>
 
   <div class="coffee-includes">
-    <h3 data-translate="barbot_page_highlights_title">At a glance</h3>
-    <ul class="barbot-highlights-list">
-      <li data-translate="barbot_page_highlight_1">✔ ~20 beer varieties — taps and bottles to explore</li>
-      <li data-translate="barbot_page_highlight_2">✔ Gold-medal Bonavena Strong Ale — IV Copa Sul-Americana de Cerveja</li>
-      <li data-translate="barbot_page_highlight_3">✔ Brewpub soul inside Colonia’s UNESCO Historic Quarter</li>
-    </ul>
+    <div class="order-start">
+      <h3 data-translate="barbot_create_title">Create your experience</h3>
+      <div class="booking-visit-date-row">
+        <label for="barbotBookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+        <input type="date" id="barbotBookingVisitDate" autocomplete="off" />
+        <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+          Pick the day you plan to come so we can coordinate availability in advance.
+        </p>
+      </div>
+      <p data-translate="barbot_create_subtitle">
+        Pick your visit date, then open the window with the button: there you choose drinks and food.
+      </p>
+      <button type="button" id="barbotCreateBtn" class="btn primary-btn" data-translate="barbot_create_btn">
+        + Create your experience
+      </button>
+    </div>
   </div>
 
-  <aside class="barbot-addon barbot-addon--subtle">
-    <p class="barbot-addon__label" data-translate="barbot_page_addon_title">Want a guided night out instead?</p>
-    <p class="barbot-addon__text" data-translate="barbot_page_addon_text">
-      Our Bar Hopping route strings together several venues in one night — Barbot can appear on that itinerary. Different vibe and timing; book it separately if you’re craving the full crawl.
+  <div class="order-summary" id="barbotOrderSummary" aria-live="polite"></div>
+
+  <div class="experience-support-notice" role="status">
+    <p>
+      <strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
     </p>
-    <a href="bar.html" class="btn secondary barbot-addon__btn" data-translate="barbot_page_addon_btn">View Bar Hopping night</a>
-  </aside>
+  </div>
 
   <section class="coffee-gallery">
     <h2 data-translate="food_gallery_title">Experience Gallery</h2>
@@ -156,8 +161,30 @@
     </div>
   </section>
 
+  <section class="experience-map" aria-labelledby="barbotMapTitle">
+    <h2 id="barbotMapTitle" data-translate="barbot_page_map_title">Where to find Barbot Brewpub</h2>
+    <p>
+      <span data-translate="barbot_page_map_text">Use this map as a reference for Barbot Brewpub in Colonia del Sacramento, in the Historic Quarter.</span>
+      <a
+        href="https://www.google.com/maps/search/?api=1&amp;query=Barbot+Brewpub+Colonia+del+Sacramento+Uruguay"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-translate="barbot_page_map_link"
+      >Open in Google Maps</a>
+    </p>
+    <div class="map-embed">
+      <iframe
+        data-translate-title="barbot_page_map_iframe_title"
+        title="Map: Barbot Brewpub, Colonia del Sacramento"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Barbot+Brewpub+Colonia+del+Sacramento+Uruguay&amp;output=embed&amp;z=16">
+      </iframe>
+    </div>
+  </section>
+
   <div class="coffee-actions">
-    <a href="#" class="btn" data-translate="book_btn">Reserve</a>
+    <a href="#" id="barbotReserveBtn" class="btn" data-translate="book_btn">Reserve</a>
     <a href="../Home/index.html" class="btn secondary" data-translate="food_back_home">Back to Home</a>
   </div>
 
@@ -171,6 +198,85 @@
   <img class="lightbox-img" id="lightboxImg" alt="">
   <button class="lightbox-btn next" id="nextBtn">›</button>
 </div>
+
+<div class="popup-overlay" id="popupBarbot">
+  <div class="popup-box popup-box--barbot" role="dialog" aria-modal="true" aria-labelledby="barbotPopupTitle">
+    <button type="button" class="close-x" id="closeBarbot" aria-label="Close">✕</button>
+    <p><strong class="popup-title" id="barbotPopupTitle" data-translate="barbot_popup_title">Drinks & food at Barbot</strong></p>
+
+    <p class="barbot-popup-section-label" data-translate="barbot_summary_drinks_heading">Drinks</p>
+    <p class="barbot-popup-hint" data-translate="barbot_popup_drinks_hint">How many full pints and half pints?</p>
+    <div class="barbot-popup-fields">
+      <label class="barbot-popup-field">
+        <span data-translate="barbot_popup_full_label">Full pints (USD 7 each)</span>
+        <div class="barbot-qty-stepper">
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+          <input type="number" id="barbotPopupFull" min="0" max="30" step="1" value="0" inputmode="numeric" />
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+        </div>
+      </label>
+      <label class="barbot-popup-field">
+        <span data-translate="barbot_popup_half_label">Half pints (USD 5 each)</span>
+        <div class="barbot-qty-stepper">
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+          <input type="number" id="barbotPopupHalf" min="0" max="30" step="1" value="0" inputmode="numeric" />
+          <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+        </div>
+      </label>
+    </div>
+
+    <p class="barbot-popup-section-label barbot-popup-section-label--spaced" data-translate="barbot_food_heading">Food</p>
+    <p class="barbot-popup-hint" data-translate="barbot_food_hint">Each option is USD 10. Enter a quantity for anything you’d like.</p>
+    <ul class="barbot-food-list barbot-food-list--popup">
+      <li class="barbot-food-row">
+        <span class="barbot-food-row__label" data-translate="barbot_food_pizza">Pizza</span>
+        <label class="barbot-food-row__qty">
+          <span data-translate="barbot_food_qty_label">Qty</span>
+          <div class="barbot-qty-stepper">
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+            <input type="number" id="barbotPopupPizza" min="0" max="30" step="1" value="0" inputmode="numeric" />
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+          </div>
+        </label>
+      </li>
+      <li class="barbot-food-row">
+        <span class="barbot-food-row__label" data-translate="barbot_food_burger">Barbot burger</span>
+        <label class="barbot-food-row__qty">
+          <span data-translate="barbot_food_qty_label">Qty</span>
+          <div class="barbot-qty-stepper">
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+            <input type="number" id="barbotPopupBurger" min="0" max="30" step="1" value="0" inputmode="numeric" />
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+          </div>
+        </label>
+      </li>
+      <li class="barbot-food-row">
+        <span class="barbot-food-row__label" data-translate="barbot_food_fries">Fries with cheese cream</span>
+        <label class="barbot-food-row__qty">
+          <span data-translate="barbot_food_qty_label">Qty</span>
+          <div class="barbot-qty-stepper">
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="minus" aria-label="Decrease">−</button>
+            <input type="number" id="barbotPopupFries" min="0" max="30" step="1" value="0" inputmode="numeric" />
+            <button type="button" class="barbot-qty-btn" data-barbot-qty-action="plus" aria-label="Increase">+</button>
+          </div>
+        </label>
+      </li>
+    </ul>
+    <p class="barbot-popup-hint barbot-popup-beer-note" data-translate="barbot_beer_at_bar_note">
+      Beer style is chosen at the bar.
+    </p>
+    <p class="barbot-popup-hint barbot-popup-beer-note" data-translate="barbot_table_reserved_web_note">
+      A table is reserved for you with your web purchase.
+    </p>
+
+    <div class="popup-actions">
+      <button type="button" id="saveBarbotDrinks" class="btn" data-translate="bruma_save_selection">Save selection</button>
+    </div>
+  </div>
+</div>
+
+<script src="../Home/orders.js"></script>
+<script src="../Home/barbot-brewpub-order.js"></script>
 
 <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
    class="taxi-float"
