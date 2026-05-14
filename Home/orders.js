@@ -391,6 +391,17 @@ function initExperience(config) {
     premiumSideCheckboxName = null,
     /** When true: no drink/beverage radios required; `order.drink` is stored empty and hidden in summary / WhatsApp. */
     experienceSkipsDrinkField = false,
+    /** When true: preferences are not shown in order cards or WhatsApp (checkboxes may still exist elsewhere). */
+    experienceSkipsPreferencesField = false,
+    /** When true: no starter radios required; starter row hidden in summary / WhatsApp. */
+    experienceSkipsStarterField = false,
+    /**
+     * Optional fixed lines in order card / WhatsApp: `{ labelKey, valueKey?, placement?: "top"|"bottom" }`.
+     * When `valueKey` is omitted, only the label is shown.
+     */
+    experienceFixedSummaryRows = null,
+    /** Optional i18n key for each order card / WhatsApp heading (default: order_word → "Order" / "Pedido"). */
+    orderCardTitleKey = "order_word",
     /**
      * Optional boat add-on priced per passenger (e.g. 25). Stored separately in localStorage as `{storageKey}_boatPassengers`.
      * Counter appears in the order summary when there is at least one menu order.
@@ -432,10 +443,12 @@ function initExperience(config) {
     walkingTourSlotMax = 15,
     walkingTourTimePopupRadioName = null,
     /**
-     * Optional `{ radioName, summaryLabelKey? }` — popup radios for cabalgata / horseback slot;
+     * Optional `{ radioName, summaryLabelKey?, summaryDisplayValueKey? }` — popup radios for cabalgata / horseback slot;
      * stored per order as `horsebackDepartureTime` (chosen radio `value`).
      */
     horsebackDepartureInPopup = null,
+    /** When true: omit the "People" count line in WhatsApp (e.g. when boat passengers differ from menu orders). */
+    whatsappSkipsPeopleLine = false,
     /**
      * Optional room-first booking for hotel + dinner packages.
      * `{ hostElementId, priceByOccupancy, occupancyOptions?, maxRooms?, minRooms?, defaultOccupancy? }`
@@ -456,6 +469,14 @@ function initExperience(config) {
     const rbHost = rbCfg ? document.getElementById(String(rbCfg.hostElementId)) : null;
     const rb = rbCfg && rbHost ? rbCfg : null;
     const roomsStorageKey = rb ? `${storageKey}_roomBooking` : null;
+
+    const renumberRoomGuestIds = (list) => {
+      if (!rb || !Array.isArray(list)) return list;
+      list.forEach((o, i) => {
+        if (o && typeof o === "object") o.guestId = String(i + 1);
+      });
+      return list;
+    };
 
     const getRoomRows = () => {
       if (!roomsStorageKey) return [];
@@ -578,9 +599,44 @@ function initExperience(config) {
             radioName: String(horsebackDepartureInPopup.radioName).trim().slice(0, 120),
             summaryLabelKey: String(
               horsebackDepartureInPopup.summaryLabelKey || "liebres_horseback_time_label"
-            ).trim()
+            ).trim(),
+            summaryDisplayValueKey: String(horsebackDepartureInPopup.summaryDisplayValueKey || "").trim()
           }
         : null;
+    const horseSummaryDisplay = (storedTime) => {
+      const raw = String(storedTime || "").trim();
+      if (!raw) return "";
+      if (horseCfg?.summaryDisplayValueKey) {
+        return getI18nText(horseCfg.summaryDisplayValueKey, raw);
+      }
+      return raw;
+    };
+    const fixedSummaryRowsHtml = (placement) => {
+      if (!Array.isArray(experienceFixedSummaryRows)) return "";
+      return experienceFixedSummaryRows
+        .filter((row) => (row.placement || "top") === placement)
+        .map((row) => {
+          const label = escapeHtml(getI18nText(row.labelKey, ""));
+          if (row.valueKey) {
+            return `<p><strong>${label}:</strong> ${escapeHtml(getI18nText(row.valueKey, ""))}</p>`;
+          }
+          return `<p><strong>${label}</strong></p>`;
+        })
+        .join("");
+    };
+    const fixedSummaryRowsWa = (placement) => {
+      if (!Array.isArray(experienceFixedSummaryRows)) return "";
+      return experienceFixedSummaryRows
+        .filter((row) => (row.placement || "top") === placement)
+        .map((row) => {
+          const label = getI18nText(row.labelKey, "");
+          if (row.valueKey) {
+            return `\n${label}: ${getI18nText(row.valueKey, "")}`;
+          }
+          return `\n${label}`;
+        })
+        .join("");
+    };
     const orderWalkingTourTime = (o) => String(o && o.walkingTourDepartureTime ? o.walkingTourDepartureTime : "").trim();
     const walkingPartyForOrder = (o) => {
       if (!orderWalkingPartyMaxNum || !orderLanguageRadioName) return 1;
@@ -1177,6 +1233,14 @@ function initExperience(config) {
       const defOcc = defaultOccResolved();
 
       let inner = `<h3>${escapeHtml(getI18nText("orders_room_block_title", "Rooms"))}</h3>`;
+      if (rb.availabilityNoticeKey) {
+        inner += `<p class="mision-room-availability-notice">${escapeHtml(
+          getI18nText(
+            rb.availabilityNoticeKey,
+            "Please check availability with us on WhatsApp before completing your reservation."
+          )
+        )}</p>`;
+      }
       inner += `<div class="room-booking-rows">`;
       rows.forEach((row, idx) => {
         const g = Math.max(1, row.guests || defOcc);
@@ -1288,6 +1352,11 @@ function initExperience(config) {
     if (rb && rbHost) {
       bindRoomBookingEventsOnce();
       renderRoomBookingPanel();
+      const storedOrders = getOrders();
+      if (storedOrders.length) {
+        renumberRoomGuestIds(storedOrders);
+        setOrders(storedOrders);
+      }
     }
 
     const syncMenuTierPanels = (standardSelected) => {
@@ -1476,7 +1545,7 @@ function initExperience(config) {
           } else {
             orders.push(order);
           }
-          setOrders(orders);
+          setOrders(renumberRoomGuestIds(orders));
           popup.classList.remove("active");
           renderOrders();
           return;
@@ -1567,12 +1636,18 @@ function initExperience(config) {
             drink = popup.querySelector(`input[name="${drinkName}"]:checked`);
           }
 
-          if (!starter || (!experienceSkipsDrinkField && !drink) || (!skipMainStandard && !main)) {
+          if (
+            (!experienceSkipsStarterField && !starter) ||
+            (!experienceSkipsDrinkField && !drink) ||
+            (!skipMainStandard && !main)
+          ) {
             alert(getI18nText("orders_alert_select_each", "Please select one option from each category"));
             return;
           }
 
-          starterText = starter.value || starter.nextElementSibling?.textContent?.trim();
+          starterText = experienceSkipsStarterField
+            ? ""
+            : starter.value || starter.nextElementSibling?.textContent?.trim();
           mainText = main
             ? main.value || main.nextElementSibling?.textContent?.trim()
             : "";
@@ -1738,7 +1813,7 @@ function initExperience(config) {
           orders.push(order);
         }
 
-        setOrders(orders);
+        setOrders(renumberRoomGuestIds(orders));
 
         popup.classList.remove("active");
         renderOrders();
@@ -1867,12 +1942,19 @@ function initExperience(config) {
               ? `\n${getI18nText(
                   horseCfg.summaryLabelKey || "liebres_horseback_time_label",
                   "Horseback departure time"
-                )}: ${String(o.horsebackDepartureTime).trim()}`
+                )}: ${horseSummaryDisplay(o.horsebackDepartureTime)}`
               : "";
           const orderHead = rb
-            ? `*${getI18nText("orders_wa_guest_slot", "Guest")} ${String((o && o.guestId) || i + 1)}*`
-            : `*${getI18nText("order_word", "Order")} ${i + 1}*`;
-          return `${orderHead}${tierLine}\n${ls}: ${getLocalizedChoice(starterName, o.starter)}${mainPart}${drinkPart}${menuBoatWa}${gLine}\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}${walkLangWa}${walkTourTimeWa}${walkPartyWa}${horseTimeWa}`;
+            ? `*${getI18nText("orders_wa_guest_slot", "Guest")} ${i + 1}*`
+            : `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*`;
+          const starterPart = experienceSkipsStarterField
+            ? ""
+            : `\n${ls}: ${getLocalizedChoice(starterName, o.starter)}`;
+          return `${orderHead}${fixedSummaryRowsWa("top")}${tierLine}${starterPart}${mainPart}${horseTimeWa}${drinkPart}${menuBoatWa}${gLine}${
+            experienceSkipsPreferencesField
+              ? ""
+              : `\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}`
+          }${walkLangWa}${walkTourTimeWa}${walkPartyWa}${fixedSummaryRowsWa("bottom")}`;
         })
         .join("\n\n");
 
@@ -1884,7 +1966,10 @@ function initExperience(config) {
         "Hello! I'd like to book the {experience} experience:"
       );
       const waIntro = waIntroRaw.replace(/\{experience\}/g, expName);
-      let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${dateStr}\n${getI18nText("orders_wa_people_line", "People")}: ${peopleCount}`;
+      let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${dateStr}`;
+      if (!whatsappSkipsPeopleLine) {
+        message += `\n*${getI18nText("orders_wa_people_line", "People")}*: ${peopleCount}`;
+      }
       if (rb && getRoomRows().length > 0) {
         const rows = getRoomRows();
         const roomLines = rows
@@ -1892,13 +1977,17 @@ function initExperience(config) {
             const g = r.guests;
             const pr = Number(rb.priceByOccupancy[String(g)]);
             const pshow = Number.isFinite(pr) ? pr : 0;
-            return `${getI18nText("orders_room_label", "Room")} ${i + 1}: ${g} ${getI18nText(
+            return `*${getI18nText("orders_room_label", "Room")} ${i + 1}*: ${g} ${getI18nText(
               "orders_wa_room_guests_suffix",
               "guest(s)"
             )} — ${curLabel} ${pshow}`;
           })
           .join("\n");
         message += `\n${roomLines}\n${getI18nText("orders_wa_rooms_subtotal_label", "Rooms subtotal")}: ${curLabel} ${roomCostWa}`;
+        message += `\n${getI18nText(
+          "orders_wa_rooms_breakfast_note",
+          "Rooms include breakfast."
+        )}`;
       }
       if (boatTotalWa > 0) {
         message += `\n${getI18nText("orders_wa_boat_passengers", "Boat passengers")}: ${boatPassengersWa}`;
@@ -1915,7 +2004,10 @@ function initExperience(config) {
         }
       }
       message += `\n\n${ordersText}\n\n`;
-      message += `${getI18nText("orders_wa_experience_subtotal", "Experience subtotal")}: ${curLabel} ${experienceSubtotal}`;
+      message += `${getI18nText(
+        rb ? "orders_wa_menu_subtotal" : "orders_wa_experience_subtotal",
+        rb ? "Menus subtotal" : "Experience subtotal"
+      )}: ${curLabel} ${experienceSubtotal}`;
       if (guideFee > 0 && !guideOptional && !groupGuideOptional) {
         if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
           message += ` (${getI18nText(
@@ -2335,7 +2427,7 @@ function initExperience(config) {
           horseCfg && horseTimeCard
             ? `<p><strong>${escapeHtml(
                 t(horseCfg.summaryLabelKey || "liebres_horseback_time_label", "Horseback departure time")
-              )}:</strong> ${escapeHtml(horseTimeCard)}</p>`
+              )}:</strong> ${escapeHtml(horseSummaryDisplay(horseTimeCard))}</p>`
             : "";
         const walkTourRadioName = `orderWalkingTourTime_${String(storageKey).replace(/[^a-zA-Z0-9_-]/g, "_")}_${index}`;
         const walkTourTimeBlock =
@@ -2425,8 +2517,11 @@ function initExperience(config) {
           </div>`
             : "";
         const cardTitleTxt = rb
-          ? `${escapeHtml(t("orders_wa_guest_slot", "Guest"))} ${escapeHtml(String(order.guestId || index + 1))}`
-          : `${escapeHtml(t("order_word", "Order"))} ${index + 1}`;
+          ? `${escapeHtml(t("orders_wa_guest_slot", "Guest"))} ${index + 1}`
+          : `${escapeHtml(t(orderCardTitleKey, "Order"))} ${index + 1}`;
+        const starterRow = experienceSkipsStarterField
+          ? ""
+          : `<p><strong>${labS}:</strong> ${escapeHtml(getLocalizedChoice(starterName, order.starter))}</p>`;
         html += `
           <div class="order-card">
             <div class="order-header">
@@ -2437,12 +2532,18 @@ function initExperience(config) {
               </div>
             </div>
             ${tierRow}${servingNoteRow}
-            <p><strong>${labS}:</strong> ${escapeHtml(getLocalizedChoice(starterName, order.starter))}</p>
-            ${horseRow}
+            ${fixedSummaryRowsHtml("top")}
             ${mainRow}
+            ${horseRow}
+            ${starterRow}
             ${drinkRow}
             ${guideLine}
-            <p><strong>${escapeHtml(t("preferences_label", "Preferences"))}:</strong> ${escapeHtml(prefs.join(", ") || "-")}</p>
+            ${
+              experienceSkipsPreferencesField
+                ? ""
+                : `<p><strong>${escapeHtml(t("preferences_label", "Preferences"))}:</strong> ${escapeHtml(prefs.join(", ") || "-")}</p>`
+            }
+            ${fixedSummaryRowsHtml("bottom")}
             ${walkLangRow}
             ${walkTourTimeBlock}
             ${walkingPartyRow}
@@ -2787,6 +2888,7 @@ function initExperience(config) {
         const idx = Number(delEl.dataset.index);
         const orders = getOrders();
         orders.splice(idx, 1);
+        if (rb) renumberRoomGuestIds(orders);
         setOrders(orders);
         renderOrders();
         return;
@@ -2878,7 +2980,10 @@ function initExperience(config) {
       }
     }
 
-    document.addEventListener("sacramento:setLanguage", () => renderOrders());
+    document.addEventListener("sacramento:setLanguage", () => {
+      renderOrders();
+      if (rb && rbHost) renderRoomBookingPanel();
+    });
 
     document.addEventListener("sacramento:visitDateChanged", (e) => {
       if (!selectedDateKey) return;
@@ -3934,6 +4039,8 @@ function groupPrivateTransportTotal(guestCount, ratePerVehicle) {
 function initPackageOrderExperience(config) {
   const {
     experienceName = "experience",
+    experienceNameKey = null,
+    whatsappIntroKey = null,
     whatsappNumber = "598091642195",
     popupId,
     createBtnId,
@@ -3959,7 +4066,10 @@ function initPackageOrderExperience(config) {
      * Optional two-step package UI: menu radios + meal radios sync to hidden `packageRadioName` values
      * (e.g. lunch_vinedo). `{ menuRadioName, mealRadioName, parsePackageId?, packageIdFromParts? }`
      */
-    packageComposite = null
+    packageComposite = null,
+    /** Optional i18n key for each order card / WhatsApp heading (default: order_word). */
+    orderCardTitleKey = "order_word",
+    experienceSkipsPreferencesField = false
   } = config || {};
 
   const vehicleTransportRate =
@@ -4331,7 +4441,11 @@ function initPackageOrderExperience(config) {
             ? "-"
             : prefs.map(decoratePkgPref).filter((p) => p && p !== "-").join(", ") || "-";
 
-        ordersText += `*Order ${i + 1}*\nPackage: ${packageLineForOrder(o, orders)}\nPreferences: ${prefsWa}\n\n`;
+        ordersText += `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*\nPackage: ${packageLineForOrder(o, orders)}${
+          experienceSkipsPreferencesField
+            ? "\n\n"
+            : `\nPreferences: ${prefsWa}\n\n`
+        }`;
       });
 
       const tGroup = totalGroupTransport(orders);
@@ -4341,7 +4455,13 @@ function initPackageOrderExperience(config) {
         (usesGroupTransport(orders) ? tGroup : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0)) +
         gg;
 
-      let message = `Hello! I’d like to book the ${experienceName} experience:\n\nDate: ${date}\n\n${ordersText}`;
+      const expName = experienceNameKey
+        ? getI18nText(experienceNameKey, experienceName)
+        : experienceName;
+      const waIntro = whatsappIntroKey
+        ? getI18nText(whatsappIntroKey, `Hello! I'd like to book the ${experienceName} experience:`)
+        : `Hello! I'd like to book the ${expName} experience:`;
+      let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${date}\n\n${ordersText}`;
       if (usesGroupTransport(orders) && orders.length > 0) {
         const vehicles = Math.ceil(orders.length / 4);
         const guideTotalOptional =
@@ -4459,16 +4579,20 @@ function initPackageOrderExperience(config) {
         html += `
           <div class="order-card">
             <div class="order-header">
-              <strong class="order-card-title">${escapeHtml(getI18nText("order_word", "Order"))} ${index + 1}</strong>
+              <strong class="order-card-title">${escapeHtml(getI18nText(orderCardTitleKey, "Order"))} ${index + 1}</strong>
               <div class="order-actions">
                 <span class="edit-order" data-index="${index}">✏️</span>
                 <span class="delete-order" data-index="${index}">🗑️</span>
               </div>
             </div>
             <p>${packageHtml}</p>
-            <p><strong>${escapeHtml(getI18nText("preferences_word", "Preferences"))}:</strong> ${escapeHtml(
-          prefsLine
-        )}</p>
+            ${
+              experienceSkipsPreferencesField
+                ? ""
+                : `<p><strong>${escapeHtml(getI18nText("preferences_word", "Preferences"))}:</strong> ${escapeHtml(
+                    prefsLine
+                  )}</p>`
+            }
           </div>
         `;
       });
@@ -4761,6 +4885,16 @@ function initPackageOrderExperience(config) {
               : getI18nText("save_selection", "Save selection");
         }
       });
+    });
+
+    document.addEventListener("sacramento:setLanguage", () => {
+      renderOrders();
+      if (popup.classList.contains("active")) {
+        saveBtn.textContent =
+          editingIndex !== null
+            ? getI18nText("update_order", "Update order")
+            : getI18nText("save_selection", "Save selection");
+      }
     });
 
     renderOrders();
