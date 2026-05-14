@@ -153,8 +153,8 @@
       <div class="price-box">
         <h3 data-translate="liebres_dining_price_title">Dining experiences from USD 65</h3>
         <p data-translate="liebres_dining_price_p">
-          Private transport is billed by vehicle: <strong>USD 30</strong> total for 1–4 guests (one vehicle);
-          <strong>USD 60</strong> total for 5–8 guests (two vehicles). Add one order per guest — the summary and
+          Private transport is billed by vehicle: <strong>USD 40</strong> total for 1–4 guests (one vehicle);
+          <strong>USD 80</strong> total for 5–8 guests (two vehicles). Add one order per guest — the summary and
           total update automatically.
         </p>
       </div>
@@ -168,7 +168,7 @@
             <li data-translate="liebres_dining_include_1">✔ Lunch or dinner menu at Las Liebres (depending on package)</li>
             <li data-translate="liebres_dining_include_2">✔ Boutique restaurant atmosphere</li>
             <li data-translate="liebres_dining_include_3">✔ Welcome coordination at the venue</li>
-            <li data-translate="liebres_dining_include_4">✔ Private round-trip transfer (hotel or terminal; see summary)</li>
+            <li data-translate="liebres_dining_include_4">✔ Private round-trip transfer (hotel or terminal)</li>
           </ul>
         </div>
 
@@ -279,6 +279,7 @@
       orderSummaryId: "orderSummaryLiebresDining",
       bookNowBottomId: "bookNowBottomLiebresDining",
       storageKey: "orders_lasliebres_dining",
+      orderCardTitleKey: "person_order_label",
       dynamicPayment: {
         enabled: true,
         endpoint: "/api/payments/resolve",
@@ -286,7 +287,7 @@
         currency: "USD"
       },
       packageRadioName: "packageId",
-      transportPerVehicle: 30,
+      transportPerVehicle: 40,
       groupGuideOptional: true,
       groupGuideFlatFee: 40,
       groupGuideCheckboxId: "liebresDiningGroupGuide",

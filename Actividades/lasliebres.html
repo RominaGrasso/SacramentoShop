@@ -201,7 +201,7 @@
         <div class="price-box">
           <h3 data-translate="liebres_price_title">USD 85 per guest + optional group guide</h3>
           <p data-translate="liebres_price_p">
-            The experience includes cabalgata in Riachuelo (outside Colonia), transfer to Las Liebres, vineyard &amp; garden visit, and three-wine tasting with pairings. Allow roughly 3 to 4 hours door-to-door. Private transport is billed by vehicle: USD 40 total for 1–4 guests (one vehicle); USD 80 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.
+            The experience includes cabalgata in Riachuelo (outside Colonia), transfer to Las Liebres, vineyard &amp; garden visit, and three-wine tasting with pairings. Allow roughly 3 to 4 hours door-to-door. Private transport is billed by vehicle: USD 50 total for 1–4 guests (one vehicle); USD 100 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.
           </p>
         </div>
       </div>
@@ -212,16 +212,18 @@
         <div class="includes-list">
           <h3 data-translate="liebres_included_title">What's included</h3>
           <ul>
-            <li data-translate="liebres_include_1">✔ Guided cabalgata in Riachuelo (countryside outside Colonia), then Las Liebres</li>
             <li data-translate="liebres_include_2">✔ Guided visit to the vineyard &amp; organic garden</li>
             <li data-translate="liebres_include_3">✔ Three-wine tasting with seasonal kitchen pairings</li>
-            <li data-translate="liebres_include_4">✔ Welcome coordination &amp; hosting at Las Liebres</li>
-            <li data-translate="liebres_include_5">✔ Private round-trip transfer (USD 40 per vehicle for up to 4 guests; second vehicle +USD 40 for guests 5–8 — hotel or terminal; see order summary)</li>
+            <li data-translate="liebres_include_1">✔ Guided cabalgata in Riachuelo (countryside outside Colonia)</li>
+            <li data-translate="liebres_include_4">✔ Transfers</li>
           </ul>
         </div>
 
         <div class="order-start">
           <h3 data-translate="liebres_create_title">Create your order</h3>
+          <p class="experience-availability-notice" data-translate="mision_room_availability_notice">
+            Please check availability with us on WhatsApp before completing your reservation.
+          </p>
           <div class="booking-visit-date-row">
             <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
             <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
@@ -229,7 +231,7 @@
               Pick the day you plan to come so we can coordinate availability in advance.
             </p>
           </div>
-          <p data-translate="liebres_create_subtitle">Choose tasting options and preferences.</p>
+          <p data-translate="liebres_create_subtitle">Choose tasting options.</p>
 
           <button id="createMenuBtnLiebres" class="btn primary-btn" type="button" data-translate="liebres_create_btn">
             + Create your order
@@ -380,12 +382,23 @@
         groupGuideFlatFee: 40,
         groupGuideCheckboxId: "liebresGroupGuide",
         groupGuideWrapId: "liebresGroupGuideWrap",
-        transportPerVehicle: 40,
+        transportPerVehicle: 50,
         choiceSectionLabelKeys: {
           starter: "liebres_choice_starter",
-          main: "liebres_choice_main",
-          drink: "liebres_choice_drink"
+          main: "liebres_choice_main"
         },
+        experienceSkipsDrinkField: true,
+        experienceSkipsPreferencesField: true,
+        experienceSkipsStarterField: true,
+        experienceFixedSummaryRows: [
+          {
+            labelKey: "liebres_popup_departure_title",
+            valueKey: "liebres_popup_departure_time",
+            placement: "top"
+          },
+          { labelKey: "liebres_order_transfers", placement: "bottom" }
+        ],
+        orderCardTitleKey: "person_order_label",
         popupId: "popupLiebres",
         closeBtnId: "closeLiebres",
         saveBtnId: "saveMenu",
@@ -397,7 +410,8 @@
         storageKey: "orders_lasliebres_wine",
         horsebackDepartureInPopup: {
           radioName: "liebresHorseTime",
-          summaryLabelKey: "liebres_horseback_time_label"
+          summaryLabelKey: "liebres_popup_horseback_times_title",
+          summaryDisplayValueKey: "liebres_horseback_summary_time"
         },
         dynamicPayment: {
           enabled: true,
@@ -466,52 +480,13 @@
           </strong>
         </p>
 
-        <p>
-          <strong data-translate="liebres_popup_horseback_strong">Horseback</strong>
-          <small data-translate="liebres_popup_horseback_note">(included — Riachuelo, outside Colonia)</small>
+        <p class="liebres-horse-times-title">
+          <strong data-translate="liebres_popup_departure_title">Departure to Las Liebres</strong>
         </p>
-        <ul class="popup-list">
-          <li>
-            <label>
-              <input
-                type="radio"
-                name="starter"
-                value="Riachuelo — guided countryside trail (~1 hr)"
-                data-legacy-values="Guided ride — countryside trail (~45 min),Guided ride — countryside trail (~1 hr)"
-                checked
-              >
-              <span data-translate="liebres_starter_1">Riachuelo — guided countryside trail (~1 hr)</span>
-            </label>
-          </li>
-        </ul>
-
-        <div class="liebres-horse-times-wrap">
-          <p class="liebres-horse-times-title">
-            <strong data-translate="liebres_popup_horseback_times_title">Horseback departure time</strong>
-          </p>
+        <div class="liebres-horse-times-wrap liebres-departure-wrap">
           <p class="liebres-horse-times-note">
-            <small data-translate="liebres_popup_horseback_times_note">Pick one slot for Riachuelo (11:00, 12:00 or 13:00).</small>
+            <strong data-translate="liebres_popup_departure_time">11hs, private pick-up from your hotel or the bus terminal</strong>
           </p>
-          <ul class="popup-list liebres-horse-times-list">
-            <li>
-              <label>
-                <input type="radio" name="liebresHorseTime" value="11:00" checked>
-                <span data-translate="liebres_horse_time_11">11:00</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="liebresHorseTime" value="12:00">
-                <span data-translate="liebres_horse_time_12">12:00</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="liebresHorseTime" value="13:00">
-                <span data-translate="liebres_horse_time_13">13:00</span>
-              </label>
-            </li>
-          </ul>
         </div>
 
         <p>
@@ -534,36 +509,44 @@
         </ul>
 
         <p>
-          <strong data-translate="liebres_popup_wine_strong">Wine focus</strong>
-          <small data-translate="liebres_popup_wine_note">(pick one)</small>
+          <strong data-translate="liebres_popup_wine_types_title">Includes:</strong>
         </p>
-        <ul class="popup-list">
+        <ul class="popup-list liebres-popup-info-list">
           <li>
-            <label>
-              <input type="radio" name="drink" value="Flight — reds &amp; Tannat-led blends">
-              <span data-translate="liebres_drink_1">Flight — reds &amp; Tannat-led blends</span>
-            </label>
+            <span data-translate="liebres_popup_wine_type_1">Blanco Las Liebres Blanc de blancs</span>
           </li>
           <li>
-            <label>
-              <input type="radio" name="drink" value="Flight — mixed reds &amp; whites">
-              <span data-translate="liebres_drink_2">Flight — mixed reds &amp; whites</span>
-            </label>
+            <span data-translate="liebres_popup_wine_type_2">Blend Lebrato</span>
           </li>
           <li>
-            <label>
-              <input type="radio" name="drink" value="Non-alcoholic pairing (advance notice)">
-              <span data-translate="liebres_drink_3">Non-alcoholic pairing (advance notice)</span>
-            </label>
+            <span data-translate="liebres_popup_wine_type_3">Tannat El Legado</span>
           </li>
         </ul>
 
-        <div class="preferences-inside">
-          <h3 class="preferences-title" data-translate="liebres_preferences_title">Your preferences</h3>
-          <label><input type="checkbox" value="Red wine preferred"> 🍷 <span data-translate="liebres_pref_red">Red wine preferred</span></label>
-          <label><input type="checkbox" value="White wine preferred"> 🥂 <span data-translate="liebres_pref_white">White wine preferred</span></label>
-          <label><input type="checkbox" value="No alcohol"> 🚫 <span data-translate="liebres_pref_no_alcohol">No alcohol</span></label>
+        <div class="liebres-horse-times-wrap">
+          <p class="liebres-horse-times-title">
+            <strong data-translate="liebres_popup_horseback_times_title">Horseback in Riachuelo</strong>
+          </p>
+          <ul class="liebres-horse-times-flow-list">
+            <li data-translate="liebres_popup_horseback_flow_1">
+              We pick you up at Las Liebres at 13hs and take you to Riachuelo.
+            </li>
+            <li data-translate="liebres_popup_horseback_flow_2">Horseback ride lasts 1hr.</li>
+            <li data-translate="liebres_popup_horseback_flow_3">
+              When you finish, we take you back to your hotel or downtown.
+            </li>
+          </ul>
+          <input type="radio" name="liebresHorseTime" value="13:00" checked hidden>
         </div>
+
+        <input
+          type="radio"
+          name="starter"
+          value="Riachuelo — guided countryside trail (~1 hr)"
+          data-legacy-values="Guided ride — countryside trail (~45 min),Guided ride — countryside trail (~1 hr)"
+          checked
+          hidden
+        >
 
         <div class="popup-actions">
           <button id="saveMenu" class="btn" type="button" data-translate="save_selection">Save selection</button>

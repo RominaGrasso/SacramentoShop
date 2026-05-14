@@ -126,6 +126,8 @@
 <!-- ================= HERO ================= -->
 <section class="mision-night-hero">
 
+  <div class="discount-badge mision-hero-gift-badge" data-translate="mision_hero_gift_badge">Free walking tour</div>
+
   <h1 data-translate="mision_hero_title">🏛 🌙 La Misión Night Experience</h1>
 
 </section>
@@ -137,7 +139,7 @@
   <h2 data-translate="bruma_about_title">About this experience</h2>
 
   <p>
-    <span data-translate="mision_about_p1_prefix">Step back in time with a unique overnight stay in Colonia’s historic quarter. Stay at </span><strong data-translate="mision_about_name_posada">La Misión</strong><span data-translate="mision_about_p1_mid1">, a charming boutique posada in front of Plaza Mayor, where </span><strong data-translate="mision_about_name_mercedes">Mercedes</strong><span data-translate="mision_about_p1_mid2">, the owner, will personally welcome you and prepare a warm homemade breakfast. At the entrance, the hydrangeas planted by her grandmother tell a story that has been part of the house for generations. Just steps away, enjoy an intimate dining experience at </span><strong data-translate="mision_about_name_bruma">Bruma</strong><span data-translate="mision_about_p1_mid3">, where </span><strong data-translate="mision_about_name_chef">Chef Marcelo</strong><span data-translate="mision_about_p1_suffix"> will personally welcome you and guide you through his cuisine. Complete your night with a guided walking tour through Colonia’s most iconic streets.</span>
+    <span data-translate="mision_about_p1_prefix">Step back in time with a unique overnight stay in Colonia’s historic quarter. Stay at </span><strong data-translate="mision_about_name_posada">La Misión</strong><span data-translate="mision_about_p1_mid1">, a charming boutique posada in front of Plaza Mayor, where </span><strong data-translate="mision_about_name_mercedes">Mercedes</strong><span data-translate="mision_about_p1_mid2">, the owner, will personally welcome you and prepare a warm homemade breakfast. At the entrance, the hydrangeas planted by her grandmother tell a story that has been part of the house for generations. Just steps away, enjoy an intimate dining experience at </span><strong data-translate="mision_about_name_bruma">Bruma</strong><span data-translate="mision_about_p1_mid3">, where Chefs </span><strong data-translate="mision_about_name_chef">Bruno and Marcelo</strong><span data-translate="mision_about_p1_suffix"> will personally welcome you and guide you through their cuisine. Complete your night with a guided walking tour through Colonia’s most iconic streets.</span>
   </p>
 
   <h3 class="experience-steps-title" data-translate="mision_how_it_works_title">How it works</h3>
@@ -146,23 +148,23 @@
     <ul>
 
       <li>
-        <span data-translate="mision_step_1">🏛 Arrival at La Misión: Check in directly at your posada in the historic district.</span>
+        🏛 <strong><span data-translate="mision_step_1_title">Arrival at La Misión:</span></strong><span data-translate="mision_step_1_text"> Check in directly at your posada in the historic district.</span>
       </li>
 
       <li>
-        <span data-translate="mision_step_2">🍽 Dinner at Bruma: Enjoy a curated dinner just a short walk away.</span>
+        🍽 <strong><span data-translate="mision_step_2_title">Dinner at Bruma:</span></strong><span data-translate="mision_step_2_text"> Enjoy a curated dinner just a short walk away.</span>
       </li>
 
       <li>
-        <span data-translate="mision_step_3">🛏 Overnight stay: Relax in a colonial-style room surrounded by history.</span>
+        🛏 <strong><span data-translate="mision_step_3_title">Overnight stay:</span></strong><span data-translate="mision_step_3_text"> Relax in a colonial-style room surrounded by history.</span>
       </li>
 
       <li>
-        <span data-translate="mision_step_4">☕ Breakfast included: Start your morning with a personalized breakfast.</span>
+        ☕ <strong><span data-translate="mision_step_4_title">Breakfast included:</span></strong><span data-translate="mision_step_4_text"> Start your morning with a personalized breakfast.</span>
       </li>
 
       <li>
-        <span data-translate="mision_step_5">🎁 Guided walking tour: Discover Colonia with a local guide.</span>
+        🎁 <strong><span data-translate="mision_step_5_title">Guided walking tour:</span></strong><span data-translate="mision_step_5_text"> Discover Colonia with a local guide.</span>
       </li>
 
     </ul>
@@ -170,10 +172,40 @@
 
   <!-- PRICE -->
   <div class="price-box">
-    <h3 data-translate="mision_price_room_line">Single & Double USD 75 · Triple USD 95</h3>
+    <p class="mision-price-room-label">
+      <strong><span data-translate="mision_price_room_label">Room cost:</span></strong>
+    </p>
+    <h3 data-translate="mision_price_room_line">Single & Double USD 115 · Triple USD 155</h3>
   </div>
 
-  <div id="misionRoomBooking" class="order-start room-booking-host" data-translate-aria-label="mision_room_booking_aria" aria-label="Room selection"></div>
+  <div class="mision-room-booking-card">
+    <div class="booking-visit-date-row mision-visit-date-in-card">
+      <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
+      <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
+      <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+        Pick the day you plan to come so we can coordinate availability in advance.
+      </p>
+    </div>
+    <div id="misionRoomBooking" class="order-start room-booking-host" data-translate-aria-label="mision_room_booking_aria" aria-label="Room selection"></div>
+  </div>
+
+  <div class="price-box mision-price-menu-box">
+    <p class="mision-price-room-label">
+      <strong><span data-translate="mision_price_menu_label">Menu cost:</span></strong>
+    </p>
+    <h3 class="bruma-promo-price">
+      <span class="bruma-promo-price-row">
+        <span class="bruma-price-tier-label" data-translate="bruma_price_standard_label">Standard</span>
+        <span class="bruma-price-old" data-translate="bruma_price_standard_original">USD 45</span>
+        <span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 35 per guest</span>
+      </span>
+      <span class="bruma-promo-price-row">
+        <span class="bruma-price-tier-label" data-translate="bruma_price_premium_label">Premium</span>
+        <span class="bruma-price-old" data-translate="bruma_price_premium_original">USD 60</span>
+        <span class="bruma-price-new" data-translate="bruma_price_premium_discount">USD 50 per guest</span>
+      </span>
+    </h3>
+  </div>
 
   <div class="coffee-includes">
 
@@ -195,13 +227,6 @@
        <!-- DERECHA (BOTÓN DE MENÚ) -->
       <div class="order-start">
         <h3 data-translate="bruma_create_title">Create your menu</h3>
-        <div class="booking-visit-date-row">
-          <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
-          <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
-          <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
-            Pick the day you plan to come so we can coordinate availability in advance.
-          </p>
-        </div>
         <p data-translate="bruma_create_subtitle">Select standard or premium menu, then your courses and preferences</p>
 
         <button id="createMenuBtn" class="btn primary-btn" data-translate="bruma_create_btn">
@@ -325,12 +350,12 @@
 
       <label class="bruma-tier-option">
         <input type="radio" name="misionMenuTier" value="standard" checked>
-        <span data-translate="mision_tier_standard_option">Standard — USD 40 per guest</span>
+        <span data-translate="bruma_tier_standard_option">Standard — USD 35 per guest (was USD 45)</span>
       </label>
 
       <label class="bruma-tier-option">
         <input type="radio" name="misionMenuTier" value="premium">
-        <span data-translate="mision_tier_premium_option">Premium — USD 60 per guest</span>
+        <span data-translate="bruma_tier_premium_option">Premium — USD 50 per guest (was USD 60)</span>
       </label>
     </div>
 
@@ -500,8 +525,8 @@
 
     experienceName: "La Mision Night Experience",
     experienceNameKey: "mision_experience_name",
-    pricePerPerson: 40,        // Standard
-    menuUpgradePrice: 60,      // Premium
+    pricePerPerson: 35,        // Standard (launch)
+    menuUpgradePrice: 50,      // Premium (launch)
     menuTierRadioName: "misionMenuTier",
     premiumChoiceFieldNames: {
       starter: "prm_starter",
@@ -521,11 +546,12 @@
 
     roomBooking: {
       hostElementId: "misionRoomBooking",
-      priceByOccupancy: { "1": 75, "2": 75, "3": 95 },
+      priceByOccupancy: { "1": 115, "2": 115, "3": 155 },
       occupancyOptions: [1, 2, 3],
       maxRooms: 6,
       minRooms: 1,
-      defaultOccupancy: 2
+      defaultOccupancy: 2,
+      availabilityNoticeKey: "mision_room_availability_notice"
     },
 
     // 💳 pagos (lo dejamos igual por ahora)
