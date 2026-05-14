@@ -3,6 +3,13 @@ const DEFAULT_DYNAMIC_PAYMENT_ENDPOINT =
     ? "http://localhost:8787/api/payments/resolve"
     : "/api/payments/resolve";
 
+/** `*Label*: value` line for WhatsApp (bold before the colon). */
+function waLine(label, value) {
+  const lbl = String(label == null ? "" : label).replace(/\*/g, "");
+  const val = String(value == null ? "" : value);
+  return `*${lbl}*: ${val}`;
+}
+
 function paymentApiOriginFromResolveUrl(endpoint) {
   const e = String(endpoint || "");
   if (/^https?:\/\//i.test(e)) {
@@ -328,6 +335,8 @@ function initExperience(config) {
     starterName = "starter",
     mainName = "main",
     drinkName = "drink",
+    /** Optional 4th course radio group (e.g. beverage after dessert). */
+    beverageName = null,
     /** Optional labels for order summary / WhatsApp (defaults: Starter / Main / Drink). */
     choiceSectionLabels = null,
     /** If true, guide fee applies only when order.includeGuide is true (checkbox in popup). */
@@ -631,7 +640,7 @@ function initExperience(config) {
         .map((row) => {
           const label = getI18nText(row.labelKey, "");
           if (row.valueKey) {
-            return `\n${label}: ${getI18nText(row.valueKey, "")}`;
+            return `\n${waLine(label, getI18nText(row.valueKey, ""))}`;
           }
           return `\n${label}`;
         })
@@ -1070,6 +1079,10 @@ function initExperience(config) {
       if (fieldName === drinkName) return premiumChoiceFieldNames.drink;
       return null;
     };
+    const beverageFieldNameForTier = (tierPremium) => {
+      if (tierPremium && premiumChoiceFieldNames?.beverage) return premiumChoiceFieldNames.beverage;
+      return beverageName || null;
+    };
 
     const getLocalizedChoice = (fieldName, storedValue) => {
       const text = String(storedValue || "").trim();
@@ -1381,10 +1394,12 @@ function initExperience(config) {
         if (radios.length === 1) radios[0].checked = true;
       };
       [starterName, mainName, drinkName].forEach(check);
+      if (beverageName) check(beverageName);
       if (premiumChoiceFieldNames) {
         [premiumChoiceFieldNames.starter, premiumChoiceFieldNames.main, premiumChoiceFieldNames.drink].forEach(
           check
         );
+        if (premiumChoiceFieldNames.beverage) check(premiumChoiceFieldNames.beverage);
       }
       if (boatTimePopupRadioNameResolved) check(boatTimePopupRadioNameResolved);
       if (walkingTourTimePopupRadioNameResolved) check(walkingTourTimePopupRadioNameResolved);
@@ -1567,6 +1582,7 @@ function initExperience(config) {
         let starterText = "";
         let mainText = "";
         let drinkText = "";
+        let beverageText = "";
 
         if (usePrmSidesCb) {
           const sides = Array.from(
@@ -1660,6 +1676,16 @@ function initExperience(config) {
           drinkText = experienceSkipsDrinkField
             ? ""
             : drink.value || drink.nextElementSibling?.textContent?.trim();
+
+          const bevField = beverageFieldNameForTier(tierPremium);
+          if (bevField) {
+            const beverage = popup.querySelector(`input[name="${bevField}"]:checked`);
+            if (!beverage) {
+              alert(getI18nText("orders_alert_select_each", "Please select one option from each category"));
+              return;
+            }
+            beverageText = beverage.value || beverage.nextElementSibling?.textContent?.trim();
+          }
 
           if (
             tierPremium &&
@@ -1775,6 +1801,7 @@ function initExperience(config) {
           starter: starterText,
           main: mainText,
           drink: drinkText,
+          ...(beverageText ? { beverage: beverageText } : {}),
           preferences,
           ...(guideOptional && !groupGuideOptional ? { includeGuide } : {}),
           ...(menuUpgradePrice ? { menuTier: tierPremium ? "premium" : "standard" } : {}),
@@ -1847,6 +1874,9 @@ function initExperience(config) {
       const labD = Lk.drink
         ? getI18nText(Lk.drink, Ls.drink || "Drink")
         : Ls.drink || "Drink";
+      const labB = Lk.beverage
+        ? getI18nText(Lk.beverage, Ls.beverage || "Beverage")
+        : Ls.beverage || "Beverage";
       const labGuide = getI18nText("guide_accompany_short", "Guide");
       const guestLbl = getI18nText("guest_order_label", "Guest");
       const tierWaPremLine =
@@ -1870,7 +1900,7 @@ function initExperience(config) {
             .filter((p) => p && p.trim() && p !== "-");
           const gLine =
             guideOptional && !groupGuideOptional && guideFee > 0
-              ? `\n${labGuide}: ${o && o.includeGuide ? "Yes (+USD " + guideFee + ")" : "No"}`
+              ? `\n${waLine(labGuide, o && o.includeGuide ? `Yes (+USD ${guideFee})` : "No")}`
               : "";
           if (experienceSkipsMenuChoices) {
             const cardLbl = boatTimePerOrderFlag
@@ -1881,11 +1911,11 @@ function initExperience(config) {
               : 1;
             const timeLine =
               boatTimePerOrderFlag && String(o.boatDepartureTime || "").trim()
-                ? `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${String(o.boatDepartureTime).trim()} · ${getI18nText("passengers_label", "Passengers")}: ${pax}`
+                ? `\n${waLine(getI18nText("orders_wa_boat_time", "Boat departure time"), String(o.boatDepartureTime).trim())} · ${waLine(getI18nText("passengers_label", "Passengers"), pax)}`
                 : "";
             const prefPart =
               (prefs.join(", ") || "").trim() !== ""
-                ? `\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ")}`
+                ? `\n${waLine(getI18nText("preferences_label", "Preferences"), prefs.join(", "))}`
                 : "";
             return `*${cardLbl} ${i + 1}*${timeLine}${gLine}${prefPart}`;
           }
@@ -1899,7 +1929,7 @@ function initExperience(config) {
               ? getI18nText("bruma_premium_label_dessert", "Dessert")
               : labM;
           const tierLine = menuUpgradePrice
-            ? `\n${getI18nText("bruma_whatsapp_tier", "Menu tier")}: ${prem ? tierWaPremLine : tierWaStdLine}`
+            ? `\n${waLine(getI18nText("bruma_whatsapp_tier", "Menu tier"), prem ? tierWaPremLine : tierWaStdLine)}`
             : "";
           const stdSkipsMain =
             Boolean(standardSkipsMainField && menuUpgradePrice && !prem);
@@ -1907,53 +1937,59 @@ function initExperience(config) {
           const mainPart =
             stdSkipsMain || premOmitsSecondSide
               ? ""
-              : `\n${lm}: ${getLocalizedChoice(mainName, o.main)}`;
+              : `\n${waLine(lm, getLocalizedChoice(mainName, o.main))}`;
           const drinkPart = experienceSkipsDrinkField
             ? ""
-            : `\n${labD}: ${getLocalizedChoice(drinkName, o.drink)}`;
+            : `\n${waLine(labD, getLocalizedChoice(drinkName, o.drink))}`;
+          const bevFieldWa =
+            prem && premiumChoiceFieldNames?.beverage ? premiumChoiceFieldNames.beverage : beverageName;
+          const beveragePart =
+            bevFieldWa && o.beverage
+              ? `\n${waLine(labB, getLocalizedChoice(bevFieldWa, o.beverage))}`
+              : "";
           const menuBoatWa =
             menuWithPerOrderBoat && boatRate > 0
               ? (() => {
                   const bp = orderBoatPax(o);
                   const bt = orderBoatTime(o);
                   if (bp <= 0 && !bt) return "";
-                  return `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${bt || "-"} · ${getI18nText("passengers_label", "Passengers")}: ${bp}`;
+                  return `\n${waLine(getI18nText("orders_wa_boat_time", "Boat departure time"), bt || "-")} · ${waLine(getI18nText("passengers_label", "Passengers"), bp)}`;
                 })()
               : "";
           const walkLangLabelKey = orderLanguageSummaryLabelKey || "walking_label_language";
           const walkLangLabelFb = orderLanguageSummaryLabelKey ? "Guided tour" : "Language";
           const walkLangWa =
             orderLanguageRadioName && String(o.walkingLanguage || "").trim()
-              ? `\n${getI18nText(walkLangLabelKey, walkLangLabelFb)}: ${getLocalizedChoice(
-                  orderLanguageRadioName,
-                  o.walkingLanguage
+              ? `\n${waLine(
+                  getI18nText(walkLangLabelKey, walkLangLabelFb),
+                  getLocalizedChoice(orderLanguageRadioName, o.walkingLanguage)
                 )}`
               : "";
           const walkTourTimeWa =
             walkingTourTimePerOrderFlag && orderWalkingTourTime(o)
-              ? `\n${getI18nText("orders_wa_walking_tour_time", "Walking tour time")}: ${orderWalkingTourTime(o)}`
+              ? `\n${waLine(getI18nText("orders_wa_walking_tour_time", "Walking tour time"), orderWalkingTourTime(o))}`
               : "";
           const walkPartyWa =
             orderWalkingPartyMaxNum > 0 && orderLanguageRadioName
-              ? `\n${getI18nText("walking_asado_wa_tour_quantity", "Walking tour guests")}: ${walkingPartyForOrder(o)}`
+              ? `\n${waLine(getI18nText("walking_asado_wa_tour_quantity", "Walking tour guests"), walkingPartyForOrder(o))}`
               : "";
           const horseTimeWa =
             horseCfg && String(o && o.horsebackDepartureTime ? o.horsebackDepartureTime : "").trim()
-              ? `\n${getI18nText(
-                  horseCfg.summaryLabelKey || "liebres_horseback_time_label",
-                  "Horseback departure time"
-                )}: ${horseSummaryDisplay(o.horsebackDepartureTime)}`
+              ? `\n${waLine(
+                  getI18nText(horseCfg.summaryLabelKey || "liebres_horseback_time_label", "Horseback departure time"),
+                  horseSummaryDisplay(o.horsebackDepartureTime)
+                )}`
               : "";
           const orderHead = rb
             ? `*${getI18nText("orders_wa_guest_slot", "Guest")} ${i + 1}*`
             : `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*`;
           const starterPart = experienceSkipsStarterField
             ? ""
-            : `\n${ls}: ${getLocalizedChoice(starterName, o.starter)}`;
-          return `${orderHead}${fixedSummaryRowsWa("top")}${tierLine}${starterPart}${mainPart}${horseTimeWa}${drinkPart}${menuBoatWa}${gLine}${
+            : `\n${waLine(ls, getLocalizedChoice(starterName, o.starter))}`;
+          return `${orderHead}${fixedSummaryRowsWa("top")}${tierLine}${starterPart}${mainPart}${horseTimeWa}${drinkPart}${beveragePart}${menuBoatWa}${gLine}${
             experienceSkipsPreferencesField
               ? ""
-              : `\n${getI18nText("preferences_label", "Preferences")}: ${prefs.join(", ") || "-"}`
+              : `\n${waLine(getI18nText("preferences_label", "Preferences"), prefs.join(", ") || "-")}`
           }${walkLangWa}${walkTourTimeWa}${walkPartyWa}${fixedSummaryRowsWa("bottom")}`;
         })
         .join("\n\n");
@@ -1966,9 +2002,9 @@ function initExperience(config) {
         "Hello! I'd like to book the {experience} experience:"
       );
       const waIntro = waIntroRaw.replace(/\{experience\}/g, expName);
-      let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${dateStr}`;
+      let message = `${waIntro}\n\n${waLine(getI18nText("orders_wa_date_label", "Date"), dateStr)}`;
       if (!whatsappSkipsPeopleLine) {
-        message += `\n*${getI18nText("orders_wa_people_line", "People")}*: ${peopleCount}`;
+        message += `\n${waLine(getI18nText("orders_wa_people_line", "People"), peopleCount)}`;
       }
       if (rb && getRoomRows().length > 0) {
         const rows = getRoomRows();
@@ -1977,37 +2013,34 @@ function initExperience(config) {
             const g = r.guests;
             const pr = Number(rb.priceByOccupancy[String(g)]);
             const pshow = Number.isFinite(pr) ? pr : 0;
-            return `*${getI18nText("orders_room_label", "Room")} ${i + 1}*: ${g} ${getI18nText(
-              "orders_wa_room_guests_suffix",
-              "guest(s)"
-            )} — ${curLabel} ${pshow}`;
+            return `*${getI18nText("orders_room_label", "Room")} ${i + 1}*: ${g} ${getI18nText("orders_wa_room_guests_suffix", "guest(s)")} — ${curLabel} ${pshow}`;
           })
           .join("\n");
-        message += `\n${roomLines}\n${getI18nText("orders_wa_rooms_subtotal_label", "Rooms subtotal")}: ${curLabel} ${roomCostWa}`;
+        message += `\n${roomLines}\n${waLine(getI18nText("orders_wa_rooms_subtotal_label", "Rooms subtotal"), `${curLabel} ${roomCostWa}`)}`;
         message += `\n${getI18nText(
           "orders_wa_rooms_breakfast_note",
           "Rooms include breakfast."
         )}`;
       }
       if (boatTotalWa > 0) {
-        message += `\n${getI18nText("orders_wa_boat_passengers", "Boat passengers")}: ${boatPassengersWa}`;
+        message += `\n${waLine(getI18nText("orders_wa_boat_passengers", "Boat passengers"), boatPassengersWa)}`;
         if (!menuWithPerOrderBoat) {
           const bTime = getBoatTimeSlot();
           if (bTime) {
-            message += `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${bTime}`;
+            message += `\n${waLine(getI18nText("orders_wa_boat_time", "Boat departure time"), bTime)}`;
           }
         }
       } else if (boatScheduleOnlyFlag && boatTimeLSKey && people > 0 && !boatTimePerOrderFlag) {
         const bTimeOnly = getBoatTimeSlot();
         if (bTimeOnly) {
-          message += `\n${getI18nText("orders_wa_boat_time", "Boat departure time")}: ${bTimeOnly}`;
+          message += `\n${waLine(getI18nText("orders_wa_boat_time", "Boat departure time"), bTimeOnly)}`;
         }
       }
       message += `\n\n${ordersText}\n\n`;
-      message += `${getI18nText(
-        rb ? "orders_wa_menu_subtotal" : "orders_wa_experience_subtotal",
-        rb ? "Menus subtotal" : "Experience subtotal"
-      )}: ${curLabel} ${experienceSubtotal}`;
+      message += `${waLine(
+        getI18nText(rb ? "orders_wa_menu_subtotal" : "orders_wa_experience_subtotal", rb ? "Menus subtotal" : "Experience subtotal"),
+        `${curLabel} ${experienceSubtotal}`
+      )}`;
       if (guideFee > 0 && !guideOptional && !groupGuideOptional) {
         if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
           message += ` (${getI18nText(
@@ -2023,19 +2056,19 @@ function initExperience(config) {
       }
       message += `\n`;
       if (groupGuideOptional && groupGuideFlat > 0) {
-        message += `Group guide (optional, USD ${groupGuideFlat} total for the group): ${gg > 0 ? `Yes — USD ${gg}` : "No"}\n`;
+        message += `${waLine(`Group guide (optional, USD ${groupGuideFlat} total for the group)`, gg > 0 ? `Yes — USD ${gg}` : "No")}\n`;
       }
       if (transportTotal > 0) {
         const vehicles = Math.ceil(peopleCount / 4);
-        message += `Private transport (${vehicles} vehicle${vehicles === 1 ? "" : "s"} x USD ${vehicleTransportRate}): USD ${transportTotal}\n`;
+        message += `${waLine(`Private transport (${vehicles} vehicle${vehicles === 1 ? "" : "s"} x USD ${vehicleTransportRate})`, `USD ${transportTotal}`)}\n`;
       }
       if (boatTotalWa > 0) {
-        message += `${getI18nText("orders_wa_boat_subtotal", "Boat")} (${boatPassengersWa} × ${curLabel} ${boatRate}): ${curLabel} ${boatTotalWa}\n`;
+        message += `${waLine(`${getI18nText("orders_wa_boat_subtotal", "Boat")} (${boatPassengersWa} × ${curLabel} ${boatRate})`, `${curLabel} ${boatTotalWa}`)}\n`;
       }
       if (roomCostWa > 0) {
-        message += `${getI18nText("orders_wa_rooms_line", "Overnight rooms")}: ${curLabel} ${roomCostWa}\n`;
+        message += `${waLine(getI18nText("orders_wa_rooms_line", "Overnight rooms"), `${curLabel} ${roomCostWa}`)}\n`;
       }
-      message += `${getI18nText("orders_wa_total_label", "Total")}: ${curLabel} ${total}`;
+      message += `${waLine(getI18nText("orders_wa_total_label", "Total"), `${curLabel} ${total}`)}`;
 
       if (paymentLink) {
         message += `\n\n${getI18nText(
@@ -2165,6 +2198,20 @@ function initExperience(config) {
           });
         }
         }
+      }
+
+      const fillBeverageRadios = (fieldName, stored) => {
+        if (!fieldName || !stored) return;
+        popup.querySelectorAll(`input[name="${fieldName}"]`).forEach((input) => {
+          const labelText = input.nextElementSibling?.textContent?.trim();
+          input.checked =
+            labelText === stored || input.value === stored || storedMatchesRadio(input, stored);
+        });
+      };
+      if (!experienceSkipsMenuChoices) {
+        const isPremFill = menuUpgradePrice && order.menuTier === "premium";
+        const bevFieldFill = beverageFieldNameForTier(isPremFill);
+        if (bevFieldFill) fillBeverageRadios(bevFieldFill, order.beverage);
       }
 
       if (menuWithPerOrderBoat && boatTimePopupRadioNameResolved) {
@@ -2322,6 +2369,9 @@ function initExperience(config) {
       const defLabD = escapeHtml(
         Lk.drink ? t(Lk.drink, Ls.drink || "Drink") : Ls.drink || t("drink_label", "Drink")
       );
+      const defLabB = escapeHtml(
+        Lk.beverage ? t(Lk.beverage, Ls.beverage || "Beverage") : Ls.beverage || "Beverage"
+      );
       orders.forEach((order, index) => {
         const prefs = (Array.isArray(order.preferences) ? order.preferences : [])
           .map((p) => decoratePref(p))
@@ -2472,6 +2522,12 @@ function initExperience(config) {
         const drinkRow = experienceSkipsDrinkField
           ? ""
           : `<p><strong>${labD}:</strong> ${escapeHtml(getLocalizedChoice(drinkName, order.drink))}</p>`;
+        const bevFieldCard =
+          prem && premiumChoiceFieldNames?.beverage ? premiumChoiceFieldNames.beverage : beverageName;
+        const beverageRow =
+          bevFieldCard && order.beverage
+            ? `<p><strong>${defLabB}:</strong> ${escapeHtml(getLocalizedChoice(bevFieldCard, order.beverage))}</p>`
+            : "";
         const boatHintMenu = t("orders_boat_each_hint", "USD {price} per person").replace(
           /\{price\}/g,
           String(boatRate)
@@ -2537,6 +2593,7 @@ function initExperience(config) {
             ${horseRow}
             ${starterRow}
             ${drinkRow}
+            ${beverageRow}
             ${guideLine}
             ${
               experienceSkipsPreferencesField
