@@ -363,14 +363,18 @@ function effectivePlexoRedirectUri(fingerprint) {
   }
 }
 
-function paymentResultPageUrl(outcome) {
+function paymentResultPageUrl(outcome, ref) {
   const page =
     outcome === "success"
       ? "payment-success.html"
       : outcome === "pending"
         ? "payment-pending.html"
         : "payment-failed.html";
-  return `${PLEXO_FRONTEND_BASE_URL}/Home/${page}`;
+  const refParam =
+    outcome === "failed" && String(ref || "").trim()
+      ? `?ref=${encodeURIComponent(String(ref).trim())}`
+      : "";
+  return `${PLEXO_FRONTEND_BASE_URL}/Home/${page}${refParam}`;
 }
 
 function readPfxBytes() {
@@ -1315,7 +1319,12 @@ app.get("/api/payments/result", (req, res) => {
     paymentStatus,
     outcome: mapPaymentStatusToOutcome(paymentStatus),
     updatedAt: payment.updatedAt || payment.createdAt || null,
-    plexoResultCode: payment.plexoResultCode ?? null
+    plexoResultCode: payment.plexoResultCode ?? null,
+    experience: payment.experience || null,
+    amount: payment.amount ?? null,
+    currency: payment.currency || null,
+    people: payment.people ?? null,
+    orderPayload: payment.orderPayload ?? null
   });
 });
 
@@ -1332,7 +1341,7 @@ app.get("/payment/return", (req, res) => {
         `${PLEXO_FRONTEND_BASE_URL}/Home/payment-return.html?ref=${encodeURIComponent(ref)}`
       );
     }
-    return res.redirect(302, paymentResultPageUrl(outcome));
+    return res.redirect(302, paymentResultPageUrl(outcome, ref));
   }
   return res.redirect(302, `${PLEXO_FRONTEND_BASE_URL}/Home/payment-return.html`);
 });
