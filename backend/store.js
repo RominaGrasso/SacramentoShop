@@ -71,6 +71,23 @@ function stripBlockedPaymentStatusPatch(existingStatus, patch) {
   return patch;
 }
 
+function hasTerminalPaymentAttempt(link) {
+  const attempts = Array.isArray(link?.paymentAttempts) ? link.paymentAttempts : [];
+  return attempts.some((a) => isFinalPaymentStatus(a?.status));
+}
+
+/** Plexo checkout links must not be reused after a terminal payment outcome. */
+function markLinkConsumedIfTerminal(existing, patch) {
+  if (!patch || typeof patch !== "object") return patch;
+  const nextPaymentStatus = normalizePaymentStatus(
+    patch.paymentStatus ?? existing?.paymentStatus ?? "awaiting_payment"
+  );
+  if (isFinalPaymentStatus(nextPaymentStatus)) {
+    return { ...patch, status: "consumed" };
+  }
+  return patch;
+}
+
 export function findReusableLink(fingerprint, nowIso) {
   const now = new Date(nowIso).getTime();
   const items = readAll();
@@ -78,9 +95,13 @@ export function findReusableLink(fingerprint, nowIso) {
     items.find((x) => {
       if (x.fingerprint !== fingerprint) return false;
       if (x.status !== "active") return false;
-      if (!x.expiresAt) return true;
-      const expiresAt = new Date(x.expiresAt).getTime();
-      return Number.isFinite(expiresAt) ? expiresAt > now : false;
+      if (normalizePaymentStatus(x.paymentStatus || "awaiting_payment") !== "awaiting_payment") return false;
+      if (hasTerminalPaymentAttempt(x)) return false;
+      if (x.expiresAt) {
+        const expiresAt = new Date(x.expiresAt).getTime();
+        if (Number.isFinite(expiresAt) && expiresAt <= now) return false;
+      }
+      return true;
     }) || null
   );
 }
@@ -139,7 +160,10 @@ export function updatePaymentByFingerprint(fingerprint, patch = {}, attempt = nu
   });
   if (idx < 0) return false;
   const nowIso = new Date().toISOString();
-  const safePatch = stripBlockedPaymentStatusPatch(items[idx].paymentStatus, patch);
+  const safePatch = markLinkConsumedIfTerminal(
+    items[idx],
+    stripBlockedPaymentStatusPatch(items[idx].paymentStatus, patch)
+  );
   items[idx] = { ...items[idx], ...safePatch, updatedAt: nowIso };
   if (!Array.isArray(items[idx].paymentAttempts)) {
     items[idx].paymentAttempts = [];
@@ -175,7 +199,10 @@ export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = nul
     typeof patchOrStatus === "object" && patchOrStatus !== null
       ? patchOrStatus
       : { paymentStatus: String(patchOrStatus), status: String(patchOrStatus) };
-  const safePatch = stripBlockedPaymentStatusPatch(items[idx].paymentStatus, patch);
+  const safePatch = markLinkConsumedIfTerminal(
+    items[idx],
+    stripBlockedPaymentStatusPatch(items[idx].paymentStatus, patch)
+  );
   items[idx] = { ...items[idx], ...safePatch, updatedAt: nowIso };
   if (!Array.isArray(items[idx].paymentAttempts)) {
     items[idx].paymentAttempts = [];
