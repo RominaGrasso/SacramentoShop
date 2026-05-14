@@ -130,10 +130,11 @@
     throw lastError || new Error("result_fetch_failed");
   }
 
-  function pageForOutcome(outcome) {
+  function pageForOutcome(outcome, ref) {
     if (outcome === "success") return "payment-success.html";
     if (outcome === "pending") return "payment-pending.html";
-    return "payment-failed.html";
+    const refParam = ref ? `?ref=${encodeURIComponent(ref)}` : "";
+    return `payment-failed.html${refParam}`;
   }
 
   function applyWhatsAppLink() {
@@ -152,7 +153,7 @@
       const data = await fetchPaymentResult(ref);
       const outcome = resolveOutcome(data);
       if (outcome !== "processing") {
-        window.location.replace(pageForOutcome(outcome));
+        window.location.replace(pageForOutcome(outcome, ref));
         return;
       }
       await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
@@ -162,7 +163,7 @@
 
   async function runReturnRouter() {
     if (hasExplicitCancelOrError()) {
-      window.location.replace("payment-failed.html");
+      window.location.replace(pageForOutcome("failed", readRefFromLocation()));
       return;
     }
 
@@ -187,16 +188,78 @@
     }
   }
 
+  function resolveApiCandidates() {
+    const path = "/api/payments/resolve";
+    const base = paymentsApiBase();
+    const host = window.location?.hostname || "";
+    const list = [`${base}${path}`];
+    if ((host === "localhost" || host === "127.0.0.1") && window.location?.protocol !== "file:") {
+      list.unshift(path);
+    }
+    return [...new Set(list)];
+  }
+
+  async function requestNewPaymentCheckout(ref) {
+    const data = await fetchPaymentResult(ref);
+    if (!data?.found || !data.experience || !Number.isFinite(Number(data.amount)) || Number(data.amount) <= 0) {
+      throw new Error("retry_context_missing");
+    }
+    const body = {
+      experience: data.experience,
+      amount: Number(data.amount),
+      currency: data.currency || "USD",
+      people: Number.isFinite(Number(data.people)) ? Number(data.people) : null,
+      orderPayload: data.orderPayload ?? null
+    };
+    const candidates = resolveApiCandidates();
+    let lastError = null;
+    for (const url of candidates) {
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) {
+          lastError = new Error(`HTTP ${res.status}`);
+          continue;
+        }
+        const created = await res.json();
+        const paymentUrl = String(created.paymentUrl || created.url || "").trim();
+        if (!paymentUrl) {
+          lastError = new Error("missing_payment_url");
+          continue;
+        }
+        return paymentUrl;
+      } catch (err) {
+        lastError = err;
+      }
+    }
+    throw lastError || new Error("resolve_failed");
+  }
+
   function bindRetry() {
     const retry = document.getElementById("paymentRetryBtn");
     if (!retry) return;
     retry.addEventListener("click", (e) => {
       e.preventDefault();
-      if (window.history.length > 1) {
-        window.history.back();
+      const ref = readRefFromLocation();
+      if (!ref) {
+        window.location.href = "index.html";
         return;
       }
-      window.location.href = "index.html";
+      retry.disabled = true;
+      requestNewPaymentCheckout(ref)
+        .then((paymentUrl) => {
+          window.location.replace(paymentUrl);
+        })
+        .catch(() => {
+          window.location.href = "index.html";
+        })
+        .finally(() => {
+          retry.disabled = false;
+        });
     });
   }
 
