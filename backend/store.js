@@ -35,6 +35,42 @@ function writeAll(items) {
   fs.writeFileSync(DB_FILE, JSON.stringify(items, null, 2), "utf8");
 }
 
+function normalizePaymentStatus(status) {
+  return String(status || "").trim().toLowerCase();
+}
+
+/** Terminal outcomes: must not be downgraded to pending/processing by secondary callbacks. */
+export function isFinalPaymentStatus(status) {
+  const s = normalizePaymentStatus(status);
+  return s === "approved" || s === "failed";
+}
+
+/**
+ * approved/failed > pending (and other non-final states).
+ * @returns {boolean} false when `nextStatus` would downgrade a final state.
+ */
+export function canApplyPaymentStatusTransition(currentStatus, nextStatus) {
+  const cur = normalizePaymentStatus(currentStatus);
+  const next = normalizePaymentStatus(nextStatus);
+  if (!next || next === cur) return true;
+  if (
+    isFinalPaymentStatus(cur) &&
+    (next === "pending" || next === "processing" || next === "awaiting_payment")
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function stripBlockedPaymentStatusPatch(existingStatus, patch) {
+  if (!patch || typeof patch !== "object" || patch.paymentStatus == null) return patch;
+  if (!canApplyPaymentStatusTransition(existingStatus, patch.paymentStatus)) {
+    const { paymentStatus, ...rest } = patch;
+    return rest;
+  }
+  return patch;
+}
+
 export function findReusableLink(fingerprint, nowIso) {
   const now = new Date(nowIso).getTime();
   const items = readAll();
@@ -103,14 +139,15 @@ export function updatePaymentByFingerprint(fingerprint, patch = {}, attempt = nu
   });
   if (idx < 0) return false;
   const nowIso = new Date().toISOString();
-  items[idx] = { ...items[idx], ...patch, updatedAt: nowIso };
+  const safePatch = stripBlockedPaymentStatusPatch(items[idx].paymentStatus, patch);
+  items[idx] = { ...items[idx], ...safePatch, updatedAt: nowIso };
   if (!Array.isArray(items[idx].paymentAttempts)) {
     items[idx].paymentAttempts = [];
   }
   if (attempt && typeof attempt === "object") {
     items[idx].paymentAttempts.push({
       at: nowIso,
-      status: patch.paymentStatus || items[idx].paymentStatus || "unknown",
+      status: safePatch.paymentStatus || items[idx].paymentStatus || "unknown",
       source: attempt.source || "webhook",
       gateway: attempt.gateway || undefined,
       card: attempt.card || undefined,
@@ -138,7 +175,8 @@ export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = nul
     typeof patchOrStatus === "object" && patchOrStatus !== null
       ? patchOrStatus
       : { paymentStatus: String(patchOrStatus), status: String(patchOrStatus) };
-  items[idx] = { ...items[idx], ...patch, updatedAt: nowIso };
+  const safePatch = stripBlockedPaymentStatusPatch(items[idx].paymentStatus, patch);
+  items[idx] = { ...items[idx], ...safePatch, updatedAt: nowIso };
   if (!Array.isArray(items[idx].paymentAttempts)) {
     items[idx].paymentAttempts = [];
   }
@@ -146,7 +184,7 @@ export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = nul
     attempt && typeof attempt === "object"
       ? {
           at: nowIso,
-          status: patch.paymentStatus || patch.status || items[idx].paymentStatus || "unknown",
+          status: safePatch.paymentStatus || safePatch.status || items[idx].paymentStatus || "unknown",
           source: attempt.source || "status_update",
           gateway: attempt.gateway || undefined,
           card: attempt.card || undefined,
@@ -158,7 +196,7 @@ export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = nul
         }
       : {
           at: nowIso,
-          status: patch.paymentStatus || patch.status || "status_update",
+          status: safePatch.paymentStatus || safePatch.status || "status_update",
           source: "status_update"
         }
   );
