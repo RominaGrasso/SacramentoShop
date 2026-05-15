@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { sendPaymentApprovedNotification } from "./sendPaymentApprovedNotification.js";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(MODULE_DIR, "data");
@@ -88,6 +89,57 @@ function markLinkConsumedIfTerminal(existing, patch) {
   return patch;
 }
 
+function markApprovedNotificationEmailSent({ fingerprint, sessionId }) {
+  const items = readAll();
+  let idx = -1;
+  if (fingerprint) {
+    const ref = String(fingerprint).trim();
+    let bestTime = -1;
+    items.forEach((x, i) => {
+      if (String(x.fingerprint || "") !== ref) return;
+      const t = new Date(x.updatedAt || x.createdAt || 0).getTime();
+      if (t >= bestTime) {
+        bestTime = t;
+        idx = i;
+      }
+    });
+  } else if (sessionId) {
+    idx = items.findIndex((x) => String(x.sessionId || "") === String(sessionId));
+  }
+  if (idx < 0) return;
+  items[idx].approvedNotificationEmailSentAt = new Date().toISOString();
+  writeAll(items);
+}
+
+/** Fire-and-forget Resend email on first transition to approved. Never throws. */
+function scheduleApprovedPaymentEmail(prevItem, updatedItem, attempt) {
+  const prev = normalizePaymentStatus(prevItem?.paymentStatus);
+  const next = normalizePaymentStatus(updatedItem?.paymentStatus);
+  if (next !== "approved" || prev === "approved") return;
+  if (updatedItem?.approvedNotificationEmailSentAt) {
+    // eslint-disable-next-line no-console
+    console.warn("[payment-email] omitted: already notified for this payment");
+    return;
+  }
+  const payment = { ...updatedItem };
+  const refKey = {
+    fingerprint: updatedItem.fingerprint || null,
+    sessionId: updatedItem.sessionId || null
+  };
+  void sendPaymentApprovedNotification(payment, attempt).then((result) => {
+    if (result?.sent) {
+      try {
+        markApprovedNotificationEmailSent(refKey);
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.warn("[payment-email] error marking sent flag", {
+          message: err instanceof Error ? err.message : String(err)
+        });
+      }
+    }
+  });
+}
+
 export function findReusableLink(fingerprint, nowIso) {
   const now = new Date(nowIso).getTime();
   const items = readAll();
@@ -159,6 +211,7 @@ export function updatePaymentByFingerprint(fingerprint, patch = {}, attempt = nu
     }
   });
   if (idx < 0) return false;
+  const prevItem = { ...items[idx] };
   const nowIso = new Date().toISOString();
   const safePatch = markLinkConsumedIfTerminal(
     items[idx],
@@ -186,6 +239,7 @@ export function updatePaymentByFingerprint(fingerprint, patch = {}, attempt = nu
     }
   }
   writeAll(items);
+  scheduleApprovedPaymentEmail(prevItem, items[idx], attempt);
   return true;
 }
 
@@ -194,6 +248,7 @@ export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = nul
   const items = readAll();
   const idx = items.findIndex((x) => x.sessionId === sessionId);
   if (idx < 0) return false;
+  const prevItem = { ...items[idx] };
   const nowIso = new Date().toISOString();
   const patch =
     typeof patchOrStatus === "object" && patchOrStatus !== null
@@ -207,7 +262,7 @@ export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = nul
   if (!Array.isArray(items[idx].paymentAttempts)) {
     items[idx].paymentAttempts = [];
   }
-  items[idx].paymentAttempts.push(
+  const attemptEntry =
     attempt && typeof attempt === "object"
       ? {
           at: nowIso,
@@ -225,9 +280,10 @@ export function updatePaymentBySessionId(sessionId, patchOrStatus, attempt = nul
           at: nowIso,
           status: safePatch.paymentStatus || safePatch.status || "status_update",
           source: "status_update"
-        }
-  );
+        };
+  items[idx].paymentAttempts.push(attemptEntry);
   writeAll(items);
+  scheduleApprovedPaymentEmail(prevItem, items[idx], attemptEntry);
   return true;
 }
 
