@@ -462,7 +462,7 @@ const translations = {
       barbot_medal_gold: "Gold",
       barbot_medal_best_uy: "Best Uruguayan Brewery",
       barbot_page_varieties_p:
-        "Roughly 20 beer varieties flow through taps and bottles - IPAs, lagers, seasonals and more - so one stop can feel like a mini tasting tour without leaving the brewpub.",
+        "Roughly 20 varieties on draft taps and in cans — IPAs, Belgians, Scottish, seasonals and more — so one stop can feel like a mini tasting without leaving the brewpub.",
       barbot_page_why_title: "Why travelers pause here",
       barbot_page_moment_1_title: "You’re already in the Historic Quarter:",
       barbot_page_moment_1_desc:
@@ -506,7 +506,7 @@ const translations = {
       barbot_std_drink_2: "Coca-Cola line soft drink - chilled soda (Coca-Cola family).",
       barbot_std_drink_3: "Mineral water - still or sparkling, served cold.",
       barbot_std_drink_4:
-        "Pint of Barbot malt or ginger ale - non-alcoholic house malt or ginger ale on tap.",
+        "1 pint of Barbot Classic beer - more than 15 house styles on tap.",
       barbot_prm_entrada_1:
         "Two beef and/or provolone & onion empanadas - pair of golden empanadas, mix and match fillings.",
       barbot_prm_entrada_2:
@@ -751,6 +751,17 @@ const translations = {
       mision_include_4: "✔ Guided walking tour",
       mision_include_5: "✔ Late checkout",
       mision_include_6: "🚶 All experiences within walking distance",
+      mision_sio_doc_title: "La Misión + SIO Night Experience",
+      mision_sio_hero_title: "🏛 🍣 La Misión + SIO Night Experience",
+      mision_sio_about_p:
+        "Step back in time with a unique overnight stay in Colonia's historic quarter at La Misión, a charming boutique posada in front of Plaza Mayor, where Mercedes will personally welcome you and prepare a warm homemade breakfast. At the entrance, the hydrangeas planted by her grandmother tell a story that has been part of the house for generations. Enjoy SIO's Special Night sushi menu - a refined tasting experience in one of Colonia's most celebrated dining rooms. Complete your stay with a guided walking tour through the city's most iconic streets.",
+      mision_sio_step_2_title: "Dinner at SIO:",
+      mision_sio_step_2_text:
+        " Enjoy the Special Night menu (Especial Trufado, roll, drink, dessert) at SIO - a short walk from your posada.",
+      mision_sio_price_menu: "Special Night menu · USD 70 per guest",
+      mision_sio_include_1: "✔ Dinner at SIO (Special Night menu)",
+      mision_sio_wa_intro:
+        "Hello! I'd like to book the La Misión + SIO night package (stay, SIO Special Night menu, breakfast & walking tour):",
       mision_services_summary: "✨ View all services",
       mision_services_highlight_title: "Highlighted services",
       mision_svc_wifi_lobby: "📶 Wi-Fi in lobby",
@@ -1923,7 +1934,7 @@ const translations = {
       barbot_medal_gold: "Oro",
       barbot_medal_best_uy: "Mejor Cervecería Uruguaya",
       barbot_page_varieties_p:
-        "Hay alrededor de 20 variedades entre chopera y botellas - IPAs, lagers, temporadas y más - así que una sola parada puede saber a mini degustación sin salir del brewpub.",
+        "Hay alrededor de 20 variedades entre canillas de barril y latas - IPAs, Belgas, Scottish, de temporada y más - así que una sola parada puede saber a mini degustación sin salir del brewpub.",
       barbot_page_why_title: "Por qué los viajeros se detienen acá",
       barbot_page_moment_1_title: "Estás en pleno Casco Histórico:",
       barbot_page_moment_1_desc: "entrás entre monumentos sin cortar el encanto.",
@@ -1966,7 +1977,7 @@ const translations = {
       barbot_std_drink_2: "1 refresco línea Coca-Cola - gaseosa fría (familia Coca-Cola).",
       barbot_std_drink_3: "1 agua mineral - con o sin gas, bien fría.",
       barbot_std_drink_4:
-        "1 pinta de malta o ginger ale Barbot - malta o ginger ale sin alcohol de la casa en chopera.",
+        "1 pinta de cerveza Barbot Clásica - más de 15 estilos de la casa en chopera.",
       barbot_prm_entrada_1:
         "2 empanadas de carne y/o provolone y cebolla - par de empanadas doradas, combiná rellenos.",
       barbot_prm_entrada_2:
@@ -2210,6 +2221,17 @@ const translations = {
       mision_include_4: "✔ Recorrido a pie guiado",
       mision_include_5: "✔ Late checkout",
       mision_include_6: "🚶 Todas las experiencias a distancia caminable",
+      mision_sio_doc_title: "La Misión + SIO Noche",
+      mision_sio_hero_title: "🏛 🍣 La Misión + SIO Noche",
+      mision_sio_about_p:
+        "Viví una estadía única en el barrio histórico de Colonia en La Misión, una posada boutique frente a la Plaza Mayor, donde Mercedes te recibirá personalmente y preparará un desayuno casero. En la entrada, las hortensias plantadas por su abuela cuentan una historia que forma parte de la casa hace generaciones. Disfrutá el menú Special Night de SIO - una experiencia de degustación en una de las mesas más celebradas de Colonia. Completá tu estadía con un recorrido a pie guiado por las calles más emblemáticas.",
+      mision_sio_step_2_title: "Cena en SIO:",
+      mision_sio_step_2_text:
+        " Disfrutá el menú Special Night (Especial Trufado, roll, bebida, postre) en SIO - a pocos pasos de tu posada.",
+      mision_sio_price_menu: "Menú Special Night · USD 70 por persona",
+      mision_sio_include_1: "✔ Cena en SIO (menú Special Night)",
+      mision_sio_wa_intro:
+        "¡Hola! Quiero reservar el paquete La Misión + SIO noche (estadía, menú Special Night de SIO, desayuno y recorrido a pie):",
       mision_services_summary: "✨ Ver todos los servicios",
       mision_services_highlight_title: "Servicios destacados",
       mision_svc_wifi_lobby: "📶 Wi-Fi en el lobby",
@@ -3381,7 +3403,7 @@ const translations = {
       barbot_medal_gold: "Ouro",
       barbot_medal_best_uy: "Melhor Cervejaria Uruguaia",
       barbot_page_varieties_p:
-        "São cerca de 20 variedades entre torneiras e garrafas - IPAs, lagers, sazonais e mais - para uma única visita parecer uma mini degustação sem sair do brewpub.",
+        "São cerca de 20 variedades entre torneiras de barril e latas — IPAs, belgas, escocesas, sazonais e mais — então uma parada pode parecer uma mini degustação sem sair do brewpub.",
       barbot_page_why_title: "Por que viajantes fazem esta parada",
       barbot_page_moment_1_title: "Você já está no Centro Histórico:",
       barbot_page_moment_1_desc: "entra entre um monumento e outro sem perder a magia.",
@@ -3424,7 +3446,7 @@ const translations = {
       barbot_std_drink_2: "1 refrigerante linha Coca-Cola - gelado (família Coca-Cola).",
       barbot_std_drink_3: "1 água mineral - com ou sem gás, bem gelada.",
       barbot_std_drink_4:
-        "1 pinta de malta ou ginger ale Barbot - malta ou ginger ale sem álcool da casa no tap.",
+        "1 pinta de cerveja Barbot Clássica — mais de 15 estilos da casa na torneira.",
       barbot_prm_entrada_1:
         "2 empanadas de carne e/ou provolone e cebola - par de empanadas douradas, combine recheios.",
       barbot_prm_entrada_2:
@@ -3669,6 +3691,17 @@ const translations = {
       mision_include_4: "✔ Passeio a pé guiado",
       mision_include_5: "✔ Late checkout",
       mision_include_6: "🚶 Todas as experiências a pé",
+      mision_sio_doc_title: "La Misión + SIO Noite",
+      mision_sio_hero_title: "🏛 🍣 La Misión + SIO Noite",
+      mision_sio_about_p:
+        "Volte no tempo com uma pernoite única no bairro histórico de Colonia na La Misión, uma posada charmosa em frente à Plaza Mayor, onde a Mercedes receberá você pessoalmente e preparará um café da manhã caseiro. Na entrada, as hortênsias plantadas por sua avó contam uma história que faz parte da casa há gerações. Aproveite o menu Special Night do SIO - uma experiência de degustação em uma das salas mais celebradas de Colonia. Complete a estadia com um passeio a pé guiado pelas ruas mais icônicas.",
+      mision_sio_step_2_title: "Jantar no SIO:",
+      mision_sio_step_2_text:
+        " Desfrute do menu Special Night (Especial Trufado, roll, bebida, sobremesa) no SIO - a poucos passos da sua posada.",
+      mision_sio_price_menu: "Menu Special Night · USD 70 por pessoa",
+      mision_sio_include_1: "✔ Jantar no SIO (menu Special Night)",
+      mision_sio_wa_intro:
+        "Olá! Gostaria de reservar o pacote La Misión + SIO à noite (estadia, menu Special Night do SIO, café da manhã e passeio a pé):",
       mision_services_summary: "✨ Ver todos os serviços",
       mision_services_highlight_title: "Serviços em destaque",
       mision_svc_wifi_lobby: "📶 Wi-Fi no lobby",
