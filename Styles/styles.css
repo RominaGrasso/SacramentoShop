@@ -3764,6 +3764,7 @@
     border: 1px solid rgba(47, 103, 163, 0.18);
     font-size: 1.02rem;
     line-height: 1.55;
+    white-space: pre-line;
   }
 
   .barbot-section-subtitle {
@@ -4819,7 +4820,11 @@
   }
 
   .order-start.room-booking-host .room-booking-room-label {
-    display: block;
+    display: inline-flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    gap: 0.4em;
+    padding-right: 0.35rem;
     font-size: 14px;
     font-weight: 600;
     color: #2c3e50;
@@ -6439,7 +6444,7 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   border-bottom: 1px solid #e8dfd4;
 }
 
-.mision-room-booking-card #misionRoomBooking {
+.mision-room-booking-card .mision-room-booking-host {
   background: transparent;
   border: none;
   border-radius: 0;
@@ -6449,14 +6454,14 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   width: 100%;
 }
 
-.mision-room-booking-card #misionRoomBooking .room-booking-rows {
+.mision-room-booking-card .mision-room-booking-host .room-booking-rows {
   max-width: min(540px, 100%);
   margin: 0.65rem auto 0;
   gap: 12px;
 }
 
-.mision-room-booking-card #misionRoomBooking .room-booking-foot,
-.mision-room-booking-card #misionRoomBooking .room-booking-hint {
+.mision-room-booking-card .mision-room-booking-host .room-booking-foot,
+.mision-room-booking-card .mision-room-booking-host .room-booking-hint {
   max-width: min(540px, 100%);
 }
 
@@ -6485,12 +6490,12 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   color: #9a4a4a;
 }
 
-#misionRoomBooking h3 {
+.mision-room-booking-card .mision-room-booking-host h3 {
   color: #1f3c68;
   margin-bottom: 0.75rem;
 }
 
-#misionRoomBooking .room-booking-row {
+.mision-room-booking-card .mision-room-booking-host .room-booking-row {
   display: grid;
   grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr) auto auto;
   align-items: center;
@@ -6505,21 +6510,25 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   text-align: left;
 }
 
-#misionRoomBooking .room-booking-row.booking-visit-date-row {
+.mision-room-booking-card .mision-room-booking-host .room-booking-row.booking-visit-date-row {
   flex-direction: row;
   align-items: center;
   gap: 0;
 }
 
-#misionRoomBooking .room-booking-room-label {
-  display: block;
+.mision-room-booking-card .mision-room-booking-host .room-booking-room-label {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: 0.4em;
+  padding-right: 0.35rem;
   font-size: 0.9rem;
   font-weight: 700;
   color: #1f3c68;
   white-space: nowrap;
 }
 
-#misionRoomBooking .room-booking-guests-label {
+.mision-room-booking-card .mision-room-booking-host .room-booking-guests-label {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -6533,8 +6542,8 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   color: #4b5563;
 }
 
-#misionRoomBooking select.room-booking-select,
-#misionRoomBooking select {
+.mision-room-booking-card .mision-room-booking-host select.room-booking-select,
+.mision-room-booking-card .mision-room-booking-host select {
   width: auto;
   min-width: 3.25rem;
   max-width: 4.5rem;
@@ -6545,7 +6554,7 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   line-height: 1.2;
 }
 
-#misionRoomBooking .room-row-price {
+.mision-room-booking-card .mision-room-booking-host .room-row-price {
   font-size: 0.95rem;
   font-weight: 700;
   color: #1f3c68;
@@ -6554,7 +6563,7 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   margin-right: 4px;
 }
 
-#misionRoomBooking .room-remove-btn {
+.mision-room-booking-card .mision-room-booking-host .room-remove-btn {
   background: linear-gradient(135deg, #6ea8e5, #5a95cf);
   color: #fff;
   border: none;
@@ -6575,20 +6584,20 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-#misionRoomBooking .room-remove-btn:hover {
+.mision-room-booking-card .mision-room-booking-host .room-remove-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(47, 103, 163, 0.3);
   background: linear-gradient(135deg, #7cb4ec, #6aa0e1);
 }
 
-#misionRoomBooking .room-add-btn {
+.mision-room-booking-card .mision-room-booking-host .room-add-btn {
   margin-top: 0.85rem;
   padding: 0.6rem 1.1rem;
   font-size: 0.92rem;
   border-radius: 10px;
 }
 
-#misionRoomBooking .room-booking-foot {
+.mision-room-booking-card .mision-room-booking-host .room-booking-foot {
   background: #eef3fb;
   border: 1px solid #c8d8f0;
   border-radius: 10px;
@@ -6598,13 +6607,13 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   font-weight: 600;
 }
 
-#misionRoomBooking .room-booking-hint {
+.mision-room-booking-card .mision-room-booking-host .room-booking-hint {
   margin-top: 0.75rem;
   font-size: 0.85rem;
 }
 
 @media (max-width: 520px) {
-  #misionRoomBooking .room-booking-row {
+  .mision-room-booking-card .mision-room-booking-host .room-booking-row {
     grid-template-columns: 1fr auto;
     grid-template-areas:
       "room remove"
@@ -6615,24 +6624,29 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
     padding: 12px 14px;
   }
 
-  #misionRoomBooking .room-booking-room-label {
+  .mision-room-booking-card .mision-room-booking-host .room-booking-room-label {
     grid-area: room;
   }
 
-  #misionRoomBooking .room-booking-guests-label {
+  .mision-room-booking-card .mision-room-booking-host .room-booking-guests-label {
     grid-area: guests;
     justify-content: space-between;
   }
 
-  #misionRoomBooking .room-row-price {
+  .mision-room-booking-card .mision-room-booking-host .room-row-price {
     grid-area: price;
     justify-self: start;
   }
 
-  #misionRoomBooking .room-remove-btn {
+  .mision-room-booking-card .mision-room-booking-host .room-remove-btn {
     grid-area: remove;
     justify-self: end;
   }
+}
+
+/* Home: tarjetas con data-temporarily-hidden no se listan (el filtro por categoría no puede mostrarlas) */
+#experiences .card[data-temporarily-hidden="true"] {
+  display: none !important;
 }
 
 /* ===== Payment result pages (post Plexo checkout) ===== */

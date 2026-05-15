@@ -82,6 +82,49 @@ function stableStringify(value) {
   return `{${keys.map((k) => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(",")}}`;
 }
 
+/**
+ * WhatsApp se abre en una pestaña creada en el click (`about:blank`) para conservar el gesto del usuario.
+ * Tras un `await`, muchos navegadores bloquean `pendingTab.location = …` y la pestaña queda en blanco.
+ * Aquí probamos `replace`/`href` y, si falla o el popup fue bloqueado, usamos `window.location.assign` (misma pestaña),
+ * que no depende de un segundo popup.
+ */
+function sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl) {
+  const url = String(waUrl || "");
+  if (!url) return;
+
+  const tab =
+    pendingTab && typeof pendingTab === "object" && typeof pendingTab.closed === "boolean" && !pendingTab.closed
+      ? pendingTab
+      : null;
+
+  if (tab) {
+    try {
+      tab.opener = null;
+    } catch {
+      /* ignore */
+    }
+    try {
+      tab.location.replace(url);
+      return;
+    } catch {
+      /* deferred navigation often blocked */
+    }
+    try {
+      tab.location.href = url;
+      return;
+    } catch {
+      /* ignore */
+    }
+    try {
+      tab.close();
+    } catch {
+      /* ignore */
+    }
+  }
+
+  window.location.assign(url);
+}
+
 async function resolveDynamicPaymentLink(dynamicPayment, payload) {
   if (!dynamicPayment || !dynamicPayment.enabled) return "";
   const endpointRaw = dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT;
@@ -1260,12 +1303,11 @@ function initExperience(config) {
         const price = Number(rb.priceByOccupancy[String(g)]);
         const priceShow = Number.isFinite(price) ? price : 0;
         inner += `<div class="booking-visit-date-row room-booking-row" data-room-idx="${idx}">`;
-        inner += `<span class="room-booking-room-label">${escapeHtml(getI18nText("orders_room_label", "Room"))} ${
-          idx + 1
-        }</span>`;
+        const roomWord = escapeHtml(getI18nText("orders_room_label", "Room"));
+        inner += `<span class="room-booking-room-label"><span class="room-booking-room-word">${roomWord}</span><span class="room-booking-room-num">${idx + 1}</span></span>`;
         inner += `<label class="room-booking-guests-label">${escapeHtml(
           getI18nText("orders_room_guests_label", "Guests")
-        )}<select class="room-booking-select" data-room-guests="${idx}" aria-label="${escapeHtml(
+        )} <select class="room-booking-select" data-room-guests="${idx}" aria-label="${escapeHtml(
           getI18nText("orders_room_guests_label", "Guests")
         )}">`;
         opts.forEach((o) => {
@@ -3017,11 +3059,7 @@ function initExperience(config) {
           } catch {}
           const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
           const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          if (pendingTab && !pendingTab.closed) {
-            pendingTab.location.href = waUrl;
-          } else {
-            window.open(waUrl, "_blank");
-          }
+          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
         })();
       }
     });
@@ -3124,11 +3162,7 @@ function initExperience(config) {
             } catch {}
             const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
             const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            if (pendingTab && !pendingTab.closed) {
-              pendingTab.location.href = waUrl;
-            } else {
-              window.open(waUrl, "_blank");
-            }
+            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
           })();
         });
       }
@@ -3662,11 +3696,7 @@ function initFoodExperience(config) {
             }
           } catch {}
           const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-          if (pendingTab && !pendingTab.closed) {
-            pendingTab.location.href = waUrl;
-          } else {
-            window.open(waUrl, "_blank");
-          }
+          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
         })();
       }
     });
@@ -3699,11 +3729,7 @@ function initFoodExperience(config) {
               }
             } catch {}
             const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-            if (pendingTab && !pendingTab.closed) {
-              pendingTab.location.href = waUrl;
-            } else {
-              window.open(waUrl, "_blank");
-            }
+            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
           })();
         });
       }
@@ -3987,11 +4013,7 @@ function initPreferencesOrderExperience(config) {
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
           const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          if (pendingTab && !pendingTab.closed) {
-            pendingTab.location.href = waUrl;
-          } else {
-            window.open(waUrl, "_blank");
-          }
+          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
         })();
       }
     });
@@ -4060,11 +4082,7 @@ function initPreferencesOrderExperience(config) {
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
             const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            if (pendingTab && !pendingTab.closed) {
-              pendingTab.location.href = waUrl;
-            } else {
-              window.open(waUrl, "_blank");
-            }
+            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
           })();
         });
       }
@@ -4810,11 +4828,7 @@ function initPackageOrderExperience(config) {
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
           const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          if (pendingTab && !pendingTab.closed) {
-            pendingTab.location.href = waUrl;
-          } else {
-            window.open(waUrl, "_blank");
-          }
+          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
         })();
       }
     });
@@ -4911,11 +4925,7 @@ function initPackageOrderExperience(config) {
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
             const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            if (pendingTab && !pendingTab.closed) {
-              pendingTab.location.href = waUrl;
-            } else {
-              window.open(waUrl, "_blank");
-            }
+            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
           })();
         });
       }
@@ -4981,10 +4991,23 @@ function initSioSpecialNightOrders(userConfig) {
     unitPriceUsd: 70,
     /** Same pattern as Bruma / food1: POST `/api/payments/resolve` → Plexo checkout URL in WhatsApp. */
     dynamicPayment: null,
+    /** Optional La Misión-style room booking (same shape as `initExperience` `roomBooking`). */
+    roomBooking: null,
+    /** i18n key for WhatsApp intro (default: `sio_wa_intro`). */
+    waIntroKey: null,
     ...userConfig
   };
 
   const run = () => {
+    const rbCfg =
+      config.roomBooking && typeof config.roomBooking === "object" && config.roomBooking.hostElementId
+        ? config.roomBooking
+        : null;
+    const rbHost = rbCfg ? document.getElementById(String(rbCfg.hostElementId)) : null;
+    const rb = rbCfg && rbHost ? rbCfg : null;
+    const roomsStorageKey = rb ? `${config.storageKey}_roomBooking` : null;
+    const curLabel = "USD";
+
     const summaryEl = document.getElementById(config.orderSummaryId);
     const overlay = document.getElementById(config.popupId);
     const openBtn = document.getElementById(config.openBtnId);
@@ -4993,6 +5016,50 @@ function initSioSpecialNightOrders(userConfig) {
     const formError = document.getElementById(config.formErrorId);
     const saveBtn = document.getElementById(config.saveBtnId);
     if (!summaryEl || !overlay || !openBtn || !closeBtn || !form || !formError || !saveBtn) return;
+
+    const getRoomRows = () => {
+      if (!roomsStorageKey) return [];
+      try {
+        const raw = JSON.parse(localStorage.getItem(roomsStorageKey) || "{}");
+        const rooms = Array.isArray(raw.rooms) ? raw.rooms : [];
+        return rooms.map((r) => ({ guests: Math.max(0, Math.floor(Number(r && r.guests) || 0)) })).filter((r) => r.guests > 0);
+      } catch {
+        return [];
+      }
+    };
+
+    const setRoomRows = (rows) => {
+      if (!roomsStorageKey) return;
+      const clean = (Array.isArray(rows) ? rows : [])
+        .map((r) => ({ guests: Math.max(0, Math.floor(Number(r && r.guests) || 0)) }))
+        .filter((r) => r.guests > 0);
+      localStorage.setItem(roomsStorageKey, JSON.stringify({ rooms: clean }));
+    };
+
+    const occupancyOptsResolved = () => {
+      const def = [1, 2, 3];
+      if (!rb || !Array.isArray(rb.occupancyOptions) || rb.occupancyOptions.length === 0) return def;
+      return rb.occupancyOptions
+        .map((n) => Math.max(1, Math.min(20, Math.floor(Number(n) || 1))))
+        .filter((n, i, a) => a.indexOf(n) === i)
+        .sort((a, b) => a - b);
+    };
+
+    const defaultOccResolved = () => {
+      const opts = occupancyOptsResolved();
+      const want = Math.max(1, Math.floor(Number(rb && rb.defaultOccupancy) || 2));
+      return opts.includes(want) ? want : opts[0];
+    };
+
+    const ensureDefaultRooms = () => {
+      if (!rb) return;
+      if (getRoomRows().length === 0) {
+        setRoomRows([{ guests: defaultOccResolved() }]);
+      }
+    };
+
+    const calculateGuestsFromRooms = () => sacramentoCalculateGuestsFromRooms(getRoomRows());
+    const calculateTotalRoomCost = () => sacramentoCalculateRoomRowsCost(getRoomRows(), rb ? rb.priceByOccupancy : {});
 
     let editingIndex = null;
 
@@ -5050,6 +5117,106 @@ function initSioSpecialNightOrders(userConfig) {
       return "—";
     };
 
+    const canOpenAnotherMenuSio = () => {
+      if (!rb) return true;
+      const need = calculateGuestsFromRooms();
+      if (need <= 0) {
+        alert(getI18nText("orders_room_configure_first", "Configure your rooms first."));
+        return false;
+      }
+      if (getOrders().length >= need) {
+        alert(
+          getI18nText(
+            "orders_room_all_menus",
+            "You already have one menu per guest. Edit or remove an order to change selections."
+          )
+        );
+        return false;
+      }
+      return true;
+    };
+
+    const experienceBookReadySio = () => {
+      if (!rb) return true;
+      const need = calculateGuestsFromRooms();
+      if (need <= 0) {
+        alert(getI18nText("orders_room_configure_first", "Configure your rooms first."));
+        return false;
+      }
+      if (getOrders().length !== need) {
+        alert(
+          getI18nText(
+            "orders_room_one_menu_each",
+            "Add exactly one menu per guest before reserving (see Your order)."
+          )
+        );
+        return false;
+      }
+      return true;
+    };
+
+    const renderRoomBookingPanel = () => {
+      if (!rb || !rbHost) return;
+      ensureDefaultRooms();
+      const rows = getRoomRows();
+      const opts = occupancyOptsResolved();
+      const maxRooms = Math.max(1, Math.min(20, Math.floor(Number(rb.maxRooms) || 8)));
+      const minRooms = Math.max(1, Math.min(maxRooms, Math.floor(Number(rb.minRooms) || 1)));
+      const defOcc = defaultOccResolved();
+
+      let inner = `<h3>${escapeHtml(getI18nText("orders_room_block_title", "Rooms"))}</h3>`;
+      if (rb.availabilityNoticeKey) {
+        inner += `<p class="mision-room-availability-notice">${escapeHtml(
+          getI18nText(
+            rb.availabilityNoticeKey,
+            "Please check availability with us on WhatsApp before completing your reservation."
+          )
+        )}</p>`;
+      }
+      inner += `<div class="room-booking-rows">`;
+      rows.forEach((row, idx) => {
+        const g = Math.max(1, row.guests || defOcc);
+        const price = Number(rb.priceByOccupancy[String(g)]);
+        const priceShow = Number.isFinite(price) ? price : 0;
+        inner += `<div class="booking-visit-date-row room-booking-row" data-room-idx="${idx}">`;
+        const roomWord = escapeHtml(getI18nText("orders_room_label", "Room"));
+        inner += `<span class="room-booking-room-label"><span class="room-booking-room-word">${roomWord}</span><span class="room-booking-room-num">${idx + 1}</span></span>`;
+        inner += `<label class="room-booking-guests-label">${escapeHtml(
+          getI18nText("orders_room_guests_label", "Guests")
+        )} <select class="room-booking-select" data-room-guests="${idx}" aria-label="${escapeHtml(
+          getI18nText("orders_room_guests_label", "Guests")
+        )}">`;
+        opts.forEach((o) => {
+          inner += `<option value="${o}"${o === g ? " selected" : ""}>${o}</option>`;
+        });
+        inner += `</select></label>`;
+        inner += `<span class="room-row-price">${escapeHtml(curLabel)} ${priceShow}</span>`;
+        if (rows.length > minRooms) {
+          inner += `<button type="button" class="btn secondary room-remove-btn" data-room-remove="${idx}" aria-label="${escapeHtml(
+            getI18nText("orders_room_remove", "Remove room")
+          )}">×</button>`;
+        }
+        inner += `</div>`;
+      });
+      inner += `</div>`;
+      if (rows.length < maxRooms) {
+        inner += `<button type="button" class="btn primary-btn room-add-btn">+ ${escapeHtml(
+          getI18nText("orders_room_add", "Add room")
+        )}</button>`;
+      }
+      const tg = calculateGuestsFromRooms();
+      const totalRoom = calculateTotalRoomCost();
+      inner += `<p class="room-booking-foot">${escapeHtml(
+        getI18nText("orders_room_guests_total", "Total guests")
+      )}: <strong>${tg}</strong> · ${escapeHtml(getI18nText("orders_rooms_subtotal", "Rooms subtotal"))}: ${escapeHtml(
+        curLabel
+      )} <strong>${totalRoom}</strong></p>`;
+      inner += `<p class="booking-visit-date-hint room-booking-hint">${escapeHtml(
+        getI18nText("orders_room_summary_hint", "Create one menu per guest in the order summary below.")
+      )}</p>`;
+      rbHost.innerHTML = inner;
+    };
+
     const fillPopupForEdit = (order) => {
       const c = String(order?.drinkChoice || "").trim();
       form.querySelectorAll(`input[name="${config.drinkRadioName}"]`).forEach((r) => {
@@ -5087,6 +5254,7 @@ function initSioSpecialNightOrders(userConfig) {
     };
 
     const openPopupForNewOrder = () => {
+      if (rb && !canOpenAnotherMenuSio()) return;
       editingIndex = null;
       openPopup();
     };
@@ -5094,11 +5262,13 @@ function initSioSpecialNightOrders(userConfig) {
     const buildWhatsAppMessage = (paymentLinkOverride = "") => {
       const orders = getOrders();
       const intro = getI18nText(
-        "sio_wa_intro",
-        "Hello! I’d like to book the SIO Special Night menu:"
+        config.waIntroKey || "sio_wa_intro",
+        "Hello! I'd like to book the SIO Special Night menu:"
       );
       const visit = getI18nText("orders_visit_date_label", "Visit date");
+      const guestWord = getI18nText("orders_wa_guest_slot", "Guest");
       const orderWord = getI18nText("order_word", "Order");
+      const slotLabel = rb ? guestWord : orderWord;
       const expName = getI18nText(config.experienceNameKey, config.experienceNameFallback);
       const labMenu = getI18nText("sio_order_summary_menu_label", "Menu");
       const labRoll = getI18nText("sio_order_summary_roll_label", "Roll");
@@ -5108,19 +5278,43 @@ function initSioSpecialNightOrders(userConfig) {
       const rollLine = getI18nText("sio_special_menu_item_roll", "Roll x 10 (your choice)");
       const dessertLine = getI18nText("sio_special_menu_item_dessert", "Dessert");
       const unitUsd = Math.max(0, Number(config.unitPriceUsd) || 0);
-      const totalUsd = orders.length * unitUsd;
+      const menuSubtotal = orders.length * unitUsd;
+      const roomSubtotal = rb ? calculateTotalRoomCost() : 0;
+      const grandTotal = menuSubtotal + roomSubtotal;
       const waTotalLabel = getI18nText("wa_total_label", "Total");
 
       let msg = `${intro}\n*${expName}*\n\n*${visit}:* ${getDateForBooking()}\n\n`;
+      if (rb && getRoomRows().length > 0) {
+        const rows = getRoomRows();
+        const roomLines = rows
+          .map((r, i) => {
+            const g = r.guests;
+            const pr = Number(rb.priceByOccupancy[String(g)]);
+            const pshow = Number.isFinite(pr) ? pr : 0;
+            return `*${getI18nText("orders_room_label", "Room")} ${i + 1}*: ${g} ${getI18nText(
+              "orders_wa_room_guests_suffix",
+              "guest(s)"
+            )} — USD ${pshow}`;
+          })
+          .join("\n");
+        msg += `${roomLines}\n${getI18nText("orders_wa_rooms_subtotal_label", "Rooms subtotal")}: USD ${roomSubtotal}\n`;
+        msg += `${getI18nText("orders_wa_rooms_breakfast_note", "Rooms include breakfast.")}\n\n`;
+      }
       orders.forEach((o, i) => {
-        msg += `*${orderWord} ${i + 1}*\n`;
+        msg += `*${slotLabel} ${i + 1}*\n`;
         msg += `${labMenu}: ${menuLine}\n`;
         msg += `${labRoll}: ${rollLine}\n`;
         msg += `${labDrink}: ${drinkDisplay(o.drinkChoice)}\n`;
         msg += `${labDessert}: ${dessertLine}\n\n`;
       });
       if (orders.length > 0 && unitUsd > 0) {
-        msg += `*${waTotalLabel}:* USD ${totalUsd} (${orders.length} × USD ${unitUsd})\n`;
+        msg += `*${getI18nText("orders_wa_menu_subtotal", "Menus subtotal")}:* USD ${menuSubtotal} (${orders.length} × USD ${unitUsd})\n`;
+      }
+      if (rb && roomSubtotal > 0) {
+        msg += `*${getI18nText("orders_wa_rooms_line", "Overnight rooms")}:* USD ${roomSubtotal}\n`;
+      }
+      if (orders.length > 0 || roomSubtotal > 0) {
+        msg += `*${waTotalLabel}:* USD ${grandTotal}\n`;
       }
       if (paymentLinkOverride) {
         const cta =
@@ -5141,8 +5335,12 @@ function initSioSpecialNightOrders(userConfig) {
     const openWhatsAppWithPlexoLink = () => {
       const orders = getOrders();
       if (orders.length === 0) return;
+      if (rb && !experienceBookReadySio()) return;
       const unitUsd = Math.max(0, Number(config.unitPriceUsd) || 0);
-      const totalUsd = orders.length * unitUsd;
+      const menuTotal = orders.length * unitUsd;
+      const roomTotal = rb ? calculateTotalRoomCost() : 0;
+      const totalUsd = menuTotal + roomTotal;
+      const peopleCount = rb ? calculateGuestsFromRooms() : orders.length;
       const dp = config.dynamicPayment;
       const pendingTab = window.open("about:blank", "_blank");
       (async () => {
@@ -5153,16 +5351,20 @@ function initSioSpecialNightOrders(userConfig) {
               experience: dp.experienceId || "sio_special_night",
               amount: totalUsd,
               currency: dp.currency || "USD",
-              people: orders.length,
+              people: peopleCount,
               orderFingerprint: stableStringify({
                 storageKey: config.storageKey,
                 orders,
-                total: totalUsd
+                rooms: rb ? getRoomRows() : null,
+                total: totalUsd,
+                people: peopleCount
               }),
               orderPayload: {
-                kind: "sio_special_night",
+                kind: rb ? "mision_sio_night" : "sio_special_night",
                 orders,
-                totalUsd,
+                totalUsd: menuTotal,
+                roomSubtotal: rb ? roomTotal : undefined,
+                rooms: rb ? getRoomRows() : undefined,
                 visitDate: getDateForBooking()
               }
             });
@@ -5174,11 +5376,7 @@ function initSioSpecialNightOrders(userConfig) {
           /* WhatsApp sin enlace si el backend / Plexo no responde */
         }
         const waUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-        if (pendingTab && !pendingTab.closed) {
-          pendingTab.location.href = waUrl;
-        } else {
-          window.open(waUrl, "_blank");
-        }
+        sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
       })();
     };
 
@@ -5187,7 +5385,8 @@ function initSioSpecialNightOrders(userConfig) {
       const t = (k, f) => getI18nText(k, f);
 
       let html = "";
-      if (orders.length > 0) {
+      const needGuests = rb ? calculateGuestsFromRooms() : 0;
+      if (orders.length > 0 && (!rb || orders.length < needGuests)) {
         html += `<button type="button" id="addGuestBtn" class="add-guest-btn">+ ${escapeHtml(
           t("add_order", "Add Order")
         )}</button>`;
@@ -5207,12 +5406,14 @@ function initSioSpecialNightOrders(userConfig) {
       const menuLine = t("sio_special_menu_line_trufa", "Especial Trufado");
       const rollLine = t("sio_special_menu_item_roll", "Roll x 10 (your choice)");
       const dessertLine = t("sio_special_menu_item_dessert", "Dessert");
+      const guestTitle = t("orders_wa_guest_slot", "Guest");
+      const orderTitle = t("order_word", "Order");
 
       orders.forEach((o, i) => {
         html += `
           <div class="order-card">
             <div class="order-header">
-              <h3 class="order-card-title">${escapeHtml(t("order_word", "Order"))} ${i + 1}</h3>
+              <h3 class="order-card-title">${escapeHtml(rb ? guestTitle : orderTitle)} ${i + 1}</h3>
               <div class="order-actions">
                 <span class="edit-order" data-index="${i}">✏️</span>
                 <span class="delete-order" data-index="${i}">🗑️</span>
@@ -5227,21 +5428,31 @@ function initSioSpecialNightOrders(userConfig) {
 
       if (orders.length > 0) {
         const unitUsd = Math.max(0, Number(config.unitPriceUsd) || 0);
-        const totalUsd = orders.length * unitUsd;
+        const menuSubtotal = orders.length * unitUsd;
+        const roomCostUi = rb ? calculateTotalRoomCost() : 0;
+        const grandTotal = menuSubtotal + roomCostUi;
         const sub = t("orders_sio_ready_sub", "Tap Reserve to send your choices by WhatsApp.");
         const totalLabel = t("total_label", "Total");
-        const multHint =
-          unitUsd > 0 ? `(${orders.length} × USD ${unitUsd})` : "";
+        const multHint = unitUsd > 0 ? `(${orders.length} × USD ${unitUsd})` : "";
+        const summaryBookings =
+          rb && needGuests > 0
+            ? `${needGuests} ${t("orders_summary_guests_word", "guests")} · ${orders.length}/${needGuests} ${t(
+                "orders_summary_menus_word",
+                "menus"
+              )}`
+            : `${orders.length} ${t("order_word", "Order")}`;
+        const roomDetail = roomCostUi > 0 ? ` · ${t("orders_rooms_short", "rooms")} USD ${roomCostUi}` : "";
         html += `
           <div class="total-box">
             <div class="total-left">
               <span class="total-label">${escapeHtml(totalLabel)}</span>
               ${multHint ? `<span class="total-detail">${escapeHtml(multHint)}</span>` : ""}
+              <span class="total-detail">${escapeHtml(summaryBookings)}${escapeHtml(roomDetail)}</span>
               <span class="total-detail">${escapeHtml(sub)}</span>
             </div>
             ${
-              unitUsd > 0
-                ? `<div class="total-right">USD ${totalUsd}</div>`
+              grandTotal > 0
+                ? `<div class="total-right">USD ${grandTotal}</div>`
                 : ""
             }
             <a href="#" id="bookWithOrder" class="btn total-btn">${escapeHtml(t("book_btn", "Reserve"))}</a>
@@ -5249,6 +5460,69 @@ function initSioSpecialNightOrders(userConfig) {
       }
 
       summaryEl.innerHTML = html;
+    };
+
+    let roomBookingEventsBound = false;
+    const bindRoomBookingEventsOnce = () => {
+      if (!rb || !rbHost || roomBookingEventsBound) return;
+      roomBookingEventsBound = true;
+      rbHost.addEventListener("change", (e) => {
+        const sel = e.target && e.target.closest && e.target.closest("select[data-room-guests]");
+        if (!sel) return;
+        const idx = Number(sel.getAttribute("data-room-guests"));
+        const val = Math.max(1, Math.floor(Number(sel.value) || 1));
+        const rows = getRoomRows().map((r) => ({ ...r }));
+        if (!rows[idx]) return;
+        rows[idx] = { guests: val };
+        const nextG = sacramentoCalculateGuestsFromRooms(rows);
+        if (nextG < getOrders().length) {
+          alert(
+            getI18nText(
+              "orders_room_reduce_blocked",
+              "Remove or edit menu orders first before lowering the guest count."
+            )
+          );
+          renderRoomBookingPanel();
+          return;
+        }
+        setRoomRows(rows);
+        renderRoomBookingPanel();
+        renderOrders();
+      });
+      rbHost.addEventListener("click", (e) => {
+        const add = e.target.closest && e.target.closest(".room-add-btn");
+        if (add) {
+          e.preventDefault();
+          const maxR = Math.max(1, Math.min(20, Math.floor(Number(rb.maxRooms) || 8)));
+          const rows = [...getRoomRows(), { guests: defaultOccResolved() }];
+          if (rows.length > maxR) return;
+          setRoomRows(rows);
+          renderRoomBookingPanel();
+          renderOrders();
+          return;
+        }
+        const rm = e.target.closest && e.target.closest("[data-room-remove]");
+        if (rm) {
+          e.preventDefault();
+          const idx = Number(rm.getAttribute("data-room-remove"));
+          const rows = getRoomRows().filter((_, j) => j !== idx);
+          const minR = Math.max(1, Math.min(20, Math.floor(Number(rb.minRooms) || 1)));
+          if (rows.length < minR) return;
+          const nextG = sacramentoCalculateGuestsFromRooms(rows);
+          if (nextG < getOrders().length) {
+            alert(
+              getI18nText(
+                "orders_room_reduce_blocked",
+                "Remove or edit menu orders first before removing capacity."
+              )
+            );
+            return;
+          }
+          setRoomRows(rows);
+          renderRoomBookingPanel();
+          renderOrders();
+        }
+      });
     };
 
     summaryEl.addEventListener("click", (e) => {
@@ -5276,6 +5550,7 @@ function initSioSpecialNightOrders(userConfig) {
           }
         }
         renderOrders();
+        if (rb) renderRoomBookingPanel();
         return;
       }
 
@@ -5337,8 +5612,17 @@ function initSioSpecialNightOrders(userConfig) {
         return;
       }
       formError.hidden = true;
-      const order = { drinkChoice: sel.value };
       const orders = getOrders();
+      if (rb && editingIndex === null && orders.length >= calculateGuestsFromRooms()) {
+        alert(
+          getI18nText(
+            "orders_room_all_menus",
+            "You already have one menu per guest. Edit or remove an order to change selections."
+          )
+        );
+        return;
+      }
+      const order = { drinkChoice: sel.value };
       if (editingIndex !== null) {
         orders[editingIndex] = order;
         editingIndex = null;
@@ -5366,6 +5650,7 @@ function initSioSpecialNightOrders(userConfig) {
 
     document.addEventListener("sacramento:setLanguage", () => {
       renderOrders();
+      if (rb) renderRoomBookingPanel();
       if (overlay.classList.contains("active")) syncSaveBtnLabel();
     });
 
@@ -5373,16 +5658,24 @@ function initSioSpecialNightOrders(userConfig) {
       if (!config.selectedDateKey) return;
       if (e.detail && e.detail.key && e.detail.key !== config.selectedDateKey) return;
       renderOrders();
+      if (rb) renderRoomBookingPanel();
     });
 
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         window.requestAnimationFrame(() => {
           renderOrders();
+          if (rb) renderRoomBookingPanel();
           if (overlay.classList.contains("active")) syncSaveBtnLabel();
         });
       });
     });
+
+    if (rb && rbHost) {
+      bindRoomBookingEventsOnce();
+      ensureDefaultRooms();
+      renderRoomBookingPanel();
+    }
 
     renderOrders();
   };
