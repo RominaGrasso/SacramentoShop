@@ -1454,7 +1454,7 @@ const translations = {
       payment_success_title: "Payment confirmed",
       payment_success_lead: "Thank you — your payment was received successfully.",
       payment_success_body:
-        "Our team will contact you shortly with your booking confirmation and next steps. Please keep an eye on your email and WhatsApp.",
+        "Let the adventure begin! Our team will contact you soon with your booking confirmation and next steps.",
       payment_success_home_btn: "Back to experiences",
       payment_success_wa_btn: "Contact us on WhatsApp",
       payment_failed_title: "Payment not completed",
@@ -2923,7 +2923,7 @@ const translations = {
       payment_success_title: "Pago confirmado",
       payment_success_lead: "Gracias — recibimos tu pago correctamente.",
       payment_success_body:
-        "Nuestro equipo se pondrá en contacto pronto con la confirmación de tu reserva y los próximos pasos. Revisá tu correo y WhatsApp.",
+        "¡Que comience tu aventura! Nuestro equipo se pondrá en contacto pronto con la confirmación de tu reserva y los próximos pasos.",
       payment_success_home_btn: "Volver a experiencias",
       payment_success_wa_btn: "Escribinos por WhatsApp",
       payment_failed_title: "Pago no completado",
@@ -4393,7 +4393,7 @@ const translations = {
       payment_success_title: "Pagamento confirmado",
       payment_success_lead: "Obrigado — seu pagamento foi recebido com sucesso.",
       payment_success_body:
-        "Nossa equipe entrará em contato em breve com a confirmação da reserva e os próximos passos. Fique de olho no e-mail e no WhatsApp.",
+        "Que comece a sua aventura! Nossa equipe entrará em contato em breve com a confirmação da sua reserva e os próximos passos.",
       payment_success_home_btn: "Voltar às experiências",
       payment_success_wa_btn: "Fale conosco no WhatsApp",
       payment_failed_title: "Pagamento não concluído",
