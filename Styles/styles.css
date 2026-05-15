@@ -6649,6 +6649,10 @@ body.night-page.page-actividad .coffee-content > .price-box.mision-price-menu-bo
   display: none !important;
 }
 
+section.cards .card[data-temporarily-hidden="true"] {
+  display: none !important;
+}
+
 /* ===== Payment result pages (post Plexo checkout) ===== */
 body.page-payment-result {
   min-height: 100vh;
