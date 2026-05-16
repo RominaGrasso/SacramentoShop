@@ -691,9 +691,10 @@
         </div>
         <div class="card-image carousel">
           <div class="carousel-track">
-            <img src="../Assets/images/barbot1.jpg" alt="Barbot Brewpub craft beer Colonia" data-translate-alt="barbot_home_img_1_alt">
-            <img src="../Assets/images/barbot2.jpg" alt="Barbot Brewpub" data-translate-alt="barbot_home_img_2_alt">
-            <img src="../Assets/images/barbot3.jpg" alt="Barbot Bonavena Strong Ale" data-translate-alt="barbot_home_img_3_alt">
+            <img src="../Assets/images/barbot-2.jpg" alt="Barbot Brewpub taps and craft beer in warm light, Historic Quarter" data-translate-alt="barbot_gal_2_alt">
+            <img src="../Assets/images/barbot3.jpg" alt="Barbot Bonavena Strong Ale beer" data-translate-alt="barbot_home_img_3_alt">
+            <img src="../Assets/images/barb4.jpeg" alt="Barbot Brewpub taproom and craft beer in Colonia" data-translate-alt="barbot_gal_9_alt">
+            <img src="../Assets/images/barbot2.jpg" alt="Barbot Brewpub interior" data-translate-alt="barbot_home_img_2_alt">
           </div>
           <button class="carousel-btn prev">‹</button>
           <button class="carousel-btn next">›</button>
@@ -724,6 +725,9 @@
 
   <div class="card" data-category="tour day gastronomy">
     <div class="card-image carousel">
+      <div class="discount-badge discount-badge--coming-soon">
+        <span class="discount-badge__text" data-translate="lupajack_coming_soon_badge">Coming soon</span>
+      </div>
       <div class="carousel-track">
         <img src="../Assets/images/plaza.jpg">
         <img src="../Assets/images/plaz1.jpg">
@@ -758,7 +762,7 @@
       <span class="see-more" data-translate="historic_see_more">See more</span>
       
       <div class="card-buttons">
-        <a href="../Actividades/plaza1.html" class="btn" target="_blank" rel="noopener noreferrer" data-translate="view_btn">Explore</a>
+        <button type="button" class="btn" id="homePlazaExploreBtn" data-translate="view_btn">Explore</button>
         <a href="#" class="btn secondary" data-translate="book_btn">Reserve</a>
       </div>
     </div>
@@ -948,8 +952,8 @@
       </span></p>
   
       <div class="card-meta-stack">
-      <p class="card-meta-line" data-card-meta="horse"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_ride">Cabalgata in Riachuelo (outside Colonia)</span></p>
-      <p class="card-meta-line" data-card-meta="grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_vine">Then Las Liebres vineyard & garden</span></p>
+      <p class="card-meta-line" data-card-meta="grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_vine">Las Liebres vineyard & garden</span></p>
+      <p class="card-meta-line" data-card-meta="horse"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_ride">Then cabalgata in Riachuelo (outside Colonia)</span></p>
       </div>
   
       <p class="card-meta-line" data-card-meta="wine"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_3">
@@ -965,9 +969,8 @@
       <p class="medical" data-card-meta="shield"><span class="sprite-row" aria-hidden="true"></span><span data-translate="sunset_boat_medical">Medical assistance included</span></p>
   
       <p class="card-description" data-translate="home_cabalgata_desc">
-        The <strong>cabalgata</strong> is in <strong>Riachuelo</strong> (outside Colonia); a transfer then takes you to
-        <strong>Las Liebres</strong> for the vineyard, garden, and tasting. <strong>Juanma and Sabrina</strong> host the ride with their
-        horses (and dogs Simón &amp; Estrelli). <strong>About 3–4 hours</strong> — transfer and add-ons are detailed on the booking page.
+        The experience starts at <strong>Las Liebres</strong>; a transfer then takes you to <strong>Riachuelo</strong> (outside Colonia) for the <strong>cabalgata</strong> with <strong>Juanma and Sabrina</strong> and their
+        horses (and dogs Simón &amp; Estrelli). You continue at Las Liebres with the vineyard, garden, and tasting. <strong>About 3–4 hours</strong> — transfer and add-ons are detailed on the booking page.
       </p>
   
       <span class="see-more" data-translate="historic_see_more">See more</span>
@@ -1208,6 +1211,9 @@
   <!-- Lupa & Jack -->
   <div class="card" data-category="tour day nature culture">
     <div class="card-image carousel">
+      <div class="discount-badge discount-badge--coming-soon">
+        <span class="discount-badge__text" data-translate="lupajack_coming_soon_badge">Coming soon</span>
+      </div>
       <div class="carousel-track">
         <img src="../Assets/images/lupajack.jpg" 
              alt="Lupa and Jack dog walking experience in Colonia del Sacramento">
@@ -1243,14 +1249,10 @@
       </p>
       <span class="see-more" data-translate="historic_see_more">See more</span>
       <div class="card-buttons">
-        <a href="../Actividades/lupajack.html" 
-           class="btn" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           data-translate="view_btn">
-           Explore
-        </a>
-  
+        <button type="button" class="btn" id="homeLupajackExploreBtn" data-translate="view_btn">
+          Explore
+        </button>
+
         <a href="#" class="btn secondary" data-translate="book_btn">
           Reserve
         </a>
@@ -1263,6 +1265,9 @@
   <div class="card" data-category="culture day gastronomy">
 
     <div class="card-image carousel">
+      <div class="discount-badge discount-badge--coming-soon">
+        <span class="discount-badge__text" data-translate="lupajack_coming_soon_badge">Coming soon</span>
+      </div>
       <div class="carousel-track">
         <video muted loop playsinline class="card-video">
             <source src="../Assets/images/asado1.mp4" type="video/mp4">
@@ -1314,13 +1319,9 @@
   
       <div class="card-buttons">
   
-        <a href="../Actividades/mateasado.html"
-           class="btn"
-           target="_blank"
-           rel="noopener noreferrer"
-           data-translate="view_btn">
+        <button type="button" class="btn" id="homeMateAsadoExploreBtn" data-translate="view_btn">
            Explore
-        </a>
+        </button>
   
         <a href="#" class="btn secondary" data-translate="book_btn">
           Reserve
@@ -1338,17 +1339,12 @@
 
     <div class="card-image carousel">
       <div class="carousel-track">
-  
-        <video muted loop playsinline class="card-video">
-          <source src="../Assets/images/mate33.mp4" type="video/mp4">
-        </video>
-  
-        <img src="../Assets/images/mate22.jpg" alt="Traditional mate experience in Uruguay">
-  
-        <img src="../Assets/images/mate23.jpg" alt="Preparing mate with friends">
-  
-        <img src="../Assets/images/mate.jpg" alt="Sharing mate in Colonia">
-  
+
+        <img src="../Assets/images/matescon1.jpeg" alt="" data-translate-alt="mateonly_carousel_matescon_1_alt">
+        <img src="../Assets/images/matescon2.jpeg" alt="" data-translate-alt="mateonly_carousel_matescon_2_alt">
+        <img src="../Assets/images/matescon3.jpeg" alt="" data-translate-alt="mateonly_carousel_matescon_3_alt">
+        <img src="../Assets/images/matescon4.jpeg" alt="" data-translate-alt="mateonly_carousel_matescon_4_alt">
+
       </div>
   
       <button class="carousel-btn prev">‹</button>
@@ -1479,11 +1475,11 @@
  <div class="card" data-category="nature day">
     <div class="card-image carousel">
       <div class="carousel-track">
-        <img src="../Assets/images/cab11.jpg" 
-             alt="Horseback riding experience through the countryside of Colonia del Sacramento">
-        <img src="../Assets/images/cab2.jpg" alt="">
-        <img src="../Assets/images/cab3.jpg" alt="">
-        <img src="../Assets/images/cab4.jpg" alt="">
+        <img src="../Assets/images/cab3.jpg"
+             alt="Rural landscapes Colonia — horseback riding">
+        <img src="../Assets/images/cabaln.jpg" alt="Horseback riding experience in the countryside">
+        <img src="../Assets/images/cabaln2.jpg" alt="Horse riding in Riachuelo area">
+        <img src="../Assets/images/cab4.jpg" alt="Horseback adventure">
       </div>
       <button class="carousel-btn prev">‹</button>
       <button class="carousel-btn next">›</button>
@@ -2266,8 +2262,20 @@
 </section>
 
 
+<div class="popup-overlay" id="popupLupajackSoon" aria-hidden="true">
+  <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="lupajackSoonPopupTitle">
+    <button type="button" class="close-x" id="closeLupajackSoonPopup" data-translate-aria-label="sio_special_menu_close_aria">✕</button>
+    <p id="lupajackSoonPopupTitle" data-translate="lupajack_soon_popup_body">
+      This experience will be available very soon. Stay tuned!
+    </p>
+    <div class="popup-actions">
+      <button type="button" class="btn" id="lupajackSoonPopupOk" data-translate="lupajack_soon_popup_ok">Got it</button>
+    </div>
+  </div>
+</div>
+
 <!-- ================= TRANSLATIONS ================= -->
-<script src="../Home/index.js?v=20260531"></script>
+<script src="../Home/index.js?v=20260515plazasoon"></script>
 
 
 <!-- ================= CAROUSEL ================= -->

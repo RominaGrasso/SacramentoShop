@@ -1563,7 +1563,7 @@
 
   .horse-hero {
     height: 55vh;
-    background-image: url("../Assets/images/cab11.jpg");
+    background-image: url("../Assets/images/cab3.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -3018,6 +3018,21 @@
     pointer-events: none;
   }
 
+  /* Home card: “coming soon” — bottom of photo so it doesn’t cover faces */
+  .card-image.carousel > .discount-badge.discount-badge--coming-soon {
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    display: inline-flex;
+    align-items: center;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #c9a227, #e8c547);
+    color: #2c2416;
+    border: 1px solid rgba(90, 70, 20, 0.22);
+    box-shadow: 0 2px 8px rgba(44, 36, 22, 0.18);
+    text-shadow: none;
+  }
+
   .hero-promo {
   
     background: linear-gradient(135deg, #ff5f5f, #ff7f7f);
@@ -3521,7 +3536,7 @@
   .barbot-hero {
     height: 55vh;
     min-height: 260px;
-    background-image: url("../Assets/images/barbot1.jpg");
+    background-image: url("../Assets/images/barbot-2.jpg");
     background-size: cover;
     background-position: center 40%;
     display: flex;
@@ -3573,6 +3588,312 @@
     top: auto;
     left: auto;
     margin: 0;
+  }
+
+  /* —— Traditional mate experience page —— */
+  .mate-only-hero {
+    height: 55vh;
+    min-height: 260px;
+    background-image: url("../Assets/images/matescon1.jpeg");
+    background-size: cover;
+    background-position: center 42%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .mate-only-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 32, 22, 0.55);
+  }
+
+  .mate-only-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    padding: 1.5rem;
+    text-align: center;
+    max-width: 36rem;
+  }
+
+  .mate-only-hero-inner h1 {
+    color: #fff;
+    font-size: clamp(1.35rem, 3.8vw, 2.1rem);
+    line-height: 1.25;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  .mate-only-hero-deck {
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 34rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  }
+
+  .page-mate-experience .coffee-content.mate-page-content {
+    max-width: 46rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-mate-experience .mate-page-lead {
+    font-size: 1.06rem;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .page-mate-experience .mate-page-includes-title {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e3a5f;
+  }
+
+  .page-mate-experience .mate-popup-guests-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 6px 0 4px;
+  }
+
+  .page-mate-experience .mate-popup-guests-row #mateGuestsValue {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  .page-mate-experience .mate-popup-guests-hint {
+    font-size: 0.88rem;
+    color: #2f67a3;
+    margin: 8px 0 0;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .page-mate-experience .mate-summary-card-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .page-mate-experience .mate-summary-card-row-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .page-mate-experience .mate-summary-guests-num {
+    font-weight: 500;
+  }
+
+  .page-mate-experience .mate-summary-edit-pencil {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0.3rem 0.4rem;
+    border: none;
+    background: transparent;
+    color: #2f67a3;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+
+  .page-mate-experience .mate-summary-edit-pencil:hover,
+  .page-mate-experience .mate-summary-edit-pencil:focus-visible {
+    background: rgba(47, 103, 163, 0.12);
+    color: #1e3a5f;
+    outline: none;
+  }
+
+  .page-cabal .cabal-inline-price {
+    margin: 0 0 0.4rem;
+    font-size: 1.12rem;
+    color: #1e3a5f;
+  }
+
+  .page-cabal .cabal-inline-price strong {
+    font-weight: 700;
+  }
+
+  .page-cabal .cabal-availability-notice {
+    margin: 0 0 0.85rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid #f5b5c0;
+    background: #fff0f3;
+    text-align: center;
+  }
+
+  .page-cabal .cabal-availability-notice p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #7c1d2d;
+    font-weight: 500;
+  }
+
+  .page-cabal .cabal-guide-addon {
+    margin: 0 0 0.85rem;
+  }
+
+  .page-cabal .cabal-guide-addon__row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid #c8d4e0;
+    background: #eef3f9;
+  }
+
+  .page-cabal .cabal-guide-addon__label {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .page-cabal .cabal-guide-addon__checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    accent-color: #2563eb;
+    cursor: pointer;
+  }
+
+  .page-cabal .cabal-guide-addon__text {
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: #334155;
+  }
+
+  .page-cabal .cabal-guide-addon__info {
+    flex-shrink: 0;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
+    border: none;
+    background: #93c5fd;
+    color: #fff;
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 700;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-cabal .cabal-guide-addon__info:hover,
+  .page-cabal .cabal-guide-addon__info:focus-visible {
+    background: #60a5fa;
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2563eb;
+  }
+
+  .page-cabal .cabal-guide-addon__help {
+    margin-top: 0.5rem;
+    padding: 0 0.15rem;
+  }
+
+  .page-cabal .cabal-guide-addon__help p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #475569;
+  }
+
+  .page-cabal .includes-list h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    color: #2c3e50;
+  }
+
+  .page-cabal .preferences-inside .cabal-popup-guests-title {
+    margin-top: 14px;
+  }
+
+  .page-cabal .cabal-popup-guests-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 6px 0 4px;
+  }
+
+  .page-cabal .cabal-popup-guests-row #cabalGuestsValue {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  .page-cabal .cabal-popup-guests-hint {
+    font-size: 0.88rem;
+    color: #2f67a3;
+    margin: 8px 0 0;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .page-cabal .cabal-summary-card-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .page-cabal .cabal-summary-card-row-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .page-cabal .cabal-summary-edit-pencil {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0.3rem 0.4rem;
+    border: none;
+    background: transparent;
+    color: #2f67a3;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+
+  .page-cabal .cabal-summary-edit-pencil:hover,
+  .page-cabal .cabal-summary-edit-pencil:focus-visible {
+    background: rgba(47, 103, 163, 0.12);
+    color: #1e3a5f;
+    outline: none;
   }
 
   .page-barbot-brewpub .coffee-content {
