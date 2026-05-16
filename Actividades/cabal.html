@@ -3,6 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta charset="UTF-8">
+  <title>Horseback riding — Cabal | Sacramento Adventures</title>
   <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
 
   <link rel="stylesheet" href="../Styles/styles.css">
@@ -10,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body class="page-actividad">
+<body class="page-actividad page-cabal">
 
     <!-- ================= HEADER ================= -->
  <header>
@@ -130,42 +131,62 @@
     <!-- ================= CONTENT ================= -->
     <section class="coffee-content">
     
-      <h2>About this experience</h2>
+      <h2 data-translate="cabal_about_heading">About this experience</h2>
     
-      <p>
-        Discover the peaceful countryside surrounding Colonia del Sacramento
-        on a guided horseback riding adventure. Ride through open fields,
-        rural paths, and natural landscapes while experiencing authentic
-        Uruguayan traditions and local farm life.
+      <p data-translate="cabal_about_p">
+        Juanma and Sabrina will welcome you; they care for six horses and a filly for your ride, and their two dogs — Simón and Estrelli — are part of the day and often join you between stops. The ride takes place in Riachuelo, on the outskirts of Colonia.
       </p>
     
     
-      <!-- PRICE -->
-      <div class="price-box">
-        <h3>$100 USD</h3>
-        <p>Experience for 2 people</p>
-      </div>
-    
-    
-      <!-- INCLUDES -->
+      <!-- INCLUDES + BOOKING -->
       <div class="coffee-includes">
-        <ul>
-          <li>✔ Guided horseback riding experience</li>
-          <li>✔ Calm and trained horses suitable for beginners</li>
-          <li>✔ Safety equipment provided</li>
-          <li>✔ Ride through countryside trails and open landscapes</li>
-          <li>✔ Local host assistance</li>
-          <li>✔ Photo opportunities during the experience</li>
-          <li> Transfer may be available upon request. Please coordinate via WhatsApp.</li>
+        <div class="includes-preferences">
 
-        </ul>
+          <div class="includes-list">
+            <h3 data-translate="cabal_included_title">What's included</h3>
+            <ul>
+              <li>✔ Guided horseback riding experience</li>
+              <li>✔ Calm and trained horses suitable for beginners</li>
+              <li>✔ Safety equipment provided</li>
+              <li>✔ Ride through countryside trails and open landscapes</li>
+              <li>✔ Local host assistance</li>
+              <li>✔ <span data-translate="cabal_include_transfer">Transfer included</span></li>
+            </ul>
+          </div>
+
+          <div class="order-start page-cabal-order-start">
+            <p class="cabal-inline-price">
+              <strong data-translate="cabal_page_price_line">USD 50 per person</strong>
+            </p>
+            <div class="cabal-availability-notice" role="note">
+              <p data-translate="cabal_availability_whatsapp_notice">
+                Please confirm availability with us on WhatsApp before completing your reservation.
+              </p>
+            </div>
+            <p data-translate="cabal_create_subtitle">
+              Choose your departure time. Up to 4 guests per time slot.
+            </p>
+            <button type="button" id="cabalCreateBtn" class="btn primary-btn" data-translate="cabal_create_btn">
+              Create your experience
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="order-summary" id="cabalBookingSummary" aria-live="polite"></div>
+
+      <div class="experience-support-notice" role="status">
+        <p>
+          <strong data-translate="food_support_title">After your reservation</strong><span data-translate="food_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+        </p>
       </div>
     
     
       <!-- ================= GALLERY ================= -->
       <section class="coffee-gallery">
     
-        <h2>Experience Gallery</h2>
+        <h2 data-translate="food_gallery_title">Experience Gallery</h2>
     
         <div class="gallery-grid">
     
@@ -181,11 +202,11 @@
           <img src="../Assets/images/cab4.jpg"
                alt="Horseback adventure">
 
-          <img src="../Assets/images/cab1.jpg" alt="Horseback riding countryside">
-          <img src="../Assets/images/cab2.jpg" alt="Horse riding experience">
-          <img src="../Assets/images/cab3.jpg" alt="Rural landscapes Colonia">
-          <img src="../Assets/images/cab4.jpg" alt="Horseback adventure">
-          <img src="../Assets/images/cab1.jpg" alt="Horseback riding countryside">
+          <img src="../Assets/images/cabaln4.jpg" alt="Horseback riding countryside">
+          <img src="../Assets/images/cabaln3.jpg" alt="Horse riding experience">
+          <img src="../Assets/images/cabaln2.jpg" alt="Rural landscapes Colonia">
+          <img src="../Assets/images/cabaln1.jpg" alt="Horseback adventure">
+          <img src="../Assets/images/cabaln.jpg" alt="Horseback riding countryside">
     
         </div>
     
@@ -195,18 +216,416 @@
       <!-- ================= ACTIONS ================= -->
       <div class="coffee-actions">
     
-        <a href="TU_LINK" target="_blank" class="btn">
+        <a href="#" id="cabalFooterReserve" class="btn" data-translate="book_btn">
           Reserve
         </a>
     
-        <a href="../Home/index.html" class="btn secondary">
+        <a href="../Home/index.html" class="btn secondary" data-translate="food_back_home">
           Back to Home
         </a>
     
       </div>
     
     </section>
+
+    <div class="popup-overlay" id="popupCabalBooking" aria-hidden="true">
+      <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="cabalPopupTitle">
+        <button type="button" class="close-x" id="closeCabalBooking" data-translate-aria-label="sio_special_menu_close_aria">✕</button>
+        <p><strong class="popup-title" id="cabalPopupTitle" data-translate="cabal_popup_title">Horseback riding in the countryside</strong></p>
+
+        <div class="preferences-inside">
+          <h3 class="preferences-title" data-translate="cabal_popup_time_heading">Departure time</h3>
+          <label><input type="radio" name="cabalDeparture" value="11:00" checked> <span data-translate="cabal_popup_time_11">11:00</span></label>
+          <label><input type="radio" name="cabalDeparture" value="12:00"> <span data-translate="cabal_popup_time_12">12:00</span></label>
+          <label><input type="radio" name="cabalDeparture" value="13:00"> <span data-translate="cabal_popup_time_13">13:00</span></label>
+
+          <h3 class="preferences-title cabal-popup-guests-title" data-translate="cabal_popup_guests_heading">Number of guests</h3>
+          <div class="cabal-popup-guests-row">
+            <button type="button" class="add-guest-btn" id="cabalGuestsMinus" aria-label="−">−</button>
+            <span id="cabalGuestsValue">1</span>
+            <button type="button" class="add-guest-btn" id="cabalGuestsPlus" aria-label="+">+</button>
+          </div>
+          <p class="cabal-popup-guests-hint" data-translate="cabal_popup_guests_hint">Minimum 1 · maximum 4 guests per departure time.</p>
+        </div>
+
+        <div class="popup-actions">
+          <button type="button" class="btn" id="saveCabalBooking" data-translate="save_selection">Save selection</button>
+        </div>
+      </div>
+    </div>
+
     <script src="../Home/index.js?v=20260510icons"></script>
+    <script src="../Home/orders.js"></script>
+
+<script>
+(function () {
+  const STORAGE_KEY = "cabal_booking_config";
+  const PRICE_PER_PERSON = 50;
+  const GUIDE_FLAT_USD = 40;
+  const MAX_GUESTS = 4;
+  const VALID_TIMES = ["11:00", "12:00", "13:00"];
+  const WHATSAPP_NUMBER = "598091642195";
+
+  const popup = document.getElementById("popupCabalBooking");
+  const openBtn = document.getElementById("cabalCreateBtn");
+  const closeBtn = document.getElementById("closeCabalBooking");
+  const saveBtn = document.getElementById("saveCabalBooking");
+  const summary = document.getElementById("cabalBookingSummary");
+  const guestsEl = document.getElementById("cabalGuestsValue");
+  const minusBtn = document.getElementById("cabalGuestsMinus");
+  const plusBtn = document.getElementById("cabalGuestsPlus");
+
+  if (!popup || !openBtn || !closeBtn || !saveBtn || !summary || !guestsEl || !minusBtn || !plusBtn) return;
+
+  const getLang = () => (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
+  const t = (key, fallback) => {
+    const lang = getLang();
+    const dict = window.__SACRAMENTO_TRANSLATIONS || {};
+    return dict?.[lang]?.[key] || dict?.en?.[key] || fallback;
+  };
+
+  const getConfig = () => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const o = JSON.parse(raw);
+      if (!o || typeof o !== "object") return null;
+      const time = VALID_TIMES.includes(o.time) ? o.time : "11:00";
+      const guests = Math.min(MAX_GUESTS, Math.max(1, parseInt(o.guests, 10) || 1));
+      return { time, guests, guide: Boolean(o.guide) };
+    } catch {
+      return null;
+    }
+  };
+
+  const setConfig = (cfg) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+  };
+
+  const timeLabel = (slot) => {
+    if (slot === "12:00") return t("cabal_popup_time_12", "12:00");
+    if (slot === "13:00") return t("cabal_popup_time_13", "13:00");
+    return t("cabal_popup_time_11", "11:00");
+  };
+
+  const formatDate = () =>
+    new Date().toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    });
+
+  const sendCabalToWhatsApp = (cfg) => {
+    if (!cfg) {
+      window.alert(
+        t(
+          "cabal_alert_reserve_first",
+          "Please set up your experience first using Create your experience."
+        )
+      );
+      return;
+    }
+    const waWindow = window.open("about:blank", "_blank");
+    const totalRide = PRICE_PER_PERSON * cfg.guests;
+    const guideExtra = cfg.guide ? GUIDE_FLAT_USD : 0;
+    const total = totalRide + guideExtra;
+    const date = formatDate();
+
+    (async () => {
+      let paymentUrl = "";
+      try {
+        if (typeof resolveDynamicPaymentLink === "function") {
+          paymentUrl = await resolveDynamicPaymentLink(
+            {
+              enabled: true,
+              endpoint: "/api/payments/resolve",
+              experienceId: "cabal",
+              currency: "USD"
+            },
+            {
+              experience: "cabal",
+              amount: total,
+              currency: "USD",
+              people: cfg.guests,
+              orderFingerprint:
+                typeof stableStringify === "function"
+                  ? stableStringify({ cfg, total })
+                  : JSON.stringify({ cfg, total }),
+              orderPayload: {
+                cfg,
+                total,
+                experienceName: "Horseback riding, Riachuelo"
+              }
+            }
+          );
+        }
+      } catch {
+        /* continue without payment URL */
+      }
+
+      let message =
+        `${t("cabal_wa_intro", "Hello! I'd like to book the horseback riding experience:")}\n\n` +
+        `${t("wa_date_label", "Date")}: ${date}\n` +
+        `${t("cabal_summary_time_label", "Departure time")}: ${timeLabel(cfg.time)}\n` +
+        `${t("wa_people_label", "People")}: ${cfg.guests}\n`;
+      if (cfg.guide) {
+        message += `${t("cabal_wa_guide_line", "Companion guide for the group (photos; next experience if booked)")}: +USD ${GUIDE_FLAT_USD}\n`;
+      }
+      message += `\n${t("wa_total_label", "Total")}: USD ${total}`;
+      if (paymentUrl) {
+        message += `\n\n${t("wa_payment_prompt", "To confirm the reservation, please complete the payment here:")}\n${paymentUrl}`;
+      } else {
+        message += `\n\n${t("wa_payment_fallback", "Please share payment instructions to confirm this booking.")}`;
+      }
+
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      if (waWindow && !waWindow.closed) {
+        waWindow.location.href = waUrl;
+      } else {
+        window.location.href = waUrl;
+      }
+    })();
+  };
+
+  let guestCount = 1;
+
+  const syncGuestDisplay = () => {
+    guestsEl.textContent = String(guestCount);
+  };
+
+  const syncPopupFromStorage = () => {
+    const cfg = getConfig();
+    guestCount = cfg?.guests || 1;
+    syncGuestDisplay();
+    const timeVal = cfg?.time && VALID_TIMES.includes(cfg.time) ? cfg.time : "11:00";
+    const r = popup.querySelector(`input[name="cabalDeparture"][value="${timeVal}"]`);
+    if (r) r.checked = true;
+  };
+
+  const openPopup = () => {
+    syncPopupFromStorage();
+    popup.classList.add("active");
+    popup.setAttribute("aria-hidden", "false");
+  };
+
+  const closePopup = () => {
+    popup.classList.remove("active");
+    popup.setAttribute("aria-hidden", "true");
+  };
+
+  const createCabalSummaryPencil = () => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "cabal-summary-edit-pencil";
+    btn.setAttribute(
+      "aria-label",
+      t("cabal_summary_edit_aria", "Edit departure time and number of guests")
+    );
+    const icon = document.createElement("i");
+    icon.className = "fa-solid fa-pencil";
+    icon.setAttribute("aria-hidden", "true");
+    btn.appendChild(icon);
+    btn.addEventListener("click", () => openPopup());
+    return btn;
+  };
+
+  const mountGuideAddon = (cfg) => {
+    const wrap = document.createElement("div");
+    wrap.className = "cabal-guide-addon";
+
+    const row = document.createElement("div");
+    row.className = "cabal-guide-addon__row";
+
+    const label = document.createElement("label");
+    label.className = "cabal-guide-addon__label";
+
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.className = "cabal-guide-addon__checkbox";
+    cb.checked = !!cfg.guide;
+    cb.addEventListener("change", () => {
+      const c = getConfig();
+      if (!c) return;
+      setConfig({ ...c, guide: cb.checked });
+      renderSummary();
+    });
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "cabal-guide-addon__text";
+    textSpan.textContent = t(
+      "cabal_guide_addon_label",
+      "Include a guide for the whole group (USD 40 total)"
+    );
+
+    label.appendChild(cb);
+    label.appendChild(textSpan);
+
+    const infoBtn = document.createElement("button");
+    infoBtn.type = "button";
+    infoBtn.className = "cabal-guide-addon__info";
+    infoBtn.setAttribute(
+      "aria-label",
+      t("cabal_guide_info_aria", "More about the optional companion during your ride")
+    );
+    infoBtn.setAttribute("aria-expanded", "false");
+    infoBtn.textContent = "i";
+
+    const help = document.createElement("div");
+    help.className = "cabal-guide-addon__help";
+    help.setAttribute("hidden", "");
+    const helpP = document.createElement("p");
+    helpP.textContent = t(
+      "cabal_guide_help_text",
+      "The optional guide stays with your whole group to accompany you during the ride, keep everyone together, and take photos along the way. If you also have another Sacramento experience booked, they can come with you there as well. Juanma and Sabrina lead the horses, safety on the trail, and everything about the ranch and countryside — your guide is not a countryside or riding specialist and does not replace them."
+    );
+    help.appendChild(helpP);
+
+    infoBtn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      const expanded = infoBtn.getAttribute("aria-expanded") === "true";
+      if (expanded) {
+        help.setAttribute("hidden", "");
+        infoBtn.setAttribute("aria-expanded", "false");
+      } else {
+        help.removeAttribute("hidden");
+        infoBtn.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    row.appendChild(label);
+    row.appendChild(infoBtn);
+    wrap.appendChild(row);
+    wrap.appendChild(help);
+    summary.appendChild(wrap);
+  };
+
+  const renderSummary = () => {
+    const cfg = getConfig();
+    summary.innerHTML = "";
+
+    if (!cfg) {
+      const h = document.createElement("h3");
+      h.textContent = t("cabal_summary_heading", "Your horseback experience");
+      summary.appendChild(h);
+      const p = document.createElement("p");
+      p.textContent = t(
+        "cabal_summary_empty",
+        "Tap Create your experience to choose a time and number of guests."
+      );
+      summary.appendChild(p);
+      return;
+    }
+
+    mountGuideAddon(cfg);
+
+    const h = document.createElement("h3");
+    h.textContent = t("cabal_summary_heading", "Your horseback experience");
+    summary.appendChild(h);
+
+    const card = document.createElement("div");
+    card.className = "order-card";
+
+    const pTime = document.createElement("p");
+    pTime.className = "cabal-summary-card-row";
+    const timeMain = document.createElement("span");
+    timeMain.className = "cabal-summary-card-row-main";
+    timeMain.innerHTML = `<strong>${t("cabal_summary_time_label", "Departure time")}:</strong> ${timeLabel(cfg.time)}`;
+    pTime.appendChild(timeMain);
+    pTime.appendChild(createCabalSummaryPencil());
+    card.appendChild(pTime);
+
+    const pGuests = document.createElement("p");
+    const sg = document.createElement("strong");
+    sg.textContent = `${t("cabal_summary_guests_label", "Guests")}:`;
+    pGuests.appendChild(sg);
+    pGuests.appendChild(document.createTextNode(` ${cfg.guests}`));
+    card.appendChild(pGuests);
+
+    if (cfg.guide) {
+      const pGuide = document.createElement("p");
+      pGuide.innerHTML = `<strong>${t("cabal_summary_guide_label", "Companion guide")}:</strong> ${t(
+        "cabal_summary_guide_included",
+        "Yes (+USD 40 total for the group)"
+      )}`;
+      card.appendChild(pGuide);
+    }
+
+    summary.appendChild(card);
+
+    const totalRide = PRICE_PER_PERSON * cfg.guests;
+    const guideExtra = cfg.guide ? GUIDE_FLAT_USD : 0;
+    const total = totalRide + guideExtra;
+    const detailParts = [`(${cfg.guests} × USD ${PRICE_PER_PERSON})`];
+    if (cfg.guide) {
+      detailParts.push(`+ USD ${GUIDE_FLAT_USD} ${t("cabal_guide_total_suffix", "guide (whole group)")}`);
+    }
+    const totalBox = document.createElement("div");
+    totalBox.className = "total-box";
+    totalBox.innerHTML = `
+      <div class="total-left">
+        <span class="total-label">${t("total_label", "Total")}</span>
+        <span class="total-detail">${detailParts.join(" ")}</span>
+      </div>
+      <div class="total-right">USD ${total}</div>
+    `;
+    const reserveInTotal = document.createElement("a");
+    reserveInTotal.href = "#";
+    reserveInTotal.className = "btn total-btn";
+    reserveInTotal.textContent = t("book_btn", "Reserve");
+    reserveInTotal.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      sendCabalToWhatsApp(getConfig());
+    });
+    totalBox.appendChild(reserveInTotal);
+    summary.appendChild(totalBox);
+  };
+
+  openBtn.addEventListener("click", () => openPopup());
+  closeBtn.addEventListener("click", () => closePopup());
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) closePopup();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && popup.classList.contains("active")) closePopup();
+  });
+
+  minusBtn.addEventListener("click", () => {
+    guestCount = Math.max(1, guestCount - 1);
+    syncGuestDisplay();
+  });
+  plusBtn.addEventListener("click", () => {
+    guestCount = Math.min(MAX_GUESTS, guestCount + 1);
+    syncGuestDisplay();
+  });
+
+  saveBtn.addEventListener("click", () => {
+    const timeInput = popup.querySelector('input[name="cabalDeparture"]:checked');
+    const time = timeInput && VALID_TIMES.includes(timeInput.value) ? timeInput.value : "11:00";
+    const prev = getConfig();
+    setConfig({
+      time,
+      guests: guestCount,
+      guide: prev ? !!prev.guide : false
+    });
+    closePopup();
+    renderSummary();
+  });
+
+  document.addEventListener("sacramento:setLanguage", () => {
+    renderSummary();
+  });
+
+  const footerReserve = document.getElementById("cabalFooterReserve");
+  if (footerReserve) {
+    footerReserve.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      sendCabalToWhatsApp(getConfig());
+    });
+  }
+
+  renderSummary();
+})();
+</script>
     
     <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
        class="taxi-float"

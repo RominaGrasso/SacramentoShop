@@ -29,6 +29,9 @@ const translations = {
       lieb_text:
         "Enjoy an elegant lunch or dinner experience at Las Liebres, a boutique restaurant in Colonia del Sacramento. Enjoy signature dishes in a relaxed and intimate setting, with private transfer included. Perfect for guests looking for a dedicated dining experience.",
       lupajack_title: "Walk with Lupa & Jack · Experience Colonia Like a Local",
+      lupajack_coming_soon_badge: "Coming soon",
+      lupajack_soon_popup_body: "This experience will be available very soon. Stay tuned!",
+      lupajack_soon_popup_ok: "Got it",
       lupajack_text:
         "We love animals and know how hard it can be to be away from them. Join us for a relaxing walk through Colonia and enjoy traditional tortas fritas or churros along the way.",
       mate_title: "Mate & Asado: Become Uruguayan for a Day",
@@ -147,13 +150,13 @@ const translations = {
       hist_lieb_wa_intro: "Hello! I'd like to book Historic Quarter + Las Liebres:",
       home_cabalgata_title: "Cabalgata & wine tasting · Las Liebres",
       home_cabalgata_meta_1: "Boutique vineyard experience",
-      home_cabalgata_meta_2_ride: "Cabalgata in Riachuelo (outside Colonia)",
-      home_cabalgata_meta_2_vine: "Then Las Liebres vineyard & garden",
+      home_cabalgata_meta_2_ride: "Then cabalgata in Riachuelo (outside Colonia)",
+      home_cabalgata_meta_2_vine: "Las Liebres vineyard & garden",
       home_cabalgata_meta_3: "3 wines with food pairing",
       home_cabalgata_meta_4_time: "Duration: 3–4 hours",
       home_cabalgata_meta_4_transfer: "Transfer included",
       home_cabalgata_desc:
-        "The cabalgata is in Riachuelo (outside Colonia); a transfer then takes you to Las Liebres for the vineyard, garden, and tasting. Juanma and Sabrina host the ride with their horses (and dogs Simón and Estrelli). About 3–4 hours — transfer and add-ons are detailed on the booking page.",
+        "The experience starts at Las Liebres; a transfer then takes you to Riachuelo (outside Colonia) for the cabalgata with Juanma and Sabrina and their horses (and dogs Simón and Estrelli). You continue at Las Liebres with the vineyard, garden, and tasting. About 3–4 hours — transfer and add-ons are detailed on the booking page.",
       home_sio_title: "SIO Sushi Experience",
       home_sio_premium_badge: "Premium",
       home_sio_meta_1: "Premium dining experience",
@@ -202,7 +205,7 @@ const translations = {
       sio_special_menu_btn: "View Special Menu",
       sio_special_menu_close_aria: "Close",
       sio_special_menu_popup_title: "Special Night",
-      sio_special_menu_line_trufa: "Especial Trufado",
+      sio_special_menu_line_trufa: "Truffle special (2 pieces)",
       sio_special_menu_item_roll: "Roll x 10 (your choice)",
       sio_special_menu_drink_legend: "Drink — choose one",
       sio_special_menu_drink_juice: "🧃 Juice",
@@ -227,8 +230,81 @@ const translations = {
       home_shared_meta_f: "Traditional torta frita included",
       mateonly_home_meta_t: "About 1–1.5 hours",
       mateonly_home_meta_m: "Mate ritual & tasting with locals",
+      mateonly_carousel_matescon_1_alt: "Friends sharing mate in Uruguay",
+      mateonly_carousel_matescon_2_alt: "Preparing mate: gourd, yerba and hot water",
+      mateonly_carousel_matescon_3_alt: "Mate gathering and conversation",
+      mateonly_carousel_matescon_4_alt: "Traditional mate experience in Colonia",
+      mate_page_about_heading: "About this experience",
+      mate_page_about_p:
+        "Join us for a relaxed mate circle in Colonia del Sacramento. We walk you through the story of Uruguay’s national drink, how to prepare a good round, and the friendly rhythm of sharing mate with others — whether it’s your first sip or you want to polish your cebado.",
+      mate_page_included_title: "What’s included",
+      mate_page_include_1: "✔ Introduction to mate culture and everyday etiquette",
+      mate_page_include_2: "✔ Guided preparation: yerba, water temperature, and passing the gourd",
+      mate_page_include_3: "✔ Tasting circle with time for questions",
+      mate_page_include_4: "✔ Relaxed pace in small groups",
+      mate_page_include_5_bold: "We teach you 3 mate styles: traditional bitter, sweet, and tea mate",
+      mate_page_map_title: "Where we meet",
+      mate_page_map_text:
+        "Sessions take place in Colonia del Sacramento (Historic Quarter or nearby). Exact meeting point is confirmed when you reserve.",
+      mate_page_map_iframe_title: "Map: Colonia del Sacramento historic area",
+      mate_page_price_line: "USD 35 per person",
+      mate_page_create_title: "Create your mate experience",
+      mate_page_create_subtitle:
+        "Choose the language for your session and how many guests will join.",
+      mate_page_create_btn: "+ Create your mate experience",
+      mate_popup_title: "Traditional Mate Experience",
+      mate_popup_lang_heading: "Experience language",
+      mate_popup_lang_es: "🌐 Spanish",
+      mate_popup_lang_en: "🌐 English",
+      mate_popup_lang_pt: "🌐 Portuguese",
+      mate_popup_guests_heading: "Number of guests",
+      mate_popup_guests_hint: "Minimum 1 guest · maximum 6 per booking.",
+      mate_summary_heading: "Your mate experience",
+      mate_summary_empty: "Tap + Create your mate experience to choose language and number of guests.",
+      mate_summary_lang_label: "Language",
+      mate_summary_guests_label: "Guests",
+      mate_summary_edit_aria: "Edit language and number of guests",
+      mate_alert_reserve_first:
+        "Please set up your mate experience first using + Create your mate experience.",
+      mate_page_gal_mateatar3_alt: "Views over Colonia while sharing mate",
+      mate_page_gal_mateatar_alt: "Golden hour and mate by the waterfront",
+      mate_page_gal_matete2_alt: "Mate table with gourds, yerba and details",
+      mate_page_gal_matedete_alt: "Sweet mate and tea mate on the table",
       horse_home_meta_t: "About 2 hours",
       horse_home_meta_n: "Countryside trails & nature",
+      cabal_page_price_line: "USD 50 per person",
+      cabal_availability_whatsapp_notice:
+        "Please confirm availability with us on WhatsApp before completing your reservation.",
+      cabal_about_heading: "About this experience",
+      cabal_about_p:
+        "Juanma and Sabrina will welcome you; they care for six horses and a filly for your ride, and their two dogs — Simón and Estrelli — are part of the day and often join you between stops. The ride takes place in Riachuelo, on the outskirts of Colonia.",
+      cabal_included_title: "What's included",
+      cabal_include_transfer: "Transfer included",
+      cabal_create_subtitle: "Choose your departure time. Up to 4 guests per time slot.",
+      cabal_create_btn: "Create your experience",
+      cabal_popup_title: "Horseback riding in the countryside",
+      cabal_popup_time_heading: "Departure time",
+      cabal_popup_time_11: "11:00",
+      cabal_popup_time_12: "12:00",
+      cabal_popup_time_13: "13:00",
+      cabal_popup_guests_heading: "Number of guests",
+      cabal_popup_guests_hint: "Minimum 1 · maximum 4 guests per departure time.",
+      cabal_summary_heading: "Your horseback experience",
+      cabal_summary_empty: "Tap Create your experience to choose a time and number of guests.",
+      cabal_summary_time_label: "Departure time",
+      cabal_summary_guests_label: "Guests",
+      cabal_wa_intro: "Hello! I'd like to book the horseback riding experience:",
+      cabal_alert_reserve_first:
+        "Please set up your experience first using Create your experience.",
+      cabal_summary_edit_aria: "Edit departure time and number of guests",
+      cabal_guide_addon_label: "Include a guide for the whole group (USD 40 total)",
+      cabal_guide_info_aria: "More about the optional companion during your ride",
+      cabal_guide_help_text:
+        "The optional guide stays with your whole group to accompany you during the ride, keep everyone together, and take photos along the way. If you also have another Sacramento experience booked, they can come with you there as well. Juanma and Sabrina lead the horses, safety on the trail, and everything about the ranch and countryside — your guide is not a countryside or riding specialist and does not replace them.",
+      cabal_guide_total_suffix: "guide (whole group)",
+      cabal_summary_guide_label: "Companion guide",
+      cabal_summary_guide_included: "Yes (+USD 40 total for the group)",
+      cabal_wa_guide_line: "Companion guide for the group (photos; next experience if booked)",
       home_mision_title:
         "Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour",
       home_mision_meta_pf: "Pet friendly",
@@ -528,6 +604,8 @@ const translations = {
       barbot_gal_5_alt: "Barbot Brewpub dining and taproom",
       barbot_gal_6_alt: "Barbot Brewpub experience in Colonia",
       barbot_gal_9_alt: "Barbot Brewpub taproom and craft beer in Colonia",
+      barbot_gal_2_alt: "Barbot Brewpub taps and craft beer in warm light, Historic Quarter",
+      barbot_gal_barbot5_alt: "Barbot Brewpub craft beer and relaxed pub atmosphere in Colonia",
       josefina_title: "La Josefina · Lunch or dinner at Colonia Yacht Club",
       josefina_meta_view: "Unforgettable Río de la Plata views — the setting is the highlight",
       josefina_meta_duration: "The experience lasts 2 hours",
@@ -1440,6 +1518,7 @@ const translations = {
       bike_back_home: "Back to Home",
       wa_intro_walking: "Hello! I'd like to book the Walking Tour experience:",
       wa_intro_bike: "Hello! I'd like to book the Bike Tour experience:",
+      wa_intro_mate: "Hello! I'd like to book the Traditional Mate Experience:",
       wa_date_label: "Date",
       wa_people_label: "People",
       wa_language_label: "Language",
@@ -1500,6 +1579,9 @@ const translations = {
       lieb_text:
         "Experiencia elegante en Las Liebres, restaurante boutique en Colonia. Platos insignia, ambiente íntimo y traslado privado incluido. Para quienes quieren una comida dedicada.",
       lupajack_title: "Paseo con Lupa y Jack · Colonia como un local",
+      lupajack_coming_soon_badge: "Próximamente",
+      lupajack_soon_popup_body: "Esta actividad estará disponible muy pronto. ¡Mantenete atento!",
+      lupajack_soon_popup_ok: "Entendido",
       lupajack_text:
         "Amamos los animales y sabemos lo que cuesta estar lejos. Acompañanos en un paseo relajado por Colonia con tortas fritas o churros tradicionales.",
       mate_title: "Mate y asado: uruguayo por un día",
@@ -1618,13 +1700,13 @@ const translations = {
       hist_lieb_wa_intro: "Hola! Me gustaría reservar Casco Histórico + Las Liebres:",
       home_cabalgata_title: "Cabalgata y degustación · Las Liebres",
       home_cabalgata_meta_1: "Experiencia en viñedo boutique",
-      home_cabalgata_meta_2_ride: "Cabalgata en Riachuelo (fuera de Colonia)",
-      home_cabalgata_meta_2_vine: "Luego viñedo y huerta Las Liebres",
+      home_cabalgata_meta_2_ride: "Luego cabalgata en Riachuelo (fuera de Colonia)",
+      home_cabalgata_meta_2_vine: "Viñedo y huerta Las Liebres",
       home_cabalgata_meta_3: "3 vinos con maridaje",
       home_cabalgata_meta_4_time: "Duración: 3–4 horas",
       home_cabalgata_meta_4_transfer: "Traslado incluido",
       home_cabalgata_desc:
-        "La cabalgata es en Riachuelo (fuera de Colonia); un traslado te lleva a Las Liebres para viñedo, huerta y degustación. Juanma y Sabrina reciben el paseo a caballo (con Simón y Estrelli). Unas 3–4 horas — traslado y extras en la página de reserva.",
+        "La experiencia arranca en Las Liebres; un traslado te lleva a Riachuelo (fuera de Colonia) para la cabalgata con Juanma y Sabrina y los caballos (y Simón y Estrelli). Después seguís en Las Liebres con viñedo, huerta y degustación. Unas 3–4 horas — traslado y extras en la página de reserva.",
       home_sio_title: "Experiencia SIO Sushi",
       home_sio_premium_badge: "Premium",
       home_sio_meta_1: "Experiencia gastronómica premium",
@@ -1673,7 +1755,7 @@ const translations = {
       sio_special_menu_btn: "Ver menú especial",
       sio_special_menu_close_aria: "Cerrar",
       sio_special_menu_popup_title: "Noche especial",
-      sio_special_menu_line_trufa: "Especial Trufado",
+      sio_special_menu_line_trufa: "Especial Trufado (2 unidades)",
       sio_special_menu_item_roll: "Roll x 10 (a elección)",
       sio_special_menu_drink_legend: "Bebida — elegí una opción",
       sio_special_menu_drink_juice: "🧃 Jugo",
@@ -1698,8 +1780,81 @@ const translations = {
       home_shared_meta_f: "Torta frita tradicional incluida",
       mateonly_home_meta_t: "Unas 1–1,5 horas",
       mateonly_home_meta_m: "Ritual de mate y degustación con locales",
+      mateonly_carousel_matescon_1_alt: "Amigos compartiendo mate en Uruguay",
+      mateonly_carousel_matescon_2_alt: "Preparando mate: calabaza, yerba y agua caliente",
+      mateonly_carousel_matescon_3_alt: "Ronda de mate y charla",
+      mateonly_carousel_matescon_4_alt: "Experiencia tradicional de mate en Colonia",
+      mate_page_about_heading: "Sobre la experiencia",
+      mate_page_about_p:
+        "Te invitamos a una ronda relajada de mate en Colonia del Sacramento. Contamos la historia de la bebida nacional, cómo armar un buen mate y el ritmo amable de compartirlo con otros — sea tu primer sorbo o quieras afinar el cebado.",
+      mate_page_included_title: "Qué incluye",
+      mate_page_include_1: "✔ Introducción a la cultura del mate y la etiqueta cotidiana",
+      mate_page_include_2: "✔ Preparación guiada: yerba, temperatura del agua y pasar la calabaza",
+      mate_page_include_3: "✔ Ronda de degustación con espacio para preguntas",
+      mate_page_include_4: "✔ Ritmo tranquilo en grupos reducidos",
+      mate_page_include_5_bold: "Te enseñamos 3 estilos de mate, amargo tradicional, dulce, y mate de té",
+      mate_page_map_title: "Dónde nos encontramos",
+      mate_page_map_text:
+        "Las experiencias se realizan en Colonia del Sacramento (Casco Histórico o alrededores). El punto de encuentro exacto se confirma al reservar.",
+      mate_page_map_iframe_title: "Mapa: zona histórica de Colonia del Sacramento",
+      mate_page_price_line: "USD 35 por persona",
+      mate_page_create_title: "Creá tu experiencia de mate",
+      mate_page_create_subtitle:
+        "Elegí el idioma de la sesión y cuántas personas participan. Podés cambiarlo antes de reservar.",
+      mate_page_create_btn: "+ Creá tu experiencia de mate",
+      mate_popup_title: "Experiencia tradicional de mate",
+      mate_popup_lang_heading: "Idioma de la experiencia",
+      mate_popup_lang_es: "🌐 Español",
+      mate_popup_lang_en: "🌐 Inglés",
+      mate_popup_lang_pt: "🌐 Portugués",
+      mate_popup_guests_heading: "Cantidad de personas",
+      mate_popup_guests_hint: "Mínimo 1 persona · máximo 6 por reserva.",
+      mate_summary_heading: "Tu experiencia de mate",
+      mate_summary_empty: "Tocá + Creá tu experiencia de mate para elegir idioma y cantidad de personas.",
+      mate_summary_lang_label: "Idioma",
+      mate_summary_guests_label: "Personas",
+      mate_summary_edit_aria: "Editar idioma y cantidad de personas",
+      mate_alert_reserve_first:
+        "Primero configurá tu experiencia de mate con + Creá tu experiencia de mate.",
+      mate_page_gal_mateatar3_alt: "Vistas de Colonia compartiendo mate",
+      mate_page_gal_mateatar_alt: "Luz dorada y mate frente al río",
+      mate_page_gal_matete2_alt: "Mesa de mate: calabazas, yerba y detalles",
+      mate_page_gal_matedete_alt: "Mate dulce y mate de té en la mesa",
       horse_home_meta_t: "Unas 2 horas",
       horse_home_meta_n: "Senderos campestres y naturaleza",
+      cabal_page_price_line: "USD 50 por persona",
+      cabal_availability_whatsapp_notice:
+        "Por favor, verificá la disponibilidad con nosotros por WhatsApp antes de realizar la reserva.",
+      cabal_about_heading: "Sobre esta experiencia",
+      cabal_about_p:
+        "Te recibirán Juanma y Sabrina, que cuidan seis caballos y una potranca para tu cabalgata, y sus dos perros — Simón y Estrelli — que forman parte del día y suelen acompañar entre paradas. La cabalgata es en Riachuelo, en las afueras de Colonia.",
+      cabal_included_title: "Qué incluye",
+      cabal_include_transfer: "Traslado incluido",
+      cabal_create_subtitle: "Elegí el horario de salida. Hasta 4 personas por turno.",
+      cabal_create_btn: "Creá tu experiencia",
+      cabal_popup_title: "Cabalgata en el campo",
+      cabal_popup_time_heading: "Horario de salida",
+      cabal_popup_time_11: "11:00 hs",
+      cabal_popup_time_12: "12:00 hs",
+      cabal_popup_time_13: "13:00 hs",
+      cabal_popup_guests_heading: "Cantidad de personas",
+      cabal_popup_guests_hint: "Mínimo 1 · máximo 4 personas por horario.",
+      cabal_summary_heading: "Tu experiencia a caballo",
+      cabal_summary_empty: "Tocá Creá tu experiencia para elegir horario y cantidad de personas.",
+      cabal_summary_time_label: "Horario",
+      cabal_summary_guests_label: "Personas",
+      cabal_wa_intro: "¡Hola! Quiero reservar la cabalgata:",
+      cabal_alert_reserve_first:
+        "Primero armá tu experiencia con Creá tu experiencia.",
+      cabal_summary_edit_aria: "Editar horario y cantidad de personas",
+      cabal_guide_addon_label: "Incluir guía para todo el grupo (USD 40 en total)",
+      cabal_guide_info_aria: "Más información sobre la guía de acompañamiento",
+      cabal_guide_help_text:
+        "La guía opcional acompaña a todo el grupo durante la cabalgata, ayuda a que vayan juntos y puede sacar fotos durante el paseo. Si tenés otra experiencia de Sacramento reservada, puede seguir con ustedes hasta allá. El manejo de los caballos, la seguridad en el camino y todo lo del campo y el rancho lo llevan Juanma y Sabrina; la guía no es experta en campo ni los reemplaza.",
+      cabal_guide_total_suffix: "guía (grupo completo)",
+      cabal_summary_guide_label: "Guía acompañante",
+      cabal_summary_guide_included: "Sí (+USD 40 en total para el grupo)",
+      cabal_wa_guide_line: "Guía acompañante para el grupo (fotos; otra experiencia si está reservada)",
       home_mision_title:
         "Noche histórica: La Misión, cena en Bruma y walking tour",
       home_mision_meta_pf: "Pet friendly",
@@ -2000,6 +2155,8 @@ const translations = {
       barbot_gal_5_alt: "Comedor y chopera en Barbot Brewpub",
       barbot_gal_6_alt: "Experiencia Barbot Brewpub en Colonia",
       barbot_gal_9_alt: "Chopera y cerveza artesanal en Barbot Brewpub, Colonia",
+      barbot_gal_2_alt: "Choperas y cerveza artesanal en Barbot Brewpub, luz cálida, Casco Histórico",
+      barbot_gal_barbot5_alt: "Cerveza artesanal y ambiente relajado de pub en Barbot Brewpub, Colonia",
       josefina_title: "La Josefina · Almuerzo o cena en el Yachting de Colonia",
       josefina_meta_view: "Vistas espectaculares al Río de la Plata — lo más destacado es el entorno",
       josefina_meta_duration: "La experiencia dura 2 horas",
@@ -2909,6 +3066,7 @@ const translations = {
       bike_back_home: "Volver al inicio",
       wa_intro_walking: "¡Hola! Quiero reservar la experiencia Tour a pie guiado:",
       wa_intro_bike: "¡Hola! Quiero reservar la experiencia Tour guiado en bici:",
+      wa_intro_mate: "¡Hola! Quiero reservar la experiencia tradicional de mate:",
       wa_date_label: "Fecha",
       wa_people_label: "Personas",
       wa_language_label: "Idioma",
@@ -2969,6 +3127,9 @@ const translations = {
       lieb_text:
         "Experiência elegante nas Liebres, restaurante boutique em Colonia. Pratos assinatura, clima íntimo e transfer privado incluído.",
       lupajack_title: "Passeio com Lupa e Jack · Colonia como um morador",
+      lupajack_coming_soon_badge: "Em breve",
+      lupajack_soon_popup_body: "Esta experiência estará disponível em breve. Fique de olho!",
+      lupajack_soon_popup_ok: "Entendi",
       lupajack_text:
         "Amamos animais e sabemos como é estar longe deles. Junte-se a um passeio relaxado por Colonia com tortas fritas ou churros.",
       mate_title: "Mate e churrasco: uruguaio por um dia",
@@ -3087,13 +3248,13 @@ const translations = {
       hist_lieb_wa_intro: "Olá! Gostaria de reservar Centro Histórico + Las Liebres:",
       home_cabalgata_title: "Cavalgada e degustação · Las Liebres",
       home_cabalgata_meta_1: "Experiência em vinhedo boutique",
-      home_cabalgata_meta_2_ride: "Cavalgada em Riachuelo (fora de Colonia)",
-      home_cabalgata_meta_2_vine: "Depois vinhedo e horta Las Liebres",
+      home_cabalgata_meta_2_ride: "Depois cavalgada em Riachuelo (fora de Colonia)",
+      home_cabalgata_meta_2_vine: "Vinhedo e horta Las Liebres",
       home_cabalgata_meta_3: "3 vinhos com harmonização",
       home_cabalgata_meta_4_time: "Duração: 3–4 horas",
       home_cabalgata_meta_4_transfer: "Transfer incluído",
       home_cabalgata_desc:
-        "A cavalgada é em Riachuelo; depois transfer para Las Liebres (vinhedo, horta e degustação). Juanma e Sabrina conduzem o passeio a cavalo (com Simón e Estrelli). Cerca de 3–4 horas — detalhes na página de reserva.",
+        "A experiência começa em Las Liebres; depois um transfer leva a Riachuelo (fora de Colonia) para a cavalgada com Juanma e Sabrina e os cavalos (e Simón e Estrelli). Em seguida você continua em Las Liebres com vinhedo, horta e degustação. Cerca de 3–4 horas — detalhes na página de reserva.",
       home_sio_title: "Experiência SIO Sushi",
       home_sio_premium_badge: "Premium",
       home_sio_meta_1: "Experiência gastronômica premium",
@@ -3142,7 +3303,7 @@ const translations = {
       sio_special_menu_btn: "Ver menu especial",
       sio_special_menu_close_aria: "Fechar",
       sio_special_menu_popup_title: "Noite especial",
-      sio_special_menu_line_trufa: "Especial Trufado",
+      sio_special_menu_line_trufa: "Especial Trufado (2 unidades)",
       sio_special_menu_item_roll: "Roll x 10 (à escolha)",
       sio_special_menu_drink_legend: "Bebida — escolha uma opção",
       sio_special_menu_drink_juice: "🧃 Suco",
@@ -3167,8 +3328,81 @@ const translations = {
       home_shared_meta_f: "Torta frita tradicional incluída",
       mateonly_home_meta_t: "Cerca de 1–1,5 horas",
       mateonly_home_meta_m: "Ritual do mate e degustação com locais",
+      mateonly_carousel_matescon_1_alt: "Amigos compartilhando mate no Uruguai",
+      mateonly_carousel_matescon_2_alt: "Preparando mate: cuia, erva-mate e água quente",
+      mateonly_carousel_matescon_3_alt: "Roda de mate e conversa",
+      mateonly_carousel_matescon_4_alt: "Experiência tradicional de mate em Colonia",
+      mate_page_about_heading: "Sobre a experiência",
+      mate_page_about_p:
+        "Participe de uma roda descontraída de mate em Colonia del Sacramento. Contamos a história da bebida nacional, como preparar um bom mate e o ritmo acolhedor de compartilhá-lo — seja o seu primeiro gole ou queira aprimorar o cebado.",
+      mate_page_included_title: "O que está incluído",
+      mate_page_include_1: "✔ Introdução à cultura do mate e etiqueta do dia a dia",
+      mate_page_include_2: "✔ Preparo guiado: erva, temperatura da água e passar a cuia",
+      mate_page_include_3: "✔ Roda de degustação com tempo para perguntas",
+      mate_page_include_4: "✔ Ritmo tranquilo em grupos pequenos",
+      mate_page_include_5_bold: "Ensinamos 3 estilos de mate: amargo tradicional, doce e mate de chá",
+      mate_page_map_title: "Onde nos encontramos",
+      mate_page_map_text:
+        "As experiências acontecem em Colonia del Sacramento (Centro Histórico ou próximo). O ponto exato é confirmado na reserva.",
+      mate_page_map_iframe_title: "Mapa: área histórica de Colonia del Sacramento",
+      mate_page_price_line: "USD 35 por pessoa",
+      mate_page_create_title: "Monte sua experiência de mate",
+      mate_page_create_subtitle:
+        "Escolha o idioma da sessão e quantas pessoas participam.",
+      mate_page_create_btn: "+ Monte sua experiência de mate",
+      mate_popup_title: "Experiência tradicional de mate",
+      mate_popup_lang_heading: "Idioma da experiência",
+      mate_popup_lang_es: "🌐 Espanhol",
+      mate_popup_lang_en: "🌐 Inglês",
+      mate_popup_lang_pt: "🌐 Português",
+      mate_popup_guests_heading: "Número de pessoas",
+      mate_popup_guests_hint: "Mínimo 1 pessoa · máximo 6 por reserva.",
+      mate_summary_heading: "Sua experiência de mate",
+      mate_summary_empty: "Toque em + Monte sua experiência de mate para escolher o idioma e o número de pessoas.",
+      mate_summary_lang_label: "Idioma",
+      mate_summary_guests_label: "Pessoas",
+      mate_summary_edit_aria: "Editar idioma e número de pessoas",
+      mate_alert_reserve_first:
+        "Primeiro monte sua experiência de mate com + Monte sua experiência de mate.",
+      mate_page_gal_mateatar3_alt: "Vistas de Colonia ao compartilhar mate",
+      mate_page_gal_mateatar_alt: "Luz dourada e mate à beira-mar",
+      mate_page_gal_matete2_alt: "Mesa de mate: cuias, erva e detalhes",
+      mate_page_gal_matedete_alt: "Mate doce e mate de chá na mesa",
       horse_home_meta_t: "Cerca de 2 horas",
       horse_home_meta_n: "Trilhas rurais e natureza",
+      cabal_page_price_line: "USD 50 por pessoa",
+      cabal_availability_whatsapp_notice:
+        "Por favor, confirme a disponibilidade conosco pelo WhatsApp antes de concluir a reserva.",
+      cabal_about_heading: "Sobre a experiência",
+      cabal_about_p:
+        "Juanma e Sabrina recebem você; eles cuidam de seis cavalos e uma potranca para o seu passeio, e os dois cachorros — Simón e Estrelli — fazem parte do dia e costumam acompanhar entre as paradas. A cavalgada é em Riachuelo, nos arredores de Colonia del Sacramento.",
+      cabal_included_title: "O que está incluído",
+      cabal_include_transfer: "Transfer incluído",
+      cabal_create_subtitle: "Escolha o horário de partida. Até 4 pessoas por turno.",
+      cabal_create_btn: "Monte sua experiência",
+      cabal_popup_title: "Passeio a cavalo no campo",
+      cabal_popup_time_heading: "Horário de partida",
+      cabal_popup_time_11: "11:00 h",
+      cabal_popup_time_12: "12:00 h",
+      cabal_popup_time_13: "13:00 h",
+      cabal_popup_guests_heading: "Número de pessoas",
+      cabal_popup_guests_hint: "Mínimo 1 · máximo 4 pessoas por horário.",
+      cabal_summary_heading: "Sua experiência a cavalo",
+      cabal_summary_empty: "Toque em Monte sua experiência para escolher horário e número de pessoas.",
+      cabal_summary_time_label: "Horário",
+      cabal_summary_guests_label: "Pessoas",
+      cabal_wa_intro: "Olá! Quero reservar o passeio a cavalo:",
+      cabal_alert_reserve_first:
+        "Primeiro monte sua experiência com Monte sua experiência.",
+      cabal_summary_edit_aria: "Editar horário e número de pessoas",
+      cabal_guide_addon_label: "Incluir guia para o grupo inteiro (USD 40 no total)",
+      cabal_guide_info_aria: "Saiba mais sobre o acompanhante opcional",
+      cabal_guide_help_text:
+        "O guia opcional fica com o grupo inteiro para acompanhar na cavalgada, ajudar a manter todo mundo junto e tirar fotos durante o passeio. Se você tiver outra experiência da Sacramento reservada, ele pode ir com vocês até lá. Juanma e Sabrina conduzem os cavalos, a segurança na trilha e tudo do rancho e do campo — o guia não é especialista em campo nem os substitui.",
+      cabal_guide_total_suffix: "guia (grupo inteiro)",
+      cabal_summary_guide_label: "Guia acompanhante",
+      cabal_summary_guide_included: "Sim (+USD 40 no total para o grupo)",
+      cabal_wa_guide_line: "Guia acompanhante para o grupo (fotos; próxima experiência se reservada)",
       home_mision_title:
         "Noite histórica: La Misión, jantar no Bruma e walking tour",
       home_mision_meta_pf: "Pet friendly",
@@ -3469,6 +3703,8 @@ const translations = {
       barbot_gal_5_alt: "Salão e taproom no Barbot Brewpub",
       barbot_gal_6_alt: "Experiência Barbot Brewpub em Colonia",
       barbot_gal_9_alt: "Taproom e cerveja artesanal no Barbot Brewpub, Colonia",
+      barbot_gal_2_alt: "Torneiras e cerveja artesanal no Barbot Brewpub, luz quente, Centro Histórico",
+      barbot_gal_barbot5_alt: "Cerveja artesanal e clima descontraído de pub no Barbot Brewpub, Colonia",
       josefina_title: "La Josefina · Almoço ou jantar no Yachting de Colonia",
       josefina_meta_view: "Vista incrível para o Rio da Prata — o cenário é o grande destaque",
       josefina_meta_duration: "A experiência dura 2 horas",
@@ -4379,6 +4615,7 @@ const translations = {
       bike_back_home: "Voltar ao início",
       wa_intro_walking: "Olá! Quero reservar a experiência Passeio guiado a pé:",
       wa_intro_bike: "Olá! Quero reservar a experiência Passeio guiado de bicicleta:",
+      wa_intro_mate: "Olá! Quero reservar a experiência tradicional de mate:",
       wa_date_label: "Data",
       wa_people_label: "Pessoas",
       wa_language_label: "Idioma",
@@ -5115,6 +5352,53 @@ function initRentPopupBehavior() {
     decorateActivityEmojiIcons();
   }
 
+  function openHomeLupajackSoonPopup() {
+    const overlay = document.getElementById("popupLupajackSoon");
+    if (!overlay) return;
+    overlay.classList.add("active");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeHomeLupajackSoonPopup() {
+    const overlay = document.getElementById("popupLupajackSoon");
+    if (!overlay) return;
+    overlay.classList.remove("active");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  function initHomeLupajackSoonPopup() {
+    const overlay = document.getElementById("popupLupajackSoon");
+    if (!overlay || overlay.dataset.homeLupajackBound === "1") return;
+    overlay.dataset.homeLupajackBound = "1";
+
+    [
+      document.getElementById("homeLupajackExploreBtn"),
+      document.getElementById("homeMateAsadoExploreBtn"),
+      document.getElementById("homePlazaExploreBtn"),
+    ]
+      .filter(Boolean)
+      .forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          openHomeLupajackSoonPopup();
+        });
+      });
+
+    const closeX = document.getElementById("closeLupajackSoonPopup");
+    if (closeX) closeX.addEventListener("click", closeHomeLupajackSoonPopup);
+
+    const okBtn = document.getElementById("lupajackSoonPopupOk");
+    if (okBtn) okBtn.addEventListener("click", closeHomeLupajackSoonPopup);
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeHomeLupajackSoonPopup();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("active")) closeHomeLupajackSoonPopup();
+    });
+  }
+
   function initCardExperienceDetailsToggles() {
     document.querySelectorAll(".card-info-toggle").forEach((btn) => {
       const panelId = btn.getAttribute("aria-controls");
@@ -5157,20 +5441,34 @@ function initRentPopupBehavior() {
     });
 
     initCardExperienceDetailsToggles();
+    initHomeLupajackSoonPopup();
 
     document.querySelectorAll(".card").forEach(card => {
 
         const imageContainer = card.querySelector(".card-image");
-        const link = card.querySelector(".card-buttons .btn");
+        const exploreSoonBtn = card.querySelector(
+          "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn"
+        );
+        const link = Array.from(card.querySelectorAll(".card-buttons a.btn")).find((a) => {
+          const h = a.getAttribute("href");
+          return h && h !== "#" && h !== "";
+        });
       
-        if (!imageContainer || !link) return;
+        if (!imageContainer) return;
       
         imageContainer.addEventListener("click", (e) => {
       
           // 👇 evita conflicto con botones del carrusel
           if (e.target.closest(".carousel-btn")) return;
+          if (e.target.closest(".discount-badge")) return;
       
-          // 👇 abrir link
+          if (exploreSoonBtn) {
+            e.preventDefault();
+            openHomeLupajackSoonPopup();
+            return;
+          }
+
+          if (!link) return;
           window.open(link.href, "_blank");
         });
       

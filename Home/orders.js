@@ -5274,7 +5274,7 @@ function initSioSpecialNightOrders(userConfig) {
       const labRoll = getI18nText("sio_order_summary_roll_label", "Roll");
       const labDrink = getI18nText("drink_label", "Drink");
       const labDessert = getI18nText("dessert_word", "Dessert");
-      const menuLine = getI18nText("sio_special_menu_line_trufa", "Especial Trufado");
+      const menuLine = getI18nText("sio_special_menu_line_trufa", "Truffle special (2 pieces)");
       const rollLine = getI18nText("sio_special_menu_item_roll", "Roll x 10 (your choice)");
       const dessertLine = getI18nText("sio_special_menu_item_dessert", "Dessert");
       const unitUsd = Math.max(0, Number(config.unitPriceUsd) || 0);
@@ -5403,7 +5403,7 @@ function initSioSpecialNightOrders(userConfig) {
       const labRoll = t("sio_order_summary_roll_label", "Roll");
       const labDrink = t("drink_label", "Drink");
       const labDessert = t("dessert_word", "Dessert");
-      const menuLine = t("sio_special_menu_line_trufa", "Especial Trufado");
+      const menuLine = t("sio_special_menu_line_trufa", "Truffle special (2 pieces)");
       const rollLine = t("sio_special_menu_item_roll", "Roll x 10 (your choice)");
       const dessertLine = t("sio_special_menu_item_dessert", "Dessert");
       const guestTitle = t("orders_wa_guest_slot", "Guest");
