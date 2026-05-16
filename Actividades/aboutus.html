@@ -122,7 +122,25 @@
 
 <!-- HERO -->
 <section class="about-hero">
-  <h1 data-translate="about_hero_h1">Meet the Team</h1>
+  <h1 class="about-hero-title" data-translate="about_hero_h1">Meet the Team</h1>
+  <div class="about-hero-carousel" aria-roledescription="carousel" aria-label="Sacramento Adventures team photos">
+    <div class="about-hero-track">
+      <div class="about-hero-slide">
+        <img src="../Assets/images/grupo1.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
+      </div>
+      <div class="about-hero-slide">
+        <img src="../Assets/images/SA-31.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
+      </div>
+      <div class="about-hero-slide">
+        <img src="../Assets/images/about.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
+      </div>
+      <div class="about-hero-slide">
+        <img src="../Assets/images/SA333.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
+      </div>
+    </div>
+    <button type="button" class="carousel-btn prev about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_prev">‹</button>
+    <button type="button" class="carousel-btn next about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_next">›</button>
+  </div>
 </section>
 
 <!-- CONTENT -->
@@ -335,7 +353,33 @@
   </div>
 
 </section>
-<script src="../Home/index.js?v=20260510icons"></script>
+<script src="../Home/index.js?v=20260516abouthero"></script>
+<script>
+  (function () {
+    var carousel = document.querySelector(".about-hero-carousel");
+    if (!carousel) return;
+    var track = carousel.querySelector(".about-hero-track");
+    var slides = carousel.querySelectorAll(".about-hero-slide");
+    var prevBtn = carousel.querySelector(".carousel-btn.prev");
+    var nextBtn = carousel.querySelector(".carousel-btn.next");
+    if (!track || !slides.length || !prevBtn || !nextBtn) return;
+
+    var index = 0;
+    var update = function () {
+      track.style.transform = "translateX(-" + index * 100 + "%)";
+    };
+
+    prevBtn.addEventListener("click", function () {
+      index = (index - 1 + slides.length) % slides.length;
+      update();
+    });
+
+    nextBtn.addEventListener("click", function () {
+      index = (index + 1) % slides.length;
+      update();
+    });
+  })();
+</script>
 <script>
   (function () {
     var nodes = document.querySelectorAll(".about-reveal");

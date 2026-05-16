@@ -4,6 +4,7 @@ const translations = {
     en: {
       hero_title: "Discover Colonia Like a Local",
       hero_text: "Handpicked experiences for curious travelers.",
+      hero_book_tagline: "Book online in less than 2 minutes",
       hero_tagline_region: "Activities in Colonia del Sacramento and the surrounding area",
       trust_certified: "Certified guides by Uruguay Ministry of Tourism",
       trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
@@ -11,10 +12,27 @@ const translations = {
       hero_promo_free_walking:
         '🎁 Free walking tour included with "Full Day" & "Just for a Night" experiences',
       hero_btn_day: "Just for a Day",
+      day_page_hero_title: "☀️ Just for a Day",
+      day_page_intro_heading: "Perfect daytime experiences",
+      day_page_intro_text:
+        "Discover the best daytime experiences in Colonia del Sacramento — walking tours, bike rides, vineyard visits, horseback riding, and local culture.",
+      day_page_loading: "Loading experiences…",
+      day_page_load_error: "Could not load experiences. View all on the",
+      day_page_home_link: "home page",
       hero_btn_night: "Just for a Night",
+      night_page_hero_title: "🌙 Just for a Night",
+      night_page_intro_heading: "Perfect evening experiences",
+      night_page_intro_text:
+        "Discover unforgettable evening experiences in Colonia del Sacramento — romantic dinners, wine tastings, cultural nights, and unique local moments.",
       hero_btn_aftertour: "After Tour",
+      aftertour_page_hero_title: "🍽 After Tour",
+      aftertour_page_intro_heading: "Gastronomy without an overnight stay",
+      aftertour_page_intro_text:
+        "Restaurants, tastings, and food experiences to enjoy after your guided tour.",
+      aftertour_page_loading: "Loading experiences…",
+      aftertour_page_load_error: "Could not load experiences. View all on the",
+      aftertour_page_home_link: "home page",
       header_about_link: "About Us",
-      under_construction: "🚧 Work In Progress",
       partners_trusted_by: "Trusted by",
       card_fully_insured: "Fully insured experience",
       bike_meta_1_t: "1.5 hours",
@@ -396,6 +414,9 @@ const translations = {
       about_us_nav: "About Us",
       about_doc_title: "About Us - Sacramento Adventures",
       about_hero_h1: "Meet the Team",
+      about_hero_gallery_alt: "Sacramento Adventures team",
+      about_hero_gallery_prev: "Previous photo",
+      about_hero_gallery_next: "Next photo",
       about_who_h2: "Who we are",
       about_who_p:
         "We're a group of young people who genuinely love what we do: bringing quality, good energy, and lasting memories to your time in Colonia del Sacramento. We obsess over the details with trusted partners — because we want you to feel truly taken care of.",
@@ -1554,6 +1575,7 @@ const translations = {
     es: {
       hero_title: "Descubrí Colonia como un local",
       hero_text: "Experiencias seleccionadas.",
+      hero_book_tagline: "Reservá online en menos de 2 minutos",
       hero_tagline_region: "Actividades en Colonia del Sacramento y alrededores",
       trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
       trust_multilingual: "Tours multilingües: español, inglés y portugués",
@@ -1561,8 +1583,26 @@ const translations = {
       hero_promo_free_walking:
         '🎁 Walking tour de regalo con experiencias "Día completo" y "Solo por una noche"',
       hero_btn_day: "Solo por un día",
+      day_page_hero_title: "☀️ Solo por un día",
+      day_page_intro_heading: "Experiencias ideales para el día",
+      day_page_intro_text:
+        "Descubrí las mejores experiencias de día en Colonia del Sacramento: tours a pie, bici, viñedos, cabalgata y cultura local.",
+      day_page_loading: "Cargando experiencias…",
+      day_page_load_error: "No se pudieron cargar las experiencias. Ver todas en la",
+      day_page_home_link: "página principal",
       hero_btn_night: "Solo por una noche",
+      night_page_hero_title: "🌙 Solo por una noche",
+      night_page_intro_heading: "Experiencias ideales para la noche",
+      night_page_intro_text:
+        "Descubrí experiencias nocturnas inolvidables en Colonia del Sacramento: cenas románticas, degustaciones de vino y noches culturales con momentos locales únicos.",
       hero_btn_aftertour: "After Tour",
+      aftertour_page_hero_title: "🍽 After Tour",
+      aftertour_page_intro_heading: "Gastronomía sin estadía",
+      aftertour_page_intro_text:
+        "Restaurantes, degustaciones y experiencias gastronómicas para después de tu tour guiado.",
+      aftertour_page_loading: "Cargando experiencias…",
+      aftertour_page_load_error: "No se pudieron cargar las experiencias. Ver todas en la",
+      aftertour_page_home_link: "página principal",
       header_about_link: "Sobre nosotros",
       under_construction: "🚧 En construcción",
       partners_trusted_by: "Confían en nosotros",
@@ -1946,6 +1986,9 @@ const translations = {
       about_us_nav: "Sobre nosotros",
       about_doc_title: "Sobre nosotros - Sacramento Adventures",
       about_hero_h1: "Conocé al equipo",
+      about_hero_gallery_alt: "Equipo Sacramento Adventures",
+      about_hero_gallery_prev: "Foto anterior",
+      about_hero_gallery_next: "Foto siguiente",
       about_who_h2: "Quiénes somos",
       about_who_p:
         "Somos un grupo de jóvenes que amamos lo que hacemos: llevar calidad, buena energía y recuerdos que duran a tu paso por Colonia del Sacramento. Nos encanta el detalle y trabajamos con partners de confianza — nos importa que te sientas acompañado de verdad.",
@@ -3102,6 +3145,7 @@ const translations = {
     pt: {
       hero_title: "Descubra Colonia",
       hero_text: "Experiências selecionadas.",
+      hero_book_tagline: "Reserve online em menos de 2 minutos",
       hero_tagline_region: "Atividades em Colonia del Sacramento e arredores",
       trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
       trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
@@ -3109,10 +3153,27 @@ const translations = {
       hero_promo_free_walking:
         '🎁 Walking tour grátis nas experiências "Dia inteiro" e "Só por uma noite"',
       hero_btn_day: "Só por um dia",
+      day_page_hero_title: "☀️ Só por um dia",
+      day_page_intro_heading: "Experiências perfeitas para o dia",
+      day_page_intro_text:
+        "Descubra as melhores experiências diurnas em Colonia del Sacramento — tours a pé, bicicleta, vinhedos, cavalgada e cultura local.",
+      day_page_loading: "Carregando experiências…",
+      day_page_load_error: "Não foi possível carregar as experiências. Ver todas na",
+      day_page_home_link: "página inicial",
       hero_btn_night: "Só por uma noite",
+      night_page_hero_title: "🌙 Só por uma noite",
+      night_page_intro_heading: "Experiências perfeitas para a noite",
+      night_page_intro_text:
+        "Descubra experiências noturnas inesquecíveis em Colonia del Sacramento — jantares românticos, degustações de vinho, noites culturais e momentos locais únicos.",
       hero_btn_aftertour: "After Tour",
+      aftertour_page_hero_title: "🍽 After Tour",
+      aftertour_page_intro_heading: "Gastronomia sem hospedagem",
+      aftertour_page_intro_text:
+        "Restaurantes, degustações e experiências gastronômicas para depois do seu tour guiado.",
+      aftertour_page_loading: "Carregando experiências…",
+      aftertour_page_load_error: "Não foi possível carregar as experiências. Ver todas na",
+      aftertour_page_home_link: "página inicial",
       header_about_link: "Sobre nós",
-      under_construction: "🚧 Em construção",
       partners_trusted_by: "Confiam em nós",
       card_fully_insured: "Experiência com seguro incluído",
       bike_meta_1_t: "1,5 h",
@@ -3494,6 +3555,9 @@ const translations = {
       about_us_nav: "Sobre nós",
       about_doc_title: "Sobre nós - Sacramento Adventures",
       about_hero_h1: "Conheça a equipe",
+      about_hero_gallery_alt: "Equipe Sacramento Adventures",
+      about_hero_gallery_prev: "Foto anterior",
+      about_hero_gallery_next: "Próxima foto",
       about_who_h2: "Quem somos",
       about_who_p:
         "Somos um grupo de jovens que ama o que faz: levar qualidade, boa energia e memórias que ficam para a sua passagem por Colonia del Sacramento. Curtimos cada detalhe com parceiros de confiança — porque queremos que você se sinta realmente acolhido.",
@@ -4663,7 +4727,7 @@ function injectRentBadgeInActivityHero() {
   if (document.querySelector(".hero-rent-badge")) return;
 
   const hero = document.querySelector(
-    ".coffee-hero, .food-hero, .plaza-hero, .horse-hero, .boat-hero, .romantic-hero, .day-hero, .night-hero, .toros-night-hero, .mision-night-hero, .sio-night-hero, .sio-hero, .bar-hero, .historic-lasliebres-hero, .liebres-dining-hero, .liebres-hero, .about-hero"
+    ".coffee-hero, .food-hero, .plaza-hero, .horse-hero, .boat-hero, .romantic-hero, .day-hero, .aftertour-hero, .night-hero, .toros-night-hero, .mision-night-hero, .sio-night-hero, .sio-hero, .bar-hero, .historic-lasliebres-hero, .liebres-dining-hero, .liebres-hero, .about-hero"
   );
 
   if (!hero) return;
@@ -5351,6 +5415,9 @@ function initRentPopupBehavior() {
     mountCardMetaIcons();
     decorateActivityEmojiIcons();
   }
+
+  window.sacramentoSetLanguage = setLanguage;
+  window.sacramentoMountCardMetaIcons = mountCardMetaIcons;
 
   function openHomeLupajackSoonPopup() {
     const overlay = document.getElementById("popupLupajackSoon");
