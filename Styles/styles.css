@@ -204,6 +204,14 @@
     margin-bottom: 25px;
     line-height: 1.5;
   }
+
+  .hero-content .hero-book-tagline {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: -10px;
+    margin-bottom: 22px;
+    opacity: 0.95;
+  }
   
   .btn.secondary {
     background: #e6ebf2;
@@ -1830,6 +1838,7 @@
   .boat-hero,
   .romantic-hero,
   .day-hero,
+  .aftertour-hero,
   .night-hero,
   .toros-night-hero,
   .mision-night-hero,
@@ -2214,6 +2223,33 @@
     text-shadow: 0 4px 15px rgba(0,0,0,0.4);
   }
 
+  .aftertour-hero{
+    height: 55vh;
+    background-image: url("../Assets/images/bruma2.jpg");
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position: relative;
+    text-align: center;
+  }
+
+  .aftertour-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(0,0,0,0.35);
+  }
+
+  .aftertour-hero h1{
+    color:white;
+    font-size:3rem;
+    position:relative;
+    z-index:1;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+
   .night-hero{
     height:55vh;
     background-image:url("../Assets/images/night2.jpg");
@@ -2295,37 +2331,70 @@
           /* ===== ABOUT PAGE ===== */
 
 .about-hero {
-    height: 55vh;
-    background-image: url("../Assets/images/about.jpg");
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 16px 36px;
+    background: linear-gradient(180deg, #f5f9fd 0%, #fff 100%);
+  }
+
+  .about-hero-title {
+    color: #66a6e6;
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    text-align: center;
+    margin: 0 0 20px;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
+  }
+
+  .about-hero-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #e8f2fc;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .about-hero-track {
+    display: flex;
+    transition: transform 0.45s ease;
+    will-change: transform;
+  }
+
+  .about-hero-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    padding: 6px 40px;
+    box-sizing: border-box;
+    min-height: 360px;
+    max-height: min(68vh, 620px);
   }
-  
-  .about-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
+
+  .about-hero-slide img {
+    width: 100%;
+    height: auto;
+    max-height: min(64vh, 580px);
+    object-fit: contain;
+    object-position: center;
+    display: block;
   }
-  
-  .about-hero h1 {
-    position: relative;
-    color: white;
-    font-size: clamp(1.75rem, 5vw, 3rem);
-    z-index: 1;
-    text-align: center;
-    padding: 0 16px;
+
+  .about-hero .about-hero-carousel-btn {
+    z-index: 2;
   }
   
   /* CONTENT */
   
   .about-content {
     max-width: 1000px;
-    margin: 80px auto;
+    margin: 48px auto;
     padding: 0 20px;
     min-width: 0;
     width: 100%;
@@ -3034,43 +3103,28 @@
   }
 
   .hero-promo {
-  
-    background: linear-gradient(135deg, #ff5f5f, #ff7f7f);
-    color: white;
-  
-    font-size: 0.85rem;
-    font-weight: 800;
-  
-    padding: 10px 18px;
-    border-radius: 999px; /* 🔥 ovalado */
-  
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 999px;
     z-index: 3;
-  
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    border: 2px solid white;
-  
-    backdrop-filter: blur(4px);
-  
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: inline-flex;
     align-items: center;
     gap: 6px;
-  
     white-space: normal;
     max-width: 100%;
     box-sizing: border-box;
     text-align: center;
     justify-content: center;
-    line-height: 1.35;
-  }
-
-  .hero-promo {
-    animation: pulsePromo 2.5s infinite;
-  }
-  
-  @keyframes pulsePromo {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    line-height: 1.4;
+    flex: 1 1 100%;
+    margin-top: 4px;
   }
 
   .card-buttons .btn {
@@ -3139,7 +3193,9 @@
     position: absolute;
   }
 
-  /* SOLO afecta night.html */
+  /* Category landing pages: night.html, day.html & aftertour.html */
+.day-page .cards,
+.aftertour-page .cards,
 .night-page .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
@@ -3147,17 +3203,52 @@
     padding: 60px 80px;
   }
 
+  .day-page .card,
+  .aftertour-page .card,
   .night-page .card {
     max-width: 380px;
     margin: 0 auto;
   }
 
+  .day-page .cards,
+  .aftertour-page .cards,
   .night-page .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 24px;
     padding: 0px 80px 60px 80px;
     justify-items: center; /* 👈 clave */
+  }
+
+  .day-experiences-loading,
+  .day-experiences-fallback,
+  .aftertour-experiences-loading,
+  .aftertour-experiences-fallback {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #475569;
+    font-size: 1rem;
+    padding: 1rem 0 2rem;
+  }
+
+  .day-experiences-fallback a,
+  .aftertour-experiences-fallback a {
+    color: #2563eb;
+    font-weight: 600;
+  }
+
+  .aftertour-page .coffee-content .aftertour-intro-text,
+  .day-page .coffee-content .day-intro-text,
+  .night-page .coffee-content .night-intro-text {
+    font-weight: 700;
+  }
+
+  .day-page .category-landing-footer,
+  .aftertour-page .category-landing-footer,
+  .night-page .category-landing-footer {
+    justify-content: center;
+    margin-top: 0;
+    padding: 0 80px 60px;
   }
 
   .night-hero {
@@ -4380,30 +4471,12 @@
     background: white !important;
   }
 
-  .under-construction {
-    font-size: 11px;
-    color: #999;
-    border: 1px solid #ddd;
-    padding: 3px 6px;
-    border-radius: 5px;
-    background: #f9f9f9;
-  }
-
   .logo-container {
     display: flex;
     align-items: center;
     gap: 15px;
   }
   
-  .under-construction {
-    font-size: 14px;
-    background: #111;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-weight: 600;
-  }
-
   .boat-hero-corp {
     background-image: url("../Assets/images/petit2.jpg");
     background-size: cover;
@@ -6178,15 +6251,6 @@
     object-fit: contain;
   }
 
-  .under-construction {
-    font-size: 10px;
-    padding: 4px 6px;
-    max-width: 42vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
   .language-switch {
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -6255,10 +6319,9 @@
   .hero-promo {
     width: 100%;
     max-width: 100%;
-    border-radius: 14px;
-    padding: 10px 12px;
-    font-size: clamp(0.72rem, 3.4vw, 0.85rem);
-    animation: none;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: clamp(0.7rem, 3.2vw, 0.78rem);
     flex: 0 0 auto;
   }
 
@@ -6377,12 +6440,13 @@
   .toros-night-hero h1,
   .historic-lasliebres-hero h1,
   .liebres-dining-hero h1,
-  .about-hero h1 {
+  .about-hero-title {
     font-size: clamp(1.35rem, 6vw, 2.2rem);
     padding: 0 12px;
     max-width: 100%;
     box-sizing: border-box;
     text-align: center;
+    margin-bottom: 16px;
   }
 
   .boat-hero h1,
