@@ -384,6 +384,7 @@
         <label><input type="radio" name="walkingTourDepartureTime" value="11:00"> 11:00</label>
         <label><input type="radio" name="walkingTourDepartureTime" value="13:30"> 13:30</label>
         <label><input type="radio" name="walkingTourDepartureTime" value="15:30"> 15:30</label>
+        <label><input type="radio" name="walkingTourDepartureTime" value="17:00"> 17:00</label>
       </div>
       <p id="walkingTourKidsNote" style="margin-top:12px; font-size:0.92rem; color:#2f67a3; font-weight:600;">
         Children under 12 join for free.
@@ -481,7 +482,7 @@
       const bookNowBottomBtn = document.getElementById("bookNowBottom");
       const storageKey = "orders_walkingtour";
       const whatsappNumber = "598091642195";
-      const TOUR_TIME_SLOTS = ["10:00", "11:00", "13:30", "15:30"];
+      const TOUR_TIME_SLOTS = ["10:00", "11:00", "13:30", "15:30", "17:00"];
       const WALKING_TOUR_MAX_PEOPLE = 15;
       const normalizeTourTime = (value) => {
         const s = String(value || "").trim();
