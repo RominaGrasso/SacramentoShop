@@ -5158,7 +5158,7 @@ function initRentPopupBehavior() {
             ? `${tr.wa_payment_prompt || "To confirm the reservation, please complete the payment here:"}\n${paymentUrl}`
             : `${tr.wa_payment_fallback || "Please share payment instructions to confirm this booking."}`);
 
-        const waUrl = `https://wa.me/598091642195?text=${encodeURIComponent(message)}`;
+        const waUrl = `https://wa.me/59898945542?text=${encodeURIComponent(message)}`;
         if (waWindow && !waWindow.closed) {
           waWindow.location.href = waUrl;
         } else {
@@ -5166,7 +5166,7 @@ function initRentPopupBehavior() {
           window.open(waUrl, "_blank");
         }
       } catch {
-        const fallbackWa = "https://wa.me/598091642195";
+        const fallbackWa = "https://wa.me/59898945542";
         if (waWindow && !waWindow.closed) {
           waWindow.location.href = fallbackWa;
         } else {

@@ -6,7 +6,7 @@
   const PRICE_FULL = 7;
   const PRICE_HALF = 5;
   const PRICE_FOOD = 10;
-  const WA_NUMBER = "598091642195";
+  const WA_NUMBER = "59898945542";
 
   /** Same pattern as Bruma (`initExperience` + Plexo `/api/payments/resolve`). */
   const BARBOT_DYNAMIC_PAYMENT = {
