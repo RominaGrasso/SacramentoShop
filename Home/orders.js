@@ -5686,3 +5686,60 @@ function initSioSpecialNightOrders(userConfig) {
     run();
   }
 }
+
+/** Hash from home / category cards: #reservar → scroll to “create experience” control. */
+const SACRAMENTO_RESERVE_HASH = "reservar";
+
+function findCreateButtonInOrderStart(block) {
+  if (!block) return null;
+  const byId = block.querySelector(
+    '[id*="Create"], [id*="create"], #openSioSpecialMenuBtn'
+  );
+  if (byId) return byId;
+  return (
+    block.querySelector("button.primary-btn, .btn.primary-btn") ||
+    block.querySelector('button.btn[type="button"], button.btn')
+  );
+}
+
+function findExperienceCreateTarget() {
+  const blocks = Array.from(document.querySelectorAll(".order-start")).filter((el) => {
+    if (el.id && /RoomBooking$/i.test(el.id)) return false;
+    if (el.classList.contains("room-booking-host")) return false;
+    if (el.classList.contains("mision-room-booking-host")) return false;
+    return true;
+  });
+
+  for (const block of blocks) {
+    const btn = findCreateButtonInOrderStart(block);
+    if (btn) return btn;
+  }
+
+  return document.querySelector(
+    '[id*="CreateBtn"], [id*="createMenuBtn"], #openSioSpecialMenuBtn, #createMenuBtn'
+  );
+}
+
+function scrollToExperienceCreateFromHash() {
+  const hash = (location.hash || "").replace(/^#/, "").toLowerCase();
+  if (hash !== SACRAMENTO_RESERVE_HASH) return;
+
+  const run = () => {
+    const target = findExperienceCreateTarget();
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    target.classList.add("reserve-scroll-highlight");
+    window.setTimeout(() => target.classList.remove("reserve-scroll-highlight"), 2200);
+  };
+
+  const schedule = () => window.setTimeout(run, 320);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", schedule, { once: true });
+  } else {
+    schedule();
+  }
+  window.addEventListener("load", () => window.setTimeout(run, 80), { once: true });
+}
+
+scrollToExperienceCreateFromHash();
+window.sacramentoScrollToExperienceCreate = scrollToExperienceCreateFromHash;

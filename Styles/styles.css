@@ -206,11 +206,34 @@
   }
 
   .hero-content .hero-book-tagline {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-top: -10px;
-    margin-bottom: 22px;
-    opacity: 0.95;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 6px 0 22px;
+    padding: 11px 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 1.12rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: linear-gradient(135deg, #66a6e6 0%, #4a8fd4 55%, #3f7fc4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    box-shadow:
+      0 6px 22px rgba(47, 103, 163, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .hero-content .hero-book-tagline::before {
+    content: "⏱";
+    font-size: 1.15em;
+    line-height: 1;
+    flex-shrink: 0;
   }
   
   .btn.secondary {
@@ -609,68 +632,12 @@
     line-height: 1.45;
   }
 
-  .card .card-info-toggle {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    width: max-content;
-    max-width: 100%;
-    box-sizing: border-box;
-    gap: 6px;
-    margin: 0 0 12px;
-    padding: 6px 12px;
-    border: 1px solid rgba(30, 58, 95, 0.12);
-    border-radius: 999px;
-    background: #e8eef6;
-    font-family: inherit;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    line-height: 1.45;
-    color: #1e3a5f;
-    cursor: pointer;
-    text-decoration: none;
-    box-shadow: 0 1px 2px rgba(30, 58, 95, 0.12);
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  /* Match medical row: same icon column width as .sprite-row (22px) */
-  .card .card-info-toggle__ic {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    flex-shrink: 0;
-    font-size: 1rem;
-    line-height: 1;
-    opacity: 0.9;
-  }
-
-  .card .card-info-toggle:hover {
-    background: #dce6f2;
-    border-color: rgba(30, 58, 95, 0.2);
-    color: #0f2744;
-    box-shadow: 0 2px 6px rgba(30, 58, 95, 0.14);
-  }
-
-  .card .card-info-toggle[aria-expanded="true"] {
-    background: #dce6f2;
-    border-color: rgba(30, 58, 95, 0.18);
-    box-shadow: 0 1px 2px rgba(30, 58, 95, 0.12);
-  }
-
-  .card .card-info-toggle:focus-visible {
-    outline: 2px solid #1e3a5f;
-    outline-offset: 2px;
-  }
-
   .card .card-meta-details {
-    margin: 0 0 12px;
+    margin: 4px 0 10px;
   }
 
-  .card .card-meta-details[hidden] {
-    display: none !important;
+  .card .card-content > h3 + .card-meta-details {
+    margin-top: 8px;
   }
 
   .card .card-meta-line--badge .card-meta__ic {
@@ -1937,6 +1904,11 @@
   .carousel-track img[src*="mate2"] {
     object-position: center 100%;
   }
+  .carousel-track img[src*="barbot-2"],
+  .gallery-grid img[src*="barbot-2"] {
+    filter: brightness(1.48) contrast(1.04) saturate(1.12);
+  }
+
   .carousel-track img[src*="ref4"] {
     object-position: center 80%;
   }
@@ -3627,20 +3599,30 @@
   .barbot-hero {
     height: 55vh;
     min-height: 260px;
-    background-image: url("../Assets/images/barbot-2.jpg");
-    background-size: cover;
-    background-position: center 40%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
   }
 
   .barbot-hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    background-image: url("../Assets/images/barbot-2.jpg");
+    background-size: cover;
+    background-position: center 40%;
+    filter: brightness(1.5) contrast(1.03) saturate(1.14);
+  }
+
+  .barbot-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.24);
   }
 
   .barbot-hero-inner {
@@ -5152,6 +5134,21 @@
     margin-bottom: 15px;
   }
 
+  .reserve-scroll-highlight {
+    animation: reserve-scroll-pulse 2.2s ease-out;
+  }
+
+  @keyframes reserve-scroll-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(102, 166, 230, 0);
+    }
+    25%,
+    75% {
+      box-shadow: 0 0 0 6px rgba(102, 166, 230, 0.45);
+    }
+  }
+
   .booking-visit-date-row {
     margin-bottom: 16px;
     display: flex;
@@ -6299,6 +6296,15 @@
 
   .hero-content p {
     font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+  }
+
+  .hero-content .hero-book-tagline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+    padding: 10px 16px;
+    margin-bottom: 18px;
   }
 
   .hero-buttons {

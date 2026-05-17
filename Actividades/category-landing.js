@@ -32,29 +32,6 @@
     });
   }
 
-  function initCardInfoToggles(root) {
-    root.querySelectorAll(".card-info-toggle").forEach((btn) => {
-      const panelId = btn.getAttribute("aria-controls");
-      if (!panelId) return;
-      const panel = document.getElementById(panelId);
-      if (!panel) return;
-
-      btn.addEventListener("click", () => {
-        const expanded = btn.getAttribute("aria-expanded") === "true";
-        if (expanded) {
-          panel.setAttribute("hidden", "");
-          btn.setAttribute("aria-expanded", "false");
-        } else {
-          panel.removeAttribute("hidden");
-          btn.setAttribute("aria-expanded", "true");
-          if (typeof window.sacramentoMountCardMetaIcons === "function") {
-            window.sacramentoMountCardMetaIcons();
-          }
-        }
-      });
-    });
-  }
-
   function initSeeMore(root) {
     const lang = localStorage.getItem("selectedLanguage") || "en";
     const dict =
@@ -133,15 +110,11 @@
     });
   }
 
-  function sanitizeClonedCard(card, index, idPrefix) {
+  function sanitizeClonedCard(card) {
     card.removeAttribute("id");
-    const toggle = card.querySelector(".card-info-toggle");
-    const panel = card.querySelector(".card-meta-details");
-    if (toggle && panel) {
-      const panelId = `${idPrefix}-card-${index}-meta`;
-      panel.id = panelId;
-      toggle.setAttribute("aria-controls", panelId);
-    }
+    card.querySelectorAll("[id]").forEach((el) => {
+      if (el.closest(".card") === card) el.removeAttribute("id");
+    });
     return card;
   }
 
@@ -168,22 +141,22 @@
 
       section.innerHTML = "";
       let count = 0;
-      const idPrefix = config.cardIdPrefix || "landing";
-
       sourceCards.forEach((card) => {
         if (typeof config.shouldIncludeCard !== "function" || !config.shouldIncludeCard(card)) {
           return;
         }
-        section.appendChild(sanitizeClonedCard(card.cloneNode(true), count, idPrefix));
+        section.appendChild(sanitizeClonedCard(card.cloneNode(true)));
         count += 1;
       });
 
       if (count === 0) throw new Error("no cards");
 
       initCarousels(section);
-      initCardInfoToggles(section);
       initSeeMore(section);
       initSoonExplore(section);
+      if (typeof window.sacramentoInitCardReserveButtons === "function") {
+        window.sacramentoInitCardReserveButtons(section);
+      }
       applyLanguage();
     } catch {
       const lang = localStorage.getItem("selectedLanguage") || "en";
