@@ -1,3 +1,16 @@
+function getSiteLanguage() {
+  if (typeof window !== "undefined" && typeof window.getInitialLanguage === "function") {
+    return window.getInitialLanguage();
+  }
+  try {
+    const stored = localStorage.getItem("selectedLanguage");
+    if (stored === "en" || stored === "es" || stored === "pt") return stored;
+  } catch (_) {
+    /* ignore */
+  }
+  return "en";
+}
+
 const DEFAULT_DYNAMIC_PAYMENT_ENDPOINT =
   typeof window !== "undefined" && window.location?.protocol === "file:"
     ? "http://localhost:8787/api/payments/resolve"
@@ -724,7 +737,7 @@ function initExperience(config) {
     };
     const vehicleTransportRate = Math.max(0, Number(transportPerVehicle) || 0);
     const getI18nText = (key, fallback) => {
-      const lang = localStorage.getItem("selectedLanguage") || "en";
+      const lang = getSiteLanguage();
       const tr = sacramentoI18nTable();
       try {
         if (tr?.[lang]?.[key]) return tr[lang][key];
@@ -3219,7 +3232,7 @@ function initFoodExperience(config) {
   document.addEventListener("DOMContentLoaded", () => {
     let editingIndex = null;
     const getI18nText = (key, fallback) => {
-      const lang = localStorage.getItem("selectedLanguage") || "en";
+      const lang = getSiteLanguage();
       const tr = sacramentoI18nTable();
       try {
         if (tr?.[lang]?.[key]) return tr[lang][key];
@@ -4163,7 +4176,7 @@ function initPackageOrderExperience(config) {
   }
 
   const getI18nText = (key, fallback) => {
-    const lang = localStorage.getItem("selectedLanguage") || "en";
+    const lang = getSiteLanguage();
     const tr = sacramentoI18nTable();
     try {
       if (tr?.[lang]?.[key]) return tr[lang][key];
@@ -5071,7 +5084,7 @@ function initSioSpecialNightOrders(userConfig) {
         .replace(/"/g, "&quot;");
 
     const getI18nText = (key, fallback) => {
-      const lang = localStorage.getItem("selectedLanguage") || "en";
+      const lang = getSiteLanguage();
       const tr = sacramentoI18nTable();
       try {
         if (tr?.[lang]?.[key]) return tr[lang][key];

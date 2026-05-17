@@ -6,6 +6,9 @@ const translations = {
       hero_text: "Handpicked experiences for curious travelers.",
       hero_book_tagline: "Book online in less than 2 minutes",
       hero_tagline_region: "Activities in Colonia del Sacramento and the surrounding area",
+      home_google_reviews_title: "Google Reviews",
+      home_google_reviews_sub: "Trusted by travelers",
+      home_google_reviews_aria: "Read Sacramento Adventures reviews on Google (opens in new tab)",
       trust_certified: "Certified guides by Uruguay Ministry of Tourism",
       trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
       trust_local_experts: "Local experts from Colonia del Sacramento",
@@ -1426,6 +1429,7 @@ const translations = {
       historic_meta_duration_t: "1.5 hours",
       historic_meta_duration_l: "English • Spanish • Portuguese",
       historic_see_more: "See more",
+      historic_see_less: "See less",
       walking_card_info_toggle: "Experience details",
       walking_reel_btn: "Watch Reel on @_sacramentoadventures",
       walking_steps_title: "How it works",
@@ -1577,6 +1581,9 @@ const translations = {
       hero_text: "Experiencias seleccionadas.",
       hero_book_tagline: "Reservá online en menos de 2 minutos",
       hero_tagline_region: "Actividades en Colonia del Sacramento y alrededores",
+      home_google_reviews_title: "Reseñas en Google",
+      home_google_reviews_sub: "Con la confianza de viajeros",
+      home_google_reviews_aria: "Ver reseñas de Sacramento Adventures en Google (se abre en una pestaña nueva)",
       trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
       trust_multilingual: "Tours multilingües: español, inglés y portugués",
       trust_local_experts: "Expertos locales en Colonia del Sacramento",
@@ -2996,6 +3003,7 @@ const translations = {
       historic_meta_duration_t: "1,5 horas",
       historic_meta_duration_l: "Inglés • español • portugués",
       historic_see_more: "Ver más",
+      historic_see_less: "Ver menos",
       walking_card_info_toggle: "Detalles de la experiencia",
       walking_reel_btn: "Ver reel en @_sacramentoadventures",
       walking_steps_title: "Cómo funciona",
@@ -3147,6 +3155,9 @@ const translations = {
       hero_text: "Experiências selecionadas.",
       hero_book_tagline: "Reserve online em menos de 2 minutos",
       hero_tagline_region: "Atividades em Colonia del Sacramento e arredores",
+      home_google_reviews_title: "Avaliações no Google",
+      home_google_reviews_sub: "Com a confiança de viajantes",
+      home_google_reviews_aria: "Ver avaliações da Sacramento Adventures no Google (abre em nova aba)",
       trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
       trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
       trust_local_experts: "Especialistas locais em Colonia del Sacramento",
@@ -4566,6 +4577,7 @@ const translations = {
       historic_meta_duration_t: "1,5 h",
       historic_meta_duration_l: "Inglês • espanhol • português",
       historic_see_more: "Ver mais",
+      historic_see_less: "Ver menos",
       walking_card_info_toggle: "Detalhes da experiência",
       walking_reel_btn: "Ver reel em @_sacramentoadventures",
       walking_steps_title: "Como funciona",
@@ -4963,7 +4975,7 @@ function initRentPopupBehavior() {
 
     const guidedLabel = overlay.querySelector('input[name="rentMode"][value="guided2h"]')?.closest("label");
     if (guidedLabel) guidedLabel.style.display = selected === "bike" ? "none" : "inline-flex";
-    updateGuidedHelpText(localStorage.getItem("selectedLanguage") || "en", selected);
+    updateGuidedHelpText(getInitialLanguage(), selected);
 
     const qty = getCounterValue("rentQtyValue", 1);
     const units = getCounterValue("rentUnitsValue", 1);
@@ -5004,7 +5016,7 @@ function initRentPopupBehavior() {
       if (totalBox && totalValue && totalDetail) {
         totalBox.hidden = false;
         totalValue.textContent = `USD ${total}`;
-        const lang = localStorage.getItem("selectedLanguage") || "en";
+        const lang = getInitialLanguage();
         const tr = translations[lang] || translations.en;
         const guidedPhrase =
           tr.rent_total_detail_guided || translations.en.rent_total_detail_guided;
@@ -5026,7 +5038,7 @@ function initRentPopupBehavior() {
       );
     }
 
-    const language = localStorage.getItem("selectedLanguage") || "en";
+    const language = getInitialLanguage();
     if (typeof setLanguage === "function") setLanguage(language);
   };
 
@@ -5097,7 +5109,7 @@ function initRentPopupBehavior() {
     const units = effectiveMode === "guided2h" ? 2 : getCounterValue("rentUnitsValue", 1);
     const guideAddonTotal = effectiveMode === "guided2h" ? GUIDE_ADDON_USD : 0;
     const total = rate * qty * units + guideAddonTotal;
-    const language = localStorage.getItem("selectedLanguage") || "en";
+    const language = getInitialLanguage();
     const tr = translations[language] || translations.en;
     const optionKey = getOptionKeyByType(selected);
     const rateKey = getRateLabelByTypeAndMode(selected, effectiveMode);
@@ -5359,6 +5371,47 @@ function initRentPopupBehavior() {
     });
   }
 
+  function getCardSeeMoreLabel(expanded, lang) {
+    const language = lang || getInitialLanguage();
+    const dict = translations[language] || translations.en;
+    const key = expanded ? "historic_see_less" : "historic_see_more";
+    return dict[key] || translations.en[key] || (expanded ? "See less" : "See more");
+  }
+
+  function refreshCardSeeMoreLabels(root = document) {
+    root.querySelectorAll(".card .see-more").forEach((btn) => {
+      const text = btn.closest(".card")?.querySelector(".card-description");
+      const expanded = Boolean(text?.classList.contains("expanded"));
+      btn.textContent = getCardSeeMoreLabel(expanded);
+    });
+  }
+
+  function initCardSeeMoreToggles(root = document) {
+    root.querySelectorAll(".card").forEach((card) => {
+      const text = card.querySelector(".card-description");
+      const btn = card.querySelector(".see-more");
+      if (!text || !btn) return;
+      if (btn.dataset.seeMoreBound === "1") return;
+      btn.dataset.seeMoreBound = "1";
+
+      setTimeout(() => {
+        const isClamped = text.scrollHeight > text.clientHeight + 5;
+        if (!isClamped) btn.style.display = "none";
+      }, 100);
+
+      btn.addEventListener("click", () => {
+        const expanded = text.classList.toggle("expanded");
+        btn.textContent = getCardSeeMoreLabel(expanded);
+      });
+    });
+
+    refreshCardSeeMoreLabels(root);
+  }
+
+  window.sacramentoGetCardSeeMoreLabel = getCardSeeMoreLabel;
+  window.sacramentoRefreshCardSeeMoreLabels = refreshCardSeeMoreLabels;
+  window.sacramentoInitCardSeeMore = initCardSeeMoreToggles;
+
   function setLanguage(language) {
   
     if (!translations[language]) language = "en";
@@ -5414,6 +5467,7 @@ function initRentPopupBehavior() {
 
     mountCardMetaIcons();
     decorateActivityEmojiIcons();
+    refreshCardSeeMoreLabels();
   }
 
   window.sacramentoSetLanguage = setLanguage;
@@ -5519,7 +5573,7 @@ function initRentPopupBehavior() {
 
   document.addEventListener("DOMContentLoaded", () => {
   if (window.SACRAMENTO_I18N_ONLY) {
-    const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
+    const savedLanguage = getInitialLanguage();
     setLanguage(savedLanguage);
     return;
   }
@@ -5528,7 +5582,7 @@ function initRentPopupBehavior() {
   initRentPopupBehavior();
 
     /* ===== LANGUAGE ===== */
-    const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
+    const savedLanguage = getInitialLanguage();
     setLanguage(savedLanguage);
     startActivityEmojiIconObserver();
   
@@ -5835,31 +5889,5 @@ function initRentPopupBehavior() {
     });
   
   
-    document.querySelectorAll(".card").forEach(card => {
-
-        const text = card.querySelector(".card-description");
-        const btn = card.querySelector(".see-more");
-      
-        if (!text || !btn) return;
-      
-        // 👇 esperar render real
-        setTimeout(() => {
-      
-          const isClamped = text.scrollHeight > text.clientHeight + 5;
-      
-          if (!isClamped) {
-            btn.style.display = "none";
-          }
-      
-        }, 100);
-      
-        btn.addEventListener("click", () => {
-      
-          const expanded = text.classList.toggle("expanded");
-      
-          btn.textContent = expanded ? "See less" : "See more";
-      
-        });
-      
-      });
+    initCardSeeMoreToggles(document.getElementById("experiences") || document);
 
