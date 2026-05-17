@@ -380,7 +380,8 @@
     </div>
     
     </section>
-    <script src="../Home/index.js?v=20260510icons"></script>
+    <script src="../Home/language-init.js?v=20260516lang"></script>
+<script src="../Home/index.js?v=20260510icons"></script>
     <script src="../Home/orders.js"></script>
     <script>
       initPackageOrderExperience({
@@ -584,7 +585,7 @@
         }
 
         function histI18n(key, fallback) {
-          const lang = localStorage.getItem("selectedLanguage") || "en";
+          const lang = window.getInitialLanguage();
           const tr = typeof sacramentoI18nTable === "function" ? sacramentoI18nTable() : null;
           return tr?.[lang]?.[key] || tr?.en?.[key] || fallback;
         }

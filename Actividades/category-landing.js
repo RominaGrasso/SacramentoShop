@@ -6,6 +6,11 @@
   const SOON_BTN_SELECTOR =
     "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn";
 
+  function siteLanguage() {
+    if (typeof window.getInitialLanguage === "function") return window.getInitialLanguage();
+    return localStorage.getItem("selectedLanguage") || "en";
+  }
+
   function initCarousels(root) {
     root.querySelectorAll(".carousel").forEach((carousel) => {
       const track = carousel.querySelector(".carousel-track");
@@ -33,11 +38,19 @@
   }
 
   function initSeeMore(root) {
-    const lang = localStorage.getItem("selectedLanguage") || "en";
+    if (typeof window.sacramentoInitCardSeeMore === "function") {
+      window.sacramentoInitCardSeeMore(root);
+      return;
+    }
+    const lang = siteLanguage();
     const dict =
       window.__SACRAMENTO_TRANSLATIONS?.[lang] ||
       window.__SACRAMENTO_TRANSLATIONS?.en ||
       {};
+    const label = (expanded) =>
+      expanded
+        ? dict.historic_see_less || "See less"
+        : dict.historic_see_more || "See more";
 
     root.querySelectorAll(".card").forEach((card) => {
       const text = card.querySelector(".card-description");
@@ -51,9 +64,7 @@
 
       btn.addEventListener("click", () => {
         const expanded = text.classList.toggle("expanded");
-        btn.textContent = expanded
-          ? dict.historic_see_less || "See less"
-          : dict.historic_see_more || "See more";
+        btn.textContent = label(expanded);
       });
     });
   }
@@ -119,7 +130,7 @@
   }
 
   function applyLanguage() {
-    const lang = localStorage.getItem("selectedLanguage") || "en";
+    const lang = siteLanguage();
     if (typeof window.sacramentoSetLanguage === "function") {
       window.sacramentoSetLanguage(lang);
     }
@@ -159,7 +170,7 @@
       }
       applyLanguage();
     } catch {
-      const lang = localStorage.getItem("selectedLanguage") || "en";
+      const lang = siteLanguage();
       const dict = window.__SACRAMENTO_TRANSLATIONS?.[lang] || window.__SACRAMENTO_TRANSLATIONS?.en || {};
       const msg =
         dict[config.errorMessageKey] ||

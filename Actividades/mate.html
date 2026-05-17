@@ -183,6 +183,7 @@
 
 </section>
 
+<script src="../Home/language-init.js?v=20260516lang"></script>
 <script src="../Home/index.js?v=20260510icons"></script>
 <script src="../Home/orders.js"></script>
 
@@ -254,7 +255,7 @@
 
   if (!popup || !openBtn || !closeBtn || !saveBtn || !summary || !guestsEl || !minusBtn || !plusBtn) return;
 
-  const getLang = () => (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
+  const getLang = () => window.getInitialLanguage().toLowerCase();
   const t = (key, fallback) => {
     const lang = getLang();
     const dict = window.__SACRAMENTO_TRANSLATIONS || {};
@@ -368,7 +369,7 @@
 
   const syncPopupFromStorage = () => {
     const cfg = getConfig();
-    const uiLang = (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
+    const uiLang = window.getInitialLanguage().toLowerCase();
     const initialLang = cfg?.language || (["es", "en", "pt"].includes(uiLang) ? uiLang : "es");
     guestCount = cfg?.guests || 1;
     syncGuestDisplay();

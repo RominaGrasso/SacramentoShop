@@ -334,6 +334,7 @@
   </div>
 
 </section>
+<script src="../Home/language-init.js?v=20260516lang"></script>
 <script src="../Home/index.js?v=20260510icons"></script>
 <script src="../Home/orders.js"></script>
 
@@ -385,7 +386,7 @@
     const PRICE_PER_PERSON = 50;
     const whatsappNumber = "59898945542";
     const storageKey = "orders_bike_tour_group";
-    const getLang = () => (localStorage.getItem("selectedLanguage") || "en").toLowerCase();
+    const getLang = () => window.getInitialLanguage().toLowerCase();
     const t = (key, fallback) => {
       const lang = getLang();
       const dict = window.__SACRAMENTO_TRANSLATIONS || {};

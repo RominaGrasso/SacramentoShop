@@ -17,7 +17,10 @@
   };
 
   function i18n(key, fallback) {
-    const lang = (typeof localStorage !== "undefined" && localStorage.getItem("selectedLanguage")) || "en";
+    const lang =
+      (typeof window !== "undefined" && typeof window.getInitialLanguage === "function"
+        ? window.getInitialLanguage()
+        : typeof localStorage !== "undefined" && localStorage.getItem("selectedLanguage")) || "en";
     const tr = (typeof window !== "undefined" && window.__SACRAMENTO_TRANSLATIONS) || {};
     try {
       if (tr[lang] && tr[lang][key]) return tr[lang][key];
@@ -27,7 +30,10 @@
   }
 
   function langForIntl() {
-    const lang = (typeof localStorage !== "undefined" && localStorage.getItem("selectedLanguage")) || "en";
+    const lang =
+      (typeof window !== "undefined" && typeof window.getInitialLanguage === "function"
+        ? window.getInitialLanguage()
+        : typeof localStorage !== "undefined" && localStorage.getItem("selectedLanguage")) || "en";
     if (lang === "es") return "es-UY";
     if (lang === "pt") return "pt-BR";
     return "en";

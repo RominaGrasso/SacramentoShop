@@ -13,7 +13,11 @@
   }
 
   function sacramentoLanguage() {
-    const lang = String(localStorage.getItem("selectedLanguage") || "en").toLowerCase();
+    const lang = String(
+      typeof window.getInitialLanguage === "function"
+        ? window.getInitialLanguage()
+        : localStorage.getItem("selectedLanguage") || "en"
+    ).toLowerCase();
     const table = sacramentoI18nTable();
     return table[lang] ? lang : "en";
   }
