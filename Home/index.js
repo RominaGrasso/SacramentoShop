@@ -5419,6 +5419,55 @@ function initRentPopupBehavior() {
   window.sacramentoSetLanguage = setLanguage;
   window.sacramentoMountCardMetaIcons = mountCardMetaIcons;
 
+  const CARD_SOON_EXPLORE_SELECTOR =
+    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn";
+
+  function getCardExperiencePageUrl(card) {
+    const buttons = card.querySelector(".card-buttons");
+    if (!buttons) return null;
+
+    const explore = buttons.querySelector(".btn:not(.secondary)");
+    if (explore?.tagName === "A") {
+      const href = explore.getAttribute("href")?.trim();
+      if (href && href !== "#" && !href.startsWith("javascript:")) return href;
+    }
+
+    const reserve = buttons.querySelector("a.btn.secondary");
+    const reserveHref = reserve?.getAttribute("href")?.trim();
+    if (reserveHref && reserveHref !== "#" && !reserveHref.startsWith("javascript:")) {
+      return reserveHref.split("#")[0];
+    }
+
+    return null;
+  }
+
+  function sacramentoInitCardReserveButtons(root = document) {
+    root.querySelectorAll(".card").forEach((card) => {
+      const reserve = card.querySelector(".card-buttons a.btn.secondary");
+      if (!reserve || reserve.dataset.sacReserveBound === "1") return;
+      reserve.dataset.sacReserveBound = "1";
+
+      reserve.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (card.querySelector(CARD_SOON_EXPLORE_SELECTOR)) {
+          openHomeLupajackSoonPopup();
+          return;
+        }
+
+        const pageHref = getCardExperiencePageUrl(card);
+        if (!pageHref) return;
+
+        const dest = new URL(pageHref, window.location.href);
+        dest.hash = "reservar";
+        window.location.assign(dest.href);
+      });
+    });
+  }
+
+  window.sacramentoInitCardReserveButtons = sacramentoInitCardReserveButtons;
+
   function openHomeLupajackSoonPopup() {
     const overlay = document.getElementById("popupLupajackSoon");
     if (!overlay) return;
@@ -5466,25 +5515,7 @@ function initRentPopupBehavior() {
     });
   }
 
-  function initCardExperienceDetailsToggles() {
-    document.querySelectorAll(".card-info-toggle").forEach((btn) => {
-      const panelId = btn.getAttribute("aria-controls");
-      if (!panelId) return;
-      const panel = document.getElementById(panelId);
-      if (!panel) return;
-      btn.addEventListener("click", () => {
-        const expanded = btn.getAttribute("aria-expanded") === "true";
-        if (expanded) {
-          panel.setAttribute("hidden", "");
-          btn.setAttribute("aria-expanded", "false");
-        } else {
-          panel.removeAttribute("hidden");
-          btn.setAttribute("aria-expanded", "true");
-          mountCardMetaIcons();
-        }
-      });
-    });
-  }
+  window.openHomeLupajackSoonPopup = openHomeLupajackSoonPopup;
 
   document.addEventListener("DOMContentLoaded", () => {
   if (window.SACRAMENTO_I18N_ONLY) {
@@ -5507,8 +5538,10 @@ function initRentPopupBehavior() {
       });
     });
 
-    initCardExperienceDetailsToggles();
     initHomeLupajackSoonPopup();
+    sacramentoInitCardReserveButtons(
+      document.getElementById("experiences") || document
+    );
 
     document.querySelectorAll(".card").forEach(card => {
 
