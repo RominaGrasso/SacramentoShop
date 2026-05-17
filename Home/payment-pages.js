@@ -144,7 +144,7 @@
       "payment_wa_prefill",
       "Hello! I have a question about my Sacramento Adventures payment."
     );
-    waBtn.href = "https://wa.me/598091642195?text=" + encodeURIComponent(text);
+    waBtn.href = "https://wa.me/59898945542?text=" + encodeURIComponent(text);
   }
 
   async function pollPaymentResult(ref) {
