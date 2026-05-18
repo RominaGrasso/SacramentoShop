@@ -272,10 +272,8 @@
 
   <!-- PRICE -->
   <div class="price-box">
-    <h3 id="walkingTourPriceTitle" data-translate="walking_price_title">USD 15 per guest</h3>
-    <p id="walkingTourPriceNote" class="walking-price-note">
-      <span class="is-highlight">Spanish: USD 10</span> · <span class="is-highlight">English: USD 15</span> · <span class="is-highlight">Portuguese: USD 15</span>
-    </p>
+    <h3 id="walkingTourPriceTitle" data-translate="walking_price_heading">Prices by guide language</h3>
+    <p id="walkingTourPriceNote" class="walking-price-note" data-i18n-skip aria-live="polite"></p>
   </div>
 
   <!-- MATE EXPERIENCE (OPTIONAL) -->
@@ -381,8 +379,9 @@
       <h3 class="preferences-title" style="margin-top: 14px;" id="walkingTourTimeHeading" data-translate="walking_asado_popup_tour_time_heading">Walking tour departure time</h3>
       <div class="walking-tour-popup-times" role="radiogroup" aria-labelledby="walkingTourTimeHeading">
         <label><input type="radio" name="walkingTourDepartureTime" value="10:00"> 10:00</label>
-        <label><input type="radio" name="walkingTourDepartureTime" value="11:00"> 11:00</label>
-        <label><input type="radio" name="walkingTourDepartureTime" value="13:30"> 13:30</label>
+        <label><input type="radio" name="walkingTourDepartureTime" value="10:30"> 10:30</label>
+        <label><input type="radio" name="walkingTourDepartureTime" value="12:00"> 12:00</label>
+        <label><input type="radio" name="walkingTourDepartureTime" value="14:00"> 14:00</label>
         <label><input type="radio" name="walkingTourDepartureTime" value="15:30"> 15:30</label>
         <label><input type="radio" name="walkingTourDepartureTime" value="17:00"> 17:00</label>
       </div>
@@ -409,7 +408,7 @@
 
 </div>
 <script src="../Home/language-init.js?v=20260516lang"></script>
-<script src="../Home/index.js?v=20260510icons"></script>
+<script src="../Home/index.js?v=20260516walkprice"></script>
 <script src="../Home/orders.js"></script>
 <script>
   (function () {
@@ -449,30 +448,35 @@
       return t("walking_lang_en", "English guide");
     };
 
-    function updatePriceText() {
-      const lang = getLang();
-      const price = getPrice();
-      const title = document.getElementById("walkingTourPriceTitle");
+    const WALKING_GUIDE_PRICE_TIERS = Object.freeze([
+      { langKey: "walking_price_lang_es", fallback: "Spanish", amount: 10 },
+      { langKey: "walking_price_lang_en", fallback: "English", amount: 15 },
+      { langKey: "walking_price_lang_pt", fallback: "Portuguese", amount: 15 }
+    ]);
+
+    function renderWalkingPriceBadges() {
       const note = document.getElementById("walkingTourPriceNote");
       const kidsNote = document.getElementById("walkingTourKidsNote");
-      if (!title || !note) return;
+      if (!note) return;
 
-      if (lang === "es") {
-        title.textContent = t("walking_price_title", `USD ${price} por persona`);
-        note.innerHTML =
-          "<span class='is-highlight'>Español: USD 10</span> · <span class='is-highlight'>Inglés: USD 15</span> · <span class='is-highlight'>Portugués: USD 15</span>";
-        if (kidsNote) kidsNote.textContent = t("walking_kids_note", "Menores de 12 años van gratis.");
-      } else {
-        title.textContent = t("walking_price_title", `USD ${price} per guest`);
-        note.innerHTML =
-          lang === "pt"
-            ? "<span class='is-highlight'>Espanhol: USD 10</span> · <span class='is-highlight'>Inglês: USD 15</span> · <span class='is-highlight'>Português: USD 15</span>"
-            : "<span class='is-highlight'>Spanish: USD 10</span> · <span class='is-highlight'>English: USD 15</span> · <span class='is-highlight'>Portuguese: USD 15</span>";
-        if (kidsNote) {
-          kidsNote.textContent = t("walking_kids_note", "Children under 12 join for free.");
-        }
+      note.replaceChildren();
+      WALKING_GUIDE_PRICE_TIERS.forEach((tier, index) => {
+        if (index > 0) note.appendChild(document.createTextNode(" · "));
+        const span = document.createElement("span");
+        span.className = "is-highlight";
+        const label = t(tier.langKey, tier.fallback);
+        span.textContent = `${label}: USD ${tier.amount}`;
+        note.appendChild(span);
+      });
+
+      if (kidsNote) {
+        kidsNote.textContent = t("walking_kids_note", "Children under 12 join for free.");
       }
     }
+
+    window.sacramentoRenderWalkingPriceBadges = renderWalkingPriceBadges;
+
+    let refreshWalkingTourSummary = null;
 
     function setupManualFallback() {
       const popup = document.getElementById("popupBruma");
@@ -483,7 +487,7 @@
       const bookNowBottomBtn = document.getElementById("bookNowBottom");
       const storageKey = "orders_walkingtour";
       const whatsappNumber = "59898945542";
-      const TOUR_TIME_SLOTS = ["10:00", "11:00", "13:30", "15:30", "17:00"];
+      const TOUR_TIME_SLOTS = ["10:00", "10:30", "12:00", "14:00", "15:30", "17:00"];
       const WALKING_TOUR_MAX_PEOPLE = 15;
       const normalizeTourTime = (value) => {
         const s = String(value || "").trim();
@@ -847,31 +851,21 @@
         });
       }
 
+      refreshWalkingTourSummary = renderFallbackSummary;
       renderFallbackSummary();
     }
 
     function initWalkingTourPage() {
-      updatePriceText();
-      // Fallback manual: idioma + horario del tour (cupo máx. 15 personas) y grupo en localStorage.
+      renderWalkingPriceBadges();
       setupManualFallback();
 
-      // If user changes site language, update price + totals immediately.
-      document.addEventListener("sacramento:setLanguage", () => {
-        updatePriceText();
-        setupManualFallback();
-      });
-
-      // Fallback: if language script doesn't emit the event, store and refresh manually.
-      document.querySelectorAll(".lang-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const lang = String(btn.dataset.lang || "").toLowerCase();
-          if (lang) {
-            localStorage.setItem("selectedLanguage", lang);
-            updatePriceText();
-            setupManualFallback();
-          }
+      if (!window.__walkingTourLangListenerBound) {
+        window.__walkingTourLangListenerBound = true;
+        document.addEventListener("sacramento:setLanguage", () => {
+          renderWalkingPriceBadges();
+          if (typeof refreshWalkingTourSummary === "function") refreshWalkingTourSummary();
         });
-      });
+      }
     }
 
     if (document.readyState === "loading") {

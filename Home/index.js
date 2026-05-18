@@ -291,7 +291,7 @@ const translations = {
       mate_page_gal_mateatar_alt: "Golden hour and mate by the waterfront",
       mate_page_gal_matete2_alt: "Mate table with gourds, yerba and details",
       mate_page_gal_matedete_alt: "Sweet mate and tea mate on the table",
-      horse_home_meta_t: "About 2 hours",
+      horse_home_meta_t: "About 1/1:30 hours",
       horse_home_meta_n: "Countryside trails & nature",
       cabal_page_price_line: "USD 50 per person",
       cabal_availability_whatsapp_notice:
@@ -300,6 +300,11 @@ const translations = {
       cabal_about_p:
         "Juanma and Sabrina will welcome you; they care for six horses and a filly for your ride, and their two dogs — Simón and Estrelli — are part of the day and often join you between stops. The ride takes place in Riachuelo, on the outskirts of Colonia.",
       cabal_included_title: "What's included",
+      cabal_include_ride: "Guided horseback riding experience",
+      cabal_include_horses: "Calm and trained horses suitable for beginners",
+      cabal_include_safety: "Safety equipment provided",
+      cabal_include_trails: "Ride through countryside trails and open landscapes",
+      cabal_include_host: "Local host assistance",
       cabal_include_transfer: "Transfer included",
       cabal_create_subtitle: "Choose your departure time. Up to 4 guests per time slot.",
       cabal_create_btn: "Create your experience",
@@ -1444,6 +1449,10 @@ const translations = {
       walking_mate_experience_body:
         "Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 5 per person).",
       walking_price_title: "USD 15 per guest",
+      walking_price_heading: "Prices by guide language",
+      walking_price_lang_es: "Spanish",
+      walking_price_lang_en: "English",
+      walking_price_lang_pt: "Portuguese",
       walking_included_title: "What's included",
       walking_include_1: "Guided walking tour with local expert",
       walking_include_2: "Cultural and historical insights",
@@ -1867,7 +1876,7 @@ const translations = {
       mate_page_gal_mateatar_alt: "Luz dorada y mate frente al río",
       mate_page_gal_matete2_alt: "Mesa de mate: calabazas, yerba y detalles",
       mate_page_gal_matedete_alt: "Mate dulce y mate de té en la mesa",
-      horse_home_meta_t: "Unas 2 horas",
+      horse_home_meta_t: "Unas 1/1:30 horas",
       horse_home_meta_n: "Senderos campestres y naturaleza",
       cabal_page_price_line: "USD 50 por persona",
       cabal_availability_whatsapp_notice:
@@ -1876,6 +1885,11 @@ const translations = {
       cabal_about_p:
         "Te recibirán Juanma y Sabrina, que cuidan seis caballos y una potranca para tu cabalgata, y sus dos perros — Simón y Estrelli — que forman parte del día y suelen acompañar entre paradas. La cabalgata es en Riachuelo, en las afueras de Colonia.",
       cabal_included_title: "Qué incluye",
+      cabal_include_ride: "Experiencia de cabalgata guiada",
+      cabal_include_horses: "Caballos tranquilos y entrenados, aptos para principiantes",
+      cabal_include_safety: "Equipo de seguridad incluido",
+      cabal_include_trails: "Recorrido por senderos campestres y paisajes abiertos",
+      cabal_include_host: "Asistencia de anfitriones locales",
       cabal_include_transfer: "Traslado incluido",
       cabal_create_subtitle: "Elegí el horario de salida. Hasta 4 personas por turno.",
       cabal_create_btn: "Creá tu experiencia",
@@ -3018,6 +3032,10 @@ const translations = {
       walking_mate_experience_body:
         "El mate es parte del día a día en Uruguay: compartir el mate, la bombilla y charlar un rato. Este complemento opcional te invita a vivir un momento de mate relajado y a conocer por qué es tan típico de nuestra cultura (USD 5 por persona).",
       walking_price_title: "USD 10 por persona",
+      walking_price_heading: "Precios según idioma del guía",
+      walking_price_lang_es: "Español",
+      walking_price_lang_en: "Inglés",
+      walking_price_lang_pt: "Portugués",
       walking_included_title: "Qué incluye",
       walking_include_1: "Tour guiado a pie con experto local",
       walking_include_2: "Contexto cultural e histórico",
@@ -3440,7 +3458,7 @@ const translations = {
       mate_page_gal_mateatar_alt: "Luz dourada e mate à beira-mar",
       mate_page_gal_matete2_alt: "Mesa de mate: cuias, erva e detalhes",
       mate_page_gal_matedete_alt: "Mate doce e mate de chá na mesa",
-      horse_home_meta_t: "Cerca de 2 horas",
+      horse_home_meta_t: "Cerca de 1/1:30 horas",
       horse_home_meta_n: "Trilhas rurais e natureza",
       cabal_page_price_line: "USD 50 por pessoa",
       cabal_availability_whatsapp_notice:
@@ -3449,6 +3467,11 @@ const translations = {
       cabal_about_p:
         "Juanma e Sabrina recebem você; eles cuidam de seis cavalos e uma potranca para o seu passeio, e os dois cachorros — Simón e Estrelli — fazem parte do dia e costumam acompanhar entre as paradas. A cavalgada é em Riachuelo, nos arredores de Colonia del Sacramento.",
       cabal_included_title: "O que está incluído",
+      cabal_include_ride: "Experiência de cavalgada guiada",
+      cabal_include_horses: "Cavalos calmos e treinados, adequados para iniciantes",
+      cabal_include_safety: "Equipamento de segurança incluído",
+      cabal_include_trails: "Passeio por trilhas rurais e paisagens abertas",
+      cabal_include_host: "Assistência de anfitriões locais",
       cabal_include_transfer: "Transfer incluído",
       cabal_create_subtitle: "Escolha o horário de partida. Até 4 pessoas por turno.",
       cabal_create_btn: "Monte sua experiência",
@@ -4592,6 +4615,10 @@ const translations = {
       walking_mate_experience_body:
         "O mate faz parte do cotidiano no Uruguai: compartilhar a cuia, a bomba e conversar um pouco. Este complemento opcional propõe um momento tranquilo de mate e a chance de entender por que é tão típico da nossa cultura (USD 5 por pessoa).",
       walking_price_title: "USD 15 por pessoa",
+      walking_price_heading: "Preços por idioma do guia",
+      walking_price_lang_es: "Espanhol",
+      walking_price_lang_en: "Inglês",
+      walking_price_lang_pt: "Português",
       walking_included_title: "O que inclui",
       walking_include_1: "Tour guiado a pé com especialista local",
       walking_include_2: "Contexto cultural e histórico",
@@ -5417,6 +5444,7 @@ function initRentPopupBehavior() {
     if (!translations[language]) language = "en";
   
     document.querySelectorAll("[data-translate]").forEach(el => {
+      if (el.hasAttribute("data-i18n-skip") || el.closest("[data-i18n-skip]")) return;
       const key = el.dataset.translate;
       const dict = translations[language];
       if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
@@ -5460,6 +5488,10 @@ function initRentPopupBehavior() {
     localStorage.setItem("selectedLanguage", language);
   
     document.dispatchEvent(new CustomEvent("sacramento:setLanguage", { detail: { language } }));
+
+    if (typeof window.sacramentoRenderWalkingPriceBadges === "function") {
+      window.sacramentoRenderWalkingPriceBadges();
+    }
   
     document.querySelectorAll(".lang-btn").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.lang === language);
