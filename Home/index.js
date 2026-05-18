@@ -5155,8 +5155,10 @@ function initRentPopupBehavior() {
         ? (tr.wa_rent_req_bike || "Passenger ID document is required.")
         : (tr.wa_rent_req_cart || "A credit card is required as a guarantee, plus the passenger's ID document.");
 
-    // Open the tab immediately from the click event to avoid popup blockers.
-    const waWindow = window.open("about:blank", "_blank");
+    const pendingTab =
+      typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+        ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+        : null;
 
     (async () => {
       let paymentUrl = "";
@@ -5197,19 +5199,16 @@ function initRentPopupBehavior() {
             ? `${tr.wa_payment_prompt || "To confirm the reservation, please complete the payment here:"}\n${paymentUrl}`
             : `${tr.wa_payment_fallback || "Please share payment instructions to confirm this booking."}`);
 
-        const waUrl = `https://wa.me/59898945542?text=${encodeURIComponent(message)}`;
-        if (waWindow && !waWindow.closed) {
-          waWindow.location.href = waUrl;
-        } else {
-          // Fallback if browser blocked/closed the pre-opened tab.
-          window.open(waUrl, "_blank");
+        if (typeof window.sacramentoOpenWhatsApp === "function") {
+          window.sacramentoOpenWhatsApp("59898945542", message, pendingTab);
+        } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+          window.location.assign(window.sacramentoBuildWhatsAppUrl("59898945542", message));
         }
       } catch {
-        const fallbackWa = "https://wa.me/59898945542";
-        if (waWindow && !waWindow.closed) {
-          waWindow.location.href = fallbackWa;
-        } else {
-          window.open(fallbackWa, "_blank");
+        if (typeof window.sacramentoOpenWhatsApp === "function") {
+          window.sacramentoOpenWhatsApp("59898945542", "", pendingTab);
+        } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+          window.location.assign(window.sacramentoBuildWhatsAppUrl("59898945542", ""));
         }
       }
     })();

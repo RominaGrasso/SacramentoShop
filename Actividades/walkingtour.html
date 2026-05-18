@@ -558,7 +558,10 @@
           alert(t("walking_alert_select_tour_time", "Please choose a walking tour departure time."));
           return;
         }
-        const waWindow = window.open("about:blank", "_blank");
+        const pendingTab =
+          typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+            ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+            : null;
         const unitPrice = getPrice(group.language);
         const walkTotal = unitPrice * group.people;
         const mateTotal = group.mateAddon ? group.people * 5 : 0;
@@ -612,11 +615,10 @@
             message += `\n\n${t("wa_payment_fallback", "Please share payment instructions to confirm this booking.")}`;
           }
 
-          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          if (waWindow && !waWindow.closed) {
-            waWindow.location.href = waUrl;
-          } else {
-            window.location.href = waUrl;
+          if (typeof window.sacramentoOpenWhatsApp === "function") {
+            window.sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
+          } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+            window.location.assign(window.sacramentoBuildWhatsAppUrl(whatsappNumber, message));
           }
         })();
       };
@@ -876,7 +878,7 @@
   })();
 </script>
 
-    <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+    <a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
        class="taxi-float"
        target="_blank"
        rel="noopener noreferrer"

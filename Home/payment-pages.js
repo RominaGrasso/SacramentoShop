@@ -148,7 +148,11 @@
       "payment_wa_prefill",
       "Hello! I have a question about my Sacramento Adventures payment."
     );
-    waBtn.href = "https://wa.me/59898945542?text=" + encodeURIComponent(text);
+    waBtn.href =
+      typeof window.sacramentoBuildWhatsAppUrl === "function"
+        ? window.sacramentoBuildWhatsAppUrl("59898945542", text)
+        : "https://wa.me/59898945542?text=" + encodeURIComponent(text);
+    if (waBtn.getAttribute("target") === "_blank") waBtn.removeAttribute("target");
   }
 
   async function pollPaymentResult(ref) {

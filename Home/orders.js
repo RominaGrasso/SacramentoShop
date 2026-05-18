@@ -95,15 +95,72 @@ function stableStringify(value) {
   return `{${keys.map((k) => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(",")}}`;
 }
 
-/**
- * WhatsApp se abre en una pestaña creada en el click (`about:blank`) para conservar el gesto del usuario.
- * Tras un `await`, muchos navegadores bloquean `pendingTab.location = …` y la pestaña queda en blanco.
- * Aquí probamos `replace`/`href` y, si falla o el popup fue bloqueado, usamos `window.location.assign` (misma pestaña),
- * que no depende de un segundo popup.
- */
+const SACRAMENTO_DEFAULT_WHATSAPP_NUMBER = "59898945542";
+/** e-TAXI flotante (sin +, código país incluido). */
+const SACRAMENTO_TAXI_WHATSAPP_NUMBER = "59895262626";
+const SACRAMENTO_TAXI_WHATSAPP_DEFAULT_TEXT =
+  "Hola, quiero pedir un taxi en Colonia. Prioridad: Cliente Sacramento Adventures";
+
+function sacramentoNormalizeWhatsAppPhone(phone) {
+  return String(phone || SACRAMENTO_DEFAULT_WHATSAPP_NUMBER).replace(/\D/g, "");
+}
+
+function sacramentoBuildWhatsAppUrl(phone, text) {
+  const digits = sacramentoNormalizeWhatsAppPhone(phone);
+  if (!digits) return "";
+  const base = `https://wa.me/${digits}`;
+  if (text == null || String(text) === "") return base;
+  return `${base}?text=${encodeURIComponent(String(text))}`;
+}
+
+function sacramentoIsOfficialWhatsAppUrl(url) {
+  try {
+    const u = new URL(String(url || ""));
+    const host = u.hostname.replace(/^www\./i, "").toLowerCase();
+    if (host === "wa.me") return true;
+    if (host === "api.whatsapp.com" && u.pathname.replace(/\/+$/, "") === "/send") return true;
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+function sacramentoIsMobileWhatsAppClient() {
+  if (typeof navigator === "undefined") return false;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || "");
+}
+
+function sacramentoOpenWhatsAppBlankTabForGesture() {
+  if (sacramentoIsMobileWhatsAppClient()) return null;
+  try {
+    return window.open("about:blank", "_blank");
+  } catch {
+    return null;
+  }
+}
+
+function sacramentoOpenWhatsApp(phone, text, pendingTab) {
+  const waUrl = sacramentoBuildWhatsAppUrl(phone, text);
+  if (!waUrl || !sacramentoIsOfficialWhatsAppUrl(waUrl)) return;
+
+  if (sacramentoIsMobileWhatsAppClient()) {
+    if (pendingTab) {
+      try {
+        pendingTab.close();
+      } catch {
+        /* ignore */
+      }
+    }
+    window.location.assign(waUrl);
+    return;
+  }
+
+  sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+}
+
 function sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl) {
   const url = String(waUrl || "");
-  if (!url) return;
+  if (!url || !sacramentoIsOfficialWhatsAppUrl(url)) return;
 
   const tab =
     pendingTab && typeof pendingTab === "object" && typeof pendingTab.closed === "boolean" && !pendingTab.closed
@@ -120,7 +177,7 @@ function sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl) {
       tab.location.replace(url);
       return;
     } catch {
-      /* deferred navigation often blocked */
+      /* ignore */
     }
     try {
       tab.location.href = url;
@@ -136,6 +193,28 @@ function sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl) {
   }
 
   window.location.assign(url);
+}
+
+function sacramentoFixWhatsAppAnchorTargets(root = document) {
+  if (!root || !root.querySelectorAll) return;
+  root.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"]').forEach((anchor) => {
+    const href = anchor.getAttribute("href") || "";
+    if (!sacramentoIsOfficialWhatsAppUrl(href)) return;
+    if (anchor.getAttribute("target") === "_blank") anchor.removeAttribute("target");
+  });
+}
+
+function sacramentoInitTaxiFloatLinks(root = document) {
+  if (!root || !root.querySelectorAll) return;
+  const href = sacramentoBuildWhatsAppUrl(
+    SACRAMENTO_TAXI_WHATSAPP_NUMBER,
+    SACRAMENTO_TAXI_WHATSAPP_DEFAULT_TEXT
+  );
+  if (!href) return;
+  root.querySelectorAll("a.taxi-float").forEach((anchor) => {
+    anchor.setAttribute("href", href);
+    if (anchor.getAttribute("target") === "_blank") anchor.removeAttribute("target");
+  });
 }
 
 async function resolveDynamicPaymentLink(dynamicPayment, payload) {
@@ -3026,7 +3105,7 @@ function initExperience(config) {
         const orders = getOrders();
         if (orders.length === 0) return;
         if (!experienceBookReady()) return;
-        const pendingTab = window.open("about:blank", "_blank");
+        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
         (async () => {
           const peopleCount = peopleCountForPayment(orders);
           const transportTotal =
@@ -3071,8 +3150,7 @@ function initExperience(config) {
             });
           } catch {}
           const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
-          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+          sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
         })();
       }
     });
@@ -3129,7 +3207,7 @@ function initExperience(config) {
             return;
           }
           if (!experienceBookReady()) return;
-          const pendingTab = window.open("about:blank", "_blank");
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           (async () => {
             const peopleCount = peopleCountForPayment(orders);
             const transportTotal =
@@ -3174,8 +3252,7 @@ function initExperience(config) {
               });
             } catch {}
             const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
-            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+            sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
           })();
         });
       }
@@ -3691,7 +3768,7 @@ function initFoodExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
-        const pendingTab = window.open("about:blank", "_blank");
+        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
         (async () => {
           const base = buildFoodWhatsAppMessage(orders);
           let finalMessage = base.message;
@@ -3708,8 +3785,7 @@ function initFoodExperience(config) {
               finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
             }
           } catch {}
-          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+          sacramentoOpenWhatsApp(whatsappNumber, finalMessage, pendingTab);
         })();
       }
     });
@@ -3724,7 +3800,7 @@ function initFoodExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
-          const pendingTab = window.open("about:blank", "_blank");
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           (async () => {
             const base = buildFoodWhatsAppMessage(orders);
             let finalMessage = base.message;
@@ -3741,8 +3817,7 @@ function initFoodExperience(config) {
                 finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
               }
             } catch {}
-            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+            sacramentoOpenWhatsApp(whatsappNumber, finalMessage, pendingTab);
           })();
         });
       }
@@ -4009,7 +4084,7 @@ function initPreferencesOrderExperience(config) {
         const orders = getOrders();
         if (orders.length === 0) return;
 
-        const pendingTab = window.open("about:blank", "_blank");
+        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
         (async () => {
           const people = orders.length;
           const total = people * pricePerPerson;
@@ -4025,8 +4100,7 @@ function initPreferencesOrderExperience(config) {
             });
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
-          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+          sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
         })();
       }
     });
@@ -4078,7 +4152,7 @@ function initPreferencesOrderExperience(config) {
             return;
           }
 
-          const pendingTab = window.open("about:blank", "_blank");
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           (async () => {
             const people = orders.length;
             const total = people * pricePerPerson;
@@ -4094,8 +4168,7 @@ function initPreferencesOrderExperience(config) {
               });
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
-            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+            sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
           })();
         });
       }
@@ -4814,7 +4887,7 @@ function initPackageOrderExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
-        const pendingTab = window.open("about:blank", "_blank");
+        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
         (async () => {
           const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
           const transportTotal = usesGroupTransport(orders)
@@ -4840,8 +4913,7 @@ function initPackageOrderExperience(config) {
             });
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
-          const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-          sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+          sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
         })();
       }
     });
@@ -4911,7 +4983,7 @@ function initPackageOrderExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
-          const pendingTab = window.open("about:blank", "_blank");
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           (async () => {
             const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
             const transportTotal = usesGroupTransport(orders)
@@ -4937,8 +5009,7 @@ function initPackageOrderExperience(config) {
               });
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
-            const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+            sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
           })();
         });
       }
@@ -5355,7 +5426,7 @@ function initSioSpecialNightOrders(userConfig) {
       const totalUsd = menuTotal + roomTotal;
       const peopleCount = rb ? calculateGuestsFromRooms() : orders.length;
       const dp = config.dynamicPayment;
-      const pendingTab = window.open("about:blank", "_blank");
+      const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
       (async () => {
         let finalMessage = buildWhatsAppMessage("");
         try {
@@ -5388,8 +5459,7 @@ function initSioSpecialNightOrders(userConfig) {
         } catch {
           /* WhatsApp sin enlace si el backend / Plexo no responde */
         }
-        const waUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-        sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl);
+        sacramentoOpenWhatsApp(config.whatsappNumber, finalMessage, pendingTab);
       })();
     };
 
@@ -5756,3 +5826,22 @@ function scrollToExperienceCreateFromHash() {
 
 scrollToExperienceCreateFromHash();
 window.sacramentoScrollToExperienceCreate = scrollToExperienceCreateFromHash;
+window.sacramentoBuildWhatsAppUrl = sacramentoBuildWhatsAppUrl;
+window.sacramentoOpenWhatsApp = sacramentoOpenWhatsApp;
+window.sacramentoOpenWhatsAppBlankTabForGesture = sacramentoOpenWhatsAppBlankTabForGesture;
+window.sacramentoNavigatePendingTabToWhatsApp = sacramentoNavigatePendingTabToWhatsApp;
+window.SACRAMENTO_TAXI_WHATSAPP_NUMBER = SACRAMENTO_TAXI_WHATSAPP_NUMBER;
+window.sacramentoFixWhatsAppAnchorTargets = sacramentoFixWhatsAppAnchorTargets;
+window.sacramentoInitTaxiFloatLinks = sacramentoInitTaxiFloatLinks;
+
+if (typeof document !== "undefined") {
+  const runWaAnchorFix = () => {
+    sacramentoInitTaxiFloatLinks(document);
+    sacramentoFixWhatsAppAnchorTargets(document);
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runWaAnchorFix);
+  } else {
+    runWaAnchorFix();
+  }
+}
