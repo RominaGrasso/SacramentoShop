@@ -615,7 +615,11 @@
         const total = orders.length * 90;
         message += `\nTotal: USD ${total}`;
   
-        window.open(`https://wa.me/59898945542?text=${encodeURIComponent(message)}`);
+        if (typeof window.sacramentoOpenWhatsApp === "function") {
+          window.sacramentoOpenWhatsApp("59898945542", message, null);
+        } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+          window.location.assign(window.sacramentoBuildWhatsAppUrl("59898945542", message));
+        }
       };
     }
   
@@ -623,7 +627,11 @@
     if (bookBottom) {
       bookBottom.onclick = (e) => {
         e.preventDefault();
-        window.open(`https://wa.me/59898945542`);
+        if (typeof window.sacramentoOpenWhatsApp === "function") {
+          window.sacramentoOpenWhatsApp("59898945542", "", null);
+        } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+          window.location.assign(window.sacramentoBuildWhatsAppUrl("59898945542", ""));
+        }
       };
     }
   }
@@ -698,7 +706,7 @@
   }
   </script>
 
-    <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+    <a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
        class="taxi-float"
        target="_blank"
        rel="noopener noreferrer"

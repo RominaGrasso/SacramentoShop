@@ -540,15 +540,17 @@
         return;
       }
       const bookings = getStoredBookings();
-      const pendingTab = window.open("about:blank", "_blank");
+      const pendingTab =
+        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+          : null;
       (async () => {
         const paymentLink = await resolveRomanticPaymentLink(bookings);
         const message = buildWhatsAppMessage(paymentLink);
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-        if (pendingTab && !pendingTab.closed) {
-          pendingTab.location.href = url;
-        } else {
-          window.open(url, "_blank");
+        if (typeof window.sacramentoOpenWhatsApp === "function") {
+          window.sacramentoOpenWhatsApp(WHATSAPP_NUMBER, message, pendingTab);
+        } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+          window.location.assign(window.sacramentoBuildWhatsAppUrl(WHATSAPP_NUMBER, message));
         }
       })();
     }
@@ -618,7 +620,7 @@
   })();
 </script>
 
-    <a href="https://wa.me/59897802424?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia."
+    <a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
        class="taxi-float"
        target="_blank"
        rel="noopener noreferrer"

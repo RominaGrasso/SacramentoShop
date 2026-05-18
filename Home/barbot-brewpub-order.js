@@ -425,7 +425,10 @@
       }
 
       const snap = snapshotBarbotCtx(ctx);
-      const pendingTab = window.open("about:blank", "_blank");
+      const pendingTab =
+        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+          : null;
       (async () => {
         const total = computeGrandTotal(snap.orders);
         const totalPeople = snap.orders.reduce((sum, row) => sum + clampPeople(row.people), 0);
@@ -457,11 +460,10 @@
           paymentUrl = "";
         }
         const text = buildWhatsappText(snap, paymentUrl, paymentAttempted);
-        const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
-        if (pendingTab && !pendingTab.closed) {
-          pendingTab.location.href = waUrl;
-        } else {
-          window.open(waUrl, "_blank", "noopener,noreferrer");
+        if (typeof window.sacramentoOpenWhatsApp === "function") {
+          window.sacramentoOpenWhatsApp(WA_NUMBER, text, pendingTab);
+        } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+          window.location.assign(window.sacramentoBuildWhatsAppUrl(WA_NUMBER, text));
         }
       })();
     }
