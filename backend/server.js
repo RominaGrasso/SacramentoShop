@@ -503,7 +503,7 @@ function buildPlexoExpressCheckoutRequest(payload) {
     ClientInformation: {
       ...(PLEXO_CHECKOUT_NAME ? { Name: PLEXO_CHECKOUT_NAME } : {}),
       Address: "Montevideo",
-      Email: contactEmail,
+      ...(contactEmail && !/\@example\.com$/i.test(contactEmail) ? { Email: contactEmail } : {}),
       Identification: PLEXO_CHECKOUT_DOC,
       IdentificationType: "0"
     },
