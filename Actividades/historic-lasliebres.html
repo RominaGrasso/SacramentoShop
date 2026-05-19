@@ -637,6 +637,10 @@
             if (createBtn) createBtn.click();
             return;
           }
+          const pendingTab =
+            typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+              ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+              : null;
           const totals = calcTotal(orders);
           let paymentUrl = "";
           if (typeof resolveDynamicPaymentLink === "function") {
@@ -662,9 +666,17 @@
           }
           const message = buildMessage(orders, totals, paymentUrl);
           if (typeof window.sacramentoOpenWhatsApp === "function") {
-            window.sacramentoOpenWhatsApp(WHATSAPP_NUMBER, message, null);
+            window.sacramentoOpenWhatsApp(WHATSAPP_NUMBER, message, pendingTab);
           } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
             window.location.assign(window.sacramentoBuildWhatsAppUrl(WHATSAPP_NUMBER, message));
+          }
+        }
+
+        function runHistoricReserveFlow() {
+          if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+            void window.sacramentoRunReserveWhatsAppFlow(openWhatsAppBooking);
+          } else {
+            void openWhatsAppBooking();
           }
         }
 
@@ -678,7 +690,7 @@
             e.preventDefault();
             e.stopPropagation();
             if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-            openWhatsAppBooking();
+            runHistoricReserveFlow();
           },
           true
         );

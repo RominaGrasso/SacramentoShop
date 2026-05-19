@@ -326,16 +326,16 @@
       );
       return;
     }
-    const pendingTab =
-      typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
-        ? window.sacramentoOpenWhatsAppBlankTabForGesture()
-        : null;
     const totalRide = PRICE_PER_PERSON * cfg.guests;
     const guideExtra = cfg.guide ? GUIDE_FLAT_USD : 0;
     const total = totalRide + guideExtra;
     const date = formatDate();
 
-    (async () => {
+    const runReserveFlow = async () => {
+      const pendingTab =
+        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+          : null;
       let paymentUrl = "";
       try {
         if (typeof resolveDynamicPaymentLink === "function") {
@@ -387,7 +387,12 @@
       } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
         window.location.assign(window.sacramentoBuildWhatsAppUrl(WHATSAPP_NUMBER, message));
       }
-    })();
+    };
+    if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+      void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
+    } else {
+      void runReserveFlow();
+    }
   };
 
   let guestCount = 1;

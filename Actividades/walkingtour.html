@@ -558,17 +558,17 @@
           alert(t("walking_alert_select_tour_time", "Please choose a walking tour departure time."));
           return;
         }
-        const pendingTab =
-          typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
-            ? window.sacramentoOpenWhatsAppBlankTabForGesture()
-            : null;
         const unitPrice = getPrice(group.language);
         const walkTotal = unitPrice * group.people;
         const mateTotal = group.mateAddon ? group.people * 5 : 0;
         const total = walkTotal + mateTotal;
         const date = formatDate();
 
-        (async () => {
+        const runReserveFlow = async () => {
+          const pendingTab =
+            typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+              ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+              : null;
           let paymentUrl = "";
           try {
             if (typeof resolveDynamicPaymentLink === "function") {
@@ -620,7 +620,12 @@
           } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
             window.location.assign(window.sacramentoBuildWhatsAppUrl(whatsappNumber, message));
           }
-        })();
+        };
+        if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+          void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
+        } else {
+          void runReserveFlow();
+        }
       };
       const selectedTourTime = () =>
         String(popup.querySelector("input[name='walkingTourDepartureTime']:checked")?.value || "").trim();

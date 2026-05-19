@@ -130,10 +130,208 @@ function sacramentoIsMobileWhatsAppClient() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || "");
 }
 
+const SACRAMENTO_RESERVE_LOADING_SECONDARY_MS = 5000;
+
+const SACRAMENTO_RESERVE_TRIGGER_SELECTOR = [
+  "#bookWithOrder",
+  "#bookNowBottom",
+  "#bookNowBottomWalkingAsado",
+  "#bookNowBottomHistoricLiebres",
+  "#bookNowBottomJosefina",
+  "#bookNowBottomLiebresDining",
+  "#bookNowBottomRomantic",
+  "#bookRomanticWithOrder",
+  "#mateBookBtn",
+  "#mateExperienceSummary a.total-btn",
+  "#cabalFooterReserve",
+  "#cabalBookingSummary a.total-btn",
+  "#rentBookNowBtn",
+  "#barbotReserveBtn",
+  '[data-action="book-now"]',
+  ".total-btn#bookWithOrder"
+].join(",");
+
+let sacramentoReserveLoadingDepth = 0;
+let sacramentoReserveLoadingSecondaryTimer = null;
+
+function sacramentoReserveLoadingText(key, fallback) {
+  const lang = typeof getSiteLanguage === "function" ? getSiteLanguage() : "en";
+  const table = sacramentoI18nTable();
+  const dict = table[lang] || table.en || {};
+  return dict[key] || table.en?.[key] || fallback;
+}
+
+let sacramentoReserveLoadingOverlayEl = null;
+
+function sacramentoEnsureReserveLoadingOverlay() {
+  if (sacramentoReserveLoadingOverlayEl) return sacramentoReserveLoadingOverlayEl;
+  const overlay = document.createElement("div");
+  overlay.id = "sacramentoReserveLoading";
+  overlay.className = "sacramento-reserve-loading";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-live", "polite");
+  overlay.setAttribute("aria-busy", "true");
+  overlay.hidden = true;
+  overlay.innerHTML =
+    '<div class="sacramento-reserve-loading__panel">' +
+    '<div class="sacramento-reserve-loading__spinner" aria-hidden="true"></div>' +
+    '<p class="sacramento-reserve-loading__primary"></p>' +
+    '<p class="sacramento-reserve-loading__secondary" hidden></p>' +
+    "</div>";
+  document.body.appendChild(overlay);
+  sacramentoReserveLoadingOverlayEl = overlay;
+  return overlay;
+}
+
+function sacramentoRefreshReserveLoadingCopy() {
+  const overlay = sacramentoEnsureReserveLoadingOverlay();
+  const primary = overlay.querySelector(".sacramento-reserve-loading__primary");
+  const secondary = overlay.querySelector(".sacramento-reserve-loading__secondary");
+  if (primary) {
+    primary.textContent = sacramentoReserveLoadingText(
+      "reserve_loading_primary",
+      "Preparing your booking…"
+    );
+  }
+  if (secondary) {
+    secondary.textContent = sacramentoReserveLoadingText(
+      "reserve_loading_secondary",
+      "Opening WhatsApp…"
+    );
+  }
+}
+
+function sacramentoDisableReserveTriggers() {
+  if (typeof document === "undefined") return;
+  document.querySelectorAll(SACRAMENTO_RESERVE_TRIGGER_SELECTOR).forEach((el) => {
+    if (el.dataset.sacReserveDisabled === "1") return;
+    el.dataset.sacReserveDisabled = "1";
+    el.dataset.sacReserveWasDisabled = el.disabled ? "1" : "0";
+    if ("disabled" in el) el.disabled = true;
+    el.setAttribute("aria-busy", "true");
+    el.classList.add("sac-reserve-busy");
+    if (el.tagName === "A") {
+      el.dataset.sacReservePointerEvents = el.style.pointerEvents || "";
+      el.style.pointerEvents = "none";
+    }
+  });
+}
+
+function sacramentoEnableReserveTriggers() {
+  if (typeof document === "undefined") return;
+  document.querySelectorAll("[data-sac-reserve-disabled='1']").forEach((el) => {
+    if (el.dataset.sacReserveWasDisabled !== "1" && "disabled" in el) el.disabled = false;
+    el.removeAttribute("aria-busy");
+    el.classList.remove("sac-reserve-busy");
+    if (el.tagName === "A" && "sacReservePointerEvents" in el.dataset) {
+      el.style.pointerEvents = el.dataset.sacReservePointerEvents;
+      delete el.dataset.sacReservePointerEvents;
+    }
+    delete el.dataset.sacReserveWasDisabled;
+    delete el.dataset.sacReserveDisabled;
+  });
+}
+
+function sacramentoShowReserveLoading() {
+  if (typeof document === "undefined") return;
+  sacramentoReserveLoadingDepth += 1;
+  if (sacramentoReserveLoadingDepth > 1) return;
+  sacramentoRefreshReserveLoadingCopy();
+  sacramentoDisableReserveTriggers();
+  const overlay = sacramentoEnsureReserveLoadingOverlay();
+  const secondary = overlay.querySelector(".sacramento-reserve-loading__secondary");
+  if (secondary) secondary.hidden = true;
+  overlay.hidden = false;
+  document.body.classList.add("sacramento-reserve-loading-active");
+  if (sacramentoReserveLoadingSecondaryTimer) clearTimeout(sacramentoReserveLoadingSecondaryTimer);
+  sacramentoReserveLoadingSecondaryTimer = window.setTimeout(() => {
+    sacramentoRefreshReserveLoadingCopy();
+    const sec = overlay.querySelector(".sacramento-reserve-loading__secondary");
+    if (sec && sacramentoReserveLoadingDepth > 0) sec.hidden = false;
+  }, SACRAMENTO_RESERVE_LOADING_SECONDARY_MS);
+}
+
+function sacramentoHideReserveLoading() {
+  if (typeof document === "undefined") return;
+  sacramentoReserveLoadingDepth = Math.max(0, sacramentoReserveLoadingDepth - 1);
+  if (sacramentoReserveLoadingDepth > 0) return;
+  if (sacramentoReserveLoadingSecondaryTimer) {
+    clearTimeout(sacramentoReserveLoadingSecondaryTimer);
+    sacramentoReserveLoadingSecondaryTimer = null;
+  }
+  sacramentoEnableReserveTriggers();
+  if (sacramentoReserveLoadingOverlayEl) {
+    sacramentoReserveLoadingOverlayEl.hidden = true;
+    const secondary = sacramentoReserveLoadingOverlayEl.querySelector(
+      ".sacramento-reserve-loading__secondary"
+    );
+    if (secondary) secondary.hidden = true;
+  }
+  document.body.classList.remove("sacramento-reserve-loading-active");
+}
+
+async function sacramentoRunReserveWhatsAppFlow(workFn) {
+  sacramentoShowReserveLoading();
+  try {
+    return await workFn();
+  } finally {
+    sacramentoHideReserveLoading();
+  }
+}
+
+if (typeof document !== "undefined") {
+  document.addEventListener("sacramento:setLanguage", () => {
+    if (sacramentoReserveLoadingDepth > 0) sacramentoRefreshReserveLoadingCopy();
+  });
+}
+
+function sacramentoPaintPendingTabLoading(pendingTab) {
+  if (!pendingTab || pendingTab.closed) return;
+  try {
+    const primary = sacramentoReserveLoadingText(
+      "reserve_loading_primary",
+      "Preparing your booking…"
+    );
+    const secondary = sacramentoReserveLoadingText(
+      "reserve_loading_secondary",
+      "Opening WhatsApp…"
+    );
+    const safePrimary = primary.replace(/</g, "&lt;");
+    const safeSecondary = secondary.replace(/</g, "&lt;");
+    pendingTab.document.open();
+    pendingTab.document.write(
+      "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>" +
+        safePrimary +
+        "</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#f0f6fc 0%,#e8f2fa 100%);color:#1e3a5f}.wrap{text-align:center;padding:24px;max-width:320px}.spin{width:44px;height:44px;margin:0 auto 20px;border:3px solid rgba(102,166,230,.25);border-top-color:#66a6e6;border-radius:50%;animation:sacspin .85s linear infinite}@keyframes sacspin{to{transform:rotate(360deg)}}h1{font-size:1.05rem;font-weight:600;margin:0 0 8px;line-height:1.35}p{font-size:.9rem;margin:0;color:#4a6a8a}</style></head><body><div class=\"wrap\"><div class=\"spin\" aria-hidden=\"true\"></div><h1>" +
+        safePrimary +
+        "</h1><p>" +
+        safeSecondary +
+        "</p></div></body></html>"
+    );
+    pendingTab.document.close();
+    try {
+      const spin = pendingTab.document.querySelector(".spin");
+      if (spin && spin.tagName !== "DIV") {
+        const d = pendingTab.document.createElement("div");
+        d.className = "spin";
+        d.setAttribute("aria-hidden", "true");
+        spin.replaceWith(d);
+      }
+    } catch {
+      /* ignore */
+    }
+  } catch {
+    /* popup blocked */
+  }
+}
+
 function sacramentoOpenWhatsAppBlankTabForGesture() {
   if (sacramentoIsMobileWhatsAppClient()) return null;
   try {
-    return window.open("about:blank", "_blank");
+    const tab = window.open("about:blank", "_blank");
+    sacramentoPaintPendingTabLoading(tab);
+    return tab;
   } catch {
     return null;
   }
@@ -3105,8 +3303,8 @@ function initExperience(config) {
         const orders = getOrders();
         if (orders.length === 0) return;
         if (!experienceBookReady()) return;
-        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-        (async () => {
+        sacramentoRunReserveWhatsAppFlow(async () => {
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           const peopleCount = peopleCountForPayment(orders);
           const transportTotal =
             vehicleTransportRate > 0 ? groupPrivateTransportTotal(peopleCount, vehicleTransportRate) : 0;
@@ -3151,7 +3349,7 @@ function initExperience(config) {
           } catch {}
           const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
           sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
-        })();
+        });
       }
     });
 
@@ -3207,8 +3405,8 @@ function initExperience(config) {
             return;
           }
           if (!experienceBookReady()) return;
-          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-          (async () => {
+          sacramentoRunReserveWhatsAppFlow(async () => {
+            const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
             const peopleCount = peopleCountForPayment(orders);
             const transportTotal =
               vehicleTransportRate > 0 ? groupPrivateTransportTotal(peopleCount, vehicleTransportRate) : 0;
@@ -3253,7 +3451,7 @@ function initExperience(config) {
             } catch {}
             const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
             sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
-          })();
+          });
         });
       }
     }
@@ -3768,8 +3966,8 @@ function initFoodExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
-        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-        (async () => {
+        sacramentoRunReserveWhatsAppFlow(async () => {
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           const base = buildFoodWhatsAppMessage(orders);
           let finalMessage = base.message;
           try {
@@ -3786,7 +3984,7 @@ function initFoodExperience(config) {
             }
           } catch {}
           sacramentoOpenWhatsApp(whatsappNumber, finalMessage, pendingTab);
-        })();
+        });
       }
     });
 
@@ -3800,8 +3998,8 @@ function initFoodExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
-          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-          (async () => {
+          sacramentoRunReserveWhatsAppFlow(async () => {
+            const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
             const base = buildFoodWhatsAppMessage(orders);
             let finalMessage = base.message;
             try {
@@ -3818,7 +4016,7 @@ function initFoodExperience(config) {
               }
             } catch {}
             sacramentoOpenWhatsApp(whatsappNumber, finalMessage, pendingTab);
-          })();
+          });
         });
       }
     }
@@ -4084,8 +4282,8 @@ function initPreferencesOrderExperience(config) {
         const orders = getOrders();
         if (orders.length === 0) return;
 
-        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-        (async () => {
+        sacramentoRunReserveWhatsAppFlow(async () => {
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           const people = orders.length;
           const total = people * pricePerPerson;
           let paymentUrl = "";
@@ -4101,7 +4299,7 @@ function initPreferencesOrderExperience(config) {
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
           sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
-        })();
+        });
       }
     });
 
@@ -4152,8 +4350,8 @@ function initPreferencesOrderExperience(config) {
             return;
           }
 
-          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-          (async () => {
+          sacramentoRunReserveWhatsAppFlow(async () => {
+            const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
             const people = orders.length;
             const total = people * pricePerPerson;
             let paymentUrl = "";
@@ -4169,7 +4367,7 @@ function initPreferencesOrderExperience(config) {
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
             sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
-          })();
+          });
         });
       }
     }
@@ -4887,8 +5085,8 @@ function initPackageOrderExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
-        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-        (async () => {
+        sacramentoRunReserveWhatsAppFlow(async () => {
+          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
           const transportTotal = usesGroupTransport(orders)
             ? totalGroupTransport(orders)
@@ -4914,7 +5112,7 @@ function initPackageOrderExperience(config) {
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
           sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
-        })();
+        });
       }
     });
 
@@ -4983,8 +5181,8 @@ function initPackageOrderExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
-          const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-          (async () => {
+          sacramentoRunReserveWhatsAppFlow(async () => {
+            const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
             const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
             const transportTotal = usesGroupTransport(orders)
               ? totalGroupTransport(orders)
@@ -5010,7 +5208,7 @@ function initPackageOrderExperience(config) {
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
             sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
-          })();
+          });
         });
       }
     }
@@ -5426,8 +5624,8 @@ function initSioSpecialNightOrders(userConfig) {
       const totalUsd = menuTotal + roomTotal;
       const peopleCount = rb ? calculateGuestsFromRooms() : orders.length;
       const dp = config.dynamicPayment;
-      const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
-      (async () => {
+      sacramentoRunReserveWhatsAppFlow(async () => {
+        const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
         let finalMessage = buildWhatsAppMessage("");
         try {
           if (dp && dp.enabled && totalUsd > 0) {
@@ -5460,7 +5658,7 @@ function initSioSpecialNightOrders(userConfig) {
           /* WhatsApp sin enlace si el backend / Plexo no responde */
         }
         sacramentoOpenWhatsApp(config.whatsappNumber, finalMessage, pendingTab);
-      })();
+      });
     };
 
     const renderOrders = () => {
@@ -5830,6 +6028,9 @@ window.sacramentoBuildWhatsAppUrl = sacramentoBuildWhatsAppUrl;
 window.sacramentoOpenWhatsApp = sacramentoOpenWhatsApp;
 window.sacramentoOpenWhatsAppBlankTabForGesture = sacramentoOpenWhatsAppBlankTabForGesture;
 window.sacramentoNavigatePendingTabToWhatsApp = sacramentoNavigatePendingTabToWhatsApp;
+window.sacramentoShowReserveLoading = sacramentoShowReserveLoading;
+window.sacramentoHideReserveLoading = sacramentoHideReserveLoading;
+window.sacramentoRunReserveWhatsAppFlow = sacramentoRunReserveWhatsAppFlow;
 window.SACRAMENTO_TAXI_WHATSAPP_NUMBER = SACRAMENTO_TAXI_WHATSAPP_NUMBER;
 window.sacramentoFixWhatsAppAnchorTargets = sacramentoFixWhatsAppAnchorTargets;
 window.sacramentoInitTaxiFloatLinks = sacramentoInitTaxiFloatLinks;
