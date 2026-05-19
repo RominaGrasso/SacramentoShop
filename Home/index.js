@@ -717,6 +717,8 @@ const translations = {
       food_alert_select_meal: "Select a meal",
       food_alert_complete_tourist: "Please choose starter and main for the tourist menu",
       book_btn: "Reserve",
+      reserve_loading_primary: "Preparing your booking…",
+      reserve_loading_secondary: "Opening WhatsApp…",
       view_btn: "Explore",
       save_selection: "Save selection",
       update_order: "Update order",
@@ -2118,6 +2120,8 @@ const translations = {
       pharmacy_c5_meta: "Av. José Batlle y Ordóñez · Consultá horario actual",
       pharmacy_24h_badge: "24 hs",
       book_btn: "Reservar",
+      reserve_loading_primary: "Preparando tu reserva…",
+      reserve_loading_secondary: "Abriendo WhatsApp…",
       view_btn: "Explorar",
       save_selection: "Guardar selección",
       update_order: "Actualizar pedido",
@@ -3700,6 +3704,8 @@ const translations = {
       pharmacy_c5_meta: "Av. José Batlle y Ordóñez · Confirme o horário atual",
       pharmacy_24h_badge: "24 h",
       book_btn: "Reservar",
+      reserve_loading_primary: "Preparando sua reserva…",
+      reserve_loading_secondary: "Abrindo WhatsApp…",
       view_btn: "Explorar",
       save_selection: "Salvar seleção",
       update_order: "Atualizar pedido",
@@ -5155,12 +5161,11 @@ function initRentPopupBehavior() {
         ? (tr.wa_rent_req_bike || "Passenger ID document is required.")
         : (tr.wa_rent_req_cart || "A credit card is required as a guarantee, plus the passenger's ID document.");
 
-    const pendingTab =
-      typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
-        ? window.sacramentoOpenWhatsAppBlankTabForGesture()
-        : null;
-
-    (async () => {
+    const runReserveFlow = async () => {
+      const pendingTab =
+        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+          : null;
       let paymentUrl = "";
       try {
         paymentUrl = await resolveRentDynamicPaymentLink({
@@ -5211,7 +5216,12 @@ function initRentPopupBehavior() {
           window.location.assign(window.sacramentoBuildWhatsAppUrl("59898945542", ""));
         }
       }
-    })();
+    };
+    if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+      void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
+    } else {
+      void runReserveFlow();
+    }
   });
 
   overlay.dataset.bound = "1";

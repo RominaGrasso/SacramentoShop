@@ -425,11 +425,11 @@
       }
 
       const snap = snapshotBarbotCtx(ctx);
-      const pendingTab =
-        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
-          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
-          : null;
-      (async () => {
+      const runReserveFlow = async () => {
+        const pendingTab =
+          typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+            ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+            : null;
         const total = computeGrandTotal(snap.orders);
         const totalPeople = snap.orders.reduce((sum, row) => sum + clampPeople(row.people), 0);
         let paymentUrl = "";
@@ -465,7 +465,12 @@
         } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
           window.location.assign(window.sacramentoBuildWhatsAppUrl(WA_NUMBER, text));
         }
-      })();
+      };
+      if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+        void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
+      } else {
+        void runReserveFlow();
+      }
     }
 
     renderSummary();

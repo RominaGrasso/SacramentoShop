@@ -493,10 +493,6 @@
       });
 
     const sendBookingToWhatsApp = (group) => {
-      const pendingTab =
-        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
-          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
-          : null;
       const total = PRICE_PER_PERSON * group.people;
       const prefs = Array.isArray(group.preferences) ? group.preferences.map(localizeBikePreference) : [];
       const prefsText = prefs.length ? `- ${prefs.join("\n- ")}` : `- ${t("wa_none", "None")}`;
@@ -511,22 +507,26 @@
         `${t("wa_preferences_label", "Preferences")}:\n${prefsText}\n\n` +
         `${t("wa_total_label", "Total")}: USD ${total}\n` +
         `${t("wa_note_label", "Note")}: ${getKidsNote()}`;
-      const openWhatsApp = (message) => {
-        if (typeof window.sacramentoOpenWhatsApp === "function") {
-          window.sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
-        } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
-          window.location.assign(window.sacramentoBuildWhatsAppUrl(whatsappNumber, message));
-        }
-      };
+      const runReserveFlow = async () => {
+        const pendingTab =
+          typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+            ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+            : null;
+        const openWhatsApp = (message) => {
+          if (typeof window.sacramentoOpenWhatsApp === "function") {
+            window.sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
+          } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+            window.location.assign(window.sacramentoBuildWhatsAppUrl(whatsappNumber, message));
+          }
+        };
 
-      // Evita quedarse en about:blank si el resolve de pago demora/falla.
-      let fallbackDone = false;
-      const fallbackTimer = setTimeout(() => {
-        fallbackDone = true;
-        openWhatsApp(baseMessage);
-      }, 1800);
+        // Evita quedarse en about:blank si el resolve de pago demora/falla.
+        let fallbackDone = false;
+        const fallbackTimer = setTimeout(() => {
+          fallbackDone = true;
+          openWhatsApp(baseMessage);
+        }, 1800);
 
-      (async () => {
         let paymentUrl = "";
         try {
           if (typeof resolveDynamicPaymentLink === "function") {
@@ -566,7 +566,12 @@
         if (!fallbackDone) {
           openWhatsApp(message);
         }
-      })();
+      };
+      if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+        void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
+      } else {
+        void runReserveFlow();
+      }
     };
 
     const renderSummary = () => {

@@ -540,11 +540,11 @@
         return;
       }
       const bookings = getStoredBookings();
-      const pendingTab =
-        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
-          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
-          : null;
-      (async () => {
+      const runReserveFlow = async () => {
+        const pendingTab =
+          typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+            ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+            : null;
         const paymentLink = await resolveRomanticPaymentLink(bookings);
         const message = buildWhatsAppMessage(paymentLink);
         if (typeof window.sacramentoOpenWhatsApp === "function") {
@@ -552,7 +552,12 @@
         } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
           window.location.assign(window.sacramentoBuildWhatsAppUrl(WHATSAPP_NUMBER, message));
         }
-      })();
+      };
+      if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+        void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
+      } else {
+        void runReserveFlow();
+      }
     }
 
     renderStep(step1, 1);
