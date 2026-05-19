@@ -100,7 +100,8 @@ const PLEXO_CYBERSOURCE_ORG_ID = (process.env.PLEXO_CYBERSOURCE_ORG_ID || "45ssi
 /** Prefijo IdComercio para session_id del script (ej. visanetuy_px_1234 u oca_plexo) — lo da Plexo por comercio. */
 const PLEXO_CYBERSOURCE_SESSION_PREFIX = (process.env.PLEXO_CYBERSOURCE_SESSION_PREFIX || "").trim();
 const PLEXO_CHECKOUT_EMAIL = process.env.PLEXO_CHECKOUT_EMAIL || "";
-const PLEXO_CHECKOUT_NAME = process.env.PLEXO_CHECKOUT_NAME || "Sacramento Guest";
+/** Empty by default: Plexo checkout must not autofill payer name (no "Sacramento Guest"). */
+const PLEXO_CHECKOUT_NAME = String(process.env.PLEXO_CHECKOUT_NAME || "").trim();
 const PLEXO_CHECKOUT_DOC = process.env.PLEXO_CHECKOUT_DOC || "12345678";
 const PLEXO_ADMIN_TOKEN = process.env.PLEXO_ADMIN_TOKEN || "";
 const PAYMENT_DEBUG_LOG =
@@ -500,7 +501,7 @@ function buildPlexoExpressCheckoutRequest(payload) {
     RedirectUri: effectivePlexoRedirectUri(traceId),
     DoNotUseCallback: false,
     ClientInformation: {
-      Name: PLEXO_CHECKOUT_NAME,
+      ...(PLEXO_CHECKOUT_NAME ? { Name: PLEXO_CHECKOUT_NAME } : {}),
       Address: "Montevideo",
       Email: contactEmail,
       Identification: PLEXO_CHECKOUT_DOC,
