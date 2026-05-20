@@ -11,6 +11,60 @@ function getSiteLanguage() {
   return "en";
 }
 
+function sacramentoResolvePaymentsApiBase() {
+  if (typeof window !== "undefined" && window.SacramentoPaymentsApi?.resolvePaymentsApiBase) {
+    return window.SacramentoPaymentsApi.resolvePaymentsApiBase();
+  }
+  if (typeof window !== "undefined" && window.SACRAMENTO_PAYMENTS_API_BASE) {
+    return String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "");
+  }
+  const host = typeof window !== "undefined" ? window.location?.hostname || "" : "";
+  if (host === "localhost" || host === "127.0.0.1") return "http://localhost:8787";
+  return "https://sacramento-payments-test.onrender.com";
+}
+
+function sacramentoIsLocalDevHost() {
+  if (typeof window !== "undefined" && window.SacramentoPaymentsApi?.isLocalDevHost) {
+    return window.SacramentoPaymentsApi.isLocalDevHost();
+  }
+  const host = typeof window !== "undefined" ? window.location?.hostname || "" : "";
+  return host === "localhost" || host === "127.0.0.1";
+}
+
+function sacramentoBuildResolveEndpointCandidates(endpointRaw) {
+  if (typeof window !== "undefined" && window.SacramentoPaymentsApi?.buildResolveEndpointCandidates) {
+    return window.SacramentoPaymentsApi.buildResolveEndpointCandidates(endpointRaw);
+  }
+  const endpoint = String(endpointRaw || "/api/payments/resolve").trim();
+  const isAbsolute = /^https?:\/\//i.test(endpoint);
+  const candidates = [];
+  const local = sacramentoIsLocalDevHost();
+  const productionBase = "https://sacramento-payments-test.onrender.com";
+  const localBase = "http://localhost:8787";
+
+  if (isAbsolute) {
+    candidates.push(endpoint);
+  } else if (endpoint.startsWith("/")) {
+    if (local) {
+      candidates.push(`${localBase}${endpoint}`, `${productionBase}${endpoint}`);
+    }
+    if (typeof window !== "undefined" && window.location?.origin && window.location.protocol !== "file:") {
+      candidates.push(endpoint);
+    }
+    if (!local) candidates.push(`${productionBase}${endpoint}`);
+  } else {
+    const path = `/${endpoint.replace(/^\.?\//, "")}`;
+    if (local) candidates.push(`${localBase}${path}`, `${productionBase}${path}`);
+    candidates.push(endpoint);
+    if (!local) candidates.push(`${productionBase}${path}`);
+  }
+  if (typeof window !== "undefined" && window.location?.protocol === "file:") {
+    const path = endpoint.startsWith("/") ? endpoint : `/${endpoint.replace(/^\/+/, "")}`;
+    candidates.unshift(`${localBase}${path}`, `http://127.0.0.1:8787${path}`);
+  }
+  return [...new Set(candidates.filter(Boolean))];
+}
+
 const DEFAULT_DYNAMIC_PAYMENT_ENDPOINT =
   typeof window !== "undefined" && window.location?.protocol === "file:"
     ? "http://localhost:8787/api/payments/resolve"
@@ -418,51 +472,7 @@ function sacramentoInitTaxiFloatLinks(root = document) {
 async function resolveDynamicPaymentLink(dynamicPayment, payload) {
   if (!dynamicPayment || !dynamicPayment.enabled) return "";
   const endpointRaw = dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT;
-  const isAbsolute = /^https?:\/\//i.test(endpointRaw);
-  const candidates = [];
-  const isLocalDevHost =
-    typeof window !== "undefined" &&
-    ["localhost", "127.0.0.1"].includes(window.location?.hostname || "");
-  const remoteTestBase =
-    typeof window !== "undefined" && window.SACRAMENTO_PAYMENTS_API_BASE
-      ? String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "")
-      : "https://sacramento-payments-test.onrender.com";
-
-  if (isAbsolute) {
-    candidates.push(endpointRaw);
-  } else if (endpointRaw.startsWith("/")) {
-    candidates.push(endpointRaw);
-    if (!isLocalDevHost) {
-      candidates.push(`${remoteTestBase}${endpointRaw}`);
-    }
-    if (!isLocalDevHost) {
-      candidates.push(`http://localhost:8787${endpointRaw}`);
-      candidates.push(`http://127.0.0.1:8787${endpointRaw}`);
-    }
-  } else {
-    candidates.push(endpointRaw);
-    if (!isLocalDevHost) {
-      candidates.push(`http://localhost:8787/${endpointRaw.replace(/^\.?\//, "")}`);
-      candidates.push(`http://127.0.0.1:8787/${endpointRaw.replace(/^\.?\//, "")}`);
-    }
-  }
-
-  if (typeof window !== "undefined" && window.location?.protocol === "file:") {
-    // In file:// context, absolute local backend should be attempted first.
-    candidates.unshift(
-      `http://localhost:8787/${endpointRaw.replace(/^\/+/, "")}`,
-      `http://127.0.0.1:8787/${endpointRaw.replace(/^\/+/, "")}`
-    );
-  }
-
-  if (isLocalDevHost && !isAbsolute) {
-    const endpointPath = endpointRaw.startsWith("/")
-      ? endpointRaw
-      : `/${endpointRaw.replace(/^\.?\//, "")}`;
-    candidates.unshift(`${remoteTestBase}${endpointPath}`);
-  }
-
-  const uniqueCandidates = [...new Set(candidates)];
+  const uniqueCandidates = sacramentoBuildResolveEndpointCandidates(endpointRaw);
   const isMockPaymentUrl = (url) => {
     const value = String(url || "");
     return value.includes("sessionId=mock_") || /\/mock_[a-z0-9]+/i.test(value);
