@@ -6,7 +6,7 @@
   <title>Bike Tour - Sacramento Adventures</title>
   <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
 
-  <link rel="stylesheet" href="../Styles/styles.css?v=20260507">
+  <link rel="stylesheet" href="../Styles/styles.css?v=20260519bike2">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     .order-preferences-list {
@@ -75,6 +75,7 @@
       .order-summary .total-box {
         padding: 14px 14px;
       }
+
     }
   </style>
 </head>
@@ -589,9 +590,8 @@
       controls.innerHTML = `
         <button type="button" class="add-guest-btn" data-action="edit-group">${t("bike_edit_group", "Edit group setup")}</button>
         <div class="order-actions">
-          <button type="button" class="add-guest-btn" data-action="delete-group">${t("bike_delete_group", "Delete group")}</button>
-          <button type="button" class="add-guest-btn" data-action="minus-person">${t("bike_minus_person", "- Person")}</button>
           <button type="button" class="add-guest-btn" data-action="plus-person">${t("bike_plus_person", "+ Person")}</button>
+          <button type="button" class="add-guest-btn" data-action="minus-person">${t("bike_minus_person", "- Person")}</button>
         </div>
       `;
       summary.appendChild(controls);
@@ -699,15 +699,6 @@
       }
       if (action === "minus-person") {
         setGroupConfig({ ...group, people: Math.max(1, group.people - 1) });
-        renderSummary();
-        return;
-      }
-      if (action === "delete-group") {
-        const ok = window.confirm(
-          t("bike_confirm_delete", "Are you sure you want to delete this group?")
-        );
-        if (!ok) return;
-        localStorage.removeItem(storageKey);
         renderSummary();
         return;
       }
