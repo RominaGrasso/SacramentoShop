@@ -3813,6 +3813,201 @@
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
   }
 
+  .fullday-colonia-hero {
+    height: 55vh;
+    min-height: 280px;
+    background-image:
+      linear-gradient(135deg, rgba(30, 55, 90, 0.42), rgba(47, 103, 163, 0.32)),
+      url("../Assets/images/plaza.jpg");
+    background-size: cover;
+    background-position: center 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .fullday-colonia-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    max-width: 40rem;
+  }
+
+  .fullday-colonia-hero-inner h1 {
+    color: #fff;
+    font-size: clamp(1.35rem, 3.8vw, 2.15rem);
+    line-height: 1.25;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  .fullday-colonia-hero-deck {
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 34rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  }
+
+  .fullday-colonia-hero-badges {
+    list-style: none;
+    margin: 0.35rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem 0.55rem;
+    max-width: 36rem;
+  }
+
+  .fullday-colonia-hero-badges li {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #1e3a5f;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.25;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .fullday-colonia-hero-price {
+    margin: 0.25rem 0 0;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background: rgba(92, 151, 214, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #fff;
+    font-size: clamp(0.92rem, 2.2vw, 1.02rem);
+    font-weight: 700;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .page-fullday-colonia .fullday-colonia-practical {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-fullday-colonia .fullday-colonia-itinerary .activity-meta-row > span {
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .page-fullday-colonia .price-box h3 strong {
+    font-weight: 700;
+    color: inherit;
+  }
+
+  .page-fullday-colonia .price-box .price-box-detail strong {
+    font-weight: 700;
+    color: #66a6e6;
+  }
+
+  .page-fullday-colonia .fullday-colonia-practical .activity-meta-row strong {
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .page-fullday-colonia .price-box .price-box-detail:not(.fullday-colonia-transport-note) {
+    font-weight: 400;
+    color: #444;
+    font-size: 1.05rem;
+  }
+
+  .page-fullday-colonia .price-box .fullday-colonia-transport-note {
+    font-weight: 600;
+    color: #444;
+    font-size: 0.92rem;
+  }
+
+  .page-fullday-colonia .order-transport-note {
+    margin: 0.35rem 0 0;
+    font-size: 0.88rem;
+    color: #5a6d82;
+    line-height: 1.4;
+  }
+
+  .page-fullday-colonia .fullday-colonia-support-date-line {
+    margin: 0 0 0.65rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .experience-about-head {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.75rem 1rem;
+    margin-bottom: 15px;
+    position: relative;
+    width: 100%;
+  }
+
+  .experience-about-head h2 {
+    margin: 0;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-right: 0.5rem;
+  }
+
+  .experience-about-head .google-reviews-cta {
+    flex: 0 0 auto;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .page-fullday-colonia .coffee-content {
+    overflow: visible;
+  }
+
+  .page-fullday-colonia .experience-about-head {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    min-height: 2.75rem;
+    padding-right: 0;
+  }
+
+  .page-fullday-colonia .experience-about-head h2 {
+    padding-right: 11.5rem;
+  }
+
+  .page-fullday-colonia .experience-about-head .google-reviews-cta {
+    position: absolute;
+    top: 0;
+    right: calc((100% - 100vw) / 2 + 44px);
+    margin: 0;
+  }
+
+  @media (max-width: 520px) {
+    .experience-about-head {
+      flex-wrap: wrap;
+    }
+
+    .page-fullday-colonia .experience-about-head {
+      min-height: 3.25rem;
+    }
+
+    .page-fullday-colonia .experience-about-head h2 {
+      padding-right: 10.5rem;
+    }
+
+    .page-fullday-colonia .experience-about-head .google-reviews-cta {
+      right: calc((100% - 100vw) / 2 + max(40px, env(safe-area-inset-right, 0px)));
+    }
+  }
+
   .page-mate-experience .coffee-content.mate-page-content {
     max-width: 46rem;
     margin-left: auto;
@@ -5472,6 +5667,37 @@
     transform: scale(1.2);
   }
 
+  /* Group summaries (bike, full day, etc.): edit + action buttons */
+  .order-summary > .order-header:has(.order-actions) {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .order-summary > .order-header:has(.order-actions) > .add-guest-btn {
+    margin-bottom: 0;
+    flex: 1 1 100%;
+    box-sizing: border-box;
+  }
+
+  .order-summary > .order-header:has(.order-actions) .order-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+  }
+
+  .order-summary > .order-header:has(.order-actions) .order-actions .add-guest-btn {
+    margin-bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .order-summary > .order-header:has(.order-actions) .order-actions .add-guest-btn:last-child:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
   .order-card strong {
     color: #2c3e50;
   }
@@ -6545,6 +6771,8 @@
   .toros-night-hero h1,
   .historic-lasliebres-hero h1,
   .liebres-dining-hero h1,
+  .fullday-colonia-hero-inner h1,
+  .mate-only-hero-inner h1,
   .about-hero-title {
     font-size: clamp(1.35rem, 6vw, 2.2rem);
     padding: 0 12px;
@@ -6670,6 +6898,10 @@
   .orders-boat-card .order-header {
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .order-summary > .order-header:has(.order-actions) {
+    flex-direction: column;
   }
 
   #bookWithOrder {
