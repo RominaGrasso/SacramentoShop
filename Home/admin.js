@@ -1,6 +1,7 @@
 /**
- * Admin pagos — usa la misma base API que el resto del sitio (Render en GitHub Pages, local en dev).
- * Opcional: <script>window.SACRAMENTO_PAYMENTS_API_BASE = 'https://tu-backend.com';</script> antes de cargar este script.
+ * Admin pagos — API en Render (producción). Localhost solo en dev (localhost / 127.0.0.1).
+ * Cargar payments-api-config.js antes de este script.
+ * Override opcional: window.SACRAMENTO_PAYMENTS_API_BASE
  */
 (function () {
   const TOKEN_KEY = "sacramento_admin_jwt";
@@ -14,16 +15,15 @@
   ];
 
   function getApiBase() {
+    if (typeof window !== "undefined" && window.SacramentoPaymentsApi?.resolvePaymentsApiBase) {
+      return window.SacramentoPaymentsApi.resolvePaymentsApiBase();
+    }
     if (typeof window === "undefined") return "";
     if (window.SACRAMENTO_PAYMENTS_API_BASE) {
       return String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "");
     }
     const host = window.location?.hostname || "";
-    const proto = window.location?.protocol || "";
     if (host === "localhost" || host === "127.0.0.1") {
-      return "http://localhost:8787";
-    }
-    if (proto === "file:") {
       return "http://localhost:8787";
     }
     return "https://sacramento-payments-test.onrender.com";

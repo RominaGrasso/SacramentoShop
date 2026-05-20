@@ -6,7 +6,7 @@
   <title>Full Day Colonia Adventure | Sacramento Adventures</title>
   <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
 
-  <link rel="stylesheet" href="../Styles/styles.css?v=20260519fullday">
+  <link rel="stylesheet" href="../Styles/styles.css?v=20260519fullday2">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -626,9 +626,8 @@
       controls.innerHTML = `
         <button type="button" class="add-guest-btn" data-action="edit-group">${t("fullday_colonia_edit_group", "Edit group setup")}</button>
         <div class="order-actions">
-          <button type="button" class="add-guest-btn" data-action="delete-group">${t("fullday_colonia_delete_group", "Delete group")}</button>
-          <button type="button" class="add-guest-btn" data-action="minus-person">${t("fullday_colonia_minus_person", "- Person")}</button>
           <button type="button" class="add-guest-btn" data-action="plus-person">${t("fullday_colonia_plus_person", "+ Person")}</button>
+          <button type="button" class="add-guest-btn" data-action="minus-person">${t("fullday_colonia_minus_person", "- Person")}</button>
         </div>
       `;
       summary.appendChild(controls);
@@ -728,12 +727,6 @@
       if (action === "minus-person") {
         if (group.people <= 1) return;
         setGroupConfig({ ...group, people: group.people - 1 });
-        renderSummary();
-        return;
-      }
-      if (action === "delete-group") {
-        if (!window.confirm(t("fullday_colonia_confirm_delete", "Are you sure you want to delete this group?"))) return;
-        localStorage.removeItem(storageKey);
         renderSummary();
         return;
       }

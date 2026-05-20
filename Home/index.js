@@ -5159,29 +5159,34 @@ function ensureRentPopup() {
 
 async function resolveRentDynamicPaymentLink(payload) {
   const endpoint = "/api/payments/resolve";
-  const candidates = [];
-  const protocol = typeof window !== "undefined" ? window.location?.protocol || "" : "";
-  const hostname = typeof window !== "undefined" ? window.location?.hostname || "" : "";
-  const isFile = protocol === "file:";
-  const isLocalDevHost = ["localhost", "127.0.0.1"].includes(hostname);
-  const remoteTestBase =
-    typeof window !== "undefined" && window.SACRAMENTO_PAYMENTS_API_BASE
-      ? String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "")
-      : "https://sacramento-payments-test.onrender.com";
+  const uniqueCandidates =
+    typeof window !== "undefined" && window.SacramentoPaymentsApi?.buildResolveEndpointCandidates
+      ? window.SacramentoPaymentsApi.buildResolveEndpointCandidates(endpoint)
+      : (function buildRentCandidates() {
+          const candidates = [];
+          const hostname = typeof window !== "undefined" ? window.location?.hostname || "" : "";
+          const isFile = typeof window !== "undefined" && window.location?.protocol === "file:";
+          const isLocalDevHost = ["localhost", "127.0.0.1"].includes(hostname);
+          const productionBase =
+            typeof window !== "undefined" && window.SacramentoPaymentsApi?.PRODUCTION_BASE
+              ? window.SacramentoPaymentsApi.PRODUCTION_BASE
+              : typeof window !== "undefined" && window.SACRAMENTO_PAYMENTS_API_BASE
+                ? String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "")
+                : "https://sacramento-payments-test.onrender.com";
 
-  if (isFile) {
-    candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
-  } else {
-    candidates.push(endpoint);
-    // On static hosts (e.g. GitHub Pages), relative /api can return 404/405.
-    // Keep it first for same-origin setups, but always include remote fallback.
-    candidates.push(`${remoteTestBase}${endpoint}`);
-    if (isLocalDevHost) {
-      candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
-    }
-  }
-
-  const uniqueCandidates = [...new Set(candidates)];
+          if (isFile) {
+            candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
+          } else {
+            if (isLocalDevHost) {
+              candidates.push(`http://localhost:8787${endpoint}`, `http://127.0.0.1:8787${endpoint}`);
+            }
+            if (!isFile && typeof window !== "undefined" && window.location?.origin) {
+              candidates.push(endpoint);
+            }
+            candidates.push(`${productionBase}${endpoint}`);
+          }
+          return [...new Set(candidates)];
+        })();
   const isMockPaymentUrl = (url) => {
     const value = String(url || "");
     return value.includes("sessionId=mock_") || /\/mock_[a-z0-9]+/i.test(value);

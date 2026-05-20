@@ -31,6 +31,9 @@
   }
 
   function paymentsApiBase() {
+    if (typeof window !== "undefined" && window.SacramentoPaymentsApi?.resolvePaymentsApiBase) {
+      return window.SacramentoPaymentsApi.resolvePaymentsApiBase();
+    }
     if (typeof window === "undefined") return "";
     if (window.SACRAMENTO_PAYMENTS_API_BASE) {
       return String(window.SACRAMENTO_PAYMENTS_API_BASE).replace(/\/+$/, "");

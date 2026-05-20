@@ -3990,21 +3990,25 @@
     margin: 0;
   }
 
-  @media (max-width: 520px) {
-    .experience-about-head {
-      flex-wrap: wrap;
-    }
-
+  @media (max-width: 768px) {
     .page-fullday-colonia .experience-about-head {
-      min-height: 3.25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      min-height: 0;
     }
 
     .page-fullday-colonia .experience-about-head h2 {
-      padding-right: 10.5rem;
+      padding-right: 0;
+      width: 100%;
     }
 
     .page-fullday-colonia .experience-about-head .google-reviews-cta {
-      right: calc((100% - 100vw) / 2 + max(40px, env(safe-area-inset-right, 0px)));
+      position: static;
+      right: auto;
+      margin: 0;
+      align-self: flex-start;
+      max-width: 100%;
     }
   }
 
