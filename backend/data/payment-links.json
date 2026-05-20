@@ -131,5 +131,31 @@
     "createdAt": "2026-05-20T01:32:14.958Z",
     "updatedAt": "2026-05-20T01:32:14.958Z",
     "expiresAt": "2026-05-21T01:32:14.965Z"
+  },
+  {
+    "fingerprint": "aa899f0dd978d4314ef3e7639a3bebbcb882c10207821adc57a9a188501ab2f5",
+    "experience": "bike",
+    "amount": 150,
+    "currency": "USD",
+    "people": 3,
+    "orderPayload": {
+      "group": {
+        "language": "English guide",
+        "route": "Short route",
+        "preferences": [
+          "Include scenic photo stops"
+        ],
+        "people": 3
+      },
+      "total": 150,
+      "experienceName": "Bike Tour"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_aa899f0dd978d431&amount=150&currency=USD",
+    "sessionId": "mock_aa899f0dd978d431",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-05-20T15:46:18.607Z",
+    "updatedAt": "2026-05-20T15:46:18.607Z",
+    "expiresAt": "2026-05-21T15:46:18.620Z"
   }
 ]

@@ -521,13 +521,6 @@
           }
         };
 
-        // Evita quedarse en about:blank si el resolve de pago demora/falla.
-        let fallbackDone = false;
-        const fallbackTimer = setTimeout(() => {
-          fallbackDone = true;
-          openWhatsApp(baseMessage);
-        }, 1800);
-
         let paymentUrl = "";
         try {
           if (typeof resolveDynamicPaymentLink === "function") {
@@ -551,9 +544,11 @@
               }
             );
           }
-        } catch {
-          // Continue without payment url
+        } catch (err) {
+          console.error("[bike] resolveDynamicPaymentLink failed", err);
         }
+
+        console.log("[bike] paymentUrl", paymentUrl);
 
         let message = baseMessage;
 
@@ -563,10 +558,7 @@
           message += `\n\n${t("wa_payment_fallback", "Please share payment instructions to confirm this booking.")}`;
         }
 
-        clearTimeout(fallbackTimer);
-        if (!fallbackDone) {
-          openWhatsApp(message);
-        }
+        openWhatsApp(message);
       };
       if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
         void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
