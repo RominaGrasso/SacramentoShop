@@ -9,6 +9,12 @@ const translations = {
       home_google_reviews_title: "Google Reviews",
       home_google_reviews_sub: "Trusted by travelers",
       home_google_reviews_aria: "Read Sacramento Adventures reviews on Google (opens in new tab)",
+      home_about_intro_eyebrow: "Colonia · Uruguay · With heart",
+      home_about_intro_title: "About Sacramento Adventures",
+      home_about_intro_p1:
+        "At Sacramento Adventures, we create <strong>authentic experiences</strong> for travelers who want to discover the true essence of <strong>Colonia del Sacramento</strong> and its surroundings.",
+      home_about_intro_p2:
+        "From <strong>guided walking tours</strong> and <strong>full-day experiences</strong> to local gastronomy and sunset moments by the <strong>Río de la Plata</strong>, we help visitors connect with the culture, history and lifestyle of <strong>Uruguay</strong> in a genuine and memorable way.",
       trust_certified: "Certified guides by Uruguay Ministry of Tourism",
       trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
       trust_local_experts: "Local experts from Colonia del Sacramento",
@@ -1689,6 +1695,12 @@ const translations = {
       home_google_reviews_title: "Reseñas en Google",
       home_google_reviews_sub: "Con la confianza de viajeros",
       home_google_reviews_aria: "Ver reseñas de Sacramento Adventures en Google (se abre en una pestaña nueva)",
+      home_about_intro_eyebrow: "Colonia · Uruguay · Con alma",
+      home_about_intro_title: "Sobre Sacramento Adventures",
+      home_about_intro_p1:
+        "En Sacramento Adventures creamos <strong>experiencias auténticas</strong> para viajeros que quieren descubrir la verdadera esencia de <strong>Colonia del Sacramento</strong> y sus alrededores.",
+      home_about_intro_p2:
+        "Desde <strong>recorridos guiados a pie</strong> y <strong>experiencias de día completo</strong> hasta gastronomía local y atardeceres junto al <strong>Río de la Plata</strong>, ayudamos a quien nos visita a conectar con la cultura, la historia y el estilo de vida de <strong>Uruguay</strong> de manera genuina y memorable.",
       trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
       trust_multilingual: "Tours multilingües: español, inglés y portugués",
       trust_local_experts: "Expertos locales en Colonia del Sacramento",
@@ -3368,6 +3380,12 @@ const translations = {
       home_google_reviews_title: "Avaliações no Google",
       home_google_reviews_sub: "Com a confiança de viajantes",
       home_google_reviews_aria: "Ver avaliações da Sacramento Adventures no Google (abre em nova aba)",
+      home_about_intro_eyebrow: "Colonia · Uruguai · Com alma",
+      home_about_intro_title: "Sobre a Sacramento Adventures",
+      home_about_intro_p1:
+        "Na Sacramento Adventures, criamos <strong>experiências autênticas</strong> para viajantes que querem descobrir a verdadeira essência de <strong>Colonia del Sacramento</strong> e seus arredores.",
+      home_about_intro_p2:
+        "De <strong>passeios guiados a pé</strong> e <strong>experiências de dia inteiro</strong> à gastronomia local e momentos ao pôr do sol às margens do <strong>Rio da Prata</strong>, ajudamos visitantes a se conectar com a cultura, a história e o estilo de vida do <strong>Uruguai</strong> de forma genuína e memorável.",
       trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
       trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
       trust_local_experts: "Especialistas locais em Colonia del Sacramento",
@@ -5739,6 +5757,15 @@ function initRentPopupBehavior() {
   
     if (!translations[language]) language = "en";
   
+    document.querySelectorAll("[data-translate-html]").forEach((el) => {
+      if (el.hasAttribute("data-i18n-skip") || el.closest("[data-i18n-skip]")) return;
+      const key = el.dataset.translateHtml;
+      const dict = translations[language];
+      if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
+        el.innerHTML = dict[key];
+      }
+    });
+
     document.querySelectorAll("[data-translate]").forEach(el => {
       if (el.hasAttribute("data-i18n-skip") || el.closest("[data-i18n-skip]")) return;
       const key = el.dataset.translate;

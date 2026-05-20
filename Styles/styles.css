@@ -1952,6 +1952,127 @@
     }
   }
 
+  /* Home: brand statement / SEO (entre tagline+Google y cards) */
+  .home-about-intro {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: clamp(1rem, 2.2vw, 1.45rem) 1.25rem clamp(1.1rem, 2.4vw, 1.55rem);
+    text-align: center;
+    background: linear-gradient(168deg, #f5f9fd 0%, #fffaf6 48%, #f0f6fb 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.92),
+      inset 0 -1px 0 rgba(102, 166, 230, 0.1);
+  }
+
+  .home-about-intro::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -35%;
+    width: min(480px, 92vw);
+    height: 130%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(102, 166, 230, 0.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .home-about-intro__inner {
+    position: relative;
+    z-index: 1;
+    max-width: min(680px, 100%);
+    margin: 0 auto;
+    padding: 0 0.25rem;
+  }
+
+  .home-about-intro__eyebrow {
+    display: inline-block;
+    margin: 0 0 0.5rem;
+    padding: 0.32rem 0.72rem;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #5a7fa6;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(102, 166, 230, 0.3);
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(47, 103, 163, 0.09);
+  }
+
+  .home-about-intro__title {
+    margin: 0 0 0.35rem;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: clamp(1.16rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+    color: #2c3e50;
+    text-wrap: balance;
+  }
+
+  .home-about-intro__accent {
+    display: block;
+    width: 2.85rem;
+    height: 3px;
+    margin: 0 auto 0.75rem;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      rgba(102, 166, 230, 0.15) 0%,
+      #66a6e6 38%,
+      #e8a317 72%,
+      rgba(232, 163, 23, 0.2) 100%
+    );
+    box-shadow: 0 0 14px rgba(102, 166, 230, 0.28);
+  }
+
+  .home-about-intro__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    text-align: center;
+  }
+
+  .home-about-intro__body p {
+    margin: 0;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: clamp(0.94rem, 2.05vw, 1.02rem);
+    line-height: 1.58;
+    font-weight: 400;
+    color: #4a5f73;
+    text-wrap: pretty;
+  }
+
+  .home-about-intro__body strong {
+    font-weight: 600;
+    color: #2f4a63;
+  }
+
+  @media (max-width: 768px) {
+    .home-about-intro {
+      padding-left: max(1rem, env(safe-area-inset-left, 0px));
+      padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    }
+
+    .home-about-intro__inner {
+      max-width: min(100%, 36rem);
+    }
+
+    .home-about-intro__body {
+      gap: 0.5rem;
+    }
+
+    .about-content .about-who-intro {
+      width: calc(100% + 24px);
+      margin-left: -12px;
+      margin-right: -12px;
+    }
+  }
+
   .trust-bar {
     display: flex;
     justify-content: center;
@@ -2405,60 +2526,139 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 16px 36px;
-    background: linear-gradient(180deg, #f5f9fd 0%, #fff 100%);
+    padding: clamp(1.1rem, 2.8vw, 1.65rem) clamp(1rem, 3.5vw, 1.35rem) clamp(1.35rem, 3vw, 1.85rem);
+    background: transparent;
   }
 
   .about-hero-title {
-    color: #66a6e6;
-    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: #2c3e50;
+    font-size: clamp(1.65rem, 4.2vw, 2.35rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
     text-align: center;
-    margin: 0 0 20px;
-    padding: 0 16px;
+    margin: 0 0 clamp(0.85rem, 2vw, 1.1rem);
+    padding: 0 12px;
     width: 100%;
-    max-width: 1000px;
+    max-width: min(1040px, 100%);
     box-sizing: border-box;
+    text-wrap: balance;
   }
 
   .about-hero-carousel {
     position: relative;
     width: 100%;
-    max-width: 1000px;
-    border-radius: 12px;
+    max-width: min(1040px, 100%);
+    border-radius: 18px;
     overflow: hidden;
-    background: #e8f2fc;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    border: 1px solid rgba(102, 166, 230, 0.12);
+    box-shadow:
+      0 8px 32px rgba(47, 103, 163, 0.09),
+      0 2px 8px rgba(0, 0, 0, 0.04);
   }
 
   .about-hero-track {
     display: flex;
-    transition: transform 0.45s ease;
+    transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
   }
 
   .about-hero-slide {
     flex: 0 0 100%;
     min-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 40px;
+    position: relative;
+    aspect-ratio: 16 / 10;
+    min-height: 220px;
+    max-height: min(70vh, 540px);
+    padding: 0;
     box-sizing: border-box;
-    min-height: 360px;
-    max-height: min(68vh, 620px);
+    overflow: hidden;
   }
 
   .about-hero-slide img {
     width: 100%;
-    height: auto;
-    max-height: min(64vh, 580px);
-    object-fit: contain;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
     object-position: center;
     display: block;
   }
 
   .about-hero .about-hero-carousel-btn {
-    z-index: 2;
+    z-index: 3;
+    top: 50%;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1;
+    color: #2f4a63;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 4px 18px rgba(47, 103, 163, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0.9;
+    transform: translateY(-50%);
+    transition:
+      opacity 0.25s ease,
+      background 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .about-hero .about-hero-carousel-btn:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e3a5f;
+    box-shadow: 0 8px 24px rgba(47, 103, 163, 0.16);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .about-hero .about-hero-carousel-btn:active {
+    transform: translateY(-50%) scale(0.98);
+  }
+
+  .about-hero .about-hero-carousel-btn.prev {
+    left: 14px;
+  }
+
+  .about-hero .about-hero-carousel-btn.next {
+    right: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .about-hero-carousel {
+      border-radius: 14px;
+      max-width: 100%;
+    }
+
+    .about-hero-slide {
+      aspect-ratio: 4 / 3;
+      min-height: 200px;
+      max-height: min(58vh, 420px);
+    }
+
+    .about-hero .about-hero-carousel-btn {
+      width: 2.45rem;
+      height: 2.45rem;
+      font-size: 1.22rem;
+      opacity: 0.88;
+    }
+
+    .about-hero .about-hero-carousel-btn.prev {
+      left: 10px;
+    }
+
+    .about-hero .about-hero-carousel-btn.next {
+      right: 10px;
+    }
   }
   
   /* CONTENT */
@@ -2471,55 +2671,26 @@
     width: 100%;
     box-sizing: border-box;
   }
-  /* Solo párrafos introductorios; los de .team-info heredaban 50px y separaban mucho cumple/bio */
-  .about-content > p {
-    margin-bottom: 50px;
+  /* About Us — “Who we are”: mismo lenguaje visual que home-about-intro */
+  .about-content .about-who-intro {
+    width: calc(100% + 40px);
+    max-width: none;
+    margin: 0 -20px clamp(2rem, 5vw, 3rem);
+    box-sizing: border-box;
   }
 
-  /* Lead “Quiénes somos”: más contraste y lectura premium */
-  .about-content .about-intro {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: clamp(1.02rem, 2.05vw, 1.2rem);
-    font-weight: 500;
-    line-height: 1.62;
-    color: #141414;
-    letter-spacing: 0.008em;
-    padding: 1rem 1.2rem 1.05rem 1.15rem;
-    margin-bottom: 42px;
-    background: linear-gradient(
-      125deg,
-      rgba(102, 166, 230, 0.12) 0%,
-      rgba(255, 255, 255, 0.94) 40%,
-      #ffffff 100%
-    );
-    border-left: 3px solid #66a6e6;
-    border-radius: 0 12px 12px 0;
-    box-shadow:
-      0 4px 22px rgba(102, 166, 230, 0.1),
-      0 1px 6px rgba(0, 0, 0, 0.04);
+  .about-content .about-who-intro__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  @media (max-width: 768px) {
-    .about-content .about-intro {
-      font-size: clamp(0.98rem, 3.6vw, 1.12rem);
-      padding: 0.9rem 1rem 0.95rem 0.95rem;
-      border-radius: 0 10px 10px 0;
-    }
-  }
-  
-  .about-content h2 {
-    color: #66a6e6; /* NUEVO COLOR */
-    margin-bottom: 15px;
+  .about-content .about-who-intro__head .home-about-intro__accent {
+    margin-bottom: 0.65rem;
   }
 
-  .about-content > h2::after {
-    content: "";
-    display: block;
-    width: 64px;
-    height: 3px;
-    margin-top: 12px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, #66a6e6, rgba(102, 166, 230, 0.2));
+  .about-content .about-who-intro .home-about-intro__body {
+    gap: 0;
   }
 
   /* About Us: entrada al scroll (aboutus.html + html.js-reveal) */
@@ -2534,11 +2705,11 @@
       transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  html.js-reveal .about-content > h2.about-reveal {
+  html.js-reveal .about-content .about-who-intro__head.about-reveal {
     transition-delay: 0s;
   }
 
-  html.js-reveal .about-content > p.about-reveal {
+  html.js-reveal .about-content .about-who-intro .home-about-intro__body.about-reveal {
     transition-delay: 0.09s;
   }
 
@@ -7083,7 +7254,7 @@ body.page-actividad header .logo-sub {
 }
 
 /* About page blocks that used Playfair */
-body.page-actividad .about-content .about-intro,
+body.page-actividad .about-content .about-who-intro,
 body.page-actividad .about-quote {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;

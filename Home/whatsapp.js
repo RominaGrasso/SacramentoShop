@@ -198,7 +198,11 @@
 
   function sacramentoIsMobileWhatsAppClient() {
     if (typeof navigator === "undefined") return false;
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || "");
+    const ua = navigator.userAgent || "";
+    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) return true;
+    // iPadOS 13+ often reports "Macintosh" — must not use blank-tab + wa.me interstitial.
+    if (/Macintosh|Mac OS X/i.test(ua) && Number(navigator.maxTouchPoints) > 1) return true;
+    return false;
   }
 
   function sacramentoPaintPendingTabLoading(pendingTab) {
@@ -257,6 +261,18 @@
     const url = String(waUrl || "");
     if (!url || !sacramentoIsOfficialWhatsAppUrl(url)) return;
 
+    if (sacramentoIsMobileWhatsAppClient()) {
+      if (pendingTab) {
+        try {
+          pendingTab.close();
+        } catch {
+          /* ignore */
+        }
+      }
+      window.location.href = url;
+      return;
+    }
+
     const tab =
       pendingTab && typeof pendingTab === "object" && typeof pendingTab.closed === "boolean" && !pendingTab.closed
         ? pendingTab
@@ -287,7 +303,7 @@
       }
     }
 
-    window.location.assign(url);
+    window.location.href = url;
   }
 
   function sacramentoOpenWhatsApp(phone, text, pendingTab) {
@@ -302,7 +318,7 @@
           /* ignore */
         }
       }
-      window.location.assign(waUrl);
+      window.location.href = waUrl;
       return;
     }
 
