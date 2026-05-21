@@ -69,16 +69,55 @@
     return [...new Set(candidates.filter(Boolean))];
   }
 
+  const PREWARM_SESSION_KEY = "sacramento_payments_prewarm_v1";
+  const PREWARM_TIMEOUT_MS = 6000;
+
+  /**
+   * Silent one-shot prewarm per browser session so Render wakes before "Reservar".
+   * Does not block UI or change reserve/WhatsApp flow.
+   */
+  function prewarmPaymentsBackend() {
+    if (typeof window === "undefined" || typeof fetch !== "function") return;
+    if (window.location?.protocol === "file:") return;
+    try {
+      if (sessionStorage.getItem(PREWARM_SESSION_KEY)) return;
+      sessionStorage.setItem(PREWARM_SESSION_KEY, "1");
+    } catch (_) {
+      return;
+    }
+
+    const base = resolvePaymentsApiBase();
+    const url = `${base}/health`;
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer =
+      controller && typeof window.setTimeout === "function"
+        ? window.setTimeout(() => controller.abort(), PREWARM_TIMEOUT_MS)
+        : null;
+
+    fetch(url, {
+      method: "GET",
+      mode: "cors",
+      credentials: "omit",
+      signal: controller ? controller.signal : undefined
+    })
+      .catch(function () {})
+      .finally(function () {
+        if (timer != null) window.clearTimeout(timer);
+      });
+  }
+
   const api = {
     PRODUCTION_BASE,
     LOCAL_BASE,
     isLocalDevHost,
     resolvePaymentsApiBase,
-    buildResolveEndpointCandidates
+    buildResolveEndpointCandidates,
+    prewarmPaymentsBackend
   };
 
   if (typeof window !== "undefined") {
     window.SacramentoPaymentsApi = api;
+    prewarmPaymentsBackend();
   }
   if (typeof global !== "undefined") {
     global.SacramentoPaymentsApi = api;

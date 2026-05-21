@@ -6072,3 +6072,39 @@ if (typeof document !== "undefined") {
     runWaAnchorFix();
   }
 }
+
+/** Activity pages load orders.js without payments-api-config.js — same Render prewarm once per session. */
+(function sacramentoPrewarmPaymentsBackendFromOrders() {
+  if (typeof window === "undefined") return;
+  const api = window.SacramentoPaymentsApi;
+  if (api && typeof api.prewarmPaymentsBackend === "function") {
+    api.prewarmPaymentsBackend();
+    return;
+  }
+  const PREWARM_SESSION_KEY = "sacramento_payments_prewarm_v1";
+  const PREWARM_TIMEOUT_MS = 6000;
+  if (typeof fetch !== "function" || window.location?.protocol === "file:") return;
+  try {
+    if (sessionStorage.getItem(PREWARM_SESSION_KEY)) return;
+    sessionStorage.setItem(PREWARM_SESSION_KEY, "1");
+  } catch (_) {
+    return;
+  }
+  const base = sacramentoResolvePaymentsApiBase();
+  const url = `${base}/health`;
+  const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+  const timer =
+    controller && typeof window.setTimeout === "function"
+      ? window.setTimeout(() => controller.abort(), PREWARM_TIMEOUT_MS)
+      : null;
+  fetch(url, {
+    method: "GET",
+    mode: "cors",
+    credentials: "omit",
+    signal: controller ? controller.signal : undefined
+  })
+    .catch(function () {})
+    .finally(function () {
+      if (timer != null) window.clearTimeout(timer);
+    });
+})();
