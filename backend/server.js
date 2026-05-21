@@ -122,8 +122,14 @@ app.use(
 );
 app.use(express.json({ limit: "1mb" }));
 
+/** Keep-alive for Render cold-start prewarm; no Plexo, no store, no auth. */
+app.get("/health", (_req, res) => {
+  res.status(200).json({ ok: true });
+});
+
 // Render logs only show stdout; the app had no request logging before, so POSTs looked "invisible".
 app.use((req, res, next) => {
+  if (req.path === "/health") return next();
   const start = Date.now();
   res.on("finish", () => {
     // eslint-disable-next-line no-console

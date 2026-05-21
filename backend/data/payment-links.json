@@ -157,5 +157,29 @@
     "createdAt": "2026-05-20T15:46:18.607Z",
     "updatedAt": "2026-05-20T15:46:18.607Z",
     "expiresAt": "2026-05-21T15:46:18.620Z"
+  },
+  {
+    "fingerprint": "353dd786a94cc5c3838bf9e6fd013b426e606f3daece439345582f46a7b99a3a",
+    "experience": "barbot",
+    "amount": 190,
+    "currency": "USD",
+    "people": 5,
+    "orderPayload": {
+      "cfg": {
+        "package": "premium",
+        "guests": 5
+      },
+      "total": 190,
+      "unitPrice": 38,
+      "visitDate": "2026-05-30",
+      "experienceName": "Experiencia Cervecería Barbot"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_353dd786a94cc5c3&amount=190&currency=USD",
+    "sessionId": "mock_353dd786a94cc5c3",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-05-21T17:40:13.795Z",
+    "updatedAt": "2026-05-21T17:40:13.795Z",
+    "expiresAt": "2026-05-22T17:40:13.803Z"
   }
 ]

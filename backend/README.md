@@ -15,6 +15,7 @@ By default it runs in `mock` mode and returns deterministic Handy-like URLs.
 
 ## Endpoints
 
+- `GET /health` — lightweight keep-alive (Render prewarm; no Plexo)
 - `GET /api/payments/health`
 - `POST /api/payments/resolve`
 - `POST /api/payments/webhook`
