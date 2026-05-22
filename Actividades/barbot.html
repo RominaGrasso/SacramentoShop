@@ -374,6 +374,18 @@
   </div>
 </div>
 
+<div class="popup-overlay" id="popupBarbotTourJune" aria-hidden="true">
+  <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="barbotTourJunePopupTitle">
+    <button type="button" class="close-x" id="closeBarbotTourJune" data-translate-aria-label="sio_special_menu_close_aria">✕</button>
+    <p id="barbotTourJunePopupTitle" data-translate="barbot_tour_june_popup_body">
+      BrewMaster Talk and the guided factory tour experience will be available starting in June. Options 1 and 2 can be booked now.
+    </p>
+    <div class="popup-actions">
+      <button type="button" class="btn" id="barbotTourJuneOk" data-translate="barbot_tour_june_popup_ok">Got it</button>
+    </div>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox">
   <span class="close-lightbox" id="closeLightbox">✕</span>
   <button class="lightbox-btn prev" id="prevBtn">‹</button>
@@ -409,7 +421,13 @@
     brewmaster: { price: 60, labelKey: "barbot_tour_order_tier_brewmaster" }
   });
 
+  /** BrewMaster / factory tour — bookable from June onward. */
+  const JUNE_UNAVAILABLE_PACKAGES = new Set(["brewmaster"]);
+
   const popup = document.getElementById("popupBarbotTour");
+  const junePopup = document.getElementById("popupBarbotTourJune");
+  const juneCloseBtn = document.getElementById("closeBarbotTourJune");
+  const juneOkBtn = document.getElementById("barbotTourJuneOk");
   const openBtn = document.getElementById("createBarbotTourBtn");
   const closeBtn = document.getElementById("closeBarbotTour");
   const saveBtn = document.getElementById("saveBarbotTour");
@@ -433,6 +451,30 @@
     return v === "premium" || v === "brewmaster" ? v : "classic";
   };
 
+  const isJuneUnavailablePackage = (pkg) =>
+    JUNE_UNAVAILABLE_PACKAGES.has(normalizePackage(pkg));
+
+  let lastBookablePackage = "classic";
+
+  const selectPackageRadio = (pkg) => {
+    const safe = isJuneUnavailablePackage(pkg) ? lastBookablePackage : normalizePackage(pkg);
+    const radio = popup.querySelector(`input[name='barbotTourPackage'][value="${safe}"]`);
+    if (radio) radio.checked = true;
+    if (!isJuneUnavailablePackage(safe)) lastBookablePackage = safe;
+  };
+
+  const openJunePopup = () => {
+    if (!junePopup) return;
+    junePopup.classList.add("active");
+    junePopup.setAttribute("aria-hidden", "false");
+  };
+
+  const closeJunePopup = () => {
+    if (!junePopup) return;
+    junePopup.classList.remove("active");
+    junePopup.setAttribute("aria-hidden", "true");
+  };
+
   const packageLabel = (pkg) => {
     const tier = TIERS[pkg] || TIERS.classic;
     return t(tier.labelKey, pkg);
@@ -444,8 +486,12 @@
       if (!raw) return null;
       const o = JSON.parse(raw);
       if (!o || typeof o !== "object") return null;
-      const pkg = normalizePackage(o.package);
+      let pkg = normalizePackage(o.package);
       const guests = Math.min(MAX_GUESTS, Math.max(1, parseInt(o.guests, 10) || 1));
+      if (isJuneUnavailablePackage(pkg)) {
+        pkg = "classic";
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ package: pkg, guests }));
+      }
       return { package: pkg, guests };
     } catch {
       return null;
@@ -483,6 +529,11 @@
   };
 
   const sendBookingToWhatsApp = (cfg) => {
+    if (cfg && isJuneUnavailablePackage(cfg.package)) {
+      openJunePopup();
+      return;
+    }
+
     if (!cfg) {
       window.alert(
         t(
@@ -595,8 +646,8 @@
     guestCount = cfg?.guests || 1;
     syncGuestDisplay();
     const pkg = cfg?.package || "classic";
-    const radio = popup.querySelector(`input[name='barbotTourPackage'][value="${pkg}"]`);
-    if (radio) radio.checked = true;
+    if (!isJuneUnavailablePackage(pkg)) lastBookablePackage = normalizePackage(pkg);
+    selectPackageRadio(pkg);
   };
 
   const openPopup = () => {
@@ -694,9 +745,44 @@
     syncGuestDisplay();
   });
 
+  popup.querySelectorAll("input[name='barbotTourPackage']").forEach((radio) => {
+    radio.addEventListener("change", () => {
+      if (!radio.checked) return;
+      if (isJuneUnavailablePackage(radio.value)) {
+        selectPackageRadio(lastBookablePackage);
+        openJunePopup();
+        return;
+      }
+      lastBookablePackage = normalizePackage(radio.value);
+    });
+  });
+
+  if (juneCloseBtn) {
+    juneCloseBtn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      closeJunePopup();
+    });
+  }
+  if (juneOkBtn) {
+    juneOkBtn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      closeJunePopup();
+    });
+  }
+  if (junePopup) {
+    junePopup.addEventListener("click", (ev) => {
+      if (ev.target === junePopup) closeJunePopup();
+    });
+  }
+
   saveBtn.addEventListener("click", (ev) => {
     ev.preventDefault();
-    setConfig({ package: selectedPackage(), guests: guestCount });
+    const pkg = selectedPackage();
+    if (isJuneUnavailablePackage(pkg)) {
+      openJunePopup();
+      return;
+    }
+    setConfig({ package: pkg, guests: guestCount });
     closePopup();
     renderSummary();
   });
