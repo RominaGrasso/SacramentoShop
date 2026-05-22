@@ -736,6 +736,9 @@ const translations = {
       barbot_tour_order_tier_classic: "Beer Tasting — Option 1: classics x4 (USD 28)",
       barbot_tour_order_tier_premium: "Beer Tasting — Option 2: classics plus award-winning x7 (100 ml) (USD 38)",
       barbot_tour_order_tier_brewmaster: "BrewMaster Talk (USD 60)",
+      barbot_tour_june_popup_body:
+        "BrewMaster Talk and the guided factory tour will be available starting in June. Options 1 and 2 can be booked now.",
+      barbot_tour_june_popup_ok: "Got it",
       barbot_tour_gal_1_alt: "Barbot Brewery guided tour",
       barbot_tour_gal_2_alt: "Barbot brewery tour experience",
       barbot_tour_gal_3_alt: "Craft beer tasting at Barbot",
@@ -2549,6 +2552,9 @@ const translations = {
       barbot_tour_order_tier_classic: "Beer Tasting — Opción 1: clásicos x4 (USD 28)",
       barbot_tour_order_tier_premium: "Beer Tasting — Opción 2: clásicos más premiados x7 (100 ml) (USD 38)",
       barbot_tour_order_tier_brewmaster: "BrewMaster Talk (USD 60)",
+      barbot_tour_june_popup_body:
+        "El BrewMaster Talk y el tour por la fábrica estarán disponibles a partir de junio. Las opciones 1 y 2 sí se pueden reservar ahora.",
+      barbot_tour_june_popup_ok: "Entendido",
       barbot_tour_gal_1_alt: "Tour guiado por la cervecería Barbot",
       barbot_tour_gal_2_alt: "Experiencia tour cervecería Barbot",
       barbot_tour_gal_3_alt: "Degustación de cerveza artesanal en Barbot",
@@ -4356,6 +4362,9 @@ const translations = {
       barbot_tour_order_tier_classic: "Beer Tasting — Opção 1: clássicos x4 (USD 28)",
       barbot_tour_order_tier_premium: "Beer Tasting — Opção 2: clássicos mais premiados x7 (100 ml) (USD 38)",
       barbot_tour_order_tier_brewmaster: "BrewMaster Talk (USD 60)",
+      barbot_tour_june_popup_body:
+        "O BrewMaster Talk e o tour pela fábrica estarão disponíveis a partir de junho. As opções 1 e 2 já podem ser reservadas.",
+      barbot_tour_june_popup_ok: "Entendi",
       barbot_tour_gal_1_alt: "Tour guiado pela cervejaria Barbot",
       barbot_tour_gal_2_alt: "Experiência tour cervejaria Barbot",
       barbot_tour_gal_3_alt: "Degustação de cerveja artesanal na Barbot",
