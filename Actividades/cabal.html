@@ -9,6 +9,45 @@
 <link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    .cabal-hero-promo-wrap {
+      position: relative;
+    }
+
+    .cabal-hero-discount-badge {
+      top: auto;
+      bottom: 22px;
+      left: 22px;
+      font-size: 1rem;
+      padding: 12px 22px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 20px rgba(0, 209, 102, 0.45);
+      background: linear-gradient(135deg, #00d166, #3dffa8);
+    }
+
+    .page-cabal .cabal-inline-price.bruma-promo-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
+
+    .page-cabal .cabal-inline-price .bruma-promo-price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 0.55rem;
+    }
+
+    @media (max-width: 600px) {
+      .cabal-hero-discount-badge {
+        font-size: 0.88rem;
+        padding: 9px 16px;
+        bottom: 14px;
+        left: 14px;
+      }
+    }
+  </style>
 </head>
 <body class="page-actividad page-cabal">
 <!-- ================= HEADER ================= -->
@@ -73,13 +112,14 @@
 </nav>
 </header>
 <!-- ================= HERO ================= -->
-<section class="horse-hero">
+<section class="horse-hero cabal-hero-promo-wrap">
+<div class="discount-badge cabal-hero-discount-badge" data-translate="cabal_weekend_badge">THIS WEEKEND ONLY · USD 45</div>
 </section>
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
 <h2 data-translate="cabal_about_heading">About this experience</h2>
 <p data-translate="cabal_about_p">
-        Juanma and Sabrina will welcome you; they care for six horses and a filly for your ride, and their two dogs — Simón and Estrelli — are part of the day and often join you between stops. The ride takes place in Riachuelo, on the outskirts of Colonia.
+        The ride takes place on the outskirts of Colonia, in Riachuelo — a beautiful stretch of countryside. Juanma and Sabrina will welcome you; they care for six gentle horses, including a young filly. Estrelli and Simón, the ranch dogs, usually join the ride as well.
       </p>
 <!-- INCLUDES + BOOKING -->
 <div class="coffee-includes">
@@ -96,8 +136,11 @@
 </ul>
 </div>
 <div class="order-start page-cabal-order-start">
-<p class="cabal-inline-price">
-<strong data-translate="cabal_page_price_line">USD 50 per person</strong>
+<p class="cabal-inline-price bruma-promo-price">
+<span class="bruma-promo-price-row">
+<span class="bruma-price-old" data-translate="cabal_price_original">USD 60 per person</span>
+<span class="bruma-price-new bike-price-promo" data-translate="cabal_price_discount">USD 45 per person</span>
+</span>
 </p>
 <div class="cabal-availability-notice" role="note">
 <p data-translate="cabal_availability_whatsapp_notice">
@@ -172,7 +215,9 @@
 <script>
 (function () {
   const STORAGE_KEY = "cabal_booking_config";
-  const PRICE_PER_PERSON = 50;
+  const CABAL_WEEKEND_PROMO_ACTIVE = true;
+  const CABAL_LIST_PRICE = 60;
+  const PRICE_PER_PERSON = CABAL_WEEKEND_PROMO_ACTIVE ? 45 : CABAL_LIST_PRICE;
   const GUIDE_FLAT_USD = 40;
   const MAX_GUESTS = 4;
   const VALID_TIMES = ["11:00", "12:00", "13:00"];
@@ -474,7 +519,11 @@
     const totalRide = PRICE_PER_PERSON * cfg.guests;
     const guideExtra = cfg.guide ? GUIDE_FLAT_USD : 0;
     const total = totalRide + guideExtra;
-    const detailParts = [`(${cfg.guests} × USD ${PRICE_PER_PERSON})`];
+    const detailParts = [
+      CABAL_WEEKEND_PROMO_ACTIVE
+        ? `(${cfg.guests} × <span class="bruma-price-old">USD ${CABAL_LIST_PRICE}</span> <span class="bruma-price-new bike-price-promo">USD ${PRICE_PER_PERSON}</span>)`
+        : `(${cfg.guests} × USD ${PRICE_PER_PERSON})`
+    ];
     if (cfg.guide) {
       detailParts.push(`+ USD ${GUIDE_FLAT_USD} ${t("cabal_guide_total_suffix", "guide (whole group)")}`);
     }
