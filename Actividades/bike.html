@@ -66,6 +66,45 @@
       font-weight: 600;
     }
 
+    .bike-promo-price.bruma-promo-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+      margin: 0;
+    }
+
+    .bike-promo-price .bruma-promo-price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 0.55rem;
+    }
+
+    .bike-hero-promo-wrap {
+      position: relative;
+    }
+
+    .bike-hero-discount-badge {
+      top: auto;
+      bottom: 22px;
+      left: 22px;
+      font-size: 1rem;
+      padding: 12px 22px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 20px rgba(0, 209, 102, 0.45);
+      background: linear-gradient(135deg, #00d166, #3dffa8);
+    }
+
+    @media (max-width: 600px) {
+      .bike-hero-discount-badge {
+        font-size: 0.88rem;
+        padding: 9px 16px;
+        bottom: 14px;
+        left: 14px;
+      }
+    }
+
     @media (max-width: 768px) {
       .order-preferences-list {
         margin-left: 0.35rem;
@@ -142,7 +181,8 @@
 </nav>
 </header>
 <!-- ================= HERO ================= -->
-<section class="coffee-hero" style="background-image: url('../Assets/images/bicireal1.webp'); background-position: center 61%;">
+<section class="coffee-hero bike-hero-promo-wrap" style="background-image: url('../Assets/images/bicireal1.webp'); background-position: center 61%;">
+<div class="discount-badge bike-hero-discount-badge" data-translate="bike_weekend_badge">THIS WEEKEND ONLY · USD 30</div>
 </section>
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
@@ -183,7 +223,12 @@
 </div>
 <!-- PRICE -->
 <div class="price-box">
-<h3 data-translate="bike_price_title">USD 50 per person</h3>
+<h3 class="bike-promo-price bruma-promo-price">
+<span class="bruma-promo-price-row">
+<span class="bruma-price-old" data-translate="bike_price_original">USD 50 per person</span>
+<span class="bruma-price-new bike-price-promo" data-translate="bike_price_discount">USD 30 per person</span>
+</span>
+</h3>
 </div>
 <!-- INCLUDES -->
 <div class="coffee-includes">
@@ -281,7 +326,9 @@
 </div>
 <script>
   (function () {
-    const PRICE_PER_PERSON = 50;
+    const BIKE_WEEKEND_PROMO_ACTIVE = true;
+    const BIKE_LIST_PRICE = 50;
+    const PRICE_PER_PERSON = BIKE_WEEKEND_PROMO_ACTIVE ? 30 : BIKE_LIST_PRICE;
     const whatsappNumber = "59898945542";
     const storageKey = "orders_bike_tour_group";
     const getLang = () => window.getInitialLanguage().toLowerCase();
@@ -508,7 +555,11 @@
       totalBox.innerHTML = `
         <div class="total-left">
           <span class="total-label">${t("total_label", "Total")}</span>
-          <span class="total-detail">(${group.people} x USD ${PRICE_PER_PERSON})</span>
+          <span class="total-detail">${
+            BIKE_WEEKEND_PROMO_ACTIVE
+              ? `(${group.people} × <span class="bruma-price-old">USD ${BIKE_LIST_PRICE}</span> <span class="bruma-price-new bike-price-promo">USD ${PRICE_PER_PERSON}</span>)`
+              : `(${group.people} × USD ${PRICE_PER_PERSON})`
+          }</span>
         </div>
         <div class="total-right">USD ${total}</div>
       `;

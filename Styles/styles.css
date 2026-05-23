@@ -235,6 +235,32 @@
     line-height: 1;
     flex-shrink: 0;
   }
+
+  .hero-content .hero-weekend-promo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin: -6px 0 20px;
+    padding: 10px 18px;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(135deg, #00d166 0%, #2ee88a 55%, #3dffa8 100%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    box-shadow:
+      0 6px 20px rgba(0, 209, 102, 0.42),
+      0 0 0 1px rgba(255, 255, 255, 0.14) inset;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
   
   .btn.secondary {
     background: #e6ebf2;
@@ -3715,6 +3741,30 @@
   }
 
   /* Home card: “coming soon” — bottom of photo so it doesn’t cover faces */
+  .discount-badge.discount-badge--walking-free {
+    background: linear-gradient(135deg, #00d166, #3dffa8);
+    box-shadow: 0 6px 20px rgba(0, 209, 102, 0.45);
+    font-size: 0.88rem;
+    letter-spacing: 0.15px;
+    line-height: 1.25;
+    max-width: calc(100% - 32px);
+    text-align: center;
+  }
+
+  .walking-price-free,
+  .bike-price-promo {
+    color: #00b955;
+    font-weight: 800;
+    text-shadow: 0 1px 10px rgba(0, 209, 102, 0.35);
+  }
+
+  @media (max-width: 600px) {
+    .discount-badge.discount-badge--walking-free {
+      font-size: 0.78rem;
+      padding: 8px 14px;
+    }
+  }
+
   .card-image.carousel > .discount-badge.discount-badge--coming-soon {
     top: auto;
     bottom: 12px;
@@ -7531,6 +7581,9 @@
     flex: 0 1 auto;
     order: 1;
     align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     width: 100%;
     max-width: 100%;
   }
@@ -7546,13 +7599,30 @@
     font-size: clamp(0.95rem, 3.8vw, 1.1rem);
   }
 
-  .hero-content .hero-book-tagline {
+  .hero-content .hero-book-tagline,
+  .hero-content .hero-weekend-promo {
+    display: flex;
     width: 100%;
+    max-width: 100%;
+    align-self: stretch;
     justify-content: center;
     text-align: center;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .hero-content .hero-book-tagline {
     font-size: clamp(0.95rem, 3.6vw, 1.05rem);
     padding: 10px 16px;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
+  }
+
+  .hero-content .hero-weekend-promo {
+    font-size: clamp(0.82rem, 3.2vw, 1rem);
+    padding: 9px 14px;
+    margin: 0 0 16px;
+    line-height: 1.4;
   }
 
   .hero-buttons {
@@ -7949,6 +8019,16 @@
 
   .hero-content h1 {
     font-size: 1.35rem;
+  }
+
+  .hero-content .hero-book-tagline {
+    font-size: 0.82rem;
+    padding: 8px 12px;
+  }
+
+  .hero-content .hero-weekend-promo {
+    font-size: 0.78rem;
+    padding: 8px 12px;
   }
 
   .card-buttons {
