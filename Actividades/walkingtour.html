@@ -62,6 +62,45 @@
       margin-right: 0.2rem;
     }
 
+    .walking-promo-price.bruma-promo-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin-top: 0.35rem;
+    }
+
+    .walking-promo-price .bruma-promo-price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 0.55rem;
+    }
+
+    .walking-hero-promo-wrap {
+      position: relative;
+    }
+
+    .walking-hero-discount-badge {
+      top: auto;
+      bottom: 22px;
+      left: 22px;
+      font-size: 1rem;
+      padding: 12px 22px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 20px rgba(0, 209, 102, 0.45);
+      background: linear-gradient(135deg, #00d166, #3dffa8);
+    }
+
+    @media (max-width: 600px) {
+      .walking-hero-discount-badge {
+        font-size: 0.88rem;
+        padding: 9px 16px;
+        bottom: 14px;
+        left: 14px;
+      }
+    }
+
     .walking-tour-popup-times {
       display: flex;
       flex-wrap: wrap;
@@ -164,7 +203,8 @@
 </nav>
 </header>
 <!-- ================= HERO ================= -->
-<section class="coffee-hero coffee-hero--walking-tour" style="background-image: url('../Assets/images/historic1.webp?v=20260522perf');">
+<section class="coffee-hero coffee-hero--walking-tour walking-hero-promo-wrap" style="background-image: url('../Assets/images/historic1.webp?v=20260522perf');">
+<div class="discount-badge walking-hero-discount-badge" data-translate="walking_free_badge">THIS WEEKEND ONLY · FREE TOUR</div>
 </section>
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
@@ -206,7 +246,7 @@
 <!-- PRICE -->
 <div class="price-box">
 <h3 data-translate="walking_price_heading" id="walkingTourPriceTitle">Prices by guide language</h3>
-<p aria-live="polite" class="walking-price-note" data-i18n-skip="" id="walkingTourPriceNote"></p>
+<div aria-live="polite" class="walking-promo-price bruma-promo-price walking-price-note" data-i18n-skip="" id="walkingTourPriceNote"></div>
 </div>
 <!-- MATE EXPERIENCE (OPTIONAL) -->
 <div class="price-box price-box--with-blurb walking-mate-experience-box">
@@ -306,6 +346,7 @@
 <script src="../Home/orders.js?v=20260522perf"></script>
 <script>
   (function () {
+    const WALKING_FREE_PROMO_ACTIVE = true;
     const pricesByLang = { es: 10, en: 15, pt: 15 };
     const getLang = () => window.getInitialLanguage().toLowerCase();
     const t = (key, fallback) => {
@@ -313,15 +354,20 @@
       const dict = window.__SACRAMENTO_TRANSLATIONS || {};
       return dict?.[lang]?.[key] || dict?.en?.[key] || fallback;
     };
-    const getPriceForGuideLanguage = (guideLanguage) => {
+    const getListPriceForGuideLanguage = (guideLanguage) => {
       const g = String(guideLanguage || "").toLowerCase();
       if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 10;
       if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 15;
       if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 15;
       return null;
     };
+    const getPriceForGuideLanguage = (guideLanguage) => {
+      if (WALKING_FREE_PROMO_ACTIVE) return 0;
+      return getListPriceForGuideLanguage(guideLanguage);
+    };
     const getPrice = (guideLanguage) => {
-      const byGuide = getPriceForGuideLanguage(guideLanguage);
+      if (WALKING_FREE_PROMO_ACTIVE) return 0;
+      const byGuide = getListPriceForGuideLanguage(guideLanguage);
       if (Number.isFinite(byGuide)) return byGuide;
       return pricesByLang[getLang()] || 15;
     };
@@ -354,13 +400,29 @@
       if (!note) return;
 
       note.replaceChildren();
-      WALKING_GUIDE_PRICE_TIERS.forEach((tier, index) => {
-        if (index > 0) note.appendChild(document.createTextNode(" · "));
-        const span = document.createElement("span");
-        span.className = "is-highlight";
-        const label = t(tier.langKey, tier.fallback);
-        span.textContent = `${label}: USD ${tier.amount}`;
-        note.appendChild(span);
+      WALKING_GUIDE_PRICE_TIERS.forEach((tier) => {
+        const row = document.createElement("span");
+        row.className = "bruma-promo-price-row";
+        const label = document.createElement("span");
+        label.className = "bruma-price-tier-label";
+        label.textContent = t(tier.langKey, tier.fallback);
+        const oldPrice = document.createElement("span");
+        oldPrice.className = "bruma-price-old";
+        oldPrice.textContent = `USD ${tier.amount}`;
+        row.appendChild(label);
+        row.appendChild(oldPrice);
+        if (WALKING_FREE_PROMO_ACTIVE) {
+          const freePrice = document.createElement("span");
+          freePrice.className = "bruma-price-new walking-price-free";
+          freePrice.textContent = t("walking_price_free", "FREE");
+          row.appendChild(freePrice);
+        } else {
+          const newPrice = document.createElement("span");
+          newPrice.className = "bruma-price-new";
+          newPrice.textContent = `USD ${tier.amount}`;
+          row.appendChild(newPrice);
+        }
+        note.appendChild(row);
       });
 
       if (kidsNote) {
@@ -595,9 +657,14 @@
         summary.appendChild(mateRow);
 
         const unitPrice = getPrice(group.language);
+        const listPrice = getListPriceForGuideLanguage(group.language) ?? pricesByLang[getLang()] ?? 15;
         const walkLineTotal = group.people * unitPrice;
         const mateLineTotal = group.mateAddon ? group.people * 5 : 0;
         const total = walkLineTotal + mateLineTotal;
+        const freeLabel = t("walking_price_free", "FREE");
+        const walkPriceDetail = WALKING_FREE_PROMO_ACTIVE
+          ? `(${group.people} × <span class="bruma-price-old">USD ${listPrice}</span> <span class="bruma-price-new walking-price-free">${freeLabel}</span>)`
+          : `(${group.people} × USD ${unitPrice})`;
         const totalDetailMate =
           mateLineTotal > 0
             ? ` + ${t("walking_mate_short", "Mate")} (${group.people} × USD 5)`
@@ -607,7 +674,7 @@
         totalBox.innerHTML = `
           <div class="total-left">
             <span class="total-label">${t("total_label", "Total")}</span>
-            <span class="total-detail">(${group.people} × USD ${unitPrice})${totalDetailMate}</span>
+            <span class="total-detail">${walkPriceDetail}${totalDetailMate}</span>
           </div>
           <div class="total-right">USD ${total}</div>
         `;
