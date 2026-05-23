@@ -1,414 +1,339 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta charset="UTF-8">
-  <title data-translate="barbot_tour_doc_title">Barbot Brewery Experience | Sacramento Adventures</title>
-  <meta name="description" content="Craft beer tour in Colonia del Sacramento: guided Barbot brewery tour, beer tasting, BrewMaster talk, and local craft beer culture in Uruguay.">
-  <meta name="keywords" content="craft beer tour Colonia del Sacramento, brewery tour Uruguay, Barbot brewery experience, beer tasting Colonia">
-  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
-
-  <link rel="stylesheet" href="../Styles/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title data-translate="barbot_tour_doc_title">Barbot Brewery Experience | Sacramento Adventures</title>
+<meta content="Craft beer tour in Colonia del Sacramento: guided Barbot brewery tour, beer tasting, BrewMaster talk, and local craft beer culture in Uruguay." name="description"/>
+<meta content="craft beer tour Colonia del Sacramento, brewery tour Uruguay, Barbot brewery experience, beer tasting Colonia" name="keywords"/>
+<link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link as="image" fetchpriority="high" href="../Assets/images/barbtour.webp?v=20260522perf" rel="preload"/>
+<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
-
 <body class="page-actividad page-barbot-tour">
-
 <header>
-
-  <div class="logo-container">
-    <a href="../Home/index.html" class="logo">
-      <img src="../Assets/images/sacramento-logo-new.svg" alt="Sacramento Adventures Logo">
-    </a>
-  </div>
-
-  <div class="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-
-  <nav class="top-links">
-    <a class="nav-about-link" href="../Actividades/aboutus.html" target="_blank" rel="noopener noreferrer">
-      <svg class="nav-about-icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#nav-about"/></svg>
-      <span data-translate="about_us_nav">About Us</span>
-    </a>
-  </nav>
-
-  <div class="language-switch">
-    <button type="button" class="lang-btn active" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
-    <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
-    <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
-  </div>
-
-  <nav class="hamburger-menu">
-    <ul>
-      <li data-filter="fullday">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
-        <span data-translate="nav_cat_fullday">Full Day Experiences</span>
-      </li>
-      <li data-filter="day">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
-        <span data-translate="nav_cat_day">Just for a Day</span>
-      </li>
-      <li data-filter="night">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
-        <span data-translate="nav_cat_night">Just for a Night</span>
-      </li>
-      <li data-filter="tour">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
-        <span data-translate="nav_cat_tours">Guided Tours</span>
-      </li>
-      <li data-filter="gastronomy">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
-        <span data-translate="nav_cat_gastro">Gastronomy</span>
-      </li>
-      <li data-filter="nature">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
-        <span data-translate="nav_cat_nature">Nature and Animals</span>
-      </li>
-      <li data-filter="culture">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
-        <span data-translate="nav_cat_culture">Tradition & Culture</span>
-      </li>
-      <li data-filter="romantic">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
-        <span data-translate="nav_cat_romantic">Romantic</span>
-      </li>
-      <li data-filter="corporate">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
-        <span data-translate="nav_cat_corporate">Corporate Experiences</span>
-      </li>
-    </ul>
-  </nav>
-
+<div class="logo-container">
+<a class="logo" href="../Home/index.html">
+<img alt="Sacramento Adventures Logo" decoding="async" src="../Assets/images/sacramento-logo-new.svg"/>
+</a>
+</div>
+<div class="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="top-links">
+<a class="nav-about-link" href="../Actividades/aboutus.html" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="nav-about-icon" focusable="false" height="18" width="18"><use href="../Assets/icons/nav-header.svg#nav-about"></use></svg>
+<span data-translate="about_us_nav">About Us</span>
+</a>
+</nav>
+<div class="language-switch">
+<button class="lang-btn active" data-lang="en" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-us"></use></svg><span>EN</span></button>
+<button class="lang-btn" data-lang="es" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-uy"></use></svg><span>ES</span></button>
+<button class="lang-btn" data-lang="pt" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-br"></use></svg><span>PT</span></button>
+</div>
+<nav class="hamburger-menu">
+<ul>
+<li data-filter="fullday">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-fullday"></use></svg>
+<span data-translate="nav_cat_fullday">Full Day Experiences</span>
+</li>
+<li data-filter="day">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-day"></use></svg>
+<span data-translate="nav_cat_day">Just for a Day</span>
+</li>
+<li data-filter="night">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-night"></use></svg>
+<span data-translate="nav_cat_night">Just for a Night</span>
+</li>
+<li data-filter="tour">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-tours"></use></svg>
+<span data-translate="nav_cat_tours">Guided Tours</span>
+</li>
+<li data-filter="gastronomy">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-gastro"></use></svg>
+<span data-translate="nav_cat_gastro">Gastronomy</span>
+</li>
+<li data-filter="nature">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-nature"></use></svg>
+<span data-translate="nav_cat_nature">Nature and Animals</span>
+</li>
+<li data-filter="culture">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-culture"></use></svg>
+<span data-translate="nav_cat_culture">Tradition &amp; Culture</span>
+</li>
+<li data-filter="romantic">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-romantic"></use></svg>
+<span data-translate="nav_cat_romantic">Romantic</span>
+</li>
+<li data-filter="corporate">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-corporate"></use></svg>
+<span data-translate="nav_cat_corporate">Corporate Experiences</span>
+</li>
+</ul>
+</nav>
 </header>
-
 <!-- ================= HERO ================= -->
-<section
-  class="fullday-colonia-hero"
-  aria-labelledby="barbotTourHeroTitle"
-  style="background-image: linear-gradient(135deg, rgba(30, 55, 90, 0.48), rgba(47, 103, 163, 0.36)), url('../Assets/images/barbtour.jpg'); background-position: center 45%;"
->
-  <div class="fullday-colonia-hero-inner">
-    <h1 id="barbotTourHeroTitle" data-translate="barbot_tour_page_title">Barbot Brewery Experience</h1>
-    <p class="fullday-colonia-hero-deck" data-translate="barbot_tour_page_subtitle">
+<section aria-labelledby="barbotTourHeroTitle" class="fullday-colonia-hero" style="background-image: linear-gradient(135deg, rgba(30, 55, 90, 0.48), rgba(47, 103, 163, 0.36)), url('../Assets/images/barbtour.webp?v=20260522perf'); background-position: center 45%;">
+<div class="fullday-colonia-hero-inner">
+<h1 data-translate="barbot_tour_page_title" id="barbotTourHeroTitle">Barbot Brewery Experience</h1>
+<p class="fullday-colonia-hero-deck" data-translate="barbot_tour_page_subtitle">
       Guided brewery tour, beer tasting and local craft beer culture in Colonia del Sacramento.
     </p>
-    <ul class="fullday-colonia-hero-badges" aria-label="Highlights">
-      <li data-translate="barbot_tour_highlight_1">Craft beer experience</li>
-      <li data-translate="barbot_tour_highlight_2">Guided brewery tour</li>
-      <li data-translate="barbot_tour_highlight_3">4 half pints included</li>
-      <li data-translate="barbot_tour_highlight_4">Artisanal charcuterie board</li>
-      <li data-translate="barbot_tour_highlight_5">Local favorite</li>
-      <li data-translate="barbot_tour_highlight_6">Brewmaster experience available</li>
-    </ul>
-    <p class="fullday-colonia-hero-price" data-translate="barbot_tour_hero_price">From USD 28 · Beer Tasting</p>
-  </div>
+<ul aria-label="Highlights" class="fullday-colonia-hero-badges">
+<li data-translate="barbot_tour_highlight_1">Craft beer experience</li>
+<li data-translate="barbot_tour_highlight_2">Guided brewery tour</li>
+<li data-translate="barbot_tour_highlight_3">4 half pints included</li>
+<li data-translate="barbot_tour_highlight_4">Artisanal charcuterie board</li>
+<li data-translate="barbot_tour_highlight_5">Local favorite</li>
+<li data-translate="barbot_tour_highlight_6">Brewmaster experience available</li>
+</ul>
+<p class="fullday-colonia-hero-price" data-translate="barbot_tour_hero_price">From USD 28 · Beer Tasting</p>
+</div>
 </section>
-
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
-
-  <div class="experience-about-head">
-    <h2 data-translate="barbot_tour_about_title">About this experience</h2>
-    <a
-      href="https://www.google.com/search?kgmid=/g/11njtm69rq&amp;hl=es-UY&amp;q=Sacramento+Adventures&amp;shem=rimspwouoe&amp;shndl=30&amp;source=sh/x/loc/osrp/m1/2&amp;kgs=52fb083ffdd944d8&amp;utm_source=rimspwouoe,sh/x/loc/osrp/m1/2"
-      class="google-reviews-cta"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-translate-aria-label="home_google_reviews_aria"
-      aria-label="Read Sacramento Adventures reviews on Google"
-    >
-      <span class="google-reviews-cta__icon" aria-hidden="true">
-        <i class="fa-brands fa-google"></i>
-      </span>
-      <span class="google-reviews-cta__body">
-        <span class="google-reviews-cta__stars" aria-hidden="true">★★★★★</span>
-        <span class="google-reviews-cta__title" data-translate="home_google_reviews_title">Google Reviews</span>
-        <span class="google-reviews-cta__sub" data-translate="home_google_reviews_sub">Trusted by travelers</span>
-      </span>
-    </a>
-  </div>
-
-  <p class="barbot-tour-lead" data-translate="barbot_tour_about_p">
+<div class="experience-about-head">
+<h2 data-translate="barbot_tour_about_title">About this experience</h2>
+<a aria-label="Read Sacramento Adventures reviews on Google" class="google-reviews-cta" data-translate-aria-label="home_google_reviews_aria" href="https://www.google.com/search?kgmid=/g/11njtm69rq&amp;hl=es-UY&amp;q=Sacramento+Adventures&amp;shem=rimspwouoe&amp;shndl=30&amp;source=sh/x/loc/osrp/m1/2&amp;kgs=52fb083ffdd944d8&amp;utm_source=rimspwouoe,sh/x/loc/osrp/m1/2" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="google-reviews-cta__icon">
+<i class="fa-brands fa-google"></i>
+</span>
+<span class="google-reviews-cta__body">
+<span aria-hidden="true" class="google-reviews-cta__stars">★★★★★</span>
+<span class="google-reviews-cta__title" data-translate="home_google_reviews_title">Google Reviews</span>
+<span class="google-reviews-cta__sub" data-translate="home_google_reviews_sub">Trusted by travelers</span>
+</span>
+</a>
+</div>
+<p class="barbot-tour-lead" data-translate="barbot_tour_about_p">
     Two distinct experiences at Barbot Brewery in Colonia del Sacramento — choose a relaxed tasting with an intro talk, or the premium BrewMaster experience.
   </p>
-
-  <div class="barbot-tour-hours-bar" role="note">
-    <p class="barbot-tour-hours-bar__line">
-      <strong data-translate="barbot_tour_hours_label">Hours</strong>
-      <span data-translate="barbot_tour_hours_value">Saturdays and Sundays — 12 PM to 6 PM</span>
-    </p>
-  </div>
-
-  <a
-    href="https://www.instagram.com/_sacramentoadventures/"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="reel-link-btn"
-    data-translate="barbot_tour_reel_btn"
-  >
+<div class="barbot-tour-hours-bar" role="note">
+<p class="barbot-tour-hours-bar__line">
+<strong data-translate="barbot_tour_hours_label">Hours</strong>
+<span data-translate="barbot_tour_hours_value">Saturdays and Sundays — 12 PM to 6 PM</span>
+</p>
+</div>
+<a class="reel-link-btn" data-translate="barbot_tour_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
     🎥 Watch Reel on @_sacramentoadventures
   </a>
-
-  <div class="barbot-experience-stack">
-
-    <!-- EXPERIENCE 1 — BEER TASTING -->
-    <article class="barbot-experience-card" aria-labelledby="barbotTastingTitle">
-      <header class="barbot-experience-card__head">
-        <p class="barbot-experience-card__eyebrow" data-translate="barbot_tour_experience_1_eyebrow">Experience 1</p>
-        <h3 class="barbot-experience-card__title" id="barbotTastingTitle" data-translate="barbot_tour_tasting_title">Beer Tasting Experience</h3>
-        <p class="barbot-experience-card__deck" data-translate="barbot_tour_tasting_subtitle">
+<div class="barbot-experience-stack">
+<!-- EXPERIENCE 1 — BEER TASTING -->
+<article aria-labelledby="barbotTastingTitle" class="barbot-experience-card">
+<header class="barbot-experience-card__head">
+<p class="barbot-experience-card__eyebrow" data-translate="barbot_tour_experience_1_eyebrow">Experience 1</p>
+<h3 class="barbot-experience-card__title" data-translate="barbot_tour_tasting_title" id="barbotTastingTitle">Beer Tasting Experience</h3>
+<p class="barbot-experience-card__deck" data-translate="barbot_tour_tasting_subtitle">
           Relaxed tasting experience with an introduction to Barbot’s craft beer culture.
         </p>
-      </header>
-
-      <p class="barbot-experience-card__text" data-translate="barbot_tour_tasting_p">
+</header>
+<p class="barbot-experience-card__text" data-translate="barbot_tour_tasting_p">
         Discover Barbot Brewery with a brief introduction to craft beer culture, Barbot’s origins, and the characteristics of its classic styles.
       </p>
-
-      <div class="barbot-experience-card__includes">
-        <h4 class="barbot-experience-card__includes-title" data-translate="barbot_tour_includes_label">Includes</h4>
-        <ul class="activity-meta-list">
-          <li class="activity-meta-row" data-card-meta="beer">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#beer"/></svg>
-            <span data-translate="barbot_tour_tasting_include_1">Brief introductory talk</span>
-          </li>
-          <li class="activity-meta-row" data-card-meta="landmark">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#landmark"/></svg>
-            <span data-translate="barbot_tour_tasting_include_2">Barbot history</span>
-          </li>
-          <li class="activity-meta-row" data-card-meta="check">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#check"/></svg>
-            <span data-translate="barbot_tour_tasting_include_3">Overview of beer styles</span>
-          </li>
-          <li class="activity-meta-row" data-card-meta="beer">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#beer"/></svg>
-            <span data-translate="barbot_tour_tasting_include_4">Guided tasting</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="barbot-price-options" aria-label="Beer Tasting pricing options">
-        <div class="barbot-price-option">
-          <span class="barbot-price-option__label" data-translate="barbot_tour_tasting_option_label_1">Option 1</span>
-          <p class="barbot-price-option__name" data-translate="barbot_tour_tasting_option_1_name">Our classics x4 (100 ml)</p>
-          <p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_1_price">USD 28</p>
-        </div>
-        <div class="barbot-price-option">
-          <span class="barbot-price-option__label" data-translate="barbot_tour_tasting_option_label_2">Option 2</span>
-          <p class="barbot-price-option__name" data-translate="barbot_tour_tasting_option_2_name">Our classics plus award-winning x7 (100 ml)</p>
-          <p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_2_price">USD 38</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- EXPERIENCE 2 — BREWMASTER TALK -->
-    <article class="barbot-experience-card barbot-experience-card--premium" aria-labelledby="barbotBrewmasterTitle">
-      <header class="barbot-experience-card__head">
-        <p class="barbot-experience-card__eyebrow" data-translate="barbot_tour_experience_2_eyebrow">Experience 2</p>
-        <h3 class="barbot-experience-card__title" id="barbotBrewmasterTitle" data-translate="barbot_tour_brewmaster_title">BrewMaster Talk</h3>
-        <p class="barbot-experience-card__deck" data-translate="barbot_tour_brewmaster_subtitle">
+<div class="barbot-experience-card__includes">
+<h4 class="barbot-experience-card__includes-title" data-translate="barbot_tour_includes_label">Includes</h4>
+<ul class="activity-meta-list">
+<li class="activity-meta-row" data-card-meta="beer">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#beer"></use></svg>
+<span data-translate="barbot_tour_tasting_include_1">Brief introductory talk</span>
+</li>
+<li class="activity-meta-row" data-card-meta="landmark">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#landmark"></use></svg>
+<span data-translate="barbot_tour_tasting_include_2">Barbot history</span>
+</li>
+<li class="activity-meta-row" data-card-meta="check">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
+<span data-translate="barbot_tour_tasting_include_3">Overview of beer styles</span>
+</li>
+<li class="activity-meta-row" data-card-meta="beer">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#beer"></use></svg>
+<span data-translate="barbot_tour_tasting_include_4">Guided tasting</span>
+</li>
+</ul>
+</div>
+<div aria-label="Beer Tasting pricing options" class="barbot-price-options">
+<div class="barbot-price-option">
+<span class="barbot-price-option__label" data-translate="barbot_tour_tasting_option_label_1">Option 1</span>
+<p class="barbot-price-option__name" data-translate="barbot_tour_tasting_option_1_name">Our classics x4 (100 ml)</p>
+<p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_1_price">USD 28</p>
+</div>
+<div class="barbot-price-option">
+<span class="barbot-price-option__label" data-translate="barbot_tour_tasting_option_label_2">Option 2</span>
+<p class="barbot-price-option__name" data-translate="barbot_tour_tasting_option_2_name">Our classics plus award-winning x7 (100 ml)</p>
+<p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_2_price">USD 38</p>
+</div>
+</div>
+</article>
+<!-- EXPERIENCE 2 — BREWMASTER TALK -->
+<article aria-labelledby="barbotBrewmasterTitle" class="barbot-experience-card barbot-experience-card--premium">
+<header class="barbot-experience-card__head">
+<p class="barbot-experience-card__eyebrow" data-translate="barbot_tour_experience_2_eyebrow">Experience 2</p>
+<h3 class="barbot-experience-card__title" data-translate="barbot_tour_brewmaster_title" id="barbotBrewmasterTitle">BrewMaster Talk</h3>
+<p class="barbot-experience-card__deck" data-translate="barbot_tour_brewmaster_subtitle">
           Exclusive experience for beer enthusiasts.
         </p>
-      </header>
-
-      <p class="barbot-experience-card__text" data-translate="barbot_tour_brewmaster_p">
+</header>
+<p class="barbot-experience-card__text" data-translate="barbot_tour_brewmaster_p">
         Starting in June, you can also book an exclusive experience with Barbot’s master brewer, who shares over 20 years of knowledge, experimentation, and craft beer culture.
       </p>
-
-      <div class="barbot-experience-card__includes">
-        <h4 class="barbot-experience-card__includes-title" data-translate="barbot_tour_topics_label">Topics</h4>
-        <ul class="activity-meta-list">
-          <li class="activity-meta-row" data-card-meta="beer">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#beer"/></svg>
-            <span data-translate="barbot_tour_brewmaster_topic_1">Raw materials (malts, hops, and yeast)</span>
-          </li>
-          <li class="activity-meta-row" data-card-meta="check">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#check"/></svg>
-            <span data-translate="barbot_tour_brewmaster_topic_2">Recipes and beer styles</span>
-          </li>
-          <li class="activity-meta-row" data-card-meta="landmark">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#landmark"/></svg>
-            <span data-translate="barbot_tour_brewmaster_topic_3">Technical infrastructure</span>
-          </li>
-          <li class="activity-meta-row" data-card-meta="star">
-            <svg class="activity-meta-icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="../Assets/icons/card-meta.svg#star"/></svg>
-            <span data-translate="barbot_tour_brewmaster_topic_4">Competitions and national & international awards</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="barbot-experience-card__finale">
-        <h4 class="barbot-experience-card__includes-title" data-translate="barbot_tour_brewmaster_final_title">The experience ends with</h4>
-        <ul class="barbot-experience-card__finale-list">
-          <li data-translate="barbot_tour_brewmaster_final_1">4 half pints</li>
-          <li data-translate="barbot_tour_brewmaster_final_2">Artisanal charcuterie board</li>
-        </ul>
-      </div>
-
-      <div class="barbot-price-options barbot-price-options--single" aria-label="BrewMaster Talk price">
-        <div class="barbot-price-option">
-          <p class="barbot-price-option__price" data-translate="barbot_tour_brewmaster_price_amount">USD 60</p>
-          <p class="barbot-price-option__per" data-translate="barbot_tour_brewmaster_price_per">per person</p>
-        </div>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="coffee-includes">
-    <div class="includes-preferences">
-      <div class="includes-list">
-        <h3 data-translate="barbot_tour_included_title">What's included</h3>
-        <ul>
-          <li data-translate="barbot_tour_included_1">✔ Beer Tasting (Option 1 or 2) or BrewMaster Talk — select when booking</li>
-          <li data-translate="barbot_tour_included_2">✔ Coordination and support from Sacramento Adventures</li>
-        </ul>
-      </div>
-
-      <div class="order-start">
-        <h3 data-translate="barbot_tour_create_title">Create your Barbot experience</h3>
-        <div class="booking-visit-date-row">
-          <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
-          <input
-            type="date"
-            id="bookingVisitDate"
-            data-booking-date-key="selectedDateBarbotTour"
-            data-booking-date-weekends-only="true"
-            data-booking-date-invalid-i18n="barbot_tour_alert_weekday"
-            autocomplete="off"
-          />
-          <p class="booking-visit-date-hint" data-translate="barbot_tour_visit_date_hint">
+<div class="barbot-experience-card__includes">
+<h4 class="barbot-experience-card__includes-title" data-translate="barbot_tour_topics_label">Topics</h4>
+<ul class="activity-meta-list">
+<li class="activity-meta-row" data-card-meta="beer">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#beer"></use></svg>
+<span data-translate="barbot_tour_brewmaster_topic_1">Raw materials (malts, hops, and yeast)</span>
+</li>
+<li class="activity-meta-row" data-card-meta="check">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
+<span data-translate="barbot_tour_brewmaster_topic_2">Recipes and beer styles</span>
+</li>
+<li class="activity-meta-row" data-card-meta="landmark">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#landmark"></use></svg>
+<span data-translate="barbot_tour_brewmaster_topic_3">Technical infrastructure</span>
+</li>
+<li class="activity-meta-row" data-card-meta="star">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#star"></use></svg>
+<span data-translate="barbot_tour_brewmaster_topic_4">Competitions and national &amp; international awards</span>
+</li>
+</ul>
+</div>
+<div class="barbot-experience-card__finale">
+<h4 class="barbot-experience-card__includes-title" data-translate="barbot_tour_brewmaster_final_title">The experience ends with</h4>
+<ul class="barbot-experience-card__finale-list">
+<li data-translate="barbot_tour_brewmaster_final_1">4 half pints</li>
+<li data-translate="barbot_tour_brewmaster_final_2">Artisanal charcuterie board</li>
+</ul>
+</div>
+<div aria-label="BrewMaster Talk price" class="barbot-price-options barbot-price-options--single">
+<div class="barbot-price-option">
+<p class="barbot-price-option__price" data-translate="barbot_tour_brewmaster_price_amount">USD 60</p>
+<p class="barbot-price-option__per" data-translate="barbot_tour_brewmaster_price_per">per person</p>
+</div>
+</div>
+</article>
+</div>
+<div class="coffee-includes">
+<div class="includes-preferences">
+<div class="includes-list">
+<h3 data-translate="barbot_tour_included_title">What's included</h3>
+<ul>
+<li data-translate="barbot_tour_included_1">✔ Beer Tasting (Option 1 or 2) or BrewMaster Talk — select when booking</li>
+<li data-translate="barbot_tour_included_2">✔ Coordination and support from Sacramento Adventures</li>
+</ul>
+</div>
+<div class="order-start">
+<h3 data-translate="barbot_tour_create_title">Create your Barbot experience</h3>
+<div class="booking-visit-date-row">
+<label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-invalid-i18n="barbot_tour_alert_weekday" data-booking-date-key="selectedDateBarbotTour" data-booking-date-weekends-only="true" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="barbot_tour_visit_date_hint">
             Saturdays and Sundays only — same as brewery hours.
           </p>
-        </div>
-        <p data-translate="barbot_tour_create_subtitle">Choose your experience, package, and number of guests</p>
-        <button type="button" id="createBarbotTourBtn" class="btn primary-btn" data-translate="barbot_tour_create_btn">+ Create your experience</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="order-summary" id="barbotTourOrderSummary" aria-live="polite"></div>
-
-  <div class="experience-support-notice" role="status">
-    <p>
-      <strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
-    </p>
-  </div>
-
-  <section class="coffee-gallery">
-    <h2 data-translate="barbot_tour_gallery_title">Experience Gallery</h2>
-    <div class="gallery-grid">
-      <img src="../Assets/images/barbtour.jpg" alt="" data-translate-alt="barbot_tour_gal_1_alt">
-      <img src="../Assets/images/barbtour1.jpg" alt="" data-translate-alt="barbot_tour_gal_2_alt">
-      <img src="../Assets/images/barbtour2.jpg" alt="" data-translate-alt="barbot_tour_gal_3_alt">
-      <img src="../Assets/images/barbtour3.jpg" alt="" data-translate-alt="barbot_tour_gal_4_alt">
-      <img src="../Assets/images/barbtour4.jpg" alt="" data-translate-alt="barbot_tour_gal_5_alt">
-      <img src="../Assets/images/barbot-2.jpg" alt="" data-translate-alt="barbot_tour_gal_6_alt">
-      <img src="../Assets/images/barbot3.jpg" alt="" data-translate-alt="barbot_tour_gal_7_alt">
-      <img src="../Assets/images/barb4.jpeg" alt="" data-translate-alt="barbot_tour_gal_8_alt">
-      <img src="../Assets/images/barbot-5.jpg" alt="" data-translate-alt="barbot_tour_gal_9_alt">
-      <img src="../Assets/images/barbot-tour-new-1.jpg" alt="" data-translate-alt="barbot_tour_gal_10_alt">
-      <img src="../Assets/images/barbot-tour-new-2.jpg" alt="" data-translate-alt="barbot_tour_gal_11_alt">
-      <img src="../Assets/images/barbot-tour-new-3.jpg" alt="" data-translate-alt="barbot_tour_gal_12_alt">
-    </div>
-  </section>
-
-  <div class="coffee-actions">
-    <a href="#" id="bookNowBottomBarbotTour" class="btn" data-translate="barbot_tour_book_now">Reserve</a>
-    <a href="../Home/index.html" class="btn secondary" data-translate="barbot_tour_back_home">Back to Home</a>
-  </div>
-
-</section>
-
-<script src="../Home/language-init.js?v=20260516lang"></script>
-<script src="../Home/index.js?v=20260520barbottour"></script>
-<script src="../Home/orders.js?v=20260521prewarm"></script>
-<script src="../Home/booking-date-picker.js"></script>
-
-<div class="popup-overlay" id="popupBarbotTour" aria-hidden="true">
-  <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="barbotTourPopupTitle">
-    <button type="button" class="close-x" id="closeBarbotTour" data-translate-aria-label="sio_special_menu_close_aria">✕</button>
-    <p><strong class="popup-title" id="barbotTourPopupTitle" data-translate="barbot_tour_popup_title">Barbot Brewery — your experience</strong></p>
-
-    <div class="preferences-inside">
-      <p class="bruma-tier-heading" data-translate="barbot_tour_tier_heading">Choose your experience</p>
-
-      <p class="barbot-popup-group-label" data-translate="barbot_tour_popup_tasting_group">Beer Tasting Experience</p>
-      <label class="bruma-tier-option">
-        <input type="radio" name="barbotTourPackage" value="classic" checked>
-        <span class="bruma-tier-option-text">
-          <strong data-translate="barbot_tour_tier_classic">Option 1 — Our classics x4 (100 ml)</strong>
-          <span class="bruma-tier-price-line" data-translate="barbot_tour_tier_classic_price">USD 28 per person</span>
-        </span>
-      </label>
-      <label class="bruma-tier-option">
-        <input type="radio" name="barbotTourPackage" value="premium">
-        <span class="bruma-tier-option-text">
-          <strong data-translate="barbot_tour_tier_premium">Option 2 — Our classics plus award-winning x7 (100 ml)</strong>
-          <span class="bruma-tier-price-line" data-translate="barbot_tour_tier_premium_price">USD 38 per person</span>
-        </span>
-      </label>
-
-      <p class="barbot-popup-group-label barbot-popup-group-label--premium" data-translate="barbot_tour_popup_brewmaster_group">BrewMaster Talk</p>
-      <label class="bruma-tier-option">
-        <input type="radio" name="barbotTourPackage" value="brewmaster">
-        <span class="bruma-tier-option-text">
-          <strong data-translate="barbot_tour_tier_brewmaster">BrewMaster Talk — premium experience</strong>
-          <span class="bruma-tier-price-line" data-translate="barbot_tour_tier_brewmaster_price">USD 60 per person · 4 half pints + charcuterie board</span>
-        </span>
-      </label>
-
-      <h3 class="preferences-title barbot-popup-guests-heading" data-translate="barbot_tour_guests_heading">Number of guests</h3>
-      <div class="mate-popup-guests-row">
-        <button type="button" class="add-guest-btn" id="barbotTourGuestsMinus" aria-label="−">−</button>
-        <span id="barbotTourGuestsValue">1</span>
-        <button type="button" class="add-guest-btn" id="barbotTourGuestsPlus" aria-label="+">+</button>
-      </div>
-    </div>
-
-    <div class="popup-actions">
-      <button type="button" class="btn" id="saveBarbotTour" data-translate="save_selection">Save selection</button>
-    </div>
-  </div>
 </div>
-
-<div class="popup-overlay" id="popupBarbotTourJune" aria-hidden="true">
-  <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="barbotTourJunePopupTitle">
-    <button type="button" class="close-x" id="closeBarbotTourJune" data-translate-aria-label="sio_special_menu_close_aria">✕</button>
-    <p id="barbotTourJunePopupTitle" data-translate="barbot_tour_june_popup_body">
+<p data-translate="barbot_tour_create_subtitle">Choose your experience, package, and number of guests</p>
+<button class="btn primary-btn" data-translate="barbot_tour_create_btn" id="createBarbotTourBtn" type="button">+ Create your experience</button>
+</div>
+</div>
+</div>
+<div aria-live="polite" class="order-summary" id="barbotTourOrderSummary"></div>
+<div class="experience-support-notice" role="status">
+<p>
+<strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+</p>
+</div>
+<section class="coffee-gallery">
+<h2 data-translate="barbot_tour_gallery_title">Experience Gallery</h2>
+<div class="gallery-grid">
+<img alt="" data-translate-alt="barbot_tour_gal_1_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbtour.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_2_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbtour1.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_3_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbtour2.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_4_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbtour3.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_5_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbtour4.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_6_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-2.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_7_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot3.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_8_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barb4.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_9_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-5.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_10_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-tour-new-1.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_11_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-tour-new-2.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_12_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-tour-new-3.webp" width="1200"/>
+</div>
+</section>
+<div class="coffee-actions">
+<a class="btn" data-translate="barbot_tour_book_now" href="#" id="bookNowBottomBarbotTour">Reserve</a>
+<a class="btn secondary" data-translate="barbot_tour_back_home" href="../Home/index.html">Back to Home</a>
+</div>
+</section>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260522perf"></script>
+<script src="../Home/orders.js?v=20260522perf"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
+<div aria-hidden="true" class="popup-overlay" id="popupBarbotTour">
+<div aria-labelledby="barbotTourPopupTitle" aria-modal="true" class="popup-box" role="dialog">
+<button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeBarbotTour" type="button">✕</button>
+<p><strong class="popup-title" data-translate="barbot_tour_popup_title" id="barbotTourPopupTitle">Barbot Brewery — your experience</strong></p>
+<div class="preferences-inside">
+<p class="bruma-tier-heading" data-translate="barbot_tour_tier_heading">Choose your experience</p>
+<p class="barbot-popup-group-label" data-translate="barbot_tour_popup_tasting_group">Beer Tasting Experience</p>
+<label class="bruma-tier-option">
+<input checked="" name="barbotTourPackage" type="radio" value="classic"/>
+<span class="bruma-tier-option-text">
+<strong data-translate="barbot_tour_tier_classic">Option 1 — Our classics x4 (100 ml)</strong>
+<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_classic_price">USD 28 per person</span>
+</span>
+</label>
+<label class="bruma-tier-option">
+<input name="barbotTourPackage" type="radio" value="premium"/>
+<span class="bruma-tier-option-text">
+<strong data-translate="barbot_tour_tier_premium">Option 2 — Our classics plus award-winning x7 (100 ml)</strong>
+<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_premium_price">USD 38 per person</span>
+</span>
+</label>
+<p class="barbot-popup-group-label barbot-popup-group-label--premium" data-translate="barbot_tour_popup_brewmaster_group">BrewMaster Talk</p>
+<label class="bruma-tier-option">
+<input name="barbotTourPackage" type="radio" value="brewmaster"/>
+<span class="bruma-tier-option-text">
+<strong data-translate="barbot_tour_tier_brewmaster">BrewMaster Talk — premium experience</strong>
+<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_brewmaster_price">USD 60 per person · 4 half pints + charcuterie board</span>
+</span>
+</label>
+<h3 class="preferences-title barbot-popup-guests-heading" data-translate="barbot_tour_guests_heading">Number of guests</h3>
+<div class="mate-popup-guests-row">
+<button aria-label="−" class="add-guest-btn" id="barbotTourGuestsMinus" type="button">−</button>
+<span id="barbotTourGuestsValue">1</span>
+<button aria-label="+" class="add-guest-btn" id="barbotTourGuestsPlus" type="button">+</button>
+</div>
+</div>
+<div class="popup-actions">
+<button class="btn" data-translate="save_selection" id="saveBarbotTour" type="button">Save selection</button>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="popup-overlay" id="popupBarbotTourJune">
+<div aria-labelledby="barbotTourJunePopupTitle" aria-modal="true" class="popup-box" role="dialog">
+<button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeBarbotTourJune" type="button">✕</button>
+<p data-translate="barbot_tour_june_popup_body" id="barbotTourJunePopupTitle">
       BrewMaster Talk and the guided factory tour experience will be available starting in June. Options 1 and 2 can be booked now.
     </p>
-    <div class="popup-actions">
-      <button type="button" class="btn" id="barbotTourJuneOk" data-translate="barbot_tour_june_popup_ok">Got it</button>
-    </div>
-  </div>
+<div class="popup-actions">
+<button class="btn" data-translate="barbot_tour_june_popup_ok" id="barbotTourJuneOk" type="button">Got it</button>
 </div>
-
+</div>
+</div>
 <div class="lightbox" id="lightbox">
-  <span class="close-lightbox" id="closeLightbox">✕</span>
-  <button class="lightbox-btn prev" id="prevBtn">‹</button>
-  <img class="lightbox-img" id="lightboxImg" alt="">
-  <button class="lightbox-btn next" id="nextBtn">›</button>
+<span class="close-lightbox" id="closeLightbox">✕</span>
+<button class="lightbox-btn prev" id="prevBtn">‹</button>
+<img alt="" class="lightbox-img" decoding="async" id="lightboxImg"/>
+<button class="lightbox-btn next" id="nextBtn">›</button>
 </div>
-
-<a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
-   class="taxi-float"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Taxi">
-  <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
+<a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
+<img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
 </a>
-
-<a href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
-   class="whatsapp-float"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg>
 </a>
-
 <script>
 (function () {
   const STORAGE_KEY = "orders_barbot_tour";
@@ -831,6 +756,5 @@
   renderSummary();
 })();
 </script>
-
 </body>
 </html>

@@ -1,377 +1,311 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta charset="UTF-8">
-  <title data-translate="about_doc_title">About Us - Sacramento Adventures</title>
-  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
-
-  <link rel="stylesheet" href="../Styles/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title data-translate="about_doc_title">About Us - Sacramento Adventures</title>
+<link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<script>
     (function () {
       if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       document.documentElement.classList.add("js-reveal");
     })();
   </script>
 </head>
-
 <body class="page-actividad">
-
- <!-- ================= HEADER ================= -->
- <header>
-
-  <div class="logo-container">
-    <a href="../Home/index.html" class="logo">
-      <img src="../Assets/images/sacramento-logo-new.svg"
-           alt="Sacramento Adventures Logo">
-    </a>
-
-  
-  </div>
-
-  <div class="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-
-  <div class="language-switch">
-    <button type="button" class="lang-btn active" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
-    <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
-    <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
-  </div>
-
-  <nav class="hamburger-menu">
-    <ul>
-
-      <li data-filter="fullday">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
-
-        <span data-translate="nav_cat_fullday">Full Day Experiences</span>
-
-      </li>
-
-      <li data-filter="day">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
-
-        <span data-translate="nav_cat_day">Just for a Day</span>
-
-      </li>
-
-      <li data-filter="night">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
-
-        <span data-translate="nav_cat_night">Just for a Night</span>
-
-      </li>
-
-      <li data-filter="tour">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
-
-        <span data-translate="nav_cat_tours">Guided Tours</span>
-
-      </li>
-
-      <li data-filter="gastronomy">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
-
-        <span data-translate="nav_cat_gastro">Gastronomy</span>
-
-      </li>
-
-      <li data-filter="nature">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
-
-        <span data-translate="nav_cat_nature">Nature and Animals</span>
-
-      </li>
-
-      <li data-filter="culture">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
-
-        <span data-translate="nav_cat_culture">Tradition & Culture</span>
-
-      </li>
-
-      <li data-filter="romantic">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
-
-        <span data-translate="nav_cat_romantic">Romantic</span>
-
-      </li>
-
-      <li data-filter="corporate">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
-
-        <span data-translate="nav_cat_corporate">Corporate Experiences</span>
-
-      </li>
-    </ul>
-  </nav>
-
+<!-- ================= HEADER ================= -->
+<header>
+<div class="logo-container">
+<a class="logo" href="../Home/index.html">
+<img alt="Sacramento Adventures Logo" decoding="async" src="../Assets/images/sacramento-logo-new.svg"/>
+</a>
+</div>
+<div class="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+<div class="language-switch">
+<button class="lang-btn active" data-lang="en" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-us"></use></svg><span>EN</span></button>
+<button class="lang-btn" data-lang="es" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-uy"></use></svg><span>ES</span></button>
+<button class="lang-btn" data-lang="pt" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-br"></use></svg><span>PT</span></button>
+</div>
+<nav class="hamburger-menu">
+<ul>
+<li data-filter="fullday">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-fullday"></use></svg>
+<span data-translate="nav_cat_fullday">Full Day Experiences</span>
+</li>
+<li data-filter="day">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-day"></use></svg>
+<span data-translate="nav_cat_day">Just for a Day</span>
+</li>
+<li data-filter="night">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-night"></use></svg>
+<span data-translate="nav_cat_night">Just for a Night</span>
+</li>
+<li data-filter="tour">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-tours"></use></svg>
+<span data-translate="nav_cat_tours">Guided Tours</span>
+</li>
+<li data-filter="gastronomy">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-gastro"></use></svg>
+<span data-translate="nav_cat_gastro">Gastronomy</span>
+</li>
+<li data-filter="nature">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-nature"></use></svg>
+<span data-translate="nav_cat_nature">Nature and Animals</span>
+</li>
+<li data-filter="culture">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-culture"></use></svg>
+<span data-translate="nav_cat_culture">Tradition &amp; Culture</span>
+</li>
+<li data-filter="romantic">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-romantic"></use></svg>
+<span data-translate="nav_cat_romantic">Romantic</span>
+</li>
+<li data-filter="corporate">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-corporate"></use></svg>
+<span data-translate="nav_cat_corporate">Corporate Experiences</span>
+</li>
+</ul>
+</nav>
 </header>
-
 <!-- HERO -->
 <section class="about-hero">
-  <h1 class="about-hero-title" data-translate="about_hero_h1">Meet the Team</h1>
-  <div class="about-hero-carousel" aria-roledescription="carousel" aria-label="Sacramento Adventures team photos">
-    <div class="about-hero-track">
-      <div class="about-hero-slide">
-        <img src="../Assets/images/grupo1.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
-      </div>
-      <div class="about-hero-slide">
-        <img src="../Assets/images/SA-31.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
-      </div>
-      <div class="about-hero-slide">
-        <img src="../Assets/images/about.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
-      </div>
-      <div class="about-hero-slide">
-        <img src="../Assets/images/SA333.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
-      </div>
-      <div class="about-hero-slide">
-        <img src="../Assets/images/tour1.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
-      </div>
-      <div class="about-hero-slide">
-        <img src="../Assets/images/tour2.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
-      </div>
-      <div class="about-hero-slide">
-        <img src="../Assets/images/letras.jpg" alt="" data-translate-alt="about_hero_gallery_alt">
-      </div>
-    </div>
-    <button type="button" class="carousel-btn prev about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_prev">‹</button>
-    <button type="button" class="carousel-btn next about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_next">›</button>
-  </div>
+<h1 class="about-hero-title" data-translate="about_hero_h1">Meet the Team</h1>
+<div aria-label="Sacramento Adventures team photos" aria-roledescription="carousel" class="about-hero-carousel">
+<div class="about-hero-track">
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" src="../Assets/images/grupo1.webp"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" src="../Assets/images/SA-31.webp"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" src="../Assets/images/about.webp"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" src="../Assets/images/SA333.webp"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" src="../Assets/images/tour1.webp"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" src="../Assets/images/tour2.webp"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" src="../Assets/images/letras.webp"/>
+</div>
+</div>
+<button class="carousel-btn prev about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_prev" type="button">‹</button>
+<button class="carousel-btn next about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_next" type="button">›</button>
+</div>
 </section>
-
 <!-- CONTENT -->
 <section class="about-content">
-
-  <div class="about-who-intro home-about-intro" aria-labelledby="about-who-title">
-    <div class="home-about-intro__inner">
-      <div class="about-who-intro__head about-reveal">
-        <h2 id="about-who-title" class="home-about-intro__title" data-translate="about_who_h2">Who we are</h2>
-        <span class="home-about-intro__accent" aria-hidden="true"></span>
-      </div>
-      <div class="home-about-intro__body about-reveal">
-        <p data-translate="about_who_p">
+<div aria-labelledby="about-who-title" class="about-who-intro home-about-intro">
+<div class="home-about-intro__inner">
+<div class="about-who-intro__head about-reveal">
+<h2 class="home-about-intro__title" data-translate="about_who_h2" id="about-who-title">Who we are</h2>
+<span aria-hidden="true" class="home-about-intro__accent"></span>
+</div>
+<div class="home-about-intro__body about-reveal">
+<p data-translate="about_who_p">
           We're a group of young people who genuinely love what we do: bringing quality, good energy, and lasting memories to your time in Colonia del Sacramento. We obsess over the details with trusted partners — because we want you to feel truly taken care of.
         </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- TEAM GRID -->
-  <div class="team-grid">
-
-    <!-- 1 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/romiperfil2.jpg" alt="Romina">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com/in/romina-grasso-83371a187/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Romina</h3>
-        <p class="role" data-translate="about_team_romina_role">Founder</p>
-        <p class="birthday" data-translate="about_team_romina_bday">🎂 Oct 16</p>
-        <p data-translate="about_team_romina_bio">
+</div>
+</div>
+</div>
+<!-- TEAM GRID -->
+<div class="team-grid">
+<!-- 1 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Romina" decoding="async" loading="lazy" src="../Assets/images/romiperfil2.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com/in/romina-grasso-83371a187/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Romina</h3>
+<p class="role" data-translate="about_team_romina_role">Founder</p>
+<p class="birthday" data-translate="about_team_romina_bday">🎂 Oct 16</p>
+<p data-translate="about_team_romina_bio">
             Romina blends her background in quality engineering with a strategic and entrepreneurial mindset. She brings together local partners, designs meaningful experiences, and ensures every detail reflects quality, authenticity, and human connection.
             </p>
-      </div>
-    </div>
-
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/maru1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com/in/mar%C3%ADa-eugenia-hern%C3%A1ndez-79a8623b2/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Maria Eugenia (Maru)</h3>
-        <p class="role" data-translate="about_team_maru_role">Content & social media lead</p>
-        <p class="birthday" data-translate="about_team_maru_bday">🎂 Feb 27</p>
-        <p data-translate="about_team_maru_bio">
+</div>
+</div>
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/maru1.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com/in/mar%C3%ADa-eugenia-hern%C3%A1ndez-79a8623b2/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Maria Eugenia (Maru)</h3>
+<p class="role" data-translate="about_team_maru_role">Content &amp; social media lead</p>
+<p class="birthday" data-translate="about_team_maru_bday">🎂 Feb 27</p>
+<p data-translate="about_team_maru_bio">
           Maru is a highly entrepreneurial and detail-oriented professional, known for her creativity and strong sense of responsibility. She brings ideas to life with a refined and organized approach, ensuring every detail is thoughtfully executed.           </p>
-      </div>
-    </div>
-
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/mati1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Matias</h3>
-        <p class="role" data-translate="about_team_matias_role">Web support assistant</p>
-        <p class="birthday" data-translate="about_team_matias_bday">🎂 Oct 15</p>
-        <p data-translate="about_team_matias_bio">
+</div>
+</div>
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/mati1.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Matias</h3>
+<p class="role" data-translate="about_team_matias_role">Web support assistant</p>
+<p class="birthday" data-translate="about_team_matias_bday">🎂 Oct 15</p>
+<p data-translate="about_team_matias_bio">
           Contributes to specific project tasks to improve the user experience.
         </p>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/selenamaite1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com/in/selena-airaldo-654aaa37b/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Selena Maite</h3>
-        <p class="role" data-translate="about_team_selena_maite_role">Tour guide</p>
-        <p class="birthday" data-translate="about_team_selena_maite_bday">🎂 Jan 31</p>
-        <p data-translate="about_team_selena_maite_bio">
+</div>
+</div>
+<!-- 2 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/selenamaite1.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com/in/selena-airaldo-654aaa37b/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Selena Maite</h3>
+<p class="role" data-translate="about_team_selena_maite_role">Tour guide</p>
+<p class="birthday" data-translate="about_team_selena_maite_bday">🎂 Jan 31</p>
+<p data-translate="about_team_selena_maite_bio">
             She brings strong leadership and character to the team. Her deep knowledge of Colonia's history and culture, combined with a passionate and driven mindset, makes her a key force in shaping authentic experiences and advancing our project.
         </p>
-      </div>
-    </div>
-
-    
-
-    <!-- 3 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/sele21.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Selena</h3>
-        <p class="role" data-translate="about_team_selena_role">Tour guide</p>
-        <p class="birthday" data-translate="about_team_selena_bday">🎂 Sep 1</p>
-        <p data-translate="about_team_selena_bio">
+</div>
+</div>
+<!-- 3 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/sele21.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Selena</h3>
+<p class="role" data-translate="about_team_selena_role">Tour guide</p>
+<p class="birthday" data-translate="about_team_selena_bday">🎂 Sep 1</p>
+<p data-translate="about_team_selena_bio">
             Deeply passionate about culture and the arts, she brings extensive knowledge and a unique perspective to every experience, helping visitors connect with the true essence of Colonia.
             </p>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/lau1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Laura</h3>
-        <p class="role" data-translate="about_team_laura_role">Tour guide</p>
-        <p class="birthday" data-translate="about_team_laura_bday">🎂 Jul 6</p>
-        <p data-translate="about_team_laura_bio">
+</div>
+</div>
+<!-- 4 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/lau1.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Laura</h3>
+<p class="role" data-translate="about_team_laura_role">Tour guide</p>
+<p class="birthday" data-translate="about_team_laura_bday">🎂 Jul 6</p>
+<p data-translate="about_team_laura_bio">
             She combines professionalism with a refined understanding of gastronomy and wine. She carefully curates high-quality experiences, bringing elegance and attention to detail to every moment.
             </p>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/adri1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Adrián</h3>
-        <p class="role" data-translate="about_team_adrian_role">Tour guide</p>
-        <p class="birthday" data-translate="about_team_adrian_bday">🎂 Jun 23</p>
-        <p data-translate="about_team_adrian_bio">
+</div>
+</div>
+<!-- 5 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/adri1.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Adrián</h3>
+<p class="role" data-translate="about_team_adrian_role">Tour guide</p>
+<p class="birthday" data-translate="about_team_adrian_bday">🎂 Jun 23</p>
+<p data-translate="about_team_adrian_bio">
             He thinks big and approaches every challenge with a strategic mindset. His strong business vision and innovative ideas help drive the project forward and unlock new opportunities.
             </p>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/alan1.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-        <p class="team-linkedin-wrap">
-          <a class="team-linkedin-link" href="https://www.linkedin.com/in/alan-clavijo-villegas-84199b407/" target="_blank" rel="noopener noreferrer" data-translate="about_team_linkedin_label">LinkedIn</a>
-        </p>
-      </div>
-      <div class="team-info">
-        <h3>Alan</h3>
-        <p class="role" data-translate="about_team_alan_role">Tour guide</p>
-        <p class="birthday" data-translate="about_team_alan_bday">🎂 Feb 1</p>
-        <p data-translate="about_team_alan_bio">
+</div>
+</div>
+<!-- 6 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/alan1.webp"/>
+<p class="team-linkedin-wrap">
+<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com/in/alan-clavijo-villegas-84199b407/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+</p>
+</div>
+<div class="team-info">
+<h3>Alan</h3>
+<p class="role" data-translate="about_team_alan_role">Tour guide</p>
+<p class="birthday" data-translate="about_team_alan_bday">🎂 Feb 1</p>
+<p data-translate="about_team_alan_bio">
             Naturally charismatic and people-oriented, he ensures every guest feels welcome and comfortable. His positive energy plays a key role in creating memorable experiences.
             </p>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/lupa.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-      </div>
-      <div class="team-info">
-        <h3>Lupa</h3>
-        <p class="role" data-translate="about_team_lupa_role">Chief Happiness Officer</p>
-        <p class="birthday" data-translate="about_team_lupa_age">Age: 5 years</p>
-        <p data-translate="about_team_lupa_bio">
+</div>
+</div>
+<!-- 7 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/lupa.webp"/>
+</div>
+<div class="team-info">
+<h3>Lupa</h3>
+<p class="role" data-translate="about_team_lupa_role">Chief Happiness Officer</p>
+<p class="birthday" data-translate="about_team_lupa_age">Age: 5 years</p>
+<p data-translate="about_team_lupa_bio">
             She supports the overall guest experience by contributing to a welcoming and positive brand atmosphere.
             </p>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/sam3.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-      </div>
-      <div class="team-info">
-        <h3>Sam</h3>
-        <p class="role" data-translate="about_team_sam_role">Walking companion expert</p>
-        <p class="birthday" data-translate="about_team_sam_age">Age: 9 years</p>
-        <p data-translate="about_team_sam_bio">
+</div>
+</div>
+<!-- 8 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/sam3.webp"/>
+</div>
+<div class="team-info">
+<h3>Sam</h3>
+<p class="role" data-translate="about_team_sam_role">Walking companion expert</p>
+<p class="birthday" data-translate="about_team_sam_age">Age: 9 years</p>
+<p data-translate="about_team_sam_bio">
             He loves exploring every corner of Colonia and joining guests on relaxed walks.
             Sam brings a calm and friendly presence to every experience.
             </p>
-      </div>
-    </div>
-
-    <!-- 9 -->
-    <div class="team-card about-reveal">
-      <div class="team-card-aside">
-        <img src="../Assets/images/jack2.jpg" alt="Guide" data-translate-alt="about_team_photo_alt">
-      </div>
-      <div class="team-info">
-        <h3>Jack</h3>
-        <p class="role" data-translate="about_team_jack_role">Director of First Impressions</p>
-        <p class="birthday" data-translate="about_team_jack_age">Age: 3 years</p>
-        <p data-translate="about_team_jack_bio">
+</div>
+</div>
+<!-- 9 -->
+<div class="team-card about-reveal">
+<div class="team-card-aside">
+<img alt="Guide" data-translate-alt="about_team_photo_alt" decoding="async" loading="lazy" src="../Assets/images/jack2.webp"/>
+</div>
+<div class="team-info">
+<h3>Jack</h3>
+<p class="role" data-translate="about_team_jack_role">Director of First Impressions</p>
+<p class="birthday" data-translate="about_team_jack_age">Age: 3 years</p>
+<p data-translate="about_team_jack_bio">
             He embodies the brand's commitment to creating a friendly and memorable first impression for every guest.
             </p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="about-quote-wrap about-reveal" aria-label="Valores del equipo">
-    <p class="about-quote about-quote--closing" data-translate="about_closing_quote">
+</div>
+</div>
+</div>
+<div aria-label="Valores del equipo" class="about-quote-wrap about-reveal">
+<p class="about-quote about-quote--closing" data-translate="about_closing_quote">
       Behind every process, every accomplishment, and every step forward, there is dedication, effort, and a genuine drive to do things right.
     </p>
-  </div>
-
+</div>
 </section>
-<script src="../Home/language-init.js?v=20260516lang"></script>
-<script src="../Home/index.js?v=20260516abouthero"></script>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260522perf"></script>
 <script>
   (function () {
     var carousel = document.querySelector(".about-hero-carousel");
@@ -427,22 +361,11 @@
     nodes.forEach(function (el) { io.observe(el); });
   })();
 </script>
-
-    <a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
-       class="taxi-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Taxi">
-      <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
-    </a>
-
-    <a href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
-       class="whatsapp-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="WhatsApp">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
-    </a>
-
+<a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
+<img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
+</a>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg>
+</a>
 </body>
 </html>

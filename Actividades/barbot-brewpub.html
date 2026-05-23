@@ -1,485 +1,446 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta charset="UTF-8">
-  <title>Barbot Brewpub | Sacramento Adventures</title>
-  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
-
-  <link rel="stylesheet" href="../Styles/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title>Barbot Brewpub | Sacramento Adventures</title>
+<link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
-
 <body class="page-actividad page-barbot-brewpub">
-
 <!-- ================= HEADER ================= -->
 <header>
-
-  <div class="logo-container">
-    <a href="../Home/index.html" class="logo">
-      <img src="../Assets/images/sacramento-logo-new.svg"
-           alt="Sacramento Adventures Logo">
-    </a>
-  </div>
-
-  <div class="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-
-  <nav class="top-links">
-    <a class="nav-about-link" href="../Actividades/aboutus.html"
-        target="_blank"
-        rel="noopener noreferrer">
-      <svg class="nav-about-icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#nav-about"/></svg><span data-translate="about_us_nav">About Us</span>
-    </a>
-  </nav>
-
-  <div class="language-switch">
-    <button type="button" class="lang-btn active" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
-    <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
-    <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
-  </div>
-
-  <nav class="hamburger-menu">
-    <ul>
-      <li data-filter="fullday">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
-        <span data-translate="nav_cat_fullday">Full Day Experiences</span>
-      </li>
-      <li data-filter="day">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
-        <span data-translate="nav_cat_day">Just for a Day</span>
-      </li>
-      <li data-filter="night">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
-        <span data-translate="nav_cat_night">Just for a Night</span>
-      </li>
-      <li data-filter="tour">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
-        <span data-translate="nav_cat_tours">Guided Tours</span>
-      </li>
-      <li data-filter="gastronomy">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
-        <span data-translate="nav_cat_gastro">Gastronomy</span>
-      </li>
-      <li data-filter="nature">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
-        <span data-translate="nav_cat_nature">Nature and Animals</span>
-      </li>
-      <li data-filter="culture">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
-        <span data-translate="nav_cat_culture">Tradition & Culture</span>
-      </li>
-      <li data-filter="romantic">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
-        <span data-translate="nav_cat_romantic">Romantic</span>
-      </li>
-      <li data-filter="corporate">
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
-        <span data-translate="nav_cat_corporate">Corporate Experiences</span>
-      </li>
-    </ul>
-  </nav>
-
+<div class="logo-container">
+<a class="logo" href="../Home/index.html">
+<img alt="Sacramento Adventures Logo" decoding="async" src="../Assets/images/sacramento-logo-new.svg"/>
+</a>
+</div>
+<div class="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="top-links">
+<a class="nav-about-link" href="../Actividades/aboutus.html" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="nav-about-icon" focusable="false" height="18" width="18"><use href="../Assets/icons/nav-header.svg#nav-about"></use></svg><span data-translate="about_us_nav">About Us</span>
+</a>
+</nav>
+<div class="language-switch">
+<button class="lang-btn active" data-lang="en" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-us"></use></svg><span>EN</span></button>
+<button class="lang-btn" data-lang="es" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-uy"></use></svg><span>ES</span></button>
+<button class="lang-btn" data-lang="pt" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-br"></use></svg><span>PT</span></button>
+</div>
+<nav class="hamburger-menu">
+<ul>
+<li data-filter="fullday">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-fullday"></use></svg>
+<span data-translate="nav_cat_fullday">Full Day Experiences</span>
+</li>
+<li data-filter="day">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-day"></use></svg>
+<span data-translate="nav_cat_day">Just for a Day</span>
+</li>
+<li data-filter="night">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-night"></use></svg>
+<span data-translate="nav_cat_night">Just for a Night</span>
+</li>
+<li data-filter="tour">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-tours"></use></svg>
+<span data-translate="nav_cat_tours">Guided Tours</span>
+</li>
+<li data-filter="gastronomy">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-gastro"></use></svg>
+<span data-translate="nav_cat_gastro">Gastronomy</span>
+</li>
+<li data-filter="nature">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-nature"></use></svg>
+<span data-translate="nav_cat_nature">Nature and Animals</span>
+</li>
+<li data-filter="culture">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-culture"></use></svg>
+<span data-translate="nav_cat_culture">Tradition &amp; Culture</span>
+</li>
+<li data-filter="romantic">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-romantic"></use></svg>
+<span data-translate="nav_cat_romantic">Romantic</span>
+</li>
+<li data-filter="corporate">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-corporate"></use></svg>
+<span data-translate="nav_cat_corporate">Corporate Experiences</span>
+</li>
+</ul>
+</nav>
 </header>
-
 <!-- ================= HERO (aligned with home card headline) ================= -->
-<section class="barbot-hero" aria-labelledby="barbot-hero-title">
-  <div class="barbot-hero-inner">
-    <div class="discount-badge barbot-hero-badge">
-      <span class="discount-badge__text" data-translate="barbot_home_badge">Gold medal · Strong Ale</span>
-    </div>
-    <h1 id="barbot-hero-title" data-translate="barbot_home_title">Barbot Brewpub · award-winning craft beer</h1>
-    <p class="barbot-hero-deck" data-translate="barbot_home_desc">
+<section aria-labelledby="barbot-hero-title" class="barbot-hero">
+<div class="barbot-hero-inner">
+<div class="discount-badge barbot-hero-badge">
+<span class="discount-badge__text" data-translate="barbot_home_badge">Gold medal · Strong Ale</span>
+</div>
+<h1 data-translate="barbot_home_title" id="barbot-hero-title">Barbot Brewpub · award-winning craft beer</h1>
+<p class="barbot-hero-deck" data-translate="barbot_home_desc">
       Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter - perfect for a pint when you’re in town.
     </p>
-  </div>
+</div>
 </section>
-
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content barbot-page-content">
-
-  <h2 data-translate="barbot_page_about_heading">Your craft beer moment in Colonia</h2>
-
-  <p class="barbot-lead">
-    <span data-translate="barbot_page_story_p_before">You’ve strolled the cobblestones and the lighthouse - now slow down where locals and travelers share the same table. Barbot Brewpub pours honest craft beer in the heart of Colonia’s UNESCO-listed Historic Quarter: relaxed lighting, real conversation, no rush. </span><strong data-translate="barbot_page_story_p_highlight">Their Bonavena Strong Ale took gold at Brazil’s IV Copa Sul-Americana de Cerveja - a judges’ medal that backs up what’s in your glass.</strong><span data-translate="barbot_page_story_p_after"> Whether you’re hunting that winning pint or simply trading stories after a day of sightseeing, this is the reward your feet were asking for.</span>
-  </p>
-
-  <div class="barbot-awards-wrap">
-    <details class="barbot-awards-details">
-      <summary class="barbot-awards-trigger">
-        <span class="barbot-awards-trigger__icon" aria-hidden="true">🏆</span>
-        <span data-translate="barbot_awards_btn">Discover our awards from the last two years</span>
-      </summary>
-      <div class="barbot-awards-panel">
-        <div class="barbot-awards-grid">
-          <article class="barbot-awards-card">
-            <h4 class="barbot-awards-card__title" data-translate="barbot_awards_bba_title">Brazilian Beer Awards</h4>
-            <div class="barbot-awards-year">
-              <p class="barbot-awards-year__label">2024</p>
-              <ul class="barbot-awards-list">
-                <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Bitter</li>
-                <li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Scottish</li>
-                <li><span class="barbot-medal barbot-medal--special" data-translate="barbot_medal_best_uy">Best Uruguayan Brewery</span></li>
-              </ul>
-            </div>
-            <div class="barbot-awards-year">
-              <p class="barbot-awards-year__label">2025</p>
-              <ul class="barbot-awards-list">
-                <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Bitter</li>
-                <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Scottish</li>
-                <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> IPA</li>
-                <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Baccharis</li>
-                <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Grape</li>
-                <li><span class="barbot-medal barbot-medal--special" data-translate="barbot_medal_best_uy">Best Uruguayan Brewery</span></li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="barbot-awards-card">
-            <h4 class="barbot-awards-card__title" data-translate="barbot_awards_guarani_title">Copa Guaraní de cervezas</h4>
-            <ul class="barbot-awards-list">
-              <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Scottish <span class="barbot-awards-inline-year">2024</span></li>
-              <li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Scottish <span class="barbot-awards-inline-year">2025</span></li>
-            </ul>
-          </article>
-
-          <article class="barbot-awards-card">
-            <h4 class="barbot-awards-card__title" data-translate="barbot_awards_sbc_title">South Beer Cup the Champions</h4>
-            <ul class="barbot-awards-list">
-              <li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Dubbel <span class="barbot-awards-inline-year">2025</span></li>
-            </ul>
-            <p class="barbot-awards-note" data-translate="barbot_awards_sbc_2026_note">South Beer 2026 is happening these days too 🤩</p>
-          </article>
-
-          <article class="barbot-awards-card">
-            <h4 class="barbot-awards-card__title" data-translate="barbot_awards_arojo_title">Aro Rojo, México</h4>
-            <div class="barbot-awards-year">
-              <p class="barbot-awards-year__label">2025</p>
-              <ul class="barbot-awards-list">
-                <li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Scottish</li>
-              </ul>
-            </div>
-            <p class="barbot-awards-note" data-translate="barbot_awards_arojo_2026_note">2026 edition is on this week (May 2026) 🙏 Wish us luck!</p>
-          </article>
-
-          <article class="barbot-awards-card">
-            <h4 class="barbot-awards-card__title" data-translate="barbot_awards_sulamericana_title">Copa Sulamericana de Cerveja</h4>
-            <div class="barbot-awards-year">
-              <p class="barbot-awards-year__label">2025</p>
-              <ul class="barbot-awards-list">
-                <li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Bonavena Strong</li>
-                <li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Dubbel Belgian</li>
-              </ul>
-            </div>
-            <div class="barbot-awards-year">
-              <p class="barbot-awards-year__label">2026</p>
-              <ul class="barbot-awards-list">
-                <li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Bonavena Strong</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="barbot-awards-card">
-            <h4 class="barbot-awards-card__title" data-translate="barbot_awards_uruguaya_title">Copa Uruguaya 2025</h4>
-            <ul class="barbot-awards-list">
-              <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Bitter</li>
-              <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Porter</li>
-              <li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Scottish</li>
-              <li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Dubbel</li>
-              <li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Golden</li>
-              <li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Strong</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </details>
-  </div>
-
-  <p class="barbot-varieties-callout" data-translate="barbot_page_varieties_p">
+<h2 data-translate="barbot_page_about_heading">Your craft beer moment in Colonia</h2>
+<p class="barbot-lead">
+<span data-translate="barbot_page_story_p_before">You’ve strolled the cobblestones and the lighthouse - now slow down where locals and travelers share the same table. Barbot Brewpub pours honest craft beer in the heart of Colonia’s UNESCO-listed Historic Quarter: relaxed lighting, real conversation, no rush. </span><strong data-translate="barbot_page_story_p_highlight">Their Bonavena Strong Ale took gold at Brazil’s IV Copa Sul-Americana de Cerveja - a judges’ medal that backs up what’s in your glass.</strong><span data-translate="barbot_page_story_p_after"> Whether you’re hunting that winning pint or simply trading stories after a day of sightseeing, this is the reward your feet were asking for.</span>
+</p>
+<div class="barbot-awards-wrap">
+<details class="barbot-awards-details">
+<summary class="barbot-awards-trigger">
+<span aria-hidden="true" class="barbot-awards-trigger__icon">🏆</span>
+<span data-translate="barbot_awards_btn">Discover our awards from the last two years</span>
+</summary>
+<div class="barbot-awards-panel">
+<div class="barbot-awards-grid">
+<article class="barbot-awards-card">
+<h4 class="barbot-awards-card__title" data-translate="barbot_awards_bba_title">Brazilian Beer Awards</h4>
+<div class="barbot-awards-year">
+<p class="barbot-awards-year__label">2024</p>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Bitter</li>
+<li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Scottish</li>
+<li><span class="barbot-medal barbot-medal--special" data-translate="barbot_medal_best_uy">Best Uruguayan Brewery</span></li>
+</ul>
+</div>
+<div class="barbot-awards-year">
+<p class="barbot-awards-year__label">2025</p>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Bitter</li>
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Scottish</li>
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> IPA</li>
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Baccharis</li>
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Grape</li>
+<li><span class="barbot-medal barbot-medal--special" data-translate="barbot_medal_best_uy">Best Uruguayan Brewery</span></li>
+</ul>
+</div>
+</article>
+<article class="barbot-awards-card">
+<h4 class="barbot-awards-card__title" data-translate="barbot_awards_guarani_title">Copa Guaraní de cervezas</h4>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Scottish <span class="barbot-awards-inline-year">2024</span></li>
+<li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Scottish <span class="barbot-awards-inline-year">2025</span></li>
+</ul>
+</article>
+<article class="barbot-awards-card">
+<h4 class="barbot-awards-card__title" data-translate="barbot_awards_sbc_title">South Beer Cup the Champions</h4>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Dubbel <span class="barbot-awards-inline-year">2025</span></li>
+</ul>
+<p class="barbot-awards-note" data-translate="barbot_awards_sbc_2026_note">South Beer 2026 is happening these days too 🤩</p>
+</article>
+<article class="barbot-awards-card">
+<h4 class="barbot-awards-card__title" data-translate="barbot_awards_arojo_title">Aro Rojo, México</h4>
+<div class="barbot-awards-year">
+<p class="barbot-awards-year__label">2025</p>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Scottish</li>
+</ul>
+</div>
+<p class="barbot-awards-note" data-translate="barbot_awards_arojo_2026_note">2026 edition is on this week (May 2026) 🙏 Wish us luck!</p>
+</article>
+<article class="barbot-awards-card">
+<h4 class="barbot-awards-card__title" data-translate="barbot_awards_sulamericana_title">Copa Sulamericana de Cerveja</h4>
+<div class="barbot-awards-year">
+<p class="barbot-awards-year__label">2025</p>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Bonavena Strong</li>
+<li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Dubbel Belgian</li>
+</ul>
+</div>
+<div class="barbot-awards-year">
+<p class="barbot-awards-year__label">2026</p>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Bonavena Strong</li>
+</ul>
+</div>
+</article>
+<article class="barbot-awards-card">
+<h4 class="barbot-awards-card__title" data-translate="barbot_awards_uruguaya_title">Copa Uruguaya 2025</h4>
+<ul class="barbot-awards-list">
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Bitter</li>
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Porter</li>
+<li><span class="barbot-medal barbot-medal--bronze" data-translate="barbot_medal_bronze">Bronze</span> Scottish</li>
+<li><span class="barbot-medal barbot-medal--silver" data-translate="barbot_medal_silver">Silver</span> Dubbel</li>
+<li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Golden</li>
+<li><span class="barbot-medal barbot-medal--gold" data-translate="barbot_medal_gold">Gold</span> Strong</li>
+</ul>
+</article>
+</div>
+</div>
+</details>
+</div>
+<p class="barbot-varieties-callout" data-translate="barbot_page_varieties_p">
     Roughly 20 varieties on draft taps and in cans — IPAs, Belgians, Scottish, seasonals and more — so one stop can feel like a mini tasting without leaving the brewpub.
   </p>
-
-  <h3 class="experience-steps-title barbot-section-subtitle" data-translate="barbot_page_why_title">Why travelers pause here</h3>
-
-  <div class="experience-steps barbot-moments">
-    <ul>
-      <li>
+<h3 class="experience-steps-title barbot-section-subtitle" data-translate="barbot_page_why_title">Why travelers pause here</h3>
+<div class="experience-steps barbot-moments">
+<ul>
+<li>
         🏛️
         <strong data-translate="barbot_page_moment_1_title">You’re already in the Historic Quarter:</strong>
-        <span data-translate="barbot_page_moment_1_desc">Step inside between monuments without breaking the spell.</span>
-      </li>
-      <li>
+<span data-translate="barbot_page_moment_1_desc">Step inside between monuments without breaking the spell.</span>
+</li>
+<li>
         🍺
         <strong data-translate="barbot_page_moment_2_title">Taste the headline act:</strong>
-        <span data-translate="barbot_page_moment_2_desc">Bonavena Strong Ale, gold at IV Copa Sul-Americana de Cerveja - then compare it against dozens of other labels on the board.</span>
-      </li>
-      <li>
+<span data-translate="barbot_page_moment_2_desc">Bonavena Strong Ale, gold at IV Copa Sul-Americana de Cerveja - then compare it against dozens of other labels on the board.</span>
+</li>
+<li>
         🕐
         <strong data-translate="barbot_page_moment_3_title">Your tempo:</strong>
-        <span data-translate="barbot_page_moment_3_desc">A flight, a single pint, or a lazy round - this isn’t a packaged pub crawl; it’s your evening.</span>
-      </li>
-    </ul>
-  </div>
-
-  <div class="coffee-includes">
-    <div class="order-start">
-      <h3 data-translate="barbot_create_title">Create your experience</h3>
-      <div class="booking-visit-date-row">
-        <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
-        <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDateBarbot" autocomplete="off" />
-        <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+<span data-translate="barbot_page_moment_3_desc">A flight, a single pint, or a lazy round - this isn’t a packaged pub crawl; it’s your evening.</span>
+</li>
+</ul>
+</div>
+<div class="coffee-includes">
+<div class="order-start">
+<h3 data-translate="barbot_create_title">Create your experience</h3>
+<div class="booking-visit-date-row">
+<label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDateBarbot" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
           Pick the day you plan to come so we can coordinate availability in advance.
         </p>
-      </div>
-      <p data-translate="barbot_create_subtitle">
+</div>
+<p data-translate="barbot_create_subtitle">
         Pick your visit date, then choose Classic (USD 34) or Premium (USD 40) menu and your courses.
       </p>
-      <button type="button" id="barbotCreateBtn" class="btn primary-btn" data-translate="barbot_create_btn">
+<button class="btn primary-btn" data-translate="barbot_create_btn" id="barbotCreateBtn" type="button">
         + Create your experience
       </button>
-    </div>
-  </div>
-
-  <div class="order-summary" id="barbotOrderSummary" aria-live="polite"></div>
-
-  <div class="experience-support-notice" role="status">
-    <p>
-      <strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
-    </p>
-  </div>
-
-  <section class="coffee-gallery">
-    <h2 data-translate="food_gallery_title">Experience Gallery</h2>
-
-    <div class="gallery-grid barbot-gallery-grid">
-      <img src="../Assets/images/barbot1.jpg" alt="" data-translate-alt="barbot_home_img_1_alt">
-      <img src="../Assets/images/barb4.jpeg" alt="" data-translate-alt="barbot_gal_9_alt">
-      <img src="../Assets/images/barbot3.jpg" alt="" data-translate-alt="barbot_home_img_3_alt">
-      <img src="../Assets/images/barb1.jpeg" alt="" data-translate-alt="barbot_gal_4_alt">
-      <img src="../Assets/images/barb2.jpeg" alt="" data-translate-alt="barbot_gal_5_alt">
-      <img src="../Assets/images/barb3.jpeg" alt="" data-translate-alt="barbot_gal_6_alt">
-      <img src="../Assets/images/barbot-2.jpg" alt="" data-translate-alt="barbot_gal_2_alt">
-      <img src="../Assets/images/barbot-5.jpg" alt="" data-translate-alt="barbot_gal_barbot5_alt">
-      <img src="../Assets/images/barbot2.jpg" alt="" data-translate-alt="barbot_home_img_2_alt">
-    </div>
+</div>
+</div>
+<div aria-live="polite" class="order-summary" id="barbotOrderSummary"></div>
+<div class="experience-support-notice" role="status">
+<p>
+<strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+</p>
+</div>
+<section class="coffee-gallery">
+<h2 data-translate="food_gallery_title">Experience Gallery</h2>
+<div class="gallery-grid barbot-gallery-grid">
+<img alt="" data-translate-alt="barbot_home_img_1_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot1.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_gal_9_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barb4.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_home_img_3_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot3.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_gal_4_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barb1.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_gal_5_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barb2.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_gal_6_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barb3.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_gal_2_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-2.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_gal_barbot5_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-5.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_home_img_2_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot2.webp" width="1200"/>
+</div>
 </section>
 <div class="coffee-actions">
-    <a href="#" id="barbotReserveBtn" class="btn" data-translate="book_btn">Reserve</a>
-    <a href="../Home/index.html" class="btn secondary" data-translate="food_back_home">Back to Home</a>
-  </div>
-
-</section>
-
-<script src="../Home/language-init.js?v=20260516lang"></script>
-<script src="../Home/index.js?v=20260510icons"></script>
-
-<div class="lightbox" id="lightbox">
-  <span class="close-lightbox" id="closeLightbox">✕</span>
-  <button class="lightbox-btn prev" id="prevBtn">‹</button>
-  <img class="lightbox-img" id="lightboxImg" alt="">
-  <button class="lightbox-btn next" id="nextBtn">›</button>
+<a class="btn" data-translate="book_btn" href="#" id="barbotReserveBtn">Reserve</a>
+<a class="btn secondary" data-translate="food_back_home" href="../Home/index.html">Back to Home</a>
 </div>
-
+</section>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260522perf"></script>
+<div class="lightbox" id="lightbox">
+<span class="close-lightbox" id="closeLightbox">✕</span>
+<button class="lightbox-btn prev" id="prevBtn">‹</button>
+<img alt="" class="lightbox-img" decoding="async" id="lightboxImg"/>
+<button class="lightbox-btn next" id="nextBtn">›</button>
+</div>
 <div class="popup-overlay" id="popupBarbot">
-  <div class="popup-box popup-box--barbot" role="dialog" aria-modal="true" aria-labelledby="barbotPopupTitle">
-    <button type="button" class="close-x" id="closeBarbot" aria-label="Close">✕</button>
-    <p><strong class="popup-title" id="barbotPopupTitle" data-translate="barbot_popup_title">Build your menu at Barbot</strong></p>
-
-    <div class="bruma-tier-wrap">
-      <p class="bruma-tier-heading" data-translate="barbot_tier_heading">Choose your menu</p>
-      <label class="bruma-tier-option">
-        <input type="radio" name="barbotMenuTier" value="standard" checked>
-        <span class="bruma-tier-option-text">
-          <span data-translate="barbot_tier_classic_label">Classic</span>
-          <span>-</span>
-          <span class="bruma-price-new" data-translate="barbot_tier_classic_price">USD 34 per guest</span>
-        </span>
-      </label>
-      <label class="bruma-tier-option">
-        <input type="radio" name="barbotMenuTier" value="premium">
-        <span class="bruma-tier-option-text">
-          <span data-translate="barbot_tier_premium_label">Premium</span>
-          <span>-</span>
-          <span class="bruma-price-new" data-translate="barbot_tier_premium_price">USD 40 per guest</span>
-        </span>
-      </label>
-    </div>
-
-    <div id="barbotStandardMenu" class="bruma-menu-panel">
-      <p><strong data-translate="barbot_choice_entrada">Starter</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_entrada" value="Beef or provolone and onion empanada" checked>
-            <span data-translate="barbot_std_entrada_1">Beef or provolone &amp; onion empanada - golden pastry, slow-cooked filling, classic brewpub starter.</span>
-          </label>
-        </li>
-      </ul>
-      <p><strong data-translate="barbot_choice_principal">Main course</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_principal" value="Chorizos a la Malta Barbot">
-            <span data-translate="barbot_std_main_1">Chorizos a la Malta Barbot - house sausages braised in Barbot malta beer with onions and rustic garnish.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_principal" value="Uruguayan Chivito Barbot">
-            <span data-translate="barbot_std_main_2">Uruguayan Chivito Barbot - beef, ham, mozzarella, fried egg, lettuce and tomato on house bread with fries.</span>
-          </label>
-        </li>
-      </ul>
-      <p><strong data-translate="barbot_choice_postre">Dessert</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_postre" value="Two crepes with dulce de leche">
-            <span data-translate="barbot_std_dessert_1">Two crepes with dulce de leche - thin warm crepes, generous caramel spread.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_postre" value="One crepe with dulce de leche and ice cream scoop">
-            <span data-translate="barbot_std_dessert_2">One crepe with dulce de leche + ice cream scoop - crepe, caramel and a ball of ice cream.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_postre" value="Homemade flan with dulce de leche">
-            <span data-translate="barbot_std_dessert_3">Homemade flan with dulce de leche - creamy baked custard with caramel sauce.</span>
-          </label>
-        </li>
-      </ul>
-      <p><strong data-translate="barbot_choice_bebida">Drink</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_bebida" value="Pint of Barbot Classic beer">
-            <span data-translate="barbot_std_drink_1">Pint of Barbot Classic beer - flagship lager-style house brew from the tap.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_bebida" value="Coca-Cola line soft drink">
-            <span data-translate="barbot_std_drink_2">Coca-Cola line soft drink - chilled soda (Coca-Cola family).</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_bebida" value="Mineral water">
-            <span data-translate="barbot_std_drink_3">Mineral water - still or sparkling, served cold.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_std_bebida" value="Pint of Barbot Classic beer - 15+ house tap styles">
-            <span data-translate="barbot_std_drink_4">1 pint of Barbot Classic beer - more than 15 house styles on tap.</span>
-          </label>
-        </li>
-      </ul>
-    </div>
-
-    <div id="barbotPremiumMenu" class="bruma-menu-panel" hidden>
-      <p><strong data-translate="barbot_choice_entrada">Starter</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_entrada" value="Two beef and/or provolone and onion empanadas">
-            <span data-translate="barbot_prm_entrada_1">Two beef and/or provolone &amp; onion empanadas - pair of golden empanadas, mix and match fillings.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_entrada" value="Homemade cured meats board">
-            <span data-translate="barbot_prm_entrada_2">Homemade cured meats board - artisan charcuterie, pickles and bread for sharing.</span>
-          </label>
-        </li>
-      </ul>
-      <p><strong data-translate="barbot_choice_principal">Main course</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_principal" value="Barbot braised pork shoulder">
-            <span data-translate="barbot_prm_main_1">Barbot braised pork shoulder - slow-braised bondiola until tender, finished with house beer glaze.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_principal" value="Uruguayan Chivito Barbot">
-            <span data-translate="barbot_prm_main_2">Uruguayan Chivito Barbot - beef, ham, mozzarella, fried egg, lettuce and tomato on house bread with fries.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_principal" value="Mushroom risotto">
-            <span data-translate="barbot_prm_main_3">Mushroom risotto - creamy arborio rice, seasonal mushrooms, parmesan and herbs.</span>
-          </label>
-        </li>
-      </ul>
-      <p><strong data-translate="barbot_choice_postre">Dessert</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_postre" value="Two crepes with dulce de leche">
-            <span data-translate="barbot_std_dessert_1">Two crepes with dulce de leche - thin warm crepes, generous caramel spread.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_postre" value="One crepe with dulce de leche and ice cream scoop">
-            <span data-translate="barbot_std_dessert_2">One crepe with dulce de leche + ice cream scoop - crepe, caramel and a ball of ice cream.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_postre" value="Homemade flan with dulce de leche">
-            <span data-translate="barbot_std_dessert_3">Homemade flan with dulce de leche - creamy baked custard with caramel sauce.</span>
-          </label>
-        </li>
-      </ul>
-      <p><strong data-translate="barbot_choice_bebida">Drink</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_bebida" value="Pint of Barbot Special or Strong beer">
-            <span data-translate="barbot_prm_drink_1">Pint of Barbot Special or Strong beer - rotating special or strong ale from the tap (incl. award-winning styles).</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_bebida" value="Coca-Cola line soft drink">
-            <span data-translate="barbot_std_drink_2">Coca-Cola line soft drink - chilled soda (Coca-Cola family).</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_bebida" value="Mineral water">
-            <span data-translate="barbot_std_drink_3">Mineral water - still or sparkling, served cold.</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="barbot_prm_bebida" value="Pint of Barbot Classic beer - 15+ house tap styles">
-            <span data-translate="barbot_std_drink_4">1 pint of Barbot Classic beer - more than 15 house styles on tap.</span>
-          </label>
-        </li>
-      </ul>
-    </div>
-
-    <p class="barbot-popup-hint barbot-popup-beer-note" data-translate="barbot_table_reserved_web_note">
+<div aria-labelledby="barbotPopupTitle" aria-modal="true" class="popup-box popup-box--barbot" role="dialog">
+<button aria-label="Close" class="close-x" id="closeBarbot" type="button">✕</button>
+<p><strong class="popup-title" data-translate="barbot_popup_title" id="barbotPopupTitle">Build your menu at Barbot</strong></p>
+<div class="bruma-tier-wrap">
+<p class="bruma-tier-heading" data-translate="barbot_tier_heading">Choose your menu</p>
+<label class="bruma-tier-option">
+<input checked="" name="barbotMenuTier" type="radio" value="standard"/>
+<span class="bruma-tier-option-text">
+<span data-translate="barbot_tier_classic_label">Classic</span>
+<span>-</span>
+<span class="bruma-price-new" data-translate="barbot_tier_classic_price">USD 34 per guest</span>
+</span>
+</label>
+<label class="bruma-tier-option">
+<input name="barbotMenuTier" type="radio" value="premium"/>
+<span class="bruma-tier-option-text">
+<span data-translate="barbot_tier_premium_label">Premium</span>
+<span>-</span>
+<span class="bruma-price-new" data-translate="barbot_tier_premium_price">USD 40 per guest</span>
+</span>
+</label>
+</div>
+<div class="bruma-menu-panel" id="barbotStandardMenu">
+<p><strong data-translate="barbot_choice_entrada">Starter</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input checked="" name="barbot_std_entrada" type="radio" value="Beef or provolone and onion empanada"/>
+<span data-translate="barbot_std_entrada_1">Beef or provolone &amp; onion empanada - golden pastry, slow-cooked filling, classic brewpub starter.</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="barbot_choice_principal">Main course</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="barbot_std_principal" type="radio" value="Chorizos a la Malta Barbot"/>
+<span data-translate="barbot_std_main_1">Chorizos a la Malta Barbot - house sausages braised in Barbot malta beer with onions and rustic garnish.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_std_principal" type="radio" value="Uruguayan Chivito Barbot"/>
+<span data-translate="barbot_std_main_2">Uruguayan Chivito Barbot - beef, ham, mozzarella, fried egg, lettuce and tomato on house bread with fries.</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="barbot_choice_postre">Dessert</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="barbot_std_postre" type="radio" value="Two crepes with dulce de leche"/>
+<span data-translate="barbot_std_dessert_1">Two crepes with dulce de leche - thin warm crepes, generous caramel spread.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_std_postre" type="radio" value="One crepe with dulce de leche and ice cream scoop"/>
+<span data-translate="barbot_std_dessert_2">One crepe with dulce de leche + ice cream scoop - crepe, caramel and a ball of ice cream.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_std_postre" type="radio" value="Homemade flan with dulce de leche"/>
+<span data-translate="barbot_std_dessert_3">Homemade flan with dulce de leche - creamy baked custard with caramel sauce.</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="barbot_choice_bebida">Drink</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="barbot_std_bebida" type="radio" value="Pint of Barbot Classic beer"/>
+<span data-translate="barbot_std_drink_1">Pint of Barbot Classic beer - flagship lager-style house brew from the tap.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_std_bebida" type="radio" value="Coca-Cola line soft drink"/>
+<span data-translate="barbot_std_drink_2">Coca-Cola line soft drink - chilled soda (Coca-Cola family).</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_std_bebida" type="radio" value="Mineral water"/>
+<span data-translate="barbot_std_drink_3">Mineral water - still or sparkling, served cold.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_std_bebida" type="radio" value="Pint of Barbot Classic beer - 15+ house tap styles"/>
+<span data-translate="barbot_std_drink_4">1 pint of Barbot Classic beer - more than 15 house styles on tap.</span>
+</label>
+</li>
+</ul>
+</div>
+<div class="bruma-menu-panel" hidden="" id="barbotPremiumMenu">
+<p><strong data-translate="barbot_choice_entrada">Starter</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="barbot_prm_entrada" type="radio" value="Two beef and/or provolone and onion empanadas"/>
+<span data-translate="barbot_prm_entrada_1">Two beef and/or provolone &amp; onion empanadas - pair of golden empanadas, mix and match fillings.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_entrada" type="radio" value="Homemade cured meats board"/>
+<span data-translate="barbot_prm_entrada_2">Homemade cured meats board - artisan charcuterie, pickles and bread for sharing.</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="barbot_choice_principal">Main course</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="barbot_prm_principal" type="radio" value="Barbot braised pork shoulder"/>
+<span data-translate="barbot_prm_main_1">Barbot braised pork shoulder - slow-braised bondiola until tender, finished with house beer glaze.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_principal" type="radio" value="Uruguayan Chivito Barbot"/>
+<span data-translate="barbot_prm_main_2">Uruguayan Chivito Barbot - beef, ham, mozzarella, fried egg, lettuce and tomato on house bread with fries.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_principal" type="radio" value="Mushroom risotto"/>
+<span data-translate="barbot_prm_main_3">Mushroom risotto - creamy arborio rice, seasonal mushrooms, parmesan and herbs.</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="barbot_choice_postre">Dessert</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="barbot_prm_postre" type="radio" value="Two crepes with dulce de leche"/>
+<span data-translate="barbot_std_dessert_1">Two crepes with dulce de leche - thin warm crepes, generous caramel spread.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_postre" type="radio" value="One crepe with dulce de leche and ice cream scoop"/>
+<span data-translate="barbot_std_dessert_2">One crepe with dulce de leche + ice cream scoop - crepe, caramel and a ball of ice cream.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_postre" type="radio" value="Homemade flan with dulce de leche"/>
+<span data-translate="barbot_std_dessert_3">Homemade flan with dulce de leche - creamy baked custard with caramel sauce.</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="barbot_choice_bebida">Drink</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="barbot_prm_bebida" type="radio" value="Pint of Barbot Special or Strong beer"/>
+<span data-translate="barbot_prm_drink_1">Pint of Barbot Special or Strong beer - rotating special or strong ale from the tap (incl. award-winning styles).</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_bebida" type="radio" value="Coca-Cola line soft drink"/>
+<span data-translate="barbot_std_drink_2">Coca-Cola line soft drink - chilled soda (Coca-Cola family).</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_bebida" type="radio" value="Mineral water"/>
+<span data-translate="barbot_std_drink_3">Mineral water - still or sparkling, served cold.</span>
+</label>
+</li>
+<li>
+<label>
+<input name="barbot_prm_bebida" type="radio" value="Pint of Barbot Classic beer - 15+ house tap styles"/>
+<span data-translate="barbot_std_drink_4">1 pint of Barbot Classic beer - more than 15 house styles on tap.</span>
+</label>
+</li>
+</ul>
+</div>
+<p class="barbot-popup-hint barbot-popup-beer-note" data-translate="barbot_table_reserved_web_note">
       A table is reserved for you with your web purchase.
     </p>
-
-    <div class="popup-actions">
-      <button type="button" id="saveBarbotMenu" class="btn" data-translate="bruma_save_selection">Save selection</button>
-    </div>
-  </div>
+<div class="popup-actions">
+<button class="btn" data-translate="bruma_save_selection" id="saveBarbotMenu" type="button">Save selection</button>
 </div>
-
-<script src="../Home/orders.js?v=20260521prewarm"></script>
-<script src="../Home/booking-date-picker.js"></script>
+</div>
+</div>
+<script src="../Home/orders.js?v=20260522perf"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
   initExperience({
     experienceName: "Barbot Brewpub",
@@ -530,22 +491,11 @@
     }
   });
 </script>
-
-<a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
-   class="taxi-float"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Taxi">
-  <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
+<a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
+<img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
 </a>
-
-<a href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
-   class="whatsapp-float"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg>
 </a>
-
 </body>
 </html>
