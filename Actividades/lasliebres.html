@@ -1,360 +1,219 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta charset="UTF-8">
-  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
-
-  <link rel="stylesheet" href="../Styles/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link as="image" fetchpriority="high" href="../Assets/images/lieb1.webp?v=20260522perf" rel="preload"/>
+<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
-
 <body class="page-actividad">
-
-    <link rel="stylesheet" href="../Styles/styles.css">
-    
-    <!-- ================= HEADER ================= -->
- <header>
-
-  <div class="logo-container">
-    <a href="../Home/index.html" class="logo">
-      <img src="../Assets/images/sacramento-logo-new.svg"
-           alt="Sacramento Adventures Logo">
-    </a>
-
-  
-  </div>
-
-  <div class="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-
-  <nav class="top-links">
-    <a class="nav-about-link" href="../Actividades/aboutus.html"
-        target="_blank"
-        rel="noopener noreferrer">
-      <svg class="nav-about-icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#nav-about"/></svg><span data-translate="about_us_nav">About Us</span>
-    </a>
-  </nav>
-
-  <div class="language-switch">
-    <button type="button" class="lang-btn active" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
-    <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
-    <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
-  </div>
-
-  <nav class="hamburger-menu">
-    <ul>
-
-      <li data-filter="fullday">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
-
-        <span data-translate="nav_cat_fullday">Full Day Experiences</span>
-
-      </li>
-
-      <li data-filter="day">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
-
-        <span data-translate="nav_cat_day">Just for a Day</span>
-
-      </li>
-
-      <li data-filter="night">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
-
-        <span data-translate="nav_cat_night">Just for a Night</span>
-
-      </li>
-
-      <li data-filter="tour">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
-
-        <span data-translate="nav_cat_tours">Guided Tours</span>
-
-      </li>
-
-      <li data-filter="gastronomy">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
-
-        <span data-translate="nav_cat_gastro">Gastronomy</span>
-
-      </li>
-
-      <li data-filter="nature">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
-
-        <span data-translate="nav_cat_nature">Nature and Animals</span>
-
-      </li>
-
-      <li data-filter="culture">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
-
-        <span data-translate="nav_cat_culture">Tradition & Culture</span>
-
-      </li>
-
-      <li data-filter="romantic">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
-
-        <span data-translate="nav_cat_romantic">Romantic</span>
-
-      </li>
-
-      <li data-filter="corporate">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
-
-        <span data-translate="nav_cat_corporate">Corporate Experiences</span>
-
-      </li>
-    </ul>
-  </nav>
-
+<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<!-- ================= HEADER ================= -->
+<header>
+<div class="logo-container">
+<a class="logo" href="../Home/index.html">
+<img alt="Sacramento Adventures Logo" decoding="async" src="../Assets/images/sacramento-logo-new.svg"/>
+</a>
+</div>
+<div class="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="top-links">
+<a class="nav-about-link" href="../Actividades/aboutus.html" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="nav-about-icon" focusable="false" height="18" width="18"><use href="../Assets/icons/nav-header.svg#nav-about"></use></svg><span data-translate="about_us_nav">About Us</span>
+</a>
+</nav>
+<div class="language-switch">
+<button class="lang-btn active" data-lang="en" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-us"></use></svg><span>EN</span></button>
+<button class="lang-btn" data-lang="es" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-uy"></use></svg><span>ES</span></button>
+<button class="lang-btn" data-lang="pt" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-br"></use></svg><span>PT</span></button>
+</div>
+<nav class="hamburger-menu">
+<ul>
+<li data-filter="fullday">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-fullday"></use></svg>
+<span data-translate="nav_cat_fullday">Full Day Experiences</span>
+</li>
+<li data-filter="day">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-day"></use></svg>
+<span data-translate="nav_cat_day">Just for a Day</span>
+</li>
+<li data-filter="night">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-night"></use></svg>
+<span data-translate="nav_cat_night">Just for a Night</span>
+</li>
+<li data-filter="tour">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-tours"></use></svg>
+<span data-translate="nav_cat_tours">Guided Tours</span>
+</li>
+<li data-filter="gastronomy">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-gastro"></use></svg>
+<span data-translate="nav_cat_gastro">Gastronomy</span>
+</li>
+<li data-filter="nature">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-nature"></use></svg>
+<span data-translate="nav_cat_nature">Nature and Animals</span>
+</li>
+<li data-filter="culture">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-culture"></use></svg>
+<span data-translate="nav_cat_culture">Tradition &amp; Culture</span>
+</li>
+<li data-filter="romantic">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-romantic"></use></svg>
+<span data-translate="nav_cat_romantic">Romantic</span>
+</li>
+<li data-filter="corporate">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-corporate"></use></svg>
+<span data-translate="nav_cat_corporate">Corporate Experiences</span>
+</li>
+</ul>
+</nav>
 </header>
-    
-    
-    <section
-      class="liebres-hero"
-      aria-label="Las Liebres vineyard"
-      data-translate-aria-label="liebres_hero_aria"
-    >
-      <video
-        class="liebres-hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        poster="../Assets/images/lieb1.jpg"
-      >
-        <source src="../Assets/images/lieb44.mp4" type="video/mp4">
-      </video>
-    </section>
-    
-    
-    <section class="coffee-content">
-    
-    <h2 data-translate="liebres_about_title">About this experience</h2>
-
-    <p data-translate="liebres_about_p">
+<section aria-label="Las Liebres vineyard" class="liebres-hero" data-translate-aria-label="liebres_hero_aria">
+<video autoplay="" class="liebres-hero-video" loop="" muted="" playsinline="" poster="../Assets/images/lieb1.webp?v=20260522perf" preload="metadata">
+<source src="../Assets/images/lieb44.mp4" type="video/mp4"/>
+</video>
+</section>
+<section class="coffee-content">
+<h2 data-translate="liebres_about_title">About this experience</h2>
+<p data-translate="liebres_about_p">
       You'll be welcomed by Juanma and Sabrina, who look after six horses and a young filly for your cabalgata, and their two dogs — Simón and Estrelli — who are part of the day and often tag along between stops. The cabalgata takes place in Riachuelo, on the outskirts of Colonia. After the ride, a private transfer takes you to Las Liebres for a walk through the vineyard and organic garden and a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Plan on about 3 to 4 hours for the full experience (ride, transfers, visit, and tasting).
     </p>
-    <a
-      href="https://www.instagram.com/_sacramentoadventures/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="reel-link-btn"
-      data-translate="liebres_reel_btn"
-    >
+<a class="reel-link-btn" data-translate="liebres_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
       🎥 Watch Reel on @_sacramentoadventures
     </a>
-
-    <h3 class="experience-steps-title" data-translate="liebres_steps_title">How it works</h3>
-
-    <div class="experience-steps">
-      <ul>
-        <li class="liebres-step-item">
+<h3 class="experience-steps-title" data-translate="liebres_steps_title">How it works</h3>
+<div class="experience-steps">
+<ul>
+<li class="liebres-step-item">
           🚐
           <strong data-translate="liebres_step_1_title">Private pick-up:</strong>
-          <span data-translate="liebres_step_1_desc">A private transfer collects you at your hotel or the bus terminal.</span>
-        </li>
-        <li class="liebres-step-item">
+<span data-translate="liebres_step_1_desc">A private transfer collects you at your hotel or the bus terminal.</span>
+</li>
+<li class="liebres-step-item">
           🐎
           <strong data-translate="liebres_step_2_title">Cabalgata in Riachuelo:</strong>
-          <span data-translate="liebres_step_2_desc">Guided ride in the Riachuelo countryside, outside Colonia. Juanma and Sabrina's horses and (often) Simón and Estrelli join you on the trail.</span>
-        </li>
-        <li class="liebres-step-item">
+<span data-translate="liebres_step_2_desc">Guided ride in the Riachuelo countryside, outside Colonia. Juanma and Sabrina's horses and (often) Simón and Estrelli join you on the trail.</span>
+</li>
+<li class="liebres-step-item">
           🚗
           <strong data-translate="liebres_step_3_title">Transfer to Las Liebres:</strong>
-          <span data-translate="liebres_step_3_desc">After the ride in Riachuelo, a private vehicle takes you directly to Comarca Las Liebres.</span>
-        </li>
-        <li class="liebres-step-item">
+<span data-translate="liebres_step_3_desc">After the ride in Riachuelo, a private vehicle takes you directly to Comarca Las Liebres.</span>
+</li>
+<li class="liebres-step-item">
           🍇
           <strong data-translate="liebres_step_4_title">Vineyard &amp; garden:</strong>
-          <span data-translate="liebres_step_4_desc">Guided walk through the vines and organic garden at Las Liebres.</span>
-        </li>
-        <li class="liebres-step-item">
+<span data-translate="liebres_step_4_desc">Guided walk through the vines and organic garden at Las Liebres.</span>
+</li>
+<li class="liebres-step-item">
           🍷
           <strong data-translate="liebres_step_5_title">Wine tasting:</strong>
-          <span data-translate="liebres_step_5_desc">Three wines with food pairings — confirm any dietary notes when you create your order.</span>
-        </li>
-        <li class="liebres-step-item">
+<span data-translate="liebres_step_5_desc">Three wines with food pairings — confirm any dietary notes when you create your order.</span>
+</li>
+<li class="liebres-step-item">
           🏨
           <strong data-translate="liebres_step_6_title">Return:</strong>
-          <span data-translate="liebres_step_6_desc">The same private service picks you up when you finish and drops you at your hotel or the terminal.</span>
-        </li>
-      </ul>
-    </div>
-    
-    
-    <div class="price-options">
-        <div class="price-box">
-          <h3 data-translate="liebres_price_title">USD 85 per guest + optional group guide</h3>
-          <p data-translate="liebres_price_p">
+<span data-translate="liebres_step_6_desc">The same private service picks you up when you finish and drops you at your hotel or the terminal.</span>
+</li>
+</ul>
+</div>
+<div class="price-options">
+<div class="price-box">
+<h3 data-translate="liebres_price_title">USD 85 per guest + optional group guide</h3>
+<p data-translate="liebres_price_p">
             The experience includes cabalgata in Riachuelo (outside Colonia), transfer to Las Liebres, vineyard &amp; garden visit, and three-wine tasting with pairings. Allow roughly 3 to 4 hours door-to-door. Private transport is billed by vehicle: USD 50 total for 1–4 guests (one vehicle); USD 100 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.
           </p>
-        </div>
-      </div>
-    
-    
-    <div class="coffee-includes">
-      <div class="includes-preferences">
-        <div class="includes-list">
-          <h3 data-translate="liebres_included_title">What's included</h3>
-          <ul>
-            <li data-translate="liebres_include_2">✔ Guided visit to the vineyard &amp; organic garden</li>
-            <li data-translate="liebres_include_3">✔ Three-wine tasting with seasonal kitchen pairings</li>
-            <li data-translate="liebres_include_1">✔ Guided cabalgata in Riachuelo (countryside outside Colonia)</li>
-            <li data-translate="liebres_include_4">✔ Transfers</li>
-          </ul>
-        </div>
-
-        <div class="order-start">
-          <h3 data-translate="liebres_create_title">Create your order</h3>
-          <p class="experience-availability-notice" data-translate="mision_room_availability_notice">
+</div>
+</div>
+<div class="coffee-includes">
+<div class="includes-preferences">
+<div class="includes-list">
+<h3 data-translate="liebres_included_title">What's included</h3>
+<ul>
+<li data-translate="liebres_include_2">✔ Guided visit to the vineyard &amp; organic garden</li>
+<li data-translate="liebres_include_3">✔ Three-wine tasting with seasonal kitchen pairings</li>
+<li data-translate="liebres_include_1">✔ Guided cabalgata in Riachuelo (countryside outside Colonia)</li>
+<li data-translate="liebres_include_4">✔ Transfers</li>
+</ul>
+</div>
+<div class="order-start">
+<h3 data-translate="liebres_create_title">Create your order</h3>
+<p class="experience-availability-notice" data-translate="mision_room_availability_notice">
             Please check availability with us on WhatsApp before completing your reservation.
           </p>
-          <div class="booking-visit-date-row">
-            <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
-            <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
-            <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+<div class="booking-visit-date-row">
+<label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDate" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
               Pick the day you plan to come so we can coordinate availability in advance.
             </p>
-          </div>
-          <p data-translate="liebres_create_subtitle">Choose tasting options.</p>
-
-          <button id="createMenuBtnLiebres" class="btn primary-btn" type="button" data-translate="liebres_create_btn">
+</div>
+<p data-translate="liebres_create_subtitle">Choose tasting options.</p>
+<button class="btn primary-btn" data-translate="liebres_create_btn" id="createMenuBtnLiebres" type="button">
             + Create your order
           </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="liebres-group-guide-wrap" id="liebresGroupGuideWrap" style="display: none">
-      <div class="liebres-group-guide-row">
-        <label class="liebres-guide-label">
-          <input type="checkbox" id="liebresGroupGuide" name="groupGuide" value="1">
-          <span data-translate="liebres_group_guide_cb">Include a guide for the whole group (USD 40 total)</span>
-        </label>
-        <div class="liebres-guide-help-wrap">
-          <button
-            type="button"
-            class="liebres-guide-help-btn"
-            id="liebresGroupGuideHelpBtn"
-            aria-expanded="false"
-            aria-controls="liebresGroupGuideHelpPanel"
-            data-translate-title="liebres_guide_help_btn"
-            title="What the guide does"
-          >
-            <span aria-hidden="true">ℹ️</span>
-          </button>
-          <div
-            class="liebres-guide-help-panel"
-            id="liebresGroupGuideHelpPanel"
-            role="tooltip"
-            hidden
-          >
-            <p data-translate="liebres_guide_help_p">
+</div>
+</div>
+</div>
+<div class="liebres-group-guide-wrap" id="liebresGroupGuideWrap" style="display: none">
+<div class="liebres-group-guide-row">
+<label class="liebres-guide-label">
+<input id="liebresGroupGuide" name="groupGuide" type="checkbox" value="1"/>
+<span data-translate="liebres_group_guide_cb">Include a guide for the whole group (USD 40 total)</span>
+</label>
+<div class="liebres-guide-help-wrap">
+<button aria-controls="liebresGroupGuideHelpPanel" aria-expanded="false" class="liebres-guide-help-btn" data-translate-title="liebres_guide_help_btn" id="liebresGroupGuideHelpBtn" title="What the guide does" type="button">
+<span aria-hidden="true">ℹ️</span>
+</button>
+<div class="liebres-guide-help-panel" hidden="" id="liebresGroupGuideHelpPanel" role="tooltip">
+<p data-translate="liebres_guide_help_p">
               The guide meets your group at the agreed pick-up point, accompanies you on the horseback ride (including taking photos), joins you at Las Liebres for the vineyard visit, and at the end drops you back at your starting point, hotel, or the bus terminal.
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="order-summary" id="orderSummary"></div>
-
-    <div class="experience-support-notice" role="status">
-      <p>
-        <strong data-translate="liebres_support_title">After your reservation</strong><span data-translate="liebres_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
-      </p>
-    </div>
-
-    <section class="coffee-gallery">
-
-    <h2 data-translate="liebres_gallery_title">Experience Gallery</h2>
-    
-    <div class="gallery-grid">
-
-    <img src="../Assets/images/cab1.jpg"
-         alt="Horseback riding in the countryside"
-         data-translate-alt="liebres_gal_alt_cab1">
-
-    <img src="../Assets/images/cab2.jpg"
-         alt="Horseback experience on the trail"
-         data-translate-alt="liebres_gal_alt_cab2">
-
-    <img src="../Assets/images/cab3.jpg"
-         alt="Cabalgata — part of the experience"
-         data-translate-alt="liebres_gal_alt_cab3">
-
-    <img src="../Assets/images/lieb228.jpeg"
-         alt="Las Liebres boutique restaurant in Colonia"
-         data-translate-alt="liebres_gal_alt_lieb1">
-
-    <img src="../Assets/images/lieb2.jpg"
-         alt="Wine tasting experience at Las Liebres"
-         data-translate-alt="liebres_gal_alt_lieb2">
-
-    <img src="../Assets/images/lieb3.jpg"
-         alt="Gourmet dishes at Las Liebres restaurant"
-         data-translate-alt="liebres_gal_alt_lieb3">
-
-    <img src="../Assets/images/lieb4.jpg"
-         alt="Dining atmosphere at Las Liebres"
-         data-translate-alt="liebres_gal_alt_lieb4">
-
-    <img src="../Assets/images/lieb5.jpg"
-         alt="Las Liebres dining room"
-         data-translate-alt="liebres_gal_alt_lieb5">
-
-    <img src="../Assets/images/lieb6.jpg"
-         alt="Las Liebres restaurant atmosphere"
-         data-translate-alt="liebres_gal_alt_lieb6">
-
-    <img src="../Assets/images/lieb7.jpg"
-         alt="Wine tasting at Las Liebres"
-         data-translate-alt="liebres_gal_alt_lieb7">
-
-    <img src="../Assets/images/lieb22.jpg"
-         alt="Las Liebres restaurant detail"
-         data-translate-alt="liebres_gal_alt_lieb22">
-
-    <img src="../Assets/images/lieb23.jpg"
-         alt="Las Liebres dining experience"
-         data-translate-alt="liebres_gal_alt_lieb23">
-    
-    </div>
-    
-    </section>
+</div>
+</div>
+</div>
+</div>
+<div class="order-summary" id="orderSummary"></div>
+<div class="experience-support-notice" role="status">
+<p>
+<strong data-translate="liebres_support_title">After your reservation</strong><span data-translate="liebres_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+</p>
+</div>
+<section class="coffee-gallery">
+<h2 data-translate="liebres_gallery_title">Experience Gallery</h2>
+<div class="gallery-grid">
+<img alt="Horseback riding in the countryside" data-translate-alt="liebres_gal_alt_cab1" decoding="async" height="220" loading="lazy" src="../Assets/images/cab1.webp" width="1200"/>
+<img alt="Horseback experience on the trail" data-translate-alt="liebres_gal_alt_cab2" decoding="async" height="220" loading="lazy" src="../Assets/images/cab2.webp" width="1200"/>
+<img alt="Cabalgata — part of the experience" data-translate-alt="liebres_gal_alt_cab3" decoding="async" height="220" loading="lazy" src="../Assets/images/cab3.webp" width="1200"/>
+<img alt="Las Liebres boutique restaurant in Colonia" data-translate-alt="liebres_gal_alt_lieb1" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb228.webp" width="1200"/>
+<img alt="Wine tasting experience at Las Liebres" data-translate-alt="liebres_gal_alt_lieb2" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2.webp" width="1200"/>
+<img alt="Gourmet dishes at Las Liebres restaurant" data-translate-alt="liebres_gal_alt_lieb3" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb3.webp" width="1200"/>
+<img alt="Dining atmosphere at Las Liebres" data-translate-alt="liebres_gal_alt_lieb4" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb4.webp" width="1200"/>
+<img alt="Las Liebres dining room" data-translate-alt="liebres_gal_alt_lieb5" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb5.webp" width="1200"/>
+<img alt="Las Liebres restaurant atmosphere" data-translate-alt="liebres_gal_alt_lieb6" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb6.webp" width="1200"/>
+<img alt="Wine tasting at Las Liebres" data-translate-alt="liebres_gal_alt_lieb7" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb7.webp" width="1200"/>
+<img alt="Las Liebres restaurant detail" data-translate-alt="liebres_gal_alt_lieb22" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb22.webp" width="1200"/>
+<img alt="Las Liebres dining experience" data-translate-alt="liebres_gal_alt_lieb23" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb23.webp" width="1200"/>
+</div>
+</section>
 <div class="coffee-actions">
-
-    <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">
+<a class="btn" data-translate="book_btn" href="#" id="bookNowBottom">
     Reserve
     </a>
-
-    <a href="../Home/index.html" class="btn secondary" data-translate="liebres_back_home">
+<a class="btn secondary" data-translate="liebres_back_home" href="../Home/index.html">
     Back to Home
     </a>
-
-    </div>
-    
-    </section>
-    <script src="../Home/language-init.js?v=20260516lang"></script>
-<script src="../Home/index.js?v=20260510icons"></script>
-    <script src="../Home/orders.js?v=20260521prewarm"></script>
-    <script src="../Home/booking-date-picker.js"></script>
-    <script>
+</div>
+</section>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260522perf"></script>
+<script src="../Home/orders.js?v=20260522perf"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
+<script>
       initExperience({
         experienceName: "Wine tasting at Las Liebres (horseback + vineyard)",
         experienceNameKey: "liebres_experience_name",
@@ -410,7 +269,7 @@
         }
       });
     </script>
-    <script>
+<script>
       (function () {
         function initLiebresGuideHelp() {
           const btn = document.getElementById("liebresGroupGuideHelpBtn");
@@ -451,117 +310,86 @@
         }
       })();
     </script>
-
-    <div class="popup-overlay" id="popupLiebres" aria-hidden="true">
-      <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="liebresPopupTitle">
-        <button class="close-x" id="closeLiebres" type="button">✕</button>
-
-        <p>
-          <strong class="popup-title" id="liebresPopupTitle" data-translate="liebres_popup_title">
+<div aria-hidden="true" class="popup-overlay" id="popupLiebres">
+<div aria-labelledby="liebresPopupTitle" aria-modal="true" class="popup-box" role="dialog">
+<button class="close-x" id="closeLiebres" type="button">✕</button>
+<p>
+<strong class="popup-title" data-translate="liebres_popup_title" id="liebresPopupTitle">
             Your ride, tasting &amp; preferences
           </strong>
-        </p>
-
-        <p class="liebres-horse-times-title">
-          <strong data-translate="liebres_popup_departure_title">Departure to Las Liebres</strong>
-        </p>
-        <div class="liebres-horse-times-wrap liebres-departure-wrap">
-          <p class="liebres-horse-times-note">
-            <strong data-translate="liebres_popup_departure_time">11hs, private pick-up from your hotel or the bus terminal</strong>
-          </p>
-        </div>
-
-        <p>
-          <strong data-translate="liebres_popup_tasting_strong">Tasting</strong>
-          <small data-translate="liebres_popup_tasting_note">(same price — pick one pairing style)</small>
-        </p>
-        <ul class="popup-list">
-          <li>
-            <label>
-              <input type="radio" name="main" value="Three wines — seasonal kitchen pairings (standard)">
-              <span data-translate="liebres_main_1">Three wines — seasonal kitchen pairings (standard)</span>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="main" value="Three wines — vegetarian pairings">
-              <span data-translate="liebres_main_2">Three wines — vegetarian pairings</span>
-            </label>
-          </li>
-        </ul>
-
-        <p>
-          <strong data-translate="liebres_popup_wine_types_title">Includes:</strong>
-        </p>
-        <ul class="popup-list liebres-popup-info-list">
-          <li>
-            <span data-translate="liebres_popup_wine_type_1">Blanco Las Liebres Blanc de blancs</span>
-          </li>
-          <li>
-            <span data-translate="liebres_popup_wine_type_2">Blend Lebrato</span>
-          </li>
-          <li>
-            <span data-translate="liebres_popup_wine_type_3">Tannat El Legado</span>
-          </li>
-        </ul>
-
-        <div class="liebres-horse-times-wrap">
-          <p class="liebres-horse-times-title">
-            <strong data-translate="liebres_popup_horseback_times_title">Horseback in Riachuelo</strong>
-          </p>
-          <ul class="liebres-horse-times-flow-list">
-            <li data-translate="liebres_popup_horseback_flow_1">
+</p>
+<p class="liebres-horse-times-title">
+<strong data-translate="liebres_popup_departure_title">Departure to Las Liebres</strong>
+</p>
+<div class="liebres-horse-times-wrap liebres-departure-wrap">
+<p class="liebres-horse-times-note">
+<strong data-translate="liebres_popup_departure_time">11hs, private pick-up from your hotel or the bus terminal</strong>
+</p>
+</div>
+<p>
+<strong data-translate="liebres_popup_tasting_strong">Tasting</strong>
+<small data-translate="liebres_popup_tasting_note">(same price — pick one pairing style)</small>
+</p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="main" type="radio" value="Three wines — seasonal kitchen pairings (standard)"/>
+<span data-translate="liebres_main_1">Three wines — seasonal kitchen pairings (standard)</span>
+</label>
+</li>
+<li>
+<label>
+<input name="main" type="radio" value="Three wines — vegetarian pairings"/>
+<span data-translate="liebres_main_2">Three wines — vegetarian pairings</span>
+</label>
+</li>
+</ul>
+<p>
+<strong data-translate="liebres_popup_wine_types_title">Includes:</strong>
+</p>
+<ul class="popup-list liebres-popup-info-list">
+<li>
+<span data-translate="liebres_popup_wine_type_1">Blanco Las Liebres Blanc de blancs</span>
+</li>
+<li>
+<span data-translate="liebres_popup_wine_type_2">Blend Lebrato</span>
+</li>
+<li>
+<span data-translate="liebres_popup_wine_type_3">Tannat El Legado</span>
+</li>
+</ul>
+<div class="liebres-horse-times-wrap">
+<p class="liebres-horse-times-title">
+<strong data-translate="liebres_popup_horseback_times_title">Horseback in Riachuelo</strong>
+</p>
+<ul class="liebres-horse-times-flow-list">
+<li data-translate="liebres_popup_horseback_flow_1">
               We pick you up at Las Liebres at 13hs and take you to Riachuelo.
             </li>
-            <li data-translate="liebres_popup_horseback_flow_2">Horseback ride lasts 1hr.</li>
-            <li data-translate="liebres_popup_horseback_flow_3">
+<li data-translate="liebres_popup_horseback_flow_2">Horseback ride lasts 1hr.</li>
+<li data-translate="liebres_popup_horseback_flow_3">
               When you finish, we take you back to your hotel or downtown.
             </li>
-          </ul>
-          <input type="radio" name="liebresHorseTime" value="13:00" checked hidden>
-        </div>
-
-        <input
-          type="radio"
-          name="starter"
-          value="Riachuelo — guided countryside trail (~1 hr)"
-          data-legacy-values="Guided ride — countryside trail (~45 min),Guided ride — countryside trail (~1 hr)"
-          checked
-          hidden
-        >
-
-        <div class="popup-actions">
-          <button id="saveMenu" class="btn" type="button" data-translate="save_selection">Save selection</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="lightbox" id="lightbox">
-  
-      <span class="close-lightbox" id="closeLightbox">✕</span>
-    
-      <button class="lightbox-btn prev" id="prevBtn">‹</button>
-    
-      <img class="lightbox-img" id="lightboxImg">
-    
-      <button class="lightbox-btn next" id="nextBtn">›</button>
-    
-    </div>
-    
-    <a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
-       class="taxi-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Taxi">
-      <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
-    </a>
-
-    <a href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
-       class="whatsapp-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="WhatsApp">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
-    </a>
-
+</ul>
+<input checked="" hidden="" name="liebresHorseTime" type="radio" value="13:00"/>
+</div>
+<input checked="" data-legacy-values="Guided ride — countryside trail (~45 min),Guided ride — countryside trail (~1 hr)" hidden="" name="starter" type="radio" value="Riachuelo — guided countryside trail (~1 hr)"/>
+<div class="popup-actions">
+<button class="btn" data-translate="save_selection" id="saveMenu" type="button">Save selection</button>
+</div>
+</div>
+</div>
+<div class="lightbox" id="lightbox">
+<span class="close-lightbox" id="closeLightbox">✕</span>
+<button class="lightbox-btn prev" id="prevBtn">‹</button>
+<img class="lightbox-img" decoding="async" id="lightboxImg"/>
+<button class="lightbox-btn next" id="nextBtn">›</button>
+</div>
+<a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
+<img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
+</a>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg>
+</a>
 </body>
+</html>

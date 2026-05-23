@@ -1,0 +1,19 @@
+{
+  "assets_folder_mb_before_approx": 274,
+  "assets_folder_mb_after": 120.4,
+  "raster_processed_mb_before": 228.6,
+  "webp_delivery_mb": 32.0,
+  "jpeg_fallback_mb": 42.5,
+  "mp4_untouched_mb": 44.1,
+  "files_webp": 219,
+  "files_processed": 212,
+  "files_skipped": 22,
+  "reference_files_updated": 35,
+  "criteria": {
+    "hero_max_width": 1920,
+    "card_gallery_max_width": 1200,
+    "team_max_width": 960,
+    "jpeg_quality": 86,
+    "webp_quality": 82
+  }
+}

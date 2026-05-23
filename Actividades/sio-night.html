@@ -1,383 +1,271 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta charset="UTF-8">
-  <title data-translate="mision_sio_doc_title">La Misión + SIO Night Experience</title>
-  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
-
-  <link rel="stylesheet" href="../Styles/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title data-translate="mision_sio_doc_title">La Misión + SIO Night Experience</title>
+<link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
-
 <body class="night-page page-actividad sio-page">
-
 <!-- ================= HEADER ================= -->
- <header>
-
-  <div class="logo-container">
-    <a href="../Home/index.html" class="logo">
-      <img src="../Assets/images/sacramento-logo-new.svg"
-           alt="Sacramento Adventures Logo">
-    </a>
-
-  
-  </div>
-
-  <div class="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-
-  <nav class="top-links">
-    <a class="nav-about-link" href="../Actividades/aboutus.html"
-        target="_blank"
-        rel="noopener noreferrer">
-      <svg class="nav-about-icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#nav-about"/></svg><span data-translate="about_us_nav">About Us</span>
-    </a>
-  </nav>
-
-  <div class="language-switch">
-    <button type="button" class="lang-btn active" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
-    <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
-    <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
-  </div>
-
-  <nav class="hamburger-menu">
-    <ul>
-
-      <li data-filter="fullday">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
-
-        <span data-translate="nav_cat_fullday">Full Day Experiences</span>
-
-      </li>
-
-      <li data-filter="day">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
-
-        <span data-translate="nav_cat_day">Just for a Day</span>
-
-      </li>
-
-      <li data-filter="night">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
-
-        <span data-translate="nav_cat_night">Just for a Night</span>
-
-      </li>
-
-      <li data-filter="tour">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
-
-        <span data-translate="nav_cat_tours">Guided Tours</span>
-
-      </li>
-
-      <li data-filter="gastronomy">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
-
-        <span data-translate="nav_cat_gastro">Gastronomy</span>
-
-      </li>
-
-      <li data-filter="nature">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
-
-        <span data-translate="nav_cat_nature">Nature and Animals</span>
-
-      </li>
-
-      <li data-filter="culture">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
-
-        <span data-translate="nav_cat_culture">Tradition & Culture</span>
-
-      </li>
-
-      <li data-filter="romantic">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
-
-        <span data-translate="nav_cat_romantic">Romantic</span>
-
-      </li>
-
-      <li data-filter="corporate">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
-
-        <span data-translate="nav_cat_corporate">Corporate Experiences</span>
-
-      </li>
-    </ul>
-  </nav>
-
+<header>
+<div class="logo-container">
+<a class="logo" href="../Home/index.html">
+<img alt="Sacramento Adventures Logo" decoding="async" src="../Assets/images/sacramento-logo-new.svg"/>
+</a>
+</div>
+<div class="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="top-links">
+<a class="nav-about-link" href="../Actividades/aboutus.html" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="nav-about-icon" focusable="false" height="18" width="18"><use href="../Assets/icons/nav-header.svg#nav-about"></use></svg><span data-translate="about_us_nav">About Us</span>
+</a>
+</nav>
+<div class="language-switch">
+<button class="lang-btn active" data-lang="en" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-us"></use></svg><span>EN</span></button>
+<button class="lang-btn" data-lang="es" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-uy"></use></svg><span>ES</span></button>
+<button class="lang-btn" data-lang="pt" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-br"></use></svg><span>PT</span></button>
+</div>
+<nav class="hamburger-menu">
+<ul>
+<li data-filter="fullday">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-fullday"></use></svg>
+<span data-translate="nav_cat_fullday">Full Day Experiences</span>
+</li>
+<li data-filter="day">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-day"></use></svg>
+<span data-translate="nav_cat_day">Just for a Day</span>
+</li>
+<li data-filter="night">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-night"></use></svg>
+<span data-translate="nav_cat_night">Just for a Night</span>
+</li>
+<li data-filter="tour">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-tours"></use></svg>
+<span data-translate="nav_cat_tours">Guided Tours</span>
+</li>
+<li data-filter="gastronomy">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-gastro"></use></svg>
+<span data-translate="nav_cat_gastro">Gastronomy</span>
+</li>
+<li data-filter="nature">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-nature"></use></svg>
+<span data-translate="nav_cat_nature">Nature and Animals</span>
+</li>
+<li data-filter="culture">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-culture"></use></svg>
+<span data-translate="nav_cat_culture">Tradition &amp; Culture</span>
+</li>
+<li data-filter="romantic">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-romantic"></use></svg>
+<span data-translate="nav_cat_romantic">Romantic</span>
+</li>
+<li data-filter="corporate">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-corporate"></use></svg>
+<span data-translate="nav_cat_corporate">Corporate Experiences</span>
+</li>
+</ul>
+</nav>
 </header>
-
-
 <!-- ================= HERO ================= -->
 <section class="mision-night-hero sio-night-hero">
-
-  <div class="discount-badge mision-hero-gift-badge" data-translate="mision_hero_gift_badge">Free walking tour</div>
-
-  <h1 data-translate="mision_sio_hero_title">🏛 🍣 La Misión + SIO Night Experience</h1>
-
+<div class="discount-badge mision-hero-gift-badge" data-translate="mision_hero_gift_badge">Free walking tour</div>
+<h1 data-translate="mision_sio_hero_title">🏛 🍣 La Misión + SIO Night Experience</h1>
 </section>
-
-
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
-
-  <h2 data-translate="bruma_about_title">About this experience</h2>
-
-  <p data-translate="mision_sio_about_p">
+<h2 data-translate="bruma_about_title">About this experience</h2>
+<p data-translate="mision_sio_about_p">
     Step back in time with a unique overnight stay in Colonia's historic quarter at La Misión, a charming boutique posada in front of Plaza Mayor, where Mercedes will personally welcome you and prepare a warm homemade breakfast. At the entrance, the hydrangeas planted by her grandmother tell a story that has been part of the house for generations. Enjoy SIO's Special Night sushi menu - a refined tasting experience in one of Colonia's most celebrated dining rooms. Complete your stay with a guided walking tour through the city's most iconic streets.
   </p>
-
-  <h3 class="experience-steps-title" data-translate="mision_how_it_works_title">How it works</h3>
-
-  <div class="experience-steps">
-    <ul>
-
-      <li>
+<h3 class="experience-steps-title" data-translate="mision_how_it_works_title">How it works</h3>
+<div class="experience-steps">
+<ul>
+<li>
         🏛 <strong><span data-translate="mision_step_1_title">Arrival at La Misión:</span></strong><span data-translate="mision_step_1_text"> Check in directly at your posada in the historic district.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         🍣 <strong><span data-translate="mision_sio_step_2_title">Dinner at SIO:</span></strong><span data-translate="mision_sio_step_2_text"> Enjoy the Special Night menu (Especial Trufado, roll, drink, dessert) at SIO - a short walk from your posada.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         🛏 <strong><span data-translate="mision_step_3_title">Overnight stay:</span></strong><span data-translate="mision_step_3_text"> Relax in a colonial-style room surrounded by history.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         ☕ <strong><span data-translate="mision_step_4_title">Breakfast included:</span></strong><span data-translate="mision_step_4_text"> Start your morning with a personalized breakfast.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         🎁 <strong><span data-translate="mision_step_5_title">Guided walking tour:</span></strong><span data-translate="mision_step_5_text"> Discover Colonia with a local guide.</span>
-      </li>
-
-    </ul>
-  </div>
-
-  <!-- PRICE -->
-  <div class="price-box">
-    <p class="mision-price-room-label">
-      <strong><span data-translate="mision_price_room_label">Room cost:</span></strong>
-    </p>
-    <h3 data-translate="mision_price_room_line">Single & Double USD 115 · Triple USD 155</h3>
-  </div>
-
-  <div class="mision-room-booking-card">
-    <div class="booking-visit-date-row mision-visit-date-in-card">
-      <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
-      <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
-      <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+</li>
+</ul>
+</div>
+<!-- PRICE -->
+<div class="price-box">
+<p class="mision-price-room-label">
+<strong><span data-translate="mision_price_room_label">Room cost:</span></strong>
+</p>
+<h3 data-translate="mision_price_room_line">Single &amp; Double USD 115 · Triple USD 155</h3>
+</div>
+<div class="mision-room-booking-card">
+<div class="booking-visit-date-row mision-visit-date-in-card">
+<label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDate" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
         Pick the day you plan to come so we can coordinate availability in advance.
       </p>
-    </div>
-    <div id="sioNightRoomBooking" class="order-start room-booking-host mision-room-booking-host" data-translate-aria-label="mision_room_booking_aria" aria-label="Room selection"></div>
-  </div>
-
-  <div class="price-box mision-price-menu-box">
-    <p class="mision-price-room-label">
-      <strong><span data-translate="mision_price_menu_label">Menu cost:</span></strong>
-    </p>
-    <h3 data-translate="mision_sio_price_menu">Special Night menu · USD 70 per guest</h3>
-  </div>
-
-  <div class="coffee-includes">
-
-    <div class="includes-preferences">
-
-      <!-- IZQUIERDA -->
-      <div class="includes-list">
-        <h3 data-translate="bruma_included_title">What's included</h3>
-        <ul>
-          <li data-translate="mision_sio_include_1">✔ Dinner at SIO (Special Night menu)</li>
-          <li data-translate="mision_include_2">✔ Overnight stay at La Misión</li>
-          <li data-translate="mision_include_3">✔ Breakfast included</li>
-          <li data-translate="mision_include_4">✔ Guided walking tour</li>
-          <li data-translate="mision_include_5">✔ Late checkout</li>
-          <li><strong data-translate="mision_include_6">🚶 All experiences within walking distance</strong></li>
-        </ul>
-      </div>
-
-       <!-- DERECHA (SIO Special Night menu) -->
-      <div class="order-start">
-        <h3 data-translate="sio_booking_block_title">Book your Special Night menu</h3>
-        <p data-translate="orders_room_summary_hint">Create one menu per guest in the order summary below.</p>
-
-        <button type="button" id="openSioSpecialMenuBtn" class="btn primary-btn" data-translate="sio_special_menu_btn">
+</div>
+<div aria-label="Room selection" class="order-start room-booking-host mision-room-booking-host" data-translate-aria-label="mision_room_booking_aria" id="sioNightRoomBooking"></div>
+</div>
+<div class="price-box mision-price-menu-box">
+<p class="mision-price-room-label">
+<strong><span data-translate="mision_price_menu_label">Menu cost:</span></strong>
+</p>
+<h3 data-translate="mision_sio_price_menu">Special Night menu · USD 70 per guest</h3>
+</div>
+<div class="coffee-includes">
+<div class="includes-preferences">
+<!-- IZQUIERDA -->
+<div class="includes-list">
+<h3 data-translate="bruma_included_title">What's included</h3>
+<ul>
+<li data-translate="mision_sio_include_1">✔ Dinner at SIO (Special Night menu)</li>
+<li data-translate="mision_include_2">✔ Overnight stay at La Misión</li>
+<li data-translate="mision_include_3">✔ Breakfast included</li>
+<li data-translate="mision_include_4">✔ Guided walking tour</li>
+<li data-translate="mision_include_5">✔ Late checkout</li>
+<li><strong data-translate="mision_include_6">🚶 All experiences within walking distance</strong></li>
+</ul>
+</div>
+<!-- DERECHA (SIO Special Night menu) -->
+<div class="order-start">
+<h3 data-translate="sio_booking_block_title">Book your Special Night menu</h3>
+<p data-translate="orders_room_summary_hint">Create one menu per guest in the order summary below.</p>
+<button class="btn primary-btn" data-translate="sio_special_menu_btn" id="openSioSpecialMenuBtn" type="button">
           View Special Menu
         </button>
-      </div>
-
-  </div>
 </div>
-
+</div>
+</div>
 <div class="order-summary" id="sioNightOrderSummary"></div>
-
 <div class="experience-support-notice" role="status">
-  <p>
-    <strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
-  </p>
+<p>
+<strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+</p>
 </div>
-
-  <div class="all-services">
-
-    <details>
-      <summary data-translate="mision_services_summary">✨ View all services</summary>
-  
-      <div class="services-content">
-  
-        <div class="services-grid">
-  
-          <!-- COLUMNA 1 -->
-          <div>
-            <h4 data-translate="mision_services_highlight_title">Highlighted services</h4>
-            <p data-translate="mision_svc_wifi_lobby">📶 Wi-Fi in lobby</p>
-            <p data-translate="mision_svc_wifi_room">📶 Wi-Fi in room</p>
-            <p data-translate="mision_svc_pet">🐾 Pet friendly</p>
-        
-  
-            <h4 data-translate="mision_hotel_services_title">Hotel services</h4>
-            <ul>
-              <li data-translate="mision_hotel_svc_1">Temperature control</li>
-              <li data-translate="mision_hotel_svc_2">Breakfast</li>
-              <li data-translate="mision_hotel_svc_3">24h room service</li>
-              <li data-translate="mision_hotel_svc_4">Wi-Fi</li>
-              <li data-translate="mision_hotel_svc_5">Wi-Fi in lobby</li>
-              <li data-translate="mision_hotel_svc_6">Cashless payment</li>
-              <li data-translate="mision_hotel_svc_7">Non-smoking rooms</li>
-              <li data-translate="mision_hotel_svc_8">Safety protocols</li>
-            </ul>
-          </div>
-  
-          <!-- COLUMNA 2 -->
-          <div>
-            <h4 data-translate="mision_room_amenities_title">Room amenities</h4>
-            <ul>
-              <li data-translate="mision_room_amenity_1">Air conditioning</li>
-              <li data-translate="mision_room_amenity_2">Private bathroom with shower</li>
-              <li data-translate="mision_room_amenity_3">Minibar</li>
-              <li data-translate="mision_room_amenity_4">TV</li>
-              <li data-translate="mision_room_amenity_5">Telephone</li>
-              <li data-translate="mision_room_amenity_6">Openable windows</li>
-           
-            </ul>
-          </div>
-  
-        </div>
-  
-      </div>
-  
-    </details>
-  
-  </div>
-
-  <!-- ================= GALLERY ================= -->
-  <section class="coffee-gallery">
-
-    <h2 data-translate="sio_gallery_title">Experience Gallery</h2>
-
-    <div class="gallery-grid">
-
-      <img src="../Assets/images/sio1.jpg" alt="" data-translate-alt="sio_gal_alt_1">
-      <img src="../Assets/images/sio2.jpg" alt="" data-translate-alt="sio_gal_alt_2">
-      <img src="../Assets/images/sio3.jpg" alt="" data-translate-alt="sio_gal_alt_3">
-      <img src="../Assets/images/mision1.jpg" alt="">
-      <img src="../Assets/images/mision4.jpg" alt="">
-      <img src="../Assets/images/night.jpg" alt="">
-      <img src="../Assets/images/sio5.jpg" alt="" data-translate-alt="sio_gal_alt_5">
-      <img src="../Assets/images/mision2.jpg" alt="">
-      <img src="../Assets/images/colonia.jpg" alt="">
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= ACTIONS ================= -->
-  <div class="coffee-actions">
-
-    <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">
+<div class="all-services">
+<details>
+<summary data-translate="mision_services_summary">✨ View all services</summary>
+<div class="services-content">
+<div class="services-grid">
+<!-- COLUMNA 1 -->
+<div>
+<h4 data-translate="mision_services_highlight_title">Highlighted services</h4>
+<p data-translate="mision_svc_wifi_lobby">📶 Wi-Fi in lobby</p>
+<p data-translate="mision_svc_wifi_room">📶 Wi-Fi in room</p>
+<p data-translate="mision_svc_pet">🐾 Pet friendly</p>
+<h4 data-translate="mision_hotel_services_title">Hotel services</h4>
+<ul>
+<li data-translate="mision_hotel_svc_1">Temperature control</li>
+<li data-translate="mision_hotel_svc_2">Breakfast</li>
+<li data-translate="mision_hotel_svc_3">24h room service</li>
+<li data-translate="mision_hotel_svc_4">Wi-Fi</li>
+<li data-translate="mision_hotel_svc_5">Wi-Fi in lobby</li>
+<li data-translate="mision_hotel_svc_6">Cashless payment</li>
+<li data-translate="mision_hotel_svc_7">Non-smoking rooms</li>
+<li data-translate="mision_hotel_svc_8">Safety protocols</li>
+</ul>
+</div>
+<!-- COLUMNA 2 -->
+<div>
+<h4 data-translate="mision_room_amenities_title">Room amenities</h4>
+<ul>
+<li data-translate="mision_room_amenity_1">Air conditioning</li>
+<li data-translate="mision_room_amenity_2">Private bathroom with shower</li>
+<li data-translate="mision_room_amenity_3">Minibar</li>
+<li data-translate="mision_room_amenity_4">TV</li>
+<li data-translate="mision_room_amenity_5">Telephone</li>
+<li data-translate="mision_room_amenity_6">Openable windows</li>
+</ul>
+</div>
+</div>
+</div>
+</details>
+</div>
+<!-- ================= GALLERY ================= -->
+<section class="coffee-gallery">
+<h2 data-translate="sio_gallery_title">Experience Gallery</h2>
+<div class="gallery-grid">
+<img alt="" data-translate-alt="sio_gal_alt_1" decoding="async" height="220" loading="lazy" src="../Assets/images/sio1.webp" width="1200"/>
+<img alt="" data-translate-alt="sio_gal_alt_2" decoding="async" height="220" loading="lazy" src="../Assets/images/sio2.webp" width="1200"/>
+<img alt="" data-translate-alt="sio_gal_alt_3" decoding="async" height="220" loading="lazy" src="../Assets/images/sio3.webp" width="1200"/>
+<img alt="" decoding="async" height="220" loading="lazy" src="../Assets/images/mision1.webp" width="1200"/>
+<img alt="" decoding="async" height="220" loading="lazy" src="../Assets/images/mision4.webp" width="1200"/>
+<img alt="" decoding="async" height="220" loading="lazy" src="../Assets/images/night.webp" width="1200"/>
+<img alt="" data-translate-alt="sio_gal_alt_5" decoding="async" height="220" loading="lazy" src="../Assets/images/sio5.webp" width="1200"/>
+<img alt="" decoding="async" height="220" loading="lazy" src="../Assets/images/mision2.webp" width="1200"/>
+<img alt="" decoding="async" height="220" loading="lazy" src="../Assets/images/colonia.webp" width="1200"/>
+</div>
+</section>
+<!-- ================= ACTIONS ================= -->
+<div class="coffee-actions">
+<a class="btn" data-translate="book_btn" href="#" id="bookNowBottom">
       Reserve
     </a>
-
-    <a href="../Home/index.html" class="btn secondary" data-translate="bruma_back_home">
+<a class="btn secondary" data-translate="bruma_back_home" href="../Home/index.html">
       Back to Home
     </a>
-
-  </div>
-
-</section>
-
-<script src="../Home/language-init.js?v=20260516lang"></script>
-<script src="../Home/index.js?v=20260510icons"></script>
-<script src="../Home/orders.js?v=20260521prewarm"></script>
-<script src="../Home/booking-date-picker.js"></script>
-
-<!-- ================= SIO SPECIAL NIGHT POPUP (same as sio.html) ================= -->
-<div class="popup-overlay" id="popupSioSpecial" aria-hidden="true">
-  <div class="popup-box sio-special-menu-popup" role="dialog" aria-modal="true" aria-labelledby="sioSpecialMenuTitle">
-    <button type="button" class="close-x sio-special-menu-close" id="closeSioSpecial" data-translate-aria-label="sio_special_menu_close_aria" aria-label="Close">✕</button>
-    <div class="sio-special-menu-hero">
-      <img
-        src="../Assets/images/sio10.jpg"
-        alt=""
-        class="sio-special-menu-hero__img"
-        width="960"
-        height="540"
-        decoding="async"
-      >
-      <div class="sio-special-menu-hero__scrim" aria-hidden="true"></div>
-      <p class="sio-special-menu-hero__title-wrap">
-        <strong class="popup-title sio-special-menu-hero__title" id="sioSpecialMenuTitle" data-translate="sio_special_menu_popup_title">Special Night</strong>
-      </p>
-    </div>
-    <div class="sio-special-menu-body">
-      <form id="sioSpecialMenuForm" class="sio-special-menu-form" novalidate>
-        <ul class="popup-list sio-special-menu-list">
-          <li><span class="sio-special-menu-ico" aria-hidden="true">🍄</span> <span data-translate="sio_special_menu_line_trufa">Especial Trufado (2 unidades)</span></li>
-          <li><span class="sio-special-menu-ico" aria-hidden="true">🍣</span> <span data-translate="sio_special_menu_item_roll">Roll x 10 (your choice)</span></li>
-          <li class="sio-special-menu-drink-item">
-            <span class="sio-special-menu-ico" aria-hidden="true">🥤</span>
-            <fieldset class="sio-special-menu-fieldset">
-              <legend class="sio-special-menu-legend" data-translate="sio_special_menu_drink_legend">Drink — choose one</legend>
-              <div class="sio-special-menu-drink-options">
-                <label class="sio-special-menu-radio-label">
-                  <input type="radio" name="sioSpecialDrink" value="juice">
-                  <span data-translate="sio_special_menu_drink_juice">Juice</span>
-                </label>
-                <label class="sio-special-menu-radio-label">
-                  <input type="radio" name="sioSpecialDrink" value="wine">
-                  <span data-translate="sio_special_menu_drink_wine">Glass of Deicas wine</span>
-                </label>
-              </div>
-            </fieldset>
-          </li>
-          <li><span class="sio-special-menu-ico" aria-hidden="true">🍰</span> <span data-translate="sio_special_menu_item_dessert">Dessert</span></li>
-        </ul>
-        <p class="sio-special-menu-form-error" id="sioSpecialMenuFormError" role="alert" data-translate="sio_special_menu_save_error" hidden>Please choose juice or wine.</p>
-        <div class="popup-actions sio-special-menu-popup-actions">
-          <button type="submit" class="btn" id="saveSioSpecialMenu" data-translate="save_selection">Save selection</button>
-        </div>
-      </form>
-    </div>
-  </div>
 </div>
-
+</section>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260522perf"></script>
+<script src="../Home/orders.js?v=20260522perf"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
+<!-- ================= SIO SPECIAL NIGHT POPUP (same as sio.html) ================= -->
+<div aria-hidden="true" class="popup-overlay" id="popupSioSpecial">
+<div aria-labelledby="sioSpecialMenuTitle" aria-modal="true" class="popup-box sio-special-menu-popup" role="dialog">
+<button aria-label="Close" class="close-x sio-special-menu-close" data-translate-aria-label="sio_special_menu_close_aria" id="closeSioSpecial" type="button">✕</button>
+<div class="sio-special-menu-hero">
+<img alt="" class="sio-special-menu-hero__img" decoding="async" height="540" src="../Assets/images/sio10.webp" width="960"/>
+<div aria-hidden="true" class="sio-special-menu-hero__scrim"></div>
+<p class="sio-special-menu-hero__title-wrap">
+<strong class="popup-title sio-special-menu-hero__title" data-translate="sio_special_menu_popup_title" id="sioSpecialMenuTitle">Special Night</strong>
+</p>
+</div>
+<div class="sio-special-menu-body">
+<form class="sio-special-menu-form" id="sioSpecialMenuForm" novalidate="">
+<ul class="popup-list sio-special-menu-list">
+<li><span aria-hidden="true" class="sio-special-menu-ico">🍄</span> <span data-translate="sio_special_menu_line_trufa">Especial Trufado (2 unidades)</span></li>
+<li><span aria-hidden="true" class="sio-special-menu-ico">🍣</span> <span data-translate="sio_special_menu_item_roll">Roll x 10 (your choice)</span></li>
+<li class="sio-special-menu-drink-item">
+<span aria-hidden="true" class="sio-special-menu-ico">🥤</span>
+<fieldset class="sio-special-menu-fieldset">
+<legend class="sio-special-menu-legend" data-translate="sio_special_menu_drink_legend">Drink — choose one</legend>
+<div class="sio-special-menu-drink-options">
+<label class="sio-special-menu-radio-label">
+<input name="sioSpecialDrink" type="radio" value="juice"/>
+<span data-translate="sio_special_menu_drink_juice">Juice</span>
+</label>
+<label class="sio-special-menu-radio-label">
+<input name="sioSpecialDrink" type="radio" value="wine"/>
+<span data-translate="sio_special_menu_drink_wine">Glass of Deicas wine</span>
+</label>
+</div>
+</fieldset>
+</li>
+<li><span aria-hidden="true" class="sio-special-menu-ico">🍰</span> <span data-translate="sio_special_menu_item_dessert">Dessert</span></li>
+</ul>
+<p class="sio-special-menu-form-error" data-translate="sio_special_menu_save_error" hidden="" id="sioSpecialMenuFormError" role="alert">Please choose juice or wine.</p>
+<div class="popup-actions sio-special-menu-popup-actions">
+<button class="btn" data-translate="save_selection" id="saveSioSpecialMenu" type="submit">Save selection</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 <script>
   initSioSpecialNightOrders({
     orderSummaryId: "sioNightOrderSummary",
@@ -405,36 +293,17 @@
     }
   });
 </script>
-
 <div class="lightbox" id="lightbox">
-
-    <span class="close-lightbox" id="closeLightbox">✕</span>
-  
-    <button class="lightbox-btn prev" id="prevBtn">‹</button>
-  
-    <img class="lightbox-img" id="lightboxImg">
-  
-    <button class="lightbox-btn next" id="nextBtn">›</button>
-  
+<span class="close-lightbox" id="closeLightbox">✕</span>
+<button class="lightbox-btn prev" id="prevBtn">‹</button>
+<img class="lightbox-img" decoding="async" id="lightboxImg"/>
+<button class="lightbox-btn next" id="nextBtn">›</button>
 </div>
-
-    <a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
-       class="taxi-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       data-translate-aria-label="taxi_float_aria"
-       aria-label="Taxi">
-      <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
-    </a>
-
-    <a href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
-       class="whatsapp-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       data-translate-aria-label="wa_float_aria"
-       aria-label="WhatsApp">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
-    </a>
-
+<a aria-label="Taxi" class="taxi-float" data-translate-aria-label="taxi_float_aria" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
+<img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
+</a>
+<a aria-label="WhatsApp" class="whatsapp-float" data-translate-aria-label="wa_float_aria" href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg>
+</a>
 </body>
 </html>

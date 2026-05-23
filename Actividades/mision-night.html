@@ -1,523 +1,402 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta charset="UTF-8">
-  <title>La Misión Night Experience</title>
-  <link rel="icon" href="/Assets/images/favicon.png?v=2" type="image/png">
-
-  <link rel="stylesheet" href="../Styles/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title>La Misión Night Experience</title>
+<link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
-
 <body class="night-page page-actividad">
-
 <!-- ================= HEADER ================= -->
- <header>
-
-  <div class="logo-container">
-    <a href="../Home/index.html" class="logo">
-      <img src="../Assets/images/sacramento-logo-new.svg"
-           alt="Sacramento Adventures Logo">
-    </a>
-
-  
-  </div>
-
-  <div class="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-
-  <nav class="top-links">
-    <a class="nav-about-link" href="../Actividades/aboutus.html"
-        target="_blank"
-        rel="noopener noreferrer">
-      <svg class="nav-about-icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#nav-about"/></svg><span data-translate="about_us_nav">About Us</span>
-    </a>
-  </nav>
-
-  <div class="language-switch">
-    <button type="button" class="lang-btn active" data-lang="en"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-us"/></svg><span>EN</span></button>
-    <button type="button" class="lang-btn" data-lang="es"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-uy"/></svg><span>ES</span></button>
-    <button type="button" class="lang-btn" data-lang="pt"><svg class="lang-flag-icon" width="18" height="13" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-header.svg#flag-br"/></svg><span>PT</span></button>
-  </div>
-
-  <nav class="hamburger-menu">
-    <ul>
-
-      <li data-filter="fullday">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-fullday"/></svg>
-
-        <span data-translate="nav_cat_fullday">Full Day Experiences</span>
-
-      </li>
-
-      <li data-filter="day">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-day"/></svg>
-
-        <span data-translate="nav_cat_day">Just for a Day</span>
-
-      </li>
-
-      <li data-filter="night">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-night"/></svg>
-
-        <span data-translate="nav_cat_night">Just for a Night</span>
-
-      </li>
-
-      <li data-filter="tour">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-tours"/></svg>
-
-        <span data-translate="nav_cat_tours">Guided Tours</span>
-
-      </li>
-
-      <li data-filter="gastronomy">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-gastro"/></svg>
-
-        <span data-translate="nav_cat_gastro">Gastronomy</span>
-
-      </li>
-
-      <li data-filter="nature">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-nature"/></svg>
-
-        <span data-translate="nav_cat_nature">Nature and Animals</span>
-
-      </li>
-
-      <li data-filter="culture">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-culture"/></svg>
-
-        <span data-translate="nav_cat_culture">Tradition & Culture</span>
-
-      </li>
-
-      <li data-filter="romantic">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-romantic"/></svg>
-
-        <span data-translate="nav_cat_romantic">Romantic</span>
-
-      </li>
-
-      <li data-filter="corporate">
-
-        <svg class="nav-cat-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="../Assets/icons/nav-categories.svg#nav-corporate"/></svg>
-
-        <span data-translate="nav_cat_corporate">Corporate Experiences</span>
-
-      </li>
-    </ul>
-  </nav>
-
+<header>
+<div class="logo-container">
+<a class="logo" href="../Home/index.html">
+<img alt="Sacramento Adventures Logo" decoding="async" src="../Assets/images/sacramento-logo-new.svg"/>
+</a>
+</div>
+<div class="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="top-links">
+<a class="nav-about-link" href="../Actividades/aboutus.html" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="nav-about-icon" focusable="false" height="18" width="18"><use href="../Assets/icons/nav-header.svg#nav-about"></use></svg><span data-translate="about_us_nav">About Us</span>
+</a>
+</nav>
+<div class="language-switch">
+<button class="lang-btn active" data-lang="en" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-us"></use></svg><span>EN</span></button>
+<button class="lang-btn" data-lang="es" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-uy"></use></svg><span>ES</span></button>
+<button class="lang-btn" data-lang="pt" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-br"></use></svg><span>PT</span></button>
+</div>
+<nav class="hamburger-menu">
+<ul>
+<li data-filter="fullday">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-fullday"></use></svg>
+<span data-translate="nav_cat_fullday">Full Day Experiences</span>
+</li>
+<li data-filter="day">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-day"></use></svg>
+<span data-translate="nav_cat_day">Just for a Day</span>
+</li>
+<li data-filter="night">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-night"></use></svg>
+<span data-translate="nav_cat_night">Just for a Night</span>
+</li>
+<li data-filter="tour">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-tours"></use></svg>
+<span data-translate="nav_cat_tours">Guided Tours</span>
+</li>
+<li data-filter="gastronomy">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-gastro"></use></svg>
+<span data-translate="nav_cat_gastro">Gastronomy</span>
+</li>
+<li data-filter="nature">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-nature"></use></svg>
+<span data-translate="nav_cat_nature">Nature and Animals</span>
+</li>
+<li data-filter="culture">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-culture"></use></svg>
+<span data-translate="nav_cat_culture">Tradition &amp; Culture</span>
+</li>
+<li data-filter="romantic">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-romantic"></use></svg>
+<span data-translate="nav_cat_romantic">Romantic</span>
+</li>
+<li data-filter="corporate">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-corporate"></use></svg>
+<span data-translate="nav_cat_corporate">Corporate Experiences</span>
+</li>
+</ul>
+</nav>
 </header>
-
-
 <!-- ================= HERO ================= -->
 <section class="mision-night-hero">
-
-  <div class="discount-badge mision-hero-gift-badge" data-translate="mision_hero_gift_badge">Free walking tour</div>
-
-  <h1 data-translate="mision_hero_title">🏛 🌙 La Misión Night Experience</h1>
-
+<div class="discount-badge mision-hero-gift-badge" data-translate="mision_hero_gift_badge">Free walking tour</div>
+<h1 data-translate="mision_hero_title">🏛 🌙 La Misión Night Experience</h1>
 </section>
-
-
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
-
-  <h2 data-translate="bruma_about_title">About this experience</h2>
-
-  <p>
-    <span data-translate="mision_about_p1_prefix">Step back in time with a unique overnight stay in Colonia’s historic quarter. Stay at </span><strong data-translate="mision_about_name_posada">La Misión</strong><span data-translate="mision_about_p1_mid1">, a charming boutique posada in front of Plaza Mayor, where </span><strong data-translate="mision_about_name_mercedes">Mercedes</strong><span data-translate="mision_about_p1_mid2">, the owner, will personally welcome you and prepare a warm homemade breakfast. At the entrance, the hydrangeas planted by her grandmother tell a story that has been part of the house for generations. Just steps away, enjoy an intimate dining experience at </span><strong data-translate="mision_about_name_bruma">Bruma</strong><span data-translate="mision_about_p1_mid3">, where Chefs </span><strong data-translate="mision_about_name_chef">Bruno and Marcelo</strong><span data-translate="mision_about_p1_suffix"> will personally welcome you and guide you through their cuisine. Complete your night with a guided walking tour through Colonia’s most iconic streets.</span>
-  </p>
-
-  <h3 class="experience-steps-title" data-translate="mision_how_it_works_title">How it works</h3>
-
-  <div class="experience-steps">
-    <ul>
-
-      <li>
+<h2 data-translate="bruma_about_title">About this experience</h2>
+<p>
+<span data-translate="mision_about_p1_prefix">Step back in time with a unique overnight stay in Colonia’s historic quarter. Stay at </span><strong data-translate="mision_about_name_posada">La Misión</strong><span data-translate="mision_about_p1_mid1">, a charming boutique posada in front of Plaza Mayor, where </span><strong data-translate="mision_about_name_mercedes">Mercedes</strong><span data-translate="mision_about_p1_mid2">, the owner, will personally welcome you and prepare a warm homemade breakfast. At the entrance, the hydrangeas planted by her grandmother tell a story that has been part of the house for generations. Just steps away, enjoy an intimate dining experience at </span><strong data-translate="mision_about_name_bruma">Bruma</strong><span data-translate="mision_about_p1_mid3">, where Chefs </span><strong data-translate="mision_about_name_chef">Bruno and Marcelo</strong><span data-translate="mision_about_p1_suffix"> will personally welcome you and guide you through their cuisine. Complete your night with a guided walking tour through Colonia’s most iconic streets.</span>
+</p>
+<h3 class="experience-steps-title" data-translate="mision_how_it_works_title">How it works</h3>
+<div class="experience-steps">
+<ul>
+<li>
         🏛 <strong><span data-translate="mision_step_1_title">Arrival at La Misión:</span></strong><span data-translate="mision_step_1_text"> Check in directly at your posada in the historic district.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         🍽 <strong><span data-translate="mision_step_2_title">Dinner at Bruma:</span></strong><span data-translate="mision_step_2_text"> Enjoy a curated dinner just a short walk away.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         🛏 <strong><span data-translate="mision_step_3_title">Overnight stay:</span></strong><span data-translate="mision_step_3_text"> Relax in a colonial-style room surrounded by history.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         ☕ <strong><span data-translate="mision_step_4_title">Breakfast included:</span></strong><span data-translate="mision_step_4_text"> Start your morning with a personalized breakfast.</span>
-      </li>
-
-      <li>
+</li>
+<li>
         🎁 <strong><span data-translate="mision_step_5_title">Guided walking tour:</span></strong><span data-translate="mision_step_5_text"> Discover Colonia with a local guide.</span>
-      </li>
-
-    </ul>
-  </div>
-
-  <!-- PRICE -->
-  <div class="price-box">
-    <p class="mision-price-room-label">
-      <strong><span data-translate="mision_price_room_label">Room cost:</span></strong>
-    </p>
-    <h3 data-translate="mision_price_room_line">Single & Double USD 115 · Triple USD 155</h3>
-  </div>
-
-  <div class="mision-room-booking-card">
-    <div class="booking-visit-date-row mision-visit-date-in-card">
-      <label for="bookingVisitDate" data-translate="booking_visit_date_label">Preferred visit date</label>
-      <input type="date" id="bookingVisitDate" data-booking-date-key="selectedDate" autocomplete="off" />
-      <p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+</li>
+</ul>
+</div>
+<!-- PRICE -->
+<div class="price-box">
+<p class="mision-price-room-label">
+<strong><span data-translate="mision_price_room_label">Room cost:</span></strong>
+</p>
+<h3 data-translate="mision_price_room_line">Single &amp; Double USD 115 · Triple USD 155</h3>
+</div>
+<div class="mision-room-booking-card">
+<div class="booking-visit-date-row mision-visit-date-in-card">
+<label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDate" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
         Pick the day you plan to come so we can coordinate availability in advance.
       </p>
-    </div>
-    <div id="misionRoomBooking" class="order-start room-booking-host mision-room-booking-host" data-translate-aria-label="mision_room_booking_aria" aria-label="Room selection"></div>
-  </div>
-
-  <div class="price-box mision-price-menu-box">
-    <p class="mision-price-room-label">
-      <strong><span data-translate="mision_price_menu_label">Menu cost:</span></strong>
-    </p>
-    <h3 class="bruma-promo-price">
-      <span class="bruma-promo-price-row">
-        <span class="bruma-price-tier-label" data-translate="bruma_price_standard_label">Standard</span>
-        <span class="bruma-price-old" data-translate="bruma_price_standard_original">USD 45</span>
-        <span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 35 per guest</span>
-      </span>
-      <span class="bruma-promo-price-row">
-        <span class="bruma-price-tier-label" data-translate="bruma_price_premium_label">Premium</span>
-        <span class="bruma-price-old" data-translate="bruma_price_premium_original">USD 60</span>
-        <span class="bruma-price-new" data-translate="bruma_price_premium_discount">USD 50 per guest</span>
-      </span>
-    </h3>
-  </div>
-
-  <div class="coffee-includes">
-
-    <div class="includes-preferences">
-
-      <!-- IZQUIERDA -->
-      <div class="includes-list">
-        <h3 data-translate="bruma_included_title">What's included</h3>
-        <ul>
-          <li data-translate="mision_include_1">✔ Dinner at Bruma</li>
-          <li data-translate="mision_include_2">✔ Overnight stay at La Misión</li>
-          <li data-translate="mision_include_3">✔ Breakfast included</li>
-          <li data-translate="mision_include_4">✔ Guided walking tour</li>
-          <li data-translate="mision_include_5">✔ Late checkout</li>
-          <li><strong data-translate="mision_include_6">🚶 All experiences within walking distance</strong></li>
-        </ul>
-      </div>
-
-       <!-- DERECHA (BOTÓN DE MENÚ) -->
-      <div class="order-start">
-        <h3 data-translate="bruma_create_title">Create your menu</h3>
-        <p data-translate="bruma_create_subtitle">Select standard or premium menu, then your courses and preferences</p>
-
-        <button id="createMenuBtn" class="btn primary-btn" data-translate="bruma_create_btn">
+</div>
+<div aria-label="Room selection" class="order-start room-booking-host mision-room-booking-host" data-translate-aria-label="mision_room_booking_aria" id="misionRoomBooking"></div>
+</div>
+<div class="price-box mision-price-menu-box">
+<p class="mision-price-room-label">
+<strong><span data-translate="mision_price_menu_label">Menu cost:</span></strong>
+</p>
+<h3 class="bruma-promo-price">
+<span class="bruma-promo-price-row">
+<span class="bruma-price-tier-label" data-translate="bruma_price_standard_label">Standard</span>
+<span class="bruma-price-old" data-translate="bruma_price_standard_original">USD 45</span>
+<span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 35 per guest</span>
+</span>
+<span class="bruma-promo-price-row">
+<span class="bruma-price-tier-label" data-translate="bruma_price_premium_label">Premium</span>
+<span class="bruma-price-old" data-translate="bruma_price_premium_original">USD 60</span>
+<span class="bruma-price-new" data-translate="bruma_price_premium_discount">USD 50 per guest</span>
+</span>
+</h3>
+</div>
+<div class="coffee-includes">
+<div class="includes-preferences">
+<!-- IZQUIERDA -->
+<div class="includes-list">
+<h3 data-translate="bruma_included_title">What's included</h3>
+<ul>
+<li data-translate="mision_include_1">✔ Dinner at Bruma</li>
+<li data-translate="mision_include_2">✔ Overnight stay at La Misión</li>
+<li data-translate="mision_include_3">✔ Breakfast included</li>
+<li data-translate="mision_include_4">✔ Guided walking tour</li>
+<li data-translate="mision_include_5">✔ Late checkout</li>
+<li><strong data-translate="mision_include_6">🚶 All experiences within walking distance</strong></li>
+</ul>
+</div>
+<!-- DERECHA (BOTÓN DE MENÚ) -->
+<div class="order-start">
+<h3 data-translate="bruma_create_title">Create your menu</h3>
+<p data-translate="bruma_create_subtitle">Select standard or premium menu, then your courses and preferences</p>
+<button class="btn primary-btn" data-translate="bruma_create_btn" id="createMenuBtn">
           + Create your menu
         </button>
-      </div>
-
-  </div>
 </div>
-
+</div>
+</div>
 <div class="order-summary" id="orderSummary"></div>
-
 <div class="experience-support-notice" role="status">
-  <p>
-    <strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
-  </p>
+<p>
+<strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+</p>
 </div>
-
-  <div class="all-services">
-
-    <details>
-      <summary data-translate="mision_services_summary">✨ View all services</summary>
-  
-      <div class="services-content">
-  
-        <div class="services-grid">
-  
-          <!-- COLUMNA 1 -->
-          <div>
-            <h4 data-translate="mision_services_highlight_title">Highlighted services</h4>
-            <p data-translate="mision_svc_wifi_lobby">📶 Wi-Fi in lobby</p>
-            <p data-translate="mision_svc_wifi_room">📶 Wi-Fi in room</p>
-            <p data-translate="mision_svc_pet">🐾 Pet friendly</p>
-        
-  
-            <h4 data-translate="mision_hotel_services_title">Hotel services</h4>
-            <ul>
-              <li data-translate="mision_hotel_svc_1">Temperature control</li>
-              <li data-translate="mision_hotel_svc_2">Breakfast</li>
-              <li data-translate="mision_hotel_svc_3">24h room service</li>
-              <li data-translate="mision_hotel_svc_4">Wi-Fi</li>
-              <li data-translate="mision_hotel_svc_5">Wi-Fi in lobby</li>
-              <li data-translate="mision_hotel_svc_6">Cashless payment</li>
-              <li data-translate="mision_hotel_svc_7">Non-smoking rooms</li>
-              <li data-translate="mision_hotel_svc_8">Safety protocols</li>
-            </ul>
-          </div>
-  
-          <!-- COLUMNA 2 -->
-          <div>
-            <h4 data-translate="mision_room_amenities_title">Room amenities</h4>
-            <ul>
-              <li data-translate="mision_room_amenity_1">Air conditioning</li>
-              <li data-translate="mision_room_amenity_2">Private bathroom with shower</li>
-              <li data-translate="mision_room_amenity_3">Minibar</li>
-              <li data-translate="mision_room_amenity_4">TV</li>
-              <li data-translate="mision_room_amenity_5">Telephone</li>
-              <li data-translate="mision_room_amenity_6">Openable windows</li>
-           
-            </ul>
-          </div>
-  
-        </div>
-  
-      </div>
-  
-    </details>
-  
-  </div>
-
-  <!-- ================= GALLERY ================= -->
-  <section class="coffee-gallery">
-
-    <h2 data-translate="bruma_gallery_title">Experience Gallery</h2>
-
-    <div class="gallery-grid">
-
-      <img src="../Assets/images/mision1.jpg">
-      <img src="../Assets/images/mision2.jpg">
-      <img src="../Assets/images/mision4.jpg">
-      <img src="../Assets/images/bruma3.jpg">
-      <img src="../Assets/images/bruma4.jpg">
-      <img src="../Assets/images/night.jpg">
-      <img src="../Assets/images/mision2.jpg">
-      <img src="../Assets/images/colonia.jpg">
-      <img src="../Assets/images/day2.jpg">
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= ACTIONS ================= -->
-  <div class="coffee-actions">
-
-    <a href="#" id="bookNowBottom" class="btn" data-translate="book_btn">
+<div class="all-services">
+<details>
+<summary data-translate="mision_services_summary">✨ View all services</summary>
+<div class="services-content">
+<div class="services-grid">
+<!-- COLUMNA 1 -->
+<div>
+<h4 data-translate="mision_services_highlight_title">Highlighted services</h4>
+<p data-translate="mision_svc_wifi_lobby">📶 Wi-Fi in lobby</p>
+<p data-translate="mision_svc_wifi_room">📶 Wi-Fi in room</p>
+<p data-translate="mision_svc_pet">🐾 Pet friendly</p>
+<h4 data-translate="mision_hotel_services_title">Hotel services</h4>
+<ul>
+<li data-translate="mision_hotel_svc_1">Temperature control</li>
+<li data-translate="mision_hotel_svc_2">Breakfast</li>
+<li data-translate="mision_hotel_svc_3">24h room service</li>
+<li data-translate="mision_hotel_svc_4">Wi-Fi</li>
+<li data-translate="mision_hotel_svc_5">Wi-Fi in lobby</li>
+<li data-translate="mision_hotel_svc_6">Cashless payment</li>
+<li data-translate="mision_hotel_svc_7">Non-smoking rooms</li>
+<li data-translate="mision_hotel_svc_8">Safety protocols</li>
+</ul>
+</div>
+<!-- COLUMNA 2 -->
+<div>
+<h4 data-translate="mision_room_amenities_title">Room amenities</h4>
+<ul>
+<li data-translate="mision_room_amenity_1">Air conditioning</li>
+<li data-translate="mision_room_amenity_2">Private bathroom with shower</li>
+<li data-translate="mision_room_amenity_3">Minibar</li>
+<li data-translate="mision_room_amenity_4">TV</li>
+<li data-translate="mision_room_amenity_5">Telephone</li>
+<li data-translate="mision_room_amenity_6">Openable windows</li>
+</ul>
+</div>
+</div>
+</div>
+</details>
+</div>
+<!-- ================= GALLERY ================= -->
+<section class="coffee-gallery">
+<h2 data-translate="bruma_gallery_title">Experience Gallery</h2>
+<div class="gallery-grid">
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/mision1.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/mision2.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/mision4.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/bruma3.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/bruma4.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/night.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/mision2.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/colonia.webp" width="1200"/>
+<img decoding="async" height="220" loading="lazy" src="../Assets/images/day2.webp" width="1200"/>
+</div>
+</section>
+<!-- ================= ACTIONS ================= -->
+<div class="coffee-actions">
+<a class="btn" data-translate="book_btn" href="#" id="bookNowBottom">
       Reserve
     </a>
-
-    <a href="../Home/index.html" class="btn secondary" data-translate="bruma_back_home">
+<a class="btn secondary" data-translate="bruma_back_home" href="../Home/index.html">
       Back to Home
     </a>
-
-  </div>
-
+</div>
 </section>
-
-<script src="../Home/language-init.js?v=20260516lang"></script>
-<script src="../Home/index.js?v=20260510icons"></script>
-
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260522perf"></script>
 <!-- ================= POPUP ================= -->
 <div class="popup-overlay" id="popupMision">
-  <div class="popup-box">
-
-    <button class="close-x" id="closeMision">✕</button>
-
-    <p><strong class="popup-title" data-translate="bruma_popup_title">Chef's curated menu:</strong></p>
-
-    <!-- 🔹 SELECTOR STANDARD / PREMIUM -->
-    <div class="bruma-tier-wrap">
-      <p class="bruma-tier-heading" data-translate="bruma_tier_heading">Choose your menu</p>
-
-      <label class="bruma-tier-option">
-        <input type="radio" name="misionMenuTier" value="standard" checked>
-        <span data-translate="bruma_tier_standard_option">Standard — USD 35 per guest (was USD 45)</span>
-      </label>
-
-      <label class="bruma-tier-option">
-        <input type="radio" name="misionMenuTier" value="premium">
-        <span data-translate="bruma_tier_premium_option">Premium — USD 50 per guest (was USD 60)</span>
-      </label>
-    </div>
-
-    <!-- ================= STANDARD MENU ================= -->
-    <div id="misionStandardMenu" class="bruma-menu-panel">
-
-      <!-- STARTER -->
-      <p><strong data-translate="bruma_popup_starter">Starter</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="starter" value="Empanada (cheese & onion / lamb / vegetables / bacon & cheese)">
-            <span data-translate="bruma_starter_1">Empanada (cheese & onion / lamb / vegetables / bacon & cheese)</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="starter" value="Homemade fries with brava sauce">
-            <span data-translate="bruma_starter_2">Homemade fries with brava sauce</span>
-          </label>
-        </li>
-        <li>
-          <label>
-              <input type="radio" name="starter" value="Pumpkin soup with cream and croutons">
-              <span data-translate="bruma_starter_3">Pumpkin soup with cream and croutons</span>
-            </label>
-        </li>
-      </ul>
-
-      <!-- MAIN -->
-      <p><strong data-translate="bruma_popup_main">Main Course</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="main" value="Pumpkin ravioli with sage butter and almonds">
-            <span data-translate="bruma_main_1">Pumpkin ravioli with sage butter and almonds</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="main" value="Sun-dried tomato & mushroom risotto">
-            <span data-translate="bruma_main_2">Sun-dried tomato & mushroom risotto</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="main" value="Braised pork sandwich in focaccia with cheese and caramelized onions">
-            <span data-translate="bruma_main_3">Braised pork sandwich in focaccia with cheese and caramelized onions</span>
-          </label>
-        </li>
-      </ul>
-
-      <!-- DRINK -->
-      <p><strong data-translate="bruma_popup_drink">Drink</strong></p>
-      <ul class="popup-list">
-        <li>
-          <label>
-            <input type="radio" name="drink" value="Glass of wine (red / rosé / white)">
-            <span data-translate="bruma_drink_1">Glass of wine (red / rosé / white)</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="drink" value="Water, soda or lemonade">
-            <span data-translate="bruma_drink_2">Water, soda or lemonade</span>
-          </label>
-        </li>
-      </ul>
-    </div>
-
-    <!-- ================= PREMIUM MENU ================= -->
-    <div id="misionPremiumMenu" class="bruma-menu-panel" hidden>
-
-      <p><strong data-translate="bruma_prem_platos">Plates</strong></p>
-          <ul class="popup-list">
-            <li>
-              <label>
-                <input type="radio" name="prm_starter" value="Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri">
-                <span data-translate="bruma_prem_starter_1">Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="prm_starter" value="Corvina rotolo with mussel sauce">
-                <span data-translate="bruma_prem_starter_2">Corvina rotolo with mussel sauce</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="prm_starter" value="Salmon raviolones with blue cheese sauce &amp; celery salad">
-                <span data-translate="bruma_prem_starter_3">Salmon raviolones with blue cheese sauce &amp; celery salad</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="prm_starter" value="Pumpkin ravioli with sage butter &amp; almonds">
-                <span data-translate="bruma_prem_starter_4">Pumpkin ravioli with sage butter &amp; almonds</span>
-              </label>
-            </li>
-          </ul>
-
-          <p><strong data-translate="bruma_prem_postres">Desserts</strong></p>
-          <ul class="popup-list">
-            <li>
-              <label>
-                <input type="radio" name="prm_main" value="Baked cheesecake with red berries">
-                <span data-translate="bruma_prem_main_1">Baked cheesecake with red berries</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="prm_main" value="Pavlova with pastry cream &amp; seasonal fruit">
-                <span data-translate="bruma_prem_main_2">Pavlova with pastry cream &amp; seasonal fruit</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="prm_main" value="Chocolate cake with dulce de leche &amp; English cream">
-                <span data-translate="bruma_prem_main_3">Chocolate cake with dulce de leche &amp; English cream</span>
-              </label>
-            </li>
-          </ul>
-
-          <p><strong data-translate="bruma_prem_bebidas">Drinks</strong></p>
-          <ul class="popup-list">
-            <li>
-              <label>
-                <input type="radio" name="prm_drink" value="Glass of wine (red / white / rosé)">
-                <span data-translate="bruma_prem_drink_1">Glass of wine (red / white / rosé)</span>
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" name="prm_drink" value="Water, soda or glass of lemonade">
-                <span data-translate="bruma_prem_drink_2">Water, soda or glass of lemonade</span>
-              </label>
-            </li>
-          </ul>
-    </div>
-
-    <!-- ================= PREFERENCES ================= -->
-    <div class="preferences-inside">
-      <h3 class="preferences-title">
-        <span data-translate="bruma_preferences_title">Your preferences</span>
-        <span class="help-icon" id="brumaHelp">ℹ️</span>
-      </h3>
-
-      <label><input type="checkbox" value="0% Alcohol"> 🍺 <span data-translate="bruma_pref_alcohol">0% Alcohol</span></label>
-      <label><input type="checkbox" value="Low Salt"> 🧂 <span data-translate="bruma_pref_salt">Low Salt</span></label>
-      <label><input type="checkbox" value="No spicy food"> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
-    </div>
-
-    <!-- ================= SAVE ================= -->
-    <div class="popup-actions">
-      <button id="saveMenu" class="btn" data-translate="bruma_save_selection">Save selection</button>
-    </div>
-
-  </div>
+<div class="popup-box">
+<button class="close-x" id="closeMision">✕</button>
+<p><strong class="popup-title" data-translate="bruma_popup_title">Chef's curated menu:</strong></p>
+<!-- 🔹 SELECTOR STANDARD / PREMIUM -->
+<div class="bruma-tier-wrap">
+<p class="bruma-tier-heading" data-translate="bruma_tier_heading">Choose your menu</p>
+<label class="bruma-tier-option">
+<input checked="" name="misionMenuTier" type="radio" value="standard"/>
+<span data-translate="bruma_tier_standard_option">Standard — USD 35 per guest (was USD 45)</span>
+</label>
+<label class="bruma-tier-option">
+<input name="misionMenuTier" type="radio" value="premium"/>
+<span data-translate="bruma_tier_premium_option">Premium — USD 50 per guest (was USD 60)</span>
+</label>
 </div>
-<script src="../Home/orders.js?v=20260521prewarm"></script>
-<script src="../Home/booking-date-picker.js"></script>
+<!-- ================= STANDARD MENU ================= -->
+<div class="bruma-menu-panel" id="misionStandardMenu">
+<!-- STARTER -->
+<p><strong data-translate="bruma_popup_starter">Starter</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="starter" type="radio" value="Empanada (cheese &amp; onion / lamb / vegetables / bacon &amp; cheese)"/>
+<span data-translate="bruma_starter_1">Empanada (cheese &amp; onion / lamb / vegetables / bacon &amp; cheese)</span>
+</label>
+</li>
+<li>
+<label>
+<input name="starter" type="radio" value="Homemade fries with brava sauce"/>
+<span data-translate="bruma_starter_2">Homemade fries with brava sauce</span>
+</label>
+</li>
+<li>
+<label>
+<input name="starter" type="radio" value="Pumpkin soup with cream and croutons"/>
+<span data-translate="bruma_starter_3">Pumpkin soup with cream and croutons</span>
+</label>
+</li>
+</ul>
+<!-- MAIN -->
+<p><strong data-translate="bruma_popup_main">Main Course</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="main" type="radio" value="Pumpkin ravioli with sage butter and almonds"/>
+<span data-translate="bruma_main_1">Pumpkin ravioli with sage butter and almonds</span>
+</label>
+</li>
+<li>
+<label>
+<input name="main" type="radio" value="Sun-dried tomato &amp; mushroom risotto"/>
+<span data-translate="bruma_main_2">Sun-dried tomato &amp; mushroom risotto</span>
+</label>
+</li>
+<li>
+<label>
+<input name="main" type="radio" value="Braised pork sandwich in focaccia with cheese and caramelized onions"/>
+<span data-translate="bruma_main_3">Braised pork sandwich in focaccia with cheese and caramelized onions</span>
+</label>
+</li>
+</ul>
+<!-- DRINK -->
+<p><strong data-translate="bruma_popup_drink">Drink</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="drink" type="radio" value="Glass of wine (red / rosé / white)"/>
+<span data-translate="bruma_drink_1">Glass of wine (red / rosé / white)</span>
+</label>
+</li>
+<li>
+<label>
+<input name="drink" type="radio" value="Water, soda or lemonade"/>
+<span data-translate="bruma_drink_2">Water, soda or lemonade</span>
+</label>
+</li>
+</ul>
+</div>
+<!-- ================= PREMIUM MENU ================= -->
+<div class="bruma-menu-panel" hidden="" id="misionPremiumMenu">
+<p><strong data-translate="bruma_prem_platos">Plates</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="prm_starter" type="radio" value="Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri"/>
+<span data-translate="bruma_prem_starter_1">Grilled ribeye with homemade fries, salsa criolla &amp; chimichurri</span>
+</label>
+</li>
+<li>
+<label>
+<input name="prm_starter" type="radio" value="Corvina rotolo with mussel sauce"/>
+<span data-translate="bruma_prem_starter_2">Corvina rotolo with mussel sauce</span>
+</label>
+</li>
+<li>
+<label>
+<input name="prm_starter" type="radio" value="Salmon raviolones with blue cheese sauce &amp; celery salad"/>
+<span data-translate="bruma_prem_starter_3">Salmon raviolones with blue cheese sauce &amp; celery salad</span>
+</label>
+</li>
+<li>
+<label>
+<input name="prm_starter" type="radio" value="Pumpkin ravioli with sage butter &amp; almonds"/>
+<span data-translate="bruma_prem_starter_4">Pumpkin ravioli with sage butter &amp; almonds</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="bruma_prem_postres">Desserts</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="prm_main" type="radio" value="Baked cheesecake with red berries"/>
+<span data-translate="bruma_prem_main_1">Baked cheesecake with red berries</span>
+</label>
+</li>
+<li>
+<label>
+<input name="prm_main" type="radio" value="Pavlova with pastry cream &amp; seasonal fruit"/>
+<span data-translate="bruma_prem_main_2">Pavlova with pastry cream &amp; seasonal fruit</span>
+</label>
+</li>
+<li>
+<label>
+<input name="prm_main" type="radio" value="Chocolate cake with dulce de leche &amp; English cream"/>
+<span data-translate="bruma_prem_main_3">Chocolate cake with dulce de leche &amp; English cream</span>
+</label>
+</li>
+</ul>
+<p><strong data-translate="bruma_prem_bebidas">Drinks</strong></p>
+<ul class="popup-list">
+<li>
+<label>
+<input name="prm_drink" type="radio" value="Glass of wine (red / white / rosé)"/>
+<span data-translate="bruma_prem_drink_1">Glass of wine (red / white / rosé)</span>
+</label>
+</li>
+<li>
+<label>
+<input name="prm_drink" type="radio" value="Water, soda or glass of lemonade"/>
+<span data-translate="bruma_prem_drink_2">Water, soda or glass of lemonade</span>
+</label>
+</li>
+</ul>
+</div>
+<!-- ================= PREFERENCES ================= -->
+<div class="preferences-inside">
+<h3 class="preferences-title">
+<span data-translate="bruma_preferences_title">Your preferences</span>
+<span class="help-icon" id="brumaHelp">ℹ️</span>
+</h3>
+<label><input type="checkbox" value="0% Alcohol"/> 🍺 <span data-translate="bruma_pref_alcohol">0% Alcohol</span></label>
+<label><input type="checkbox" value="Low Salt"/> 🧂 <span data-translate="bruma_pref_salt">Low Salt</span></label>
+<label><input type="checkbox" value="No spicy food"/> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
+</div>
+<!-- ================= SAVE ================= -->
+<div class="popup-actions">
+<button class="btn" data-translate="bruma_save_selection" id="saveMenu">Save selection</button>
+</div>
+</div>
+</div>
+<script src="../Home/orders.js?v=20260522perf"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
   initExperience({
 
@@ -571,36 +450,17 @@
     }
   });
 </script>
-
 <div class="lightbox" id="lightbox">
-
-    <span class="close-lightbox" id="closeLightbox">✕</span>
-  
-    <button class="lightbox-btn prev" id="prevBtn">‹</button>
-  
-    <img class="lightbox-img" id="lightboxImg">
-  
-    <button class="lightbox-btn next" id="nextBtn">›</button>
-  
+<span class="close-lightbox" id="closeLightbox">✕</span>
+<button class="lightbox-btn prev" id="prevBtn">‹</button>
+<img class="lightbox-img" decoding="async" id="lightboxImg"/>
+<button class="lightbox-btn next" id="nextBtn">›</button>
 </div>
-
-    <a href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures"
-       class="taxi-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       data-translate-aria-label="taxi_float_aria"
-       aria-label="Taxi">
-      <img src="../Assets/images/logoetaxi.jpg" alt="" width="48" height="48" decoding="async" />
-    </a>
-
-    <a href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia."
-       class="whatsapp-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       data-translate-aria-label="wa_float_aria"
-       aria-label="WhatsApp">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="34" height="34" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"/></svg>
-    </a>
-
+<a aria-label="Taxi" class="taxi-float" data-translate-aria-label="taxi_float_aria" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
+<img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
+</a>
+<a aria-label="WhatsApp" class="whatsapp-float" data-translate-aria-label="wa_float_aria" href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg>
+</a>
 </body>
 </html>
