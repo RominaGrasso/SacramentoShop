@@ -3751,6 +3751,16 @@
     text-align: center;
   }
 
+  .discount-badge.discount-badge--last-spots {
+    background: linear-gradient(135deg, #e67e22, #f5a623);
+    box-shadow: 0 6px 20px rgba(230, 126, 34, 0.45);
+    font-size: 0.88rem;
+    letter-spacing: 0.15px;
+    line-height: 1.25;
+    max-width: calc(100% - 32px);
+    text-align: center;
+  }
+
   .walking-price-free,
   .bike-price-promo {
     color: #00b955;
@@ -3759,7 +3769,8 @@
   }
 
   @media (max-width: 600px) {
-    .discount-badge.discount-badge--walking-free {
+    .discount-badge.discount-badge--walking-free,
+    .discount-badge.discount-badge--last-spots {
       font-size: 0.78rem;
       padding: 8px 14px;
     }
@@ -3777,31 +3788,6 @@
     border: 1px solid rgba(90, 70, 20, 0.22);
     box-shadow: 0 2px 8px rgba(44, 36, 22, 0.18);
     text-shadow: none;
-  }
-
-  .hero-promo {
-    background: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 0.78rem;
-    font-weight: 500;
-    padding: 8px 14px;
-    border-radius: 999px;
-    z-index: 3;
-    box-shadow: none;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: normal;
-    max-width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    justify-content: center;
-    line-height: 1.4;
-    flex: 1 1 100%;
-    margin-top: 4px;
   }
 
   .card-buttons .btn {
@@ -7646,15 +7632,6 @@
     min-width: min(14.5rem, 100%);
     align-self: center;
     padding: 10px 2.5rem;
-  }
-
-  .hero-promo {
-    width: 100%;
-    max-width: 100%;
-    border-radius: 12px;
-    padding: 8px 12px;
-    font-size: clamp(0.7rem, 3.2vw, 0.78rem);
-    flex: 0 0 auto;
   }
 
   .hero-floating-img {
