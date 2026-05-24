@@ -23,8 +23,6 @@ const translations = {
       trust_certified: "Certified guides by Uruguay Ministry of Tourism",
       trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
       trust_local_experts: "Local experts from Colonia del Sacramento",
-      hero_promo_free_walking:
-        '🎁 Free walking tour included with "Full Day" & "Just for a Night" experiences',
       hero_btn_day: "Just for a Day",
       day_page_hero_title: "☀️ Just for a Day",
       day_page_intro_heading: "Perfect daytime experiences",
@@ -338,13 +336,13 @@ const translations = {
       cabal_alert_reserve_first:
         "Please set up your experience first using Create your experience.",
       cabal_summary_edit_aria: "Edit departure time and number of guests",
-      cabal_guide_addon_label: "Include a guide for the whole group (USD 40 total)",
+      cabal_guide_addon_label: "Include a guide for the whole group (USD 25 total)",
       cabal_guide_info_aria: "More about the optional companion during your ride",
       cabal_guide_help_text:
         "The optional guide stays with your whole group to accompany you during the ride, keep everyone together, and take photos along the way. If you also have another Sacramento experience booked, they can come with you there as well. Juanma and Sabrina lead the horses, safety on the trail, and everything about the ranch and countryside — your guide is not a countryside or riding specialist and does not replace them.",
       cabal_guide_total_suffix: "guide (whole group)",
       cabal_summary_guide_label: "Companion guide",
-      cabal_summary_guide_included: "Yes (+USD 40 total for the group)",
+      cabal_summary_guide_included: "Yes (+USD 25 total for the group)",
       cabal_wa_guide_line: "Companion guide for the group (photos; next experience if booked)",
       home_mision_title:
         "Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour",
@@ -375,6 +373,7 @@ const translations = {
         "Full Day · Bullring · Colonia Letters · Historic Quarter",
       fullday_colonia_meta_complete: "Most complete experience",
       fullday_colonia_meta_cruises: "Ideal for cruises and day trips",
+      fullday_colonia_last_spots_badge: "Last spots available",
       fullday_colonia_text:
         "A complete day in Colonia with private transfer, typical lunch, and guided tours of Plaza de Toros, the Colonia letters, and the UNESCO Historic Quarter.",
       fullday_colonia_page_title: "Full Day Colonia Adventure",
@@ -1270,7 +1269,7 @@ const translations = {
         "Choose your visit date below, then add a booking and pick a departure time in the popup. Use +/− on each booking for more than one passenger at the same time.",
       sunset_boat_create_btn: "+ Add passenger or group",
       sunset_boat_group_guide_cb:
-        "Include a guide for the whole group (USD 40 total)",
+        "Include a guide for the whole group (USD 25 total)",
       sunset_boat_guide_help_btn: "What the guide does",
       sunset_boat_guide_help_p:
         "The guide meets your group at the agreed point, accompanies you on the boat experience, helps coordinate with the captain, and can assist with photos and logistics during the visit.",
@@ -1348,7 +1347,7 @@ const translations = {
       asado_boat_order_serving_standard: "Generally enough for about 2–3 people.",
       asado_boat_order_serving_premium: "Generally enough for about 4 people.",
       asado_boat_group_guide_cb:
-        "Include a guide for the whole group (USD 40 total)",
+        "Include a guide for the whole group (USD 25 total)",
       asado_boat_popup_boat_hint:
         "If this order includes boat passengers, pick a departure time. Add boat passengers with + on each order in the summary (up to 23 per time slot; use another order for a different time).",
       asado_boat_lunch_after_boat:
@@ -1430,7 +1429,7 @@ const translations = {
       guide_no: "No",
       yes_word: "Yes",
       liebres_group_guide_cb:
-        "Include a guide for the whole group (USD 40 total)",
+        "Include a guide for the whole group (USD 25 total)",
       liebres_guide_help_btn: "What the guide does",
       liebres_guide_help_p:
         "The guide meets your group at the agreed pick-up point, accompanies you on the horseback ride (including taking photos), joins you at Las Liebres for the vineyard visit, and at the end drops you back at your starting point, hotel, or the bus terminal.",
@@ -1844,8 +1843,6 @@ const translations = {
       trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
       trust_multilingual: "Tours multilingües: español, inglés y portugués",
       trust_local_experts: "Expertos locales en Colonia del Sacramento",
-      hero_promo_free_walking:
-        '🎁 Walking tour de regalo con experiencias "Día completo" y "Solo por una noche"',
       hero_btn_day: "Solo por un día",
       day_page_hero_title: "☀️ Solo por un día",
       day_page_intro_heading: "Experiencias ideales para el día",
@@ -2160,13 +2157,13 @@ const translations = {
       cabal_alert_reserve_first:
         "Primero armá tu experiencia con Creá tu experiencia.",
       cabal_summary_edit_aria: "Editar horario y cantidad de personas",
-      cabal_guide_addon_label: "Incluir guía para todo el grupo (USD 40 en total)",
+      cabal_guide_addon_label: "Incluir guía para todo el grupo (USD 25 en total)",
       cabal_guide_info_aria: "Más información sobre la guía de acompañamiento",
       cabal_guide_help_text:
         "La guía opcional acompaña a todo el grupo durante la cabalgata, ayuda a que vayan juntos y puede sacar fotos durante el paseo. Si tenés otra experiencia de Sacramento reservada, puede seguir con ustedes hasta allá. El manejo de los caballos, la seguridad en el camino y todo lo del campo y el rancho lo llevan Juanma y Sabrina; la guía no es experta en campo ni los reemplaza.",
       cabal_guide_total_suffix: "guía (grupo completo)",
       cabal_summary_guide_label: "Guía acompañante",
-      cabal_summary_guide_included: "Sí (+USD 40 en total para el grupo)",
+      cabal_summary_guide_included: "Sí (+USD 25 en total para el grupo)",
       cabal_wa_guide_line: "Guía acompañante para el grupo (fotos; otra experiencia si está reservada)",
       home_mision_title:
         "Noche histórica: La Misión, cena en Bruma y walking tour",
@@ -2197,6 +2194,7 @@ const translations = {
         "Full Day · Plaza de Toros · Letras Colonia · Barrio Histórico",
       fullday_colonia_meta_complete: "Experiencia más completa",
       fullday_colonia_meta_cruises: "Ideal para cruceros y day trips",
+      fullday_colonia_last_spots_badge: "Últimos cupos disponibles",
       fullday_colonia_text:
         "Día completo en Colonia con traslado privado, almuerzo típico y recorridos guiados por Plaza de Toros, las letras de Colonia y el Barrio Histórico UNESCO.",
       fullday_colonia_page_title: "Full Day Colonia · Aventura",
@@ -3091,7 +3089,7 @@ const translations = {
         "Elegí la fecha de visita abajo, después agregá una reserva y el horario de salida en el popup. Con +/− en cada reserva podés sumar más de un pasajero al mismo horario.",
       sunset_boat_create_btn: "+ Agregar pasajero o grupo",
       sunset_boat_group_guide_cb:
-        "Incluir guía para todo el grupo (USD 40 en total)",
+        "Incluir guía para todo el grupo (USD 25 en total)",
       sunset_boat_guide_help_btn: "Qué hace el guía",
       sunset_boat_guide_help_p:
         "El guía encuentra al grupo en el punto acordado, acompaña la experiencia en barco, ayuda a coordinar con el capitán y puede asistir con fotos y la logística durante la visita.",
@@ -3169,7 +3167,7 @@ const translations = {
       asado_boat_order_serving_standard: "En general alcanza para unas 2–3 personas.",
       asado_boat_order_serving_premium: "En general alcanza para unas 4 personas.",
       asado_boat_group_guide_cb:
-        "Incluir guía para todo el grupo (USD 40 en total)",
+        "Incluir guía para todo el grupo (USD 25 en total)",
       asado_boat_popup_boat_hint:
         "Si este pedido incluye pasajeros al barco, elegí el horario de salida. Sumá pasajeros con + en cada pedido del resumen (hasta 23 por horario; otro pedido puede usar otro horario).",
       asado_boat_lunch_after_boat:
@@ -3251,7 +3249,7 @@ const translations = {
       guide_no: "No",
       yes_word: "Sí",
       liebres_group_guide_cb:
-        "Incluir guía para todo el grupo (USD 40 en total)",
+        "Incluir guía para todo el grupo (USD 25 en total)",
       liebres_guide_help_btn: "Qué hace el guía",
       liebres_guide_help_p:
         "El guía encuentra al grupo en el punto de encuentro acordado, los acompaña en la cabalgata (incluye sacar fotos), va con ustedes a Las Liebres para la visita al viñedo y al final los deja en su punto de origen, hotel o terminal de ómnibus.",
@@ -3664,8 +3662,6 @@ const translations = {
       trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
       trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
       trust_local_experts: "Especialistas locais em Colonia del Sacramento",
-      hero_promo_free_walking:
-        '🎁 Walking tour grátis nas experiências "Dia inteiro" e "Só por uma noite"',
       hero_btn_day: "Só por um dia",
       day_page_hero_title: "☀️ Só por um dia",
       day_page_intro_heading: "Experiências perfeitas para o dia",
@@ -3979,13 +3975,13 @@ const translations = {
       cabal_alert_reserve_first:
         "Primeiro monte sua experiência com Monte sua experiência.",
       cabal_summary_edit_aria: "Editar horário e número de pessoas",
-      cabal_guide_addon_label: "Incluir guia para o grupo inteiro (USD 40 no total)",
+      cabal_guide_addon_label: "Incluir guia para o grupo inteiro (USD 25 no total)",
       cabal_guide_info_aria: "Saiba mais sobre o acompanhante opcional",
       cabal_guide_help_text:
         "O guia opcional fica com o grupo inteiro para acompanhar na cavalgada, ajudar a manter todo mundo junto e tirar fotos durante o passeio. Se você tiver outra experiência da Sacramento reservada, ele pode ir com vocês até lá. Juanma e Sabrina conduzem os cavalos, a segurança na trilha e tudo do rancho e do campo — o guia não é especialista em campo nem os substitui.",
       cabal_guide_total_suffix: "guia (grupo inteiro)",
       cabal_summary_guide_label: "Guia acompanhante",
-      cabal_summary_guide_included: "Sim (+USD 40 no total para o grupo)",
+      cabal_summary_guide_included: "Sim (+USD 25 no total para o grupo)",
       cabal_wa_guide_line: "Guia acompanhante para o grupo (fotos; próxima experiência se reservada)",
       home_mision_title:
         "Noite histórica: La Misión, jantar no Bruma e walking tour",
@@ -4016,6 +4012,7 @@ const translations = {
         "Full Day · Plaza de Toros · Letras Colonia · Barrio Histórico",
       fullday_colonia_meta_complete: "Experiência mais completa",
       fullday_colonia_meta_cruises: "Ideal para cruzeiros e day trips",
+      fullday_colonia_last_spots_badge: "Últimas vagas disponíveis",
       fullday_colonia_text:
         "Dia completo em Colonia com transfer privado, almoço típico e tours guiados pela Plaza de Toros, letras de Colonia e o Bairro Histórico UNESCO.",
       fullday_colonia_page_title: "Full Day Colonia · Aventura",
@@ -4911,7 +4908,7 @@ const translations = {
         "Escolha a data da visita abaixo, depois adicione uma reserva e o horário de saída no popup. Use +/− em cada reserva para mais de um passageiro no mesmo horário.",
       sunset_boat_create_btn: "+ Adicionar passageiro ou grupo",
       sunset_boat_group_guide_cb:
-        "Incluir guia para o grupo inteiro (USD 40 no total)",
+        "Incluir guia para o grupo inteiro (USD 25 no total)",
       sunset_boat_guide_help_btn: "O que o guia faz",
       sunset_boat_guide_help_p:
         "O guia encontra o grupo no ponto combinado, acompanha a experiência de barco, ajuda a coordenar com o capitão e pode ajudar com fotos e a logística durante a visita.",
@@ -4989,7 +4986,7 @@ const translations = {
       asado_boat_order_serving_standard: "Em geral serve cerca de 2–3 pessoas.",
       asado_boat_order_serving_premium: "Em geral serve cerca de 4 pessoas.",
       asado_boat_group_guide_cb:
-        "Incluir guia para o grupo inteiro (USD 40 no total)",
+        "Incluir guia para o grupo inteiro (USD 25 no total)",
       asado_boat_popup_boat_hint:
         "Se este pedido incluir passageiros no barco, escolha o horário de saída. Adicione passageiros com + em cada pedido no resumo (até 23 por horário; outro pedido pode usar outro horário).",
       asado_boat_lunch_after_boat:
@@ -5071,7 +5068,7 @@ const translations = {
       guide_no: "Não",
       yes_word: "Sim",
       liebres_group_guide_cb:
-        "Incluir guia para o grupo inteiro (USD 40 no total)",
+        "Incluir guia para o grupo inteiro (USD 25 no total)",
       liebres_guide_help_btn: "O que o guia faz",
       liebres_guide_help_p:
         "O guia encontra o grupo no ponto combinado, acompanha a cavalgada (inclui tirar fotos), vai com vocês até Las Liebres para a visita ao vinhedo e, ao final, leva de volta ao ponto de partida, hotel ou terminal de ônibus.",

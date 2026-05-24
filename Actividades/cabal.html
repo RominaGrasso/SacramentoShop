@@ -218,7 +218,7 @@
   const CABAL_WEEKEND_PROMO_ACTIVE = true;
   const CABAL_LIST_PRICE = 60;
   const PRICE_PER_PERSON = CABAL_WEEKEND_PROMO_ACTIVE ? 45 : CABAL_LIST_PRICE;
-  const GUIDE_FLAT_USD = 40;
+  const GUIDE_FLAT_USD = 25;
   const MAX_GUESTS = 4;
   const VALID_TIMES = ["11:00", "12:00", "13:00"];
   const WHATSAPP_NUMBER = "59898945542";
@@ -418,7 +418,7 @@
     textSpan.className = "cabal-guide-addon__text";
     textSpan.textContent = t(
       "cabal_guide_addon_label",
-      "Include a guide for the whole group (USD 40 total)"
+      "Include a guide for the whole group (USD 25 total)"
     );
 
     label.appendChild(cb);
@@ -509,7 +509,7 @@
       const pGuide = document.createElement("p");
       pGuide.innerHTML = `<strong>${t("cabal_summary_guide_label", "Companion guide")}:</strong> ${t(
         "cabal_summary_guide_included",
-        "Yes (+USD 40 total for the group)"
+        "Yes (+USD 25 total for the group)"
       )}`;
       card.appendChild(pGuide);
     }
