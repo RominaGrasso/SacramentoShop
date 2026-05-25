@@ -13,6 +13,9 @@ const translations = {
       home_instagram_aria: "Follow Sacramento Adventures on Instagram (opens in new tab)",
       home_instagram_title: "Instagram",
       home_instagram_sub: "@_sacramentoadventures",
+      home_getyourguide_title: "GetYourGuide",
+      home_getyourguide_sub: "For international travelers",
+      home_getyourguide_aria: "Find Sacramento Adventures on GetYourGuide (opens in new tab)",
       home_about_intro_eyebrow: "Colonia · Uruguay · With heart",
       home_about_gallery_aria: "Sacramento Adventures photo gallery",
       home_about_intro_title: "About Sacramento Adventures",
@@ -20,6 +23,27 @@ const translations = {
         "At Sacramento Adventures, we create <strong>authentic experiences</strong> for travelers who want to discover the true essence of <strong>Colonia del Sacramento</strong> and its surroundings.",
       home_about_intro_p2:
         "From <strong>guided walking tours</strong> and <strong>full-day experiences</strong> to local gastronomy and sunset moments by the <strong>Río de la Plata</strong>, we help visitors connect with the culture, history and lifestyle of <strong>Uruguay</strong> in a genuine and memorable way.",
+      home_category_nav_eyebrow: "Curated experiences",
+      home_category_nav_title: "Explore by experience",
+      home_category_nav_lead: "Choose how you want to discover Colonia",
+      home_cat_nav_tours: "Tours",
+      home_cat_nav_tours_desc: "Guided walks & discovery",
+      home_cat_nav_fullday: "Full Day",
+      home_cat_nav_fullday_desc: "Complete day itineraries",
+      home_cat_nav_gastronomy: "Gastronomy",
+      home_cat_nav_gastronomy_desc: "Dining & local flavor",
+      home_cat_nav_bodega: "Winery",
+      home_cat_nav_bodega_desc: "Vineyards & tastings",
+      home_cat_nav_horseback: "Horseback riding",
+      home_cat_nav_horseback_desc: "Countryside & cabalgatas",
+      home_cat_nav_craft_beer: "Craft beer",
+      home_cat_nav_craft_beer_desc: "Barbot & brewery",
+      home_cat_nav_boat: "Boat tours",
+      home_cat_nav_boat_desc: "Río de la Plata",
+      home_category_modal_close: "Close",
+      home_category_modal_view_list: "View in full list",
+      home_category_modal_count: "{count} experiences",
+      home_category_modal_empty: "No experiences in this category right now.",
       trust_certified: "Certified guides by Uruguay Ministry of Tourism",
       trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
       trust_local_experts: "Local experts from Colonia del Sacramento",
@@ -1833,6 +1857,9 @@ const translations = {
       home_instagram_aria: "Seguir a Sacramento Adventures en Instagram (se abre en una pestaña nueva)",
       home_instagram_title: "Instagram",
       home_instagram_sub: "@_sacramentoadventures",
+      home_getyourguide_title: "GetYourGuide",
+      home_getyourguide_sub: "Para viajeros internacionales",
+      home_getyourguide_aria: "Encontrá Sacramento Adventures en GetYourGuide (se abre en una pestaña nueva)",
       home_about_intro_eyebrow: "Colonia · Uruguay · Con alma",
       home_about_gallery_aria: "Galería de fotos de Sacramento Adventures",
       home_about_intro_title: "Sobre Sacramento Adventures",
@@ -1840,6 +1867,27 @@ const translations = {
         "En Sacramento Adventures creamos <strong>experiencias auténticas</strong> para viajeros que quieren descubrir la verdadera esencia de <strong>Colonia del Sacramento</strong> y sus alrededores.",
       home_about_intro_p2:
         "Desde <strong>recorridos guiados a pie</strong> y <strong>experiencias de día completo</strong> hasta gastronomía local y atardeceres junto al <strong>Río de la Plata</strong>, ayudamos a quien nos visita a conectar con la cultura, la historia y el estilo de vida de <strong>Uruguay</strong> de manera genuina y memorable.",
+      home_category_nav_eyebrow: "Experiencias curadas",
+      home_category_nav_title: "Explorá por experiencia",
+      home_category_nav_lead: "Elegí cómo querés descubrir Colonia",
+      home_cat_nav_tours: "Tours",
+      home_cat_nav_tours_desc: "Recorridos guiados y descubrimiento",
+      home_cat_nav_fullday: "Full Day",
+      home_cat_nav_fullday_desc: "Itinerarios de día completo",
+      home_cat_nav_gastronomy: "Gastronomía",
+      home_cat_nav_gastronomy_desc: "Sabores y restaurantes locales",
+      home_cat_nav_bodega: "Bodega",
+      home_cat_nav_bodega_desc: "Viñedos y degustaciones",
+      home_cat_nav_horseback: "Cabalgatas",
+      home_cat_nav_horseback_desc: "Campo y naturaleza",
+      home_cat_nav_craft_beer: "Cerveza Artesanal",
+      home_cat_nav_craft_beer_desc: "Barbot y cervecería",
+      home_cat_nav_boat: "Paseo en barco",
+      home_cat_nav_boat_desc: "Río de la Plata",
+      home_category_modal_close: "Cerrar",
+      home_category_modal_view_list: "Ver en la lista completa",
+      home_category_modal_count: "{count} experiencias",
+      home_category_modal_empty: "No hay experiencias en esta categoría por ahora.",
       trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
       trust_multilingual: "Tours multilingües: español, inglés y portugués",
       trust_local_experts: "Expertos locales en Colonia del Sacramento",
@@ -3652,6 +3700,9 @@ const translations = {
       home_instagram_aria: "Seguir Sacramento Adventures no Instagram (abre em nova aba)",
       home_instagram_title: "Instagram",
       home_instagram_sub: "@_sacramentoadventures",
+      home_getyourguide_title: "GetYourGuide",
+      home_getyourguide_sub: "Para viajantes internacionais",
+      home_getyourguide_aria: "Encontre Sacramento Adventures no GetYourGuide (abre em nova aba)",
       home_about_intro_eyebrow: "Colonia · Uruguai · Com alma",
       home_about_gallery_aria: "Galeria de fotos da Sacramento Adventures",
       home_about_intro_title: "Sobre a Sacramento Adventures",
@@ -3659,6 +3710,27 @@ const translations = {
         "Na Sacramento Adventures, criamos <strong>experiências autênticas</strong> para viajantes que querem descobrir a verdadeira essência de <strong>Colonia del Sacramento</strong> e seus arredores.",
       home_about_intro_p2:
         "De <strong>passeios guiados a pé</strong> e <strong>experiências de dia inteiro</strong> à gastronomia local e momentos ao pôr do sol às margens do <strong>Rio da Prata</strong>, ajudamos visitantes a se conectar com a cultura, a história e o estilo de vida do <strong>Uruguai</strong> de forma genuína e memorável.",
+      home_category_nav_eyebrow: "Experiências curadas",
+      home_category_nav_title: "Explore por experiência",
+      home_category_nav_lead: "Escolha como quer descobrir Colonia",
+      home_cat_nav_tours: "Tours",
+      home_cat_nav_tours_desc: "Passeios guiados e descoberta",
+      home_cat_nav_fullday: "Full Day",
+      home_cat_nav_fullday_desc: "Roteiros de dia inteiro",
+      home_cat_nav_gastronomy: "Gastronomia",
+      home_cat_nav_gastronomy_desc: "Sabores e restaurantes locais",
+      home_cat_nav_bodega: "Adega",
+      home_cat_nav_bodega_desc: "Vinícolas e degustações",
+      home_cat_nav_horseback: "Cavalgadas",
+      home_cat_nav_horseback_desc: "Campo e natureza",
+      home_cat_nav_craft_beer: "Cerveja Artesanal",
+      home_cat_nav_craft_beer_desc: "Barbot e cervejaria",
+      home_cat_nav_boat: "Passeio de barco",
+      home_cat_nav_boat_desc: "Rio da Prata",
+      home_category_modal_close: "Fechar",
+      home_category_modal_view_list: "Ver na lista completa",
+      home_category_modal_count: "{count} experiências",
+      home_category_modal_empty: "Não há experiências nesta categoria no momento.",
       trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
       trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
       trust_local_experts: "Especialistas locais em Colonia del Sacramento",
@@ -5935,9 +6007,10 @@ function initRentPopupBehavior() {
 }
   
   // ===== CHANGE LANGUAGE =====
-  function mountCardMetaIcons() {
+  function mountCardMetaIcons(root = document) {
     const base = "../Assets/icons/card-meta.svg";
-    document.querySelectorAll("[data-card-meta] .sprite-row").forEach(row => {
+    const scope = root && typeof root.querySelectorAll === "function" ? root : document;
+    scope.querySelectorAll("[data-card-meta] .sprite-row").forEach(row => {
       const host = row.closest("[data-card-meta]");
       if (!host) return;
       const ids = (host.getAttribute("data-card-meta") || "").trim().split(/\s+/).filter(Boolean);
@@ -6229,6 +6302,7 @@ function initRentPopupBehavior() {
 
   window.sacramentoSetLanguage = setLanguage;
   window.sacramentoMountCardMetaIcons = mountCardMetaIcons;
+  window.sacramentoDecorateActivityEmojiIcons = decorateActivityEmojiIcons;
 
   const CARD_SOON_EXPLORE_SELECTOR =
     "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn";
