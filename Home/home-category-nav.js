@@ -28,10 +28,6 @@
     "food1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "gastronomy", "bodega"],
     "fullday-colonia.html": ["fullday"],
-    "fullday1.html": ["fullday"],
-    "fullday2.html": ["fullday", "bodega"],
-    "fullday3.html": ["fullday"],
-    "fullday4.html": ["fullday", "horseback", "bodega"],
     "bruma.html": ["gastronomy"],
     "la-josefina.html": ["gastronomy"],
     "asado-boat.html": ["boat", "gastronomy"],
@@ -42,8 +38,12 @@
     "mision-night.html": ["gastronomy"],
     "sio-night.html": ["gastronomy"],
     "mate.html": ["gastronomy"],
-    "barbot.html": ["craft-beer"],
-    "barbot-brewpub.html": ["craft-beer"],
+    "barbot.html": ["craft-beer", "gastronomy"],
+    "barbot-brewpub.html": ["craft-beer", "gastronomy"],
+    "fullday1.html": ["fullday", "gastronomy"],
+    "fullday2.html": ["fullday", "bodega", "gastronomy"],
+    "fullday3.html": ["fullday", "gastronomy"],
+    "fullday4.html": ["fullday", "horseback", "bodega", "gastronomy"],
     "sunset-boat.html": ["boat"],
     "corporate-boat.html": ["boat"],
     "cabal.html": ["horseback"],
@@ -92,18 +92,18 @@
   }
 
   function cardExploreSlug(card) {
-    const link = card.querySelector('.card-buttons a[href*="Actividades/"]');
-    if (link) {
+    const links = card.querySelectorAll(".card-buttons a[href]");
+    for (const link of links) {
       const href = link.getAttribute("href") || "";
-      const slug = href.split("/").pop().split("?")[0];
-      if (slug) return slug;
+      const match = href.match(/actividades\/([^/?#]+)/i);
+      if (match?.[1]) return match[1];
     }
-    const soonBtn = card.querySelector(".card-buttons button.btn");
-    if (soonBtn) {
-      const id = soonBtn.id;
-      if (id === "homeLupajackExploreBtn") return "__soon_lupajack__";
-      if (id === "homePlazaExploreBtn") return "__soon_plaza__";
-      if (id === "homeMateAsadoExploreBtn") return "__soon_mate_asado__";
+    for (const id of SOON_EXPLORE_IDS) {
+      if (card.querySelector(`#${id}`)) {
+        if (id === "homeLupajackExploreBtn") return "__soon_lupajack__";
+        if (id === "homePlazaExploreBtn") return "__soon_plaza__";
+        if (id === "homeMateAsadoExploreBtn") return "__soon_mate_asado__";
+      }
     }
     return "";
   }
@@ -114,12 +114,33 @@
     __soon_mate_asado__: ["gastronomy"],
   };
 
+  /** Same tokens as hamburger filter (index.js uses data-filter ↔ data-category). */
+  function navGroupsFromCategory(card) {
+    const tokens = (card.dataset.category || "").trim().split(/\s+/).filter(Boolean);
+    const groups = [];
+    if (tokens.includes("tour")) groups.push("tours");
+    if (tokens.includes("fullday")) groups.push("fullday");
+    if (tokens.includes("gastronomy")) groups.push("gastronomy");
+    return groups;
+  }
+
   function getCardNavGroups(card) {
-    if (card.id && CARD_ID_NAV[card.id]) return CARD_ID_NAV[card.id];
+    const groups = new Set();
+
+    if (card.id && CARD_ID_NAV[card.id]) {
+      CARD_ID_NAV[card.id].forEach((g) => groups.add(g));
+    }
+
     const slug = cardExploreSlug(card);
-    if (slug && SOON_SLUG_NAV[slug]) return SOON_SLUG_NAV[slug];
-    if (slug && SLUG_NAV[slug]) return SLUG_NAV[slug];
-    return [];
+    if (slug && SOON_SLUG_NAV[slug]) {
+      SOON_SLUG_NAV[slug].forEach((g) => groups.add(g));
+    } else if (slug && SLUG_NAV[slug]) {
+      SLUG_NAV[slug].forEach((g) => groups.add(g));
+    }
+
+    navGroupsFromCategory(card).forEach((g) => groups.add(g));
+
+    return [...groups];
   }
 
   function getExperienceCards() {
