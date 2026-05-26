@@ -53,6 +53,10 @@
     "home-walking-tour-card": ["tours"],
     "home-fullday-colonia-card": ["fullday"],
     "home-card-mision-bruma": ["gastronomy"],
+    "home-cabalgata-liebres-card": ["horseback", "fullday", "gastronomy", "bodega"],
+    "home-cabal-card": ["horseback"],
+    "home-barbot-tour-card": ["craft-beer", "gastronomy"],
+    "home-barbot-brewpub-card": ["craft-beer", "gastronomy"],
   };
 
   const SOON_EXPLORE_IDS = new Set([
@@ -91,12 +95,43 @@
     return true;
   }
 
+  const SOON_SLUG_NAV = {
+    __soon_lupajack__: ["tours"],
+    __soon_plaza__: ["tours"],
+    __soon_mate_asado__: ["gastronomy"],
+  };
+
+  const SLUG_NAV_LC = Object.fromEntries(
+    Object.entries(SLUG_NAV).map(([slug, groups]) => [slug.toLowerCase(), groups])
+  );
+
+  function normalizeExploreSlug(filename) {
+    const base = String(filename || "").trim().toLowerCase();
+    if (!base) return "";
+    return base.endsWith(".html") ? base : `${base}.html`;
+  }
+
+  function navGroupsFromDataset(card) {
+    const raw = card.getAttribute("data-home-nav-groups");
+    if (!raw) return [];
+    return raw
+      .trim()
+      .split(/\s+/)
+      .filter((g) => NAV_KEYS.includes(g));
+  }
+
   function cardExploreSlug(card) {
     const links = card.querySelectorAll(".card-buttons a[href]");
     for (const link of links) {
-      const href = link.getAttribute("href") || "";
-      const match = href.match(/actividades\/([^/?#]+)/i);
-      if (match?.[1]) return match[1];
+      const href = String(link.getAttribute("href") || "").trim();
+      if (!href || href === "#") continue;
+      const match =
+        href.match(/(?:^|[/\\])actividades[/\\]([^/?#]+)/i) ||
+        href.match(/([^/?#]+\.html)(?:[?#]|$)/i);
+      if (match?.[1]) {
+        const slug = normalizeExploreSlug(match[1]);
+        if (slug) return slug;
+      }
     }
     for (const id of SOON_EXPLORE_IDS) {
       if (card.querySelector(`#${id}`)) {
@@ -107,12 +142,6 @@
     }
     return "";
   }
-
-  const SOON_SLUG_NAV = {
-    __soon_lupajack__: ["tours"],
-    __soon_plaza__: ["tours"],
-    __soon_mate_asado__: ["gastronomy"],
-  };
 
   /** Same tokens as hamburger filter (index.js uses data-filter ↔ data-category). */
   function navGroupsFromCategory(card) {
@@ -127,6 +156,8 @@
   function getCardNavGroups(card) {
     const groups = new Set();
 
+    navGroupsFromDataset(card).forEach((g) => groups.add(g));
+
     if (card.id && CARD_ID_NAV[card.id]) {
       CARD_ID_NAV[card.id].forEach((g) => groups.add(g));
     }
@@ -134,8 +165,8 @@
     const slug = cardExploreSlug(card);
     if (slug && SOON_SLUG_NAV[slug]) {
       SOON_SLUG_NAV[slug].forEach((g) => groups.add(g));
-    } else if (slug && SLUG_NAV[slug]) {
-      SLUG_NAV[slug].forEach((g) => groups.add(g));
+    } else if (slug && SLUG_NAV_LC[slug]) {
+      SLUG_NAV_LC[slug].forEach((g) => groups.add(g));
     }
 
     navGroupsFromCategory(card).forEach((g) => groups.add(g));
