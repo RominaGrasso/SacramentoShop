@@ -77,6 +77,39 @@ function waLine(label, value) {
   return `*${lbl}*: ${val}`;
 }
 
+/** Smooth scroll to the order summary block after saving a popup selection. */
+function scrollToOrderSummary(orderSummaryId, options) {
+  const id = String(orderSummaryId || "orderSummary").trim();
+  const offset = options && typeof options.offset === "number" ? options.offset : 72;
+  const run = () => {
+    const target =
+      (id && document.getElementById(id)) || document.querySelector(".order-summary");
+    if (!target) return;
+    const prevMargin = target.style.scrollMarginTop;
+    target.style.scrollMarginTop = `${offset}px`;
+    const restoreMargin = () => {
+      target.style.scrollMarginTop = prevMargin;
+    };
+    try {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(restoreMargin, 600);
+    } catch {
+      restoreMargin();
+      const top = window.scrollY + target.getBoundingClientRect().top - offset;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    }
+  };
+  if (typeof window.requestAnimationFrame === "function") {
+    requestAnimationFrame(() => requestAnimationFrame(run));
+  } else {
+    setTimeout(run, 50);
+  }
+}
+
+if (typeof window !== "undefined") {
+  window.scrollToOrderSummary = scrollToOrderSummary;
+}
+
 function paymentApiOriginFromResolveUrl(endpoint) {
   const e = String(endpoint || "");
   if (/^https?:\/\//i.test(e)) {
@@ -1801,6 +1834,7 @@ function initExperience(config) {
           r.checked = false;
         });
         const defHorse =
+          popup.querySelector(`input[name="${horseCfg.radioName}"][value="13:30"]`) ||
           popup.querySelector(`input[name="${horseCfg.radioName}"][value="11:00"]`) ||
           popup.querySelector(`input[name="${horseCfg.radioName}"]`);
         if (defHorse) defHorse.checked = true;
@@ -1921,6 +1955,7 @@ function initExperience(config) {
           setOrders(renumberRoomGuestIds(orders));
           popup.classList.remove("active");
           renderOrders();
+          scrollToOrderSummary(orderSummaryId);
           return;
         }
 
@@ -2202,6 +2237,7 @@ function initExperience(config) {
 
         popup.classList.remove("active");
         renderOrders();
+        scrollToOrderSummary(orderSummaryId);
       });
     }
 
@@ -2216,6 +2252,19 @@ function initExperience(config) {
       const gg = groupGuideAmount();
       const transportTotal =
         vehicleTransportRate > 0 ? groupPrivateTransportTotal(peopleCount, vehicleTransportRate) : 0;
+      const formatTransportShareWa = (n) => {
+        const v = Math.round(Number(n) * 100) / 100;
+        return v % 1 === 0 ? String(v) : v.toFixed(2);
+      };
+      const transportSharePerGuestWa =
+        transportTotal > 0 && peopleCount > 0 ? transportTotal / peopleCount : 0;
+      const transportShareWaLine =
+        transportSharePerGuestWa > 0
+          ? waLine(
+              getI18nText("orders_order_transport_share", "Private transport (your share)"),
+              `${curLabel} ${formatTransportShareWa(transportSharePerGuestWa)}`
+            )
+          : "";
       const boatPassengersWa = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
       const boatTotalWa = boatPassengersWa * boatRate;
       const roomCostWa = rb ? calculateTotalRoomCost() : 0;
@@ -2275,7 +2324,9 @@ function initExperience(config) {
               (prefs.join(", ") || "").trim() !== ""
                 ? `\n${waLine(getI18nText("preferences_label", "Preferences"), prefs.join(", "))}`
                 : "";
-            return `*${cardLbl} ${i + 1}*${timeLine}${gLine}${prefPart}`;
+            const transportPart =
+              transportShareWaLine ? `\n${transportShareWaLine}` : "";
+            return `*${cardLbl} ${i + 1}*${timeLine}${transportPart}${gLine}${prefPart}`;
           }
           const prem = menuUpgradePrice && o.menuTier === "premium";
           const ls =
@@ -2344,7 +2395,9 @@ function initExperience(config) {
           const starterPart = experienceSkipsStarterField
             ? ""
             : `\n${waLine(ls, getLocalizedChoice(starterName, o.starter))}`;
-          return `${orderHead}${fixedSummaryRowsWa("top")}${tierLine}${starterPart}${mainPart}${horseTimeWa}${drinkPart}${beveragePart}${menuBoatWa}${gLine}${
+          const transportShareWa =
+            transportShareWaLine ? `\n${transportShareWaLine}` : "";
+          return `${orderHead}${fixedSummaryRowsWa("top")}${tierLine}${starterPart}${mainPart}${horseTimeWa}${transportShareWa}${drinkPart}${beveragePart}${menuBoatWa}${gLine}${
             experienceSkipsPreferencesField
               ? ""
               : `\n${waLine(getI18nText("preferences_label", "Preferences"), prefs.join(", ") || "-")}`
@@ -2414,11 +2467,29 @@ function initExperience(config) {
       }
       message += `\n`;
       if (groupGuideOptional && groupGuideFlat > 0) {
-        message += `${waLine(`Group guide (optional, USD ${groupGuideFlat} total for the group)`, gg > 0 ? `Yes — USD ${gg}` : "No")}\n`;
+        const groupGuideLabel = getI18nText(
+          "orders_wa_group_guide_optional",
+          "Group guide (optional, USD {amount} total for the group)"
+        ).replace(/\{amount\}/g, String(groupGuideFlat));
+        const groupGuideValue = gg > 0
+          ? getI18nText("orders_wa_group_guide_yes", "Yes — USD {amount}").replace(/\{amount\}/g, String(gg))
+          : getI18nText("guide_no", "No");
+        message += `${waLine(groupGuideLabel, groupGuideValue)}\n`;
       }
       if (transportTotal > 0) {
         const vehicles = Math.ceil(peopleCount / 4);
-        message += `${waLine(`Private transport (${vehicles} vehicle${vehicles === 1 ? "" : "s"} x USD ${vehicleTransportRate})`, `USD ${transportTotal}`)}\n`;
+        const vehicleWord =
+          vehicles === 1
+            ? getI18nText("orders_wa_vehicle_singular", "vehicle")
+            : getI18nText("orders_wa_vehicle_plural", "vehicles");
+        const transportLabel = getI18nText(
+          "orders_wa_private_transport_line",
+          "Private transport ({vehicles} {vehicleWord} × USD {rate})"
+        )
+          .replace(/\{vehicles\}/g, String(vehicles))
+          .replace(/\{vehicleWord\}/g, vehicleWord)
+          .replace(/\{rate\}/g, String(vehicleTransportRate));
+        message += `${waLine(transportLabel, `USD ${transportTotal}`)}\n`;
       }
       if (boatTotalWa > 0) {
         message += `${waLine(`${getI18nText("orders_wa_boat_subtotal", "Boat")} (${boatPassengersWa} × ${curLabel} ${boatRate})`, `${curLabel} ${boatTotalWa}`)}\n`;
@@ -2593,10 +2664,13 @@ function initExperience(config) {
       if (horseCfg) {
         const h = String(order.horsebackDepartureTime || "").trim();
         popup.querySelectorAll(`input[name="${horseCfg.radioName}"]`).forEach((input) => {
-          input.checked = String(input.value).trim() === h;
+          input.checked = storedMatchesRadio(input, h);
         });
         if (!h) {
-          const def = popup.querySelector(`input[name="${horseCfg.radioName}"][value="11:00"]`);
+          const def =
+            popup.querySelector(`input[name="${horseCfg.radioName}"][value="13:30"]`) ||
+            popup.querySelector(`input[name="${horseCfg.radioName}"][value="11:00"]`) ||
+            popup.querySelector(`input[name="${horseCfg.radioName}"]`);
           if (def) def.checked = true;
         }
       }
@@ -2663,6 +2737,12 @@ function initExperience(config) {
         vehicleTransportRate > 0
           ? groupPrivateTransportTotal(transportParty, vehicleTransportRate)
           : 0;
+      const transportSharePerGuest =
+        transportTotal > 0 && transportParty > 0 ? transportTotal / transportParty : 0;
+      const formatTransportShare = (n) => {
+        const v = Math.round(Number(n) * 100) / 100;
+        return v % 1 === 0 ? String(v) : v.toFixed(2);
+      };
       const t = (key, fallback) => getI18nText(key, fallback);
 
       let html = `<h3>${escapeHtml(t("your_order", "Your order"))}</h3>`;
@@ -2936,6 +3016,10 @@ function initExperience(config) {
         const starterRow = experienceSkipsStarterField
           ? ""
           : `<p><strong>${labS}:</strong> ${escapeHtml(getLocalizedChoice(starterName, order.starter))}</p>`;
+        const transportShareRow =
+          transportSharePerGuest > 0
+            ? `<p><strong>${escapeHtml(t("orders_order_transport_share", "Private transport (your share)"))}:</strong> ${escapeHtml(curLabel)} ${escapeHtml(formatTransportShare(transportSharePerGuest))}</p>`
+            : "";
         html += `
           <div class="order-card">
             <div class="order-header">
@@ -2949,6 +3033,7 @@ function initExperience(config) {
             ${fixedSummaryRowsHtml("top")}
             ${mainRow}
             ${horseRow}
+            ${transportShareRow}
             ${starterRow}
             ${drinkRow}
             ${beverageRow}
@@ -3084,7 +3169,14 @@ function initExperience(config) {
           guideDetail = ` · ${t("guide_short", "guide")} USD ${guideFee}/${t("guest_short", "guest")} ${t("included_short", "incl.")}`;
         }
         const transportDetail =
-          transportTotal > 0 ? ` · ${t("transport_word", "transport")} USD ${transportTotal}` : "";
+          transportSharePerGuest > 0
+            ? ` · ${escapeHtml(
+                t("orders_summary_transport_per_guest", "transport USD {amount} per guest").replace(
+                  "{amount}",
+                  formatTransportShare(transportSharePerGuest)
+                )
+              )}`
+            : "";
         const boatPassengersUi = boatRate > 0 ? getTotalBoatPassengersPaid() : 0;
         const boatTotalUi = boatPassengersUi * boatRate;
         const boatDetail =
@@ -3767,6 +3859,7 @@ function initFoodExperience(config) {
       setOrders(orders);
       popup.classList.remove("active");
       renderOrders();
+      scrollToOrderSummary(orderSummaryId);
     });
 
     const renderOrders = () => {
@@ -4362,6 +4455,7 @@ function initPreferencesOrderExperience(config) {
       setOrders(orders);
       closePopup();
       renderOrders();
+      scrollToOrderSummary(orderSummaryId);
     });
 
     // Botón "Book Now" inferior (opcional)
@@ -4994,10 +5088,17 @@ function initPackageOrderExperience(config) {
           orders.length === 1
             ? getI18nText("guest_order_singular", "guest order")
             : getI18nText("guest_order_plural", "guest orders");
-        const detailExtra =
+        const transportSharePkg =
           usesGroupTransport(orders) && orders.length > 0
-            ? ` · ${escapeHtml(getI18nText("orders_summary_transport", "transport"))} USD ${escapeHtml(
-                formatMoney(tGroupAmt)
+            ? transportSharePerGuest(orders)
+            : 0;
+        const detailExtra =
+          transportSharePkg > 0
+            ? ` · ${escapeHtml(
+                getI18nText("orders_summary_transport_per_guest", "transport USD {amount} per guest").replace(
+                  "{amount}",
+                  formatMoney(transportSharePkg)
+                )
               )}`
             : "";
         let guideDetail = "";
@@ -5195,6 +5296,7 @@ function initPackageOrderExperience(config) {
       setOrders(orders);
       closePopup();
       renderOrders();
+      scrollToOrderSummary(orderSummaryId);
     });
 
     if (bookNowBottomId) {
@@ -5939,6 +6041,7 @@ function initSioSpecialNightOrders(userConfig) {
       setOrders(orders);
       closePopup();
       renderOrders();
+      scrollToOrderSummary(config.orderSummaryId);
     });
 
     if (config.bookNowBottomId) {

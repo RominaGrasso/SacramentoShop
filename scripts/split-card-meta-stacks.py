@@ -101,10 +101,10 @@ def main():
         ),
         (
             """      <p class="card-meta" data-card-meta="landmark grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_1">
-        🏛 Guided walk in the old town • 🍇 Vineyard &amp; organic garden
+        🏛 Historic Quarter walking tour • 🍇 Vineyard &amp; organic garden
       </span></p>""",
             """      <div class="card-meta-stack">
-      <p class="card-meta-line" data-card-meta="landmark"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_1_town">Guided walk in the old town</span></p>
+      <p class="card-meta-line" data-card-meta="landmark"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_1_town">Historic Quarter walking tour</span></p>
       <p class="card-meta-line" data-card-meta="grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_hist_lieb_meta_1_vine">Vineyard & organic garden</span></p>
       </div>""",
         ),
@@ -120,10 +120,10 @@ def main():
         ),
         (
             """      <p class="card-meta" data-card-meta="horse grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2">
-        🐎 Cabalgata in Riachuelo (outside Colonia) • 🍇 Then Las Liebres vineyard &amp; garden
+        🐎 Horseback riding outside Colonia • 🍇 Then Las Liebres vineyard &amp; garden
       </span></p>""",
             """      <div class="card-meta-stack">
-      <p class="card-meta-line" data-card-meta="horse"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_ride">Cabalgata in Riachuelo (outside Colonia)</span></p>
+      <p class="card-meta-line" data-card-meta="horse"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_ride">Horseback riding outside Colonia</span></p>
       <p class="card-meta-line" data-card-meta="grapes"><span class="sprite-row" aria-hidden="true"></span><span class="card-meta__text" data-translate="home_cabalgata_meta_2_vine">Then Las Liebres vineyard & garden</span></p>
       </div>""",
         ),

@@ -531,6 +531,9 @@
       editingPairIndex = null;
       closePopup();
       renderSummary();
+      if (typeof window.scrollToOrderSummary === "function") {
+        window.scrollToOrderSummary("romanticOrderSummary");
+      }
     });
 
     summary?.addEventListener("click", (event) => {

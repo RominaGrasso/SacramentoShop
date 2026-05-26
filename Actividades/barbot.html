@@ -710,6 +710,9 @@
     setConfig({ package: pkg, guests: guestCount });
     closePopup();
     renderSummary();
+    if (typeof window.scrollToOrderSummary === "function") {
+      window.scrollToOrderSummary("barbotTourOrderSummary");
+    }
   });
 
   summary.addEventListener("click", (ev) => {

@@ -740,6 +740,9 @@
           const defaultLanguage = popup.querySelector("input[name='walkingTourLanguage'][value='English guide']");
           if (defaultLanguage) defaultLanguage.checked = true;
           renderFallbackSummary();
+          if (typeof window.scrollToOrderSummary === "function") {
+            window.scrollToOrderSummary("orderSummary");
+          }
         });
       }
 

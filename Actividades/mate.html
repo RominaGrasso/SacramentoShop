@@ -432,6 +432,9 @@
     setConfig({ language, guests: guestCount });
     closePopup();
     renderSummary();
+    if (typeof window.scrollToOrderSummary === "function") {
+      window.scrollToOrderSummary("mateExperienceSummary");
+    }
   });
 
   document.addEventListener("sacramento:setLanguage", () => {
