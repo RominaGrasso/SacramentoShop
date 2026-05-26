@@ -638,6 +638,9 @@
       popup.style.display = "";
       popup.setAttribute("aria-hidden", "true");
       renderSummary();
+      if (typeof window.scrollToOrderSummary === "function") {
+        window.scrollToOrderSummary("fulldayColoniaOrderSummary");
+      }
     });
 
     summary.addEventListener("click", (ev) => {

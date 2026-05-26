@@ -320,6 +320,18 @@
   const modalCount = document.getElementById("homeCategoryModalCount");
   const modalCards = document.getElementById("homeCategoryModalCards");
 
+  function resetModalScroll() {
+    if (!modalCards) return;
+    modalCards.scrollTop = 0;
+    if (typeof modalCards.scrollTo === "function") {
+      try {
+        modalCards.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      } catch {
+        modalCards.scrollTo(0, 0);
+      }
+    }
+  }
+
   function openModal(navKey) {
     if (!modal || !modalCards) return;
 
@@ -342,9 +354,11 @@
     }
 
     modalCards.innerHTML = "";
+    resetModalScroll();
     matches.forEach((card) => {
       modalCards.appendChild(sanitizeClone(card));
     });
+    resetModalScroll();
 
     bindModalCardInteractions(modalCards);
     refreshModalCardChrome(modalCards);
@@ -367,6 +381,7 @@
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("home-category-modal-open");
+    resetModalScroll();
     if (!keepListFilter) {
       activeNav = null;
       clearActiveChip();

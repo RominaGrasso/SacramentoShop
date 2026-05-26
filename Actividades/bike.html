@@ -623,6 +623,9 @@
       const defaultRoute = popup.querySelector('input[name="bikeTourRoute"][value="Short route 1hr"]');
       if (defaultRoute) defaultRoute.checked = true;
       renderSummary();
+      if (typeof window.scrollToOrderSummary === "function") {
+        window.scrollToOrderSummary("bikeOrderSummary");
+      }
     });
 
     summary.addEventListener("click", (ev) => {

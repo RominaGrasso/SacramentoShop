@@ -47,6 +47,18 @@
         left: 14px;
       }
     }
+
+    .page-cabal .horse-hero {
+      background-image: url("../Assets/images/fam6.jpg");
+      background-position: center 18%;
+    }
+
+    .page-cabal .coffee-gallery .gallery-grid img[src*="fam"] {
+      min-height: 220px;
+      max-height: 360px;
+      aspect-ratio: 3 / 4;
+      object-position: center 10%;
+    }
   </style>
 </head>
 <body class="page-actividad page-cabal">
@@ -113,13 +125,13 @@
 </header>
 <!-- ================= HERO ================= -->
 <section class="horse-hero cabal-hero-promo-wrap">
-<div class="discount-badge cabal-hero-discount-badge" data-translate="cabal_weekend_badge">TODAY ONLY · USD 45</div>
+<div class="discount-badge cabal-hero-discount-badge" data-translate="cabal_weekend_badge">TODAY ONLY · USD 70</div>
 </section>
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
 <h2 data-translate="cabal_about_heading">About this experience</h2>
 <p data-translate="cabal_about_p">
-        The ride takes place on the outskirts of Colonia, in Riachuelo — a beautiful stretch of countryside. Juanma and Sabrina will welcome you; they care for six gentle horses, including a young filly. Estrelli and Simón, the ranch dogs, usually join the ride as well.
+        The ride takes place on the outskirts of Colonia, near Colonia Soho, in beautiful open countryside.
       </p>
 <!-- INCLUDES + BOOKING -->
 <div class="coffee-includes">
@@ -138,8 +150,8 @@
 <div class="order-start page-cabal-order-start">
 <p class="cabal-inline-price bruma-promo-price">
 <span class="bruma-promo-price-row">
-<span class="bruma-price-old" data-translate="cabal_price_original">USD 60 per person</span>
-<span class="bruma-price-new bike-price-promo" data-translate="cabal_price_discount">USD 45 per person</span>
+<span class="bruma-price-old" data-translate="cabal_price_original">USD 80 per person</span>
+<span class="bruma-price-new bike-price-promo" data-translate="cabal_price_discount">USD 70 per person</span>
 </span>
 </p>
 <div class="cabal-availability-notice" role="note">
@@ -166,15 +178,12 @@
 <section class="coffee-gallery">
 <h2 data-translate="food_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
-<img alt="Horseback riding countryside" decoding="async" height="220" loading="lazy" src="../Assets/images/cab1.webp" width="1200"/>
-<img alt="Horse riding experience" decoding="async" height="220" loading="lazy" src="../Assets/images/cab2.webp" width="1200"/>
-<img alt="Rural landscapes Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/cab3.webp" width="1200"/>
-<img alt="Horseback adventure" decoding="async" height="220" loading="lazy" src="../Assets/images/cab4.webp" width="1200"/>
-<img alt="Horseback riding countryside" decoding="async" height="220" loading="lazy" src="../Assets/images/cabaln4.webp" width="1200"/>
-<img alt="Horse riding experience" decoding="async" height="220" loading="lazy" src="../Assets/images/cabaln3.webp" width="1200"/>
-<img alt="Rural landscapes Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/cabaln2.webp" width="1200"/>
-<img alt="Horseback adventure" decoding="async" height="220" loading="lazy" src="../Assets/images/cabaln1.webp" width="1200"/>
-<img alt="Horseback riding countryside" decoding="async" height="220" loading="lazy" src="../Assets/images/cabaln.webp" width="1200"/>
+<img alt="Horseback riding with family in Riachuelo countryside" decoding="async" height="220" loading="lazy" src="../Assets/images/fam1.jpg" width="1200"/>
+<img alt="Horseback riding experience in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/fam2.jpg" width="1200"/>
+<img alt="Cabalgata in Riachuelo — horses and countryside" decoding="async" height="220" loading="lazy" src="../Assets/images/fam4.jpg" width="1200"/>
+<img alt="Family horseback adventure in Uruguay" decoding="async" height="220" loading="lazy" src="../Assets/images/fam5.jpg" width="1200"/>
+<img alt="Horseback riding in Riachuelo countryside" decoding="async" height="220" loading="lazy" src="../Assets/images/fam6.jpg" width="1200"/>
+<img alt="Cabalgata experience near Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/fam7.jpg" width="1200"/>
 </div>
 </section>
 <!-- ================= ACTIONS ================= -->
@@ -195,7 +204,7 @@
 <h3 class="preferences-title" data-translate="cabal_popup_time_heading">Departure time</h3>
 <label><input checked="" name="cabalDeparture" type="radio" value="11:00"/> <span data-translate="cabal_popup_time_11">11:00</span></label>
 <label><input name="cabalDeparture" type="radio" value="12:00"/> <span data-translate="cabal_popup_time_12">12:00</span></label>
-<label><input name="cabalDeparture" type="radio" value="13:00"/> <span data-translate="cabal_popup_time_13">13:00</span></label>
+<label><input data-legacy-values="13:00" name="cabalDeparture" type="radio" value="13:30"/> <span data-translate="cabal_popup_time_13">13:30</span></label>
 <h3 class="preferences-title cabal-popup-guests-title" data-translate="cabal_popup_guests_heading">Number of guests</h3>
 <div class="cabal-popup-guests-row">
 <button aria-label="−" class="add-guest-btn" id="cabalGuestsMinus" type="button">−</button>
@@ -216,11 +225,11 @@
 (function () {
   const STORAGE_KEY = "cabal_booking_config";
   const CABAL_WEEKEND_PROMO_ACTIVE = true;
-  const CABAL_LIST_PRICE = 60;
-  const PRICE_PER_PERSON = CABAL_WEEKEND_PROMO_ACTIVE ? 45 : CABAL_LIST_PRICE;
+  const CABAL_LIST_PRICE = 80;
+  const PRICE_PER_PERSON = CABAL_WEEKEND_PROMO_ACTIVE ? 70 : CABAL_LIST_PRICE;
   const GUIDE_FLAT_USD = 25;
   const MAX_GUESTS = 4;
-  const VALID_TIMES = ["11:00", "12:00", "13:00"];
+  const VALID_TIMES = ["11:00", "12:00", "13:30"];
   const WHATSAPP_NUMBER = "59898945542";
 
   const popup = document.getElementById("popupCabalBooking");
@@ -247,7 +256,8 @@
       if (!raw) return null;
       const o = JSON.parse(raw);
       if (!o || typeof o !== "object") return null;
-      const time = VALID_TIMES.includes(o.time) ? o.time : "11:00";
+      const rawTime = o.time === "13:00" ? "13:30" : o.time;
+      const time = VALID_TIMES.includes(rawTime) ? rawTime : "11:00";
       const guests = Math.min(MAX_GUESTS, Math.max(1, parseInt(o.guests, 10) || 1));
       return { time, guests, guide: Boolean(o.guide) };
     } catch {
@@ -261,7 +271,7 @@
 
   const timeLabel = (slot) => {
     if (slot === "12:00") return t("cabal_popup_time_12", "12:00");
-    if (slot === "13:00") return t("cabal_popup_time_13", "13:00");
+    if (slot === "13:30" || slot === "13:00") return t("cabal_popup_time_13", "13:30");
     return t("cabal_popup_time_11", "11:00");
   };
 
@@ -577,6 +587,9 @@
     });
     closePopup();
     renderSummary();
+    if (typeof window.scrollToOrderSummary === "function") {
+      window.scrollToOrderSummary("cabalBookingSummary");
+    }
   });
 
   document.addEventListener("sacramento:setLanguage", () => {

@@ -1601,10 +1601,51 @@
 
   .horse-hero {
     height: 55vh;
-    background-image: url("../Assets/images/cab3.webp?v=20260522perf");
+    min-height: 280px;
+    max-height: 520px;
+    background-image: url("../Assets/images/fam6.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: center 22%;
     background-repeat: no-repeat;
+  }
+
+  /* Cabalgata — fotos fam* en retrato: priorizar rostros (hero, galería, card) */
+  .page-cabal .horse-hero {
+    background-image: url("../Assets/images/fam6.jpg");
+    background-position: center 20%;
+  }
+
+  .page-cabal .coffee-gallery .gallery-grid img[src*="fam"] {
+    height: auto;
+    min-height: 260px;
+    max-height: 420px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 12%;
+  }
+
+  .page-cabal .coffee-gallery .gallery-grid img[src*="fam2"] {
+    aspect-ratio: 16 / 10;
+    object-position: center center;
+  }
+
+  .page-lasliebres .coffee-gallery .gallery-grid img[src*="fam"] {
+    height: auto;
+    min-height: 260px;
+    max-height: 420px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 12%;
+  }
+
+  .page-lasliebres .coffee-gallery .gallery-grid img[src*="fam2"] {
+    aspect-ratio: 16 / 10;
+    object-position: center center;
+  }
+
+  .card-image img[src*="fam"] {
+    object-fit: cover;
+    object-position: center 15%;
   }
 
   .logo img {
@@ -7392,10 +7433,6 @@
 .partners .logos-track img:hover {
   transform: scale(1.05);
   opacity: 1;
-}
-
-.partners .logos-track img[src*="calmalogo"] {
-  height: 62px;
 }
 
 .partners .logos-track img[src*="joselogo"] {
