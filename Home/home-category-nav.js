@@ -47,6 +47,12 @@
     "sunset-boat.html": ["boat"],
     "corporate-boat.html": ["boat"],
     "cabal.html": ["horseback"],
+    "legado.html": ["bodega", "fullday", "gastronomy"],
+  };
+
+  /** Card ids listed first in category modals (remaining cards keep DOM order). */
+  const NAV_CARD_ORDER = {
+    bodega: ["home-legado-card"],
   };
 
   const CARD_ID_NAV = {
@@ -57,6 +63,7 @@
     "home-cabal-card": ["horseback"],
     "home-barbot-tour-card": ["craft-beer", "gastronomy"],
     "home-barbot-brewpub-card": ["craft-beer", "gastronomy"],
+    "home-legado-card": ["bodega", "fullday", "gastronomy"],
   };
 
   const SOON_EXPLORE_IDS = new Set([
@@ -180,8 +187,22 @@
     return Array.from(section.querySelectorAll(".card")).filter(isListedCard);
   }
 
+  function orderCardsForNav(navKey, cards) {
+    const priority = NAV_CARD_ORDER[navKey];
+    if (!priority?.length) return cards;
+    const prioritySet = new Set(priority);
+    const first = priority
+      .map((id) => cards.find((card) => card.id === id))
+      .filter(Boolean);
+    const rest = cards.filter((card) => !card.id || !prioritySet.has(card.id));
+    return [...first, ...rest];
+  }
+
   function cardsForNav(navKey) {
-    return getExperienceCards().filter((card) => getCardNavGroups(card).includes(navKey));
+    const matches = getExperienceCards().filter((card) =>
+      getCardNavGroups(card).includes(navKey)
+    );
+    return orderCardsForNav(navKey, matches);
   }
 
   function sanitizeClone(card) {
