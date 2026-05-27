@@ -40,6 +40,10 @@ const translations = {
       home_cat_nav_craft_beer_desc: "Barbot & brewery",
       home_cat_nav_boat: "Boat tours",
       home_cat_nav_boat_desc: "Río de la Plata",
+      home_cat_nav_lodging: "Lodging",
+      home_cat_nav_lodging_desc: "Stays & overnights",
+      home_cat_nav_dining: "Lunch / Dinner only",
+      home_cat_nav_dining_desc: "Restaurants & dining",
       home_category_modal_close: "Close",
       home_category_modal_view_list: "View in full list",
       home_category_modal_count: "{count} experiences",
@@ -1286,6 +1290,9 @@ const translations = {
         "No more seats for this departure time. Use a different time or reduce passengers in another booking.",
       orders_boat_slot_over_capacity:
         "One departure time has more passengers than allowed. Adjust your bookings before continuing.",
+      orders_boat_min_passengers:
+        "This experience requires at least {min} passengers on the boat.",
+      orders_boat_min_notice: "Minimum {min} passengers on the boat for this experience.",
       orders_boat_time_not_set: "Choose a time (edit this booking)",
       orders_wa_people_line: "People",
       orders_wa_intro: "Hello! I'd like to book the {experience} experience:",
@@ -1315,6 +1322,7 @@ const translations = {
       orders_visit_date_label: "Visit date",
       passengers_label: "Passengers",
       gallery_video_badge: "Video",
+      boat_min_pax_badge: "Minimum 10 people",
       sunset_boat_passengers_per_slot:
         "Up to {max} passengers allowed per departure time.",
       sunset_boat_popup_time_title: "Departure time",
@@ -1339,9 +1347,9 @@ const translations = {
         "🌅 Sunset & relax: Ideal for photos, calm waters, and a memorable end of the day.",
       sunset_boat_step_4: "⏱️ Duration: About 1.5 hours",
       sunset_boat_medical: "Medical assistance included",
-      sunset_boat_price_title: "USD 25 per guest",
+      sunset_boat_price_title: "USD 30 per guest",
       sunset_boat_price_detail:
-        "Price per person for the boat experience. Drinks are not included unless specified in your booking confirmation.",
+        "Price per person for the boat experience. Minimum 10 passengers per booking. Drinks are not included unless specified in your booking confirmation.",
       sunset_boat_included_title: "What's included",
       sunset_boat_include_1: "✔ Scenic boat tour on the Río de la Plata",
       sunset_boat_include_2: "✔ Captain & host Alejandro",
@@ -1461,8 +1469,9 @@ const translations = {
       asado_boat_price_menu_title: "Standard USD 60 · Premium USD 80 per menu",
       asado_boat_price_menu_detail:
         "Includes the BBQ menu for your group (Standard or Premium parrillero) and your choice of side dishes. Generally, the Standard BBQ is enough for about 2–3 people; Premium for about 4. Drinks and beverages are not included — you can order them on site.",
-      asado_boat_price_boat_title: "Boat USD 25 per person",
-      asado_boat_price_boat_detail: "Charged per passenger for the boat tour, in addition to your BBQ menu order(s).",
+      asado_boat_price_boat_title: "Boat USD 30 per person",
+      asado_boat_price_boat_detail:
+        "Charged per passenger for the boat tour (minimum 10 passengers on the boat), in addition to your BBQ menu order(s).",
       asado_boat_included_title: "What's included",
       asado_boat_include_1: "✔ Traditional Uruguayan asado (Standard or Premium grill selection)",
       asado_boat_include_2: "✔ Side dish(es) as per your menu choice",
@@ -1948,6 +1957,10 @@ const translations = {
       home_cat_nav_craft_beer_desc: "Barbot y cervecería",
       home_cat_nav_boat: "Paseo en barco",
       home_cat_nav_boat_desc: "Río de la Plata",
+      home_cat_nav_lodging: "Hospedaje",
+      home_cat_nav_lodging_desc: "Estadías y noches",
+      home_cat_nav_dining: "Solo almuerzo/cena",
+      home_cat_nav_dining_desc: "Restaurantes y mesa",
       home_category_modal_close: "Cerrar",
       home_category_modal_view_list: "Ver en la lista completa",
       home_category_modal_count: "{count} experiencias",
@@ -3194,6 +3207,9 @@ const translations = {
         "No hay más cupo para este horario. Usá otro horario o reducí pasajeros en otra reserva.",
       orders_boat_slot_over_capacity:
         "Un horario supera el máximo de pasajeros permitido. Ajustá las reservas antes de continuar.",
+      orders_boat_min_passengers:
+        "Esta experiencia requiere al menos {min} pasajeros en el barco.",
+      orders_boat_min_notice: "Mínimo {min} pasajeros en el barco para esta experiencia.",
       orders_boat_time_not_set: "Elegí horario (editar esta reserva)",
       orders_wa_people_line: "Personas",
       orders_wa_intro: "¡Hola! Quiero reservar la experiencia {experience}:",
@@ -3223,6 +3239,7 @@ const translations = {
       orders_visit_date_label: "Fecha de la visita",
       passengers_label: "Pasajeros",
       gallery_video_badge: "Vídeo",
+      boat_min_pax_badge: "Mínimo 10 personas",
       sunset_boat_passengers_per_slot:
         "Se permiten hasta {max} pasajeros por horario de salida.",
       sunset_boat_popup_time_title: "Horario de salida",
@@ -3247,9 +3264,9 @@ const translations = {
         "🌅 Atardecer y relax: Ideal para fotos, aguas tranquilas y un cierre de día memorable.",
       sunset_boat_step_4: "⏱️ Duración: Aprox. 1,5 horas",
       sunset_boat_medical: "Asistencia médica incluida",
-      sunset_boat_price_title: "USD 25 por persona",
+      sunset_boat_price_title: "USD 30 por persona",
       sunset_boat_price_detail:
-        "Precio por persona por la experiencia en barco. Las bebidas no están incluidas salvo que se indique en la confirmación.",
+        "Precio por persona por la experiencia en barco. Mínimo 10 pasajeros por reserva. Las bebidas no están incluidas salvo que se indique en la confirmación.",
       sunset_boat_included_title: "Qué incluye",
       sunset_boat_include_1: "✔ Paseo escénico en el Río de la Plata",
       sunset_boat_include_2: "✔ Capitán y anfitrión Alejandro",
@@ -3369,8 +3386,9 @@ const translations = {
       asado_boat_price_menu_title: "Menú estándar USD 60 · premium USD 80 por menú",
       asado_boat_price_menu_detail:
         "Incluye el menú de parrilla para tu grupo (estándar o premium) y la elección de guarniciones. En general el menú estándar alcanza para unas 2–3 personas; el premium para unas 4. Las bebidas no están incluidas: podés pedirlas en el lugar.",
-      asado_boat_price_boat_title: "Barco USD 25 por persona",
-      asado_boat_price_boat_detail: "Se cobra por pasajero del paseo en barco, además de tu(s) pedido(s) de menú de parrilla.",
+      asado_boat_price_boat_title: "Barco USD 30 por persona",
+      asado_boat_price_boat_detail:
+        "Se cobra por pasajero del paseo en barco (mínimo 10 pasajeros en el barco), además de tu(s) pedido(s) de menú de parrilla.",
       asado_boat_included_title: "Qué incluye",
       asado_boat_include_1: "✔ Asado uruguayo tradicional (selección estándar o premium)",
       asado_boat_include_2: "✔ Guarnición(es) según tu elección de menú",
@@ -3856,6 +3874,10 @@ const translations = {
       home_cat_nav_craft_beer_desc: "Barbot e cervejaria",
       home_cat_nav_boat: "Passeio de barco",
       home_cat_nav_boat_desc: "Rio da Prata",
+      home_cat_nav_lodging: "Hospedagem",
+      home_cat_nav_lodging_desc: "Estadias e pernoites",
+      home_cat_nav_dining: "Só almoço/jantar",
+      home_cat_nav_dining_desc: "Restaurantes e refeições",
       home_category_modal_close: "Fechar",
       home_category_modal_view_list: "Ver na lista completa",
       home_category_modal_count: "{count} experiências",
@@ -5102,6 +5124,9 @@ const translations = {
         "Não há mais vagas neste horário. Use outro horário ou reduza passageiros em outra reserva.",
       orders_boat_slot_over_capacity:
         "Um horário excede o máximo de passageiros permitido. Ajuste as reservas antes de continuar.",
+      orders_boat_min_passengers:
+        "Esta experiência exige pelo menos {min} passageiros no barco.",
+      orders_boat_min_notice: "Mínimo de {min} passageiros no barco para esta experiência.",
       orders_boat_time_not_set: "Escolha o horário (editar esta reserva)",
       orders_wa_people_line: "Pessoas",
       orders_wa_intro: "Olá! Gostaria de reservar a experiência {experience}:",
@@ -5131,6 +5156,7 @@ const translations = {
       orders_visit_date_label: "Data da visita",
       passengers_label: "Passageiros",
       gallery_video_badge: "Vídeo",
+      boat_min_pax_badge: "Mínimo 10 pessoas",
       sunset_boat_passengers_per_slot:
         "São permitidos até {max} passageiros por horário de saída.",
       sunset_boat_popup_time_title: "Horário de saída",
@@ -5155,9 +5181,9 @@ const translations = {
         "🌅 Pôr do sol e relax: Ideal para fotos, águas calmas e um fim de tarde memorável.",
       sunset_boat_step_4: "⏱️ Duração: Cerca de 1,5 horas",
       sunset_boat_medical: "Assistência médica incluída",
-      sunset_boat_price_title: "USD 25 por pessoa",
+      sunset_boat_price_title: "USD 30 por pessoa",
       sunset_boat_price_detail:
-        "Preço por pessoa pela experiência de barco. Bebidas não inclusas salvo confirmação em contrário.",
+        "Preço por pessoa pela experiência de barco. Mínimo de 10 passageiros por reserva. Bebidas não inclusas salvo confirmação em contrário.",
       sunset_boat_included_title: "O que está incluído",
       sunset_boat_include_1: "✔ Passeio cênico no Rio da Prata",
       sunset_boat_include_2: "✔ Capitão e anfitrião Alejandro",
@@ -5277,8 +5303,9 @@ const translations = {
       asado_boat_price_menu_title: "Menu padrão USD 60 · premium USD 80 por menu",
       asado_boat_price_menu_detail:
         "Inclui o menu de churrasco para o seu grupo (padrão ou premium) e a escolha de guarnições. Em geral o menu padrão serve cerca de 2–3 pessoas; o premium cerca de 4. Bebidas não estão incluídas — podem ser pedidas no local.",
-      asado_boat_price_boat_title: "Barco USD 25 por pessoa",
-      asado_boat_price_boat_detail: "Cobrado por passageiro do passeio de barco, além do(s) pedido(s) de menu de churrasco.",
+      asado_boat_price_boat_title: "Barco USD 30 por pessoa",
+      asado_boat_price_boat_detail:
+        "Cobrado por passageiro do passeio de barco (mínimo de 10 passageiros no barco), além do(s) pedido(s) de menu de churrasco.",
       asado_boat_included_title: "O que está incluído",
       asado_boat_include_1: "✔ Asado uruguaio tradicional (seleção padrão ou premium)",
       asado_boat_include_2: "✔ Guarnição(ões) conforme sua escolha de menu",
@@ -6499,7 +6526,7 @@ function initRentPopupBehavior() {
   window.sacramentoDecorateActivityEmojiIcons = decorateActivityEmojiIcons;
 
   const CARD_SOON_EXPLORE_SELECTOR =
-    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn";
+    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn, #homeLegadoExploreBtn";
 
   function getCardExperiencePageUrl(card) {
     const buttons = card.querySelector(".card-buttons");
@@ -6570,6 +6597,7 @@ function initRentPopupBehavior() {
       document.getElementById("homeLupajackExploreBtn"),
       document.getElementById("homeMateAsadoExploreBtn"),
       document.getElementById("homePlazaExploreBtn"),
+      document.getElementById("homeLegadoExploreBtn"),
     ]
       .filter(Boolean)
       .forEach((btn) => {
@@ -6626,7 +6654,7 @@ function initRentPopupBehavior() {
 
         const imageContainer = card.querySelector(".card-image");
         const exploreSoonBtn = card.querySelector(
-          "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn"
+          "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn, #homeLegadoExploreBtn"
         );
         const link = Array.from(card.querySelectorAll(".card-buttons a.btn")).find((a) => {
           const h = a.getAttribute("href");

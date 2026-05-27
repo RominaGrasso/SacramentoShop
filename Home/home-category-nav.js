@@ -9,6 +9,9 @@
     "bodega",
     "horseback",
     "craft-beer",
+    "boat",
+    "lodging",
+    "dining",
   ];
 
   const NAV_LABEL_KEYS = {
@@ -18,6 +21,9 @@
     bodega: "home_cat_nav_bodega",
     horseback: "home_cat_nav_horseback",
     "craft-beer": "home_cat_nav_craft_beer",
+    boat: "home_cat_nav_boat",
+    lodging: "home_cat_nav_lodging",
+    dining: "home_cat_nav_dining",
   };
 
   /** Explore link slug → nav groups (a card may appear in multiple categories). */
@@ -28,24 +34,23 @@
     "food1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "gastronomy", "bodega"],
     "fullday-colonia.html": ["fullday"],
-    "bruma.html": ["gastronomy"],
-    "la-josefina.html": ["gastronomy"],
+    "bruma.html": ["dining", "gastronomy"],
+    "la-josefina.html": ["dining", "gastronomy"],
     "asado-boat.html": ["boat", "gastronomy"],
-    "lasliebres-dining.html": ["gastronomy", "bodega"],
+    "lasliebres-dining.html": ["dining", "gastronomy", "bodega"],
     "lasliebres.html": ["horseback", "fullday", "gastronomy", "bodega"],
-    "sio.html": ["gastronomy"],
-    "romantic.html": ["gastronomy"],
-    "mision-night.html": ["gastronomy"],
-    "sio-night.html": ["gastronomy"],
+    "sio.html": ["dining", "gastronomy"],
+    "romantic.html": ["dining", "gastronomy"],
+    "mision-night.html": ["lodging", "gastronomy"],
+    "sio-night.html": ["lodging", "gastronomy"],
     "mate.html": ["gastronomy"],
     "barbot.html": ["craft-beer", "gastronomy"],
-    "barbot-brewpub.html": ["craft-beer", "gastronomy"],
+    "barbot-brewpub.html": ["craft-beer", "dining", "gastronomy"],
     "fullday1.html": ["fullday", "gastronomy"],
     "fullday2.html": ["fullday", "bodega", "gastronomy"],
     "fullday3.html": ["fullday", "gastronomy"],
     "fullday4.html": ["fullday", "horseback", "bodega", "gastronomy"],
     "sunset-boat.html": ["boat"],
-    "corporate-boat.html": ["boat"],
     "cabal.html": ["horseback"],
     "legado.html": ["bodega", "fullday", "gastronomy"],
   };
@@ -53,12 +58,15 @@
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
     bodega: ["home-legado-card"],
+    boat: [],
+    lodging: ["home-card-mision-bruma"],
+    dining: [],
   };
 
   const CARD_ID_NAV = {
     "home-walking-tour-card": ["tours"],
     "home-fullday-colonia-card": ["fullday"],
-    "home-card-mision-bruma": ["gastronomy"],
+    "home-card-mision-bruma": ["lodging", "gastronomy"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "gastronomy", "bodega"],
     "home-cabal-card": ["horseback"],
     "home-barbot-tour-card": ["craft-beer", "gastronomy"],
@@ -70,6 +78,7 @@
     "homeLupajackExploreBtn",
     "homeMateAsadoExploreBtn",
     "homePlazaExploreBtn",
+    "homeLegadoExploreBtn",
   ]);
 
   let activeNav = null;
@@ -106,6 +115,7 @@
     __soon_lupajack__: ["tours"],
     __soon_plaza__: ["tours"],
     __soon_mate_asado__: ["gastronomy"],
+    __soon_legado__: ["bodega", "fullday", "gastronomy"],
   };
 
   const SLUG_NAV_LC = Object.fromEntries(
@@ -145,6 +155,7 @@
         if (id === "homeLupajackExploreBtn") return "__soon_lupajack__";
         if (id === "homePlazaExploreBtn") return "__soon_plaza__";
         if (id === "homeMateAsadoExploreBtn") return "__soon_mate_asado__";
+        if (id === "homeLegadoExploreBtn") return "__soon_legado__";
       }
     }
     return "";

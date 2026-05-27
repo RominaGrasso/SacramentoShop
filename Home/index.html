@@ -278,6 +278,27 @@
 <span class="home-category-chip__desc" data-translate="home_cat_nav_craft_beer_desc">Barbot &amp; brewery</span>
 </span>
 </button>
+<button class="home-category-chip" data-home-nav="boat" type="button">
+<span aria-hidden="true" class="home-category-chip__icon home-category-chip__icon--fa"><i class="fa-solid fa-ship"></i></span>
+<span class="home-category-chip__text">
+<span class="home-category-chip__label" data-translate="home_cat_nav_boat">Boat tours</span>
+<span class="home-category-chip__desc" data-translate="home_cat_nav_boat_desc">Río de la Plata</span>
+</span>
+</button>
+<button class="home-category-chip" data-home-nav="lodging" type="button">
+<span aria-hidden="true" class="home-category-chip__icon home-category-chip__icon--fa"><i class="fa-solid fa-bed"></i></span>
+<span class="home-category-chip__text">
+<span class="home-category-chip__label" data-translate="home_cat_nav_lodging">Lodging</span>
+<span class="home-category-chip__desc" data-translate="home_cat_nav_lodging_desc">Stays &amp; overnights</span>
+</span>
+</button>
+<button class="home-category-chip" data-home-nav="dining" type="button">
+<span aria-hidden="true" class="home-category-chip__icon home-category-chip__icon--fa"><i class="fa-solid fa-utensils"></i></span>
+<span class="home-category-chip__text">
+<span class="home-category-chip__label" data-translate="home_cat_nav_dining">Lunch / Dinner only</span>
+<span class="home-category-chip__desc" data-translate="home_cat_nav_dining_desc">Restaurants &amp; dining</span>
+</span>
+</button>
 </div>
 </div>
 </section>
@@ -553,6 +574,7 @@
 </div>
 </div>
 <div class="card" data-category="gastronomy day nature">
+<div class="discount-badge discount-badge--last-spots"><span class="discount-badge__text" data-translate="boat_min_pax_badge">Minimum 10 people</span></div>
 <div class="card-image carousel">
 <div class="carousel-track">
 <img alt="Uruguayan asado experience" decoding="async" height="220" src="../Assets/images/boat1.webp" width="1200"/>
@@ -894,6 +916,9 @@
 <!-- LEGADO · BOUTIQUE WINERY (CARMELO) -->
 <div class="card" data-category="fullday gastronomy day nature" data-home-nav-groups="bodega fullday gastronomy day" id="home-legado-card">
 <div class="card-image carousel">
+<div class="discount-badge discount-badge--coming-soon">
+<span class="discount-badge__text" data-translate="lupajack_coming_soon_badge">Coming soon</span>
+</div>
 <div class="carousel-track">
 <img alt="Legado boutique winery near Carmelo" data-translate-alt="home_legado_gal_alt_1" decoding="async" height="220" src="../Assets/images/legado1.jpg" width="1200"/>
 <img alt="Legado vineyard and natural surroundings" data-translate-alt="home_legado_gal_alt_2" decoding="async" height="220" loading="lazy" src="../Assets/images/legado2.jpg" width="1200"/>
@@ -923,10 +948,10 @@
       </p>
 <span class="see-more" data-translate="historic_see_more">See more</span>
 <div class="card-buttons">
-<a class="btn" data-translate="view_btn" href="../Actividades/legado.html" rel="noopener noreferrer" target="_blank">
+<button class="btn" data-translate="view_btn" id="homeLegadoExploreBtn" type="button">
            Explore
-        </a>
-<a class="btn secondary" data-translate="book_btn" href="../Actividades/legado.html">
+        </button>
+<a class="btn secondary" data-translate="book_btn" href="#">
           Reserve
         </a>
 </div>
@@ -1028,6 +1053,7 @@
 </div>
 </div>
 <div class="card" data-category="nature day night">
+<div class="discount-badge discount-badge--last-spots"><span class="discount-badge__text" data-translate="boat_min_pax_badge">Minimum 10 people</span></div>
 <div class="card-image carousel">
 <div class="carousel-track">
 <img alt="Boat tour Colonia" decoding="async" height="220" src="../Assets/images/boat1.webp" width="1200"/>
