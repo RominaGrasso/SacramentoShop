@@ -1918,6 +1918,7 @@
   .bar-hero,
   .historic-lasliebres-hero,
   .liebres-dining-hero,
+  .legado-hero,
   .liebres-hero,
   .about-hero {
     position: relative;
@@ -3190,11 +3191,24 @@
     background-repeat: no-repeat;
   }
 
+  .legado-hero {
+    height: 43vh;
+    background-image: url("../Assets/images/legado1.jpg");
+    background-size: cover;
+    background-position: center 42%;
+    background-repeat: no-repeat;
+  }
+
   @media (max-width: 900px) {
     .liebres-dining-hero {
       height: 39vh;
       background-size: cover;
       background-position: center 64%;
+    }
+
+    .legado-hero {
+      height: 39vh;
+      background-position: center 40%;
     }
   }
 
@@ -8305,6 +8319,7 @@
   .bar-hero,
   .historic-lasliebres-hero,
   .liebres-dining-hero,
+  .legado-hero,
   .night-page .night-hero {
     height: auto;
     min-height: min(42vh, 300px);
