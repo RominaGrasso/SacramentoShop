@@ -809,6 +809,8 @@ function initExperience(config) {
      */
     boatPerPersonPrice = 0,
     boatPassengersMax = 50,
+    /** Minimum total boat passengers required to reserve (e.g. 10 for group boat tours). */
+    boatPassengersMin = 0,
     /** Optional list of boat departure time labels (e.g. `["11:00am", …]`). Shown when `boatPerPersonPrice` > 0; stored in localStorage. */
     boatTimeSlots = null,
     /**
@@ -927,6 +929,7 @@ function initExperience(config) {
 
     const boatRate = Math.max(0, Number(boatPerPersonPrice) || 0);
     const boatMax = Math.max(1, Math.min(200, Number(boatPassengersMax) || 50));
+    const boatMin = Math.max(0, Math.min(boatMax, Math.floor(Number(boatPassengersMin) || 0)));
     const boatTimePerOrderFlag =
       Boolean(boatTimePerOrder) && Array.isArray(boatTimeSlots) && boatTimeSlots.length > 0;
     const menuWithPerOrderBoat =
@@ -1278,6 +1281,39 @@ function initExperience(config) {
       return getBoatPassengers();
     };
 
+    const getTotalBoatPassengersForMin = () => {
+      if (boatTimePerOrderFlag) {
+        return getOrders().reduce((s, o) => s + orderBoatPax(o), 0);
+      }
+      if (boatLSKey) return getBoatPassengers();
+      return 0;
+    };
+
+    const totalBoatPaxWithChange = (orderIndex, newPax) =>
+      getOrders().reduce((s, o, j) => s + (j === orderIndex ? newPax : orderBoatPax(o)), 0);
+
+    const minusWouldViolateBoatMin = (orderIndex, newPax) =>
+      boatMin > 0 && totalBoatPaxWithChange(orderIndex, newPax) < boatMin;
+
+    const alertBoatMinPassengers = () => {
+      alert(
+        getI18nText(
+          "orders_boat_min_passengers",
+          "This experience requires at least {min} passengers on the boat."
+        ).replace(/\{min\}/g, String(boatMin))
+      );
+    };
+
+    const assertBoatMinimumPassengers = () => {
+      if (boatMin <= 0) return true;
+      if (getOrders().length === 0) return true;
+      if (getTotalBoatPassengersForMin() < boatMin) {
+        alertBoatMinPassengers();
+        return false;
+      }
+      return true;
+    };
+
     const peopleCountForPayment = (ordersArr) => {
       if (boatTimePerOrderFlag && experienceSkipsMenuChoices) {
         return ordersArr.reduce((s, o) => s + orderBoatPax(o), 0);
@@ -1602,6 +1638,7 @@ function initExperience(config) {
 
     const experienceBookReady = () => {
       if (!boatBookReady()) return false;
+      if (!assertBoatMinimumPassengers()) return false;
       if (!rb) return true;
       const need = calculateGuestsFromRooms();
       if (need <= 0) {
@@ -1914,7 +1951,9 @@ function initExperience(config) {
           const existingPassengers =
             editingIndex !== null && orders[editingIndex]
               ? Math.max(1, Math.min(boatMax, Math.floor(Number(orders[editingIndex].passengers) || 1)))
-              : 1;
+              : orders.length === 0 && boatMin > 0
+                ? Math.min(boatMax, boatMin)
+                : 1;
           const order = {
             starter: "",
             main: "",
@@ -2137,16 +2176,9 @@ function initExperience(config) {
           boatPassengersMenu =
             editingIndex !== null && orders[editingIndex]
               ? Math.max(0, Math.min(boatMax, Math.floor(Number(orders[editingIndex].boatPassengers) || 0)))
-              : 0;
-          if (boatPassengersMenu > 0 && !boatDepartureTimeMenu) {
-            alert(
-              getI18nText(
-                "orders_boat_time_popup_required",
-                "Please choose a boat departure time."
-              )
-            );
-            return;
-          }
+              : boatMin > 0
+                ? Math.min(boatMax, boatMin)
+                : 0;
           if (
             boatDepartureTimeMenu &&
             boatPassengersMenu > 0 &&
@@ -2786,6 +2818,13 @@ function initExperience(config) {
           "Up to {max} passengers allowed per departure time."
         ).replace(/\{max\}/g, String(boatMax));
         html += `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(slotHintRaw)}</p>`;
+        if (boatMin > 0) {
+          const minHintRaw = t(
+            "orders_boat_min_notice",
+            "Minimum {min} passengers on the boat for this experience."
+          ).replace(/\{min\}/g, String(boatMin));
+          html += `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(minHintRaw)}</p>`;
+        }
       }
 
       if (walkingTourTimePerOrderFlag) {
@@ -2831,9 +2870,11 @@ function initExperience(config) {
                 ? `<p><strong>${escapeHtml(t("orders_boat_time_label", "Boat departure time"))}:</strong> <em>${escapeHtml(t("orders_boat_time_not_set", "Choose a time (edit)"))}</em></p>`
                 : "";
           const slotPaxCap = boatTimePerOrderFlag ? maxPassengersForOrderIndex(index) : boatMax;
+          const paxMinusDisabled =
+            pax <= 1 || minusWouldViolateBoatMin(index, Math.max(1, pax - 1));
           const paxRow = boatTimePerOrderFlag
             ? `<p class="order-passengers-controls"><strong>${escapeHtml(t("passengers_label", "Passengers"))}:</strong> <button type="button" class="add-guest-btn"${
-                pax <= 1 ? " disabled" : ""
+                paxMinusDisabled ? " disabled" : ""
               } data-order-passengers-action="minus" data-index="${index}">−</button> <span class="order-pax-count">${pax}</span> <button type="button" class="add-guest-btn"${
                 pax >= slotPaxCap ? " disabled" : ""
               } data-order-passengers-action="plus" data-index="${index}">+</button></p>`
@@ -3000,7 +3041,9 @@ function initExperience(config) {
               .join("")}</div>
             <p class="order-passengers-controls"><strong>${escapeHtml(t("passengers_label", "Passengers"))}:</strong>
               <button type="button" class="add-guest-btn"${
-                menuBoatPax <= 0 ? " disabled" : ""
+                menuBoatPax <= 0 || minusWouldViolateBoatMin(index, Math.max(0, menuBoatPax - 1))
+                  ? " disabled"
+                  : ""
               } data-menu-boat-pax-action="minus" data-index="${index}">−</button>
               <span class="order-pax-count">${menuBoatPax}</span>
               <button type="button" class="add-guest-btn"${
@@ -3213,7 +3256,10 @@ function initExperience(config) {
         const list = getOrders();
         const o = list[idx];
         if (!o) return;
-        const pax = orderBoatPax(o);
+        let pax = orderBoatPax(o);
+        if (pax <= 0 && boatMin > 0) {
+          pax = Math.min(boatMax, boatMin);
+        }
         if (pax > 0 && !boatTimeSlotHasRoom(slot, pax, idx)) {
           alert(
             getI18nText(
@@ -3224,7 +3270,7 @@ function initExperience(config) {
           renderOrders();
           return;
         }
-        list[idx] = { ...o, boatDepartureTime: slot };
+        list[idx] = { ...o, boatDepartureTime: slot, boatPassengers: pax };
         setOrders(list);
         renderOrders();
         return;
@@ -3339,7 +3385,12 @@ function initExperience(config) {
         const t = orderBoatTime(o);
         const slotCap = t ? maxPassengersForOrderIndex(idx) : boatMax;
         if (act === "minus") {
-          p = Math.max(0, p - 1);
+          const nextP = Math.max(0, p - 1);
+          if (minusWouldViolateBoatMin(idx, nextP)) {
+            alertBoatMinPassengers();
+            return;
+          }
+          p = nextP;
         } else if (act === "plus") {
           if (p >= slotCap) {
             alert(
@@ -3350,7 +3401,7 @@ function initExperience(config) {
             );
             return;
           }
-          p = Math.min(slotCap, p + 1);
+          p = p === 0 && boatMin > 0 ? Math.min(slotCap, boatMin) : Math.min(slotCap, p + 1);
         }
         const next = { ...o, boatPassengers: p };
         if (p === 0) next.boatDepartureTime = "";
@@ -3371,8 +3422,14 @@ function initExperience(config) {
         let p = Math.max(1, Math.min(boatMax, Math.floor(Number(o.passengers) || 1)));
         const act = paxActEl.getAttribute("data-order-passengers-action");
         const slotCap = maxPassengersForOrderIndex(idx);
-        if (act === "minus") p = Math.max(1, p - 1);
-        else if (act === "plus") {
+        if (act === "minus") {
+          const nextP = Math.max(1, p - 1);
+          if (minusWouldViolateBoatMin(idx, nextP)) {
+            alertBoatMinPassengers();
+            return;
+          }
+          p = nextP;
+        } else if (act === "plus") {
           if (p >= slotCap) {
             alert(
               getI18nText(

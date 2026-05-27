@@ -4,7 +4,7 @@
 (function () {
   const HOME_CARDS_URL = "../Home/index.html";
   const SOON_BTN_SELECTOR =
-    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn";
+    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn, #homeLegadoExploreBtn";
 
   function siteLanguage() {
     if (typeof window.getInitialLanguage === "function") return window.getInitialLanguage();
