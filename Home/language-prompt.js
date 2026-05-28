@@ -42,8 +42,7 @@
       return window.hasUserChosenLanguage();
     }
     try {
-      const stored = localStorage.getItem("selectedLanguage");
-      return VALID.has(stored);
+      return localStorage.getItem("sacramentoLanguageChosen") === "1";
     } catch (_) {
       return false;
     }
@@ -58,8 +57,12 @@
     const safe = VALID.has(lang) ? lang : "en";
     try {
       localStorage.setItem("selectedLanguage", safe);
+      localStorage.setItem("sacramentoLanguageChosen", "1");
     } catch (_) {
       /* ignore */
+    }
+    if (typeof window.sacramentoMarkLanguageChosen === "function") {
+      window.sacramentoMarkLanguageChosen();
     }
 
     document.documentElement.lang = safe;

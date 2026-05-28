@@ -6,7 +6,16 @@
   "use strict";
 
   const STORAGE_KEY = "selectedLanguage";
+  const CHOSEN_KEY = "sacramentoLanguageChosen";
   const VALID = new Set(["en", "es", "pt"]);
+
+  function markLanguageChosen() {
+    try {
+      localStorage.setItem(CHOSEN_KEY, "1");
+    } catch (_) {
+      /* ignore */
+    }
+  }
 
   function detectLanguageFromNavigator() {
     if (typeof navigator === "undefined") return "en";
@@ -35,7 +44,11 @@
   }
 
   function hasUserChosenLanguage() {
-    return getStoredLanguage() !== null;
+    try {
+      return localStorage.getItem(CHOSEN_KEY) === "1";
+    } catch (_) {
+      return false;
+    }
   }
 
   function getInitialLanguage() {
@@ -48,6 +61,7 @@
   global.getStoredLanguage = getStoredLanguage;
   global.hasUserChosenLanguage = hasUserChosenLanguage;
   global.sacramentoHasUserChosenLanguage = hasUserChosenLanguage;
+  global.sacramentoMarkLanguageChosen = markLanguageChosen;
   global.getInitialLanguage = getInitialLanguage;
   global.sacramentoGetInitialLanguage = getInitialLanguage;
 

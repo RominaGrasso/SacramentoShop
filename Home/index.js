@@ -7006,10 +7006,21 @@ function initRentPopupBehavior() {
       return window.hasUserChosenLanguage();
     }
     try {
-      const stored = localStorage.getItem("selectedLanguage");
-      return stored === "en" || stored === "es" || stored === "pt";
+      return localStorage.getItem("sacramentoLanguageChosen") === "1";
     } catch (_) {
       return false;
+    }
+  }
+
+  function markLanguageChosen() {
+    if (typeof window.sacramentoMarkLanguageChosen === "function") {
+      window.sacramentoMarkLanguageChosen();
+      return;
+    }
+    try {
+      localStorage.setItem("sacramentoLanguageChosen", "1");
+    } catch (_) {
+      /* ignore */
     }
   }
 
@@ -7030,6 +7041,7 @@ function initRentPopupBehavior() {
   
     document.querySelectorAll(".lang-btn").forEach(button => {
       button.addEventListener("click", () => {
+        markLanguageChosen();
         setLanguage(button.dataset.lang);
       });
     });
