@@ -81,7 +81,7 @@
     </p>
 <ul aria-label="Highlights" class="fullday-colonia-hero-badges">
 <li data-translate="fullday_colonia_highlight_1">Private transfer included</li>
-<li data-translate="fullday_colonia_highlight_2">Guided Plaza de Toros</li>
+<li data-translate="fullday_colonia_highlight_2">Plaza de Toros (exterior)</li>
 <li data-translate="fullday_colonia_highlight_3">Typical Uruguayan lunch</li>
 <li data-translate="fullday_colonia_highlight_4">Colonia letters</li>
 <li data-translate="fullday_colonia_highlight_5">UNESCO Historic Quarter</li>
@@ -120,7 +120,7 @@
 </li>
 <li class="activity-meta-row" data-card-meta="landmark">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#landmark"></use></svg>
-<span data-translate="fullday_colonia_step_3">Guided tour of Plaza de Toros</span>
+<span data-translate="fullday_colonia_step_3">Exterior stop at Plaza de Toros</span>
 </li>
 <li class="activity-meta-row" data-card-meta="camera">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#camera"></use></svg>
@@ -144,7 +144,7 @@
 <span><strong data-translate="fullday_colonia_duration_label_short">Duration:</strong> <span data-translate="fullday_colonia_duration_value">4–5 hours</span></span>
 </h3>
 <p class="price-box-detail fullday-colonia-transport-note" data-translate="fullday_colonia_transport_price_p">
-      Private transport is billed by vehicle: USD 30 total for 1–4 guests (one vehicle); USD 60 total for 5–8 guests (two vehicles). Shown separately in your order summary and added to the total.
+      Private transport is billed per vehicle (up to 4 people per taxi, including your guide). One guide travels with the whole group. USD 30 total for 1–3 guests (one vehicle); USD 60 total for 4–7 guests (two vehicles). Shown separately in your order summary and added to the total.
     </p>
 <p class="price-box-detail">
 <strong data-translate="fullday_colonia_langs_label_short">Languages:</strong>
@@ -180,7 +180,7 @@
 </li>
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
-<span data-translate="fullday_colonia_include_2">Guided tour of Plaza de Toros</span>
+<span data-translate="fullday_colonia_include_2">Exterior stop at Plaza de Toros (outside view; no entry inside)</span>
 </li>
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
@@ -225,6 +225,8 @@
 <section class="coffee-gallery">
 <h2 data-translate="fullday_colonia_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
+<img alt="Private transfer in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/taxiel1.jpg" width="1200"/>
+<img alt="Private transfer vehicle in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/taxiel2.jpg" width="1200"/>
 <img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza.webp" width="1200"/>
 <img alt="Colonia del Sacramento waterfront" decoding="async" height="220" loading="lazy" src="../Assets/images/colonia.webp" width="1200"/>
 <img alt="Historic Quarter, Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/historic1.webp" width="1200"/>
@@ -278,13 +280,24 @@
     const TRANSPORT_PER_VEHICLE = 30;
     const whatsappNumber = "59898945542";
 
+    const GUIDE_TRANSPORT_SEATS = 1;
+
+    const getTransportVehicleCount = (people) => {
+      const n = Math.max(0, Math.floor(Number(people) || 0));
+      if (n === 0) return 0;
+      if (typeof groupPrivateTransportVehicleCount === "function") {
+        return groupPrivateTransportVehicleCount(n, GUIDE_TRANSPORT_SEATS);
+      }
+      return Math.ceil((n + GUIDE_TRANSPORT_SEATS) / 4);
+    };
+
     const getTransportTotal = (people) => {
       const n = Math.max(0, Math.floor(Number(people) || 0));
       if (n === 0) return 0;
       if (typeof groupPrivateTransportTotal === "function") {
-        return groupPrivateTransportTotal(n, TRANSPORT_PER_VEHICLE);
+        return groupPrivateTransportTotal(n, TRANSPORT_PER_VEHICLE, GUIDE_TRANSPORT_SEATS);
       }
-      return Math.ceil(n / 4) * TRANSPORT_PER_VEHICLE;
+      return getTransportVehicleCount(n) * TRANSPORT_PER_VEHICLE;
     };
 
     const getPricingTotals = (people) => {
@@ -295,7 +308,7 @@
     };
 
     const transportSummaryLine = (people, transport) => {
-      const vehicles = Math.ceil(Math.max(1, people) / 4);
+      const vehicles = getTransportVehicleCount(Math.max(1, people));
       return t(
         "fullday_colonia_transport_summary",
         "Private transport ({vehicles} vehicle × USD {rate}): USD {amount}"
@@ -427,7 +440,7 @@
 
     const buildWhatsAppMessage = (group, pricing, paymentUrl) => {
       const date = formatVisitDateLabel(getVisitDateIso()) || "—";
-      const vehicles = Math.ceil(pricing.people / 4);
+      const vehicles = getTransportVehicleCount(pricing.people);
       const vehicleWord =
         vehicles === 1
           ? t("fullday_colonia_vehicle_singular", "vehicle")

@@ -30,48 +30,52 @@
   const SLUG_NAV = {
     "walkingtour.html": ["tours"],
     "bike.html": ["tours"],
-    "walking-asado.html": ["tours", "gastronomy"],
-    "food1.html": ["tours", "gastronomy"],
-    "historic-lasliebres.html": ["tours", "gastronomy", "bodega"],
+    "walking-asado.html": ["tours"],
+    "food1.html": ["tours"],
+    "historic-lasliebres.html": ["tours", "bodega"],
     "fullday-colonia.html": ["fullday"],
+    "traslado-plaza-letras.html": ["fullday", "day"],
     "bruma.html": ["dining", "gastronomy"],
     "la-josefina.html": ["dining", "gastronomy"],
     "asado-boat.html": ["boat", "gastronomy"],
     "lasliebres-dining.html": ["dining", "gastronomy", "bodega"],
-    "lasliebres.html": ["horseback", "fullday", "gastronomy", "bodega"],
+    "lasliebres.html": ["horseback", "fullday", "bodega"],
     "sio.html": ["dining", "gastronomy"],
     "romantic.html": ["dining", "gastronomy"],
     "mision-night.html": ["lodging", "gastronomy"],
     "sio-night.html": ["lodging", "gastronomy"],
     "mate.html": ["gastronomy"],
-    "barbot.html": ["craft-beer", "gastronomy"],
+    "barbot.html": ["craft-beer"],
     "barbot-brewpub.html": ["craft-beer", "dining", "gastronomy"],
-    "fullday1.html": ["fullday", "gastronomy"],
-    "fullday2.html": ["fullday", "bodega", "gastronomy"],
-    "fullday3.html": ["fullday", "gastronomy"],
-    "fullday4.html": ["fullday", "horseback", "bodega", "gastronomy"],
+    "fullday1.html": ["fullday"],
+    "fullday2.html": ["fullday", "bodega"],
+    "fullday3.html": ["fullday"],
+    "fullday4.html": ["fullday", "horseback", "bodega"],
     "sunset-boat.html": ["boat"],
     "cabal.html": ["horseback"],
-    "legado.html": ["bodega", "fullday", "gastronomy"],
+    "legado.html": ["bodega", "fullday"],
   };
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
+    fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
     bodega: ["home-legado-card"],
     boat: [],
     lodging: ["home-card-mision-bruma"],
     dining: [],
+    day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
   const CARD_ID_NAV = {
     "home-walking-tour-card": ["tours"],
     "home-fullday-colonia-card": ["fullday"],
+    "home-traslado-plaza-letras-card": ["fullday", "day"],
     "home-card-mision-bruma": ["lodging", "gastronomy"],
-    "home-cabalgata-liebres-card": ["horseback", "fullday", "gastronomy", "bodega"],
+    "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
     "home-cabal-card": ["horseback"],
-    "home-barbot-tour-card": ["craft-beer", "gastronomy"],
-    "home-barbot-brewpub-card": ["craft-beer", "gastronomy"],
-    "home-legado-card": ["bodega", "fullday", "gastronomy"],
+    "home-barbot-tour-card": ["craft-beer"],
+    "home-barbot-brewpub-card": ["craft-beer", "dining"],
+    "home-legado-card": ["bodega", "fullday"],
   };
 
   const SOON_EXPLORE_IDS = new Set([
@@ -111,11 +115,22 @@
     return true;
   }
 
+  /** Coming-soon cards stay on the home list but are hidden from category popups (except Legado). */
+  function isExcludedSoonFromCategoryPopups(card) {
+    if (card.querySelector("#homeLegadoExploreBtn")) return false;
+    if (card.querySelector(".discount-badge--coming-soon")) return true;
+    if (card.querySelector("#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn")) {
+      return true;
+    }
+    const slug = cardExploreSlug(card);
+    return Boolean(slug && slug.startsWith("__soon_") && slug !== "__soon_legado__");
+  }
+
   const SOON_SLUG_NAV = {
     __soon_lupajack__: ["tours"],
     __soon_plaza__: ["tours"],
     __soon_mate_asado__: ["gastronomy"],
-    __soon_legado__: ["bodega", "fullday", "gastronomy"],
+    __soon_legado__: ["bodega", "fullday"],
   };
 
   const SLUG_NAV_LC = Object.fromEntries(
@@ -210,9 +225,15 @@
   }
 
   function cardsForNav(navKey) {
-    const matches = getExperienceCards().filter((card) =>
-      getCardNavGroups(card).includes(navKey)
-    );
+    const matches = getExperienceCards().filter((card) => {
+      if (isExcludedSoonFromCategoryPopups(card)) return false;
+      const groups = getCardNavGroups(card);
+      if (!groups.includes(navKey)) return false;
+      const slug = cardExploreSlug(card);
+      if (navKey === "tours" && (slug === "barbot.html" || slug === "barbot-brewpub.html")) return false;
+      if (navKey === "gastronomy" && groups.includes("tours")) return false;
+      return true;
+    });
     return orderCardsForNav(navKey, matches);
   }
 

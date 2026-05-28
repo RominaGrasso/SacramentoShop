@@ -4554,16 +4554,25 @@ function initPreferencesOrderExperience(config) {
 }
 
 /**
- * Transporte privado: un vehículo (hasta 4 pasajeros) = rate USD fijos.
- * Cada vehículo adicional (5.º pasajero en adelante, de 4 en 4) suma otro rate USD.
- * Ej.: 1–4 pax → rate; 5–8 pax → 2×rate; 9–12 → 3×rate.
+ * Transporte privado por vehículo (hasta 4 personas por taxi, asientos incluidos).
+ * @param {number} guestCount — huéspedes / comensales
+ * @param {number} ratePerVehicle — USD por vehículo
+ * @param {number} [extraSeats=0] — asientos extra (ej. 1 guía por grupo en Full Day)
  */
-function groupPrivateTransportTotal(guestCount, ratePerVehicle) {
+function groupPrivateTransportTotal(guestCount, ratePerVehicle, extraSeats = 0) {
   const rate = Number(ratePerVehicle) || 0;
   const n = Math.max(0, Math.floor(Number(guestCount) || 0));
+  const extra = Math.max(0, Math.floor(Number(extraSeats) || 0));
   if (n === 0 || rate <= 0) return 0;
-  const vehicles = Math.ceil(n / 4);
+  const vehicles = Math.ceil((n + extra) / 4);
   return vehicles * rate;
+}
+
+function groupPrivateTransportVehicleCount(guestCount, extraSeats = 0) {
+  const n = Math.max(0, Math.floor(Number(guestCount) || 0));
+  const extra = Math.max(0, Math.floor(Number(extraSeats) || 0));
+  if (n === 0) return 0;
+  return Math.ceil((n + extra) / 4);
 }
 
 /**
