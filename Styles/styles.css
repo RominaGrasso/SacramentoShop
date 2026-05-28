@@ -337,6 +337,13 @@
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 40px;
   }
+
+.traslado-plaza-letras-hero {
+  background-image:
+    linear-gradient(135deg, rgba(30, 55, 90, 0.45), rgba(47, 103, 163, 0.35)),
+    url("../Assets/images/letras.jpg?v=20260522perf");
+  background-position: center 42%;
+}
   
   .card {
     background: white;
