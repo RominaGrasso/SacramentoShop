@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
-<body class="page-actividad">
+<body class="page-actividad page-plaza-anita">
 <!-- ================= HEADER ================= -->
 <header>
 <div class="logo-container">
@@ -76,55 +76,444 @@
 </section>
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
-<h2>About this experience</h2>
-<p>
-        Explore the iconic Plaza de Toros Real de San Carlos and discover one of
-        Colonia del Sacramento’s most impressive historical landmarks.
-        After the guided visit, relax and enjoy specialty coffee at Anita's.
+<h2 data-translate="plaza_page_about_title">About this experience</h2>
+<p data-translate="plaza_page_about_p">
+        Explore the iconic Plaza de Toros Real de San Carlos with private transfer and tickets included — skip the line. After the guided visit, continue at Anita's café in the heart of the Historic Quarter.
       </p>
-<!-- PRICE -->
+<a class="reel-link-btn" data-translate="food_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
+        🎥 Watch Reel on @_sacramentoadventures
+      </a>
 <div class="price-box">
-<h3>$100 USD</h3>
-<p>Experience for 2 people</p>
+<h3 data-translate="plaza_page_price_line">From USD 80 (1 person) · USD 120 (2 people)</h3>
 </div>
-<!-- INCLUDES -->
 <div class="coffee-includes">
+<h3 data-translate="plaza_page_included_title">What's included</h3>
 <ul>
-<li>✔ Private or coordinated transfer</li>
-<li>✔ Entrance tickets to Plaza de Toros</li>
-<li>✔ Guided historical visit</li>
-<li>✔ Time to explore Real de San Carlos area</li>
-<li>✔ Specialty coffee experience at Anita's</li>
-<li>✔ Reserved table with</li>
+<li data-translate="plaza_page_include_1">✔ Private transfer — your vehicle waits outside the bullring while you tour inside</li>
+<li data-translate="plaza_page_include_2">✔ Entrance tickets to Plaza de Toros</li>
+<li data-translate="plaza_page_include_4">✔ Anita's café experience (menu below)</li>
+<li data-translate="plaza_page_include_5">✔ Reserved table</li>
 </ul>
+<div class="order-start" id="reservar">
+<h3 data-translate="plaza_page_create_title">Create your experience</h3>
+<div class="booking-visit-date-row">
+<label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDatePlazaAnita" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+                Pick the day you plan to come so we can coordinate availability in advance.
+              </p>
+</div>
+<p data-translate="plaza_page_create_subtitle">Choose the Anita café menu for your group (1 or 2 people).</p>
+<button class="btn primary-btn" data-translate="plaza_page_create_btn" id="createPlazaAnitaBtn" type="button">
+          + Create your experience
+        </button>
+</div>
+</div>
+<div aria-live="polite" class="order-summary" id="plazaAnitaOrderSummary"></div>
+<div class="experience-support-notice" role="status">
+<p>
+<strong data-translate="bruma_support_title">After your reservation</strong><span data-translate="bruma_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+</p>
 </div>
 <!-- ================= GALLERY ================= -->
 <section class="coffee-gallery">
-<h2>Experience Gallery</h2>
+<h2 data-translate="plaza_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
+<img alt="Private transfer in Colonia" decoding="async" height="220" src="../Assets/images/taxiel1.jpg" width="1200"/>
 <img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza.webp" width="1200"/>
 <img alt="Inside Plaza de Toros" decoding="async" height="220" loading="lazy" src="../Assets/images/plaz1.webp" width="1200"/>
-<img alt="Coffee at Anita's" decoding="async" height="220" loading="lazy" src="../Assets/images/ser1.webp" width="1200"/>
-<img alt="View from Anita's" decoding="async" height="220" loading="lazy" src="../Assets/images/ser2.webp" width="1200"/>
-<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza.webp" width="1200"/>
-<img alt="Inside Plaza de Toros" decoding="async" height="220" loading="lazy" src="../Assets/images/plaz1.webp" width="1200"/>
-<img alt="Coffee at Anita's" decoding="async" height="220" loading="lazy" src="../Assets/images/ser1.webp" width="1200"/>
-<img alt="View from Anita's" decoding="async" height="220" loading="lazy" src="../Assets/images/ser2.webp" width="1200"/>
-<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza.webp" width="1200"/>
+<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza3.jpg" width="1200"/>
+<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza11.jpg" width="1200"/>
+<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita1.jpg" width="1200"/>
+<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita2.jpg" width="1200"/>
+<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita3.jpg" width="1200"/>
+<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita4.jpg" width="1200"/>
 </div>
 </section>
 <!-- ================= ACTIONS ================= -->
 <div class="coffee-actions">
-<a class="btn" href="TU_LINK" target="_blank">
-          Reserve
-        </a>
-<a class="btn secondary" href="../Home/index.html">
-          Back to Home
-        </a>
+<a class="btn" data-translate="book_btn" href="#" id="bookNowBottomPlazaAnita">Reserve</a>
+<a class="btn secondary" data-translate="plaza_back_home" href="../Home/index.html">Back to Home</a>
 </div>
 </section>
 <script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/language-prompt.js?v=20260522perf"></script>
 <script src="../Home/index.js?v=20260522perf"></script>
+<script src="../Home/orders.js?v=20260522perf"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
+<div aria-hidden="true" class="popup-overlay" id="popupPlazaAnita">
+<div aria-labelledby="plazaAnitaPopupTitle" aria-modal="true" class="popup-box food-menu-popup-box" role="dialog">
+<button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closePlazaAnita" type="button">✕</button>
+<p><strong class="popup-title" data-translate="plaza_popup_time_title" id="plazaAnitaPopupTitle">Choose your pickup time</strong></p>
+<div class="plaza-anita-popup-step" id="plazaAnitaStepTime">
+<div class="preferences-inside">
+<h3 class="preferences-title" data-translate="plaza_popup_time_heading">Pickup time</h3>
+<p class="mate-popup-guests-hint" data-translate="plaza_popup_time_hint">We'll pick you up at this time to start your experience.</p>
+<label><input checked="" name="plazaAnitaPickupTime" type="radio" value="10:45"/> <span>10:45</span></label>
+<label><input name="plazaAnitaPickupTime" type="radio" value="11:45"/> <span>11:45</span></label>
+<label><input name="plazaAnitaPickupTime" type="radio" value="12:45"/> <span>12:45</span></label>
+<label><input name="plazaAnitaPickupTime" type="radio" value="13:45"/> <span>13:45</span></label>
+<label><input name="plazaAnitaPickupTime" type="radio" value="14:45"/> <span>14:45</span></label>
+<label><input name="plazaAnitaPickupTime" type="radio" value="15:45"/> <span>15:45</span></label>
+</div>
+<div class="popup-actions">
+<button class="btn" data-translate="plaza_popup_continue" id="plazaAnitaTimeNext" type="button">Continue</button>
+</div>
+</div>
+<div class="plaza-anita-popup-step" hidden="" id="plazaAnitaStepMenu">
+<ul class="popup-list">
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input checked="" name="plazaAnitaPackage" type="radio" value="anita_1"/>
+<span class="food-menu-option-main" data-translate="plaza_anita_pkg_1_title">For 1 person</span>
+<span class="food-menu-option-sub" data-translate="plaza_anita_pkg_1_price">USD 80</span>
+</label>
+<div class="food-menu-whatyouget">
+<ul>
+<li data-translate="plaza_anita_pkg_1_item_1">Hot drink (tea or coffee)</li>
+<li data-translate="plaza_anita_pkg_1_item_2">Fresh orange juice</li>
+<li data-translate="plaza_anita_pkg_1_item_3">Ham and cheese toastie</li>
+<li data-translate="plaza_anita_pkg_1_item_4">Sweet option of your choice</li>
+</ul>
+</div>
+</li>
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input name="plazaAnitaPackage" type="radio" value="anita_2"/>
+<span class="food-menu-option-main" data-translate="plaza_anita_pkg_2_title">For 2 people</span>
+<span class="food-menu-option-sub" data-translate="plaza_anita_pkg_2_price">USD 120</span>
+</label>
+<div class="food-menu-whatyouget">
+<ul>
+<li data-translate="plaza_anita_pkg_2_item_1">2 hot drinks (tea or coffee)</li>
+<li data-translate="plaza_anita_pkg_2_item_2">2 fresh orange juices</li>
+<li data-translate="plaza_anita_pkg_2_item_3">2 ham and cheese toasties</li>
+<li data-translate="plaza_anita_pkg_2_item_4">2 sweet options of your choice</li>
+</ul>
+</div>
+</li>
+</ul>
+<div class="popup-actions">
+<button class="btn secondary" data-translate="plaza_popup_back" id="plazaAnitaMenuBack" type="button">Back</button>
+<button class="btn" data-translate="save_selection" id="savePlazaAnita" type="button">Save selection</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+(function () {
+  const STORAGE_KEY = "plaza_anita_experience_config";
+  const VISIT_DATE_KEY = "selectedDatePlazaAnita";
+  const WHATSAPP_NUMBER = "59898945542";
+  const PACKAGES = Object.freeze({
+    anita_1: { price: 80, guests: 1, labelKey: "plaza_anita_pkg_1_title" },
+    anita_2: { price: 120, guests: 2, labelKey: "plaza_anita_pkg_2_title" }
+  });
+  const PICKUP_TIMES = Object.freeze(["10:45", "11:45", "12:45", "13:45", "14:45", "15:45"]);
+
+  const popup = document.getElementById("popupPlazaAnita");
+  const openBtn = document.getElementById("createPlazaAnitaBtn");
+  const closeBtn = document.getElementById("closePlazaAnita");
+  const saveBtn = document.getElementById("savePlazaAnita");
+  const timeNextBtn = document.getElementById("plazaAnitaTimeNext");
+  const menuBackBtn = document.getElementById("plazaAnitaMenuBack");
+  const stepTime = document.getElementById("plazaAnitaStepTime");
+  const stepMenu = document.getElementById("plazaAnitaStepMenu");
+  const popupTitle = document.getElementById("plazaAnitaPopupTitle");
+  const summary = document.getElementById("plazaAnitaOrderSummary");
+  const bookBtn = document.getElementById("bookNowBottomPlazaAnita");
+  const visitDateInput = document.getElementById("bookingVisitDate");
+
+  if (
+    !popup ||
+    !openBtn ||
+    !closeBtn ||
+    !saveBtn ||
+    !timeNextBtn ||
+    !menuBackBtn ||
+    !stepTime ||
+    !stepMenu ||
+    !popupTitle ||
+    !summary
+  ) {
+    return;
+  }
+
+  const t = (key, fallback) => {
+    const lang = (window.getInitialLanguage?.() || "en").toLowerCase();
+    const dict = window.__SACRAMENTO_TRANSLATIONS || {};
+    return dict?.[lang]?.[key] || dict?.en?.[key] || fallback;
+  };
+
+  const normalizePackage = (value) => (value === "anita_2" ? "anita_2" : "anita_1");
+
+  const normalizePickupTime = (value) => {
+    const v = String(value || "").trim();
+    return PICKUP_TIMES.includes(v) ? v : "";
+  };
+
+  const selectedPickupTime = () => {
+    const input = popup.querySelector('input[name="plazaAnitaPickupTime"]:checked');
+    return normalizePickupTime(input?.value);
+  };
+
+  const syncPickupTimeRadios = (time) => {
+    const safe = normalizePickupTime(time) || "10:45";
+    popup.querySelectorAll('input[name="plazaAnitaPickupTime"]').forEach((r) => {
+      r.checked = r.value === safe;
+    });
+  };
+
+  const setPopupTitleKey = (key, fallback) => {
+    popupTitle.setAttribute("data-translate", key);
+    popupTitle.textContent = t(key, fallback);
+  };
+
+  const showPopupStep = (step) => {
+    const onTime = step === "time";
+    stepTime.hidden = !onTime;
+    stepMenu.hidden = onTime;
+    if (onTime) {
+      setPopupTitleKey("plaza_popup_time_title", "Choose your pickup time");
+    } else {
+      setPopupTitleKey("plaza_popup_title", "Anita's café — choose your menu");
+    }
+  };
+
+  const getConfig = () => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const o = JSON.parse(raw);
+      if (!o || typeof o !== "object") return null;
+      const pkg = normalizePackage(o.package);
+      const pickupTime = normalizePickupTime(o.pickupTime);
+      if (!pickupTime) return null;
+      return { package: pkg, pickupTime };
+    } catch {
+      return null;
+    }
+  };
+
+  const setConfig = (cfg) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+  };
+
+  const packageLabel = (pkg) => {
+    const spec = PACKAGES[pkg] || PACKAGES.anita_1;
+    return t(spec.labelKey, pkg);
+  };
+
+  const packagePrice = (pkg) => (PACKAGES[pkg] || PACKAGES.anita_1).price;
+
+  const packageGuests = (pkg) => (PACKAGES[pkg] || PACKAGES.anita_1).guests;
+
+  const getVisitDate = () => {
+    const fromInput = visitDateInput?.value?.trim();
+    if (fromInput) return fromInput;
+    return localStorage.getItem(VISIT_DATE_KEY) || "";
+  };
+
+  const formatVisitDate = (iso) => {
+    if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso || "—";
+    const d = new Date(iso + "T12:00:00");
+    if (Number.isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+  };
+
+  const openPopup = () => {
+    const cfg = getConfig();
+    syncPickupTimeRadios(cfg?.pickupTime || "10:45");
+    const pkg = cfg?.package || "anita_1";
+    const radio = popup.querySelector(`input[name="plazaAnitaPackage"][value="${pkg}"]`);
+    if (radio) radio.checked = true;
+    showPopupStep("time");
+    popup.classList.add("active");
+    popup.setAttribute("aria-hidden", "false");
+  };
+
+  const closePopup = () => {
+    popup.classList.remove("active");
+    popup.setAttribute("aria-hidden", "true");
+    showPopupStep("time");
+  };
+
+  const sendToWhatsApp = (cfg) => {
+    if (!cfg) {
+      window.alert(t("plaza_alert_create_first", "Please create your experience first."));
+      return;
+    }
+    const visitIso = getVisitDate();
+    if (!visitIso) {
+      window.alert(t("plaza_alert_select_date", "Please select your preferred visit date."));
+      return;
+    }
+
+    const total = packagePrice(cfg.package);
+    const guests = packageGuests(cfg.package);
+
+    const runReserveFlow = async () => {
+      const pendingTab =
+        typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+          ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+          : null;
+      let paymentUrl = "";
+      try {
+        if (typeof resolveDynamicPaymentLink === "function") {
+          paymentUrl = await resolveDynamicPaymentLink(
+            {
+              enabled: true,
+              endpoint: "/api/payments/resolve",
+              experienceId: "plaza_anita",
+              currency: "USD"
+            },
+            {
+              experience: "plaza_anita",
+              amount: total,
+              currency: "USD",
+              people: guests,
+              orderFingerprint:
+                typeof stableStringify === "function"
+                  ? stableStringify({ cfg, total })
+                  : JSON.stringify({ cfg, total }),
+              orderPayload: {
+                cfg,
+                total,
+                experienceName: "Plaza de Toros with Anita's café"
+              }
+            }
+          );
+        }
+      } catch {
+        /* continue without payment URL */
+      }
+
+      let message =
+        `${t("wa_intro_plaza_anita", "Hello! I'd like to book the Plaza de Toros experience with Anita's café:")}\n\n` +
+        `${t("plaza_wa_visit_date", "Preferred visit date")}: ${formatVisitDate(visitIso)}\n` +
+        `${t("plaza_wa_pickup_time", "Pickup time")}: ${cfg.pickupTime}\n` +
+        `${t("plaza_wa_menu_label", "Anita café menu")}: ${packageLabel(cfg.package)}\n` +
+        `${t("plaza_summary_guests_label", "Guests")}: ${guests}\n\n` +
+        `${t("total_label", "Total")}: USD ${total}`;
+
+      if (paymentUrl) {
+        message += `\n\n${t("wa_payment_prompt", "To confirm the reservation, please complete the payment here:")}\n${paymentUrl}`;
+      } else {
+        message += `\n\n${t("wa_payment_fallback", "Please share payment instructions to confirm this booking.")}`;
+      }
+
+      if (typeof window.sacramentoOpenWhatsApp === "function") {
+        window.sacramentoOpenWhatsApp(WHATSAPP_NUMBER, message, pendingTab);
+      } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+        window.location.assign(window.sacramentoBuildWhatsAppUrl(WHATSAPP_NUMBER, message));
+      }
+    };
+
+    if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
+      void window.sacramentoRunReserveWhatsAppFlow(runReserveFlow);
+    } else {
+      void runReserveFlow();
+    }
+  };
+
+  const renderSummary = () => {
+    const cfg = getConfig();
+    summary.innerHTML = "";
+    const h = document.createElement("h3");
+    h.textContent = t("plaza_summary_heading", "Your experience");
+    summary.appendChild(h);
+
+    if (!cfg) {
+      const p = document.createElement("p");
+      p.textContent = t(
+        "plaza_summary_empty",
+        "Tap + Create your experience to choose your Anita café menu."
+      );
+      summary.appendChild(p);
+      return;
+    }
+
+    const card = document.createElement("div");
+    card.className = "order-card";
+    card.innerHTML = `
+      <p><strong>${t("plaza_summary_pickup_label", "Pickup time")}:</strong> ${cfg.pickupTime}</p>
+      <p><strong>${t("plaza_summary_package_label", "Menu")}:</strong> ${packageLabel(cfg.package)}</p>
+      <p><strong>${t("plaza_summary_guests_label", "Guests")}:</strong> ${packageGuests(cfg.package)}</p>
+    `;
+    summary.appendChild(card);
+
+    const total = packagePrice(cfg.package);
+    const totalBox = document.createElement("div");
+    totalBox.className = "total-box";
+    totalBox.innerHTML = `
+      <div class="total-left">
+        <span class="total-label">${t("total_label", "Total")}</span>
+      </div>
+      <div class="total-right">USD ${total}</div>
+    `;
+    const reserveTotal = document.createElement("a");
+    reserveTotal.href = "#";
+    reserveTotal.className = "btn total-btn";
+    reserveTotal.textContent = t("book_btn", "Reserve");
+    reserveTotal.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      sendToWhatsApp(getConfig());
+    });
+    totalBox.appendChild(reserveTotal);
+    summary.appendChild(totalBox);
+  };
+
+  openBtn.addEventListener("click", () => openPopup());
+  closeBtn.addEventListener("click", () => closePopup());
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) closePopup();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && popup.classList.contains("active")) closePopup();
+  });
+
+  timeNextBtn.addEventListener("click", () => {
+    const pickupTime = selectedPickupTime();
+    if (!pickupTime) {
+      window.alert(t("plaza_alert_select_time", "Please select a pickup time."));
+      return;
+    }
+    showPopupStep("menu");
+  });
+
+  menuBackBtn.addEventListener("click", () => {
+    showPopupStep("time");
+  });
+
+  saveBtn.addEventListener("click", () => {
+    const pickupTime = selectedPickupTime();
+    if (!pickupTime) {
+      window.alert(t("plaza_alert_select_time", "Please select a pickup time."));
+      showPopupStep("time");
+      return;
+    }
+    const selected = popup.querySelector('input[name="plazaAnitaPackage"]:checked');
+    const pkg = normalizePackage(selected?.value);
+    setConfig({ package: pkg, pickupTime });
+    closePopup();
+    renderSummary();
+    if (typeof window.scrollToOrderSummary === "function") {
+      window.scrollToOrderSummary("plazaAnitaOrderSummary");
+    }
+  });
+
+  document.addEventListener("sacramento:setLanguage", () => renderSummary());
+
+  if (bookBtn) {
+    bookBtn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      sendToWhatsApp(getConfig());
+    });
+  }
+
+  renderSummary();
+})();
+</script>
 <div class="lightbox" id="lightbox">
 <span class="close-lightbox" id="closeLightbox">✕</span>
 <button class="lightbox-btn prev" id="prevBtn">‹</button>

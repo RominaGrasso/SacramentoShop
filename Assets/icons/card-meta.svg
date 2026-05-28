@@ -121,6 +121,9 @@
   <symbol id="check" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.2 4.2L19 7"/>
   </symbol>
+  <symbol id="cross" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" d="M7 7l10 10M17 7L7 17"/>
+  </symbol>
   <symbol id="water" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M4 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0M4 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
   </symbol>

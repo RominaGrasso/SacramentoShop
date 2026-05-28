@@ -32,6 +32,7 @@
     "bike.html": ["tours"],
     "walking-asado.html": ["tours"],
     "food1.html": ["tours"],
+    "plaza1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "bodega"],
     "fullday-colonia.html": ["fullday"],
     "traslado-plaza-letras.html": ["fullday", "day"],
@@ -76,12 +77,12 @@
     "home-barbot-tour-card": ["craft-beer"],
     "home-barbot-brewpub-card": ["craft-beer", "dining"],
     "home-legado-card": ["bodega", "fullday"],
+    "home-plaza-anita-card": ["tours", "gastronomy"],
   };
 
   const SOON_EXPLORE_IDS = new Set([
     "homeLupajackExploreBtn",
     "homeMateAsadoExploreBtn",
-    "homePlazaExploreBtn",
     "homeLegadoExploreBtn",
   ]);
 
@@ -119,7 +120,7 @@
   function isExcludedSoonFromCategoryPopups(card) {
     if (card.querySelector("#homeLegadoExploreBtn")) return false;
     if (card.querySelector(".discount-badge--coming-soon")) return true;
-    if (card.querySelector("#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn")) {
+    if (card.querySelector("#homeLupajackExploreBtn, #homeMateAsadoExploreBtn")) {
       return true;
     }
     const slug = cardExploreSlug(card);
@@ -128,7 +129,6 @@
 
   const SOON_SLUG_NAV = {
     __soon_lupajack__: ["tours"],
-    __soon_plaza__: ["tours"],
     __soon_mate_asado__: ["gastronomy"],
     __soon_legado__: ["bodega", "fullday"],
   };
@@ -168,7 +168,6 @@
     for (const id of SOON_EXPLORE_IDS) {
       if (card.querySelector(`#${id}`)) {
         if (id === "homeLupajackExploreBtn") return "__soon_lupajack__";
-        if (id === "homePlazaExploreBtn") return "__soon_plaza__";
         if (id === "homeMateAsadoExploreBtn") return "__soon_mate_asado__";
         if (id === "homeLegadoExploreBtn") return "__soon_legado__";
       }

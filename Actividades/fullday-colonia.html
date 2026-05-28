@@ -86,7 +86,7 @@
 <li data-translate="fullday_colonia_highlight_4">Colonia letters</li>
 <li data-translate="fullday_colonia_highlight_5">UNESCO Historic Quarter</li>
 </ul>
-<p class="fullday-colonia-hero-price" data-translate="fullday_colonia_price_title">From USD 50 per person</p>
+<p class="fullday-colonia-hero-price" data-translate="fullday_colonia_price_title">From USD 80 per person</p>
 </div>
 </section>
 <!-- ================= CONTENT ================= -->
@@ -107,6 +107,9 @@
 <p data-translate="fullday_colonia_about_p">
     Enjoy a complete Colonia experience with private transfer, typical gastronomy, and guided tours of the city's most iconic landmarks.
   </p>
+<a class="reel-link-btn" data-translate="food_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
+    🎥 Watch Reel on @_sacramentoadventures
+  </a>
 <h3 class="experience-steps-title" data-translate="fullday_colonia_steps_title">Itinerary</h3>
 <div class="experience-steps fullday-colonia-itinerary">
 <ul class="activity-meta-list">
@@ -139,13 +142,10 @@
 <!-- PRICE & PRACTICAL INFO -->
 <div class="price-box">
 <h3>
-<span data-translate="fullday_colonia_price_title">From USD 50 per person</span>
+<span data-translate="fullday_colonia_price_title">From USD 80 per person</span>
 <span class="food-price-separator"> · </span>
 <span><strong data-translate="fullday_colonia_duration_label_short">Duration:</strong> <span data-translate="fullday_colonia_duration_value">4–5 hours</span></span>
 </h3>
-<p class="price-box-detail fullday-colonia-transport-note" data-translate="fullday_colonia_transport_price_p">
-      Private transport is billed per vehicle (up to 4 people per taxi, including your guide). One guide travels with the whole group. USD 30 total for 1–3 guests (one vehicle); USD 60 total for 4–7 guests (two vehicles). Shown separately in your order summary and added to the total.
-    </p>
 <p class="price-box-detail">
 <strong data-translate="fullday_colonia_langs_label_short">Languages:</strong>
 <span data-translate="fullday_colonia_langs_value">Spanish · English · Portuguese</span>
@@ -197,6 +197,17 @@
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
 <span data-translate="fullday_colonia_include_6">Local guide in Spanish, English, or Portuguese</span>
+</li>
+</ul>
+<h3 data-translate="fullday_colonia_not_included_title">What's not included</h3>
+<ul class="activity-meta-list">
+<li class="activity-meta-row" data-card-meta="cross">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#cross"></use></svg>
+<span data-translate="fullday_colonia_not_include_1">Drinks and desserts</span>
+</li>
+<li class="activity-meta-row" data-card-meta="cross">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#cross"></use></svg>
+<span data-translate="fullday_colonia_not_include_2">Guests' personal extra expenses</span>
 </li>
 </ul>
 </div>
@@ -271,51 +282,19 @@
 <button class="lightbox-btn next" id="nextBtn">›</button>
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/language-prompt.js?v=20260522perf"></script>
 <script src="../Home/index.js?v=20260522perf"></script>
 <script src="../Home/orders.js?v=20260522perf"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
   (function () {
-    const PRICE_PER_PERSON = 50;
-    const TRANSPORT_PER_VEHICLE = 30;
+    const PRICE_PER_PERSON = 80;
     const whatsappNumber = "59898945542";
-
-    const GUIDE_TRANSPORT_SEATS = 1;
-
-    const getTransportVehicleCount = (people) => {
-      const n = Math.max(0, Math.floor(Number(people) || 0));
-      if (n === 0) return 0;
-      if (typeof groupPrivateTransportVehicleCount === "function") {
-        return groupPrivateTransportVehicleCount(n, GUIDE_TRANSPORT_SEATS);
-      }
-      return Math.ceil((n + GUIDE_TRANSPORT_SEATS) / 4);
-    };
-
-    const getTransportTotal = (people) => {
-      const n = Math.max(0, Math.floor(Number(people) || 0));
-      if (n === 0) return 0;
-      if (typeof groupPrivateTransportTotal === "function") {
-        return groupPrivateTransportTotal(n, TRANSPORT_PER_VEHICLE, GUIDE_TRANSPORT_SEATS);
-      }
-      return getTransportVehicleCount(n) * TRANSPORT_PER_VEHICLE;
-    };
 
     const getPricingTotals = (people) => {
       const n = Math.max(1, Math.floor(Number(people) || 1));
-      const experience = PRICE_PER_PERSON * n;
-      const transport = getTransportTotal(n);
-      return { people: n, experience, transport, total: experience + transport };
-    };
-
-    const transportSummaryLine = (people, transport) => {
-      const vehicles = getTransportVehicleCount(Math.max(1, people));
-      return t(
-        "fullday_colonia_transport_summary",
-        "Private transport ({vehicles} vehicle × USD {rate}): USD {amount}"
-      )
-        .replace("{vehicles}", String(vehicles))
-        .replace("{rate}", String(TRANSPORT_PER_VEHICLE))
-        .replace("{amount}", String(transport));
+      const total = PRICE_PER_PERSON * n;
+      return { people: n, total };
     };
     const storageKey = "orders_fullday_colonia";
     const VISIT_DATE_KEY = "selectedDateFulldayColonia";
@@ -440,11 +419,6 @@
 
     const buildWhatsAppMessage = (group, pricing, paymentUrl) => {
       const date = formatVisitDateLabel(getVisitDateIso()) || "—";
-      const vehicles = getTransportVehicleCount(pricing.people);
-      const vehicleWord =
-        vehicles === 1
-          ? t("fullday_colonia_vehicle_singular", "vehicle")
-          : t("fullday_colonia_vehicle_plural", "vehicles");
 
       const lines = [
         t("wa_intro_fullday_colonia", "Hello! I'd like to book the Full Day Colonia experience:"),
@@ -456,8 +430,7 @@
         `*${t("fullday_colonia_label_pickup", "Pickup point")}:* ${localizePickup(group.pickup)}`,
         "",
         `*${t("fullday_colonia_wa_order_details", "Order details")}:*`,
-        `• ${t("fullday_colonia_summary_experience", "Experience subtotal")}: ${pricing.people} × USD ${PRICE_PER_PERSON} = USD ${pricing.experience}`,
-        `• ${t("fullday_colonia_summary_transport", "Private transport")}: ${vehicles} ${vehicleWord} × USD ${TRANSPORT_PER_VEHICLE} = USD ${pricing.transport}`,
+        `• ${pricing.people} × USD ${PRICE_PER_PERSON} = USD ${pricing.total} (${t("fullday_colonia_transport_included_note", "private transport included")})`,
         "",
         `*${t("wa_total_label", "Total")}:* USD ${pricing.total}`
       ];
@@ -581,9 +554,8 @@
         <p><strong>${t("fullday_colonia_label_people", "People")}:</strong> ${group.people}</p>
         <p><strong>${t("fullday_colonia_label_language", "Language")}:</strong> ${localizeLanguage(group.language)}</p>
         <p><strong>${t("fullday_colonia_label_pickup", "Pickup point")}:</strong> ${localizePickup(group.pickup)}</p>
-        <p><strong>${t("fullday_colonia_summary_experience", "Experience subtotal")}:</strong> USD ${pricing.experience} (${group.people} x USD ${PRICE_PER_PERSON})</p>
-        <p><strong>${t("fullday_colonia_summary_transport", "Private transport")}:</strong> USD ${pricing.transport}</p>
-        <p class="order-transport-note">${transportSummaryLine(group.people, pricing.transport)}</p>
+        <p><strong>${t("fullday_colonia_summary_experience", "Experience subtotal")}:</strong> USD ${pricing.total} (${group.people} × USD ${PRICE_PER_PERSON})</p>
+        <p class="order-transport-note">${t("fullday_colonia_transport_included_note", "Private transport included in the price per person.")}</p>
       `;
       summary.appendChild(card);
       const totalBox = document.createElement("div");
@@ -591,7 +563,7 @@
       totalBox.innerHTML = `
         <div class="total-left">
           <span class="total-label">${t("total_label", "Total")}</span>
-          <span class="total-detail">${group.people} ${t("fullday_colonia_guests_short", "guests")} · ${t("fullday_colonia_summary_experience", "experience")} USD ${pricing.experience} · ${t("orders_summary_transport", "transport")} USD ${pricing.transport}</span>
+          <span class="total-detail">${group.people} ${t("fullday_colonia_guests_short", "guests")} × USD ${PRICE_PER_PERSON}</span>
         </div>
         <div class="total-right">USD ${pricing.total}</div>
       `;
