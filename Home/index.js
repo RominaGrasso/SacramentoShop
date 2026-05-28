@@ -476,9 +476,8 @@ const translations = {
       fullday_colonia_step_4: "Photo stop at the Colonia letters",
       fullday_colonia_step_5: "Typical Uruguayan lunch: chivito",
       fullday_colonia_step_6: "Guided tour of the UNESCO Historic Quarter",
-      fullday_colonia_price_title: "From USD 50 per person",
-      fullday_colonia_transport_price_p:
-        "Private transport is billed per vehicle (up to 4 people per taxi, including your guide). One guide travels with the whole group. USD 30 total for 1–3 guests (one vehicle); USD 60 total for 4–7 guests (two vehicles). Shown separately in your order summary and added to the total.",
+      fullday_colonia_price_title: "From USD 80 per person · private transport included",
+      fullday_colonia_transport_included_note: "Private transport included in the price per person.",
       fullday_colonia_summary_experience: "Experience subtotal",
       fullday_colonia_summary_transport: "Private transport",
       fullday_colonia_transport_summary:
@@ -500,6 +499,9 @@ const translations = {
       fullday_colonia_include_4: "Typical Uruguayan lunch (chivito)",
       fullday_colonia_include_5: "Guided tour of the UNESCO Historic Quarter",
       fullday_colonia_include_6: "Local guide in Spanish, English, or Portuguese",
+      fullday_colonia_not_included_title: "What's not included",
+      fullday_colonia_not_include_1: "Drinks and desserts",
+      fullday_colonia_not_include_2: "Guests' personal extra expenses",
       fullday_colonia_create_title: "Create your Full Day group",
       fullday_colonia_create_subtitle:
         "Select language and pickup point, then adjust the number of guests",
@@ -750,7 +752,53 @@ const translations = {
       plaza_meta_tickets: "Tickets included",
       plaza_meta_time: "Approx. 3 hours",
       plaza_text:
-        "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line! Anita is a café in the heart of the historic quarter with an incredible view. The experience lasts approximately 3 hours.",
+        "Explore the iconic bullring and its history with private transfer and tickets included. Skip the line! Anita is a café in the heart of the historic quarter. The experience lasts approximately 3 hours.",
+      plaza_page_about_title: "About this experience",
+      plaza_page_about_p:
+        "Explore the iconic Plaza de Toros Real de San Carlos with private transfer and tickets included — skip the line. After the guided visit, continue at Anita's café in the heart of the Historic Quarter.",
+      plaza_page_included_title: "What's included",
+      plaza_page_include_1:
+        "✔ Private transfer — your vehicle waits outside the bullring while you tour inside",
+      plaza_page_include_2: "✔ Entrance tickets to Plaza de Toros",
+      plaza_page_include_4: "✔ Anita's café experience (menu below)",
+      plaza_page_include_5: "✔ Reserved table",
+      plaza_page_price_line: "From USD 80 (1 person) · USD 120 (2 people)",
+      plaza_page_create_title: "Create your experience",
+      plaza_page_create_subtitle: "Choose the Anita café menu for your group (1 or 2 people).",
+      plaza_page_create_btn: "+ Create your experience",
+      plaza_popup_time_title: "Choose your pickup time",
+      plaza_popup_time_heading: "Pickup time",
+      plaza_popup_time_hint: "We'll pick you up at this time to start your experience.",
+      plaza_popup_continue: "Continue",
+      plaza_popup_back: "Back",
+      plaza_popup_title: "Anita's café — choose your menu",
+      plaza_summary_pickup_label: "Pickup time",
+      plaza_wa_pickup_time: "Pickup time",
+      plaza_alert_select_time: "Please select a pickup time.",
+      plaza_anita_pkg_1_title: "For 1 person",
+      plaza_anita_pkg_1_item_1: "Hot drink (tea or coffee)",
+      plaza_anita_pkg_1_item_2: "Fresh orange juice",
+      plaza_anita_pkg_1_item_3: "Ham and cheese toastie",
+      plaza_anita_pkg_1_item_4: "Sweet option of your choice",
+      plaza_anita_pkg_1_price: "USD 80",
+      plaza_anita_pkg_2_title: "For 2 people",
+      plaza_anita_pkg_2_item_1: "2 hot drinks (tea or coffee)",
+      plaza_anita_pkg_2_item_2: "2 fresh orange juices",
+      plaza_anita_pkg_2_item_3: "2 ham and cheese toasties",
+      plaza_anita_pkg_2_item_4: "2 sweet options of your choice",
+      plaza_anita_pkg_2_price: "USD 120",
+      plaza_summary_heading: "Your experience",
+      plaza_summary_empty: "Tap + Create your experience to choose your Anita café menu.",
+      plaza_summary_package_label: "Menu",
+      plaza_summary_guests_label: "Guests",
+      plaza_alert_create_first: "Please create your experience first using + Create your experience.",
+      plaza_alert_select_date: "Please select your preferred visit date.",
+      plaza_gallery_title: "Experience Gallery",
+      plaza_back_home: "Back to Home",
+      wa_intro_plaza_anita:
+        "Hello! I'd like to book the Plaza de Toros experience with Anita's café:",
+      plaza_wa_menu_label: "Anita café menu",
+      plaza_wa_visit_date: "Preferred visit date",
       services_title: "Useful services in Colonia del Sacramento",
       services_intro:
         "Recommended currency exchange, pharmacies, supermarkets near the Historic Quarter, parking, police stations, and local health centres — handy references for your stay. Hours and rates can change; please confirm before you go.",
@@ -2472,9 +2520,8 @@ const translations = {
       fullday_colonia_step_4: "Parada en las Letras de Colonia para fotos",
       fullday_colonia_step_5: "Almuerzo típico uruguayo: chivito",
       fullday_colonia_step_6: "Tour guiado por el Barrio Histórico",
-      fullday_colonia_price_title: "Desde USD 50 por persona",
-      fullday_colonia_transport_price_p:
-        "El transporte privado se cobra por vehículo (hasta 4 personas por taxi, incluido el guía). Un solo guía acompaña al grupo. USD 30 en total para 1–3 huéspedes (un vehículo); USD 60 en total para 4–7 huéspedes (dos vehículos). Se muestra aparte en el resumen y se suma al total.",
+      fullday_colonia_price_title: "Desde USD 80 por persona · traslado privado incluido",
+      fullday_colonia_transport_included_note: "Traslado privado incluido en el precio por persona.",
       fullday_colonia_summary_experience: "Subtotal experiencia",
       fullday_colonia_summary_transport: "Transporte privado",
       fullday_colonia_transport_summary:
@@ -2496,6 +2543,9 @@ const translations = {
       fullday_colonia_include_4: "Almuerzo típico uruguayo (chivito)",
       fullday_colonia_include_5: "Tour guiado por el Barrio Histórico UNESCO",
       fullday_colonia_include_6: "Guía en español, inglés o portugués",
+      fullday_colonia_not_included_title: "Qué no incluye",
+      fullday_colonia_not_include_1: "Bebidas y postres",
+      fullday_colonia_not_include_2: "Gastos extra personales de cada persona",
       fullday_colonia_create_title: "Creá tu grupo Full Day",
       fullday_colonia_create_subtitle:
         "Elegí idioma y punto de pick up, luego ajustá la cantidad de personas",
@@ -2744,7 +2794,53 @@ const translations = {
       plaza_meta_tickets: "Entradas incluidas",
       plaza_meta_time: "~3 hs aprox.",
       plaza_text:
-        "Conocé la icónica plaza de toros y su historia con traslado privado y entradas incluidas. ¡Sin hacer fila! Anita es un café en el corazón del barrio histórico, tiene una vista increíble. La experiencia es de 3 hs aproximadamente.",
+        "Conocé la icónica plaza de toros y su historia con traslado privado y entradas incluidas. ¡Sin hacer fila! Anita es un café en el corazón del barrio histórico. La experiencia es de 3 hs aproximadamente.",
+      plaza_page_about_title: "Sobre esta experiencia",
+      plaza_page_about_p:
+        "Conocé la icónica Plaza de Toros Real de San Carlos con traslado privado y entradas incluidas — sin hacer fila. Después de la visita guiada, continuá en el café Anita, en el corazón del Barrio Histórico.",
+      plaza_page_included_title: "Qué incluye",
+      plaza_page_include_1:
+        "✔ Traslado privado — el transporte te espera afuera de la plaza mientras hacés el recorrido",
+      plaza_page_include_2: "✔ Entradas a la Plaza de Toros",
+      plaza_page_include_4: "✔ Experiencia en el café Anita (menú abajo)",
+      plaza_page_include_5: "✔ Mesa reservada",
+      plaza_page_price_line: "Desde USD 80 (1 persona) · USD 120 (2 personas)",
+      plaza_page_create_title: "Creá tu experiencia",
+      plaza_page_create_subtitle: "Elegí el menú del café Anita para tu grupo (1 o 2 personas).",
+      plaza_page_create_btn: "+ Crear tu experiencia",
+      plaza_popup_time_title: "Elegí tu horario de pick up",
+      plaza_popup_time_heading: "Horario de pick up",
+      plaza_popup_time_hint: "Te pasamos a buscar a esta hora para comenzar la experiencia.",
+      plaza_popup_continue: "Continuar",
+      plaza_popup_back: "Volver",
+      plaza_popup_title: "Café Anita — elegí tu menú",
+      plaza_summary_pickup_label: "Horario de pick up",
+      plaza_wa_pickup_time: "Horario de pick up",
+      plaza_alert_select_time: "Seleccioná un horario de pick up.",
+      plaza_anita_pkg_1_title: "Para 1 persona",
+      plaza_anita_pkg_1_item_1: "Infusión",
+      plaza_anita_pkg_1_item_2: "Jugo de naranja natural",
+      plaza_anita_pkg_1_item_3: "Tostado de jamón y queso",
+      plaza_anita_pkg_1_item_4: "Opción dulce a elección",
+      plaza_anita_pkg_1_price: "USD 80",
+      plaza_anita_pkg_2_title: "Para 2 personas",
+      plaza_anita_pkg_2_item_1: "2 infusiones",
+      plaza_anita_pkg_2_item_2: "2 jugos de naranja natural",
+      plaza_anita_pkg_2_item_3: "2 tostados de jamón y queso",
+      plaza_anita_pkg_2_item_4: "2 opciones dulces a elección",
+      plaza_anita_pkg_2_price: "USD 120",
+      plaza_summary_heading: "Tu experiencia",
+      plaza_summary_empty: "Tocá + Crear tu experiencia para elegir el menú del café Anita.",
+      plaza_summary_package_label: "Menú",
+      plaza_summary_guests_label: "Huéspedes",
+      plaza_alert_create_first: "Primero creá tu experiencia con + Crear tu experiencia.",
+      plaza_alert_select_date: "Seleccioná tu fecha de visita preferida.",
+      plaza_gallery_title: "Galería de la experiencia",
+      plaza_back_home: "Volver al inicio",
+      wa_intro_plaza_anita:
+        "¡Hola! Quiero reservar la experiencia Plaza de Toros con el café de Anita:",
+      plaza_wa_menu_label: "Menú café Anita",
+      plaza_wa_visit_date: "Fecha de visita preferida",
       services_title: "Servicios útiles en Colonia del Sacramento",
       services_intro:
         "Casa de cambio recomendada, farmacias, supermercados cerca del Barrio Histórico, estacionamientos, comisarías y centros de salud — referencias para tu visita. Los horarios y tarifas pueden cambiar; confirmá antes de ir.",
@@ -4466,9 +4562,8 @@ const translations = {
       fullday_colonia_step_4: "Parada nas letras de Colonia para fotos",
       fullday_colonia_step_5: "Almoço típico uruguaio: chivito",
       fullday_colonia_step_6: "Tour guiado pelo Bairro Histórico",
-      fullday_colonia_price_title: "A partir de USD 50 por pessoa",
-      fullday_colonia_transport_price_p:
-        "O transporte privado é cobrado por veículo (até 4 pessoas por táxi, incluindo o guia). Um único guia acompanha o grupo. USD 30 no total para 1–3 hóspedes (um veículo); USD 60 no total para 4–7 hóspedes (dois veículos). Aparece separado no resumo e entra no total.",
+      fullday_colonia_price_title: "A partir de USD 80 por pessoa · transfer privado incluído",
+      fullday_colonia_transport_included_note: "Transfer privado incluído no preço por pessoa.",
       fullday_colonia_summary_experience: "Subtotal da experiência",
       fullday_colonia_summary_transport: "Transporte privado",
       fullday_colonia_transport_summary:
@@ -4490,6 +4585,9 @@ const translations = {
       fullday_colonia_include_4: "Almoço típico uruguaio (chivito)",
       fullday_colonia_include_5: "Tour guiado pelo Bairro Histórico UNESCO",
       fullday_colonia_include_6: "Guia em espanhol, inglês ou português",
+      fullday_colonia_not_included_title: "O que não inclui",
+      fullday_colonia_not_include_1: "Bebidas e sobremesas",
+      fullday_colonia_not_include_2: "Despesas pessoais extras de cada hóspede",
       fullday_colonia_create_title: "Crie seu grupo Full Day",
       fullday_colonia_create_subtitle:
         "Escolha idioma e ponto de pick up, depois ajuste o número de pessoas",
@@ -4738,7 +4836,53 @@ const translations = {
       plaza_meta_tickets: "Ingressos incluídos",
       plaza_meta_time: "~3 h aprox.",
       plaza_text:
-        "Explore a icônica praça de touros e sua história com transfer privativo e ingressos incluídos. Pule a fila! Anita é um café no coração do bairro histórico, com uma vista incrível. A experiência tem cerca de 3 horas.",
+        "Explore a icônica praça de touros e sua história com transfer privativo e ingressos incluídos. Pule a fila! Anita é um café no coração do bairro histórico. A experiência tem cerca de 3 horas.",
+      plaza_page_about_title: "Sobre esta experiência",
+      plaza_page_about_p:
+        "Explore a icônica Plaza de Toros Real de San Carlos com transfer privativo e ingressos incluídos — sem fila. Após a visita guiada, continue no café Anita, no coração do Bairro Histórico.",
+      plaza_page_included_title: "O que inclui",
+      plaza_page_include_1:
+        "✔ Transfer privativo — o veículo te espera do lado de fora da praça enquanto você faz o tour",
+      plaza_page_include_2: "✔ Ingressos para a Plaza de Toros",
+      plaza_page_include_4: "✔ Experiência no café Anita (menu abaixo)",
+      plaza_page_include_5: "✔ Mesa reservada",
+      plaza_page_price_line: "A partir de USD 80 (1 pessoa) · USD 120 (2 pessoas)",
+      plaza_page_create_title: "Crie sua experiência",
+      plaza_page_create_subtitle: "Escolha o menu do café Anita para o seu grupo (1 ou 2 pessoas).",
+      plaza_page_create_btn: "+ Criar sua experiência",
+      plaza_popup_time_title: "Escolha o horário do pick-up",
+      plaza_popup_time_heading: "Horário do pick-up",
+      plaza_popup_time_hint: "Buscamos você neste horário para começar a experiência.",
+      plaza_popup_continue: "Continuar",
+      plaza_popup_back: "Voltar",
+      plaza_popup_title: "Café Anita — escolha seu menu",
+      plaza_summary_pickup_label: "Horário do pick-up",
+      plaza_wa_pickup_time: "Horário do pick-up",
+      plaza_alert_select_time: "Selecione um horário de pick-up.",
+      plaza_anita_pkg_1_title: "Para 1 pessoa",
+      plaza_anita_pkg_1_item_1: "Infusão",
+      plaza_anita_pkg_1_item_2: "Suco de laranja natural",
+      plaza_anita_pkg_1_item_3: "Tostado de presunto e queijo",
+      plaza_anita_pkg_1_item_4: "Opção doce à escolha",
+      plaza_anita_pkg_1_price: "USD 80",
+      plaza_anita_pkg_2_title: "Para 2 pessoas",
+      plaza_anita_pkg_2_item_1: "2 infusões",
+      plaza_anita_pkg_2_item_2: "2 sucos de laranja natural",
+      plaza_anita_pkg_2_item_3: "2 tostados de presunto e queijo",
+      plaza_anita_pkg_2_item_4: "2 opções doces à escolha",
+      plaza_anita_pkg_2_price: "USD 120",
+      plaza_summary_heading: "Sua experiência",
+      plaza_summary_empty: "Toque em + Criar sua experiência para escolher o menu do café Anita.",
+      plaza_summary_package_label: "Menu",
+      plaza_summary_guests_label: "Hóspedes",
+      plaza_alert_create_first: "Primeiro crie sua experiência com + Criar sua experiência.",
+      plaza_alert_select_date: "Selecione sua data de visita preferida.",
+      plaza_gallery_title: "Galeria da experiência",
+      plaza_back_home: "Voltar ao início",
+      wa_intro_plaza_anita:
+        "Olá! Gostaria de reservar a experiência Plaza de Toros com o café da Anita:",
+      plaza_wa_menu_label: "Menu café Anita",
+      plaza_wa_visit_date: "Data de visita preferida",
       services_title: "Serviços úteis em Colonia del Sacramento",
       services_intro:
         "Câmbio recomendado, farmácias, supermercados perto do Bairro Histórico, estacionamentos, delegacias de polícia e centros de saúde — referências para a sua estadia. Horários e tarifas podem mudar; confirme antes de ir.",
@@ -6760,7 +6904,7 @@ function initRentPopupBehavior() {
   window.sacramentoDecorateActivityEmojiIcons = decorateActivityEmojiIcons;
 
   const CARD_SOON_EXPLORE_SELECTOR =
-    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn, #homeLegadoExploreBtn";
+    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homeLegadoExploreBtn";
 
   function getCardExperiencePageUrl(card) {
     const buttons = card.querySelector(".card-buttons");
@@ -6830,7 +6974,6 @@ function initRentPopupBehavior() {
     [
       document.getElementById("homeLupajackExploreBtn"),
       document.getElementById("homeMateAsadoExploreBtn"),
-      document.getElementById("homePlazaExploreBtn"),
       document.getElementById("homeLegadoExploreBtn"),
     ]
       .filter(Boolean)
@@ -6858,7 +7001,19 @@ function initRentPopupBehavior() {
 
   window.openHomeLupajackSoonPopup = openHomeLupajackSoonPopup;
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function hasUserChosenLanguage() {
+    if (typeof window.hasUserChosenLanguage === "function") {
+      return window.hasUserChosenLanguage();
+    }
+    try {
+      const stored = localStorage.getItem("selectedLanguage");
+      return stored === "en" || stored === "es" || stored === "pt";
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function bootHomePage() {
   if (window.SACRAMENTO_I18N_ONLY) {
     const savedLanguage = getInitialLanguage();
     setLanguage(savedLanguage);
@@ -6888,7 +7043,7 @@ function initRentPopupBehavior() {
 
         const imageContainer = card.querySelector(".card-image");
         const exploreSoonBtn = card.querySelector(
-          "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homePlazaExploreBtn, #homeLegadoExploreBtn"
+          "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homeLegadoExploreBtn"
         );
         const link = Array.from(card.querySelectorAll(".card-buttons a.btn")).find((a) => {
           const h = a.getAttribute("href");
@@ -7058,8 +7213,6 @@ function initRentPopupBehavior() {
       });
     }
   
-  });
-  
   
     /* ===== SMOOTH SCROLL ===== */
     const exploreBtn = document.getElementById("exploreBtn");
@@ -7177,4 +7330,25 @@ function initRentPopupBehavior() {
   
   
     initCardSeeMoreToggles(document.getElementById("experiences") || document);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.__SACRAMENTO_PENDING_LANG__) {
+      setLanguage(window.__SACRAMENTO_PENDING_LANG__);
+      delete window.__SACRAMENTO_PENDING_LANG__;
+    }
+
+    if (hasUserChosenLanguage()) {
+      bootHomePage();
+      return;
+    }
+
+    document.addEventListener(
+      "sacramento:languageChosen",
+      () => {
+        bootHomePage();
+      },
+      { once: true }
+    );
+  });
 

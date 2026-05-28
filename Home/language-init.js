@@ -1,6 +1,6 @@
 /**
- * Site-wide language bootstrap: persisted preference or first-visit browser detection.
- * Load before index.js / orders.js on any page that uses translations.
+ * Site-wide language bootstrap: persisted preference after explicit choice (popup or header).
+ * Load before language-prompt.js and index.js on pages that use translations.
  */
 (function (global) {
   "use strict";
@@ -24,23 +24,34 @@
     return "en";
   }
 
-  function getInitialLanguage() {
+  function getStoredLanguage() {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored && VALID.has(stored)) return stored;
     } catch (_) {
       /* ignore */
     }
-
-    const detected = detectLanguageFromNavigator();
-    try {
-      localStorage.setItem(STORAGE_KEY, detected);
-    } catch (_) {
-      /* ignore */
-    }
-    return detected;
+    return null;
   }
 
+  function hasUserChosenLanguage() {
+    return getStoredLanguage() !== null;
+  }
+
+  function getInitialLanguage() {
+    const stored = getStoredLanguage();
+    if (stored) return stored;
+    return detectLanguageFromNavigator();
+  }
+
+  global.detectLanguageFromNavigator = detectLanguageFromNavigator;
+  global.getStoredLanguage = getStoredLanguage;
+  global.hasUserChosenLanguage = hasUserChosenLanguage;
+  global.sacramentoHasUserChosenLanguage = hasUserChosenLanguage;
   global.getInitialLanguage = getInitialLanguage;
   global.sacramentoGetInitialLanguage = getInitialLanguage;
+
+  if (typeof document !== "undefined" && !hasUserChosenLanguage()) {
+    document.documentElement.classList.add("sacramento-awaiting-lang");
+  }
 })(typeof window !== "undefined" ? window : globalThis);
