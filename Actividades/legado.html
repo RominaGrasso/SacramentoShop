@@ -84,16 +84,36 @@
 <h3 class="experience-steps-title" data-translate="legado_steps_title">How it works</h3>
 <div class="experience-steps">
 <ul>
-<li data-translate="legado_step_1">🚐 <strong>Private pick-up:</strong> Transfer from your hotel or the bus terminal in Colonia del Sacramento.</li>
-<li data-translate="legado_step_2">🍇 <strong>Winery &amp; vineyard:</strong> Guided visit at El Legado boutique winery, steps from Carmelo.</li>
-<li data-translate="legado_step_3">🍷 <strong>Wine tasting:</strong> Discover exclusive wines and how they are made.</li>
-<li data-translate="legado_step_4">🌿 <strong>Relaxed pace:</strong> Enjoy the natural surroundings and hospitality of the owners and staff.</li>
-<li data-translate="legado_step_5">🏨 <strong>Return:</strong> Private drop-off back to your hotel or terminal in Colonia.</li>
+<li class="liebres-step-item">
+          🚐
+          <strong data-translate="legado_step_1_title">Private pick-up:</strong>
+<span data-translate="legado_step_1_desc">Transfer from your hotel or the bus terminal in Colonia del Sacramento.</span>
+</li>
+<li class="liebres-step-item">
+          🍇
+          <strong data-translate="legado_step_2_title">Winery &amp; vineyard:</strong>
+<span data-translate="legado_step_2_desc">Guided visit at El Legado boutique winery, steps from Carmelo.</span>
+</li>
+<li class="liebres-step-item">
+          🍷
+          <strong data-translate="legado_step_3_title">Wine tasting:</strong>
+<span data-translate="legado_step_3_desc">Discover exclusive wines and how they are made.</span>
+</li>
+<li class="liebres-step-item">
+          🌿
+          <strong data-translate="legado_step_4_title">Relaxed pace:</strong>
+<span data-translate="legado_step_4_desc">Enjoy the natural surroundings and hospitality of the owners and staff.</span>
+</li>
+<li class="liebres-step-item">
+          🏨
+          <strong data-translate="legado_step_5_title">Return:</strong>
+<span data-translate="legado_step_5_desc">Private drop-off back to your hotel or terminal in Colonia.</span>
+</li>
 </ul>
 </div>
 <div class="price-options">
 <div class="price-box">
-<h3 data-translate="legado_price_title">From USD 95 per guest</h3>
+<h3 data-translate="legado_price_title">From USD 40 per guest, Transport - USD 25</h3>
 <p data-translate="legado_price_p">
           Round-trip transfer from Colonia del Sacramento, travel insurance, winery visit, and wine tasting are included in the experience price. Plan on about 5 hours door-to-door. Add one order per guest — the summary and total update automatically.
         </p>
@@ -152,8 +172,8 @@
 </section>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260522perf"></script>
-<script src="../Home/orders.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260528ordersfix"></script>
+<script src="../Home/orders.js?v=20260528langfix"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
     initPackageOrderExperience({
@@ -176,50 +196,87 @@
         currency: "USD"
       },
       packageRadioName: "packageId",
-      transportPerVehicle: 0,
+      transportPerGuest: 25,
       packages: {
-        winery_tasting: {
-          price: 95,
-          label: "Boutique winery visit & wine tasting",
-          labelKey: "legado_pkg_tasting_label"
+        tour_tasting: {
+          price: 40,
+          label: "Tour with wine tasting",
+          labelKey: "legado_pkg_opt1_label"
+        },
+        tour_tasting_picada: {
+          price: 60,
+          label: "Tour with tasting & charcuterie board",
+          labelKey: "legado_pkg_opt2_label"
+        },
+        full_experience: {
+          price: 90,
+          label: "Full experience",
+          labelKey: "legado_pkg_opt3_label"
         }
       },
       paymentLinksByPackage: {
-        winery_tasting: "https://pago.handy.uy/details/?sessionId=LINK_LEGADO_TASTING"
+        tour_tasting: "https://pago.handy.uy/details/?sessionId=LINK_LEGADO_OPT1",
+        tour_tasting_picada: "https://pago.handy.uy/details/?sessionId=LINK_LEGADO_OPT2",
+        full_experience: "https://pago.handy.uy/details/?sessionId=LINK_LEGADO_OPT3"
       }
     });
   </script>
 <div aria-hidden="true" class="popup-overlay" id="popupLegado">
-<div aria-labelledby="legadoPopupTitle" aria-modal="true" class="popup-box" role="dialog">
+<div aria-labelledby="legadoPopupTitle" aria-modal="true" class="popup-box food-menu-popup-box" role="dialog">
 <button class="close-x" id="closeLegado" type="button">✕</button>
-<p>
-<strong class="popup-title" data-translate="legado_popup_title" id="legadoPopupTitle">
-            Choose your package
-          </strong>
-</p>
-<p>
-<strong data-translate="legado_popup_package_title">Package</strong>
-<small data-translate="legado_popup_package_note">(price per guest; transfer and insurance included)</small>
-</p>
+<p><strong class="popup-title" data-translate="legado_popup_title" id="legadoPopupTitle">Choose your package:</strong></p>
+<p class="food-menu-section-title"><strong data-translate="legado_popup_package_title">Package</strong></p>
 <ul class="popup-list">
-<li>
-<label>
-<input checked="" name="packageId" type="radio" value="winery_tasting"/>
-<span data-translate="legado_pkg_tasting_line">Boutique winery visit &amp; wine tasting 🍷 (USD 95)</span>
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input checked="" name="packageId" type="radio" value="tour_tasting"/>
+<span class="food-menu-option-main" data-translate="legado_pkg_opt1_label">Tour with wine tasting</span>
+<span class="food-menu-option-sub" data-translate="legado_pkg_opt1_price">USD 40</span>
 </label>
-<ul class="liebres-dining-pkg-bullets">
-<li data-translate="legado_pkg_tasting_b1">Guided visit to the winery &amp; vineyard</li>
-<li data-translate="legado_pkg_tasting_b2">Wine tasting at El Legado</li>
-<li data-translate="legado_pkg_tasting_b3">Round-trip transfer from Colonia</li>
-<li data-translate="legado_pkg_tasting_b4">Travel insurance included</li>
+<div class="food-menu-whatyouget">
+<ul>
+<li data-translate="legado_pkg_opt1_b1">Guided visit to the winery &amp; vineyard</li>
+<li data-translate="legado_pkg_opt1_b2">Wine tasting at El Legado</li>
+<li data-translate="legado_pkg_shared_b3">Round-trip transfer from Colonia</li>
+<li data-translate="legado_pkg_shared_b4">Travel insurance included</li>
 </ul>
+</div>
+</li>
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input name="packageId" type="radio" value="tour_tasting_picada"/>
+<span class="food-menu-option-main" data-translate="legado_pkg_opt2_label">Tour with tasting &amp; charcuterie board</span>
+<span class="food-menu-option-sub" data-translate="legado_pkg_opt2_price">USD 60</span>
+</label>
+<div class="food-menu-whatyouget">
+<ul>
+<li data-translate="legado_pkg_opt1_b1">Guided visit to the winery &amp; vineyard</li>
+<li data-translate="legado_pkg_opt1_b2">Wine tasting at El Legado</li>
+<li data-translate="legado_pkg_opt2_b3">Charcuterie board (picada)</li>
+<li data-translate="legado_pkg_shared_b3">Round-trip transfer from Colonia</li>
+<li data-translate="legado_pkg_shared_b4">Travel insurance included</li>
+</ul>
+</div>
+</li>
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input name="packageId" type="radio" value="full_experience"/>
+<span class="food-menu-option-main" data-translate="legado_pkg_opt3_label">Full experience</span>
+<span class="food-menu-option-sub" data-translate="legado_pkg_opt3_price">USD 90</span>
+</label>
+<div class="food-menu-whatyouget">
+<ul>
+<li data-translate="legado_pkg_opt3_desc">Includes tour with tasting, charcuterie board, grilled vegetable asado, and vanilla ice cream with Tannat sauce. Free-flow wines during lunch.</li>
+<li data-translate="legado_pkg_shared_b3">Round-trip transfer from Colonia</li>
+<li data-translate="legado_pkg_shared_b4">Travel insurance included</li>
+</ul>
+</div>
 </li>
 </ul>
 <div class="preferences-inside">
 <h3 class="preferences-title" data-translate="bruma_preferences_title">Your preferences</h3>
-<label><input type="checkbox" value="No alcohol"/> 🚫 <span data-translate="liebres_dining_pref_no_alcohol">No alcohol</span></label>
+<label><input type="checkbox" value="Vegetarian menu"/> 🌱 <span data-translate="legado_pref_vegetarian_menu">Vegetarian menu</span></label>
 <label><input type="checkbox" value="Low salt"/> 🧂 <span data-translate="bruma_pref_salt">Low salt</span></label>
-<label><input type="checkbox" value="No spicy food"/> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
 </div>
 <div class="popup-actions">
 <button class="btn" data-translate="save_selection" id="saveMenuLegado" type="button">Save selection</button>

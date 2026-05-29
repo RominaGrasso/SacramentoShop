@@ -66,6 +66,9 @@
     }
 
     document.documentElement.lang = safe;
+    if (typeof window !== "undefined") {
+      window.__SACRAMENTO_ACTIVE_LANG__ = safe;
+    }
     document.documentElement.classList.remove("sacramento-awaiting-lang");
     document.documentElement.classList.add("sacramento-lang-ready");
 
@@ -84,9 +87,23 @@
       window.__SACRAMENTO_PENDING_LANG__ = safe;
     }
 
+    if (typeof window.sacramentoApplyPageIcons === "function") {
+      window.sacramentoApplyPageIcons();
+    } else if (typeof window.sacramentoInitHomeCardMetaIcons === "function") {
+      window.sacramentoInitHomeCardMetaIcons();
+    } else if (typeof window.sacramentoRunPageI18nBoot === "function") {
+      window.sacramentoRunPageI18nBoot();
+    }
+
     document.dispatchEvent(
       new CustomEvent("sacramento:languageChosen", { detail: { language: safe } })
     );
+
+    if (typeof window.sacramentoBootHomePage === "function") {
+      window.sacramentoBootHomePage();
+    } else {
+      window.__SACRAMENTO_NEEDS_BOOT_HOME__ = true;
+    }
   }
 
   function mountPrompt() {
@@ -146,10 +163,21 @@
     if (!VALID.has(stored)) return;
 
     document.documentElement.lang = stored;
+    if (typeof window !== "undefined") {
+      window.__SACRAMENTO_ACTIVE_LANG__ = stored;
+    }
     if (typeof window.sacramentoSetLanguage === "function") {
       window.sacramentoSetLanguage(stored);
     } else {
       window.__SACRAMENTO_PENDING_LANG__ = stored;
+    }
+
+    if (typeof window.sacramentoApplyPageIcons === "function") {
+      window.sacramentoApplyPageIcons();
+    } else if (typeof window.sacramentoInitHomeCardMetaIcons === "function") {
+      window.sacramentoInitHomeCardMetaIcons();
+    } else if (typeof window.sacramentoRunPageI18nBoot === "function") {
+      window.sacramentoRunPageI18nBoot();
     }
   }
 

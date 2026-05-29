@@ -83,7 +83,6 @@
   const SOON_EXPLORE_IDS = new Set([
     "homeLupajackExploreBtn",
     "homeMateAsadoExploreBtn",
-    "homeLegadoExploreBtn",
   ]);
 
   let activeNav = null;
@@ -116,21 +115,19 @@
     return true;
   }
 
-  /** Coming-soon cards stay on the home list but are hidden from category popups (except Legado). */
+  /** Coming-soon cards stay on the home list but are hidden from category popups. */
   function isExcludedSoonFromCategoryPopups(card) {
-    if (card.querySelector("#homeLegadoExploreBtn")) return false;
     if (card.querySelector(".discount-badge--coming-soon")) return true;
     if (card.querySelector("#homeLupajackExploreBtn, #homeMateAsadoExploreBtn")) {
       return true;
     }
     const slug = cardExploreSlug(card);
-    return Boolean(slug && slug.startsWith("__soon_") && slug !== "__soon_legado__");
+    return Boolean(slug && slug.startsWith("__soon_"));
   }
 
   const SOON_SLUG_NAV = {
     __soon_lupajack__: ["tours"],
     __soon_mate_asado__: ["gastronomy"],
-    __soon_legado__: ["bodega", "fullday"],
   };
 
   const SLUG_NAV_LC = Object.fromEntries(
@@ -169,7 +166,6 @@
       if (card.querySelector(`#${id}`)) {
         if (id === "homeLupajackExploreBtn") return "__soon_lupajack__";
         if (id === "homeMateAsadoExploreBtn") return "__soon_mate_asado__";
-        if (id === "homeLegadoExploreBtn") return "__soon_legado__";
       }
     }
     return "";
@@ -280,6 +276,10 @@
   }
 
   function refreshModalCardChrome(root) {
+    if (typeof window.sacramentoApplyPageIcons === "function") {
+      window.sacramentoApplyPageIcons(root);
+      return;
+    }
     if (typeof window.sacramentoMountCardMetaIcons === "function") {
       window.sacramentoMountCardMetaIcons(root);
     }
