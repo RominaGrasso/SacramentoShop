@@ -1,12 +1,24 @@
 function getSiteLanguage() {
-  if (typeof window !== "undefined" && typeof window.getInitialLanguage === "function") {
-    return window.getInitialLanguage();
-  }
-  try {
-    const stored = localStorage.getItem("selectedLanguage");
-    if (stored === "en" || stored === "es" || stored === "pt") return stored;
-  } catch (_) {
-    /* ignore */
+  if (typeof window !== "undefined") {
+    const active = window.__SACRAMENTO_ACTIVE_LANG__;
+    if (active === "en" || active === "es" || active === "pt") return active;
+
+    try {
+      const stored = localStorage.getItem("selectedLanguage");
+      if (stored === "en" || stored === "es" || stored === "pt") return stored;
+    } catch (_) {
+      /* ignore */
+    }
+
+    if (typeof document !== "undefined") {
+      const activeBtn = document.querySelector(".lang-btn.active");
+      const btnLang = activeBtn?.dataset?.lang;
+      if (btnLang === "en" || btnLang === "es" || btnLang === "pt") return btnLang;
+    }
+
+    if (typeof window.getInitialLanguage === "function") {
+      return window.getInitialLanguage();
+    }
   }
   return "en";
 }
@@ -374,6 +386,13 @@ async function sacramentoRunReserveWhatsAppFlow(workFn) {
 if (typeof document !== "undefined") {
   document.addEventListener("sacramento:setLanguage", () => {
     if (sacramentoReserveLoadingDepth > 0) sacramentoRefreshReserveLoadingCopy();
+    if (typeof window.renderOrders === "function") {
+      try {
+        window.renderOrders();
+      } catch (_) {
+        /* ignore */
+      }
+    }
   });
 }
 
@@ -615,6 +634,13 @@ function sacramentoLegacyPrefKey(value) {
   if ((v.includes("0") && v.includes("alcohol")) || v.includes("zero alcohol")) {
     return "bruma_pref_alcohol";
   }
+  if (
+    v.includes("vegetarian menu") ||
+    v.includes("menu vegetariano") ||
+    v.includes("menú vegetariano")
+  ) {
+    return "legado_pref_vegetarian_menu";
+  }
   if (v.includes("vegetarian") || v.includes("vegetariano") || v.includes("vegetariana")) {
     return "bruma_pref_veg";
   }
@@ -623,6 +649,7 @@ function sacramentoLegacyPrefKey(value) {
     v.includes("salt free") ||
     v.includes("bajo en sal") ||
     v.includes("sin sal") ||
+    v.includes("baixo em sal") ||
     v.includes("baixo teor de sal")
   ) {
     return "bruma_pref_salt";
@@ -646,6 +673,7 @@ function sacramentoPrefEmojiKey(key) {
     bruma_pref_salt: "🧂",
     bruma_pref_veg: "🌱",
     bruma_pref_spicy: "🌶",
+    legado_pref_vegetarian_menu: "🌱",
     liebres_pref_red: "🍷",
     liebres_pref_white: "🥂",
     liebres_pref_vegetarian: "🌱",
@@ -4579,6 +4607,7 @@ function groupPrivateTransportVehicleCount(guestCount, extraSeats = 0) {
  * Experiencias con paquetes por persona (ej. viñedo USD 65, ceibo USD 80).
  * Cada order: { packageId, packageLabel, packagePrice, preferences: string[] }
  * Con transportPerVehicle (o transportPerPerson como alias) > 0 el transporte es por vehículo de hasta 4 pax (ver groupPrivateTransportTotal).
+ * Con transportPerGuest > 0 se suma ese monto fijo a cada pedido por huésped (ej. Legado USD 25).
  * Órdenes antiguas pueden tener { packagePeople, packagePrice, preferences } o transportPrice.
  */
 function initPackageOrderExperience(config) {
@@ -4598,6 +4627,7 @@ function initPackageOrderExperience(config) {
     packageRadioName = "packageId",
     transportPerVehicle,
     transportPerPerson = 0,
+    transportPerGuest = 0,
     guideFeePerPerson = 0,
     guideOptional = false,
     optionalGuideCheckboxId = null,
@@ -4621,6 +4651,7 @@ function initPackageOrderExperience(config) {
     transportPerVehicle != null && transportPerVehicle !== ""
       ? Math.max(0, Number(transportPerVehicle) || 0)
       : Math.max(0, Number(transportPerPerson) || 0);
+  const flatGuestTransportRate = Math.max(0, Number(transportPerGuest) || 0);
 
   if (!popupId || !createBtnId || !closeBtnId || !saveBtnId || !orderSummaryId) {
     console.error("initPackageOrderExperience: config incompleta (ids)");
@@ -4666,14 +4697,35 @@ function initPackageOrderExperience(config) {
     return null;
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
+  let renderOrdersRef = null;
+  let pkgLangPopup = null;
+  let pkgLangSaveBtn = null;
+  let pkgLangEditingIndex = null;
+
+  const refreshPackageOrderLanguage = () => {
+    if (typeof renderOrdersRef === "function") renderOrdersRef();
+    if (pkgLangPopup && pkgLangSaveBtn && pkgLangPopup.classList.contains("active")) {
+      pkgLangSaveBtn.textContent =
+        pkgLangEditingIndex !== null
+          ? getI18nText("update_order", "Update order")
+          : getI18nText("save_selection", "Save selection");
+    }
+  };
+
+  document.addEventListener("sacramento:setLanguage", refreshPackageOrderLanguage);
+  document.addEventListener("sacramento:languageChosen", refreshPackageOrderLanguage);
+
+  const bootPackageOrderDom = () => {
     let editingIndex = null;
+    pkgLangEditingIndex = null;
 
     const popup = document.getElementById(popupId);
     const createBtn = document.getElementById(createBtnId);
     const closeBtn = document.getElementById(closeBtnId);
     const saveBtn = document.getElementById(saveBtnId);
     const container = document.getElementById(orderSummaryId);
+    pkgLangPopup = popup;
+    pkgLangSaveBtn = saveBtn;
 
     if (!popup || !createBtn || !closeBtn || !saveBtn || !container) return;
 
@@ -4801,8 +4853,16 @@ function initPackageOrderExperience(config) {
       };
     };
 
+    const usesFlatGuestTransport = (orders) =>
+      flatGuestTransportRate > 0 &&
+      Array.isArray(orders) &&
+      orders.some((x) => x && x.packageId != null);
+
     const usesGroupTransport = (orders) =>
-      vehicleTransportRate > 0 && Array.isArray(orders) && orders.some((x) => x && x.packageId != null);
+      !flatGuestTransportRate &&
+      vehicleTransportRate > 0 &&
+      Array.isArray(orders) &&
+      orders.some((x) => x && x.packageId != null);
 
     const transportSharePerGuest = (orders) => {
       const n = Array.isArray(orders) ? orders.length : 0;
@@ -4823,12 +4883,21 @@ function initPackageOrderExperience(config) {
       return 0;
     };
 
+    const transportAmountForOrder = (o, orders) => {
+      if (usesFlatGuestTransport(orders)) return flatGuestTransportRate;
+      if (usesGroupTransport(orders)) return transportSharePerGuest(orders);
+      return transportForLegacyOrder(o);
+    };
+
+    const totalTransportForOrders = (orders) => {
+      if (!Array.isArray(orders) || orders.length === 0) return 0;
+      if (usesFlatGuestTransport(orders)) return orders.length * flatGuestTransportRate;
+      if (usesGroupTransport(orders)) return totalGroupTransport(orders);
+      return orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
+    };
+
     const lineTotalForOrder = (o, orders) => {
-      const base = getEffectivePackagePricing(o).price;
-      if (usesGroupTransport(orders)) {
-        return base + transportSharePerGuest(orders);
-      }
-      return base + transportForLegacyOrder(o);
+      return getEffectivePackagePricing(o).price + transportAmountForOrder(o, orders);
     };
 
     const escapeHtml = (str) =>
@@ -4938,9 +5007,21 @@ function initPackageOrderExperience(config) {
     const packageLineForOrder = (o, orders) => {
       const eff = getEffectivePackagePricing(o);
       const pkgPrice = eff.price;
-      const share = usesGroupTransport(orders) ? transportSharePerGuest(orders) : transportForLegacyOrder(o);
+      const share = transportAmountForOrder(o, orders);
       const total = lineTotalForOrder(o, orders);
       if (o.packageId != null && eff.label) {
+        if (usesFlatGuestTransport(orders)) {
+          const pkgLine = trTpl("orders_pkg_line_per_person", "{label} (USD {pkg} per person)", {
+            label: eff.label,
+            pkg: formatMoney(pkgPrice)
+          });
+          const transportLine = trTpl(
+            "orders_pkg_transport_flat_amount",
+            "Transport: USD {transport}",
+            { transport: formatMoney(flatGuestTransportRate) }
+          );
+          return `${pkgLine}\n${transportLine}`;
+        }
         if (share > 0) {
           return trTpl(
             "orders_pkg_line_with_transport",
@@ -4993,12 +5074,9 @@ function initPackageOrderExperience(config) {
         }`;
       });
 
-      const tGroup = totalGroupTransport(orders);
+      const transportTotal = totalTransportForOrders(orders);
       const gg = groupGuideAmount();
-      const total =
-        experienceSubtotal +
-        (usesGroupTransport(orders) ? tGroup : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0)) +
-        gg;
+      const total = experienceSubtotal + transportTotal + gg;
 
       const expName = experienceNameKey
         ? getI18nText(experienceNameKey, experienceName)
@@ -5007,7 +5085,9 @@ function initPackageOrderExperience(config) {
         ? getI18nText(whatsappIntroKey, `Hello! I'd like to book the ${experienceName} experience:`)
         : `Hello! I'd like to book the ${expName} experience:`;
       let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${date}\n\n${ordersText}`;
-      if (usesGroupTransport(orders) && orders.length > 0) {
+      if (usesFlatGuestTransport(orders) && orders.length > 0) {
+        message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}\n*Transport (USD ${formatMoney(flatGuestTransportRate)} per guest × ${orders.length}):* USD ${formatMoney(transportTotal)}\n`;
+      } else if (usesGroupTransport(orders) && orders.length > 0) {
         const vehicles = Math.ceil(orders.length / 4);
         const guideTotalOptional =
           guideOptional && guideFee > 0
@@ -5023,7 +5103,7 @@ function initPackageOrderExperience(config) {
             guideNote = ` (includes USD ${formatMoney(guideFee)} guide fee per guest)`;
           }
         }
-        message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}${guideNote}\n*Private transport (${orders.length} guests, ${vehicles} vehicle${vehicles === 1 ? "" : "s"} × USD ${formatMoney(vehicleTransportRate)}):* USD ${formatMoney(tGroup)}\n`;
+        message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}${guideNote}\n*Private transport (${orders.length} guests, ${vehicles} vehicle${vehicles === 1 ? "" : "s"} × USD ${formatMoney(vehicleTransportRate)}):* USD ${formatMoney(transportTotal)}\n`;
       } else if (guideFee > 0 && orders.length > 0) {
         if (guideOptional) {
           const guideTotalOptional = orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0);
@@ -5061,6 +5141,7 @@ function initPackageOrderExperience(config) {
     };
 
     const renderOrders = () => {
+      pkgLangEditingIndex = editingIndex;
       const orders = getOrders();
       const gelSync = groupGuideEl();
       if (groupGuideEnabled && gelSync) {
@@ -5088,7 +5169,7 @@ function initPackageOrderExperience(config) {
 
         const effPkg = getEffectivePackagePricing(order);
         const pkgPrice = effPkg.price;
-        const share = usesGroupTransport(orders) ? transportSharePerGuest(orders) : transportForLegacyOrder(order);
+        const share = transportAmountForOrder(order, orders);
         const expLabel = (() => {
           if (guideFee <= 0) return getI18nText("orders_pkg_paren_experience", "experience");
           if (guideOptional) {
@@ -5110,13 +5191,17 @@ function initPackageOrderExperience(config) {
         let packageHtml = `<strong>${pkgLbl}</strong> ${escapeHtml(effPkg.label)} — USD ${escapeHtml(
           String(pkgPrice)
         )} (${escapeHtml(expLabel)})`;
-        if (share > 0) {
+        if (share > 0 && usesGroupTransport(orders)) {
           packageHtml += `<br><strong>${escapeHtml(
             getI18nText("orders_pkg_transport_share", "Transport (your share of the group):")
           )}</strong> USD ${escapeHtml(formatMoney(share))}`;
           packageHtml += `<br><strong>${escapeHtml(
             getI18nText("orders_pkg_guest_total", "Guest total:")
           )}</strong> USD ${escapeHtml(formatMoney(lineTotal))}`;
+        } else if (share > 0 && usesFlatGuestTransport(orders)) {
+          packageHtml += `<br><strong>${escapeHtml(
+            getI18nText("orders_pkg_transport_flat", "Transport:")
+          )}</strong> USD ${escapeHtml(formatMoney(share))}`;
         } else {
           packageHtml = `<strong>${pkgLbl}</strong> ${escapeHtml(packageLineForOrder(order, orders))}`;
         }
@@ -5144,20 +5229,19 @@ function initPackageOrderExperience(config) {
 
       if (orders.length > 0) {
         const expSum = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
-        const tGroupAmt = usesGroupTransport(orders) ? totalGroupTransport(orders) : 0;
         const ggAmt = groupGuideAmount();
-        const transportSum = usesGroupTransport(orders)
-          ? tGroupAmt
-          : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
+        const transportSum = totalTransportForOrders(orders);
         const total = expSum + transportSum + ggAmt;
         const guestUnit =
           orders.length === 1
             ? getI18nText("guest_order_singular", "guest order")
             : getI18nText("guest_order_plural", "guest orders");
         const transportSharePkg =
-          usesGroupTransport(orders) && orders.length > 0
-            ? transportSharePerGuest(orders)
-            : 0;
+          usesFlatGuestTransport(orders) && orders.length > 0
+            ? flatGuestTransportRate
+            : usesGroupTransport(orders) && orders.length > 0
+              ? transportSharePerGuest(orders)
+              : 0;
         const detailExtra =
           transportSharePkg > 0
             ? ` · ${escapeHtml(
@@ -5281,9 +5365,7 @@ function initPackageOrderExperience(config) {
         sacramentoRunReserveWhatsAppFlow(async () => {
           const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
-          const transportTotal = usesGroupTransport(orders)
-            ? totalGroupTransport(orders)
-            : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
+          const transportTotal = totalTransportForOrders(orders);
           const total = expTotal + transportTotal + groupGuideAmount();
           let paymentUrl = "";
           try {
@@ -5339,7 +5421,12 @@ function initPackageOrderExperience(config) {
 
       const preferences = Array.from(
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
-      ).map((cb) => cb.value);
+      ).map((cb) => {
+        const span = cb.parentElement?.querySelector("span[data-translate]");
+        const trKey = span?.dataset?.translate;
+        if (trKey) return `${pkgI18nPrefPrefix}${trKey}`;
+        return cb.value;
+      });
       const og = optionalGuideEl();
       const includeGuide = og ? Boolean(og.checked) : false;
 
@@ -5378,9 +5465,7 @@ function initPackageOrderExperience(config) {
           sacramentoRunReserveWhatsAppFlow(async () => {
             const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
             const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
-            const transportTotal = usesGroupTransport(orders)
-              ? totalGroupTransport(orders)
-              : orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
+            const transportTotal = totalTransportForOrders(orders);
             const total = expTotal + transportTotal + groupGuideAmount();
             let paymentUrl = "";
             try {
@@ -5418,30 +5503,16 @@ function initPackageOrderExperience(config) {
       }
     }
 
-    document.querySelectorAll(".lang-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        renderOrders();
-        if (popup.classList.contains("active")) {
-          saveBtn.textContent =
-            editingIndex !== null
-              ? getI18nText("update_order", "Update order")
-              : getI18nText("save_selection", "Save selection");
-        }
-      });
-    });
-
-    document.addEventListener("sacramento:setLanguage", () => {
-      renderOrders();
-      if (popup.classList.contains("active")) {
-        saveBtn.textContent =
-          editingIndex !== null
-            ? getI18nText("update_order", "Update order")
-            : getI18nText("save_selection", "Save selection");
-      }
-    });
-
+    renderOrdersRef = renderOrders;
+    window.renderOrders = renderOrders;
     renderOrders();
-  });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootPackageOrderDom, { once: true });
+  } else {
+    bootPackageOrderDom();
+  }
 }
 
 /**

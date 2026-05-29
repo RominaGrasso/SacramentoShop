@@ -6618,6 +6618,30 @@
   vertical-align: -0.18em;
 }
 
+.experience-steps .liebres-step-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 6px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.experience-steps .liebres-step-item > .activity-emoji-icon {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.experience-steps .liebres-step-item > strong {
+  flex: 0 0 auto;
+}
+
+.experience-steps .liebres-step-item > span {
+  flex: 1 1 100%;
+  min-width: 0;
+  padding-left: 28px;
+}
+
 .activity-emoji-icon .activity-meta-icon {
   margin-top: 0;
 }
@@ -7663,17 +7687,20 @@
 }
 
 /* food1: mismo conflicto que actividad .popup-list li { flex } + viñetas dentro del detalle */
-#popupBruma .food-menu-popup-box .popup-list > li.food-menu-option {
+#popupBruma .food-menu-popup-box .popup-list > li.food-menu-option,
+#popupLegado .food-menu-popup-box .popup-list > li.food-menu-option {
   display: block !important;
   align-items: initial !important;
   flex-direction: column;
 }
 
-#popupBruma .food-menu-popup-box .popup-list label.food-menu-option-label {
+#popupBruma .food-menu-popup-box .popup-list label.food-menu-option-label,
+#popupLegado .food-menu-popup-box .popup-list label.food-menu-option-label {
   display: grid !important;
 }
 
-#popupBruma .food-menu-whatyouget ul > li {
+#popupBruma .food-menu-whatyouget ul > li,
+#popupLegado .food-menu-whatyouget ul > li {
   display: list-item !important;
   align-items: unset !important;
 }
@@ -7753,6 +7780,10 @@
 
 .food-menu-option:has(input[type="radio"]:checked) .food-menu-whatyouget {
   display: block;
+}
+
+.food-menu-option:has(input[type="radio"]:checked) .food-menu-option-main {
+  color: #5a95cf;
 }
 
 .food-tourist-options {
@@ -8522,12 +8553,14 @@ body.sacramento-language-prompt-open {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .sacramento-language-prompt.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .sacramento-language-prompt__box {

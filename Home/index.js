@@ -209,13 +209,13 @@ const translations = {
       hist_lieb_wa_intro: "Hello! I'd like to book Historic Quarter + Las Liebres:",
       home_cabalgata_title: "Horseback riding & wine tasting · Las Liebres",
       home_cabalgata_meta_1: "Boutique vineyard experience",
-      home_cabalgata_meta_2_ride: "Then horseback riding outside Colonia",
+      home_cabalgata_meta_2_ride: "Horseback ride near Colonia Soho",
       home_cabalgata_meta_2_vine: "Las Liebres vineyard & garden",
       home_cabalgata_meta_3: "3 wines with food pairing",
       home_cabalgata_meta_4_time: "Duration: 3–4 hours",
       home_cabalgata_meta_4_transfer: "Transfer included",
       home_cabalgata_desc:
-        "The experience starts at Las Liebres; a transfer then takes you outside Colonia for the horseback ride with Juanma and Sabrina and their horses (and dogs Simón and Estrelli). You continue at Las Liebres with the vineyard, garden, and tasting. About 3–4 hours — transfer and add-ons are detailed on the booking page.",
+        "Private transfer to <strong>Las Liebres</strong> for a vineyard walk and <strong>three-wine tasting</strong> with kitchen pairings. Then a guided <strong>horseback ride</strong> on the outskirts of Colonia, <strong>near Colonia Soho</strong>. About <strong>3–4 hours</strong> door-to-door.",
       home_legado_title: "Legado · Boutique winery & tasting",
       home_legado_meta_1: "Boutique winery steps from Carmelo",
       home_legado_meta_tasting: "Wine tasting",
@@ -234,19 +234,21 @@ const translations = {
       legado_about_p:
         "El Legado is located a short distance from the city of Carmelo, in a natural and comfortable setting. You can enjoy exclusive wines, discover how they are made, and enjoy relaxing moments. The warmth of the owners and the staff will make your visit special.",
       legado_steps_title: "How it works",
-      legado_step_1:
-        "🚐 Private pick-up: Transfer from your hotel or the bus terminal in Colonia del Sacramento.",
-      legado_step_2:
-        "🍇 Winery & vineyard: Guided visit at El Legado boutique winery, steps from Carmelo.",
-      legado_step_3:
-        "🍷 Wine tasting: Discover exclusive wines and how they are made.",
-      legado_step_4:
-        "🌿 Relaxed pace: Enjoy the natural surroundings and hospitality of the owners and staff.",
-      legado_step_5:
-        "🏨 Return: Private drop-off back to your hotel or terminal in Colonia.",
-      legado_price_title: "From USD 95 per guest",
+      legado_step_1_title: "Private pick-up:",
+      legado_step_1_desc:
+        "Transfer from your hotel or the bus terminal in Colonia del Sacramento.",
+      legado_step_2_title: "Winery & vineyard:",
+      legado_step_2_desc: "Guided visit at El Legado boutique winery, steps from Carmelo.",
+      legado_step_3_title: "Wine tasting:",
+      legado_step_3_desc: "Discover exclusive wines and how they are made.",
+      legado_step_4_title: "Relaxed pace:",
+      legado_step_4_desc:
+        "Enjoy the natural surroundings and hospitality of the owners and staff.",
+      legado_step_5_title: "Return:",
+      legado_step_5_desc: "Private drop-off back to your hotel or terminal in Colonia.",
+      legado_price_title: "From USD 40 per guest, Transport - USD 25",
       legado_price_p:
-        "Round-trip transfer from Colonia del Sacramento, travel insurance, winery visit, and wine tasting are included in the experience price. Plan on about 5 hours door-to-door. Add one order per guest — the summary and total update automatically.",
+        "Choose from three packages at El Legado (from USD 40 per guest). Round-trip transfer from Colonia del Sacramento and travel insurance are included. Plan on about 5 hours door-to-door. Add one order per guest — the summary and total update automatically.",
       legado_included_title: "What's included",
       legado_include_1: "✔ Guided visit to El Legado boutique winery & vineyard",
       legado_include_2: "✔ Wine tasting",
@@ -258,15 +260,25 @@ const translations = {
       legado_create_btn: "+ Create your order",
       legado_gallery_title: "Experience Gallery",
       legado_back_home: "Back to Home",
-      legado_popup_title: "Choose your package",
+      legado_popup_title: "Choose your package:",
       legado_popup_package_title: "Package",
-      legado_popup_package_note: "(price per guest; transfer and insurance included)",
-      legado_pkg_tasting_label: "Boutique winery visit & wine tasting",
-      legado_pkg_tasting_line: "Boutique winery visit & wine tasting 🍷 (USD 95)",
-      legado_pkg_tasting_b1: "Guided visit to the winery & vineyard",
-      legado_pkg_tasting_b2: "Wine tasting at El Legado",
-      legado_pkg_tasting_b3: "Round-trip transfer from Colonia",
-      legado_pkg_tasting_b4: "Travel insurance included",
+      legado_pkg_opt1_label: "Tour with wine tasting",
+      legado_pkg_opt1_price: "USD 40",
+      legado_pkg_opt1_line: "Option 1 · Tour with wine tasting (USD 40)",
+      legado_pkg_opt1_b1: "Guided visit to the winery & vineyard",
+      legado_pkg_opt1_b2: "Wine tasting at El Legado",
+      legado_pkg_opt2_label: "Tour with tasting & charcuterie board",
+      legado_pkg_opt2_price: "USD 60",
+      legado_pkg_opt2_line: "Option 2 · Tour with tasting & charcuterie board (USD 60)",
+      legado_pkg_opt2_b3: "Charcuterie board (picada)",
+      legado_pkg_opt3_label: "Full experience",
+      legado_pkg_opt3_price: "USD 90",
+      legado_pkg_opt3_line: "Option 3 · Full experience (USD 90)",
+      legado_pkg_opt3_desc:
+        "Includes tour with tasting, charcuterie board, grilled vegetable asado, and vanilla ice cream with Tannat sauce. Free-flow wines during lunch.",
+      legado_pkg_shared_b3: "Round-trip transfer from Colonia",
+      legado_pkg_shared_b4: "Travel insurance included",
+      legado_pref_vegetarian_menu: "Vegetarian menu",
       legado_wa_intro: "Hello! I'd like to book Legado · Boutique winery & tasting:",
       home_sio_title: "SIO Sushi Experience",
       home_sio_premium_badge: "Premium",
@@ -1833,6 +1845,8 @@ const translations = {
       orders_alert_create_first: "Please create your order first.",
       orders_pkg_package_lbl: "Package:",
       orders_pkg_transport_share: "Transport (your share of the group):",
+      orders_pkg_transport_flat: "Transport:",
+      orders_pkg_transport_flat_amount: "Transport: USD {transport}",
       orders_pkg_guest_total: "Guest total:",
       orders_pkg_paren_experience: "experience",
       orders_pkg_paren_exp_incl_guide: "experience, incl. USD {n} guide",
@@ -1847,6 +1861,8 @@ const translations = {
       orders_pkg_line_with_transport:
         "{label} — USD {pkg} experience + USD {share} group transport share = USD {total} per guest",
       orders_pkg_line_per_person: "{label} (USD {pkg} per person)",
+      orders_pkg_line_per_person_incl_transport:
+        "{label} (USD {total} per person, incl. USD {transport} transport)",
       orders_pkg_line_people_one: "{n} person (USD {pkg})",
       orders_pkg_line_people_many: "{n} people (USD {pkg})",
       orders_pkg_line_fallback: "Package (USD {pkg})",
@@ -2253,13 +2269,13 @@ const translations = {
       hist_lieb_wa_intro: "Hola! Me gustaría reservar Casco Histórico + Las Liebres:",
       home_cabalgata_title: "Cabalgata y degustación · Las Liebres",
       home_cabalgata_meta_1: "Experiencia en viñedo boutique",
-      home_cabalgata_meta_2_ride: "Luego cabalgata (fuera de Colonia)",
+      home_cabalgata_meta_2_ride: "Cabalgata cerca de Colonia Soho",
       home_cabalgata_meta_2_vine: "Viñedo y huerta Las Liebres",
       home_cabalgata_meta_3: "3 vinos con maridaje",
       home_cabalgata_meta_4_time: "Duración: 3–4 horas",
       home_cabalgata_meta_4_transfer: "Traslado incluido",
       home_cabalgata_desc:
-        "La experiencia arranca en Las Liebres; un traslado te lleva fuera de Colonia para la cabalgata con Juanma y Sabrina y los caballos (y Simón y Estrelli). Después seguís en Las Liebres con viñedo, huerta y degustación. Unas 3–4 horas — traslado y extras en la página de reserva.",
+        "Traslado privado a <strong>Las Liebres</strong> para recorrer el viñedo y una <strong>degustación de tres vinos</strong> con maridajes de cocina. Luego <strong>cabalgata guiada</strong> en las afueras de Colonia, <strong>cerca de Colonia Soho</strong>. Unas <strong>3–4 horas</strong> puerta a puerta.",
       home_legado_title: "Legado · Bodega boutique y degustación",
       home_legado_meta_1: "Bodega boutique a pasos de Carmelo",
       home_legado_meta_tasting: "Degustación de vinos",
@@ -2278,19 +2294,20 @@ const translations = {
       legado_about_p:
         "El Legado está ubicada a pasos de la ciudad de Carmelo y cuenta con un entorno natural y confortable. Podrás deleitarte con vinos exclusivos, descubrir los secretos de su elaboración y vivir momentos relajantes. La calidez de los dueños y la atención del personal le dará un toque especial a tu visita.",
       legado_steps_title: "Cómo funciona",
-      legado_step_1:
-        "🚐 Traslado privado: te buscamos en tu hotel o terminal de ómnibus en Colonia del Sacramento.",
-      legado_step_2:
-        "🍇 Bodega y viñedo: visita guiada en la bodega boutique El Legado, a pasos de Carmelo.",
-      legado_step_3:
-        "🍷 Degustación de vinos: descubrí vinos exclusivos y los secretos de su elaboración.",
-      legado_step_4:
-        "🌿 Ritmo relajado: disfrutá del entorno natural y la calidez de los dueños y el personal.",
-      legado_step_5:
-        "🏨 Regreso: traslado privado de vuelta a tu hotel o terminal en Colonia.",
-      legado_price_title: "Desde USD 95 por huésped",
+      legado_step_1_title: "Traslado privado:",
+      legado_step_1_desc:
+        "Te buscamos en tu hotel o terminal de ómnibus en Colonia del Sacramento.",
+      legado_step_2_title: "Bodega y viñedo:",
+      legado_step_2_desc: "Visita guiada en la bodega boutique El Legado, a pasos de Carmelo.",
+      legado_step_3_title: "Degustación de vinos:",
+      legado_step_3_desc: "Descubrí vinos exclusivos y los secretos de su elaboración.",
+      legado_step_4_title: "Ritmo relajado:",
+      legado_step_4_desc: "Disfrutá del entorno natural y la calidez de los dueños y el personal.",
+      legado_step_5_title: "Regreso:",
+      legado_step_5_desc: "Traslado privado de vuelta a tu hotel o terminal en Colonia.",
+      legado_price_title: "Desde USD 40 por huésped, Transporte - USD 25",
       legado_price_p:
-        "El precio incluye traslado ida y vuelta desde Colonia del Sacramento, seguro de viaje, visita a la bodega y degustación de vinos. Calculá unas 5 horas puerta a puerta. Agregá un pedido por huésped — el resumen y el total se actualizan solos.",
+        "Elegí entre tres paquetes en El Legado (desde USD 40 por huésped). Incluye traslado ida y vuelta desde Colonia del Sacramento y seguro de viaje. Calculá unas 5 horas puerta a puerta. Agregá un pedido por huésped — el resumen y el total se actualizan solos.",
       legado_included_title: "Qué incluye",
       legado_include_1: "✔ Visita guiada a la bodega boutique El Legado y viñedo",
       legado_include_2: "✔ Degustación de vinos",
@@ -2302,15 +2319,25 @@ const translations = {
       legado_create_btn: "+ Crear tu pedido",
       legado_gallery_title: "Galería de la experiencia",
       legado_back_home: "Volver al inicio",
-      legado_popup_title: "Elegí tu paquete",
+      legado_popup_title: "Elegí tu paquete:",
       legado_popup_package_title: "Paquete",
-      legado_popup_package_note: "(precio por huésped; traslado y seguro incluidos)",
-      legado_pkg_tasting_label: "Visita a bodega boutique y degustación de vinos",
-      legado_pkg_tasting_line: "Visita a bodega boutique y degustación 🍷 (USD 95)",
-      legado_pkg_tasting_b1: "Visita guiada a la bodega y viñedo",
-      legado_pkg_tasting_b2: "Degustación de vinos en El Legado",
-      legado_pkg_tasting_b3: "Traslado ida y vuelta desde Colonia",
-      legado_pkg_tasting_b4: "Seguro de viaje incluido",
+      legado_pkg_opt1_label: "Tour con degustación de vinos",
+      legado_pkg_opt1_price: "USD 40",
+      legado_pkg_opt1_line: "Opción 1 · Tour con degustación de vinos (USD 40)",
+      legado_pkg_opt1_b1: "Visita guiada a la bodega y viñedo",
+      legado_pkg_opt1_b2: "Degustación de vinos en El Legado",
+      legado_pkg_opt2_label: "Tour con degustación y picada",
+      legado_pkg_opt2_price: "USD 60",
+      legado_pkg_opt2_line: "Opción 2 · Tour con degustación y picada (USD 60)",
+      legado_pkg_opt2_b3: "Picada (tabla de fiambres y quesos)",
+      legado_pkg_opt3_label: "Experiencia completa",
+      legado_pkg_opt3_price: "USD 90",
+      legado_pkg_opt3_line: "Opción 3 · Experiencia completa (USD 90)",
+      legado_pkg_opt3_desc:
+        "Incluye el tour con degustación, picada, más asado con verduras a la parrilla y helado de vainilla con salsa de tannat. Con vinos libres durante el almuerzo.",
+      legado_pkg_shared_b3: "Traslado ida y vuelta desde Colonia",
+      legado_pkg_shared_b4: "Seguro de viaje incluido",
+      legado_pref_vegetarian_menu: "Menú vegetariano",
       legado_wa_intro: "¡Hola! Me gustaría reservar Legado · Bodega boutique y degustación:",
       home_sio_title: "Experiencia SIO Sushi",
       home_sio_premium_badge: "Premium",
@@ -3876,6 +3903,8 @@ const translations = {
       orders_alert_create_first: "Primero creá tu pedido.",
       orders_pkg_package_lbl: "Paquete:",
       orders_pkg_transport_share: "Transporte (tu parte del grupo):",
+      orders_pkg_transport_flat: "Transporte:",
+      orders_pkg_transport_flat_amount: "Transporte: USD {transport}",
       orders_pkg_guest_total: "Total por huésped:",
       orders_pkg_paren_experience: "experiencia",
       orders_pkg_paren_exp_incl_guide: "experiencia, incl. USD {n} de guía",
@@ -3890,6 +3919,8 @@ const translations = {
       orders_pkg_line_with_transport:
         "{label} — USD {pkg} experiencia + USD {share} parte de transporte (grupo) = USD {total} por huésped",
       orders_pkg_line_per_person: "{label} (USD {pkg} por persona)",
+      orders_pkg_line_per_person_incl_transport:
+        "{label} (USD {total} por persona, incl. USD {transport} de transporte)",
       orders_pkg_line_people_one: "{n} persona (USD {pkg})",
       orders_pkg_line_people_many: "{n} personas (USD {pkg})",
       orders_pkg_line_fallback: "Paquete (USD {pkg})",
@@ -4295,13 +4326,13 @@ const translations = {
       hist_lieb_wa_intro: "Olá! Gostaria de reservar Centro Histórico + Las Liebres:",
       home_cabalgata_title: "Cavalgada e degustação · Las Liebres",
       home_cabalgata_meta_1: "Experiência em vinhedo boutique",
-      home_cabalgata_meta_2_ride: "Depois cavalgada (fora de Colonia)",
+      home_cabalgata_meta_2_ride: "Cavalgada perto de Colonia Soho",
       home_cabalgata_meta_2_vine: "Vinhedo e horta Las Liebres",
       home_cabalgata_meta_3: "3 vinhos com harmonização",
       home_cabalgata_meta_4_time: "Duração: 3–4 horas",
       home_cabalgata_meta_4_transfer: "Transfer incluído",
       home_cabalgata_desc:
-        "A experiência começa em Las Liebres; depois um transfer leva você fora de Colonia para a cavalgada com Juanma e Sabrina e os cavalos (e Simón e Estrelli). Em seguida você continua em Las Liebres com vinhedo, horta e degustação. Cerca de 3–4 horas — detalhes na página de reserva.",
+        "Transfer privado até <strong>Las Liebres</strong> para visita ao vinhedo e <strong>degustação de três vinhos</strong> com harmonizações da cozinha. Depois <strong>cavalgada guiada</strong> nos arredores de Colonia, <strong>perto de Colonia Soho</strong>. Cerca de <strong>3–4 horas</strong> porta a porta.",
       home_legado_title: "Legado · Vinícola boutique e degustação",
       home_legado_meta_1: "Vinícola boutique perto de Carmelo",
       home_legado_meta_tasting: "Degustação de vinhos",
@@ -4320,19 +4351,19 @@ const translations = {
       legado_about_p:
         "O Legado está localizada a poucos passos da cidade de Carmelo, em um ambiente natural e confortável. Você poderá degustar vinhos exclusivos, descobrir os segredos da elaboração e viver momentos relaxantes. O carinho dos proprietários e a atenção da equipe darão um toque especial à sua visita.",
       legado_steps_title: "Como funciona",
-      legado_step_1:
-        "🚐 Transfer privativo: busca no seu hotel ou terminal de ônibus em Colonia del Sacramento.",
-      legado_step_2:
-        "🍇 Vinícola e vinhedo: visita guiada na vinícola boutique El Legado, perto de Carmelo.",
-      legado_step_3:
-        "🍷 Degustação de vinhos: descubra vinhos exclusivos e como são elaborados.",
-      legado_step_4:
-        "🌿 Ritmo relaxado: aproveite o entorno natural e o carinho dos proprietários e da equipe.",
-      legado_step_5:
-        "🏨 Retorno: transfer privativo de volta ao hotel ou terminal em Colonia.",
-      legado_price_title: "A partir de USD 95 por hóspede",
+      legado_step_1_title: "Transfer privativo:",
+      legado_step_1_desc: "Busca no seu hotel ou terminal de ônibus em Colonia del Sacramento.",
+      legado_step_2_title: "Vinícola e vinhedo:",
+      legado_step_2_desc: "Visita guiada na vinícola boutique El Legado, perto de Carmelo.",
+      legado_step_3_title: "Degustação de vinhos:",
+      legado_step_3_desc: "Descubra vinhos exclusivos e como são elaborados.",
+      legado_step_4_title: "Ritmo relaxado:",
+      legado_step_4_desc: "Aproveite o entorno natural e o carinho dos proprietários e da equipe.",
+      legado_step_5_title: "Retorno:",
+      legado_step_5_desc: "Transfer privativo de volta ao hotel ou terminal em Colonia.",
+      legado_price_title: "A partir de USD 40 por hóspede, Transporte - USD 25",
       legado_price_p:
-        "O preço inclui transfer ida e volta desde Colonia del Sacramento, seguro de viagem, visita à vinícola e degustação de vinhos. Reserve cerca de 5 horas porta a porta. Adicione um pedido por hóspede — o resumo e o total são atualizados automaticamente.",
+        "Escolha entre três pacotes no El Legado (a partir de USD 40 por hóspede). Transfer ida e volta desde Colonia del Sacramento e seguro de viagem estão incluídos. Reserve cerca de 5 horas porta a porta. Adicione um pedido por hóspede — o resumo e o total são atualizados automaticamente.",
       legado_included_title: "O que está incluído",
       legado_include_1: "✔ Visita guiada à vinícola boutique El Legado e vinhedo",
       legado_include_2: "✔ Degustação de vinhos",
@@ -4344,15 +4375,25 @@ const translations = {
       legado_create_btn: "+ Criar seu pedido",
       legado_gallery_title: "Galeria da experiência",
       legado_back_home: "Voltar ao início",
-      legado_popup_title: "Escolha seu pacote",
+      legado_popup_title: "Escolha seu pacote:",
       legado_popup_package_title: "Pacote",
-      legado_popup_package_note: "(preço por hóspede; transfer e seguro incluídos)",
-      legado_pkg_tasting_label: "Visita à vinícola boutique e degustação de vinhos",
-      legado_pkg_tasting_line: "Visita à vinícola boutique e degustação 🍷 (USD 95)",
-      legado_pkg_tasting_b1: "Visita guiada à vinícola e vinhedo",
-      legado_pkg_tasting_b2: "Degustação de vinhos no El Legado",
-      legado_pkg_tasting_b3: "Transfer ida e volta desde Colonia",
-      legado_pkg_tasting_b4: "Seguro de viagem incluído",
+      legado_pkg_opt1_label: "Tour com degustação de vinhos",
+      legado_pkg_opt1_price: "USD 40",
+      legado_pkg_opt1_line: "Opção 1 · Tour com degustação de vinhos (USD 40)",
+      legado_pkg_opt1_b1: "Visita guiada à vinícola e vinhedo",
+      legado_pkg_opt1_b2: "Degustação de vinhos no El Legado",
+      legado_pkg_opt2_label: "Tour com degustação e tábua de frios",
+      legado_pkg_opt2_price: "USD 60",
+      legado_pkg_opt2_line: "Opção 2 · Tour com degustação e tábua de frios (USD 60)",
+      legado_pkg_opt2_b3: "Tábua de frios (picada)",
+      legado_pkg_opt3_label: "Experiência completa",
+      legado_pkg_opt3_price: "USD 90",
+      legado_pkg_opt3_line: "Opção 3 · Experiência completa (USD 90)",
+      legado_pkg_opt3_desc:
+        "Inclui o tour com degustação, tábua de frios, mais churrasco de legumes na grelha e sorvete de baunilha com molho de tannat. Vinhos liberados durante o almoço.",
+      legado_pkg_shared_b3: "Transfer ida e volta desde Colonia",
+      legado_pkg_shared_b4: "Seguro de viagem incluído",
+      legado_pref_vegetarian_menu: "Menu vegetariano",
       legado_wa_intro: "Olá! Gostaria de reservar Legado · Vinícola boutique e degustação:",
       home_sio_title: "Experiência SIO Sushi",
       home_sio_premium_badge: "Premium",
@@ -5919,6 +5960,8 @@ const translations = {
       orders_alert_create_first: "Crie seu pedido primeiro.",
       orders_pkg_package_lbl: "Pacote:",
       orders_pkg_transport_share: "Transporte (sua parte do grupo):",
+      orders_pkg_transport_flat: "Transporte:",
+      orders_pkg_transport_flat_amount: "Transporte: USD {transport}",
       orders_pkg_guest_total: "Total por hóspede:",
       orders_pkg_paren_experience: "experiência",
       orders_pkg_paren_exp_incl_guide: "experiência, incl. USD {n} de guia",
@@ -5933,6 +5976,8 @@ const translations = {
       orders_pkg_line_with_transport:
         "{label} — USD {pkg} experiência + USD {share} parte do transporte (grupo) = USD {total} por hóspede",
       orders_pkg_line_per_person: "{label} (USD {pkg} por pessoa)",
+      orders_pkg_line_per_person_incl_transport:
+        "{label} (USD {total} por pessoa, incl. USD {transport} de transporte)",
       orders_pkg_line_people_one: "{n} pessoa (USD {pkg})",
       orders_pkg_line_people_many: "{n} pessoas (USD {pkg})",
       orders_pkg_line_fallback: "Pacote (USD {pkg})",
@@ -6132,6 +6177,20 @@ const translations = {
     }
   };
   window.__SACRAMENTO_TRANSLATIONS = translations;
+  if (
+    typeof window.sacramentoHasUserChosenLanguage === "function" &&
+    window.sacramentoHasUserChosenLanguage()
+  ) {
+    const initialLang =
+      typeof window.sacramentoGetInitialLanguage === "function"
+        ? window.sacramentoGetInitialLanguage()
+        : typeof window.getInitialLanguage === "function"
+          ? window.getInitialLanguage()
+          : "en";
+    if (initialLang === "en" || initialLang === "es" || initialLang === "pt") {
+      window.__SACRAMENTO_ACTIVE_LANG__ = initialLang;
+    }
+  }
 
 function injectRentBadgeInActivityHero() {
   if (typeof window === "undefined" || typeof document === "undefined") return;
@@ -6606,25 +6665,127 @@ function initRentPopupBehavior() {
 }
   
   // ===== CHANGE LANGUAGE =====
+  function getSacramentoAssetsBase() {
+    if (window.__SACRAMENTO_ASSETS_BASE__) return window.__SACRAMENTO_ASSETS_BASE__;
+
+    try {
+      window.__SACRAMENTO_ASSETS_BASE__ = new URL("../Assets/", window.location.href).href;
+      return window.__SACRAMENTO_ASSETS_BASE__;
+    } catch (_) {
+      /* fall through */
+    }
+
+    const sheetHref = document.querySelector('link[rel="stylesheet"][href*="styles.css"]')?.href;
+    if (sheetHref) {
+      try {
+        window.__SACRAMENTO_ASSETS_BASE__ = new URL("../Assets/", sheetHref).href;
+        return window.__SACRAMENTO_ASSETS_BASE__;
+      } catch (_) {
+        /* fall through */
+      }
+    }
+
+    window.__SACRAMENTO_ASSETS_BASE__ = "/Assets/";
+    return window.__SACRAMENTO_ASSETS_BASE__;
+  }
+
+  function getCardMetaSpriteUrl() {
+    try {
+      return new URL("../Assets/icons/card-meta.svg", window.location.href).href;
+    } catch (_) {
+      return "/Assets/icons/card-meta.svg";
+    }
+  }
+
+  function cardMetaIconHref(iconId) {
+    if (document.getElementById("sacramento-card-meta-sprite")) {
+      return `#${iconId}`;
+    }
+    return `../Assets/icons/card-meta.svg#${iconId}`;
+  }
+
+  let cardMetaSpriteLoadPromise = null;
+
+  function ensureCardMetaSprite() {
+    if (typeof document === "undefined") return Promise.resolve();
+    if (document.getElementById("sacramento-card-meta-sprite")) {
+      return Promise.resolve();
+    }
+    if (cardMetaSpriteLoadPromise) return cardMetaSpriteLoadPromise;
+
+    cardMetaSpriteLoadPromise = (async () => {
+      const url = getCardMetaSpriteUrl();
+      const response = await fetch(url, { credentials: "same-origin" });
+      if (!response.ok) throw new Error("card-meta sprite fetch failed");
+      const markup = (await response.text()).trim();
+      const template = document.createElement("template");
+      template.innerHTML = markup;
+      const sprite = template.content.querySelector("svg");
+      if (!sprite) throw new Error("card-meta sprite missing root svg");
+
+      sprite.id = "sacramento-card-meta-sprite";
+      sprite.setAttribute("aria-hidden", "true");
+      sprite.style.cssText =
+        "position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;";
+
+      const mountTarget = document.body || document.documentElement;
+      mountTarget.insertBefore(sprite, mountTarget.firstChild);
+    })().catch(() => {
+      cardMetaSpriteLoadPromise = null;
+    });
+
+    return cardMetaSpriteLoadPromise;
+  }
+
+  function rowAlreadyHasMetaIcons(row, ids) {
+    const icons = row.querySelectorAll(".card-meta__ic use");
+    if (icons.length !== ids.length) return false;
+    return ids.every((id, index) => {
+      const href =
+        icons[index]?.getAttribute("href") ||
+        icons[index]?.getAttributeNS("http://www.w3.org/1999/xlink", "href") ||
+        "";
+      return href === `#${id}` || href.endsWith(`#${id}`);
+    });
+  }
+
   function mountCardMetaIcons(root = document) {
-    const base = "../Assets/icons/card-meta.svg";
     const scope = root && typeof root.querySelectorAll === "function" ? root : document;
-    scope.querySelectorAll("[data-card-meta] .sprite-row").forEach(row => {
+    scope.querySelectorAll("[data-card-meta] .sprite-row").forEach((row) => {
       const host = row.closest("[data-card-meta]");
       if (!host) return;
-      const ids = (host.getAttribute("data-card-meta") || "").trim().split(/\s+/).filter(Boolean);
+      const ids = (host.getAttribute("data-card-meta") || "")
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean);
+      if (!ids.length) return;
+      if (rowAlreadyHasMetaIcons(row, ids)) return;
       row.innerHTML = "";
-      ids.forEach(id => {
+      ids.forEach((id) => {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("class", "card-meta__ic");
         svg.setAttribute("width", "20");
         svg.setAttribute("height", "20");
         svg.setAttribute("aria-hidden", "true");
         const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-        use.setAttribute("href", `${base}#${id}`);
+        const href = cardMetaIconHref(id);
+        use.setAttribute("href", href);
+        use.setAttributeNS("http://www.w3.org/1999/xlink", "href", href);
         svg.appendChild(use);
         row.appendChild(svg);
       });
+    });
+
+    scope.querySelectorAll("[data-card-meta].activity-meta-row, .activity-meta-row[data-card-meta]").forEach((row) => {
+      const ids = (row.getAttribute("data-card-meta") || "")
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean);
+      if (!ids.length || row.querySelector(".activity-meta-icon")) return;
+      const iconId = ids[0];
+      const target = row.querySelector("span[data-translate], span[data-translate-html], label span, li span, p span, strong, span");
+      if (!target) return;
+      row.insertBefore(createActivityEmojiIcon(iconId), target);
     });
   }
 
@@ -6712,10 +6873,62 @@ function initRentPopupBehavior() {
     svg.setAttribute("focusable", "false");
 
     const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttribute("href", `../Assets/icons/card-meta.svg#${iconId}`);
+    const href = cardMetaIconHref(iconId);
+    use.setAttribute("href", href);
+    use.setAttributeNS("http://www.w3.org/1999/xlink", "href", href);
     svg.appendChild(use);
     wrap.appendChild(svg);
     return wrap;
+  }
+
+  function findEmojiIconId(text) {
+    const raw = String(text || "");
+    if (!raw) return null;
+    const trimmed = raw.trim();
+    const match = activityEmojiIconMap.find(([emoji]) => trimmed === emoji || trimmed.startsWith(emoji));
+    return match ? match[1] : null;
+  }
+
+  function mountExperienceStepEmojiIcons(root = document) {
+    const scope = root && typeof root.querySelectorAll === "function" ? root : document;
+    scope.querySelectorAll(".experience-steps .liebres-step-item, .experience-steps > ul > li").forEach((li) => {
+      if (li.querySelector(".activity-emoji-icon")) return;
+      for (const node of Array.from(li.childNodes)) {
+        if (node.nodeType !== Node.TEXT_NODE) continue;
+        const iconId = findEmojiIconId(node.textContent);
+        if (!iconId) continue;
+        node.replaceWith(createActivityEmojiIcon(iconId));
+        break;
+      }
+    });
+  }
+
+  var applyingPageIcons = false;
+  var activityEmojiObserverStarted = false;
+  var activityEmojiObserver = null;
+
+  function sacramentoApplyPageIcons(root = document) {
+    if (applyingPageIcons) return Promise.resolve();
+    applyingPageIcons = true;
+
+    const scope = root && typeof root.querySelectorAll === "function" ? root : document;
+    const apply = () => {
+      try {
+        mountCardMetaIcons(scope);
+        decorateActivityEmojiIcons(scope);
+        mountExperienceStepEmojiIcons(scope);
+        cleanCardMetaEmojiText(scope);
+      } finally {
+        applyingPageIcons = false;
+      }
+    };
+
+    return ensureCardMetaSprite().then(apply).catch(apply);
+  }
+
+  function initHomeCardMetaIcons() {
+    const root = document.getElementById("experiences") || document;
+    sacramentoApplyPageIcons(root);
   }
 
   function decorateActivityEmojiIcons(root = document.body) {
@@ -6728,6 +6941,12 @@ function initRentPopupBehavior() {
         }
         const parent = node.parentElement;
         if (!parent || parent.closest(skipSelector)) return NodeFilter.FILTER_REJECT;
+        if (
+          parent.closest(".card-meta-line .card-meta__text") &&
+          parent.closest("[data-card-meta]")?.querySelector(".sprite-row svg")
+        ) {
+          return NodeFilter.FILTER_REJECT;
+        }
         return NodeFilter.FILTER_ACCEPT;
       }
     });
@@ -6763,31 +6982,46 @@ function initRentPopupBehavior() {
     });
   }
 
-  let activityEmojiObserverStarted = false;
-  let activityEmojiDecorateQueued = false;
+  var activityEmojiDecorateQueued = false;
 
   function queueDecorateActivityEmojiIcons() {
-    if (activityEmojiDecorateQueued) return;
+    if (applyingPageIcons || activityEmojiDecorateQueued) return;
     activityEmojiDecorateQueued = true;
     window.requestAnimationFrame(() => {
       activityEmojiDecorateQueued = false;
-      decorateActivityEmojiIcons();
+      if (applyingPageIcons) return;
+      void sacramentoApplyPageIcons(document);
     });
   }
 
   function startActivityEmojiIconObserver() {
     if (activityEmojiObserverStarted || !document.body) return;
     activityEmojiObserverStarted = true;
-    const observer = new MutationObserver(() => queueDecorateActivityEmojiIcons());
-    observer.observe(document.body, {
+    activityEmojiObserver = new MutationObserver((records) => {
+      if (applyingPageIcons) return;
+      const shouldRefresh = records.some((record) => {
+        if (record.type === "characterData") return false;
+        return Array.from(record.addedNodes || []).some((node) => {
+          if (node.nodeType !== Node.ELEMENT_NODE) return false;
+          return (
+            node.matches?.("[data-translate], [data-translate-html], .liebres-step-item, [data-card-meta]") ||
+            node.querySelector?.("[data-translate], [data-translate-html], .liebres-step-item, [data-card-meta]")
+          );
+        });
+      });
+      if (shouldRefresh) queueDecorateActivityEmojiIcons();
+    });
+    activityEmojiObserver.observe(document.body, {
       childList: true,
-      characterData: true,
       subtree: true
     });
   }
 
   function getCardSeeMoreLabel(expanded, lang) {
-    const language = lang || getInitialLanguage();
+    const language =
+      lang ||
+      (typeof window.getStoredLanguage === "function" && window.getStoredLanguage()) ||
+      getInitialLanguage();
     const dict = translations[language] || translations.en;
     const key = expanded ? "historic_see_less" : "historic_see_more";
     return dict[key] || translations.en[key] || (expanded ? "See less" : "See more");
@@ -6801,26 +7035,72 @@ function initRentPopupBehavior() {
     });
   }
 
+  function updateCardSeeMoreVisibility(card) {
+    const text = card.querySelector(".card-description");
+    const btn = card.querySelector(".see-more");
+    if (!text || !btn) return;
+
+    if (text.classList.contains("expanded")) {
+      btn.style.removeProperty("display");
+      return;
+    }
+
+    const isClamped = text.scrollHeight > text.clientHeight + 5;
+    btn.style.display = isClamped ? "" : "none";
+  }
+
   function initCardSeeMoreToggles(root = document) {
     root.querySelectorAll(".card").forEach((card) => {
       const text = card.querySelector(".card-description");
       const btn = card.querySelector(".see-more");
       if (!text || !btn) return;
-      if (btn.dataset.seeMoreBound === "1") return;
-      btn.dataset.seeMoreBound = "1";
 
-      setTimeout(() => {
-        const isClamped = text.scrollHeight > text.clientHeight + 5;
-        if (!isClamped) btn.style.display = "none";
-      }, 100);
+      if (btn.dataset.seeMoreBound !== "1") {
+        btn.dataset.seeMoreBound = "1";
+        btn.setAttribute("role", "button");
+        btn.setAttribute("tabindex", "0");
 
-      btn.addEventListener("click", () => {
-        const expanded = text.classList.toggle("expanded");
-        btn.textContent = getCardSeeMoreLabel(expanded);
-      });
+        btn.addEventListener("click", () => {
+          const expanded = text.classList.toggle("expanded");
+          btn.textContent = getCardSeeMoreLabel(expanded);
+          updateCardSeeMoreVisibility(card);
+        });
+
+        btn.addEventListener("keydown", (e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          e.preventDefault();
+          btn.click();
+        });
+      }
+
+      updateCardSeeMoreVisibility(card);
     });
 
     refreshCardSeeMoreLabels(root);
+  }
+
+  function scheduleCardSeeMoreRefresh(root = document) {
+    const scope = root && typeof root.querySelectorAll === "function" ? root : document;
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        initCardSeeMoreToggles(scope);
+      });
+    });
+  }
+
+  function cleanCardMetaEmojiText(root = document) {
+    const scope = root && typeof root.querySelectorAll === "function" ? root : document;
+    const leadingEmoji =
+      /^[\s\uFE0F\u200D⭐🍷🧉✔✅🔥🚤📍🏛🚶📸🌅🍽🌐🛡🌍🌶🕯🇪🇸🇧🇷🍺🍸💃🐎🌿🍇]+/u;
+
+    scope.querySelectorAll(".card [data-card-meta] .card-meta__text").forEach((el) => {
+      const line = el.closest("[data-card-meta]");
+      if (!line?.querySelector(".sprite-row svg")) return;
+      el.querySelectorAll(".activity-emoji-icon").forEach((node) => node.remove());
+      const value = el.textContent || "";
+      const cleaned = value.replace(leadingEmoji, "").trimStart();
+      if (cleaned !== value) el.textContent = cleaned;
+    });
   }
 
   window.sacramentoGetCardSeeMoreLabel = getCardSeeMoreLabel;
@@ -6883,28 +7163,35 @@ function initRentPopupBehavior() {
     }
 
     localStorage.setItem("selectedLanguage", language);
-  
+    window.__SACRAMENTO_ACTIVE_LANG__ = language;
+    document.documentElement.lang = language;
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.lang === language);
+    });
+
     document.dispatchEvent(new CustomEvent("sacramento:setLanguage", { detail: { language } }));
 
     if (typeof window.sacramentoRenderWalkingPriceBadges === "function") {
       window.sacramentoRenderWalkingPriceBadges();
     }
   
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.lang === language);
-    });
-
-    mountCardMetaIcons();
-    decorateActivityEmojiIcons();
+    sacramentoApplyPageIcons();
     refreshCardSeeMoreLabels();
+    scheduleCardSeeMoreRefresh();
+    window.requestAnimationFrame(() => {
+      sacramentoApplyPageIcons();
+    });
   }
 
   window.sacramentoSetLanguage = setLanguage;
   window.sacramentoMountCardMetaIcons = mountCardMetaIcons;
   window.sacramentoDecorateActivityEmojiIcons = decorateActivityEmojiIcons;
+  window.sacramentoMountExperienceStepEmojiIcons = mountExperienceStepEmojiIcons;
+  window.sacramentoInitHomeCardMetaIcons = initHomeCardMetaIcons;
 
   const CARD_SOON_EXPLORE_SELECTOR =
-    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homeLegadoExploreBtn";
+    "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn";
 
   function getCardExperiencePageUrl(card) {
     const buttons = card.querySelector(".card-buttons");
@@ -6974,7 +7261,6 @@ function initRentPopupBehavior() {
     [
       document.getElementById("homeLupajackExploreBtn"),
       document.getElementById("homeMateAsadoExploreBtn"),
-      document.getElementById("homeLegadoExploreBtn"),
     ]
       .filter(Boolean)
       .forEach((btn) => {
@@ -7001,30 +7287,31 @@ function initRentPopupBehavior() {
 
   window.openHomeLupajackSoonPopup = openHomeLupajackSoonPopup;
 
-  function hasUserChosenLanguage() {
-    if (typeof window.hasUserChosenLanguage === "function") {
-      return window.hasUserChosenLanguage();
-    }
-    try {
-      return localStorage.getItem("sacramentoLanguageChosen") === "1";
-    } catch (_) {
-      return false;
-    }
+  function bindLanguageSwitcher() {
+    if (window.__SACRAMENTO_LANG_SWITCHER_BOUND__) return;
+    window.__SACRAMENTO_LANG_SWITCHER_BOUND__ = true;
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest(".lang-btn");
+      if (!button) return;
+      const lang = button.dataset.lang;
+      if (lang !== "en" && lang !== "es" && lang !== "pt") return;
+      event.preventDefault();
+      if (typeof window.sacramentoMarkLanguageChosen === "function") {
+        window.sacramentoMarkLanguageChosen();
+      }
+      document.documentElement.classList.remove("sacramento-awaiting-lang");
+      document.documentElement.classList.add("sacramento-lang-ready");
+      setLanguage(lang);
+    });
   }
 
-  function markLanguageChosen() {
-    if (typeof window.sacramentoMarkLanguageChosen === "function") {
-      window.sacramentoMarkLanguageChosen();
-      return;
-    }
-    try {
-      localStorage.setItem("sacramentoLanguageChosen", "1");
-    } catch (_) {
-      /* ignore */
-    }
-  }
+  let homePageBooted = false;
 
   function bootHomePage() {
+  if (homePageBooted) return;
+  homePageBooted = true;
+
   if (window.SACRAMENTO_I18N_ONLY) {
     const savedLanguage = getInitialLanguage();
     setLanguage(savedLanguage);
@@ -7038,13 +7325,6 @@ function initRentPopupBehavior() {
     const savedLanguage = getInitialLanguage();
     setLanguage(savedLanguage);
     startActivityEmojiIconObserver();
-  
-    document.querySelectorAll(".lang-btn").forEach(button => {
-      button.addEventListener("click", () => {
-        markLanguageChosen();
-        setLanguage(button.dataset.lang);
-      });
-    });
 
     initHomeLupajackSoonPopup();
     sacramentoInitCardReserveButtons(
@@ -7055,7 +7335,7 @@ function initRentPopupBehavior() {
 
         const imageContainer = card.querySelector(".card-image");
         const exploreSoonBtn = card.querySelector(
-          "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn, #homeLegadoExploreBtn"
+          "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn"
         );
         const link = Array.from(card.querySelectorAll(".card-buttons a.btn")).find((a) => {
           const h = a.getAttribute("href");
@@ -7341,26 +7621,73 @@ function initRentPopupBehavior() {
     });
   
   
-    initCardSeeMoreToggles(document.getElementById("experiences") || document);
+    scheduleCardSeeMoreRefresh(document.getElementById("experiences") || document);
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function sacramentoRunWhenDomReady(fn) {
+    if (typeof document === "undefined") return;
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn, { once: true });
+    } else {
+      fn();
+    }
+  }
+
+  function sacramentoRunPageI18nBoot() {
+    const experiencesRoot = document.getElementById("experiences") || document;
+    const isHome = Boolean(document.getElementById("experiences"));
+    bindLanguageSwitcher();
+    void sacramentoApplyPageIcons(document).then(() => {
+      startActivityEmojiIconObserver();
+    });
+    scheduleCardSeeMoreRefresh(experiencesRoot);
+
     if (window.__SACRAMENTO_PENDING_LANG__) {
       setLanguage(window.__SACRAMENTO_PENDING_LANG__);
       delete window.__SACRAMENTO_PENDING_LANG__;
-    }
-
-    if (hasUserChosenLanguage()) {
-      bootHomePage();
+      if (!isHome) return;
       return;
     }
 
-    document.addEventListener(
-      "sacramento:languageChosen",
-      () => {
+    const runBoot = () => {
+      delete window.__SACRAMENTO_NEEDS_BOOT_HOME__;
+      if (isHome) {
         bootHomePage();
-      },
-      { once: true }
-    );
+        return;
+      }
+      setLanguage(getInitialLanguage());
+    };
+
+    if (
+      window.__SACRAMENTO_NEEDS_BOOT_HOME__ ||
+      (typeof window.sacramentoHasUserChosenLanguage === "function" &&
+        window.sacramentoHasUserChosenLanguage())
+    ) {
+      runBoot();
+      return;
+    }
+
+    document.addEventListener("sacramento:languageChosen", runBoot, { once: true });
+  }
+
+  window.sacramentoBootHomePage = bootHomePage;
+  window.sacramentoRunPageI18nBoot = sacramentoRunPageI18nBoot;
+  window.sacramentoApplyPageIcons = sacramentoApplyPageIcons;
+  bindLanguageSwitcher();
+
+  sacramentoRunWhenDomReady(sacramentoRunPageI18nBoot);
+
+  document.addEventListener("sacramento:setLanguage", () => {
+    sacramentoApplyPageIcons();
+  });
+
+  document.addEventListener("sacramento:languageChosen", () => {
+    const experiencesRoot = document.getElementById("experiences") || document;
+    sacramentoApplyPageIcons(document);
+    scheduleCardSeeMoreRefresh(experiencesRoot);
+  });
+
+  window.addEventListener("load", () => {
+    sacramentoApplyPageIcons(document);
   });
 
