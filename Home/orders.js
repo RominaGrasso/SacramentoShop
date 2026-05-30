@@ -3699,7 +3699,8 @@ function initFoodExperience(config) {
     mainName = "main",
     starterName = "starter",
     touristMainName = "touristMain",
-    defaultMainValue = ""
+    defaultMainValue = "",
+    selectedDateKey = null
   } = config || {};
 
   if (!pricePerPerson) {
@@ -3727,11 +3728,18 @@ function initFoodExperience(config) {
     };
     const decodePref = (storedPref) => sacramentoDecodePrefLabel(storedPref, getI18nText, I18N_PREF_PREFIX);
     const decoratePref = (storedPref) => sacramentoDecoratePref(storedPref, getI18nText, I18N_PREF_PREFIX);
+    const getDateForBooking = () => {
+      if (!selectedDateKey) return "-";
+      const stored = localStorage.getItem(selectedDateKey);
+      return stored && /^\d{4}-\d{2}-\d{2}$/.test(stored) ? stored : "-";
+    };
 
     const FOOD_MEAL_I18N_KEYS = [
       "food_popup_main_1",
       "food_popup_main_2",
       "food_popup_main_3",
+      "chivito_popup_main_pan",
+      "chivito_popup_main_plato",
       "food_tourist_starter_1",
       "food_tourist_starter_2",
       "food_tourist_starter_3",
@@ -3753,6 +3761,8 @@ function initFoodExperience(config) {
     })();
     const mainRadioValueToKey = {
       chivito: "food_popup_main_1",
+      chivito_pan: "chivito_popup_main_pan",
+      chivito_plato: "chivito_popup_main_plato",
       milanesa: "food_popup_main_2",
       tourist: "food_popup_main_3"
     };
@@ -3829,31 +3839,37 @@ function initFoodExperience(config) {
     const container = document.getElementById(orderSummaryId);
     const touristBlock = document.getElementById(touristOptionsId);
 
-    if (!popup || !closeBtn || !createBtn || !saveBtn || !container || !touristBlock) return;
+    if (!popup || !closeBtn || !createBtn || !saveBtn || !container) return;
+
+    const setTouristBlockVisible = (visible) => {
+      if (touristBlock) touristBlock.style.display = visible ? "block" : "none";
+    };
 
     const resetPopup = () => {
       popup.querySelectorAll('input[type="radio"]').forEach((i) => (i.checked = false));
       popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((i) => (i.checked = false));
-      touristBlock.style.display = "none";
+      setTouristBlockVisible(false);
       if (defaultMainValue) {
         const defaultMain = popup.querySelector(`input[name="${mainName}"][value="${defaultMainValue}"]`);
         if (defaultMain) {
           defaultMain.checked = true;
-          touristBlock.style.display = defaultMainValue === "tourist" ? "block" : "none";
+          setTouristBlockVisible(defaultMainValue === "tourist");
         }
       }
     };
 
     // Mostrar/ocultar opciones "tourist"
-    popup.querySelectorAll(`input[name="${mainName}"]`).forEach((opt) => {
-      opt.addEventListener("change", () => {
-        if (opt.checked && opt.value === "tourist") {
-          touristBlock.style.display = "block";
-        } else {
-          touristBlock.style.display = "none";
-        }
+    if (touristBlock) {
+      popup.querySelectorAll(`input[name="${mainName}"]`).forEach((opt) => {
+        opt.addEventListener("change", () => {
+          if (opt.checked && opt.value === "tourist") {
+            setTouristBlockVisible(true);
+          } else {
+            setTouristBlockVisible(false);
+          }
+        });
       });
-    });
+    }
 
     createBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -3903,6 +3919,10 @@ function initFoodExperience(config) {
       let touristMain = null;
 
       if (main.value === "tourist") {
+        if (!touristBlock) {
+          alert(getI18nText("food_alert_select_meal", "Select a meal"));
+          return;
+        }
         const starterSelected = touristBlock.querySelector(`input[name="${starterName}"]:checked`);
         const touristMainSelected = touristBlock.querySelector(`input[name="${touristMainName}"]:checked`);
 
@@ -3961,6 +3981,12 @@ function initFoodExperience(config) {
             + ${escapeHtml(getI18nText("add_order", "Add Order"))}
           </button>
         `;
+      }
+
+      if (selectedDateKey) {
+        html += `<p class="order-summary-visit-date"><strong>${escapeHtml(
+          getI18nText("orders_visit_date_label", "Visit date")
+        )}:</strong> ${escapeHtml(getDateForBooking())}</p>`;
       }
 
       orders.forEach((order, i) => {
@@ -4031,6 +4057,12 @@ function initFoodExperience(config) {
         .filter(Boolean)
         .join(" ");
       let message = `${waLine}:\n\n`;
+      if (selectedDateKey) {
+        const visitDate = getDateForBooking();
+        if (visitDate && visitDate !== "-") {
+          message += `*${getI18nText("orders_visit_date_label", "Visit date")}:* ${visitDate}\n\n`;
+        }
+      }
       if (Array.isArray(whatsappIncludesKeys) && whatsappIncludesKeys.length > 0) {
         const includesTitle = whatsappIncludesTitleKey
           ? getI18nText(whatsappIncludesTitleKey, "What's included")
@@ -4104,7 +4136,7 @@ function initFoodExperience(config) {
         if (order.touristMain) {
           const touristRadio = popup.querySelector(`input[name="${mainName}"][value="tourist"]`);
           if (touristRadio) touristRadio.checked = true;
-          touristBlock.style.display = "block";
+          setTouristBlockVisible(true);
 
           popup.querySelectorAll(`input[name="${starterName}"]`).forEach((r) => {
             const span = r.parentElement?.querySelector("span[data-translate]");
@@ -4119,19 +4151,21 @@ function initFoodExperience(config) {
             }
           });
 
-          touristBlock.querySelectorAll(`input[name="${touristMainName}"]`).forEach((r) => {
-            const span = r.parentElement?.querySelector("span[data-translate]");
-            const k = span?.dataset?.translate;
-            const enc = k ? encodePref(k) : "";
-            const legacyText = r.parentElement?.textContent?.trim();
-            if (
-              (enc && enc === order.touristMain) ||
-              (legacyText &&
-                (legacyText === order.touristMain || legacyText === decodePref(order.touristMain)))
-            ) {
-              r.checked = true;
-            }
-          });
+          if (touristBlock) {
+            touristBlock.querySelectorAll(`input[name="${touristMainName}"]`).forEach((r) => {
+              const span = r.parentElement?.querySelector("span[data-translate]");
+              const k = span?.dataset?.translate;
+              const enc = k ? encodePref(k) : "";
+              const legacyText = r.parentElement?.textContent?.trim();
+              if (
+                (enc && enc === order.touristMain) ||
+                (legacyText &&
+                  (legacyText === order.touristMain || legacyText === decodePref(order.touristMain)))
+              ) {
+                r.checked = true;
+              }
+            });
+          }
         } else {
           popup.querySelectorAll(`input[name="${mainName}"]`).forEach((r) => {
             const span =
@@ -4148,7 +4182,7 @@ function initFoodExperience(config) {
               r.checked = true;
             }
           });
-          touristBlock.style.display = "none";
+          setTouristBlockVisible(false);
         }
 
         const prefSet = new Set(Array.isArray(order.preferences) ? order.preferences : []);
@@ -4181,7 +4215,7 @@ function initFoodExperience(config) {
               currency: dynamicPayment?.currency || "USD",
               people: orders.length,
               orderFingerprint: stableStringify({ orders, total: base.total }),
-              orderPayload: { orders, total: base.total, experienceName }
+              orderPayload: { orders, total: base.total, experienceName, visitDate: getDateForBooking() }
             });
             if (paymentUrl) {
               finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
@@ -4213,7 +4247,7 @@ function initFoodExperience(config) {
                 currency: dynamicPayment?.currency || "USD",
                 people: orders.length,
                 orderFingerprint: stableStringify({ orders, total: base.total }),
-                orderPayload: { orders, total: base.total, experienceName }
+                orderPayload: { orders, total: base.total, experienceName, visitDate: getDateForBooking() }
               });
               if (paymentUrl) {
                 finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
@@ -4225,16 +4259,20 @@ function initFoodExperience(config) {
       }
     }
 
-    document.querySelectorAll(".lang-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        renderOrders();
-        if (popup.classList.contains("active")) {
-          saveBtn.textContent =
-            editingIndex !== null
-              ? getI18nText("update_order", "Update order")
-              : getI18nText("save_selection", "Save selection");
-        }
-      });
+    document.addEventListener("sacramento:setLanguage", () => {
+      renderOrders();
+      if (popup.classList.contains("active")) {
+        saveBtn.textContent =
+          editingIndex !== null
+            ? getI18nText("update_order", "Update order")
+            : getI18nText("save_selection", "Save selection");
+      }
+    });
+
+    document.addEventListener("sacramento:visitDateChanged", (e) => {
+      if (!selectedDateKey) return;
+      if (e.detail && e.detail.key && e.detail.key !== selectedDateKey) return;
+      renderOrders();
     });
 
     renderOrders();

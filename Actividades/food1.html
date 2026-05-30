@@ -4,13 +4,14 @@
 <head>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta charset="utf-8"/>
+<title data-translate="food_doc_title">Guided Tour with Chivito | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link as="image" fetchpriority="high" href="../Assets/images/ref161.webp" rel="preload"/>
 <link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
-<body class="page-actividad">
-<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<body class="page-actividad page-food-tour">
 <!-- ================= HEADER ================= -->
 <header>
 <div class="logo-container">
@@ -82,8 +83,7 @@
         Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture.
         Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica.
         Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories.
-        The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes —
-        followed by a visit to the historic Plaza de Toros.
+        The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes.
       </p>
 <a class="reel-link-btn" data-translate="food_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
         🎥 Watch Reel on @_sacramentoadventures
@@ -91,29 +91,26 @@
 <h3 class="experience-steps-title" data-translate="food_steps_title">How it works</h3>
 <div class="experience-steps">
 <ul>
-<li data-translate="food_step_1">
+<li data-translate-html="food_step_1">
             🏛 <strong>Meeting point:</strong> Plaza de la Basílica (Historic Quarter).
           </li>
-<li data-translate="food_step_2">
-            🚶 <strong>Guided walking tour:</strong> Explore Colonia’s historic streets, learn about its past, and discover hidden gems with a local guide.
+<li data-translate-html="food_step_2">
+            🚶 <strong>Guided walking tour:</strong> Explore Colonia’s historic streets, learn about its past, and discover hidden gems with a local guide. Then the guide accompanies you to the restaurant and continues their route.
           </li>
-<li data-translate="food_step_3">
+<li data-translate-html="food_step_3">
             🍽 <strong>Lunch experience:</strong> Enjoy an authentic Uruguayan chivito at a local restaurant.
           </li>
-<li data-translate="food_step_4">
-            🏟 <strong>Plaza de Toros visit:</strong> Continue the experience with a visit to the iconic bullring. Tickets are included.
-          </li>
-<li data-translate="food_step_5">
-            🚗 <strong>Return:</strong> After the experience, you can choose to stay in the area or receive guidance to return to your accommodation.
+<li class="experience-step-note" data-translate="food_step_3_note">
+            More meal options are available — milanesa and tourist menu (you can see them when you create your menu).
           </li>
 </ul>
 </div>
 <!-- PRICE -->
 <div class="price-box">
 <h3>
-<span data-translate="food_price_title">USD 90 per person</span>
+<span data-translate="food_price_title">USD 50 per person</span>
 <span class="food-price-separator"> · </span>
-<span data-translate="food_duration_label">Duration: 3-4 hours</span>
+<span data-translate="food_duration_label">Duration: ~3 hours</span>
 </h3>
 </div>
 <div class="coffee-includes">
@@ -125,22 +122,33 @@
 <li data-translate="food_include_1">✔ Guided walking tour with local expert</li>
 <li data-translate="food_include_2">✔ Authentic Uruguayan chivito</li>
 <li data-translate="food_include_3">✔ French fries or fresh salad</li>
-<li data-translate="food_include_4">✔ Soft drink or local beverage</li>
-<li data-translate="food_include_5">✔ Visit to Plaza de Toros (tickets included)</li>
-<li data-translate="food_include_6">✔ Private Transfer</li>
+</ul>
+<h3 data-translate="food_not_included_title">What's not included</h3>
+<ul>
+<li data-translate="food_not_include_1">✗ Drinks and desserts (you can order them on site)</li>
 </ul>
 </div>
 <!-- DERECHA -->
 <div class="order-start">
 <h3 data-translate="food_create_title">Create your menu</h3>
+<p class="experience-availability-notice" data-translate="mision_room_availability_notice">
+            Please check availability with us on WhatsApp before completing your reservation.
+          </p>
+<div class="booking-visit-date-row">
+<label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDateFoodTour" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+              Pick the day you plan to come so we can coordinate availability in advance.
+            </p>
+</div>
 <p data-translate="food_create_subtitle">Select your meal and preferences</p>
-<button class="btn primary-btn" data-translate="food_create_btn" id="createMenuBtn">
+<button class="btn primary-btn" data-translate="food_create_btn" id="createMenuBtn" type="button">
               + Create your menu
             </button>
 </div>
 </div>
 </div>
-<div id="orderSummary"></div>
+<div class="order-summary" id="orderSummary"></div>
 <div class="experience-support-notice" role="status">
 <p>
 <strong data-translate="food_support_title">After your reservation</strong><span data-translate="food_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
@@ -150,6 +158,10 @@
 <section class="coffee-gallery">
 <h2 data-translate="food_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
+<img alt="Historic Quarter walking tour in Colonia del Sacramento" data-translate-alt="food_gal_walking_1" decoding="async" height="220" loading="lazy" src="../Assets/images/historic1.webp" width="1200"/>
+<img alt="Cobblestone streets on the walking tour" data-translate-alt="food_gal_walking_2" decoding="async" height="220" loading="lazy" src="../Assets/images/historic2.webp" width="1200"/>
+<img alt="Colonial streets in Colonia del Sacramento" data-translate-alt="food_gal_walking_3" decoding="async" height="220" loading="lazy" src="../Assets/images/historic3.webp" width="1200"/>
+<img alt="Historic gate in Colonia's Historic Quarter" data-translate-alt="food_gal_walking_4" decoding="async" height="220" loading="lazy" src="../Assets/images/historic4.webp" width="1200"/>
 <img alt="Refugio experience photo 1" decoding="async" height="220" loading="lazy" src="../Assets/images/ref1.webp" width="1200"/>
 <img alt="Refugio experience photo 2" decoding="async" height="220" loading="lazy" src="../Assets/images/ref2.webp" width="1200"/>
 <img alt="Refugio experience photo 3" decoding="async" height="220" loading="lazy" src="../Assets/images/ref3.webp" width="1200"/>
@@ -168,9 +180,6 @@
 <a class="btn secondary" data-translate="food_back_home" href="../Home/index.html">Back to Home</a>
 </div>
 </section>
-<script src="../Home/language-init.js?v=20260522perf"></script>
-<script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260528ordersfix"></script>
 <div class="lightbox" id="lightbox">
 <span class="close-lightbox" id="closeLightbox">✕</span>
 <button class="lightbox-btn prev" id="prevBtn">‹</button>
@@ -253,13 +262,19 @@
 </div>
 </div>
 </div>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/language-prompt.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260528ordersfix"></script>
 <script src="../Home/orders.js?v=20260528langfix"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
   initFoodExperience({
-    experienceName: "Chivito Experience",
+    experienceName: "Guided Tour with Chivito",
     experienceNameKey: "food_experience_name",
-    pricePerPerson: 90,
+    pricePerPerson: 50,
     bookNowBottomId: "bookNowBottom",
+    storageKey: "orders_food_tour",
+    selectedDateKey: "selectedDateFoodTour",
     whatsappNumber: "59898945542",
     dynamicPayment: {
       enabled: true,
@@ -270,8 +285,7 @@
     whatsappIncludesTitleKey: "wa_includes_label",
     whatsappIncludesKeys: [
       "food_wa_include_1",
-      "food_wa_include_2",
-      "food_wa_include_3"
+      "food_wa_include_2"
     ],
     defaultMainValue: "chivito"
   });

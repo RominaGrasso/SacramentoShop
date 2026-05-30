@@ -47,8 +47,7 @@
     );
   }
 
-  function init() {
-    const input = document.getElementById("bookingVisitDate");
+  function initInput(input) {
     if (!input || input.tagName !== "INPUT") return;
     const key = input.getAttribute("data-booking-date-key") || "selectedDate";
     const weekendsOnly = input.getAttribute("data-booking-date-weekends-only") === "true";
@@ -90,6 +89,15 @@
 
       persistDate(input, key, input.value);
     });
+  }
+
+  function init() {
+    const inputs = document.querySelectorAll("input[data-booking-date-key]");
+    if (inputs.length) {
+      inputs.forEach(initInput);
+      return;
+    }
+    initInput(document.getElementById("bookingVisitDate"));
   }
 
   if (document.readyState === "loading") {

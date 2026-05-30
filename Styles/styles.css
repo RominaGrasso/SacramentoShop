@@ -3081,6 +3081,10 @@
     object-position: center 80%;
   }
 
+  #home-chivito-card .carousel-track img[src*="ref2"] {
+    object-position: center 35%;
+  }
+
   .card-content .card-meta-stack {
     font-size: 0.9rem;
   }
@@ -3206,6 +3210,17 @@
     background-repeat: no-repeat;
   }
 
+  .legado-hero .legado-hero-badge {
+    top: 18px;
+    left: 18px;
+    right: auto;
+    z-index: 2;
+    font-size: 0.95rem;
+    padding: 10px 18px;
+    letter-spacing: 0.2px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  }
+
   @media (max-width: 900px) {
     .liebres-dining-hero {
       height: 39vh;
@@ -3216,6 +3231,16 @@
     .legado-hero {
       height: 39vh;
       background-position: center 40%;
+    }
+
+    .legado-hero .legado-hero-badge {
+      top: 12px;
+      left: 12px;
+      font-size: 0.82rem;
+      padding: 8px 14px;
+      max-width: min(240px, calc(100% - 24px));
+      line-height: 1.25;
+      text-align: center;
     }
   }
 
@@ -3479,6 +3504,13 @@
           .experience-steps li{
             margin-bottom: 12px;
             line-height: 1.5;
+          }
+
+          .experience-steps li.experience-step-note {
+            margin-top: -6px;
+            padding-left: 1.65rem;
+            color: #5c6670;
+            font-size: 0.95rem;
           }
 
           /* ===== ABOUT PAGE ===== */
