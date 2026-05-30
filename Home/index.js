@@ -119,9 +119,67 @@ const translations = {
       asado_boat_home_desc:
         "Enjoy an authentic Uruguayan asado prepared by Alejandro, owner and captain, who will guide you through a unique local experience with premium meats, wine, and a relaxed atmosphere. Then, set sail on a scenic boat tour along the Río de la Plata, discovering Colonia from a completely different perspective. A perfect blend of gastronomy, storytelling, and nature.",
       food_card_meta_1: "Best value experience in Colonia",
-      food_card_meta_2: "3 experiences in 1",
+      food_card_meta_2: "2 experiences in 1",
       food_card_meta_3_transfer: "Transfer included",
-      food_card_meta_3_time: "Duration: 4 hours",
+      food_card_meta_3_time: "Duration: ~3 hours",
+      home_chivito_title: "Try our Chivito",
+      home_chivito_meta_refugio: "El Refugio · Historic Quarter",
+      home_chivito_meta_dish: "Authentic Uruguayan chivito",
+      home_chivito_meta_time: "Duration: ~1:30 h",
+      home_chivito_meta_table: "Reserved table",
+      home_chivito_desc:
+        "Enjoy Uruguay's most iconic sandwich at El Refugio in the heart of Colonia's Historic Quarter — a classic chivito with premium ingredients, fries, and the warm atmosphere of one of the city's favorite spots.",
+      home_chivito_gal_alt_1: "El Refugio restaurant in Colonia's Historic Quarter",
+      home_chivito_gal_alt_2: "Authentic Uruguayan chivito at El Refugio",
+      home_chivito_gal_alt_3: "Chivito and local flavors at El Refugio",
+      home_chivito_gal_alt_4: "El Refugio dining experience in Colonia",
+      home_chivito_gal_alt_5: "Reserved table at El Refugio",
+      chivito_doc_title: "Try our Chivito · El Refugio | Sacramento Adventures",
+      chivito_experience_name: "Try our Chivito · El Refugio",
+      chivito_wa_intro: "Hello! I'd like to book Try our Chivito at El Refugio:",
+      chivito_about_title: "About this experience",
+      chivito_about_p:
+        "Enjoy Uruguay's most iconic sandwich at El Refugio in the heart of Colonia's Historic Quarter — a classic chivito with premium ingredients, fries, and the warm atmosphere of one of the city's favorite spots. Your table is reserved in advance so you can arrive, sit down, and enjoy.",
+      chivito_steps_title: "How it works",
+      chivito_step_1_title: "Book your table:",
+      chivito_step_1_desc:
+        "Choose your visit date and add one order per guest — we coordinate your reserved table at El Refugio.",
+      chivito_step_2_title: "Arrive at El Refugio:",
+      chivito_step_2_desc: "Meet us in Colonia's Historic Quarter at the agreed time.",
+      chivito_step_3_title: "Enjoy your chivito:",
+      chivito_step_3_desc:
+        "Savor an authentic Uruguayan chivito with rustic fries.",
+      chivito_price_title: "USD 35 per guest",
+      chivito_price_p:
+        "Reserved table at El Refugio and classic chivito with fries included. Drinks and desserts are not included — order them on site. Plan on about 1:30 hours. Add one order per guest — the summary and total update automatically.",
+      chivito_included_title: "What's included",
+      chivito_include_1: "✔ Reserved table at El Refugio",
+      chivito_include_2: "✔ Chivito al pan or al plato (choose when you create your order)",
+      chivito_include_3: "✔ Rustic fries",
+      chivito_include_4: "✔ Coordination and support from Sacramento Adventures",
+      chivito_include_note:
+        "Drinks and desserts are not included; you can order them on site.",
+      chivito_create_title: "Create your order",
+      chivito_create_subtitle: "Choose al pan or al plato and your preferences.",
+      chivito_create_btn: "+ Create your order",
+      chivito_gallery_title: "Experience Gallery",
+      chivito_gal_alt_6: "El Refugio dining atmosphere in Colonia",
+      chivito_gal_alt_7: "El Refugio restaurant experience in Colonia",
+      chivito_back_home: "Back to Home",
+      chivito_popup_title: "Choose your meal:",
+      chivito_popup_main_pan: "Chivito al pan",
+      chivito_popup_main_pan_sub: "Classic Uruguayan sandwich",
+      chivito_popup_main_pan_item_1:
+        "Beef sandwich with mozzarella, bacon, fried egg, lettuce, arugula & tomato",
+      chivito_popup_main_pan_item_2: "With rustic fries",
+      chivito_popup_main_plato: "Chivito al plato",
+      chivito_popup_main_plato_sub: "Served on a plate",
+      chivito_popup_main_plato_item_1:
+        "Beef, mozzarella, bacon, fried egg, lettuce & tomato",
+      chivito_popup_main_plato_item_2: "Rustic fries & Russian salad",
+      chivito_wa_include_1: "Reserved table at El Refugio",
+      chivito_wa_include_2: "Authentic Uruguayan chivito",
+      chivito_wa_include_3: "Rustic fries",
       bruma_discount_badge: "Launch price · 22% OFF",
       josefina_launch_badge: "Launch price · 30% OFF",
       bruma_home_title: "Bruma Restaurant Experience",
@@ -217,6 +275,7 @@ const translations = {
       home_cabalgata_desc:
         "Private transfer to <strong>Las Liebres</strong> for a vineyard walk and <strong>three-wine tasting</strong> with kitchen pairings. Then a guided <strong>horseback ride</strong> on the outskirts of Colonia, <strong>near Colonia Soho</strong>. About <strong>3–4 hours</strong> door-to-door.",
       home_legado_title: "Legado · Boutique winery & tasting",
+      legado_friends_badge: "Special for friend groups",
       home_legado_meta_1: "Boutique winery steps from Carmelo",
       home_legado_meta_tasting: "Wine tasting",
       home_legado_meta_time: "Duration: 5 hours",
@@ -228,6 +287,11 @@ const translations = {
       home_legado_gal_alt_2: "Legado vineyard and natural surroundings",
       home_legado_gal_alt_3: "Legado wine tasting experience",
       home_legado_gal_alt_4: "Legado winery visit in the Carmelo region",
+      home_legado_gal_alt_5: "Inside El Legado boutique winery",
+      home_legado_gal_alt_6: "El Legado country house and winery grounds",
+      home_legado_gal_alt_7: "Charcuterie board at El Legado",
+      home_legado_gal_alt_8: "Picada and local flavors at El Legado",
+      home_legado_gal_alt_9: "Gourmet picada experience at El Legado",
       legado_doc_title: "Legado · Boutique winery & tasting | Sacramento Adventures",
       legado_experience_name: "Legado · Boutique winery & tasting",
       legado_about_title: "About this experience",
@@ -246,9 +310,9 @@ const translations = {
         "Enjoy the natural surroundings and hospitality of the owners and staff.",
       legado_step_5_title: "Return:",
       legado_step_5_desc: "Private drop-off back to your hotel or terminal in Colonia.",
-      legado_price_title: "From USD 40 per guest, Transport - USD 25",
+      legado_price_title: "From USD 35 per guest, Transport - USD 25",
       legado_price_p:
-        "Choose from three packages at El Legado (from USD 40 per guest). Round-trip transfer from Colonia del Sacramento and travel insurance are included. Plan on about 5 hours door-to-door. Add one order per guest — the summary and total update automatically.",
+        "Choose from three packages at El Legado (from USD 35 per guest). Round-trip transfer from Colonia del Sacramento and travel insurance are included. Plan on about 5 hours door-to-door. Add one order per guest — the summary and total update automatically.",
       legado_included_title: "What's included",
       legado_include_1: "✔ Guided visit to El Legado boutique winery & vineyard",
       legado_include_2: "✔ Wine tasting",
@@ -263,17 +327,17 @@ const translations = {
       legado_popup_title: "Choose your package:",
       legado_popup_package_title: "Package",
       legado_pkg_opt1_label: "Tour with wine tasting",
-      legado_pkg_opt1_price: "USD 40",
-      legado_pkg_opt1_line: "Option 1 · Tour with wine tasting (USD 40)",
+      legado_pkg_opt1_price: "USD 35",
+      legado_pkg_opt1_line: "Option 1 · Tour with wine tasting (USD 35)",
       legado_pkg_opt1_b1: "Guided visit to the winery & vineyard",
       legado_pkg_opt1_b2: "Wine tasting at El Legado",
       legado_pkg_opt2_label: "Tour with tasting & charcuterie board",
-      legado_pkg_opt2_price: "USD 60",
-      legado_pkg_opt2_line: "Option 2 · Tour with tasting & charcuterie board (USD 60)",
+      legado_pkg_opt2_price: "USD 55",
+      legado_pkg_opt2_line: "Option 2 · Tour with tasting & charcuterie board (USD 55)",
       legado_pkg_opt2_b3: "Charcuterie board (picada)",
       legado_pkg_opt3_label: "Full experience",
-      legado_pkg_opt3_price: "USD 90",
-      legado_pkg_opt3_line: "Option 3 · Full experience (USD 90)",
+      legado_pkg_opt3_price: "USD 85",
+      legado_pkg_opt3_line: "Option 3 · Full experience (USD 85)",
       legado_pkg_opt3_desc:
         "Includes tour with tasting, charcuterie board, grilled vegetable asado, and vanilla ice cream with Tannat sauce. Free-flow wines during lunch.",
       legado_pkg_shared_b3: "Round-trip transfer from Colonia",
@@ -849,8 +913,13 @@ const translations = {
       pharmacy_c4_meta: "Gral. Flores 308 · Check current hours",
       pharmacy_c5_meta: "Av. José Batlle y Ordóñez · Check current hours",
       pharmacy_24h_badge: "24 h",
-      food_title: "Walking Tour, Chivito & Plaza de Toros",
-      food_text: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes — followed by a visit to the historic Plaza de Toros.",
+      food_title: "Guided Tour with Chivito",
+      food_doc_title: "Guided Tour with Chivito | Sacramento Adventures",
+      food_text: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city's charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia's Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country's most iconic dishes.",
+      home_food_tour_gal_alt_1: "Historic Quarter walking tour in Colonia del Sacramento",
+      home_food_tour_gal_alt_2: "Authentic Uruguayan chivito at El Refugio",
+      home_food_tour_gal_alt_3: "Chivito and local flavors at El Refugio",
+      home_food_tour_gal_alt_4: "Colonial streets in Colonia del Sacramento",
       barbot_tour_home_title: "Barbot Brewery Guided Tour",
       barbot_tour_home_meta_1: "Guided brewery tour",
       barbot_tour_home_meta_2: "4 half pints included",
@@ -1088,30 +1157,36 @@ const translations = {
       josefina_map_text: "Located at the Real Club Náutico de Colonia del Sacramento (Yacht Club). ",
       josefina_map_link: "Open in Google Maps",
       food_about_title: "About this experience",
-      food_about_p: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes — followed by a visit to the historic Plaza de Toros.",
+      food_about_p: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes.",
       food_reel_btn: "🎥 Watch Reel on @_sacramentoadventures",
       food_support_title: "After your reservation",
       food_support_text:
         ", a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.",
       food_steps_title: "How it works",
-      food_step_1: "🏛 Meeting point: Plaza de la Basílica (Historic Quarter).",
-      food_step_2: "🚶 Guided walking tour: Explore Colonia's historic streets, learn about its past, and discover hidden gems with a local guide.",
-      food_step_3: "🍽 Lunch experience: Enjoy an authentic Uruguayan chivito at a local restaurant.",
+      food_step_1: "🏛 <strong>Meeting point:</strong> Plaza de la Basílica (Historic Quarter).",
+      food_step_2: "🚶 <strong>Guided walking tour:</strong> Explore Colonia's historic streets, learn about its past, and discover hidden gems with a local guide. Then the guide accompanies you to the restaurant and continues their route.",
+      food_step_3: "🍽 <strong>Lunch experience:</strong> Enjoy an authentic Uruguayan chivito at a local restaurant.",
+      food_step_3_note: "More meal options are available — milanesa and tourist menu (you can see them when you create your menu).",
       food_step_4: "🏟 Plaza de Toros visit: Continue the experience with a visit to the iconic bullring. Tickets are included.",
       food_step_5: "🚗 Private transfer included.",
-      food_price_title: "USD 90 per person",
-      food_duration_label: "Duration: 3-4 hours",
+      food_price_title: "USD 50 per person",
+      food_duration_label: "Duration: ~3 hours",
       food_included_title: "What's included",
       food_include_1: "✔ Guided walking tour with local expert",
       food_include_2: "✔ Authentic Uruguayan chivito",
       food_include_3: "✔ French fries or fresh salad",
-      food_include_4: "✔ Soft drink or local beverage",
+      food_not_included_title: "What's not included",
+      food_not_include_1: "✗ Drinks and desserts (you can order them on site)",
       food_include_5: "✔ Visit to Plaza de Toros (tickets included)",
       food_include_6: "✔ Private Transfer",
       food_create_title: "Create your menu",
       food_create_subtitle: "Select your meal and preferences",
       food_create_btn: "+ Create your menu",
       food_gallery_title: "Experience Gallery",
+      food_gal_walking_1: "Historic Quarter walking tour in Colonia del Sacramento",
+      food_gal_walking_2: "Cobblestone streets on the walking tour",
+      food_gal_walking_3: "Colonial streets in Colonia del Sacramento",
+      food_gal_walking_4: "Historic gate in Colonia's Historic Quarter",
       food_map_title: "Where to find El Refugio",
       food_map_text: "Use this map as a reference for El Refugio's location in Colonia del Sacramento.",
       food_map_link: "Open in Google Maps",
@@ -1146,7 +1221,7 @@ const translations = {
       food_tourist_main_3: "Tagliatelle with bolognese or tomato sauce",
       food_tourist_dessert_title: "Dessert",
       food_tourist_dessert_1: "Traditional Uruguayan Chajá",
-      food_experience_name: "Chivito Experience",
+      food_experience_name: "Guided Tour with Chivito",
       food_wa_include_1: "Guided tour",
       food_wa_include_2: "Lunch",
       food_wa_include_3: "Plaza de Toros visit",
@@ -2179,9 +2254,67 @@ const translations = {
       asado_boat_home_desc:
         "Disfrutá un auténtico asado uruguayo preparado por Alejandro, dueño y capitán, que te guía en una experiencia local con carnes premium, vino y ambiente relajado. Después, navegá un tour escénico por el Río de la Plata y conocé Colonia desde otra perspectiva. Gastronomía, historias y naturaleza en una sola propuesta.",
       food_card_meta_1: "Mejor relación precio-calidad en Colonia",
-      food_card_meta_2: "3 experiencias en 1",
+      food_card_meta_2: "2 experiencias en 1",
       food_card_meta_3_transfer: "Traslado incluido",
-      food_card_meta_3_time: "Duración: 4 horas",
+      food_card_meta_3_time: "Duración: 3 hs aprox.",
+      home_chivito_title: "Proba nuestro Chivito",
+      home_chivito_meta_refugio: "El Refugio · Barrio Histórico",
+      home_chivito_meta_dish: "Chivito uruguayo auténtico",
+      home_chivito_meta_time: "Duración: 1:30 hs aprox.",
+      home_chivito_meta_table: "Mesa reservada",
+      home_chivito_desc:
+        "Disfrutá el chivito más emblemático de Uruguay en El Refugio, en el corazón del Barrio Histórico de Colonia. Sandwich clásico con ingredientes de primera, papas fritas y el ambiente cálido de uno de los locales más queridos de la ciudad.",
+      home_chivito_gal_alt_1: "Restaurante El Refugio en el Barrio Histórico de Colonia",
+      home_chivito_gal_alt_2: "Chivito uruguayo auténtico en El Refugio",
+      home_chivito_gal_alt_3: "Chivito y sabores locales en El Refugio",
+      home_chivito_gal_alt_4: "Experiencia gastronómica en El Refugio, Colonia",
+      home_chivito_gal_alt_5: "Mesa reservada en El Refugio",
+      chivito_doc_title: "Proba nuestro Chivito · El Refugio | Sacramento Adventures",
+      chivito_experience_name: "Proba nuestro Chivito · El Refugio",
+      chivito_wa_intro: "¡Hola! Me gustaría reservar Proba nuestro Chivito en El Refugio:",
+      chivito_about_title: "Sobre esta experiencia",
+      chivito_about_p:
+        "Disfrutá el chivito más emblemático de Uruguay en El Refugio, en el corazón del Barrio Histórico de Colonia. Sandwich clásico con ingredientes de primera, papas fritas y el ambiente cálido de uno de los locales más queridos de la ciudad. Tu mesa queda reservada con anticipación para que llegues, te sientes y disfrutes.",
+      chivito_steps_title: "Cómo funciona",
+      chivito_step_1_title: "Reservá tu mesa:",
+      chivito_step_1_desc:
+        "Elegí la fecha de visita y agregá un pedido por huésped — coordinamos tu mesa reservada en El Refugio.",
+      chivito_step_2_title: "Llegá a El Refugio:",
+      chivito_step_2_desc: "Encontranos en el Barrio Histórico de Colonia a la hora acordada.",
+      chivito_step_3_title: "Disfrutá tu chivito:",
+      chivito_step_3_desc:
+        "Saboreá un auténtico chivito uruguayo con papas fritas rústicas.",
+      chivito_price_title: "USD 35 por huésped",
+      chivito_price_p:
+        "Mesa reservada en El Refugio y chivito clásico con papas fritas incluidos. Bebidas y postres no están incluidos — podés pedirlos en el local. Calculá unas 1:30 hs aprox. Agregá un pedido por huésped — el resumen y el total se actualizan solos.",
+      chivito_included_title: "Qué incluye",
+      chivito_include_1: "✔ Mesa reservada en El Refugio",
+      chivito_include_2: "✔ Chivito al pan o al plato (elegís al crear el pedido)",
+      chivito_include_3: "✔ Papas fritas rústicas",
+      chivito_include_4: "✔ Coordinación y soporte de Sacramento Adventures",
+      chivito_include_note:
+        "Bebidas y postres no están incluidos; podés pedirlos en el local.",
+      chivito_create_title: "Creá tu pedido",
+      chivito_create_subtitle: "Elegí al pan o al plato y tus preferencias.",
+      chivito_create_btn: "+ Crear tu pedido",
+      chivito_gallery_title: "Galería de la experiencia",
+      chivito_gal_alt_6: "Ambiente de El Refugio en Colonia",
+      chivito_gal_alt_7: "Experiencia en el restaurante El Refugio, Colonia",
+      chivito_back_home: "Volver al inicio",
+      chivito_popup_title: "Elegí tu comida:",
+      chivito_popup_main_pan: "Chivito al pan",
+      chivito_popup_main_pan_sub: "Sándwich clásico uruguayo",
+      chivito_popup_main_pan_item_1:
+        "Bife de carne al pan con muzzarella, panceta, huevo frito, lechuga, rúcula y tomate",
+      chivito_popup_main_pan_item_2: "Acompañado con papas rústicas",
+      chivito_popup_main_plato: "Chivito al plato",
+      chivito_popup_main_plato_sub: "Servido en plato",
+      chivito_popup_main_plato_item_1:
+        "Bife de carne, muzzarella, panceta, huevo frito, lechuga y tomate",
+      chivito_popup_main_plato_item_2: "Papas rústicas y ensalada rusa",
+      chivito_wa_include_1: "Mesa reservada en El Refugio",
+      chivito_wa_include_2: "Chivito uruguayo auténtico",
+      chivito_wa_include_3: "Papas fritas rústicas",
       bruma_discount_badge: "Precio lanzamiento · 22% OFF",
       josefina_launch_badge: "Precio lanzamiento · 30% OFF",
       bruma_home_title: "Experiencia restaurante Bruma",
@@ -2277,6 +2410,7 @@ const translations = {
       home_cabalgata_desc:
         "Traslado privado a <strong>Las Liebres</strong> para recorrer el viñedo y una <strong>degustación de tres vinos</strong> con maridajes de cocina. Luego <strong>cabalgata guiada</strong> en las afueras de Colonia, <strong>cerca de Colonia Soho</strong>. Unas <strong>3–4 horas</strong> puerta a puerta.",
       home_legado_title: "Legado · Bodega boutique y degustación",
+      legado_friends_badge: "Especial grupo de amigos",
       home_legado_meta_1: "Bodega boutique a pasos de Carmelo",
       home_legado_meta_tasting: "Degustación de vinos",
       home_legado_meta_time: "Duración: 5 horas",
@@ -2288,6 +2422,11 @@ const translations = {
       home_legado_gal_alt_2: "Viñedo Legado y entorno natural",
       home_legado_gal_alt_3: "Degustación de vinos en Legado",
       home_legado_gal_alt_4: "Visita a la bodega Legado en la región de Carmelo",
+      home_legado_gal_alt_5: "Interior de la bodega boutique El Legado",
+      home_legado_gal_alt_6: "La casa y el entorno de El Legado",
+      home_legado_gal_alt_7: "Picada en El Legado",
+      home_legado_gal_alt_8: "Picada y sabores locales en El Legado",
+      home_legado_gal_alt_9: "Experiencia gourmet con picada en El Legado",
       legado_doc_title: "Legado · Bodega boutique y degustación | Sacramento Adventures",
       legado_experience_name: "Legado · Bodega boutique y degustación",
       legado_about_title: "Sobre esta experiencia",
@@ -2305,9 +2444,9 @@ const translations = {
       legado_step_4_desc: "Disfrutá del entorno natural y la calidez de los dueños y el personal.",
       legado_step_5_title: "Regreso:",
       legado_step_5_desc: "Traslado privado de vuelta a tu hotel o terminal en Colonia.",
-      legado_price_title: "Desde USD 40 por huésped, Transporte - USD 25",
+      legado_price_title: "Desde USD 35 por huésped, Transporte - USD 25",
       legado_price_p:
-        "Elegí entre tres paquetes en El Legado (desde USD 40 por huésped). Incluye traslado ida y vuelta desde Colonia del Sacramento y seguro de viaje. Calculá unas 5 horas puerta a puerta. Agregá un pedido por huésped — el resumen y el total se actualizan solos.",
+        "Elegí entre tres paquetes en El Legado (desde USD 35 por huésped). Incluye traslado ida y vuelta desde Colonia del Sacramento y seguro de viaje. Calculá unas 5 horas puerta a puerta. Agregá un pedido por huésped — el resumen y el total se actualizan solos.",
       legado_included_title: "Qué incluye",
       legado_include_1: "✔ Visita guiada a la bodega boutique El Legado y viñedo",
       legado_include_2: "✔ Degustación de vinos",
@@ -2322,17 +2461,17 @@ const translations = {
       legado_popup_title: "Elegí tu paquete:",
       legado_popup_package_title: "Paquete",
       legado_pkg_opt1_label: "Tour con degustación de vinos",
-      legado_pkg_opt1_price: "USD 40",
-      legado_pkg_opt1_line: "Opción 1 · Tour con degustación de vinos (USD 40)",
+      legado_pkg_opt1_price: "USD 35",
+      legado_pkg_opt1_line: "Opción 1 · Tour con degustación de vinos (USD 35)",
       legado_pkg_opt1_b1: "Visita guiada a la bodega y viñedo",
       legado_pkg_opt1_b2: "Degustación de vinos en El Legado",
       legado_pkg_opt2_label: "Tour con degustación y picada",
-      legado_pkg_opt2_price: "USD 60",
-      legado_pkg_opt2_line: "Opción 2 · Tour con degustación y picada (USD 60)",
+      legado_pkg_opt2_price: "USD 55",
+      legado_pkg_opt2_line: "Opción 2 · Tour con degustación y picada (USD 55)",
       legado_pkg_opt2_b3: "Picada (tabla de fiambres y quesos)",
       legado_pkg_opt3_label: "Experiencia completa",
-      legado_pkg_opt3_price: "USD 90",
-      legado_pkg_opt3_line: "Opción 3 · Experiencia completa (USD 90)",
+      legado_pkg_opt3_price: "USD 85",
+      legado_pkg_opt3_line: "Opción 3 · Experiencia completa (USD 85)",
       legado_pkg_opt3_desc:
         "Incluye el tour con degustación, picada, más asado con verduras a la parrilla y helado de vainilla con salsa de tannat. Con vinos libres durante el almuerzo.",
       legado_pkg_shared_b3: "Traslado ida y vuelta desde Colonia",
@@ -2912,7 +3051,13 @@ const translations = {
       view_btn: "Explorar",
       save_selection: "Guardar selección",
       update_order: "Actualizar pedido",
-      food_title: "Tour a pie, Chivito y Plaza de Toros",
+      food_title: "Tour Guiado con Chivito",
+      food_doc_title: "Tour Guiado con Chivito | Sacramento Adventures",
+      food_text: "Descubrí Colonia del Sacramento a través de una experiencia guiada que combina historia, gastronomía y cultura local. Caminá por las encantadoras calles de la ciudad con un guía experto, comenzando en la icónica Plaza de la Basílica. En el recorrido conocerás la herencia portuguesa y española de Colonia, rincones escondidos e historias locales. La experiencia también incluye una parada para disfrutar un auténtico chivito uruguayo — uno de los platos más emblemáticos del país.",
+      home_food_tour_gal_alt_1: "Tour guiado por el Barrio Histórico de Colonia del Sacramento",
+      home_food_tour_gal_alt_2: "Chivito uruguayo auténtico en El Refugio",
+      home_food_tour_gal_alt_3: "Chivito y sabores locales en El Refugio",
+      home_food_tour_gal_alt_4: "Calles coloniales en Colonia del Sacramento",
       barbot_tour_home_title: "Tour guiado por la cervecería Barbot",
       barbot_tour_home_meta_1: "Tour guiado por la cervecería",
       barbot_tour_home_meta_2: "4 medios pintas incluidos",
@@ -3150,30 +3295,36 @@ const translations = {
       josefina_map_text: "En el Real Club Náutico de Colonia del Sacramento (Yacht Club). ",
       josefina_map_link: "Abrir en Google Maps",
       food_about_title: "Sobre esta experiencia",
-      food_about_p: "Descubrí Colonia del Sacramento a través de una experiencia guiada que combina historia, gastronomía y cultura local. Caminá por las encantadoras calles de la ciudad con un guía experto, comenzando en la icónica Plaza de la Basílica. En el recorrido conocerás la herencia portuguesa y española de Colonia, rincones escondidos e historias locales. La experiencia también incluye una parada para disfrutar un auténtico chivito uruguayo — uno de los platos más emblemáticos del país — y una visita a la histórica Plaza de Toros.",
+      food_about_p: "Descubrí Colonia del Sacramento a través de una experiencia guiada que combina historia, gastronomía y cultura local. Caminá por las encantadoras calles de la ciudad con un guía experto, comenzando en la icónica Plaza de la Basílica. En el recorrido conocerás la herencia portuguesa y española de Colonia, rincones escondidos e historias locales. La experiencia también incluye una parada para disfrutar un auténtico chivito uruguayo — uno de los platos más emblemáticos del país.",
       food_reel_btn: "🎥 Ver reel en @_sacramentoadventures",
       food_support_title: "Luego de tu reserva",
       food_support_text:
         ", una persona de soporte se pondrá en contacto para guiarte con los detalles de la experiencia y resolver tus dudas antes de la visita.",
       food_steps_title: "Cómo funciona",
-      food_step_1: "🏛 Punto de encuentro: Plaza de la Basílica (Casco Histórico).",
-      food_step_2: "🚶 Walking tour guiado: Recorré las calles históricas de Colonia, conocé su pasado y descubrí rincones únicos con un guía local.",
-      food_step_3: "🍽 Experiencia de almuerzo: Disfrutá un auténtico chivito uruguayo en un restaurante local.",
+      food_step_1: "🏛 <strong>Punto de encuentro:</strong> Plaza de la Basílica (Casco Histórico).",
+      food_step_2: "🚶 <strong>Walking tour guiado:</strong> Recorré las calles históricas de Colonia, conocé su pasado y descubrí rincones únicos con un guía local. Luego, el guía te acompaña al restaurante y sigue su recorrido.",
+      food_step_3: "🍽 <strong>Experiencia de almuerzo:</strong> Disfrutá un auténtico chivito uruguayo en un restaurante local.",
+      food_step_3_note: "Hay más opciones de comida disponibles: milanesa y menú turístico (las pueden ver al crear el menú).",
       food_step_4: "🏟 Visita a Plaza de Toros: Continuá la experiencia con una visita al emblemático ruedo. Entradas incluidas.",
       food_step_5: "🚗 Traslado privado incluido.",
-      food_price_title: "USD 90 por persona",
-      food_duration_label: "Duración: 3-4 horas",
+      food_price_title: "USD 50 por persona",
+      food_duration_label: "Duración: 3 hs aprox.",
       food_included_title: "Qué incluye",
       food_include_1: "✔ Walking tour guiado con experto local",
       food_include_2: "✔ Chivito uruguayo auténtico",
       food_include_3: "✔ Papas fritas o ensalada fresca",
-      food_include_4: "✔ Refresco o bebida local",
+      food_not_included_title: "Qué no incluye",
+      food_not_include_1: "✗ Bebidas y postres (podés pedirlos en el local)",
       food_include_5: "✔ Visita a Plaza de Toros (entradas incluidas)",
       food_include_6: "✔ Traslado privado",
       food_create_title: "Creá tu menú",
       food_create_subtitle: "Seleccioná tu comida y preferencias",
       food_create_btn: "+ Crear tu menú",
       food_gallery_title: "Galería de la experiencia",
+      food_gal_walking_1: "Tour guiado por el Barrio Histórico de Colonia del Sacramento",
+      food_gal_walking_2: "Calles empedradas del walking tour",
+      food_gal_walking_3: "Calles coloniales en Colonia del Sacramento",
+      food_gal_walking_4: "Puerta histórica del Barrio Histórico de Colonia",
       food_map_title: "Dónde queda El Refugio",
       food_map_text: "Usá este mapa como referencia de la ubicación de El Refugio en Colonia del Sacramento.",
       food_map_link: "Abrir en Google Maps",
@@ -3208,7 +3359,7 @@ const translations = {
       food_tourist_main_3: "Tallarines con boloñesa o fileto",
       food_tourist_dessert_title: "Postre",
       food_tourist_dessert_1: "Chajá típico uruguayo",
-      food_experience_name: "Experiencia Chivito",
+      food_experience_name: "Tour Guiado con Chivito",
       food_wa_include_1: "Tour guiado",
       food_wa_include_2: "Almuerzo",
       food_wa_include_3: "Visita a Plaza de Toros",
@@ -4236,9 +4387,67 @@ const translations = {
       asado_boat_home_desc:
         "Desfrute de um autêntico churrasco uruguaio preparado por Alejandro, proprietário e capitão, com carnes premium, vinho e clima descontraído. Em seguida, navegue pelo Rio da Prata e veja Colonia sob outro ângulo. Gastronomia, histórias e natureza.",
       food_card_meta_1: "Melhor custo-benefício em Colonia",
-      food_card_meta_2: "3 experiências em 1",
+      food_card_meta_2: "2 experiências em 1",
       food_card_meta_3_transfer: "Transfer incluído",
-      food_card_meta_3_time: "Duração: 4 horas",
+      food_card_meta_3_time: "Duração: 3 h aprox.",
+      home_chivito_title: "Prove nosso Chivito",
+      home_chivito_meta_refugio: "El Refugio · Bairro Histórico",
+      home_chivito_meta_dish: "Chivito uruguaio autêntico",
+      home_chivito_meta_time: "Duração: 1:30 h aprox.",
+      home_chivito_meta_table: "Mesa reservada",
+      home_chivito_desc:
+        "Saboreie o sanduíche mais icônico do Uruguai no El Refugio, no coração do Bairro Histórico de Colonia — chivito clássico com ingredientes premium, batatas fritas e o clima acolhedor de um dos locais favoritos da cidade.",
+      home_chivito_gal_alt_1: "Restaurante El Refugio no Bairro Histórico de Colonia",
+      home_chivito_gal_alt_2: "Chivito uruguaio autêntico no El Refugio",
+      home_chivito_gal_alt_3: "Chivito e sabores locais no El Refugio",
+      home_chivito_gal_alt_4: "Experiência gastronômica no El Refugio, Colonia",
+      home_chivito_gal_alt_5: "Mesa reservada no El Refugio",
+      chivito_doc_title: "Prove nosso Chivito · El Refugio | Sacramento Adventures",
+      chivito_experience_name: "Prove nosso Chivito · El Refugio",
+      chivito_wa_intro: "Olá! Gostaria de reservar Prove nosso Chivito no El Refugio:",
+      chivito_about_title: "Sobre esta experiência",
+      chivito_about_p:
+        "Saboreie o sanduíche mais icônico do Uruguai no El Refugio, no coração do Bairro Histórico de Colonia. Chivito clássico com ingredientes premium, batatas fritas e o clima acolhedor de um dos locais favoritos da cidade. Sua mesa fica reservada com antecedência para chegar, sentar e aproveitar.",
+      chivito_steps_title: "Como funciona",
+      chivito_step_1_title: "Reserve sua mesa:",
+      chivito_step_1_desc:
+        "Escolha a data da visita e adicione um pedido por hóspede — coordenamos sua mesa reservada no El Refugio.",
+      chivito_step_2_title: "Chegue ao El Refugio:",
+      chivito_step_2_desc: "Encontre-nos no Bairro Histórico de Colonia no horário combinado.",
+      chivito_step_3_title: "Aproveite seu chivito:",
+      chivito_step_3_desc:
+        "Deguste um autêntico chivito uruguaio com batatas fritas rústicas.",
+      chivito_price_title: "USD 35 por hóspede",
+      chivito_price_p:
+        "Mesa reservada no El Refugio e chivito clássico com batatas fritas incluídos. Bebidas e sobremesas não estão incluídas — peça no local. Previsto cerca de 1:30 h aprox. Adicione um pedido por hóspede — o resumo e o total são atualizados automaticamente.",
+      chivito_included_title: "O que está incluído",
+      chivito_include_1: "✔ Mesa reservada no El Refugio",
+      chivito_include_2: "✔ Chivito no pão ou no prato (escolha ao criar o pedido)",
+      chivito_include_3: "✔ Batatas fritas rústicas",
+      chivito_include_4: "✔ Coordenação e suporte da Sacramento Adventures",
+      chivito_include_note:
+        "Bebidas e sobremesas não estão incluídas; peça no local.",
+      chivito_create_title: "Monte seu pedido",
+      chivito_create_subtitle: "Escolha no pão ou no prato e suas preferências.",
+      chivito_create_btn: "+ Criar seu pedido",
+      chivito_gallery_title: "Galeria da experiência",
+      chivito_gal_alt_6: "Ambiente do El Refugio em Colonia",
+      chivito_gal_alt_7: "Experiência no restaurante El Refugio, Colonia",
+      chivito_back_home: "Voltar ao início",
+      chivito_popup_title: "Escolha sua refeição:",
+      chivito_popup_main_pan: "Chivito no pão",
+      chivito_popup_main_pan_sub: "Sanduíche clássico uruguaio",
+      chivito_popup_main_pan_item_1:
+        "Bife no pão com muçarela, bacon, ovo frito, alface, rúcula e tomate",
+      chivito_popup_main_pan_item_2: "Acompanhado de batatas rústicas",
+      chivito_popup_main_plato: "Chivito no prato",
+      chivito_popup_main_plato_sub: "Servido no prato",
+      chivito_popup_main_plato_item_1:
+        "Bife, muçarela, bacon, ovo frito, alface e tomate",
+      chivito_popup_main_plato_item_2: "Batatas rústicas e salada russa",
+      chivito_wa_include_1: "Mesa reservada no El Refugio",
+      chivito_wa_include_2: "Chivito uruguaio autêntico",
+      chivito_wa_include_3: "Batatas fritas rústicas",
       bruma_discount_badge: "Preço de lançamento · 22% OFF",
       josefina_launch_badge: "Preço de lançamento · 30% OFF",
       bruma_home_title: "Experiência restaurante Bruma",
@@ -4334,6 +4543,7 @@ const translations = {
       home_cabalgata_desc:
         "Transfer privado até <strong>Las Liebres</strong> para visita ao vinhedo e <strong>degustação de três vinhos</strong> com harmonizações da cozinha. Depois <strong>cavalgada guiada</strong> nos arredores de Colonia, <strong>perto de Colonia Soho</strong>. Cerca de <strong>3–4 horas</strong> porta a porta.",
       home_legado_title: "Legado · Vinícola boutique e degustação",
+      legado_friends_badge: "Especial para grupos de amigos",
       home_legado_meta_1: "Vinícola boutique perto de Carmelo",
       home_legado_meta_tasting: "Degustação de vinhos",
       home_legado_meta_time: "Duração: 5 horas",
@@ -4345,6 +4555,11 @@ const translations = {
       home_legado_gal_alt_2: "Vinhedo Legado e natureza ao redor",
       home_legado_gal_alt_3: "Degustação de vinhos na Legado",
       home_legado_gal_alt_4: "Visita à vinícola Legado na região de Carmelo",
+      home_legado_gal_alt_5: "Interior da vinícola boutique El Legado",
+      home_legado_gal_alt_6: "A casa e o entorno do El Legado",
+      home_legado_gal_alt_7: "Tábua de frios no El Legado",
+      home_legado_gal_alt_8: "Picada e sabores locais no El Legado",
+      home_legado_gal_alt_9: "Experiência gourmet com picada no El Legado",
       legado_doc_title: "Legado · Vinícola boutique e degustação | Sacramento Adventures",
       legado_experience_name: "Legado · Vinícola boutique e degustação",
       legado_about_title: "Sobre esta experiência",
@@ -4361,9 +4576,9 @@ const translations = {
       legado_step_4_desc: "Aproveite o entorno natural e o carinho dos proprietários e da equipe.",
       legado_step_5_title: "Retorno:",
       legado_step_5_desc: "Transfer privativo de volta ao hotel ou terminal em Colonia.",
-      legado_price_title: "A partir de USD 40 por hóspede, Transporte - USD 25",
+      legado_price_title: "A partir de USD 35 por hóspede, Transporte - USD 25",
       legado_price_p:
-        "Escolha entre três pacotes no El Legado (a partir de USD 40 por hóspede). Transfer ida e volta desde Colonia del Sacramento e seguro de viagem estão incluídos. Reserve cerca de 5 horas porta a porta. Adicione um pedido por hóspede — o resumo e o total são atualizados automaticamente.",
+        "Escolha entre três pacotes no El Legado (a partir de USD 35 por hóspede). Transfer ida e volta desde Colonia del Sacramento e seguro de viagem estão incluídos. Reserve cerca de 5 horas porta a porta. Adicione um pedido por hóspede — o resumo e o total são atualizados automaticamente.",
       legado_included_title: "O que está incluído",
       legado_include_1: "✔ Visita guiada à vinícola boutique El Legado e vinhedo",
       legado_include_2: "✔ Degustação de vinhos",
@@ -4378,17 +4593,17 @@ const translations = {
       legado_popup_title: "Escolha seu pacote:",
       legado_popup_package_title: "Pacote",
       legado_pkg_opt1_label: "Tour com degustação de vinhos",
-      legado_pkg_opt1_price: "USD 40",
-      legado_pkg_opt1_line: "Opção 1 · Tour com degustação de vinhos (USD 40)",
+      legado_pkg_opt1_price: "USD 35",
+      legado_pkg_opt1_line: "Opção 1 · Tour com degustação de vinhos (USD 35)",
       legado_pkg_opt1_b1: "Visita guiada à vinícola e vinhedo",
       legado_pkg_opt1_b2: "Degustação de vinhos no El Legado",
       legado_pkg_opt2_label: "Tour com degustação e tábua de frios",
-      legado_pkg_opt2_price: "USD 60",
-      legado_pkg_opt2_line: "Opção 2 · Tour com degustação e tábua de frios (USD 60)",
+      legado_pkg_opt2_price: "USD 55",
+      legado_pkg_opt2_line: "Opção 2 · Tour com degustação e tábua de frios (USD 55)",
       legado_pkg_opt2_b3: "Tábua de frios (picada)",
       legado_pkg_opt3_label: "Experiência completa",
-      legado_pkg_opt3_price: "USD 90",
-      legado_pkg_opt3_line: "Opção 3 · Experiência completa (USD 90)",
+      legado_pkg_opt3_price: "USD 85",
+      legado_pkg_opt3_line: "Opção 3 · Experiência completa (USD 85)",
       legado_pkg_opt3_desc:
         "Inclui o tour com degustação, tábua de frios, mais churrasco de legumes na grelha e sorvete de baunilha com molho de tannat. Vinhos liberados durante o almoço.",
       legado_pkg_shared_b3: "Transfer ida e volta desde Colonia",
@@ -4968,7 +5183,13 @@ const translations = {
       view_btn: "Explorar",
       save_selection: "Salvar seleção",
       update_order: "Atualizar pedido",
-      food_title: "Tour a pé, Chivito e Plaza de Toros",
+      food_title: "Tour Guiado com Chivito",
+      food_doc_title: "Tour Guiado com Chivito | Sacramento Adventures",
+      food_text: "Descubra Colonia del Sacramento através de uma experiência guiada que combina história, gastronomia e cultura local. Caminhe pelas ruas encantadoras da cidade com um guia especializado, começando na icônica Plaza de la Basílica. Durante o percurso, você conhecerá a herança portuguesa e espanhola de Colonia, cantos escondidos e histórias locais. A experiência também inclui uma parada para saborear um autêntico chivito uruguaio — um dos pratos mais icônicos do país.",
+      home_food_tour_gal_alt_1: "Tour guiado pelo Bairro Histórico de Colonia del Sacramento",
+      home_food_tour_gal_alt_2: "Chivito uruguaio autêntico no El Refugio",
+      home_food_tour_gal_alt_3: "Chivito e sabores locais no El Refugio",
+      home_food_tour_gal_alt_4: "Ruas coloniais em Colonia del Sacramento",
       barbot_tour_home_title: "Tour guiado pela cervejaria Barbot",
       barbot_tour_home_meta_1: "Tour guiado pela cervejaria",
       barbot_tour_home_meta_2: "4 meias pintas incluídas",
@@ -5206,30 +5427,36 @@ const translations = {
       josefina_map_text: "No Real Club Náutico de Colonia del Sacramento (Yacht Club). ",
       josefina_map_link: "Abrir no Google Maps",
       food_about_title: "Sobre esta experiência",
-      food_about_p: "Descubra Colonia del Sacramento através de uma experiência guiada que combina história, gastronomia e cultura local. Caminhe pelas ruas encantadoras da cidade com um guia especializado, começando na icônica Plaza de la Basílica. Durante o percurso, você conhecerá a herança portuguesa e espanhola de Colonia, cantos escondidos e histórias locais. A experiência também inclui uma parada para saborear um autêntico chivito uruguaio — um dos pratos mais icônicos do país — seguida de uma visita à histórica Plaza de Toros.",
+      food_about_p: "Descubra Colonia del Sacramento através de uma experiência guiada que combina história, gastronomia e cultura local. Caminhe pelas ruas encantadoras da cidade com um guia especializado, começando na icônica Plaza de la Basílica. Durante o percurso, você conhecerá a herança portuguesa e espanhola de Colonia, cantos escondidos e histórias locais. A experiência também inclui uma parada para saborear um autêntico chivito uruguaio — um dos pratos mais icônicos do país.",
       food_reel_btn: "🎥 Ver reel em @_sacramentoadventures",
       food_support_title: "Após sua reserva",
       food_support_text:
         ", uma pessoa da nossa equipe de suporte entrará em contato para orientar você sobre os detalhes da experiência e tirar dúvidas antes da visita.",
       food_steps_title: "Como funciona",
-      food_step_1: "🏛 Ponto de encontro: Plaza de la Basílica (Centro Histórico).",
-      food_step_2: "🚶 Walking tour guiado: Explore as ruas históricas de Colonia, conheça o passado da cidade e descubra lugares especiais com um guia local.",
-      food_step_3: "🍽 Experiência de almoço: Aproveite um autêntico chivito uruguaio em um restaurante local.",
+      food_step_1: "🏛 <strong>Ponto de encontro:</strong> Plaza de la Basílica (Centro Histórico).",
+      food_step_2: "🚶 <strong>Walking tour guiado:</strong> Explore as ruas históricas de Colonia, conheça o passado da cidade e descubra lugares especiais com um guia local. Depois, o guia acompanha você até o restaurante e segue seu percurso.",
+      food_step_3: "🍽 <strong>Experiência de almoço:</strong> Aproveite um autêntico chivito uruguaio em um restaurante local.",
+      food_step_3_note: "Há mais opções de comida disponíveis: milanesa e menu turístico (podem vê-las ao criar o menu).",
       food_step_4: "🏟 Visita à Plaza de Toros: Continue a experiência com uma visita à icônica praça de touros. Ingressos incluídos.",
       food_step_5: "🚗 Transfer privado incluído.",
-      food_price_title: "USD 90 por pessoa",
-      food_duration_label: "Duração: 3-4 horas",
+      food_price_title: "USD 50 por pessoa",
+      food_duration_label: "Duração: 3 h aprox.",
       food_included_title: "O que está incluído",
       food_include_1: "✔ Walking tour guiado com especialista local",
       food_include_2: "✔ Chivito uruguaio autêntico",
       food_include_3: "✔ Batatas fritas ou salada fresca",
-      food_include_4: "✔ Refrigerante ou bebida local",
+      food_not_included_title: "O que não está incluído",
+      food_not_include_1: "✗ Bebidas e sobremesas (você pode pedir no local)",
       food_include_5: "✔ Visita à Plaza de Toros (ingressos incluídos)",
       food_include_6: "✔ Transfer privado",
       food_create_title: "Monte seu menu",
       food_create_subtitle: "Escolha sua refeição e preferências",
       food_create_btn: "+ Montar seu menu",
       food_gallery_title: "Galeria da experiência",
+      food_gal_walking_1: "Tour guiado pelo Bairro Histórico de Colonia del Sacramento",
+      food_gal_walking_2: "Ruas de pedra do walking tour",
+      food_gal_walking_3: "Ruas coloniais em Colonia del Sacramento",
+      food_gal_walking_4: "Portão histórico do Bairro Histórico de Colonia",
       food_map_title: "Onde fica El Refugio",
       food_map_text: "Use este mapa como referência da localização do El Refugio em Colonia del Sacramento.",
       food_map_link: "Abrir no Google Maps",
@@ -5264,7 +5491,7 @@ const translations = {
       food_tourist_main_3: "Talharim com bolonhesa ou molho de tomate",
       food_tourist_dessert_title: "Sobremesa",
       food_tourist_dessert_1: "Chajá tradicional uruguaio",
-      food_experience_name: "Experiência Chivito",
+      food_experience_name: "Tour Guiado com Chivito",
       food_wa_include_1: "Tour guiado",
       food_wa_include_2: "Almoço",
       food_wa_include_3: "Visita à Plaza de Toros",
@@ -7308,6 +7535,154 @@ function initRentPopupBehavior() {
 
   let homePageBooted = false;
 
+  function initGalleryLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    if (!lightbox || !lightboxImg || lightbox.dataset.sacramentoBound === "1") return;
+    lightbox.dataset.sacramentoBound = "1";
+
+    const mediaEls = document.querySelectorAll(
+      ".gallery-grid > img, .gallery-grid > .gallery-video-thumb, .gallery-grid > video"
+    );
+    const closeBtn = document.getElementById("closeLightbox");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentIndex = 0;
+    const mediaArray = Array.from(mediaEls);
+    let lightboxVideo = null;
+
+    const ensureLightboxVideo = () => {
+      if (!lightboxVideo) {
+        lightboxVideo = document.createElement("video");
+        lightboxVideo.className = "lightbox-inline-video";
+        lightboxVideo.controls = true;
+        lightboxVideo.playsInline = true;
+        lightboxVideo.setAttribute("playsinline", "");
+        lightboxImg.insertAdjacentElement("afterend", lightboxVideo);
+      }
+      return lightboxVideo;
+    };
+
+    const pauseLightboxVideo = () => {
+      if (lightboxVideo) {
+        lightboxVideo.pause();
+        lightboxVideo.removeAttribute("src");
+        lightboxVideo.innerHTML = "";
+        lightboxVideo.style.display = "none";
+      }
+    };
+
+    const getGalleryVideoSrc = (videoEl) => {
+      const srcEl = videoEl.querySelector("source[src]");
+      if (srcEl) {
+        try {
+          return new URL(srcEl.getAttribute("src"), window.location.href).href;
+        } catch {
+          return srcEl.getAttribute("src") || "";
+        }
+      }
+      return videoEl.currentSrc || videoEl.src || "";
+    };
+
+    const videoFromGallerySlot = (slot) => {
+      if (!slot) return null;
+      if (slot.classList?.contains("gallery-video-thumb")) {
+        return slot.querySelector("video.gallery-grid-video-el");
+      }
+      if (slot.tagName === "VIDEO") return slot;
+      return null;
+    };
+
+    const showMedia = () => {
+      if (!mediaArray.length) return;
+      const slot = mediaArray[currentIndex];
+      const gridVideo = videoFromGallerySlot(slot);
+      if (gridVideo) {
+        const v = ensureLightboxVideo();
+        if (!v) return;
+        lightboxImg.style.display = "none";
+        v.style.display = "block";
+        const src = getGalleryVideoSrc(gridVideo);
+        v.innerHTML = "";
+        const s = document.createElement("source");
+        s.src = src;
+        s.type = "video/mp4";
+        v.appendChild(s);
+        v.load();
+      } else if (slot.tagName === "IMG") {
+        pauseLightboxVideo();
+        lightboxImg.style.display = "block";
+        lightboxImg.src = slot.src;
+      }
+    };
+
+    const closeLightbox = () => {
+      pauseLightboxVideo();
+      lightboxImg.style.display = "block";
+      lightbox.classList.remove("active");
+    };
+
+    if (!mediaArray.length) return;
+
+    mediaArray.forEach((el, index) => {
+      const open = () => {
+        currentIndex = index;
+        showMedia();
+        lightbox.classList.add("active");
+      };
+      el.style.cursor = "pointer";
+      el.addEventListener("click", open);
+      if (el.classList?.contains("gallery-video-thumb")) {
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open();
+          }
+        });
+      }
+    });
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % mediaArray.length;
+      showMedia();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + mediaArray.length) % mediaArray.length;
+      showMedia();
+    }
+
+    nextBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      nextImage();
+    });
+    prevBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      prevImage();
+    });
+
+    closeBtn?.addEventListener("click", () => {
+      closeLightbox();
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("active")) return;
+
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "Escape") closeLightbox();
+    });
+  }
+
+  window.sacramentoInitGalleryLightbox = initGalleryLightbox;
+
   function bootHomePage() {
   if (homePageBooted) return;
   homePageBooted = true;
@@ -7362,148 +7737,7 @@ function initRentPopupBehavior() {
       
       });
   
-    /* ===== LIGHTBOX PRO (imágenes + opcional video en .gallery-grid) ===== */
-  
-    const mediaEls = document.querySelectorAll(
-      ".gallery-grid > img, .gallery-grid > .gallery-video-thumb, .gallery-grid > video"
-    );
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightboxImg");
-    const closeBtn = document.getElementById("closeLightbox");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-  
-    let currentIndex = 0;
-    const mediaArray = Array.from(mediaEls);
-    let lightboxVideo = null;
-  
-    const ensureLightboxVideo = () => {
-      if (!lightbox || !lightboxImg) return null;
-      if (!lightboxVideo) {
-        lightboxVideo = document.createElement("video");
-        lightboxVideo.className = "lightbox-inline-video";
-        lightboxVideo.controls = true;
-        lightboxVideo.playsInline = true;
-        lightboxVideo.setAttribute("playsinline", "");
-        lightboxImg.insertAdjacentElement("afterend", lightboxVideo);
-      }
-      return lightboxVideo;
-    };
-  
-    const pauseLightboxVideo = () => {
-      if (lightboxVideo) {
-        lightboxVideo.pause();
-        lightboxVideo.removeAttribute("src");
-        lightboxVideo.innerHTML = "";
-        lightboxVideo.style.display = "none";
-      }
-    };
-  
-    const getGalleryVideoSrc = (videoEl) => {
-      const srcEl = videoEl.querySelector("source[src]");
-      if (srcEl) {
-        try {
-          return new URL(srcEl.getAttribute("src"), window.location.href).href;
-        } catch {
-          return srcEl.getAttribute("src") || "";
-        }
-      }
-      return videoEl.currentSrc || videoEl.src || "";
-    };
-
-    const videoFromGallerySlot = (slot) => {
-      if (!slot) return null;
-      if (slot.classList?.contains("gallery-video-thumb")) {
-        return slot.querySelector("video.gallery-grid-video-el");
-      }
-      if (slot.tagName === "VIDEO") return slot;
-      return null;
-    };
-  
-    const showMedia = () => {
-      if (!lightboxImg || !mediaArray.length) return;
-      const slot = mediaArray[currentIndex];
-      const gridVideo = videoFromGallerySlot(slot);
-      if (gridVideo) {
-        const v = ensureLightboxVideo();
-        if (!v) return;
-        lightboxImg.style.display = "none";
-        v.style.display = "block";
-        const src = getGalleryVideoSrc(gridVideo);
-        v.innerHTML = "";
-        const s = document.createElement("source");
-        s.src = src;
-        s.type = "video/mp4";
-        v.appendChild(s);
-        v.load();
-      } else if (slot.tagName === "IMG") {
-        pauseLightboxVideo();
-        lightboxImg.style.display = "block";
-        lightboxImg.src = slot.src;
-      }
-    };
-  
-    const closeLightbox = () => {
-      pauseLightboxVideo();
-      if (lightboxImg) lightboxImg.style.display = "block";
-      lightbox?.classList.remove("active");
-    };
-  
-    if (mediaArray.length && lightbox && lightboxImg) {
-      mediaArray.forEach((el, index) => {
-        const open = () => {
-          currentIndex = index;
-          showMedia();
-          lightbox.classList.add("active");
-        };
-        el.addEventListener("click", open);
-        if (el.classList?.contains("gallery-video-thumb")) {
-          el.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              open();
-            }
-          });
-        }
-      });
-  
-      function nextImage() {
-        currentIndex = (currentIndex + 1) % mediaArray.length;
-        showMedia();
-      }
-  
-      function prevImage() {
-        currentIndex = (currentIndex - 1 + mediaArray.length) % mediaArray.length;
-        showMedia();
-      }
-  
-      nextBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        nextImage();
-      });
-      prevBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        prevImage();
-      });
-  
-      closeBtn?.addEventListener("click", () => {
-        closeLightbox();
-      });
-  
-      lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
-      });
-  
-      document.addEventListener("keydown", (e) => {
-        if (!lightbox.classList.contains("active")) return;
-  
-        if (e.key === "ArrowRight") nextImage();
-        if (e.key === "ArrowLeft") prevImage();
-        if (e.key === "Escape") closeLightbox();
-      });
-    }
+    initGalleryLightbox();
   
   
     /* ===== SMOOTH SCROLL ===== */
@@ -7645,7 +7879,10 @@ function initRentPopupBehavior() {
     if (window.__SACRAMENTO_PENDING_LANG__) {
       setLanguage(window.__SACRAMENTO_PENDING_LANG__);
       delete window.__SACRAMENTO_PENDING_LANG__;
-      if (!isHome) return;
+      if (!isHome) {
+        initGalleryLightbox();
+        return;
+      }
       return;
     }
 
@@ -7656,6 +7893,7 @@ function initRentPopupBehavior() {
         return;
       }
       setLanguage(getInitialLanguage());
+      initGalleryLightbox();
     };
 
     if (

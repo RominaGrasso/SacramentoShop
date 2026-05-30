@@ -31,13 +31,13 @@
     "walkingtour.html": ["tours"],
     "bike.html": ["tours"],
     "walking-asado.html": ["tours"],
-    "food1.html": ["tours"],
+    "chivito.html": ["gastronomy", "dining"],
+    "food1.html": ["tours", "gastronomy", "dining"],
     "plaza1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "bodega"],
     "fullday-colonia.html": ["fullday"],
     "traslado-plaza-letras.html": ["fullday", "day"],
     "bruma.html": ["dining", "gastronomy"],
-    "la-josefina.html": ["dining", "gastronomy"],
     "asado-boat.html": ["boat", "gastronomy"],
     "lasliebres-dining.html": ["dining", "gastronomy", "bodega"],
     "lasliebres.html": ["horseback", "fullday", "bodega"],
@@ -63,7 +63,8 @@
     bodega: ["home-legado-card"],
     boat: [],
     lodging: ["home-card-mision-bruma"],
-    dining: [],
+    dining: ["home-chivito-card"],
+    gastronomy: ["home-chivito-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
@@ -77,6 +78,8 @@
     "home-barbot-tour-card": ["craft-beer"],
     "home-barbot-brewpub-card": ["craft-beer", "dining"],
     "home-legado-card": ["bodega", "fullday"],
+    "home-chivito-card": ["gastronomy", "dining"],
+    "home-food-tour-card": ["tours", "gastronomy"],
     "home-plaza-anita-card": ["tours", "gastronomy"],
   };
 
