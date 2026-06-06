@@ -32,6 +32,7 @@
     "bike.html": ["tours"],
     "walking-asado.html": ["tours"],
     "chivito.html": ["gastronomy", "dining"],
+    "vinos.html": ["bodega", "gastronomy", "dining"],
     "food1.html": ["tours", "gastronomy", "dining"],
     "plaza1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "bodega"],
@@ -60,11 +61,16 @@
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
     fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
-    bodega: ["home-legado-card"],
+    bodega: [
+      "home-vinos-card",
+      "home-legado-card",
+      "home-historic-lasliebres-card",
+      "home-cabalgata-liebres-card",
+    ],
     boat: [],
     lodging: ["home-card-mision-bruma"],
-    dining: ["home-chivito-card"],
-    gastronomy: ["home-chivito-card"],
+    dining: ["home-chivito-card", "home-vinos-card"],
+    gastronomy: ["home-chivito-card", "home-vinos-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
@@ -79,8 +85,10 @@
     "home-barbot-brewpub-card": ["craft-beer", "dining"],
     "home-legado-card": ["bodega", "fullday"],
     "home-chivito-card": ["gastronomy", "dining"],
+    "home-vinos-card": ["bodega", "gastronomy", "dining"],
     "home-food-tour-card": ["tours", "gastronomy"],
     "home-plaza-anita-card": ["tours", "gastronomy"],
+    "home-historic-lasliebres-card": ["tours", "bodega"],
   };
 
   const SOON_EXPLORE_IDS = new Set([
