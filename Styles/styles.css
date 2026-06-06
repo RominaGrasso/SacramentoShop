@@ -1606,6 +1606,33 @@
     background-repeat: no-repeat;
   }
 
+  .page-vinos .vinos-hero {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: #1e2a3a;
+    line-height: 0;
+  }
+
+  .page-vinos .vinos-hero__img {
+    display: block;
+    width: 100%;
+    height: clamp(260px, 42vh, 460px);
+    max-height: 460px;
+    object-fit: cover;
+    object-position: center 55%;
+  }
+
+  @media (max-width: 900px) {
+    .page-vinos .vinos-hero__img {
+      height: clamp(220px, 34vh, 380px);
+      max-height: 380px;
+      object-position: center 50%;
+    }
+  }
+
   .horse-hero {
     height: 55vh;
     min-height: 280px;
