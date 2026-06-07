@@ -175,6 +175,9 @@
 <p class="barbot-experience-card__deck" data-translate="barbot_tour_brewmaster_subtitle">
           Exclusive experience for beer enthusiasts.
         </p>
+<p class="barbot-experience-card__schedule" data-translate="barbot_tour_brewmaster_schedule">
+          Saturday, June 20 — then the second Saturday of every month.
+        </p>
 </header>
 <p class="barbot-experience-card__text" data-translate="barbot_tour_brewmaster_p">
         Starting in June, you can also book an exclusive experience with Barbot’s master brewer, who shares over 20 years of knowledge, experimentation, and craft beer culture.
@@ -259,6 +262,8 @@
 <img alt="" data-translate-alt="barbot_tour_gal_10_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-tour-new-1.webp" width="1200"/>
 <img alt="" data-translate-alt="barbot_tour_gal_11_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-tour-new-2.webp" width="1200"/>
 <img alt="" data-translate-alt="barbot_tour_gal_12_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/barbot-tour-new-3.webp" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_13_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/fabric.jpg" width="1200"/>
+<img alt="" data-translate-alt="barbot_tour_gal_14_alt" decoding="async" height="220" loading="lazy" src="../Assets/images/fabric2.jpg" width="1200"/>
 </div>
 </section>
 <div class="coffee-actions">
@@ -316,10 +321,26 @@
 <div aria-labelledby="barbotTourJunePopupTitle" aria-modal="true" class="popup-box" role="dialog">
 <button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeBarbotTourJune" type="button">✕</button>
 <p data-translate="barbot_tour_june_popup_body" id="barbotTourJunePopupTitle">
-      BrewMaster Talk and the guided factory tour experience will be available starting in June. Options 1 and 2 can be booked now.
+      BrewMaster Talk will be available starting in June — Saturday, June 20, then the second Saturday of every month. Options 1 and 2 can be booked now.
     </p>
 <div class="popup-actions">
 <button class="btn" data-translate="barbot_tour_june_popup_ok" id="barbotTourJuneOk" type="button">Got it</button>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="popup-overlay" id="popupBarbotTourBrewmaster">
+<div aria-labelledby="barbotTourBrewmasterPopupTitle" aria-modal="true" class="popup-box" role="dialog">
+<button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeBarbotTourBrewmaster" type="button">✕</button>
+<p><strong class="popup-title" data-translate="barbot_tour_brewmaster_popup_title" id="barbotTourBrewmasterPopupTitle">BrewMaster Talk</strong></p>
+<p data-translate="barbot_tour_brewmaster_popup_intro">
+      This experience is scheduled for the second Saturday of each month.
+    </p>
+<p class="barbot-brewmaster-popup-date">
+<strong data-translate="barbot_tour_brewmaster_popup_this_month">This month:</strong>
+<span id="barbotBrewmasterPopupDate">Saturday, June 20</span>
+</p>
+<div class="popup-actions">
+<button class="btn" data-translate="barbot_tour_brewmaster_popup_ok" id="barbotTourBrewmasterOk" type="button">Got it</button>
 </div>
 </div>
 </div>
@@ -347,13 +368,18 @@
     brewmaster: { price: 60, labelKey: "barbot_tour_order_tier_brewmaster" }
   });
 
-  /** BrewMaster / factory tour — bookable from June onward. */
-  const JUNE_UNAVAILABLE_PACKAGES = new Set(["brewmaster"]);
+  /** BrewMaster Talk — from June 2026; launch on Sat 20, then 2nd Saturday each month. */
+  const BREWMASTER_FIRST_MONTH = "2026-06";
+  const BREWMASTER_LAUNCH_DAY = 20;
 
   const popup = document.getElementById("popupBarbotTour");
   const junePopup = document.getElementById("popupBarbotTourJune");
   const juneCloseBtn = document.getElementById("closeBarbotTourJune");
   const juneOkBtn = document.getElementById("barbotTourJuneOk");
+  const brewmasterPopup = document.getElementById("popupBarbotTourBrewmaster");
+  const brewmasterCloseBtn = document.getElementById("closeBarbotTourBrewmaster");
+  const brewmasterOkBtn = document.getElementById("barbotTourBrewmasterOk");
+  const brewmasterPopupDateEl = document.getElementById("barbotBrewmasterPopupDate");
   const openBtn = document.getElementById("createBarbotTourBtn");
   const closeBtn = document.getElementById("closeBarbotTour");
   const saveBtn = document.getElementById("saveBarbotTour");
@@ -377,16 +403,101 @@
     return v === "premium" || v === "brewmaster" ? v : "classic";
   };
 
-  const isJuneUnavailablePackage = (pkg) =>
-    JUNE_UNAVAILABLE_PACKAGES.has(normalizePackage(pkg));
+  const isBrewmasterPackage = (pkg) => normalizePackage(pkg) === "brewmaster";
+
+  const getTodayIso = () => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  };
+
+  const monthKey = (year, month1) =>
+    `${year}-${String(month1).padStart(2, "0")}`;
+
+  const getSecondSaturdayDay = (year, month1) => {
+    let count = 0;
+    for (let day = 1; day <= 31; day += 1) {
+      const d = new Date(year, month1 - 1, day);
+      if (d.getMonth() !== month1 - 1) break;
+      if (d.getDay() === 6) {
+        count += 1;
+        if (count === 2) return day;
+      }
+    }
+    return null;
+  };
+
+  const getBrewmasterDateForMonth = (year, month1) => {
+    const key = monthKey(year, month1);
+    if (key < BREWMASTER_FIRST_MONTH) return null;
+    const day =
+      key === BREWMASTER_FIRST_MONTH
+        ? BREWMASTER_LAUNCH_DAY
+        : getSecondSaturdayDay(year, month1);
+    if (!day) return null;
+    return `${key}-${String(day).padStart(2, "0")}`;
+  };
+
+  const isBrewmasterDate = (iso) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return false;
+    const [y, m] = iso.split("-").map(Number);
+    return getBrewmasterDateForMonth(y, m) === iso;
+  };
+
+  const getNextBrewmasterDate = (fromIso) => {
+    const startIso =
+      fromIso && fromIso >= `${BREWMASTER_FIRST_MONTH}-01`
+        ? fromIso
+        : `${BREWMASTER_FIRST_MONTH}-${String(BREWMASTER_LAUNCH_DAY).padStart(2, "0")}`;
+    let [y, m] = startIso.split("-").map(Number);
+    for (let i = 0; i < 36; i += 1) {
+      const iso = getBrewmasterDateForMonth(y, m);
+      if (iso && iso >= startIso) return iso;
+      m += 1;
+      if (m > 12) {
+        m = 1;
+        y += 1;
+      }
+    }
+    return null;
+  };
+
+  const isBeforeBrewmasterLaunch = () => getTodayIso() < `${BREWMASTER_FIRST_MONTH}-01`;
+
+  const setVisitDateIso = (iso) => {
+    if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return;
+    localStorage.setItem(VISIT_DATE_KEY, iso);
+    const dateInput = document.getElementById("bookingVisitDate");
+    if (dateInput) dateInput.value = iso;
+    document.dispatchEvent(
+      new CustomEvent("sacramento:visitDateChanged", { detail: { key: VISIT_DATE_KEY, iso } })
+    );
+  };
+
+  const applyBrewmasterVisitDate = (fromIso) => {
+    const min = document.getElementById("bookingVisitDate")?.min || getTodayIso();
+    const base = fromIso && fromIso >= min ? fromIso : min;
+    const next = getNextBrewmasterDate(base);
+    if (next) setVisitDateIso(next);
+  };
+
+  const enforceBrewmasterVisitDate = (iso) => {
+    if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+    const [y, m] = iso.split("-").map(Number);
+    const expected = getBrewmasterDateForMonth(y, m);
+    if (expected && expected === iso) return iso;
+    if (expected && expected >= (document.getElementById("bookingVisitDate")?.min || getTodayIso())) {
+      return expected;
+    }
+    return getNextBrewmasterDate(iso) || iso;
+  };
 
   let lastBookablePackage = "classic";
 
   const selectPackageRadio = (pkg) => {
-    const safe = isJuneUnavailablePackage(pkg) ? lastBookablePackage : normalizePackage(pkg);
+    const safe = normalizePackage(pkg);
     const radio = popup.querySelector(`input[name='barbotTourPackage'][value="${safe}"]`);
     if (radio) radio.checked = true;
-    if (!isJuneUnavailablePackage(safe)) lastBookablePackage = safe;
+    if (!isBrewmasterPackage(safe)) lastBookablePackage = safe;
   };
 
   const openJunePopup = () => {
@@ -399,6 +510,36 @@
     if (!junePopup) return;
     junePopup.classList.remove("active");
     junePopup.setAttribute("aria-hidden", "true");
+  };
+
+  const formatBrewmasterPopupDate = (iso) => {
+    if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return "—";
+    const [y, m, d] = iso.split("-").map(Number);
+    const parsed = new Date(y, m - 1, d);
+    if (Number.isNaN(parsed.getTime())) return iso;
+    const lang = getLang();
+    const locale = lang === "es" ? "es-UY" : lang === "pt" ? "pt-BR" : "en-GB";
+    const formatted = parsed.toLocaleDateString(locale, {
+      weekday: "long",
+      day: "numeric",
+      month: "long"
+    });
+    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+  };
+
+  const openBrewmasterSchedulePopup = (iso) => {
+    if (!brewmasterPopup) return;
+    if (brewmasterPopupDateEl) {
+      brewmasterPopupDateEl.textContent = formatBrewmasterPopupDate(iso);
+    }
+    brewmasterPopup.classList.add("active");
+    brewmasterPopup.setAttribute("aria-hidden", "false");
+  };
+
+  const closeBrewmasterSchedulePopup = () => {
+    if (!brewmasterPopup) return;
+    brewmasterPopup.classList.remove("active");
+    brewmasterPopup.setAttribute("aria-hidden", "true");
   };
 
   const packageLabel = (pkg) => {
@@ -414,7 +555,7 @@
       if (!o || typeof o !== "object") return null;
       let pkg = normalizePackage(o.package);
       const guests = Math.min(MAX_GUESTS, Math.max(1, parseInt(o.guests, 10) || 1));
-      if (isJuneUnavailablePackage(pkg)) {
+      if (isBrewmasterPackage(pkg) && isBeforeBrewmasterLaunch()) {
         pkg = "classic";
         localStorage.setItem(STORAGE_KEY, JSON.stringify({ package: pkg, guests }));
       }
@@ -455,7 +596,7 @@
   };
 
   const sendBookingToWhatsApp = (cfg) => {
-    if (cfg && isJuneUnavailablePackage(cfg.package)) {
+    if (cfg && isBrewmasterPackage(cfg.package) && isBeforeBrewmasterLaunch()) {
       openJunePopup();
       return;
     }
@@ -470,8 +611,14 @@
       return;
     }
 
-    const visitIso = getVisitDateIso();
-    if (!visitIso || !isWeekendIso(visitIso)) {
+    let visitIso = getVisitDateIso();
+    if (isBrewmasterPackage(cfg.package)) {
+      if (!visitIso || !isBrewmasterDate(visitIso)) {
+        applyBrewmasterVisitDate(getTodayIso());
+        visitIso = getVisitDateIso();
+        if (!visitIso || !isBrewmasterDate(visitIso)) return;
+      }
+    } else if (!visitIso || !isWeekendIso(visitIso)) {
       window.alert(
         t(
           "barbot_tour_alert_select_date",
@@ -572,8 +719,11 @@
     guestCount = cfg?.guests || 1;
     syncGuestDisplay();
     const pkg = cfg?.package || "classic";
-    if (!isJuneUnavailablePackage(pkg)) lastBookablePackage = normalizePackage(pkg);
+    if (!isBrewmasterPackage(pkg)) lastBookablePackage = normalizePackage(pkg);
     selectPackageRadio(pkg);
+    if (isBrewmasterPackage(pkg) && !isBeforeBrewmasterLaunch()) {
+      applyBrewmasterVisitDate(getVisitDateIso() || getTodayIso());
+    }
   };
 
   const openPopup = () => {
@@ -674,9 +824,15 @@
   popup.querySelectorAll("input[name='barbotTourPackage']").forEach((radio) => {
     radio.addEventListener("change", () => {
       if (!radio.checked) return;
-      if (isJuneUnavailablePackage(radio.value)) {
-        selectPackageRadio(lastBookablePackage);
-        openJunePopup();
+      if (isBrewmasterPackage(radio.value)) {
+        if (isBeforeBrewmasterLaunch()) {
+          selectPackageRadio(lastBookablePackage);
+          openJunePopup();
+          return;
+        }
+        lastBookablePackage = "brewmaster";
+        applyBrewmasterVisitDate(getTodayIso());
+        openBrewmasterSchedulePopup(getVisitDateIso() || getNextBrewmasterDate(getTodayIso()));
         return;
       }
       lastBookablePackage = normalizePackage(radio.value);
@@ -701,12 +857,33 @@
     });
   }
 
+  if (brewmasterCloseBtn) {
+    brewmasterCloseBtn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      closeBrewmasterSchedulePopup();
+    });
+  }
+  if (brewmasterOkBtn) {
+    brewmasterOkBtn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      closeBrewmasterSchedulePopup();
+    });
+  }
+  if (brewmasterPopup) {
+    brewmasterPopup.addEventListener("click", (ev) => {
+      if (ev.target === brewmasterPopup) closeBrewmasterSchedulePopup();
+    });
+  }
+
   saveBtn.addEventListener("click", (ev) => {
     ev.preventDefault();
     const pkg = selectedPackage();
-    if (isJuneUnavailablePackage(pkg)) {
+    if (isBrewmasterPackage(pkg) && isBeforeBrewmasterLaunch()) {
       openJunePopup();
       return;
+    }
+    if (isBrewmasterPackage(pkg)) {
+      applyBrewmasterVisitDate(getVisitDateIso() || getTodayIso());
     }
     setConfig({ package: pkg, guests: guestCount });
     closePopup();
@@ -754,8 +931,22 @@
   });
 
   document.addEventListener("sacramento:visitDateChanged", (ev) => {
-    if (ev.detail?.key === VISIT_DATE_KEY) renderSummary();
+    if (ev.detail?.key !== VISIT_DATE_KEY) return;
+    const cfg = getConfig();
+    if (cfg && isBrewmasterPackage(cfg.package)) {
+      const corrected = enforceBrewmasterVisitDate(ev.detail.iso);
+      if (corrected && corrected !== ev.detail.iso) {
+        setVisitDateIso(corrected);
+        return;
+      }
+    }
+    renderSummary();
   });
+
+  const cfgOnLoad = getConfig();
+  if (cfgOnLoad && isBrewmasterPackage(cfgOnLoad.package) && !isBeforeBrewmasterLaunch()) {
+    applyBrewmasterVisitDate(getVisitDateIso() || getTodayIso());
+  }
 
   renderSummary();
 })();

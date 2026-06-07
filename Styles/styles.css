@@ -2921,6 +2921,17 @@
     min-width: 0;
   }
 
+  .home-category-modal__cards .card.card--category-modal .card-description {
+    display: block;
+    -webkit-line-clamp: unset;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .home-category-modal__cards .card.card--category-modal .see-more {
+    display: none !important;
+  }
+
   .home-category-modal__cards .card.card--category-modal .carousel-track img,
   .home-category-modal__cards .card.card--category-modal .carousel-track video {
     flex: 0 0 100%;
