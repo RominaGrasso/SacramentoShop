@@ -271,7 +271,7 @@
     });
 
     card.querySelectorAll(".card-description").forEach((desc) => {
-      desc.classList.add("expanded");
+      desc.classList.remove("expanded");
     });
 
     card.querySelectorAll(".see-more").forEach((btn) => {

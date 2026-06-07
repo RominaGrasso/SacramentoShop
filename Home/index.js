@@ -993,6 +993,8 @@ const translations = {
       barbot_tour_home_img_2_alt: "Barbot brewery taps and craft beer",
       barbot_tour_home_img_3_alt: "Barbot craft beer tasting on the guided tour",
       barbot_tour_home_img_4_alt: "Barbot Brewery experience in Colonia",
+      barbot_tour_home_img_5_alt: "Barbot brewery production facility",
+      barbot_tour_home_img_6_alt: "Barbot brewery facility",
       barbot_tour_doc_title: "Barbot Brewery Experience | Sacramento Adventures",
       barbot_tour_page_title: "Barbot Brewery Experience",
       barbot_tour_page_subtitle:
@@ -1034,6 +1036,13 @@ const translations = {
       barbot_tour_brewmaster_badge: "Premium experience",
       barbot_tour_brewmaster_title: "BrewMaster Talk",
       barbot_tour_brewmaster_subtitle: "Exclusive experience for beer enthusiasts.",
+      barbot_tour_brewmaster_schedule:
+        "Saturday, June 20 — then the second Saturday of every month.",
+      barbot_tour_brewmaster_popup_title: "BrewMaster Talk",
+      barbot_tour_brewmaster_popup_intro:
+        "This experience is scheduled for the second Saturday of each month.",
+      barbot_tour_brewmaster_popup_this_month: "This month:",
+      barbot_tour_brewmaster_popup_ok: "Got it",
       barbot_tour_brewmaster_p:
         "Starting in June, you can also book an exclusive experience with Barbot’s master brewer, who shares over 20 years of knowledge, experimentation, and craft beer culture.",
       barbot_tour_brewmaster_topic_1: "Raw materials (malts, hops, and yeast)",
@@ -1055,6 +1064,8 @@ const translations = {
         "Barbot tours are only on Saturdays and Sundays. Please pick a weekend date.",
       barbot_tour_alert_select_date:
         "Please select a Saturday or Sunday for your visit.",
+      barbot_tour_alert_brewmaster_date:
+        "BrewMaster Talk is only on the second Saturday of each month (Saturday, June 20 for the launch month). Your date was updated.",
       barbot_tour_summary_date_label: "Date",
       barbot_tour_create_title: "Create your Barbot experience",
       barbot_tour_create_subtitle: "Choose your experience, package, and number of guests",
@@ -1088,7 +1099,7 @@ const translations = {
       barbot_tour_order_tier_premium: "Beer Tasting — Option 2: classics plus award-winning x7 (100 ml) (USD 38)",
       barbot_tour_order_tier_brewmaster: "BrewMaster Talk (USD 60)",
       barbot_tour_june_popup_body:
-        "BrewMaster Talk and the guided factory tour will be available starting in June. Options 1 and 2 can be booked now.",
+        "BrewMaster Talk will be available starting in June — Saturday, June 20, then the second Saturday of every month. Options 1 and 2 can be booked now.",
       barbot_tour_june_popup_ok: "Got it",
       barbot_tour_gal_1_alt: "Barbot Brewery guided tour",
       barbot_tour_gal_2_alt: "Barbot brewery tour experience",
@@ -1102,22 +1113,23 @@ const translations = {
       barbot_tour_gal_10_alt: "Barbot brewery tour in Colonia",
       barbot_tour_gal_11_alt: "Craft beer experience at Barbot Brewery",
       barbot_tour_gal_12_alt: "Barbot Brewery tour and tasting",
+      barbot_tour_gal_13_alt: "Barbot brewery production facility",
+      barbot_tour_gal_14_alt: "Barbot brewery facility",
       barbot_home_badge: "Gold medal · Strong Ale",
       barbot_home_title: "Barbot Brewpub · award-winning craft beer",
-      barbot_home_meta_1: "Gold at IV Copa Sul-Americana de Cerveja",
-      barbot_home_meta_2: "Bonavena Strong Ale",
+      barbot_home_meta_1: "20+ awards won between 2025 and 2026",
+      barbot_home_meta_2: "Build your 4-step menu",
+      barbot_home_meta_3: "Reserved table",
       barbot_home_desc:
-        "Barbot Brewpub recently won gold with Bonavena Strong Ale at the IV Copa Sul-Americana de Cerveja. Their brewpub sits in Colonia’s Historic Quarter - perfect for a pint when you’re in town.",
+        "Barbot Brewpub sits in Colonia’s Historic Quarter — perfect for a pint when you’re in town. Closed on Mondays.",
       barbot_home_img_1_alt: "Barbot Brewpub craft beer in Colonia",
       barbot_home_img_2_alt: "Barbot Brewpub interior",
       barbot_home_img_3_alt: "Bonavena Strong Ale beer",
       barbot_page_about_heading: "Your craft beer moment in Colonia",
       barbot_page_story_p_before:
         "You’ve strolled the cobblestones and the lighthouse - now slow down where locals and travelers share the same table. Barbot Brewpub pours honest craft beer in the heart of Colonia’s UNESCO-listed Historic Quarter: relaxed lighting, real conversation, no rush. ",
-      barbot_page_story_p_highlight:
-        "Their Bonavena Strong Ale took gold at Brazil’s IV Copa Sul-Americana de Cerveja - a judges’ medal that backs up what’s in your glass.",
       barbot_page_story_p_after:
-        " Whether you’re hunting that winning pint or simply trading stories after a day of sightseeing, this is the reward your feet were asking for.",
+        "Build your menu and we’ll have a reserved table waiting so you can try one of Uruguay’s best beers.",
       barbot_awards_btn: "Discover our awards from the last two years",
       barbot_awards_bba_title: "Brazilian Beer Awards",
       barbot_awards_guarani_title: "Copa Guaraní de cervezas",
@@ -1125,9 +1137,6 @@ const translations = {
       barbot_awards_arojo_title: "Aro Rojo, México",
       barbot_awards_sulamericana_title: "Copa Sulamericana de Cerveja",
       barbot_awards_uruguaya_title: "Copa Uruguaya 2025",
-      barbot_awards_sbc_2026_note: "South Beer 2026 is happening these days too 🤩",
-      barbot_awards_arojo_2026_note:
-        "2026 edition is on this week (May 2026) 🙏 Wish us luck!",
       barbot_medal_bronze: "Bronze",
       barbot_medal_silver: "Silver",
       barbot_medal_gold: "Gold",
@@ -1173,11 +1182,10 @@ const translations = {
       barbot_std_dessert_2:
         "One crepe with dulce de leche + ice cream scoop - crepe, caramel and a ball of ice cream.",
       barbot_std_dessert_3: "Homemade flan with dulce de leche - creamy baked custard with caramel sauce.",
-      barbot_std_drink_1: "Pint of Barbot Classic beer - flagship lager-style house brew from the tap.",
       barbot_std_drink_2: "Coca-Cola line soft drink - chilled soda (Coca-Cola family).",
       barbot_std_drink_3: "Mineral water - still or sparkling, served cold.",
       barbot_std_drink_4:
-        "1 pint of Barbot Classic beer - more than 15 house styles on tap.",
+        "1 pint Barbot Classic or award-winning (20 taps available)",
       barbot_prm_entrada_1:
         "Two beef and/or provolone & onion empanadas - pair of golden empanadas, mix and match fillings.",
       barbot_prm_entrada_2:
@@ -1188,7 +1196,7 @@ const translations = {
         "Uruguayan Chivito Barbot - beef, ham, mozzarella, fried egg, lettuce and tomato on house bread with fries.",
       barbot_prm_main_3: "Mushroom risotto - creamy arborio rice, seasonal mushrooms, parmesan and herbs.",
       barbot_prm_drink_1:
-        "Pint of Barbot Special or Strong beer - rotating special or strong ale from the tap (incl. award-winning styles).",
+        "1 pint Barbot Classic or award-winning (20 taps available)",
       barbot_table_reserved_web_note: "A table is reserved for you with your web purchase.",
       barbot_page_map_title: "Where to find Barbot Brewpub",
       barbot_page_map_text:
@@ -3192,6 +3200,8 @@ const translations = {
       barbot_tour_home_img_2_alt: "Grifos y cerveza artesanal en la cervecería Barbot",
       barbot_tour_home_img_3_alt: "Degustación de cerveza artesanal en el tour Barbot",
       barbot_tour_home_img_4_alt: "Experiencia en la cervecería Barbot en Colonia",
+      barbot_tour_home_img_5_alt: "Planta de producción de la cervecería Barbot",
+      barbot_tour_home_img_6_alt: "Instalaciones de la cervecería Barbot",
       barbot_tour_doc_title: "Experiencia Cervecería Barbot | Sacramento Adventures",
       barbot_tour_page_title: "Experiencia Cervecería Barbot",
       barbot_tour_page_subtitle:
@@ -3233,6 +3243,13 @@ const translations = {
       barbot_tour_brewmaster_badge: "Experiencia premium",
       barbot_tour_brewmaster_title: "BrewMaster Talk",
       barbot_tour_brewmaster_subtitle: "Experiencia exclusiva para amantes de la cerveza.",
+      barbot_tour_brewmaster_schedule:
+        "Sábado 20 de junio — y después el segundo sábado de cada mes.",
+      barbot_tour_brewmaster_popup_title: "BrewMaster Talk",
+      barbot_tour_brewmaster_popup_intro:
+        "La actividad se programa el segundo sábado de cada mes.",
+      barbot_tour_brewmaster_popup_this_month: "Este mes:",
+      barbot_tour_brewmaster_popup_ok: "Entendido",
       barbot_tour_brewmaster_p:
         "A partir de junio, también podrás reservar una experiencia exclusiva junto al maestro cervecero de Barbot, quien comparte más de 20 años de experiencia, experimentación y cultura cervecera artesanal.",
       barbot_tour_brewmaster_topic_1: "Materias primas (maltas, lúpulos y levaduras)",
@@ -3254,6 +3271,8 @@ const translations = {
         "La experiencia en Barbot es solo sábados y domingos. Elegí una fecha de fin de semana.",
       barbot_tour_alert_select_date:
         "Elegí un sábado o domingo para tu visita.",
+      barbot_tour_alert_brewmaster_date:
+        "El BrewMaster Talk es solo el segundo sábado de cada mes (sábado 20 de junio en el mes de lanzamiento). Actualizamos tu fecha.",
       barbot_tour_summary_date_label: "Fecha",
       barbot_tour_create_title: "Creá tu experiencia Barbot",
       barbot_tour_create_subtitle: "Elegí experiencia, paquete y cantidad de personas",
@@ -3287,7 +3306,7 @@ const translations = {
       barbot_tour_order_tier_premium: "Beer Tasting — Opción 2: clásicos más premiados x7 (100 ml) (USD 38)",
       barbot_tour_order_tier_brewmaster: "BrewMaster Talk (USD 60)",
       barbot_tour_june_popup_body:
-        "El BrewMaster Talk y el tour por la fábrica estarán disponibles a partir de junio. Las opciones 1 y 2 sí se pueden reservar ahora.",
+        "El BrewMaster Talk estará disponible a partir de junio — sábado 20 de junio, y después el segundo sábado de cada mes. Las opciones 1 y 2 ya se pueden reservar.",
       barbot_tour_june_popup_ok: "Entendido",
       barbot_tour_gal_1_alt: "Tour guiado por la cervecería Barbot",
       barbot_tour_gal_2_alt: "Experiencia tour cervecería Barbot",
@@ -3301,22 +3320,23 @@ const translations = {
       barbot_tour_gal_10_alt: "Tour por la cervecería Barbot en Colonia",
       barbot_tour_gal_11_alt: "Experiencia de cerveza artesanal en Barbot",
       barbot_tour_gal_12_alt: "Tour y degustación en Cervecería Barbot",
+      barbot_tour_gal_13_alt: "Planta de producción de la cervecería Barbot",
+      barbot_tour_gal_14_alt: "Instalaciones de la cervecería Barbot",
       barbot_home_badge: "Medalla de oro · Strong Ale",
       barbot_home_title: "Cervecería Barbot · cerveza artesanal premiada",
-      barbot_home_meta_1: "Oro en la IV Copa Sul-Americana de Cerveja",
-      barbot_home_meta_2: "Bonavena Strong Ale",
+      barbot_home_meta_1: "Más de 20 premios ganados entre 2025 y 2026",
+      barbot_home_meta_2: "Armá tu menú de 4 pasos",
+      barbot_home_meta_3: "Mesa reservada",
       barbot_home_desc:
-        "Barbot Brewpub ganó medalla de oro con Bonavena Strong Ale en la IV Copa Sul-Americana de Cerveja. Su brewpub está en el Casco Histórico de Colonia - ideal para una pinta cuando estés en la ciudad.",
+        "Su brewpub está en el Casco Histórico de Colonia — ideal para una pinta cuando estés en la ciudad. Lunes cerrado.",
       barbot_home_img_1_alt: "Cerveza artesanal Barbot Brewpub en Colonia",
       barbot_home_img_2_alt: "Interior del Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveza Bonavena Strong Ale",
       barbot_page_about_heading: "Tu momento cervecero en Colonia",
       barbot_page_story_p_before:
         "Ya caminaste el Casco y el faro - ahora frená donde turistas y locales comparten la misma mesa. Barbot Brewpub es cerveza artesanal en el corazón del barrio UNESCO de Colonia: luz baja, charla real, sin apuro. ",
-      barbot_page_story_p_highlight:
-        "La Bonavena Strong Ale ganó oro en la IV Copa Sul-Americana de Cerveja (Brasil): una medalla de jurado que respalda lo que hay en la copa.",
       barbot_page_story_p_after:
-        " Vayas tras esa pinta ganadora o solo quieras cerrar el día con algo memorable, acá está la recompensa que tus pies pedían.",
+        "Armá tu menú y te esperamos con una mesa reservada para que pruebes una de las mejores cervezas de Uruguay.",
       barbot_awards_btn: "Conocé nuestros premios de los últimos dos años",
       barbot_awards_bba_title: "Brazilian Beer Awards",
       barbot_awards_guarani_title: "Copa Guaraní de cervezas",
@@ -3324,9 +3344,6 @@ const translations = {
       barbot_awards_arojo_title: "Aro Rojo, México",
       barbot_awards_sulamericana_title: "Copa Sulamericana de Cerveja",
       barbot_awards_uruguaya_title: "Copa Uruguaya 2025",
-      barbot_awards_sbc_2026_note: "La South Beer 2026 se juega en estos días también 🤩",
-      barbot_awards_arojo_2026_note:
-        "Se está jugando esta semana (mayo 2026) 🙏 ¡Deseános suerte!",
       barbot_medal_bronze: "Bronce",
       barbot_medal_silver: "Plata",
       barbot_medal_gold: "Oro",
@@ -3371,11 +3388,10 @@ const translations = {
       barbot_std_dessert_2:
         "Panqueque (1) con dulce de leche + bocha de helado - crepe, caramelo y una bola de helado.",
       barbot_std_dessert_3: "Flan casero con dulce de leche - custard horneado cremoso con caramelo.",
-      barbot_std_drink_1: "1 pinta de cerveza Barbot Clásica - estilo lager insignia de la casa en chopera.",
       barbot_std_drink_2: "1 refresco línea Coca-Cola - gaseosa fría (familia Coca-Cola).",
       barbot_std_drink_3: "1 agua mineral - con o sin gas, bien fría.",
       barbot_std_drink_4:
-        "1 pinta de cerveza Barbot Clásica - más de 15 estilos de la casa en chopera.",
+        "1 pinta barbot clásica o premiada (20 canillas a disposición)",
       barbot_prm_entrada_1:
         "2 empanadas de carne y/o provolone y cebolla - par de empanadas doradas, combiná rellenos.",
       barbot_prm_entrada_2:
@@ -3387,7 +3403,7 @@ const translations = {
       barbot_prm_main_3:
         "Risotto de hongos - arroz arborio cremoso, hongos de estación, parmesano y hierbas.",
       barbot_prm_drink_1:
-        "1 pinta de cerveza Barbot Especial o Fuerte - especial rotativa o strong ale en chopera (incl. estilos premiados).",
+        "1 pinta barbot clásica o premiada (20 canillas a disposición)",
       barbot_table_reserved_web_note: "Incluye mesa reservada con tu compra por web.",
       barbot_page_map_title: "Dónde queda Barbot Brewpub",
       barbot_page_map_text:
@@ -5385,6 +5401,8 @@ const translations = {
       barbot_tour_home_img_2_alt: "Torneiras e cerveja artesanal na cervejaria Barbot",
       barbot_tour_home_img_3_alt: "Degustação de cerveja artesanal no tour Barbot",
       barbot_tour_home_img_4_alt: "Experiência na cervejaria Barbot em Colônia",
+      barbot_tour_home_img_5_alt: "Planta de produção da cervejaria Barbot",
+      barbot_tour_home_img_6_alt: "Instalações da cervejaria Barbot",
       barbot_tour_doc_title: "Experiência Cervejaria Barbot | Sacramento Adventures",
       barbot_tour_page_title: "Experiência Cervejaria Barbot",
       barbot_tour_page_subtitle:
@@ -5426,6 +5444,13 @@ const translations = {
       barbot_tour_brewmaster_badge: "Experiência premium",
       barbot_tour_brewmaster_title: "BrewMaster Talk",
       barbot_tour_brewmaster_subtitle: "Experiência exclusiva para entusiastas da cerveja.",
+      barbot_tour_brewmaster_schedule:
+        "Sábado, 20 de junho — depois o segundo sábado de cada mês.",
+      barbot_tour_brewmaster_popup_title: "BrewMaster Talk",
+      barbot_tour_brewmaster_popup_intro:
+        "A experiência acontece no segundo sábado de cada mês.",
+      barbot_tour_brewmaster_popup_this_month: "Este mês:",
+      barbot_tour_brewmaster_popup_ok: "Entendi",
       barbot_tour_brewmaster_p:
         "A partir de junho, você também poderá reservar uma experiência exclusiva com o mestre cervejeiro da Barbot, que compartilha mais de 20 anos de experiência, experimentação e cultura cervejeira artesanal.",
       barbot_tour_brewmaster_topic_1: "Matérias-primas (maltes, lúpulos e leveduras)",
@@ -5447,6 +5472,8 @@ const translations = {
         "A experiência na Barbot é apenas aos sábados e domingos. Escolha uma data de fim de semana.",
       barbot_tour_alert_select_date:
         "Escolha um sábado ou domingo para sua visita.",
+      barbot_tour_alert_brewmaster_date:
+        "O BrewMaster Talk é apenas no segundo sábado de cada mês (sábado, 20 de junho no mês de lançamento). Atualizamos sua data.",
       barbot_tour_summary_date_label: "Data",
       barbot_tour_create_title: "Crie sua experiência Barbot",
       barbot_tour_create_subtitle: "Escolha experiência, pacote e número de convidados",
@@ -5480,7 +5507,7 @@ const translations = {
       barbot_tour_order_tier_premium: "Beer Tasting — Opção 2: clássicos mais premiados x7 (100 ml) (USD 38)",
       barbot_tour_order_tier_brewmaster: "BrewMaster Talk (USD 60)",
       barbot_tour_june_popup_body:
-        "O BrewMaster Talk e o tour pela fábrica estarão disponíveis a partir de junho. As opções 1 e 2 já podem ser reservadas.",
+        "O BrewMaster Talk estará disponível a partir de junho — sábado, 20 de junho, depois o segundo sábado de cada mês. As opções 1 e 2 já podem ser reservadas.",
       barbot_tour_june_popup_ok: "Entendi",
       barbot_tour_gal_1_alt: "Tour guiado pela cervejaria Barbot",
       barbot_tour_gal_2_alt: "Experiência tour cervejaria Barbot",
@@ -5494,22 +5521,23 @@ const translations = {
       barbot_tour_gal_10_alt: "Tour pela cervejaria Barbot em Colônia",
       barbot_tour_gal_11_alt: "Experiência de cerveja artesanal na Barbot",
       barbot_tour_gal_12_alt: "Tour e degustação na Cervejaria Barbot",
+      barbot_tour_gal_13_alt: "Planta de produção da cervejaria Barbot",
+      barbot_tour_gal_14_alt: "Instalações da cervejaria Barbot",
       barbot_home_badge: "Medalha de ouro · Strong Ale",
       barbot_home_title: "Cervejaria Barbot · cerveja artesanal premiada",
-      barbot_home_meta_1: "Ouro na IV Copa Sul-Americana de Cerveja",
-      barbot_home_meta_2: "Bonavena Strong Ale",
+      barbot_home_meta_1: "Mais de 20 prêmios ganhos entre 2025 e 2026",
+      barbot_home_meta_2: "Monte seu menu de 4 passos",
+      barbot_home_meta_3: "Mesa reservada",
       barbot_home_desc:
-        "O Barbot Brewpub conquistou ouro com a Bonavena Strong Ale na IV Copa Sul-Americana de Cerveja. O brewpub fica no Centro Histórico de Colonia - perfeito para uma pinta.",
+        "O brewpub fica no Centro Histórico de Colonia — perfeito para uma pinta quando você estiver na cidade. Fechado às segundas.",
       barbot_home_img_1_alt: "Cerveja artesanal Barbot Brewpub em Colonia",
       barbot_home_img_2_alt: "Interior do Barbot Brewpub",
       barbot_home_img_3_alt: "Cerveja Bonavena Strong Ale",
       barbot_page_about_heading: "Seu momento cervejeiro em Colonia",
       barbot_page_story_p_before:
         "Depois do farol e das ruas de pedra, vale parar onde moradores e viajantes dividem a mesma mesa. O Barbot Brewpub serve cerveja artesanal de verdade no coração do Centro Histórico UNESCO de Colonia: clima descontraído, conversa sem pressa. ",
-      barbot_page_story_p_highlight:
-        "A Bonavena Strong Ale ganhou ouro na IV Copa Sul-Americana de Cerveja (Brasil): medalha de jurados que confirma o que está no copo.",
       barbot_page_story_p_after:
-        " Quer caçar aquela pint premiada ou só encerrar o passeio com estilo - este é o troco que o dia merecia.",
+        "Monte seu menu e te esperamos com uma mesa reservada para você provar uma das melhores cervejas do Uruguai.",
       barbot_awards_btn: "Conheça nossos prêmios dos últimos dois anos",
       barbot_awards_bba_title: "Brazilian Beer Awards",
       barbot_awards_guarani_title: "Copa Guaraní de cervejas",
@@ -5517,9 +5545,6 @@ const translations = {
       barbot_awards_arojo_title: "Aro Rojo, México",
       barbot_awards_sulamericana_title: "Copa Sulamericana de Cerveja",
       barbot_awards_uruguaya_title: "Copa Uruguaya 2025",
-      barbot_awards_sbc_2026_note: "A South Beer 2026 também está rolando nestes dias 🤩",
-      barbot_awards_arojo_2026_note:
-        "A edição 2026 está rolando nesta semana (maio de 2026) 🙏 Torça por nós!",
       barbot_medal_bronze: "Bronze",
       barbot_medal_silver: "Prata",
       barbot_medal_gold: "Ouro",
@@ -5564,11 +5589,10 @@ const translations = {
       barbot_std_dessert_2:
         "Panqueca (1) com doce de leite + bola de sorvete - crepe, caramelo e uma bola de sorvete.",
       barbot_std_dessert_3: "Pudim caseiro com doce de leite - creme assado com calda de caramelo.",
-      barbot_std_drink_1: "1 pinta de cerveja Barbot Clássica - lager insignia da casa no tap.",
       barbot_std_drink_2: "1 refrigerante linha Coca-Cola - gelado (família Coca-Cola).",
       barbot_std_drink_3: "1 água mineral - com ou sem gás, bem gelada.",
       barbot_std_drink_4:
-        "1 pinta de cerveja Barbot Clássica — mais de 15 estilos da casa na torneira.",
+        "1 pinta Barbot clássica ou premiada (20 torneiras à disposição)",
       barbot_prm_entrada_1:
         "2 empanadas de carne e/ou provolone e cebola - par de empanadas douradas, combine recheios.",
       barbot_prm_entrada_2:
@@ -5580,7 +5604,7 @@ const translations = {
       barbot_prm_main_3:
         "Risoto de cogumelos - arroz arbóreo cremoso, cogumelos da estação, parmesão e ervas.",
       barbot_prm_drink_1:
-        "1 pinta de cerveja Barbot Especial ou Forte - especial rotativa ou strong ale no tap (incl. estilos premiados).",
+        "1 pinta Barbot clássica ou premiada (20 torneiras à disposição)",
       barbot_table_reserved_web_note: "Inclui mesa reservada com a compra pelo site.",
       barbot_page_map_title: "Onde fica o Barbot Brewpub",
       barbot_page_map_text:
@@ -7445,22 +7469,32 @@ function initRentPopupBehavior() {
     });
   }
 
+  function cardDescriptionNeedsClamp(text) {
+    if (!text) return false;
+    const wasExpanded = text.classList.contains("expanded");
+    if (wasExpanded) text.classList.remove("expanded");
+    const needsClamp = text.scrollHeight > text.clientHeight + 5;
+    if (wasExpanded) text.classList.add("expanded");
+    return needsClamp;
+  }
+
   function updateCardSeeMoreVisibility(card) {
     const text = card.querySelector(".card-description");
     const btn = card.querySelector(".see-more");
     if (!text || !btn) return;
 
-    if (text.classList.contains("expanded")) {
-      btn.style.removeProperty("display");
+    const needsClamp = cardDescriptionNeedsClamp(text);
+    if (!needsClamp) {
+      text.classList.remove("expanded");
+      btn.style.display = "none";
       return;
     }
 
-    const isClamped = text.scrollHeight > text.clientHeight + 5;
-    btn.style.display = isClamped ? "" : "none";
+    btn.style.removeProperty("display");
   }
 
   function initCardSeeMoreToggles(root = document) {
-    root.querySelectorAll(".card").forEach((card) => {
+    root.querySelectorAll(".card:not(.card--category-modal)").forEach((card) => {
       const text = card.querySelector(".card-description");
       const btn = card.querySelector(".see-more");
       if (!text || !btn) return;
