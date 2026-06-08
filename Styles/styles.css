@@ -3248,6 +3248,14 @@
     background-repeat: no-repeat;
   }
 
+  .quinton-hero {
+    height: 43vh;
+    background-image: url("../Assets/images/quin16.jpg");
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+  }
+
   .legado-hero .legado-hero-badge {
     top: 18px;
     left: 18px;
@@ -3269,6 +3277,11 @@
     .legado-hero {
       height: 39vh;
       background-position: center 40%;
+    }
+
+    .quinton-hero {
+      height: 39vh;
+      background-position: center 38%;
     }
 
     .legado-hero .legado-hero-badge {
@@ -7749,6 +7762,21 @@
   margin-bottom: 10px;
 }
 
+.quinton-wine-pairing-note,
+.quinton-menu-includes-note {
+  margin: 0.35rem 0 1.1rem;
+  font-size: 0.92rem;
+  color: #5c4a3a;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.quinton-menu-includes-note {
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
 .food-menu-popup-box .popup-list {
   max-width: 100%;
   padding-left: 0;
@@ -7758,14 +7786,16 @@
 
 /* food1: mismo conflicto que actividad .popup-list li { flex } + viñetas dentro del detalle */
 #popupBruma .food-menu-popup-box .popup-list > li.food-menu-option,
-#popupLegado .food-menu-popup-box .popup-list > li.food-menu-option {
+#popupLegado .food-menu-popup-box .popup-list > li.food-menu-option,
+#popupQuinton .food-menu-popup-box .popup-list > li.food-menu-option {
   display: block !important;
   align-items: initial !important;
   flex-direction: column;
 }
 
 #popupBruma .food-menu-popup-box .popup-list label.food-menu-option-label,
-#popupLegado .food-menu-popup-box .popup-list label.food-menu-option-label {
+#popupLegado .food-menu-popup-box .popup-list label.food-menu-option-label,
+#popupQuinton .food-menu-popup-box .popup-list label.food-menu-option-label {
   display: grid !important;
 }
 

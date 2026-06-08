@@ -33,6 +33,7 @@
     "walking-asado.html": ["tours"],
     "chivito.html": ["gastronomy", "dining"],
     "vinos.html": ["bodega", "gastronomy", "dining"],
+    "quinton.html": ["bodega", "gastronomy", "dining"],
     "food1.html": ["tours", "gastronomy", "dining"],
     "plaza1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "bodega"],
@@ -63,14 +64,15 @@
     fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
     bodega: [
       "home-vinos-card",
+      "home-quinton-card",
       "home-legado-card",
       "home-historic-lasliebres-card",
       "home-cabalgata-liebres-card",
     ],
     boat: [],
     lodging: ["home-card-mision-bruma"],
-    dining: ["home-chivito-card", "home-vinos-card"],
-    gastronomy: ["home-chivito-card", "home-vinos-card"],
+    dining: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
+    gastronomy: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
@@ -86,6 +88,7 @@
     "home-legado-card": ["bodega", "fullday"],
     "home-chivito-card": ["gastronomy", "dining"],
     "home-vinos-card": ["bodega", "gastronomy", "dining"],
+    "home-quinton-card": ["bodega", "gastronomy", "dining"],
     "home-food-tour-card": ["tours", "gastronomy"],
     "home-plaza-anita-card": ["tours", "gastronomy"],
     "home-historic-lasliebres-card": ["tours", "bodega"],
