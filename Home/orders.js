@@ -880,6 +880,10 @@ function initExperience(config) {
     horsebackDepartureInPopup = null,
     /** When true: omit the "People" count line in WhatsApp (e.g. when boat passengers differ from menu orders). */
     whatsappSkipsPeopleLine = false,
+    /** When true: hide USD amounts in order summary and WhatsApp (rates coordinated separately). */
+    experienceSkipsPricing = false,
+    /** Optional i18n key for full WhatsApp intro line (replaces orders_wa_intro template). */
+    whatsappIntroKey = null,
     /**
      * Optional room-first booking for hotel + dinner packages.
      * `{ hostElementId, priceByOccupancy, occupancyOptions?, maxRooms?, minRooms?, defaultOccupancy? }`
@@ -2468,11 +2472,12 @@ function initExperience(config) {
       const expName = experienceNameKey
         ? getI18nText(experienceNameKey, experienceName)
         : experienceName;
-      const waIntroRaw = getI18nText(
-        "orders_wa_intro",
-        "Hello! I'd like to book the {experience} experience:"
-      );
-      const waIntro = waIntroRaw.replace(/\{experience\}/g, expName);
+      const waIntro = whatsappIntroKey
+        ? getI18nText(whatsappIntroKey, `Hello! I'd like to book ${expName}:`)
+        : getI18nText(
+            "orders_wa_intro",
+            "Hello! I'd like to book the {experience} experience:"
+          ).replace(/\{experience\}/g, expName);
       let message = `${waIntro}\n\n${waLine(getI18nText("orders_wa_date_label", "Date"), dateStr)}`;
       if (!whatsappSkipsPeopleLine) {
         message += `\n${waLine(getI18nText("orders_wa_people_line", "People"), peopleCount)}`;
@@ -2508,10 +2513,12 @@ function initExperience(config) {
         }
       }
       message += `\n\n${ordersText}\n\n`;
-      message += `${waLine(
-        getI18nText(rb ? "orders_wa_menu_subtotal" : "orders_wa_experience_subtotal", rb ? "Menus subtotal" : "Experience subtotal"),
-        `${curLabel} ${experienceSubtotal}`
-      )}`;
+      if (!experienceSkipsPricing) {
+        message += `${waLine(
+          getI18nText(rb ? "orders_wa_menu_subtotal" : "orders_wa_experience_subtotal", rb ? "Menus subtotal" : "Experience subtotal"),
+          `${curLabel} ${experienceSubtotal}`
+        )}`;
+      }
       if (guideFee > 0 && !guideOptional && !groupGuideOptional) {
         if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
           message += ` (${getI18nText(
@@ -2557,7 +2564,14 @@ function initExperience(config) {
       if (roomCostWa > 0) {
         message += `${waLine(getI18nText("orders_wa_rooms_line", "Overnight rooms"), `${curLabel} ${roomCostWa}`)}\n`;
       }
-      message += `${waLine(getI18nText("orders_wa_total_label", "Total"), `${curLabel} ${total}`)}`;
+      if (!experienceSkipsPricing) {
+        message += `${waLine(getI18nText("orders_wa_total_label", "Total"), `${curLabel} ${total}`)}`;
+      } else {
+        message += getI18nText(
+          "quinton_wa_rates_note",
+          "Please confirm availability and menu rates with us."
+        );
+      }
 
       if (paymentLink) {
         message += `\n\n${getI18nText(
@@ -3256,7 +3270,19 @@ function initExperience(config) {
             : "";
         const roomDetail =
           roomCostUi > 0 ? ` · ${t("orders_rooms_short", "rooms")} ${curLabel} ${roomCostUi}` : "";
-        html += `
+        if (experienceSkipsPricing) {
+          html += `
+          <div class="total-box total-box--no-pricing">
+            <div class="total-left">
+              <span class="total-detail">${escapeHtml(summaryBookings)}</span>
+            </div>
+            <a href="#" id="bookWithOrder" class="btn total-btn">
+              ${escapeHtml(t("book_btn", "Reserve"))}
+            </a>
+          </div>
+        `;
+        } else {
+          html += `
           <div class="total-box">
             <div class="total-left">
               <span class="total-label">${escapeHtml(t("total_label", "Total"))}</span>
@@ -3270,6 +3296,7 @@ function initExperience(config) {
             </a>
           </div>
         `;
+        }
       }
 
       container.innerHTML = html;
