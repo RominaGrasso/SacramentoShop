@@ -7777,6 +7777,29 @@
   margin-top: 0.25rem;
 }
 
+.quinton-pkg-note {
+  margin: 0.35rem 0 0 1.75rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #5c4a3a;
+}
+
+.quinton-tour-addon-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0 1.75rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #5c4a3a;
+  cursor: pointer;
+}
+
+.quinton-popup-box .popup-actions {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .food-menu-popup-box .popup-list {
   max-width: 100%;
   padding-left: 0;
