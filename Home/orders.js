@@ -829,6 +829,10 @@ function initExperience(config) {
      * When `valueKey` is omitted, only the label is shown.
      */
     experienceFixedSummaryRows = null,
+    /**
+     * Optional package picker before menu: `{ radioName, stepPackageId, stepMenuId, nextBtnId, backBtnId, popupTitleId, popupTitlePackageKey, popupTitleMenuKey, menuHeadingId, defaultMenuPackageId, packages: { id: { price, requiresMenu, labelKey, tourAddon?: { checkboxId, price, labelKey } } } }`.
+     */
+    experiencePackageOptions = null,
     /** Optional i18n key for each order card / WhatsApp heading (default: order_word → "Order" / "Pedido"). */
     orderCardTitleKey = "order_word",
     /**
@@ -839,6 +843,8 @@ function initExperience(config) {
     boatPassengersMax = 50,
     /** Minimum total boat passengers required to reserve (e.g. 10 for group boat tours). */
     boatPassengersMin = 0,
+    /** Minimum menu orders required to reserve (one order per person, e.g. 2 for Quintón). */
+    minOrders = 0,
     /** Optional list of boat departure time labels (e.g. `["11:00am", …]`). Shown when `boatPerPersonPrice` > 0; stored in localStorage. */
     boatTimeSlots = null,
     /**
@@ -897,7 +903,7 @@ function initExperience(config) {
     return;
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  const bootExperience = () => {
     let editingIndex = null;
     const curLabel = totalCurrencyLabel || "USD";
     const rbCfg = roomBooking && typeof roomBooking === "object" && roomBooking.hostElementId ? roomBooking : null;
@@ -962,6 +968,165 @@ function initExperience(config) {
     const boatRate = Math.max(0, Number(boatPerPersonPrice) || 0);
     const boatMax = Math.max(1, Math.min(200, Number(boatPassengersMax) || 50));
     const boatMin = Math.max(0, Math.min(boatMax, Math.floor(Number(boatPassengersMin) || 0)));
+    const minOrdersNum = Math.max(0, Math.floor(Number(minOrders) || 0));
+    const expPkg =
+      experiencePackageOptions &&
+      typeof experiencePackageOptions === "object" &&
+      experiencePackageOptions.radioName &&
+      experiencePackageOptions.packages &&
+      typeof experiencePackageOptions.packages === "object"
+        ? experiencePackageOptions
+        : null;
+
+    const getPackageDef = (id) => {
+      if (!expPkg || !id) return null;
+      return expPkg.packages[id] || null;
+    };
+
+    const readSelectedPackageId = () => {
+      if (!expPkg) return null;
+      const popupEl = document.getElementById(popupId);
+      if (!popupEl) return null;
+      const sel = popupEl.querySelector(`input[name="${expPkg.radioName}"]:checked`);
+      return sel ? String(sel.value || "").trim() : null;
+    };
+
+    const packageLabelForOrder = (order) => {
+      const pid = order && order.packageId;
+      const pkg = getPackageDef(pid);
+      if (!pkg) return "";
+      let label = getI18nText(pkg.labelKey, pid);
+      if (order.includeTour && pkg.tourAddon) {
+        label += ` · ${getI18nText(pkg.tourAddon.labelKey, "Guided tour")}`;
+      }
+      return label;
+    };
+
+    const formatPkgMoney = (n) => {
+      const x = Number(n);
+      if (!Number.isFinite(x)) return "0";
+      const v = Math.round(x * 100) / 100;
+      return Number.isInteger(v) ? String(v) : v.toFixed(2);
+    };
+
+    const packageInvestmentForOrder = (order) => {
+      const pkg = getPackageDef(order && order.packageId);
+      if (!pkg) return "";
+      const tpl = getI18nText(
+        "quinton_order_investment_value",
+        "{currency} {price} per person"
+      );
+      return tpl
+        .replace(/\{currency\}/g, curLabel)
+        .replace(/\{price\}/g, formatPkgMoney(pkg.price));
+    };
+
+    const resetPackageTourCheckboxes = () => {
+      if (!expPkg) return;
+      Object.values(expPkg.packages).forEach((pkg) => {
+        if (pkg && pkg.tourAddon && pkg.tourAddon.checkboxId) {
+          const cb = document.getElementById(pkg.tourAddon.checkboxId);
+          if (cb) cb.checked = false;
+        }
+      });
+    };
+
+    const readPackageIncludeTour = (pkg) => {
+      if (!pkg || !pkg.tourAddon || !pkg.tourAddon.checkboxId) return false;
+      const cb = document.getElementById(pkg.tourAddon.checkboxId);
+      return Boolean(cb && cb.checked);
+    };
+
+    const inferPackageIdFromOrder = (order) => {
+      if (!expPkg || !order) return null;
+      if (order.packageId) return String(order.packageId);
+      if (String(order.starter || order.main || order.drink || "").trim()) {
+        return expPkg.defaultMenuPackageId || "opt3";
+      }
+      return null;
+    };
+    let expPkgActiveStep = "packages";
+
+    const packageSaveBtnEl = () => (saveBtnId ? document.getElementById(saveBtnId) : null);
+
+    const syncPackageActionButtons = () => {
+      if (!expPkg) return;
+      const pid = readSelectedPackageId();
+      const pkg = getPackageDef(pid);
+      const nextBtn = expPkg.nextBtnId ? document.getElementById(expPkg.nextBtnId) : null;
+      const saveEl = packageSaveBtnEl();
+      const requiresMenu = Boolean(pkg && pkg.requiresMenu);
+      if (nextBtn) nextBtn.hidden = !requiresMenu;
+      if (saveEl) saveEl.hidden = requiresMenu;
+    };
+
+    const showPackagePopupStep = (which) => {
+      if (!expPkg) return;
+      expPkgActiveStep = which === "menu" ? "menu" : "packages";
+      const stepPkg = expPkg.stepPackageId ? document.getElementById(expPkg.stepPackageId) : null;
+      const stepMenu = expPkg.stepMenuId ? document.getElementById(expPkg.stepMenuId) : null;
+      const nextBtn = expPkg.nextBtnId ? document.getElementById(expPkg.nextBtnId) : null;
+      const backBtn = expPkg.backBtnId ? document.getElementById(expPkg.backBtnId) : null;
+      const titleEl = expPkg.popupTitleId ? document.getElementById(expPkg.popupTitleId) : null;
+      const menuHeading = expPkg.menuHeadingId ? document.getElementById(expPkg.menuHeadingId) : null;
+      const saveEl = packageSaveBtnEl();
+      const onMenu = expPkgActiveStep === "menu";
+      if (stepPkg) stepPkg.hidden = onMenu;
+      if (stepMenu) stepMenu.hidden = !onMenu;
+      if (menuHeading) menuHeading.hidden = !onMenu;
+      if (backBtn) backBtn.hidden = !onMenu;
+      if (onMenu) {
+        if (nextBtn) nextBtn.hidden = true;
+        if (saveEl) saveEl.hidden = false;
+        ensureDefaultMenuRadios();
+        if (titleEl && expPkg.popupTitleMenuKey) {
+          titleEl.textContent = getI18nText(expPkg.popupTitleMenuKey, titleEl.textContent);
+          titleEl.dataset.translate = expPkg.popupTitleMenuKey;
+        }
+      } else {
+        syncPackageActionButtons();
+        if (titleEl && expPkg.popupTitlePackageKey) {
+          titleEl.textContent = getI18nText(expPkg.popupTitlePackageKey, titleEl.textContent);
+          titleEl.dataset.translate = expPkg.popupTitlePackageKey;
+        }
+      }
+    };
+
+    const saveFixedPackageOrder = (orders, pid, pkg) => {
+      const includeTour = readPackageIncludeTour(pkg);
+      const order = {
+        starter: "",
+        main: "",
+        drink: "",
+        preferences: [],
+        packageId: pid,
+        ...(includeTour ? { includeTour: true } : {}),
+        ...(rb
+          ? {
+              guestId:
+                editingIndex !== null
+                  ? String(
+                      (orders[editingIndex] && orders[editingIndex].guestId) ||
+                        String(editingIndex + 1)
+                    )
+                  : String(orders.length + 1)
+            }
+          : {})
+      };
+      if (editingIndex !== null) {
+        orders[editingIndex] = order;
+        editingIndex = null;
+      } else {
+        orders.push(order);
+      }
+      setOrders(renumberRoomGuestIds(orders));
+      document.getElementById(popupId)?.classList.remove("active");
+      if (typeof window.renderOrders === "function") {
+        window.renderOrders();
+      }
+      scrollToOrderSummary(orderSummaryId);
+    };
+
     const boatTimePerOrderFlag =
       Boolean(boatTimePerOrder) && Array.isArray(boatTimeSlots) && boatTimeSlots.length > 0;
     const menuWithPerOrderBoat =
@@ -1346,6 +1511,24 @@ function initExperience(config) {
       return true;
     };
 
+    const alertMinOrders = () => {
+      alert(
+        getI18nText(
+          "orders_min_orders_alert",
+          "This experience requires at least {min} people — add one menu per person before reserving."
+        ).replace(/\{min\}/g, String(minOrdersNum))
+      );
+    };
+
+    const assertMinOrders = () => {
+      if (minOrdersNum <= 0) return true;
+      if (getOrders().length < minOrdersNum) {
+        alertMinOrders();
+        return false;
+      }
+      return true;
+    };
+
     const peopleCountForPayment = (ordersArr) => {
       if (boatTimePerOrderFlag && experienceSkipsMenuChoices) {
         return ordersArr.reduce((s, o) => s + orderBoatPax(o), 0);
@@ -1601,7 +1784,15 @@ function initExperience(config) {
 
     const guestExperienceTotal = (o) => {
       let unit = Number(pricePerPerson) || 0;
-      if (menuUpgradePrice != null && o && o.menuTier === "premium") {
+      if (expPkg && o && o.packageId) {
+        const pkg = getPackageDef(o.packageId);
+        if (pkg) {
+          unit = Number(pkg.price) || 0;
+          if (o.includeTour && pkg.tourAddon) {
+            unit += Number(pkg.tourAddon.price) || 0;
+          }
+        }
+      } else if (menuUpgradePrice != null && o && o.menuTier === "premium") {
         unit = Number(menuUpgradePrice) || unit;
       }
       let mult = 1;
@@ -1671,6 +1862,7 @@ function initExperience(config) {
     const experienceBookReady = () => {
       if (!boatBookReady()) return false;
       if (!assertBoatMinimumPassengers()) return false;
+      if (!assertMinOrders()) return false;
       if (!rb) return true;
       const need = calculateGuestsFromRooms();
       if (need <= 0) {
@@ -1866,10 +2058,25 @@ function initExperience(config) {
       if (horseCfg) check(horseCfg.radioName);
     };
 
+    const ensureDefaultMenuRadios = () => {
+      if (!popup) return;
+      const pickFirst = (name) => {
+        if (!name) return;
+        const radios = popup.querySelectorAll(`input[name="${name}"]`);
+        if (!radios.length) return;
+        if (!Array.from(radios).some((r) => r.checked)) radios[0].checked = true;
+      };
+      pickFirst(starterName);
+      pickFirst(mainName);
+      pickFirst(drinkName);
+      if (beverageName) pickFirst(beverageName);
+    };
+
     function openPopupForNewOrder() {
       popup.classList.add("active");
       popup.querySelectorAll('input[type="radio"]').forEach((i) => {
         if (menuTierRadioName && i.name === menuTierRadioName) return;
+        if (expPkg && i.name === expPkg.radioName) return;
         i.checked = false;
       });
       if (orderLanguageRadioName) {
@@ -1915,6 +2122,12 @@ function initExperience(config) {
           console.error(err);
         }
       }
+      if (expPkg) {
+        const firstRadio = popup.querySelector(`input[name="${expPkg.radioName}"]`);
+        if (firstRadio) firstRadio.checked = true;
+        resetPackageTourCheckboxes();
+        showPackagePopupStep("packages");
+      }
     }
 
     if (createBtn && popup && saveBtn) {
@@ -1956,9 +2169,57 @@ function initExperience(config) {
       closeBtn.addEventListener("click", () => popup.classList.remove("active"));
     }
 
+    if (expPkg) {
+      const nextBtn = expPkg.nextBtnId ? document.getElementById(expPkg.nextBtnId) : null;
+      const backBtn = expPkg.backBtnId ? document.getElementById(expPkg.backBtnId) : null;
+      if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          const pkg = getPackageDef(readSelectedPackageId());
+          if (!pkg || !pkg.requiresMenu) return;
+          showPackagePopupStep("menu");
+        });
+      }
+      if (backBtn) {
+        backBtn.addEventListener("click", () => showPackagePopupStep("packages"));
+      }
+      popup.addEventListener("change", (e) => {
+        const t = e.target;
+        if (t && t.name === expPkg.radioName) {
+          syncPackageActionButtons();
+        }
+      });
+    }
+
     if (saveBtn) {
       saveBtn.addEventListener("click", () => {
         const orders = getOrders();
+
+        if (expPkg) {
+          const pid = readSelectedPackageId();
+          const pkg = getPackageDef(pid);
+          if (!pid || !pkg) {
+            alert(
+              getI18nText(
+                "orders_alert_select_package",
+                "Please choose an experience option."
+              )
+            );
+            return;
+          }
+          if (pkg.requiresMenu && expPkgActiveStep !== "menu") {
+            alert(
+              getI18nText(
+                "quinton_alert_use_next",
+                "Tap Next to build your paired lunch menu."
+              )
+            );
+            return;
+          }
+          if (!pkg.requiresMenu) {
+            saveFixedPackageOrder(orders, pid, pkg);
+            return;
+          }
+        }
 
         if (experienceSkipsMenuChoices) {
           const preferences = Array.from(
@@ -2024,8 +2285,10 @@ function initExperience(config) {
             orders.push(order);
           }
           setOrders(renumberRoomGuestIds(orders));
-          popup.classList.remove("active");
-          renderOrders();
+          document.getElementById(popupId)?.classList.remove("active");
+          if (typeof window.renderOrders === "function") {
+            window.renderOrders();
+          }
           scrollToOrderSummary(orderSummaryId);
           return;
         }
@@ -2262,6 +2525,9 @@ function initExperience(config) {
           preferences,
           ...(guideOptional && !groupGuideOptional ? { includeGuide } : {}),
           ...(menuUpgradePrice ? { menuTier: tierPremium ? "premium" : "standard" } : {}),
+          ...(expPkg && readSelectedPackageId()
+            ? { packageId: readSelectedPackageId() }
+            : {}),
           ...(rb
             ? {
                 guestId:
@@ -2299,8 +2565,10 @@ function initExperience(config) {
 
         setOrders(renumberRoomGuestIds(orders));
 
-        popup.classList.remove("active");
-        renderOrders();
+        document.getElementById(popupId)?.classList.remove("active");
+        if (typeof window.renderOrders === "function") {
+          window.renderOrders();
+        }
         scrollToOrderSummary(orderSummaryId);
       });
     }
@@ -2407,13 +2675,23 @@ function initExperience(config) {
           const stdSkipsMain =
             Boolean(standardSkipsMainField && menuUpgradePrice && !prem);
           const premOmitsSecondSide = prem && !String(o.main || "").trim();
+          const pkgIdWa = inferPackageIdFromOrder(o);
+          const pkgDefWa = getPackageDef(pkgIdWa);
+          const isFixedPackageWa = Boolean(pkgDefWa && !pkgDefWa.requiresMenu);
+          const packagePart = pkgDefWa
+            ? `\n${waLine(getI18nText("quinton_wa_option_label", "Option"), packageLabelForOrder(o))}\n${waLine(
+                getI18nText("quinton_order_investment_label", "Investment"),
+                packageInvestmentForOrder(o)
+              )}`
+            : "";
           const mainPart =
-            stdSkipsMain || premOmitsSecondSide
+            isFixedPackageWa || stdSkipsMain || premOmitsSecondSide
               ? ""
               : `\n${waLine(lm, getLocalizedChoice(mainName, o.main))}`;
-          const drinkPart = experienceSkipsDrinkField
-            ? ""
-            : `\n${waLine(labD, getLocalizedChoice(drinkName, o.drink))}`;
+          const drinkPart =
+            experienceSkipsDrinkField || isFixedPackageWa
+              ? ""
+              : `\n${waLine(labD, getLocalizedChoice(drinkName, o.drink))}`;
           const bevFieldWa =
             prem && premiumChoiceFieldNames?.beverage ? premiumChoiceFieldNames.beverage : beverageName;
           const beveragePart =
@@ -2456,12 +2734,13 @@ function initExperience(config) {
           const orderHead = rb
             ? `*${getI18nText("orders_wa_guest_slot", "Guest")} ${i + 1}*`
             : `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*`;
-          const starterPart = experienceSkipsStarterField
-            ? ""
-            : `\n${waLine(ls, getLocalizedChoice(starterName, o.starter))}`;
+          const starterPart =
+            experienceSkipsStarterField || isFixedPackageWa
+              ? ""
+              : `\n${waLine(ls, getLocalizedChoice(starterName, o.starter))}`;
           const transportShareWa =
             transportShareWaLine ? `\n${transportShareWaLine}` : "";
-          return `${orderHead}${fixedSummaryRowsWa("top")}${tierLine}${starterPart}${mainPart}${horseTimeWa}${transportShareWa}${drinkPart}${beveragePart}${menuBoatWa}${gLine}${
+          return `${orderHead}${fixedSummaryRowsWa("top")}${packagePart}${tierLine}${starterPart}${mainPart}${horseTimeWa}${transportShareWa}${drinkPart}${beveragePart}${menuBoatWa}${gLine}${
             experienceSkipsPreferencesField
               ? ""
               : `\n${waLine(getI18nText("preferences_label", "Preferences"), prefs.join(", ") || "-")}`
@@ -2605,6 +2884,7 @@ function initExperience(config) {
     const fillPopupForEdit = (order) => {
       popup.querySelectorAll('input[type="radio"]').forEach((i) => {
         if (menuTierRadioName && i.name === menuTierRadioName) return;
+        if (expPkg && i.name === expPkg.radioName) return;
         i.checked = false;
       });
       if (standardSideCheckboxName) {
@@ -2775,6 +3055,23 @@ function initExperience(config) {
       const og = optionalGuideEl();
       if (og && !groupGuideOptional) og.checked = Boolean(order.includeGuide);
 
+      if (expPkg) {
+        resetPackageTourCheckboxes();
+        const pid = inferPackageIdFromOrder(order);
+        if (pid) {
+          const radio = popup.querySelector(`input[name="${expPkg.radioName}"][value="${pid}"]`);
+          if (radio) radio.checked = true;
+          const pkg = getPackageDef(pid);
+          if (order.includeTour && pkg && pkg.tourAddon && pkg.tourAddon.checkboxId) {
+            const cb = document.getElementById(pkg.tourAddon.checkboxId);
+            if (cb) cb.checked = true;
+          }
+          showPackagePopupStep(pkg && pkg.requiresMenu ? "menu" : "packages");
+        } else {
+          showPackagePopupStep("packages");
+        }
+      }
+
       if (typeof afterFillPopupForEdit === "function") {
         try {
           afterFillPopupForEdit(order);
@@ -2867,6 +3164,14 @@ function initExperience(config) {
           ).replace(/\{min\}/g, String(boatMin));
           html += `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(minHintRaw)}</p>`;
         }
+      }
+
+      if (minOrdersNum > 0) {
+        const minOrdersHintRaw = t(
+          "orders_min_orders_notice",
+          "Minimum {min} people — add one menu per person."
+        ).replace(/\{min\}/g, String(minOrdersNum));
+        html += `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(minOrdersHintRaw)}</p>`;
       }
 
       if (walkingTourTimePerOrderFlag) {
@@ -3033,16 +3338,30 @@ function initExperience(config) {
                 wParty >= walkingSlotCap ? " disabled" : ""
               } data-walking-party-action="plus" data-index="${index}">+</button></p>`
             : "";
+        const pkgId = inferPackageIdFromOrder(order);
+        const pkgDef = getPackageDef(pkgId);
+        const isFixedPackage = Boolean(pkgDef && !pkgDef.requiresMenu);
+        const packageRow = pkgDef
+          ? `<p><strong>${escapeHtml(t("quinton_wa_option_label", "Option"))}:</strong> ${escapeHtml(
+              packageLabelForOrder(order)
+            )}</p>`
+          : "";
+        const packageInvestmentRow = pkgDef
+          ? `<p><strong>${escapeHtml(t("quinton_order_investment_label", "Investment"))}:</strong> ${escapeHtml(
+              packageInvestmentForOrder(order)
+            )}</p>`
+          : "";
         const stdSkipsMainRow =
           Boolean(standardSkipsMainField && menuUpgradePrice && !prem);
         const premOmitsSecondSide = prem && !String(order.main || "").trim();
         const mainRow =
-          stdSkipsMainRow || premOmitsSecondSide
+          isFixedPackage || stdSkipsMainRow || premOmitsSecondSide
             ? ""
             : `<p><strong>${labM}:</strong> ${escapeHtml(getLocalizedChoice(mainName, order.main))}</p>`;
-        const drinkRow = experienceSkipsDrinkField
-          ? ""
-          : `<p><strong>${labD}:</strong> ${escapeHtml(getLocalizedChoice(drinkName, order.drink))}</p>`;
+        const drinkRow =
+          experienceSkipsDrinkField || isFixedPackage
+            ? ""
+            : `<p><strong>${labD}:</strong> ${escapeHtml(getLocalizedChoice(drinkName, order.drink))}</p>`;
         const bevFieldCard =
           prem && premiumChoiceFieldNames?.beverage ? premiumChoiceFieldNames.beverage : beverageName;
         const beverageRow =
@@ -3098,7 +3417,7 @@ function initExperience(config) {
         const cardTitleTxt = rb
           ? `${escapeHtml(t("orders_wa_guest_slot", "Guest"))} ${index + 1}`
           : `${escapeHtml(t(orderCardTitleKey, "Order"))} ${index + 1}`;
-        const starterRow = experienceSkipsStarterField
+        const starterRow = experienceSkipsStarterField || isFixedPackage
           ? ""
           : `<p><strong>${labS}:</strong> ${escapeHtml(getLocalizedChoice(starterName, order.starter))}</p>`;
         const transportShareRow =
@@ -3116,6 +3435,8 @@ function initExperience(config) {
             </div>
             ${tierRow}${servingNoteRow}
             ${fixedSummaryRowsHtml("top")}
+            ${packageRow}
+            ${packageInvestmentRow}
             ${mainRow}
             ${horseRow}
             ${transportShareRow}
@@ -3699,7 +4020,13 @@ function initExperience(config) {
         }
       });
     });
-  });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootExperience, { once: true });
+  } else {
+    bootExperience();
+  }
 }
 
 /**

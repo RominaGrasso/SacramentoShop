@@ -109,10 +109,7 @@
 <div class="price-options">
 <div class="price-box">
 <h3 class="bruma-promo-price quinton-promo-price">
-<span class="bruma-promo-price-row">
-<span class="bruma-price-old" data-translate="quinton_price_original">USD 160 per guest</span>
-<span class="bruma-price-new" data-translate="quinton_price_promo">USD 145 per guest</span>
-</span>
+<span class="bruma-price-new" data-translate="quinton_price_from_line">From USD 100 · Transport included</span>
 </h3>
 <h3>
 <span data-translate="quinton_price_title">Guided visit · Olivares el Quintón</span>
@@ -137,7 +134,7 @@
 </ul>
 </div>
 <div class="order-start">
-<h3 data-translate="quinton_create_title">Create your menu</h3>
+<h3 data-translate="quinton_create_title">Choose your experience</h3>
 <p class="experience-availability-notice" data-translate="mision_room_availability_notice">
             Please check availability with us on WhatsApp before completing your reservation.
           </p>
@@ -148,9 +145,9 @@
               Pick the day you plan to come so we can coordinate availability in advance.
             </p>
 </div>
-<p data-translate="quinton_create_subtitle">Choose your starter, main course and dessert for the paired lunch — one option per course.</p>
+<p data-translate="quinton_create_subtitle">Choose your Quintón experience option — if you pick the paired lunch, you will build your menu on the next step.</p>
 <button class="btn primary-btn" data-translate="quinton_create_btn" id="createMenuBtnQuinton" type="button">
-            + Create your menu
+            + Choose your experience
           </button>
 </div>
 </div>
@@ -189,16 +186,53 @@
 <a class="btn secondary" data-translate="quinton_back_home" href="../Home/index.html">Back to Home</a>
 </div>
 </section>
-<script src="../Home/language-init.js?v=20260522perf"></script>
-<script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260528ordersfix"></script>
-<script src="../Home/orders.js?v=20260528langfix"></script>
-<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <div aria-hidden="true" class="popup-overlay" id="popupQuinton">
-<div aria-labelledby="quintonPopupTitle" aria-modal="true" class="popup-box food-menu-popup-box" role="dialog">
+<div aria-labelledby="quintonPopupTitle" aria-modal="true" class="popup-box food-menu-popup-box quinton-popup-box" role="dialog">
 <button class="close-x" id="closeQuinton" type="button">✕</button>
-<p><strong class="popup-title" data-translate="quinton_popup_title" id="quintonPopupTitle">Paired Lunch</strong></p>
-<p class="bruma-tier-heading" data-translate="quinton_menu_heading">Build your paired lunch — choose one option per course</p>
+<p><strong class="popup-title" data-translate="quinton_popup_pkg_title" id="quintonPopupTitle">Choose your Quintón experience</strong></p>
+<div class="quinton-popup-step" id="quintonStepPackages">
+<p class="bruma-tier-heading" data-translate="quinton_popup_pkg_heading">Select one option per guest</p>
+<ul class="popup-list">
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input checked="" name="quinton_package" type="radio" value="opt1"/>
+<span class="food-menu-option-main" data-translate="quinton_pkg_1_title">Extra virgin olive oil &amp; wine tasting with Picada Quintón</span>
+<span class="food-menu-option-sub" data-translate="quinton_pkg_1_price">USD 100 per person</span>
+</label>
+<div class="food-menu-whatyouget">
+<ul>
+<li data-translate="quinton_pkg_1_item_1">Regional cheeses, dry chorizo, Canadian loin &amp; Spanish ham</li>
+<li data-translate="quinton_pkg_1_item_2">Bakery products, local olives, dried fruits &amp; seasonal chutney</li>
+<li data-translate="quinton_pkg_1_item_3">Mineral water included</li>
+</ul>
+</div>
+</li>
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input name="quinton_package" type="radio" value="opt2"/>
+<span class="food-menu-option-main" data-translate="quinton_pkg_2_title">Picada Quintón tasting + homemade empanadas &amp; soft drinks</span>
+<span class="food-menu-option-sub" data-translate="quinton_pkg_2_price">USD 110 per person</span>
+</label>
+<div class="food-menu-whatyouget">
+<ul>
+<li data-translate="quinton_pkg_2_item_1">Everything in Option 1</li>
+<li data-translate="quinton_pkg_2_item_2">Homemade beef &amp; vegetable empanadas with creole sauce</li>
+<li data-translate="quinton_pkg_2_item_3">Premium soft drinks &amp; mineral water included</li>
+</ul>
+</div>
+</li>
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input name="quinton_package" type="radio" value="opt3"/>
+<span class="food-menu-option-main" data-translate="quinton_pkg_3_title">Lunch with wine pairing</span>
+<span class="food-menu-option-sub" data-translate="quinton_pkg_3_price">USD 130 per person</span>
+</label>
+<p class="quinton-pkg-note" data-translate="quinton_pkg_3_note">Tap Next to choose your starter, main course and dessert.</p>
+</li>
+</ul>
+</div>
+<div class="quinton-popup-step" hidden="" id="quintonStepMenu">
+<p class="bruma-tier-heading" data-translate="quinton_menu_heading" id="quintonMenuHeading">Build your paired lunch — choose one option per course</p>
 <div class="bruma-menu-panel" id="quintonMenuPanel">
 <p class="food-menu-section-title"><strong data-translate="quinton_choice_starter">Starter (choose one)</strong></p>
 <ul class="popup-list">
@@ -280,16 +314,24 @@
 <p class="quinton-wine-pairing-note" data-translate="quinton_dessert_wine_note">Paired with Bruna Insignia Reserva</p>
 <p class="quinton-menu-includes-note" data-translate="quinton_menu_includes">Mineral water and infusion service included</p>
 </div>
+</div>
 <div class="popup-actions">
+<button class="btn secondary" data-translate="quinton_popup_back" hidden="" id="quintonPackageBack" type="button">Back</button>
+<button class="btn" data-translate="quinton_popup_next" hidden="" id="quintonPackageNext" type="button">Next</button>
 <button class="btn" data-translate="save_selection" id="saveMenuQuinton" type="button">Save selection</button>
 </div>
 </div>
 </div>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/language-prompt.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260530quinton130"></script>
+<script src="../Home/orders.js?v=20260530quinton130"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
     initExperience({
       experienceName: "Olivares el Quintón",
       experienceNameKey: "quinton_experience_name",
-      pricePerPerson: 145,
+      pricePerPerson: 180,
       experienceSkipsPreferencesField: true,
       whatsappIntroKey: "quinton_wa_intro",
       choiceSectionLabelKeys: {
@@ -299,10 +341,25 @@
       },
       orderCardTitleKey: "person_order_label",
       experienceFixedSummaryRows: [
-        { labelKey: "quinton_order_visit_label", valueKey: "quinton_order_visit_detail", placement: "top" },
-        { labelKey: "quinton_wa_menu_label", valueKey: "quinton_popup_title", placement: "top" },
-        { labelKey: "quinton_wa_includes_label", valueKey: "quinton_menu_includes", placement: "bottom" }
+        { labelKey: "quinton_order_visit_label", valueKey: "quinton_order_visit_detail", placement: "top" }
       ],
+      experiencePackageOptions: {
+        radioName: "quinton_package",
+        stepPackageId: "quintonStepPackages",
+        stepMenuId: "quintonStepMenu",
+        nextBtnId: "quintonPackageNext",
+        backBtnId: "quintonPackageBack",
+        popupTitleId: "quintonPopupTitle",
+        popupTitlePackageKey: "quinton_popup_pkg_title",
+        popupTitleMenuKey: "quinton_popup_title",
+        menuHeadingId: "quintonMenuHeading",
+        defaultMenuPackageId: "opt3",
+        packages: {
+          opt1: { price: 100, requiresMenu: false, labelKey: "quinton_pkg_1_title" },
+          opt2: { price: 110, requiresMenu: false, labelKey: "quinton_pkg_2_title" },
+          opt3: { price: 130, requiresMenu: true, labelKey: "quinton_pkg_3_title" }
+        }
+      },
       popupId: "popupQuinton",
       closeBtnId: "closeQuinton",
       createBtnId: "createMenuBtnQuinton",
@@ -314,6 +371,7 @@
       drinkName: "quinton_dessert",
       whatsappNumber: "59898945542",
       storageKey: "orders_quinton",
+      minOrders: 2,
       selectedDateKey: "selectedDateQuinton",
       dynamicPayment: {
         enabled: true,
