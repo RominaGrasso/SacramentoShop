@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
 import dotenv from "dotenv";
 import forge from "node-forge";
 import { findReusableLink, upsertLink, updateStatusBySessionId, updatePaymentByFingerprint, updatePaymentBySessionId, findPaymentByFingerprint, listPayments, getPaymentBySessionId, canApplyPaymentStatusTransition } from "./store.js";
@@ -13,7 +14,52 @@ const LINK_TTL_MINUTES = Number(process.env.LINK_TTL_MINUTES || 1440);
 const PAYMENT_MODE = process.env.PAYMENT_MODE || "mock";
 const HANDY_CREATE_URL = process.env.HANDY_CREATE_URL || "";
 const HANDY_TOKEN = process.env.HANDY_TOKEN || "";
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
+const DEFAULT_ALLOWED_ORIGINS = [
+  "https://sacraadventures.com",
+  "https://www.sacraadventures.com",
+  "https://rominagrasso.github.io"
+];
+
+function parseAllowedOrigins() {
+  const fromList = (process.env.ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((o) => o.trim())
+    .filter(Boolean);
+  if (fromList.length > 0) return fromList;
+  const legacy = String(process.env.ALLOWED_ORIGIN || "").trim();
+  if (legacy && legacy !== "*") return [legacy];
+  return DEFAULT_ALLOWED_ORIGINS;
+}
+
+const ALLOWED_ORIGINS = parseAllowedOrigins();
+
+const CORS_LOG_REJECTED =
+  process.env.CORS_LOG_REJECTED !== "0" && !/^false$/i.test(String(process.env.CORS_LOG_REJECTED || ""));
+
+function isLocalDevCorsOrigin(origin) {
+  try {
+    const u = new URL(origin);
+    return u.protocol === "http:" && (u.hostname === "localhost" || u.hostname === "127.0.0.1");
+  } catch {
+    return false;
+  }
+}
+
+function isAllowedCorsOrigin(origin) {
+  if (!origin) return true;
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  if (isLocalDevCorsOrigin(origin)) return true;
+  return false;
+}
+
+function logRejectedCorsOrigin(origin, req) {
+  if (!CORS_LOG_REJECTED) return;
+  const method = req?.method || "?";
+  const path = req?.originalUrl || req?.url || "?";
+  // eslint-disable-next-line no-console
+  console.warn(`[cors] rejected origin: ${origin || "(none)"} ${method} ${path}`);
+}
+
 const PLEXO_GATEWAY_URL = process.env.PLEXO_GATEWAY_URL || "";
 const PLEXO_CLIENT_NAME = process.env.PLEXO_CLIENT_NAME || "";
 const PLEXO_CERT_PASSWORD = process.env.PLEXO_CERT_PASSWORD || "";
@@ -113,13 +159,42 @@ const ADMIN_JWT_SECRET = process.env.ADMIN_JWT_SECRET || "";
 const ADMIN_JWT_TTL_SEC = Number(process.env.ADMIN_JWT_TTL_SEC || 8 * 60 * 60);
 
 const app = express();
+app.disable("x-powered-by");
+
 app.use(
-  cors({
-    origin: ALLOWED_ORIGIN === "*" ? true : ALLOWED_ORIGIN,
-    /** Necesario para admin desde GitHub Pages → Render (Bearer en preflight). */
-    allowedHeaders: ["Content-Type", "Authorization"]
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" }
   })
 );
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && !isAllowedCorsOrigin(origin)) {
+    logRejectedCorsOrigin(origin, req);
+  }
+  next();
+});
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (isAllowedCorsOrigin(origin)) return callback(null, true);
+      return callback(new Error("Not allowed by CORS"));
+    },
+    /** Necesario para admin desde GitHub Pages → Render (Bearer en preflight). */
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "OPTIONS"]
+  })
+);
+
+app.use((err, req, res, next) => {
+  if (err && err.message === "Not allowed by CORS") {
+    return res.status(403).json({ error: "Not allowed by CORS" });
+  }
+  return next(err);
+});
+
 app.use(express.json({ limit: "1mb" }));
 
 /** Keep-alive for Render cold-start prewarm; no Plexo, no store, no auth. */
@@ -1271,27 +1346,21 @@ app.get("/api/payments/plexo-client-hints", (_req, res) => {
   });
 });
 
-app.get("/api/payments/health", (_req, res) => {
-  res.json({
+function buildPaymentsHealthDetail() {
+  return {
     ok: true,
     mode: PAYMENT_MODE,
     ttlMinutes: LINK_TTL_MINUTES,
     plexoReady: PAYMENT_MODE !== "plexo" ? undefined : Boolean(plexoMaterial),
     plexoFrontendBaseUrl: PAYMENT_MODE === "plexo" ? PLEXO_FRONTEND_BASE_URL : undefined,
     plexoRedirectUriEffective: PAYMENT_MODE === "plexo" ? effectivePlexoRedirectUri() : undefined,
-    /** CommerceId (API issuers / AddIssuer; ej. 65264). */
     plexoCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_COMMERCE_ID : undefined,
-    /** OptionalCommerceId dedicado a ExpressCheckout; 0 = se usa solo PLEXO_COMMERCE_ID si aplica. */
     plexoOptionalCommerceIdEnv: PAYMENT_MODE === "plexo" ? PLEXO_OPTIONAL_COMMERCE_ID : undefined,
-    /** Valor que irá en AuthorizationData/PaymentData OptionalCommerceId en ExpressCheckout. */
     plexoExpressOptionalCommerceIdEffective:
       PAYMENT_MODE === "plexo" ? plexoOptionalCommerceIdForExpressCheckout() : undefined,
-    /** Lista efectiva enviada en AuthorizationData.LimitIssuers (vacío = no se envía el campo). */
     plexoLimitIssuersEffective: PAYMENT_MODE === "plexo" ? PLEXO_LIMIT_ISSUERS : undefined,
-    /** Lo que realmente enviará ExpressCheckout (tras PLEXO_EXPRESS_OMIT_LIMIT_ISSUERS). */
     plexoExpressLimitIssuersEffective: PAYMENT_MODE === "plexo" ? effectiveLimitIssuersForExpressCheckout() : undefined,
     plexoExpressOmitLimitIssuers: PAYMENT_MODE === "plexo" ? isPlexoExpressOmitLimitIssuers() : undefined,
-    /** Valor crudo de env (undefined = se aplicó default interno o vacío omitido). */
     plexoLimitIssuersEnvRaw: PAYMENT_MODE === "plexo" ? process.env.PLEXO_LIMIT_ISSUERS ?? null : undefined,
     plexoExpressMaxInstallmentsEffective:
       PAYMENT_MODE === "plexo" ? effectivePlexoExpressMaxInstallments() : undefined,
@@ -1299,7 +1368,15 @@ app.get("/api/payments/health", (_req, res) => {
       PAYMENT_MODE === "plexo" ? process.env.PLEXO_EXPRESS_MAX_INSTALLMENTS ?? null : undefined,
     plexoClientConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_CLIENT_NAME) : undefined,
     plexoAdminTokenConfigured: PAYMENT_MODE === "plexo" ? Boolean(PLEXO_ADMIN_TOKEN) : undefined
-  });
+  };
+}
+
+app.get("/api/payments/health", (_req, res) => {
+  res.json({ ok: true });
+});
+
+app.get("/api/payments/health/detail", requireAdminAuth, (_req, res) => {
+  res.json(buildPaymentsHealthDetail());
 });
 
 /** Public read: post-checkout outcome by order fingerprint (`ref` in RedirectUri). */
