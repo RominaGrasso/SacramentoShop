@@ -13,10 +13,18 @@ npm run dev
 
 By default it runs in `mock` mode and returns deterministic Handy-like URLs.
 
+## CORS (browser clients)
+
+Set `ALLOWED_ORIGINS` to a comma-separated list of frontend origins (see `.env.example`).  
+`http://localhost:*` and `http://127.0.0.1:*` are always allowed for local dev.
+
+Rejected browser origins are logged as `[cors] rejected origin: …` (disable with `CORS_LOG_REJECTED=0`).
+
 ## Endpoints
 
 - `GET /health` — lightweight keep-alive (Render prewarm; no Plexo)
-- `GET /api/payments/health`
+- `GET /api/payments/health` — public `{ ok: true }` only
+- `GET /api/payments/health/detail` — admin JWT; full Plexo/config diagnostic (former `/health` body)
 - `POST /api/payments/resolve`
 - `POST /api/payments/webhook`
 
