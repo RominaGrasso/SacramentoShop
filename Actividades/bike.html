@@ -182,7 +182,6 @@
 </header>
 <!-- ================= HERO ================= -->
 <section class="coffee-hero bike-hero-promo-wrap" style="background-image: url('../Assets/images/bicireal1.webp'); background-position: center 61%;">
-<div class="discount-badge bike-hero-discount-badge" data-translate="bike_weekend_badge">TODAY ONLY · USD 30</div>
 </section>
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
@@ -208,6 +207,10 @@
 <span data-translate="bike_step_2_desc">Ride through historic streets, waterfront areas and local neighborhoods</span>
 </li>
 <li class="bike-how-step">
+<span class="bike-step-lead" data-translate="bike_step_duration_label">⏱ Duration:</span>
+<span data-translate="bike_step_duration_desc">1 or 2 hours — your choice</span>
+</li>
+<li class="bike-how-step">
 <span class="bike-step-lead" data-translate="bike_step_3_label">📸 Stops:</span>
 <span data-translate="bike_step_3_desc">Scenic viewpoints and photo spots along the way</span>
 </li>
@@ -217,18 +220,13 @@
 </li>
 <li class="bike-how-step">
 <span class="bike-step-lead" data-translate="bike_step_5_label">🌅 End of tour:</span>
-<span data-translate="bike_step_5_desc">Return to starting point or continue exploring</span>
+<span data-translate="bike_step_5_desc">Return to starting point</span>
 </li>
 </ul>
 </div>
 <!-- PRICE -->
 <div class="price-box">
-<h3 class="bike-promo-price bruma-promo-price">
-<span class="bruma-promo-price-row">
-<span class="bruma-price-old" data-translate="bike_price_original">USD 50 per person</span>
-<span class="bruma-price-new bike-price-promo" data-translate="bike_price_discount">USD 30 per person</span>
-</span>
-</h3>
+<h3 data-translate="bike_price_title">USD 50 per person</h3>
 </div>
 <!-- INCLUDES -->
 <div class="coffee-includes">
@@ -302,7 +300,7 @@
 <label><input checked="" name="bikeTourLanguage" type="radio" value="English guide"/> 🌍 <span data-translate="bike_lang_en">English guide</span></label>
 <label><input name="bikeTourLanguage" type="radio" value="Spanish guide"/> 🇪🇸 <span data-translate="bike_lang_es">Spanish guide</span></label>
 <label><input name="bikeTourLanguage" type="radio" value="Portuguese guide"/> 🇧🇷 <span data-translate="bike_lang_pt">Portuguese guide</span></label>
-<h3 class="preferences-title" data-translate="bike_label_route" style="margin-top: 14px;">Route</h3>
+<h3 class="preferences-title" data-translate="bike_label_duration" style="margin-top: 14px;">Duration</h3>
 <label><input checked="" name="bikeTourRoute" type="radio" value="Short route 1hr"/> 🚴 <span data-translate="bike_pref_1">Short route 1hr</span></label>
 <label><input name="bikeTourRoute" type="radio" value="Long route 2hs"/> ⚡ <span data-translate="bike_pref_2">Long route 2hs</span></label>
 <h3 class="preferences-title" data-translate="bike_label_preferences" style="margin-top: 14px;">Preferences</h3>
@@ -327,9 +325,7 @@
 </div>
 <script>
   (function () {
-    const BIKE_WEEKEND_PROMO_ACTIVE = true;
-    const BIKE_LIST_PRICE = 50;
-    const PRICE_PER_PERSON = BIKE_WEEKEND_PROMO_ACTIVE ? 30 : BIKE_LIST_PRICE;
+    const PRICE_PER_PERSON = 50;
     const whatsappNumber = "59898945542";
     const storageKey = "orders_bike_tour_group";
     const getLang = () => window.getInitialLanguage().toLowerCase();
@@ -449,7 +445,7 @@
         `${t("wa_date_label", "Date")}: ${date}\n` +
         `${t("wa_people_label", "People")}: ${group.people}\n` +
         `${t("wa_language_label", "Language")}: ${localizeBikeLanguage(group.language)}\n` +
-        `${t("bike_label_route", "Route")}: ${routeLine || "—"}\n` +
+        `${t("bike_label_duration", "Duration")}: ${routeLine || "—"}\n` +
         `${t("wa_preferences_label", "Preferences")}:\n${prefsText}\n\n` +
         `${t("wa_total_label", "Total")}: USD ${total}\n` +
         `${t("wa_note_label", "Note")}: ${getKidsNote()}`;
@@ -543,7 +539,7 @@
         <div class="order-header"><strong>${t("bike_group_card_title", "Bike Tour Group")}</strong></div>
         <p><strong>${t("bike_label_people", "People")}:</strong> ${group.people}</p>
         <p><strong>${t("bike_label_language", "Language")}:</strong> ${localizeBikeLanguage(group.language)}</p>
-        <p><strong>${t("bike_label_route", "Route")}:</strong> ${routeText}</p>
+        <p><strong>${t("bike_label_duration", "Duration")}:</strong> ${routeText}</p>
         <p><strong>${t("bike_label_preferences", "Preferences")}:</strong></p>
         ${prefItems}
         <p><strong>${t("bike_label_note", "Note")}:</strong> ${getKidsNote()}</p>
@@ -556,11 +552,7 @@
       totalBox.innerHTML = `
         <div class="total-left">
           <span class="total-label">${t("total_label", "Total")}</span>
-          <span class="total-detail">${
-            BIKE_WEEKEND_PROMO_ACTIVE
-              ? `(${group.people} × <span class="bruma-price-old">USD ${BIKE_LIST_PRICE}</span> <span class="bruma-price-new bike-price-promo">USD ${PRICE_PER_PERSON}</span>)`
-              : `(${group.people} × USD ${PRICE_PER_PERSON})`
-          }</span>
+          <span class="total-detail">(${group.people} × USD ${PRICE_PER_PERSON})</span>
         </div>
         <div class="total-right">USD ${total}</div>
       `;

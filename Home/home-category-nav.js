@@ -33,12 +33,12 @@
     "walking-asado.html": ["tours"],
     "chivito.html": ["gastronomy", "dining"],
     "vinos.html": ["bodega", "gastronomy", "dining"],
-    "quinton.html": ["bodega", "gastronomy", "dining"],
+    "quinton.html": ["bodega", "gastronomy", "dining", "fullday"],
     "food1.html": ["tours", "gastronomy", "dining"],
     "plaza1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "bodega"],
     "fullday-colonia.html": ["fullday"],
-    "traslado-plaza-letras.html": ["fullday", "day"],
+    "traslado-plaza-letras.html": ["tours", "fullday", "day"],
     "bruma.html": ["dining", "gastronomy"],
     "asado-boat.html": ["boat", "gastronomy"],
     "lasliebres-dining.html": ["dining", "gastronomy", "bodega"],
@@ -61,7 +61,8 @@
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
-    fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
+    tours: ["home-walking-tour-card", "home-traslado-plaza-letras-card"],
+    fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
       "home-vinos-card",
       "home-quinton-card",
@@ -71,24 +72,23 @@
     ],
     boat: [],
     lodging: ["home-card-mision-bruma"],
-    dining: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
-    gastronomy: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
+    dining: ["home-vinos-card", "home-quinton-card"],
+    gastronomy: ["home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
   const CARD_ID_NAV = {
     "home-walking-tour-card": ["tours"],
     "home-fullday-colonia-card": ["fullday"],
-    "home-traslado-plaza-letras-card": ["fullday", "day"],
+    "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
     "home-card-mision-bruma": ["lodging", "gastronomy"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
     "home-cabal-card": ["horseback"],
     "home-barbot-tour-card": ["craft-beer"],
     "home-barbot-brewpub-card": ["craft-beer", "dining"],
     "home-legado-card": ["bodega", "fullday"],
-    "home-chivito-card": ["gastronomy", "dining"],
     "home-vinos-card": ["bodega", "gastronomy", "dining"],
-    "home-quinton-card": ["bodega", "gastronomy", "dining"],
+    "home-quinton-card": ["bodega", "gastronomy", "dining", "fullday"],
     "home-food-tour-card": ["tours", "gastronomy"],
     "home-plaza-anita-card": ["tours", "gastronomy"],
     "home-historic-lasliebres-card": ["tours", "bodega"],
@@ -225,11 +225,26 @@
   function orderCardsForNav(navKey, cards) {
     const priority = NAV_CARD_ORDER[navKey];
     if (!priority?.length) return cards;
-    const prioritySet = new Set(priority);
-    const first = priority
-      .map((id) => cards.find((card) => card.id === id))
-      .filter(Boolean);
-    const rest = cards.filter((card) => !card.id || !prioritySet.has(card.id));
+    const prioritySlugs = {
+      tours: ["walkingtour.html", "traslado-plaza-letras.html"],
+    };
+    const used = new Set();
+    const first = [];
+    for (const id of priority) {
+      const byId = cards.find((card) => card.id === id);
+      if (byId && !used.has(byId)) {
+        first.push(byId);
+        used.add(byId);
+      }
+    }
+    for (const slug of prioritySlugs[navKey] || []) {
+      const bySlug = cards.find((card) => cardExploreSlug(card) === slug);
+      if (bySlug && !used.has(bySlug)) {
+        first.push(bySlug);
+        used.add(bySlug);
+      }
+    }
+    const rest = cards.filter((card) => !used.has(card));
     return [...first, ...rest];
   }
 
@@ -239,7 +254,14 @@
       const groups = getCardNavGroups(card);
       if (!groups.includes(navKey)) return false;
       const slug = cardExploreSlug(card);
-      if (navKey === "tours" && (slug === "barbot.html" || slug === "barbot-brewpub.html")) return false;
+      if (
+        navKey === "tours" &&
+        (slug === "barbot.html" ||
+          slug === "barbot-brewpub.html" ||
+          slug === "corporate-boat.html")
+      ) {
+        return false;
+      }
       if (navKey === "gastronomy" && groups.includes("tours")) return false;
       return true;
     });
