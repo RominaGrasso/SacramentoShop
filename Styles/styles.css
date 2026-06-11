@@ -1645,11 +1645,12 @@
 
   /* Cabalgata — fotos fam* en retrato: priorizar rostros (hero, galería, card) */
   .page-cabal .horse-hero {
-    background-image: url("../Assets/images/fam6.jpg");
-    background-position: center 20%;
+    background-image: url("../Assets/images/gabino1.jpg");
+    background-position: center center;
   }
 
-  .page-cabal .coffee-gallery .gallery-grid img[src*="fam"] {
+  .page-cabal .coffee-gallery .gallery-grid img[src*="fam"],
+  .page-cabal .coffee-gallery .gallery-grid img[src*="gabino"] {
     height: auto;
     min-height: 260px;
     max-height: 420px;
@@ -1658,7 +1659,7 @@
     object-position: center 12%;
   }
 
-  .page-cabal .coffee-gallery .gallery-grid img[src*="fam2"] {
+  .page-cabal .coffee-gallery .gallery-grid img[src*="gabino1"] {
     aspect-ratio: 16 / 10;
     object-position: center center;
   }
@@ -2322,6 +2323,14 @@
     object-fit: cover;
   }
 
+  .home-about-collage__photo--contain {
+    background: #f2f6fb;
+  }
+
+  .home-about-collage__photo--contain img {
+    object-fit: contain;
+  }
+
   .home-about-mobile-gallery {
     display: none;
     width: 100%;
@@ -2360,6 +2369,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .home-about-mobile-gallery__photo--contain {
+    background: #f2f6fb;
+  }
+
+  .home-about-mobile-gallery__photo--contain img {
+    object-fit: contain;
   }
 
   @media (max-width: 1023px) {
@@ -2435,6 +2452,11 @@
       padding: 0.95rem 0 1.05rem;
     }
 
+    .home-about-mobile-gallery__photo--contain {
+      aspect-ratio: 3 / 4;
+      flex-basis: clamp(9.5rem, 62vw, 14rem);
+    }
+
     .home-about-social {
       order: 3;
       width: 100%;
@@ -2454,6 +2476,10 @@
 
     .home-about-mobile-gallery__photo {
       flex-basis: clamp(10.75rem, 78vw, 16.5rem);
+    }
+
+    .home-about-mobile-gallery__photo--contain {
+      flex-basis: clamp(9rem, 68vw, 13.5rem);
     }
 
     .page-home .home-about-social .hero-social-group {
@@ -2505,14 +2531,14 @@
     .home-about-collage--left {
       grid-column: 1;
       justify-self: end;
-      grid-template-rows: 5.5rem 5.5rem;
+      grid-template-rows: 5.5rem 5.5rem 5.15rem 5.15rem;
     }
 
     .home-about-collage--right {
       grid-column: 3;
       justify-self: start;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: 4.85rem 5.35rem 4.35rem;
+      grid-template-rows: 4.85rem 5.35rem 4.35rem 5.15rem;
     }
 
     .home-about-collage--left .home-about-collage__photo--tall {
@@ -2533,11 +2559,11 @@
     }
 
     .home-about-collage--left {
-      grid-template-rows: 6.35rem 6.35rem;
+      grid-template-rows: 6.35rem 6.35rem 5.75rem 5.75rem;
     }
 
     .home-about-collage--right {
-      grid-template-rows: 5.5rem 6.25rem 4.75rem;
+      grid-template-rows: 5.5rem 6.25rem 4.75rem 5.75rem;
     }
   }
 
@@ -3612,19 +3638,20 @@
     flex: 0 0 100%;
     min-width: 100%;
     position: relative;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 3;
     min-height: 220px;
-    max-height: min(70vh, 540px);
+    max-height: min(72vh, 560px);
     padding: 0;
     box-sizing: border-box;
     overflow: hidden;
+    background: #f2f6fb;
   }
 
   .about-hero-slide img {
     width: 100%;
     height: 100%;
     max-height: none;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     display: block;
   }
@@ -3684,9 +3711,9 @@
     }
 
     .about-hero-slide {
-      aspect-ratio: 4 / 3;
-      min-height: 200px;
-      max-height: min(58vh, 420px);
+      aspect-ratio: 3 / 4;
+      min-height: 240px;
+      max-height: min(68vh, 480px);
     }
 
     .about-hero .about-hero-carousel-btn {
@@ -6410,8 +6437,7 @@
     animation: scroll 25s linear infinite;
   }
   
-  /* 👇 clave para que funcione el click */
-  .logos-track a {
+  .logos-track__item {
     flex: 0 0 auto;
     position: relative;
     z-index: 2;
@@ -6420,7 +6446,6 @@
   .logos-track img {
     height: 50px;
     object-fit: contain;
-    cursor: pointer;
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
   
@@ -6453,8 +6478,7 @@
     pointer-events: none; /* 👈 CLAVE */
   }
   
-  .logos-track a {
-    pointer-events: auto; /* 👈 CLAVE */
+  .logos-track__item {
     position: relative;
     z-index: 5;
   }
@@ -7541,12 +7565,11 @@
   will-change: transform;
 }
 
-.partners .logos-track a {
+.partners .logos-track__item {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  pointer-events: auto;
 }
 
 .partners .logos-track img {
@@ -7571,6 +7594,10 @@
 .partners .logos-track img[src*="logorefugio"],
 .partners .logos-track img[src*="casapetitlogo"] {
   height: 62px;
+}
+
+.partners .logos-track img[src*="quintonlogo"] {
+  height: 68px;
 }
 
 .partners .logos-slider:hover .logos-track {
