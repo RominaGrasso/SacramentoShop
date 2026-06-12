@@ -1606,7 +1606,8 @@
     background-repeat: no-repeat;
   }
 
-  .page-vinos .vinos-hero {
+  .page-vinos .vinos-hero,
+  .page-hotel-royal .hotel-royal-hero {
     display: block;
     width: 100%;
     overflow: hidden;
@@ -1616,7 +1617,8 @@
     line-height: 0;
   }
 
-  .page-vinos .vinos-hero__img {
+  .page-vinos .vinos-hero__img,
+  .page-hotel-royal .hotel-royal-hero__img {
     display: block;
     width: 100%;
     height: clamp(260px, 42vh, 460px);
@@ -1626,10 +1628,35 @@
   }
 
   @media (max-width: 900px) {
-    .page-vinos .vinos-hero__img {
+    .page-vinos .vinos-hero__img,
+    .page-hotel-royal .hotel-royal-hero__img {
       height: clamp(220px, 34vh, 380px);
       max-height: 380px;
       object-position: center 50%;
+    }
+  }
+
+  .page-hotel-royal .royal-lodging-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 28px;
+    max-width: 720px;
+  }
+
+  .page-hotel-royal .royal-lodging-details li {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 560px) {
+    .page-hotel-royal .royal-lodging-details {
+      grid-template-columns: 1fr;
+      max-width: none;
     }
   }
 
@@ -2314,6 +2341,8 @@
       0 10px 28px rgba(47, 103, 163, 0.1),
       0 2px 8px rgba(47, 103, 163, 0.06);
     background: #fff;
+    min-width: 0;
+    min-height: 0;
   }
 
   .home-about-collage__photo img {
@@ -2321,14 +2350,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .home-about-collage__photo--contain {
-    background: #f2f6fb;
+    object-position: center;
+    border-radius: 14px;
   }
 
   .home-about-collage__photo--contain img {
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .home-about-collage__photo--focus-head img {
+    object-fit: cover;
+    object-position: center 11%;
   }
 
   .home-about-mobile-gallery {
@@ -2369,6 +2402,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    border-radius: 14px;
   }
 
   .home-about-mobile-gallery__photo--contain {
@@ -2377,6 +2412,13 @@
 
   .home-about-mobile-gallery__photo--contain img {
     object-fit: contain;
+    object-position: center;
+    border-radius: 12px;
+  }
+
+  .home-about-mobile-gallery__photo--focus-head img {
+    object-fit: cover;
+    object-position: center 11%;
   }
 
   @media (max-width: 1023px) {
@@ -2531,14 +2573,17 @@
     .home-about-collage--left {
       grid-column: 1;
       justify-self: end;
+      align-self: center;
       grid-template-rows: 5.5rem 5.5rem 5.15rem 5.15rem;
     }
 
     .home-about-collage--right {
       grid-column: 3;
       justify-self: start;
+      align-self: center;
+      margin-top: 1.85rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: 4.85rem 5.35rem 4.35rem 5.15rem;
+      grid-template-rows: 4.85rem 5.35rem 4.35rem 5.15rem 4.85rem;
     }
 
     .home-about-collage--left .home-about-collage__photo--tall {
@@ -2550,6 +2595,10 @@
     .home-about-collage--right .home-about-collage__photo--wide:first-child,
     .home-about-collage--right .home-about-collage__photo--wide:last-child {
       grid-column: 1 / -1;
+    }
+
+    .home-about-collage--right .home-about-collage__photo--quin {
+      grid-column: 2;
     }
   }
 
@@ -2563,7 +2612,8 @@
     }
 
     .home-about-collage--right {
-      grid-template-rows: 5.5rem 6.25rem 4.75rem 5.75rem;
+      grid-template-rows: 5.5rem 6.25rem 4.75rem 5.75rem 5.25rem;
+      margin-top: 1.95rem;
     }
   }
 
@@ -7107,6 +7157,37 @@
     font-family: inherit;
     background: #fff;
     color: #1f2937;
+  }
+
+  .booking-visit-date-row select {
+    max-width: 280px;
+    width: 100%;
+    padding: 8px 36px 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236b7280' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    color: #1f2937;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  .booking-visit-date-row select:focus {
+    outline: none;
+    border-color: #6ea8e5;
+    box-shadow: 0 0 0 3px rgba(110, 168, 229, 0.25);
+  }
+
+  .booking-visit-date-row input[type="date"]:focus {
+    outline: none;
+    border-color: #6ea8e5;
+    box-shadow: 0 0 0 3px rgba(110, 168, 229, 0.25);
   }
 
   .booking-visit-date-hint {
