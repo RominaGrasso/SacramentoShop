@@ -216,22 +216,29 @@
 </section>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260612royal4"></script>
-<script src="../Home/orders.js?v=20260528langfix"></script>
+<script src="../Home/index.js?v=20260612walang"></script>
+<script src="../Home/orders.js?v=20260612walang"></script>
 <script>
     (function () {
       const WA_NUMBER = "59898945542";
       const ROYAL_PRICES = { single: 65, double: 70, triple: 85 };
 
-      function getLang() {
-        if (typeof window.getInitialLanguage === "function") return window.getInitialLanguage();
-        return localStorage.getItem("selectedLanguage") || "en";
-      }
-
       function t(key, fallback) {
-        const lang = getLang();
+        if (typeof window.sacramentoGetI18nText === "function") {
+          return window.sacramentoGetI18nText(key, fallback);
+        }
+        const lang =
+          typeof window.getSiteLanguage === "function"
+            ? window.getSiteLanguage()
+            : window.getInitialLanguage?.() || "en";
         const tr = window.__SACRAMENTO_TRANSLATIONS?.[lang] || window.__SACRAMENTO_TRANSLATIONS?.en || {};
         return tr[key] || fallback || key;
+      }
+
+      function getLang() {
+        return typeof window.getSiteLanguage === "function"
+          ? window.getSiteLanguage()
+          : window.getInitialLanguage?.() || "en";
       }
 
       function formatDateInput(value) {
@@ -257,12 +264,11 @@
         const nights = Number(document.getElementById("royalNights")?.value || "1");
         const nightly = ROYAL_PRICES[roomType] || ROYAL_PRICES.double;
         const estimatedTotal = nightly * rooms * nights;
-        const intro = t(
-          "royal_wa_intro",
-          "Hello! I'd like to check availability at Hotel Royal for the following stay:"
-        );
         return [
-          intro,
+          t(
+            "royal_wa_intro",
+            "Hello! I'd like to check availability at Hotel Royal for the following stay:"
+          ),
           "",
           `${t("royal_checkin_label", "Check-in date")}: ${formatDateInput(checkIn)}`,
           `${t("royal_room_type_label", "Room type")}: ${roomTypeLabel(roomType)}`,
@@ -279,8 +285,13 @@
       }
 
       function openWhatsApp() {
-        const message = encodeURIComponent(buildWhatsAppMessage());
-        window.open(`https://wa.me/${WA_NUMBER}?text=${message}`, "_blank", "noopener,noreferrer");
+        const message = buildWhatsAppMessage();
+        if (typeof window.sacramentoOpenWhatsApp === "function") {
+          window.sacramentoOpenWhatsApp(WA_NUMBER, message);
+          return;
+        }
+        const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank", "noopener,noreferrer");
       }
 
       document.getElementById("royalReserveBtn")?.addEventListener("click", openWhatsApp);

@@ -349,6 +349,28 @@
     });
   }
 
+  function sacramentoGetLangForWaFloat() {
+    const active = window.__SACRAMENTO_ACTIVE_LANG__;
+    if (active === "en" || active === "es" || active === "pt") return active;
+    if (typeof window.getSiteLanguage === "function") return window.getSiteLanguage();
+    if (typeof window.getInitialLanguage === "function") return window.getInitialLanguage();
+    return "en";
+  }
+
+  function sacramentoInitWhatsAppFloatLinks(root) {
+    const scope = root && root.querySelectorAll ? root : document;
+    if (!scope.querySelectorAll) return;
+    const lang = sacramentoGetLangForWaFloat();
+    const tr = window.__SACRAMENTO_TRANSLATIONS?.[lang] || window.__SACRAMENTO_TRANSLATIONS?.en || {};
+    const text = tr.wa_float_text || "Hello! I'm interested in your experiences in Colonia.";
+    const href = sacramentoBuildWhatsAppUrl(SACRAMENTO_DEFAULT_WHATSAPP_NUMBER, text);
+    if (!href) return;
+    scope.querySelectorAll("a.whatsapp-float").forEach((anchor) => {
+      anchor.setAttribute("href", href);
+      if (anchor.getAttribute("target") === "_blank") anchor.removeAttribute("target");
+    });
+  }
+
   window.SACRAMENTO_TAXI_WHATSAPP_NUMBER = SACRAMENTO_TAXI_WHATSAPP_NUMBER;
   window.sacramentoBuildWhatsAppUrl = sacramentoBuildWhatsAppUrl;
   window.sacramentoOpenWhatsApp = sacramentoOpenWhatsApp;
@@ -356,10 +378,12 @@
   window.sacramentoNavigatePendingTabToWhatsApp = sacramentoNavigatePendingTabToWhatsApp;
   window.sacramentoFixWhatsAppAnchorTargets = sacramentoFixWhatsAppAnchorTargets;
   window.sacramentoInitTaxiFloatLinks = sacramentoInitTaxiFloatLinks;
+  window.sacramentoInitWhatsAppFloatLinks = sacramentoInitWhatsAppFloatLinks;
 
   if (typeof document !== "undefined") {
     const run = () => {
       sacramentoInitTaxiFloatLinks(document);
+      sacramentoInitWhatsAppFloatLinks(document);
       sacramentoFixWhatsAppAnchorTargets(document);
     };
     if (document.readyState === "loading") {
@@ -367,5 +391,8 @@
     } else {
       run();
     }
+    document.addEventListener("sacramento:setLanguage", () => {
+      sacramentoInitWhatsAppFloatLinks(document);
+    });
   }
 })();
