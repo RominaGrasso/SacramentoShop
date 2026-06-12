@@ -183,6 +183,27 @@ function sacramentoI18nTable() {
   return {};
 }
 
+function sacramentoGetI18nText(key, fallback) {
+  const lang = getSiteLanguage();
+  const tr = sacramentoI18nTable();
+  return tr?.[lang]?.[key] ?? tr?.en?.[key] ?? fallback ?? key;
+}
+
+function sacramentoInitWhatsAppFloatLinks(root) {
+  const scope = root && root.querySelectorAll ? root : document;
+  if (!scope.querySelectorAll) return;
+  const text = sacramentoGetI18nText(
+    "wa_float_text",
+    "Hello! I'm interested in your experiences in Colonia."
+  );
+  const href = sacramentoBuildWhatsAppUrl(SACRAMENTO_DEFAULT_WHATSAPP_NUMBER, text);
+  if (!href) return;
+  scope.querySelectorAll("a.whatsapp-float").forEach((anchor) => {
+    anchor.setAttribute("href", href);
+    if (anchor.getAttribute("target") === "_blank") anchor.removeAttribute("target");
+  });
+}
+
 function stableStringify(value) {
   if (value === null || typeof value !== "object") {
     return JSON.stringify(value);
@@ -6692,10 +6713,14 @@ window.sacramentoRunReserveWhatsAppFlow = sacramentoRunReserveWhatsAppFlow;
 window.SACRAMENTO_TAXI_WHATSAPP_NUMBER = SACRAMENTO_TAXI_WHATSAPP_NUMBER;
 window.sacramentoFixWhatsAppAnchorTargets = sacramentoFixWhatsAppAnchorTargets;
 window.sacramentoInitTaxiFloatLinks = sacramentoInitTaxiFloatLinks;
+window.sacramentoInitWhatsAppFloatLinks = sacramentoInitWhatsAppFloatLinks;
+window.sacramentoGetI18nText = sacramentoGetI18nText;
+window.getSiteLanguage = getSiteLanguage;
 
 if (typeof document !== "undefined") {
   const runWaAnchorFix = () => {
     sacramentoInitTaxiFloatLinks(document);
+    sacramentoInitWhatsAppFloatLinks(document);
     sacramentoFixWhatsAppAnchorTargets(document);
   };
   if (document.readyState === "loading") {
@@ -6703,6 +6728,9 @@ if (typeof document !== "undefined") {
   } else {
     runWaAnchorFix();
   }
+  document.addEventListener("sacramento:setLanguage", () => {
+    sacramentoInitWhatsAppFloatLinks(document);
+  });
 }
 
 /** Activity pages load orders.js without payments-api-config.js — same Render prewarm once per session. */

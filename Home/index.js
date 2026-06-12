@@ -1526,6 +1526,7 @@ const translations = {
       bruma_map_link: "Open in Google Maps",
       bruma_map_iframe_title: "Map: Bruma, Colonia del Sacramento",
       wa_float_aria: "WhatsApp",
+      wa_float_text: "Hello! I'm interested in your experiences in Colonia.",
       bruma_back_home: "Back to Home",
       bruma_popup_title: "Chef's curated menu:",
       bruma_popup_starter: "Starter",
@@ -3924,6 +3925,7 @@ const translations = {
       bruma_map_link: "Abrir en Google Maps",
       bruma_map_iframe_title: "Mapa: Bruma, Colonia del Sacramento",
       wa_float_aria: "WhatsApp",
+      wa_float_text: "¡Hola! Me interesan sus experiencias en Colonia.",
       bruma_back_home: "Volver al inicio",
       bruma_popup_title: "Menú curado por el chef:",
       bruma_popup_starter: "Entrada",
@@ -6321,6 +6323,7 @@ const translations = {
       bruma_map_link: "Abrir no Google Maps",
       bruma_map_iframe_title: "Mapa: Bruma, Colonia del Sacramento",
       wa_float_aria: "WhatsApp",
+      wa_float_text: "Olá! Tenho interesse nas experiências em Colonia.",
       bruma_back_home: "Voltar para o início",
       bruma_popup_title: "Menu selecionado pelo chef:",
       bruma_popup_starter: "Entrada",
@@ -8203,6 +8206,10 @@ function initRentPopupBehavior() {
     });
 
     document.dispatchEvent(new CustomEvent("sacramento:setLanguage", { detail: { language } }));
+
+    if (typeof window.sacramentoInitWhatsAppFloatLinks === "function") {
+      window.sacramentoInitWhatsAppFloatLinks();
+    }
 
     if (typeof window.sacramentoRenderWalkingPriceBadges === "function") {
       window.sacramentoRenderWalkingPriceBadges();
