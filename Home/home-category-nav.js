@@ -57,6 +57,7 @@
     "sunset-boat.html": ["boat"],
     "cabal.html": ["horseback"],
     "legado.html": ["bodega", "fullday"],
+    "hotel-royal.html": ["lodging", "night"],
   };
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
@@ -71,7 +72,7 @@
       "home-cabalgata-liebres-card",
     ],
     boat: [],
-    lodging: ["home-card-mision-bruma"],
+    lodging: ["home-card-hotel-royal", "home-card-mision-bruma"],
     dining: ["home-vinos-card", "home-quinton-card"],
     gastronomy: ["home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
@@ -81,6 +82,7 @@
     "home-walking-tour-card": ["tours"],
     "home-fullday-colonia-card": ["fullday"],
     "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
+    "home-card-hotel-royal": ["lodging", "night"],
     "home-card-mision-bruma": ["lodging", "gastronomy"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
     "home-cabal-card": ["horseback"],
