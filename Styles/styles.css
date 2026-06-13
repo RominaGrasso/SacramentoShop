@@ -1660,6 +1660,30 @@
     }
   }
 
+  .page-hotel-royal .price-box {
+    display: block;
+    max-width: 100%;
+  }
+
+  .page-hotel-royal .royal-promo-actions,
+  .page-hotel-royal .royal-order-actions {
+    margin-top: 18px;
+    margin-bottom: 0;
+    justify-content: center;
+  }
+
+  .page-hotel-royal .order-start .royal-order-actions {
+    margin-top: 14px;
+  }
+
+  .page-hotel-royal .royal-order-actions .btn,
+  .page-hotel-royal .royal-promo-actions .btn {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
   .horse-hero {
     height: 55vh;
     min-height: 280px;
