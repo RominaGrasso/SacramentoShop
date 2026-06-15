@@ -890,10 +890,16 @@
 
     bindModalCardInteractions(modalCards);
     refreshModalCardChrome(modalCards);
+    if (typeof window.sacramentoMountHomeCardPrices === "function") {
+      window.sacramentoMountHomeCardPrices(modalCards);
+    }
 
     if (typeof window.sacramentoSetLanguage === "function") {
       window.sacramentoSetLanguage(siteLanguage());
       refreshModalCardChrome(modalCards);
+      if (typeof window.sacramentoMountHomeCardPrices === "function") {
+        window.sacramentoMountHomeCardPrices(modalCards);
+      }
     }
 
     modal.classList.add("is-open");

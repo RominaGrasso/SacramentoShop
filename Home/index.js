@@ -11,6 +11,11 @@ const translations = {
       home_activity_search_placeholder: "Search activities…",
       home_activity_search_clear: "Clear search",
       home_activity_search_empty: "No activities match your search.",
+      home_card_price_from: "From",
+      home_card_price_per_person: "per person",
+      home_card_price_per_night: "per night",
+      home_card_hotel_promo_label: "Exclusive benefit",
+      home_card_hotel_promo_value: "Promotional code",
       home_google_reviews_title: "Google Reviews",
       home_google_reviews_sub: "Trusted by travelers",
       home_google_reviews_aria: "Read Sacramento Adventures reviews on Google (opens in new tab)",
@@ -640,7 +645,7 @@ const translations = {
       horse_home_meta_t: "1 hour",
       horse_home_meta_n: "Countryside trails & nature",
       horse_home_meta_transport: "Transport available included (optional)",
-      cabal_page_price_line: "USD 35 per person",
+      cabal_page_price_line: "USD 30 per person",
       cabal_page_departures:
         "Departure times: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 and 17:00",
       cabal_availability_whatsapp_notice:
@@ -2455,6 +2460,11 @@ const translations = {
       home_activity_search_placeholder: "Buscar actividades…",
       home_activity_search_clear: "Borrar búsqueda",
       home_activity_search_empty: "No hay actividades que coincidan con tu búsqueda.",
+      home_card_price_from: "Desde",
+      home_card_price_per_person: "por persona",
+      home_card_price_per_night: "por noche",
+      home_card_hotel_promo_label: "Beneficio exclusivo",
+      home_card_hotel_promo_value: "Código promocional",
       home_google_reviews_title: "Reseñas en Google",
       home_google_reviews_sub: "Con la confianza de viajeros",
       home_google_reviews_aria: "Ver reseñas de Sacramento Adventures en Google (se abre en una pestaña nueva)",
@@ -3084,7 +3094,7 @@ const translations = {
       horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Senderos campestres y naturaleza",
       horse_home_meta_transport: "Traslado disponible incluido (opcional)",
-      cabal_page_price_line: "USD 35 por persona",
+      cabal_page_price_line: "USD 30 por persona",
       cabal_page_departures:
         "Horarios de salida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 y 17:00 hs",
       cabal_availability_whatsapp_notice:
@@ -4899,6 +4909,11 @@ const translations = {
       home_activity_search_placeholder: "Buscar atividades…",
       home_activity_search_clear: "Limpar busca",
       home_activity_search_empty: "Nenhuma atividade corresponde à sua busca.",
+      home_card_price_from: "A partir de",
+      home_card_price_per_person: "por pessoa",
+      home_card_price_per_night: "por noite",
+      home_card_hotel_promo_label: "Benefício exclusivo",
+      home_card_hotel_promo_value: "Código promocional",
       home_google_reviews_title: "Avaliações no Google",
       home_google_reviews_sub: "Com a confiança de viajantes",
       home_google_reviews_aria: "Ver avaliações da Sacramento Adventures no Google (abre em nova aba)",
@@ -5526,7 +5541,7 @@ const translations = {
       horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Trilhas rurais e natureza",
       horse_home_meta_transport: "Transporte disponível incluído (opcional)",
-      cabal_page_price_line: "USD 35 por pessoa",
+      cabal_page_price_line: "USD 30 por pessoa",
       cabal_page_departures:
         "Horários de partida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 e 17:00 h",
       cabal_availability_whatsapp_notice:
