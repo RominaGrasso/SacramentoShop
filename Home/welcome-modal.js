@@ -10,33 +10,24 @@
 
   const COPY = {
     es: {
-      title: "Bienvenido a Sacramento Adventures",
-      item1:
-        "🌎 Experiencias auténticas creadas junto a emprendedores y guías locales.",
-      item2:
-        "🐾 Gracias a nuestros viajeros, ya pudimos donar 50 capas para perros callejeros de Colonia y seguimos trabajando en nuevos proyectos de bienestar animal.",
-      item3:
-        "🏢 ¿Organizás una actividad para tu empresa? También ofrecemos experiencias corporativas y team buildings.",
+      title: "💙 Tu reserva genera impacto local",
+      item1: "🌎 Apoya a guías locales",
+      item2: "🤝 Apoya a emprendedores locales",
+      item3: "🐾 Ayuda a financiar iniciativas de bienestar animal",
       cta: "Explorar experiencias",
     },
     en: {
-      title: "Welcome to Sacramento Adventures",
-      item1:
-        "🌎 Authentic experiences created together with local guides and entrepreneurs.",
-      item2:
-        "🐾 Thanks to our travelers, we have already donated 50 coats for stray dogs in Colonia and continue working on new animal welfare projects.",
-      item3:
-        "🏢 Planning an activity for your company? We also offer corporate experiences and team-building activities.",
+      title: "💙 Your booking creates local impact",
+      item1: "🌎 Supports local guides",
+      item2: "🤝 Supports local entrepreneurs",
+      item3: "🐾 Helps fund animal welfare initiatives",
       cta: "Explore experiences",
     },
     pt: {
-      title: "Bem-vindo à Sacramento Adventures",
-      item1:
-        "🌎 Experiências autênticas criadas junto com guias e empreendedores locais.",
-      item2:
-        "🐾 Graças aos nossos viajantes, já doamos 50 capas para cães de rua em Colonia e continuamos trabalhando em novos projetos de bem-estar animal.",
-      item3:
-        "🏢 Está organizando uma atividade para sua empresa? Também oferecemos experiências corporativas e atividades de team building.",
+      title: "💙 Sua reserva gera impacto local",
+      item1: "🌎 Apoia guias locais",
+      item2: "🤝 Apoia empreendedores locais",
+      item3: "🐾 Ajuda a financiar iniciativas de bem-estar animal",
       cta: "Explorar experiências",
     },
   };
