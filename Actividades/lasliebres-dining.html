@@ -78,7 +78,7 @@
 <p data-translate="liebres_dining_about_p">
       Enjoy a lunch or dinner experience at <strong>Las Liebres</strong>, a boutique restaurant in Colonia del
       Sacramento. This activity focuses on the gastronomic menu and restaurant atmosphere, with private transfer
-      included. Andres, the manager, will be waiting to welcome your group at Las Liebres. You can choose your preferred meal format when you create your order.
+      included. You can choose your preferred meal format when you create your order.
     </p>
 <a class="reel-link-btn" data-translate="liebres_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
       🎥 Watch Reel on @_sacramentoadventures
@@ -94,11 +94,9 @@
 </div>
 <div class="price-options">
 <div class="price-box">
-<h3 data-translate="liebres_dining_price_title">Dining experiences from USD 65</h3>
+<h3 data-translate="liebres_dining_price_title">Dining experiences from USD 75</h3>
 <p data-translate="liebres_dining_price_p">
-          Private transport is billed by vehicle: <strong>USD 40</strong> total for 1–4 guests (one vehicle);
-          <strong>USD 80</strong> total for 5–8 guests (two vehicles). Add one order per guest — the summary and
-          total update automatically.
+          Private transport is billed by vehicle: <strong>USD 40</strong> total for 1–4 guests (one vehicle).
         </p>
 </div>
 </div>
@@ -122,27 +120,6 @@
 </div>
 </div>
 </div>
-<div class="liebres-group-guide-wrap" id="liebresDiningGroupGuideWrap" style="display: none">
-<div class="liebres-group-guide-row">
-<label class="liebres-guide-label">
-<input id="liebresDiningGroupGuide" name="groupGuide" type="checkbox" value="1"/>
-<span data-translate="liebres_group_guide_cb">Include a guide for the whole group (USD 25 total)</span>
-</label>
-<div class="liebres-guide-help-wrap">
-<button aria-controls="liebresDiningGroupGuideHelpPanel" aria-expanded="false" aria-label="More information about the optional group guide" class="liebres-guide-help-btn" data-translate-aria-label="liebres_dining_guide_help_aria" data-translate-title="liebres_guide_help_btn" id="liebresDiningGroupGuideHelpBtn" title="What the guide does" type="button">
-<span aria-hidden="true">ℹ️</span>
-</button>
-<div class="liebres-guide-help-panel" hidden="" id="liebresDiningGroupGuideHelpPanel" role="tooltip">
-<p data-translate="liebres_dining_guide_help_p">
-              El guía acompaña al grupo desde el punto de encuentro hasta Las Liebres y coordina los tiempos del
-              servicio para que la experiencia fluya sin esperas. También ayuda con la
-              organización en mesa y necesidades del grupo durante toda la actividad, y acompaña la coordinación del
-              regreso.
-            </p>
-</div>
-</div>
-</div>
-</div>
 <div class="order-summary" id="orderSummaryLiebresDining"></div>
 <div class="experience-support-notice" role="status">
 <p>
@@ -152,15 +129,18 @@
 <section class="coffee-gallery">
 <h2 data-translate="liebres_dining_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
-<img alt="Las Liebres dining room" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb7.webp" width="1200"/>
+<img alt="Las Liebres boutique restaurant in Colonia" data-translate-alt="liebres_gal_alt_lieb1" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb228.webp" width="1200"/>
 <img alt="Las Liebres table setting" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2.webp" width="1200"/>
 <img alt="Las Liebres signature dishes" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb3.webp" width="1200"/>
 <img alt="Boutique dining atmosphere" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb4.webp" width="1200"/>
 <img alt="Las Liebres restaurant detail" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb5.webp" width="1200"/>
-<img alt="Las Liebres ambiance" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2121.webp" width="1200"/>
+<img alt="Las Liebres restaurant atmosphere" data-translate-alt="liebres_gal_alt_lieb6" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb6.webp" width="1200"/>
 <img alt="Las Liebres venue in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2020.webp" width="1200"/>
-<img alt="Dining experience at Las Liebres" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb23.webp" width="1200"/>
+<img alt="Las Liebres restaurant detail" data-translate-alt="liebres_gal_alt_lieb22" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb22.webp" width="1200"/>
 <img alt="Dining experience at Las Liebres" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb20.webp" width="1200"/>
+<img alt="Wine tasting at Las Liebres" data-translate-alt="liebres_gal_alt_lieb7" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb7.webp" width="1200"/>
+<img alt="Las Liebres ambiance" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2121.webp" width="1200"/>
+<img alt="Las Liebres dining experience" data-translate-alt="liebres_gal_alt_lieb23" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb23.webp" width="1200"/>
 </div>
 </section>
 <div class="coffee-actions">
@@ -193,28 +173,24 @@
       },
       packageRadioName: "packageId",
       transportPerVehicle: 40,
-      groupGuideOptional: true,
-      groupGuideFlatFee: 25,
-      groupGuideCheckboxId: "liebresDiningGroupGuide",
-      groupGuideWrapId: "liebresDiningGroupGuideWrap",
       packages: {
         lunch_vinedo: {
-          price: 65,
+          price: 75,
           label: "Lunch — Propuesta Viñedo",
           labelKey: "liebres_dining_pkg_lunch_vinedo_label"
         },
         lunch_ceibo: {
-          price: 80,
+          price: 90,
           label: "Lunch — Propuesta Ceibo",
           labelKey: "liebres_dining_pkg_lunch_ceibo_label"
         },
         dinner_vinedo: {
-          price: 65,
+          price: 75,
           label: "Dinner — Propuesta Viñedo",
           labelKey: "liebres_dining_pkg_dinner_vinedo_label"
         },
         dinner_ceibo: {
-          price: 80,
+          price: 90,
           label: "Dinner — Propuesta Ceibo",
           labelKey: "liebres_dining_pkg_dinner_ceibo_label"
         }
@@ -248,7 +224,7 @@
 <div class="liebres-dining-pkg-stack">
 <label>
 <input name="liebresDiningMenu" type="radio" value="vinedo"/>
-<span data-translate="liebres_dining_pkg_vinedo_menu_line">Viñedo menu 🍇 — USD 65</span>
+<span data-translate="liebres_dining_pkg_vinedo_menu_line">Viñedo menu 🍇 — USD 75</span>
 </label>
 <p class="liebres-dining-pkg-subline"><small data-translate="liebres_dining_pkg_lunch_vinedo_sub">Balanced menu selection</small></p>
 <ul class="liebres-dining-pkg-bullets">
@@ -262,7 +238,7 @@
 <div class="liebres-dining-pkg-stack">
 <label>
 <input name="liebresDiningMenu" type="radio" value="ceibo"/>
-<span data-translate="liebres_dining_pkg_ceibo_menu_line">Ceibo menu 🌳 — USD 80</span>
+<span data-translate="liebres_dining_pkg_ceibo_menu_line">Ceibo menu 🌳 — USD 90</span>
 </label>
 <p class="liebres-dining-pkg-subline"><small data-translate="liebres_dining_pkg_lunch_ceibo_sub">Premium menu selection</small></p>
 <ul class="liebres-dining-pkg-bullets">
@@ -311,47 +287,6 @@
 <img class="lightbox-img" decoding="async" id="lightboxImg"/>
 <button class="lightbox-btn next" id="nextBtn">›</button>
 </div>
-<script>
-    (function () {
-      function initLiebresDiningGuideHelp() {
-        const btn = document.getElementById("liebresDiningGroupGuideHelpBtn");
-        const panel = document.getElementById("liebresDiningGroupGuideHelpPanel");
-        if (!btn || !panel) return;
-
-        function close() {
-          panel.hidden = true;
-          btn.setAttribute("aria-expanded", "false");
-        }
-
-        function toggle() {
-          const open = panel.hidden;
-          panel.hidden = !open;
-          btn.setAttribute("aria-expanded", String(open));
-        }
-
-        btn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          toggle();
-        });
-
-        document.addEventListener("click", function (e) {
-          if (panel.hidden) return;
-          if (btn.contains(e.target) || panel.contains(e.target)) return;
-          close();
-        });
-
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") close();
-        });
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initLiebresDiningGuideHelp);
-      } else {
-        initLiebresDiningGuideHelp();
-      }
-    })();
-  </script>
 <a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
 <img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
 </a>

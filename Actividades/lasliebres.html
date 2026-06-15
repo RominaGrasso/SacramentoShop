@@ -81,7 +81,7 @@
 <section class="coffee-content">
 <h2 data-translate="liebres_about_title">About this experience</h2>
 <p data-translate="liebres_about_p">
-      A private transfer takes you to Comarca Las Liebres, where Andrés, the manager, will welcome your group. You'll walk through the vineyard and organic garden and enjoy a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Then a private transfer takes you to a guided horseback ride on the outskirts of Colonia, near Colonia Soho, in beautiful open countryside. Plan on about 3 to 4 hours for the full experience (visit, tasting, ride, and transfers).
+      A private transfer takes you to Comarca Las Liebres. You'll walk through the vineyard and organic garden and enjoy a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Then a private transfer takes you to a guided horseback ride on the outskirts of Colonia, in beautiful open countryside. Plan on about 3 to 4 hours for the full experience (visit, tasting, ride, and transfers).
     </p>
 <a class="reel-link-btn" data-translate="liebres_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
       🎥 Watch Reel on @_sacramentoadventures
@@ -118,9 +118,9 @@
 </div>
 <div class="price-options">
 <div class="price-box">
-<h3 data-translate="liebres_price_title">USD 85 per guest + optional group guide</h3>
+<h3 data-translate="liebres_price_title">USD 85 per guest</h3>
 <p data-translate="liebres_price_p">
-            The experience includes transfer to Las Liebres, vineyard &amp; garden visit, three-wine tasting with pairings, and a horseback ride on the outskirts of Colonia, near Colonia Soho. Allow roughly 3 to 4 hours door-to-door. Private transport is billed by vehicle: USD 50 total for 1–4 guests (one vehicle); USD 100 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.
+            Private transport is billed by vehicle: USD 50 total for 1–4 guests (one vehicle).
           </p>
 </div>
 </div>
@@ -151,24 +151,6 @@
 <button class="btn primary-btn" data-translate="liebres_create_btn" id="createMenuBtnLiebres" type="button">
             + Create your order
           </button>
-</div>
-</div>
-</div>
-<div class="liebres-group-guide-wrap" id="liebresGroupGuideWrap" style="display: none">
-<div class="liebres-group-guide-row">
-<label class="liebres-guide-label">
-<input id="liebresGroupGuide" name="groupGuide" type="checkbox" value="1"/>
-<span data-translate="liebres_group_guide_cb">Include a guide for the whole group (USD 25 total)</span>
-</label>
-<div class="liebres-guide-help-wrap">
-<button aria-controls="liebresGroupGuideHelpPanel" aria-expanded="false" class="liebres-guide-help-btn" data-translate-title="liebres_guide_help_btn" id="liebresGroupGuideHelpBtn" title="What the guide does" type="button">
-<span aria-hidden="true">ℹ️</span>
-</button>
-<div class="liebres-guide-help-panel" hidden="" id="liebresGroupGuideHelpPanel" role="tooltip">
-<p data-translate="liebres_guide_help_p">
-              The guide meets your group at the agreed pick-up point, accompanies you on the horseback ride (including taking photos), joins you at Las Liebres for the vineyard visit, and at the end drops you back at your starting point, hotel, or the bus terminal.
-            </p>
-</div>
 </div>
 </div>
 </div>
@@ -218,10 +200,6 @@
         experienceNameKey: "liebres_experience_name",
         pricePerPerson: 85,
         guideFeePerPerson: 0,
-        groupGuideOptional: true,
-        groupGuideFlatFee: 25,
-        groupGuideCheckboxId: "liebresGroupGuide",
-        groupGuideWrapId: "liebresGroupGuideWrap",
         transportPerVehicle: 50,
         choiceSectionLabelKeys: {
           starter: "liebres_choice_starter",
@@ -266,47 +244,6 @@
           5: "https://pago.handy.uy/details/?sessionId=LINK_560"
         }
       });
-    </script>
-<script>
-      (function () {
-        function initLiebresGuideHelp() {
-          const btn = document.getElementById("liebresGroupGuideHelpBtn");
-          const panel = document.getElementById("liebresGroupGuideHelpPanel");
-          if (!btn || !panel) return;
-
-          function close() {
-            panel.hidden = true;
-            btn.setAttribute("aria-expanded", "false");
-          }
-
-          function toggle() {
-            const open = panel.hidden;
-            panel.hidden = !open;
-            btn.setAttribute("aria-expanded", String(open));
-          }
-
-          btn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            toggle();
-          });
-
-          document.addEventListener("click", function (e) {
-            if (panel.hidden) return;
-            if (btn.contains(e.target) || panel.contains(e.target)) return;
-            close();
-          });
-
-          document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") close();
-          });
-        }
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", initLiebresGuideHelp);
-        } else {
-          initLiebresGuideHelp();
-        }
-      })();
     </script>
 <div aria-hidden="true" class="popup-overlay" id="popupLiebres">
 <div aria-labelledby="liebresPopupTitle" aria-modal="true" class="popup-box" role="dialog">

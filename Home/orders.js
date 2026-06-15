@@ -14,6 +14,9 @@ function getSiteLanguage() {
       const activeBtn = document.querySelector(".lang-btn.active");
       const btnLang = activeBtn?.dataset?.lang;
       if (btnLang === "en" || btnLang === "es" || btnLang === "pt") return btnLang;
+
+      const docLang = document.documentElement.lang;
+      if (docLang === "en" || docLang === "es" || docLang === "pt") return docLang;
     }
 
     if (typeof window.getInitialLanguage === "function") {
@@ -5463,11 +5466,15 @@ function initPackageOrderExperience(config) {
 
     const buildWhatsAppMessage = (orders, paymentLinkOverride = "") => {
       const dynamicEnabled = Boolean(dynamicPayment && dynamicPayment.enabled);
-      const date = new Date().toLocaleDateString("en-GB", {
+      const lang = getSiteLanguage();
+      const dateLocale = lang === "es" ? "es-UY" : lang === "pt" ? "pt-BR" : "en-GB";
+      const date = new Date().toLocaleDateString(dateLocale, {
         day: "2-digit",
         month: "short",
         year: "numeric"
       });
+
+      const pkgLabel = getI18nText("orders_pkg_package_lbl", "Package:").replace(/:?\s*$/, "");
 
       let ordersText = "";
       let experienceSubtotal = 0;
@@ -5480,10 +5487,13 @@ function initPackageOrderExperience(config) {
             ? "-"
             : prefs.map(decoratePkgPref).filter((p) => p && p !== "-").join(", ") || "-";
 
-        ordersText += `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*\nPackage: ${packageLineForOrder(o, orders)}${
+        ordersText += `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*\n${waLine(
+          pkgLabel,
+          packageLineForOrder(o, orders)
+        )}${
           experienceSkipsPreferencesField
             ? "\n\n"
-            : `\nPreferences: ${prefsWa}\n\n`
+            : `\n${waLine(getI18nText("preferences_label", "Preferences"), prefsWa)}\n\n`
         }`;
       });
 
@@ -5496,10 +5506,25 @@ function initPackageOrderExperience(config) {
         : experienceName;
       const waIntro = whatsappIntroKey
         ? getI18nText(whatsappIntroKey, `Hello! I'd like to book the ${experienceName} experience:`)
-        : `Hello! I'd like to book the ${expName} experience:`;
-      let message = `${waIntro}\n\n${getI18nText("orders_wa_date_label", "Date")}: ${date}\n\n${ordersText}`;
+        : getI18nText(
+            "orders_wa_intro",
+            "Hello! I'd like to book the {experience} experience:"
+          ).replace(/\{experience\}/g, expName);
+      let message = `${waIntro}\n\n${waLine(getI18nText("orders_wa_date_label", "Date"), date)}\n\n${ordersText}`;
+
+      const subtotalLabel = getI18nText("orders_wa_experience_subtotal", "Experience subtotal");
+      const formatSubtotal = (amount, guideNote = "") =>
+        `${waLine(subtotalLabel, `USD ${formatMoney(amount)}`)}${guideNote ? ` ${guideNote}` : ""}\n`;
+
       if (usesFlatGuestTransport(orders) && orders.length > 0) {
-        message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}\n*Transport (USD ${formatMoney(flatGuestTransportRate)} per guest × ${orders.length}):* USD ${formatMoney(transportTotal)}\n`;
+        message += formatSubtotal(experienceSubtotal);
+        message += `${waLine(
+          trTpl("orders_wa_pkg_transport_flat", "Transport (USD {rate} per guest × {count})", {
+            rate: formatMoney(flatGuestTransportRate),
+            count: orders.length
+          }),
+          `USD ${formatMoney(transportTotal)}`
+        )}\n`;
       } else if (usesGroupTransport(orders) && orders.length > 0) {
         const vehicles = Math.ceil(orders.length / 4);
         const guideTotalOptional =
@@ -5510,32 +5535,83 @@ function initPackageOrderExperience(config) {
         if (guideFee > 0) {
           if (guideOptional) {
             if (guideTotalOptional > 0) {
-              guideNote = ` (includes USD ${formatMoney(guideTotalOptional)} in optional guide fees)`;
+              guideNote = trTpl(
+                "orders_wa_pkg_guide_opt_note",
+                "(includes USD {amount} in optional guide fees)",
+                { amount: formatMoney(guideTotalOptional) }
+              );
             }
           } else {
-            guideNote = ` (includes USD ${formatMoney(guideFee)} guide fee per guest)`;
+            guideNote = trTpl(
+              "orders_wa_pkg_guide_incl_note",
+              "(includes USD {amount} guide fee per guest)",
+              { amount: formatMoney(guideFee) }
+            );
           }
         }
-        message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}${guideNote}\n*Private transport (${orders.length} guests, ${vehicles} vehicle${vehicles === 1 ? "" : "s"} × USD ${formatMoney(vehicleTransportRate)}):* USD ${formatMoney(transportTotal)}\n`;
+        message += formatSubtotal(experienceSubtotal, guideNote);
+        const vehicleWord =
+          vehicles === 1
+            ? getI18nText("orders_wa_vehicle_singular", "vehicle")
+            : getI18nText("orders_wa_vehicle_plural", "vehicles");
+        const transportLabel = getI18nText(
+          "orders_wa_private_transport_line",
+          "Private transport ({vehicles} {vehicleWord} × USD {rate})"
+        )
+          .replace(/\{vehicles\}/g, String(vehicles))
+          .replace(/\{vehicleWord\}/g, vehicleWord)
+          .replace(/\{rate\}/g, formatMoney(vehicleTransportRate));
+        message += `${waLine(transportLabel, `USD ${formatMoney(transportTotal)}`)}\n`;
       } else if (guideFee > 0 && orders.length > 0) {
         if (guideOptional) {
           const guideTotalOptional = orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0);
           if (guideTotalOptional > 0) {
-            message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)} (includes USD ${formatMoney(guideTotalOptional)} in optional guide fees)\n`;
+            message += formatSubtotal(
+              experienceSubtotal,
+              trTpl(
+                "orders_wa_pkg_guide_opt_note",
+                "(includes USD {amount} in optional guide fees)",
+                { amount: formatMoney(guideTotalOptional) }
+              )
+            );
           } else {
-            message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)}\n`;
+            message += formatSubtotal(experienceSubtotal);
           }
         } else {
-          message += `*Experience subtotal:* USD ${formatMoney(experienceSubtotal)} (includes USD ${formatMoney(guideFee)} guide fee per guest)\n`;
+          message += formatSubtotal(
+            experienceSubtotal,
+            trTpl(
+              "orders_wa_pkg_guide_incl_note",
+              "(includes USD {amount} guide fee per guest)",
+              { amount: formatMoney(guideFee) }
+            )
+          );
         }
+      } else if (orders.length > 0) {
+        message += formatSubtotal(experienceSubtotal);
       }
+
       if (groupGuideEnabled) {
-        message += `*Group guide (optional, USD ${formatMoney(groupGuideFlat)} total):* ${gg > 0 ? `Yes — USD ${formatMoney(gg)}` : "No"}\n`;
+        const groupGuideLabel = getI18nText(
+          "orders_wa_group_guide_optional",
+          "Group guide (optional, USD {amount} total for the group)"
+        ).replace(/\{amount\}/g, formatMoney(groupGuideFlat));
+        const groupGuideValue =
+          gg > 0
+            ? getI18nText("orders_wa_group_guide_yes", "Yes — USD {amount}").replace(
+                /\{amount\}/g,
+                formatMoney(gg)
+              )
+            : getI18nText("guide_no", "No");
+        message += `${waLine(groupGuideLabel, groupGuideValue)}\n`;
       }
-      message += `*Total:* USD ${formatMoney(total)}\n`;
+      message += `${waLine(getI18nText("orders_wa_total_label", "Total"), `USD ${formatMoney(total)}`)}\n`;
 
       if (paymentLinkOverride) {
-        message += `\nTo confirm the reservation, please complete the payment here:\n${paymentLinkOverride}`;
+        message += `\n\n${getI18nText(
+          "orders_wa_pay_confirm",
+          "To confirm the reservation, please complete the payment here:"
+        )}\n${paymentLinkOverride}`;
       } else if (!dynamicEnabled && orders.length === 1) {
         const o0 = orders[0];
         const pkgKey = o0.packageId != null ? String(o0.packageId) : String(o0.packagePeople);
@@ -5544,10 +5620,16 @@ function initPackageOrderExperience(config) {
           (o0.packagePeople != null ? paymentLinksByPackage[o0.packagePeople] : "") ||
           "";
         if (link) {
-          message += `\nTo confirm the reservation, please complete the payment here:\n${link}`;
+          message += `\n\n${getI18nText(
+            "orders_wa_pay_confirm",
+            "To confirm the reservation, please complete the payment here:"
+          )}\n${link}`;
         }
-      } else {
-        message += `\nPayment link was not generated automatically for this group yet. Please confirm and we will send it right away.`;
+      } else if (!paymentLinkOverride) {
+        message += `\n\n${getI18nText(
+          "orders_wa_payment_pending",
+          "Payment link could not be generated automatically yet. Please confirm and we will send it right away."
+        )}`;
       }
 
       return message;

@@ -7,6 +7,10 @@ const translations = {
       hero_book_tagline: "Book online in less than 2 minutes",
       hero_weekend_promo: "✨ Special promotions today only",
       hero_tagline_region: "Activities in Colonia del Sacramento and the surrounding area",
+      home_activity_search_label: "Search activities",
+      home_activity_search_placeholder: "Search activities…",
+      home_activity_search_clear: "Clear search",
+      home_activity_search_empty: "No activities match your search.",
       home_google_reviews_title: "Google Reviews",
       home_google_reviews_sub: "Trusted by travelers",
       home_google_reviews_aria: "Read Sacramento Adventures reviews on Google (opens in new tab)",
@@ -110,7 +114,7 @@ const translations = {
         "Private candlelight dinner at Casa Viera in the Historic Quarter — elegant setting, gourmet menu, perfect for couples.",
       horse_title: "Horseback Riding Through Colonia's Countryside",
       horse_text:
-        "Discover the rural side of Colonia on horseback. Enjoy a relaxed ride through nature.",
+        "Discover the rural side of Colonia on horseback. Enjoy a relaxed ride through nature. Come meet our horses: Cacha, Mana, Negrita, Bimbo, Rosi, and Carmelito.",
       asado_boat_home_title: "Asado Experience (BBQ) & Boat Tour",
       asado_boat_home_meta_1: "Premium local experience",
       asado_boat_home_meta_2: "Hosted by Alejandro, owner & captain",
@@ -378,7 +382,7 @@ const translations = {
       hist_lieb_page_experience_name: "Historic Quarter & Las Liebres",
       hist_lieb_page_about_title: "About this experience",
       hist_lieb_page_about_p:
-        "Combine the best of Colonia’s UNESCO-listed Historic Quarter with a guided visit to Las Liebres — boutique vineyard, organic garden, and restaurant. Stroll cobbled streets and learn the city’s stories with a local guide, then continue to Las Liebres for a walk through the vines and garden, followed by a curated tasting or a full lunch with wine pairings, depending on the package you choose. Andres, the manager, will be waiting to welcome your group at Las Liebres. Allow approximately 3 to 4 hours for the full experience (timing may vary with pace and traffic).",
+        "Combine the best of Colonia’s UNESCO-listed Historic Quarter with a guided visit to Las Liebres — boutique vineyard, organic garden, and restaurant. Stroll cobbled streets and learn the city’s stories with a local guide, then continue to Las Liebres for a walk through the vines and garden, followed by a curated tasting or a full lunch with wine pairings, depending on the package you choose. Allow approximately 3 to 4 hours for the full experience.",
       hist_lieb_page_steps_title: "How it works",
       hist_lieb_page_step_1_title: "Private pick-up:",
       hist_lieb_page_step_1_desc:
@@ -398,9 +402,9 @@ const translations = {
       hist_lieb_page_step_6_title: "Return:",
       hist_lieb_page_step_6_desc:
         "The same private service picks you up after the experience and drops you at your hotel or the terminal.",
-      hist_lieb_page_price_title: "Experiences from USD 95",
+      hist_lieb_page_price_title: "Experiences from USD 85",
       hist_lieb_page_price_p:
-        "Listed prices include USD 20 per guest for your guide. Plus private transport by vehicle: USD 40 total for 1–4 guests (one vehicle); USD 80 total for 5–8 guests (two vehicles). Each guest adds their own package below — the summary shows experience + an equal share of the group transport.",
+        "Private transport by vehicle: USD 40 total for 1–4 guests (one vehicle).",
       hist_lieb_page_included_title: "What's included",
       hist_lieb_page_include_1: "✔ Guided walking tour of the Historic Quarter",
       hist_lieb_page_include_2: "✔ Guided visit to Las Liebres vineyard & organic garden",
@@ -418,23 +422,23 @@ const translations = {
       hist_lieb_popup_title: "Choose your package",
       hist_lieb_popup_package_lbl: "Package",
       hist_lieb_popup_package_note:
-        "(per person: experience + USD 20 guide fee; transport is shared — see summary)",
+        "(per person; transport is shared across the group — see summary)",
       hist_lieb_popup_what_you_get: "What you get:",
       hist_lieb_pkg_tasting_label: "Historic Quarter + vineyard & garden + 3-wine tasting",
-      hist_lieb_pkg_tasting_line: "Historic Quarter + vineyard & garden + tasting 🏛🍷 (USD 65)",
+      hist_lieb_pkg_tasting_line: "Historic Quarter + vineyard & garden + tasting 🏛🍷 (USD 85)",
       hist_lieb_pkg_tasting_b1: "Historic Quarter walking tour",
       hist_lieb_pkg_tasting_b2: "Visit to organic garden & vineyard",
       hist_lieb_pkg_tasting_b3: "Three wines with kitchen pairings",
       hist_lieb_pkg_tasting_b4: "Plus your share of group transport",
       hist_lieb_pkg_lunch_vinedo_label: "Historic Quarter + lunch (Propuesta Viñedo)",
-      hist_lieb_pkg_lunch_vinedo_line: "Historic Quarter + lunch — Propuesta Viñedo 🍇 (USD 85)",
+      hist_lieb_pkg_lunch_vinedo_line: "Historic Quarter + lunch — Propuesta Viñedo 🍇 (USD 105)",
       hist_lieb_pkg_lunch_vinedo_b1: "Morning historic tour",
       hist_lieb_pkg_lunch_vinedo_b2: "Lunch: starter, main and dessert (Viñedo)",
       hist_lieb_pkg_lunch_vinedo_b3: "Water, soft drinks and one glass of wine",
       hist_lieb_pkg_lunch_vinedo_b4: "Coffee or tea",
       hist_lieb_pkg_lunch_vinedo_b5: "Plus your share of group transport",
       hist_lieb_pkg_lunch_ceibo_label: "Historic Quarter + lunch (Propuesta Ceibo)",
-      hist_lieb_pkg_lunch_ceibo_line: "Historic Quarter + lunch — Propuesta Ceibo 🌳 (USD 100)",
+      hist_lieb_pkg_lunch_ceibo_line: "Historic Quarter + lunch — Propuesta Ceibo 🌳 (USD 120)",
       hist_lieb_pkg_lunch_ceibo_b1: "Morning historic tour",
       hist_lieb_pkg_lunch_ceibo_b2: "Premium lunch menu (Ceibo)",
       hist_lieb_pkg_lunch_ceibo_b3: "Water, soft drinks and one glass of wine",
@@ -633,33 +637,41 @@ const translations = {
       mate_page_gal_mateatar_alt: "Golden hour and mate by the waterfront",
       mate_page_gal_matete2_alt: "Mate table with gourds, yerba and details",
       mate_page_gal_matedete_alt: "Sweet mate and tea mate on the table",
-      horse_home_meta_t: "About 1/1:30 hours",
+      horse_home_meta_t: "1 hour",
       horse_home_meta_n: "Countryside trails & nature",
-      cabal_page_price_line: "USD 70 per person",
-      cabal_weekend_badge: "TODAY ONLY · USD 70",
-      cabal_price_original: "USD 80 per person",
-      cabal_price_discount: "USD 70 per person",
+      horse_home_meta_transport: "Transport available included (optional)",
+      cabal_page_price_line: "USD 35 per person",
+      cabal_page_departures:
+        "Departure times: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 and 17:00",
       cabal_availability_whatsapp_notice:
         "Please confirm availability with us on WhatsApp before completing your reservation.",
       cabal_about_heading: "About this experience",
       cabal_about_p:
-        "The ride takes place on the outskirts of Colonia, near Colonia Soho, in beautiful open countryside.",
+        "The ride takes place on the outskirts of Colonia, in a beautiful open countryside that leads to a beach. Very peaceful — a chance to connect with your horse. Come meet our horses: Cacha, Mana, Negrita, Bimbo, Rosi, and Carmelito.",
       cabal_included_title: "What's included",
-      cabal_include_ride: "Guided horseback riding experience",
+      cabal_include_ride: "Guided horseback riding experience · 1 hour",
       cabal_include_horses: "Calm and trained horses suitable for beginners",
-      cabal_include_safety: "Safety equipment provided",
       cabal_include_trails: "Ride through countryside trails and open landscapes",
       cabal_include_host: "Local host assistance",
-      cabal_include_transfer: "Transfer included",
+      cabal_include_transfer: "Transport available included (optional)",
       cabal_create_subtitle: "Choose your departure time. Up to 4 guests per time slot.",
       cabal_create_btn: "Create your experience",
       cabal_popup_title: "Horseback riding in the countryside",
       cabal_popup_time_heading: "Departure time",
+      cabal_popup_time_10: "10:00",
       cabal_popup_time_11: "11:00",
       cabal_popup_time_12: "12:00",
-      cabal_popup_time_13: "13:30",
+      cabal_popup_time_13: "13:00",
+      cabal_popup_time_14: "14:00",
+      cabal_popup_time_15: "15:00",
+      cabal_popup_time_16: "16:00",
+      cabal_popup_time_17: "17:00",
       cabal_popup_guests_heading: "Number of guests",
       cabal_popup_guests_hint: "Minimum 1 · maximum 4 guests per departure time.",
+      cabal_popup_transport_heading: "Round-trip transport included?",
+      cabal_popup_transport_no: "No",
+      cabal_popup_transport_yes: "Yes (+USD 40 total · up to 4 guests)",
+      cabal_popup_transport_hint: "If yes, USD 40 is added for the group (up to 4 people).",
       cabal_summary_heading: "Your horseback experience",
       cabal_summary_empty: "Tap Create your experience to choose a time and number of guests.",
       cabal_summary_time_label: "Departure time",
@@ -668,14 +680,18 @@ const translations = {
       cabal_alert_reserve_first:
         "Please set up your experience first using Create your experience.",
       cabal_summary_edit_aria: "Edit departure time and number of guests",
-      cabal_guide_addon_label: "Include a guide for the whole group (USD 25 total)",
+      cabal_guide_addon_label: "Include a guide for the whole group (USD 30 total)",
       cabal_guide_info_aria: "More about the optional companion during your ride",
       cabal_guide_help_text:
-        "The optional guide stays with your whole group to accompany you during the ride, keep everyone together, and take photos along the way. If you also have another Sacramento experience booked, they can come with you there as well. Juanma and Sabrina lead the horses, safety on the trail, and everything about the ranch and countryside — your guide is not a countryside or riding specialist and does not replace them.",
+        "The optional guide stays with your whole group to accompany you during the ride, keep everyone together, and take photos along the way.",
       cabal_guide_total_suffix: "guide (whole group)",
       cabal_summary_guide_label: "Companion guide",
-      cabal_summary_guide_included: "Yes (+USD 25 total for the group)",
+      cabal_summary_guide_included: "Yes (+USD 30 total for the group)",
       cabal_wa_guide_line: "Companion guide for the group (photos; next experience if booked)",
+      cabal_summary_transport_label: "Round-trip transport",
+      cabal_summary_transport_included: "Yes (+USD 40 total · up to 4 guests)",
+      cabal_transport_total_suffix: "round-trip transport",
+      cabal_wa_transport_line: "Round-trip transport (up to 4 guests)",
       home_mision_title:
         "Historic Night Experience: La Misión Stay, Bruma Dinner & Walking Tour",
       home_mision_meta_pf: "Pet friendly",
@@ -1364,6 +1380,10 @@ const translations = {
       barbot_page_moment_3_desc:
         "A flight, a single pint, or a lazy round - this isn’t a packaged pub crawl; it’s your evening.",
       barbot_create_title: "Create your experience",
+      barbot_brewpub_visit_date_hint:
+        "Closed on Mondays — pick another day so we can coordinate your visit in advance.",
+      barbot_brewpub_alert_monday:
+        "Barbot Brewpub is closed on Mondays. Please choose another day.",
       barbot_create_subtitle:
         "Pick your visit date, then choose Classic (USD 34) or Premium (USD 40) menu and your courses.",
       barbot_create_btn: "+ Create your experience",
@@ -1808,6 +1828,9 @@ const translations = {
         "We are a group of more than 5 people and would like to coordinate the reservation.",
       orders_wa_payment_pending:
         "Payment link could not be generated automatically yet. Please confirm and we will send it right away.",
+      orders_wa_pkg_transport_flat: "Transport (USD {rate} per guest × {count})",
+      orders_wa_pkg_guide_opt_note: "(includes USD {amount} in optional guide fees)",
+      orders_wa_pkg_guide_incl_note: "(includes USD {amount} guide fee per guest)",
       add_passenger: "Add passenger or group",
       booking_order_label: "Booking",
       booking_singular: "booking",
@@ -2030,12 +2053,12 @@ const translations = {
       liebres_choice_drink: "Wine focus",
       liebres_about_title: "About this experience",
       liebres_about_p:
-        "A private transfer takes you to Comarca Las Liebres, where Andrés, the manager, will welcome your group. You'll walk through the vineyard and organic garden and enjoy a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Then a private transfer takes you to a guided horseback ride on the outskirts of Colonia, near Colonia Soho, in beautiful open countryside. Plan on about 3 to 4 hours for the full experience (visit, tasting, ride, and transfers).",
+        "A private transfer takes you to Comarca Las Liebres. You'll walk through the vineyard and organic garden and enjoy a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Then a private transfer takes you to a guided horseback ride on the outskirts of Colonia, in beautiful open countryside. Plan on about 3 to 4 hours for the full experience (visit, tasting, ride, and transfers).",
       liebres_reel_btn: "🎥 Watch Reel on @_sacramentoadventures",
       liebres_dining_experience_name: "Dining Experience at Las Liebres",
       liebres_dining_about_title: "About this experience",
       liebres_dining_about_p:
-        "Enjoy a lunch or dinner experience at Las Liebres, a boutique restaurant in Colonia del Sacramento. This activity focuses on the gastronomic menu and restaurant atmosphere, with private transfer included. Andres, the manager, will be waiting to welcome your group at Las Liebres. You can choose your preferred meal format when you create your order.",
+        "Enjoy a lunch or dinner experience at Las Liebres, a boutique restaurant in Colonia del Sacramento. This activity focuses on the gastronomic menu and restaurant atmosphere, with private transfer included. You can choose your preferred meal format when you create your order.",
       liebres_dining_steps_title: "How it works",
       liebres_dining_step_1:
         "🚐 Private pick-up: Transfer from your hotel or the bus terminal.",
@@ -2045,9 +2068,9 @@ const translations = {
         "🌿 Restaurant setting: Boutique dining experience in a relaxed atmosphere.",
       liebres_dining_step_4:
         "🏨 Return: Private drop-off back to your hotel or terminal.",
-      liebres_dining_price_title: "Dining experiences from USD 65",
+      liebres_dining_price_title: "Dining experiences from USD 75",
       liebres_dining_price_p:
-        "Private transport is billed by vehicle: USD 40 total for 1–4 guests (one vehicle); USD 80 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.",
+        "Private transport is billed by vehicle: USD 40 total for 1–4 guests (one vehicle).",
       liebres_dining_included_title: "What's included",
       liebres_dining_include_1:
         "✔ Lunch or dinner menu at Las Liebres (depending on package)",
@@ -2075,25 +2098,25 @@ const translations = {
       liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(price per guest; transport share appears in summary)",
-      liebres_dining_pkg_vinedo_menu_line: "Viñedo menu 🍇 — USD 65",
-      liebres_dining_pkg_ceibo_menu_line: "Ceibo menu 🌳 — USD 80",
+      liebres_dining_pkg_vinedo_menu_line: "Viñedo menu 🍇 — USD 75",
+      liebres_dining_pkg_ceibo_menu_line: "Ceibo menu 🌳 — USD 90",
       liebres_dining_meal_heading: "Lunch or dinner",
       liebres_dining_meal_lunch: "Lunch",
       liebres_dining_meal_dinner: "Dinner",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Lunch — Viñedo menu 🍇 USD 65",
+        "Lunch — Viñedo menu 🍇 USD 75",
       liebres_dining_pkg_lunch_vinedo_label: "Lunch — Viñedo menu",
       liebres_dining_pkg_lunch_vinedo_sub: "Balanced menu selection",
       liebres_dining_pkg_lunch_ceibo_main:
-        "Lunch — Ceibo menu 🌳 USD 80",
+        "Lunch — Ceibo menu 🌳 USD 90",
       liebres_dining_pkg_lunch_ceibo_label: "Lunch — Ceibo menu",
       liebres_dining_pkg_lunch_ceibo_sub: "Premium menu selection",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Dinner — Viñedo menu 🍇 USD 65",
+        "Dinner — Viñedo menu 🍇 USD 75",
       liebres_dining_pkg_dinner_vinedo_label: "Dinner — Viñedo menu",
       liebres_dining_pkg_dinner_vinedo_sub: "Balanced menu selection",
       liebres_dining_pkg_dinner_ceibo_main:
-        "Dinner — Ceibo menu 🌳 USD 80",
+        "Dinner — Ceibo menu 🌳 USD 90",
       liebres_dining_pkg_dinner_ceibo_label: "Dinner — Ceibo menu",
       liebres_dining_pkg_dinner_ceibo_sub: "Premium menu selection",
       liebres_dining_pkg_vinedo_item_1:
@@ -2119,9 +2142,9 @@ const translations = {
       liebres_step_5_title: "Return:",
       liebres_step_5_desc:
         "The same private service picks you up when you finish and drops you at your hotel or the terminal.",
-      liebres_price_title: "USD 85 per guest + optional group guide",
+      liebres_price_title: "USD 85 per guest",
       liebres_price_p:
-        "The experience includes transfer to Las Liebres, vineyard & garden visit, three-wine tasting with pairings, and a horseback ride on the outskirts of Colonia, near Colonia Soho. Allow roughly 3 to 4 hours door-to-door. Private transport is billed by vehicle: USD 50 total for 1–4 guests (one vehicle); USD 100 total for 5–8 guests (two vehicles). Add one order per guest — the summary and total update automatically.",
+        "Private transport is billed by vehicle: USD 50 total for 1–4 guests (one vehicle).",
       liebres_included_title: "What's included",
       liebres_include_1:
         "✔ Guided horseback ride on the outskirts of Colonia, near Colonia Soho",
@@ -2150,6 +2173,7 @@ const translations = {
       liebres_gal_alt_lieb5: "Las Liebres dining room",
       liebres_gal_alt_lieb6: "Las Liebres restaurant atmosphere",
       liebres_gal_alt_lieb7: "Wine tasting at Las Liebres",
+      liebres_gal_alt_lieb2121: "Las Liebres ambiance",
       liebres_gal_alt_lieb22: "Las Liebres restaurant detail",
       liebres_gal_alt_lieb23: "Las Liebres dining experience",
       liebres_map_title: "Where to find Las Liebres",
@@ -2175,7 +2199,7 @@ const translations = {
       liebres_horse_time_12: "12:00",
       liebres_horse_time_13: "13:30",
       liebres_horseback_time_label: "Horseback ride",
-      liebres_horseback_summary_time: "13:30 — from Las Liebres",
+      liebres_horseback_summary_time: "13:30",
       liebres_order_transfers: "Transfers",
       liebres_horseback_time_required: "Please choose a horseback departure time.",
       liebres_horseback_time_each_required:
@@ -2427,6 +2451,10 @@ const translations = {
       hero_book_tagline: "Reservá online en menos de 2 minutos",
       hero_weekend_promo: "✨ Promociones especiales solo por hoy",
       hero_tagline_region: "Actividades en Colonia del Sacramento y alrededores",
+      home_activity_search_label: "Buscar actividades",
+      home_activity_search_placeholder: "Buscar actividades…",
+      home_activity_search_clear: "Borrar búsqueda",
+      home_activity_search_empty: "No hay actividades que coincidan con tu búsqueda.",
       home_google_reviews_title: "Reseñas en Google",
       home_google_reviews_sub: "Con la confianza de viajeros",
       home_google_reviews_aria: "Ver reseñas de Sacramento Adventures en Google (se abre en una pestaña nueva)",
@@ -2531,7 +2559,7 @@ const translations = {
         "Cena a la luz de velas en Casa Viera, en el Casco Histórico: ambiente íntimo, menú gourmet, ideal para parejas.",
       horse_title: "Cabalgata por el campo de Colonia",
       horse_text:
-        "El lado rural de Colonia a caballo. Paseo tranquilo por la naturaleza.",
+        "El lado rural de Colonia a caballo. Paseo tranquilo por la naturaleza. Vení a conocer a nuestros caballos: Cacha, Mana, Negrita, Bimbo, Rosi y Carmelito.",
       asado_boat_home_title: "Experiencia de asado (BBQ) y tour en barco",
       asado_boat_home_meta_1: "Experiencia local premium",
       asado_boat_home_meta_2: "Con Alejandro, dueño y capitán",
@@ -2799,7 +2827,7 @@ const translations = {
       hist_lieb_page_experience_name: "Casco Histórico y Las Liebres",
       hist_lieb_page_about_title: "Sobre esta experiencia",
       hist_lieb_page_about_p:
-        "Combiná lo mejor del Casco Histórico de Colonia, Patrimonio de la Humanidad UNESCO, con una visita guiada a Las Liebres — viñedo boutique, huerta orgánica y restaurante. Recorré calles empedradas y conocé la historia de la ciudad con un guía local; después seguí a Las Liebres para caminar entre viñedos y huerta, con una degustación curada o un almuerzo completo con maridajes, según el paquete que elijas. Andrés, el encargado, recibirá a tu grupo en Las Liebres. Calculá unas 3 a 4 horas en total (el tiempo puede variar según el ritmo y el tráfico).",
+        "Combiná lo mejor del Casco Histórico de Colonia, Patrimonio de la Humanidad UNESCO, con una visita guiada a Las Liebres — viñedo boutique, huerta orgánica y restaurante. Recorré calles empedradas y conocé la historia de la ciudad con un guía local; después seguí a Las Liebres para caminar entre viñedos y huerta, con una degustación curada o un almuerzo completo con maridajes, según el paquete que elijas. Calculá unas 3 a 4 horas en total.",
       hist_lieb_page_steps_title: "Cómo funciona",
       hist_lieb_page_step_1_title: "Traslado privado:",
       hist_lieb_page_step_1_desc:
@@ -2819,9 +2847,9 @@ const translations = {
       hist_lieb_page_step_6_title: "Regreso:",
       hist_lieb_page_step_6_desc:
         "El mismo servicio privado te lleva de vuelta al hotel o a la terminal.",
-      hist_lieb_page_price_title: "Experiencias desde USD 95",
+      hist_lieb_page_price_title: "Experiencias desde USD 85",
       hist_lieb_page_price_p:
-        "Los precios publicados incluyen USD 20 por huésped para el guía. Más transporte privado por vehículo: USD 40 en total para 1–4 huéspedes (un vehículo); USD 80 en total para 5–8 huéspedes (dos vehículos). Cada huésped suma su paquete abajo — el resumen muestra la experiencia + la parte proporcional del transporte grupal.",
+        "Transporte privado por vehículo: USD 40 en total para 1–4 huéspedes (un vehículo).",
       hist_lieb_page_included_title: "Qué incluye",
       hist_lieb_page_include_1: "✔ Caminata guiada por el Casco Histórico",
       hist_lieb_page_include_2: "✔ Visita guiada al viñedo y huerta orgánica de Las Liebres",
@@ -2839,23 +2867,23 @@ const translations = {
       hist_lieb_popup_title: "Elegí tu paquete",
       hist_lieb_popup_package_lbl: "Paquete",
       hist_lieb_popup_package_note:
-        "(por persona: experiencia + USD 20 de guía; el transporte se reparte en el grupo — ver resumen)",
+        "(por persona; el transporte se reparte en el grupo — ver resumen)",
       hist_lieb_popup_what_you_get: "Qué incluye:",
       hist_lieb_pkg_tasting_label: "Casco Histórico + viñedo y huerta + degustación de 3 vinos",
-      hist_lieb_pkg_tasting_line: "Casco Histórico + viñedo y huerta + degustación 🏛🍷 (USD 65)",
+      hist_lieb_pkg_tasting_line: "Casco Histórico + viñedo y huerta + degustación 🏛🍷 (USD 85)",
       hist_lieb_pkg_tasting_b1: "Caminata guiada por la ciudad vieja",
       hist_lieb_pkg_tasting_b2: "Visita a huerta orgánica y viñedo",
       hist_lieb_pkg_tasting_b3: "Tres vinos con maridajes de cocina",
       hist_lieb_pkg_tasting_b4: "Más tu parte del transporte grupal",
       hist_lieb_pkg_lunch_vinedo_label: "Casco Histórico + almuerzo (Propuesta Viñedo)",
-      hist_lieb_pkg_lunch_vinedo_line: "Casco Histórico + almuerzo — Propuesta Viñedo 🍇 (USD 85)",
+      hist_lieb_pkg_lunch_vinedo_line: "Casco Histórico + almuerzo — Propuesta Viñedo 🍇 (USD 105)",
       hist_lieb_pkg_lunch_vinedo_b1: "Tour histórico por la mañana",
       hist_lieb_pkg_lunch_vinedo_b2: "Almuerzo: entrada, plato principal y postre (Viñedo)",
       hist_lieb_pkg_lunch_vinedo_b3: "Agua, refrescos y una copa de vino",
       hist_lieb_pkg_lunch_vinedo_b4: "Café o té",
       hist_lieb_pkg_lunch_vinedo_b5: "Más tu parte del transporte grupal",
       hist_lieb_pkg_lunch_ceibo_label: "Casco Histórico + almuerzo (Propuesta Ceibo)",
-      hist_lieb_pkg_lunch_ceibo_line: "Casco Histórico + almuerzo — Propuesta Ceibo 🌳 (USD 100)",
+      hist_lieb_pkg_lunch_ceibo_line: "Casco Histórico + almuerzo — Propuesta Ceibo 🌳 (USD 120)",
       hist_lieb_pkg_lunch_ceibo_b1: "Tour histórico por la mañana",
       hist_lieb_pkg_lunch_ceibo_b2: "Menú de almuerzo premium (Ceibo)",
       hist_lieb_pkg_lunch_ceibo_b3: "Agua, refrescos y una copa de vino",
@@ -3053,33 +3081,41 @@ const translations = {
       mate_page_gal_mateatar_alt: "Luz dorada y mate frente al río",
       mate_page_gal_matete2_alt: "Mesa de mate: calabazas, yerba y detalles",
       mate_page_gal_matedete_alt: "Mate dulce y mate de té en la mesa",
-      horse_home_meta_t: "Unas 1/1:30 horas",
+      horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Senderos campestres y naturaleza",
-      cabal_page_price_line: "USD 70 por persona",
-      cabal_weekend_badge: "SOLO POR HOY · USD 70",
-      cabal_price_original: "USD 80 por persona",
-      cabal_price_discount: "USD 70 por persona",
+      horse_home_meta_transport: "Traslado disponible incluido (opcional)",
+      cabal_page_price_line: "USD 35 por persona",
+      cabal_page_departures:
+        "Horarios de salida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 y 17:00 hs",
       cabal_availability_whatsapp_notice:
         "Por favor, verificá la disponibilidad con nosotros por WhatsApp antes de realizar la reserva.",
       cabal_about_heading: "Sobre esta experiencia",
       cabal_about_p:
-        "La cabalgata se realiza a las afueras de Colonia, cerca de Colonia Soho, en un campo muy lindo del interior.",
+        "La cabalgata se realiza a las afueras de Colonia, en un hermoso campo abierto que lleva a una playa. Muy tranquilo, para conectar con tu caballo. Vení a conocer a nuestros caballos: Cacha, Mana, Negrita, Bimbo, Rosi y Carmelito.",
       cabal_included_title: "Qué incluye",
-      cabal_include_ride: "Experiencia de cabalgata guiada",
+      cabal_include_ride: "Experiencia de cabalgata guiada · 1 hora",
       cabal_include_horses: "Caballos tranquilos y entrenados, aptos para principiantes",
-      cabal_include_safety: "Equipo de seguridad incluido",
       cabal_include_trails: "Recorrido por senderos campestres y paisajes abiertos",
       cabal_include_host: "Asistencia de anfitriones locales",
-      cabal_include_transfer: "Traslado incluido",
+      cabal_include_transfer: "Traslado disponible incluido (opcional)",
       cabal_create_subtitle: "Elegí el horario de salida. Hasta 4 personas por turno.",
       cabal_create_btn: "Creá tu experiencia",
       cabal_popup_title: "Cabalgata en el campo",
       cabal_popup_time_heading: "Horario de salida",
+      cabal_popup_time_10: "10:00 hs",
       cabal_popup_time_11: "11:00 hs",
       cabal_popup_time_12: "12:00 hs",
-      cabal_popup_time_13: "13:30 hs",
+      cabal_popup_time_13: "13:00 hs",
+      cabal_popup_time_14: "14:00 hs",
+      cabal_popup_time_15: "15:00 hs",
+      cabal_popup_time_16: "16:00 hs",
+      cabal_popup_time_17: "17:00 hs",
       cabal_popup_guests_heading: "Cantidad de personas",
       cabal_popup_guests_hint: "Mínimo 1 · máximo 4 personas por horario.",
+      cabal_popup_transport_heading: "¿Incluye transporte ida y vuelta?",
+      cabal_popup_transport_no: "No",
+      cabal_popup_transport_yes: "Sí (+USD 40 en total · hasta 4 personas)",
+      cabal_popup_transport_hint: "Si elegís sí, se suman USD 40 para el grupo (hasta 4 personas).",
       cabal_summary_heading: "Tu experiencia a caballo",
       cabal_summary_empty: "Tocá Creá tu experiencia para elegir horario y cantidad de personas.",
       cabal_summary_time_label: "Horario",
@@ -3088,14 +3124,18 @@ const translations = {
       cabal_alert_reserve_first:
         "Primero armá tu experiencia con Creá tu experiencia.",
       cabal_summary_edit_aria: "Editar horario y cantidad de personas",
-      cabal_guide_addon_label: "Incluir guía para todo el grupo (USD 25 en total)",
+      cabal_guide_addon_label: "Incluir guía para todo el grupo (USD 30 en total)",
       cabal_guide_info_aria: "Más información sobre la guía de acompañamiento",
       cabal_guide_help_text:
-        "La guía opcional acompaña a todo el grupo durante la cabalgata, ayuda a que vayan juntos y puede sacar fotos durante el paseo. Si tenés otra experiencia de Sacramento reservada, puede seguir con ustedes hasta allá. El manejo de los caballos, la seguridad en el camino y todo lo del campo y el rancho lo llevan Juanma y Sabrina; la guía no es experta en campo ni los reemplaza.",
+        "La guía opcional acompaña a todo el grupo durante la cabalgata, ayuda a que vayan juntos y puede sacar fotos durante el paseo.",
       cabal_guide_total_suffix: "guía (grupo completo)",
       cabal_summary_guide_label: "Guía acompañante",
-      cabal_summary_guide_included: "Sí (+USD 25 en total para el grupo)",
+      cabal_summary_guide_included: "Sí (+USD 30 en total para el grupo)",
       cabal_wa_guide_line: "Guía acompañante para el grupo (fotos; otra experiencia si está reservada)",
+      cabal_summary_transport_label: "Transporte ida y vuelta",
+      cabal_summary_transport_included: "Sí (+USD 40 en total · hasta 4 personas)",
+      cabal_transport_total_suffix: "transporte ida y vuelta",
+      cabal_wa_transport_line: "Transporte ida y vuelta (hasta 4 personas)",
       home_mision_title:
         "Noche histórica: La Misión, cena en Bruma y walking tour",
       home_mision_meta_pf: "Pet friendly",
@@ -3787,6 +3827,10 @@ const translations = {
       barbot_page_moment_3_desc:
         "degustación, una pinta o una ronda tranquila - esto no es un pub crawl armado; es tu noche.",
       barbot_create_title: "Creá tu experiencia",
+      barbot_brewpub_visit_date_hint:
+        "Cerrado los lunes — elegí otro día para coordinar tu visita con anticipación.",
+      barbot_brewpub_alert_monday:
+        "Barbot Brewpub está cerrado los lunes. Elegí otro día.",
       barbot_create_subtitle:
         "Elegí la fecha y después el menú Clásico (USD 34) o Premium (USD 40) con tus platos.",
       barbot_create_btn: "+ Creá tu experiencia",
@@ -4228,6 +4272,9 @@ const translations = {
         "Somos un grupo de más de 5 personas y queremos coordinar la reserva.",
       orders_wa_payment_pending:
         "El enlace de pago no pudo generarse todavía. Confirmá y te lo enviamos enseguida.",
+      orders_wa_pkg_transport_flat: "Transporte (USD {rate} por huésped × {count})",
+      orders_wa_pkg_guide_opt_note: "(incluye USD {amount} en guías opcionales)",
+      orders_wa_pkg_guide_incl_note: "(incluye USD {amount} de guía por huésped)",
       add_passenger: "Agregar pasajero o grupo",
       booking_order_label: "Reserva",
       booking_singular: "reserva",
@@ -4450,12 +4497,12 @@ const translations = {
       liebres_choice_drink: "Enfoque del vino",
       liebres_about_title: "Sobre esta experiencia",
       liebres_about_p:
-        "Un traslado privado te lleva a Comarca Las Liebres, donde Andrés, el gerente, estará esperando para recibir al grupo. Recorrés el viñedo y la huerta orgánica y degustás tres vinos uruguayos maridados con platos de temporada de la cocina. Después, un traslado privado te lleva a la cabalgata a las afueras de Colonia, cerca de Colonia Soho, en un campo muy lindo del interior. Calculá unas 3 a 4 horas para toda la experiencia (visita, degustación, cabalgata y traslados).",
+        "Un traslado privado te lleva a Comarca Las Liebres. Recorrés el viñedo y la huerta orgánica y degustás tres vinos uruguayos maridados con platos de temporada de la cocina. Después, un traslado privado te lleva a la cabalgata a las afueras de Colonia, en un campo muy lindo del interior. Calculá unas 3 a 4 horas para toda la experiencia (visita, degustación, cabalgata y traslados).",
       liebres_reel_btn: "🎥 Ver reel en @_sacramentoadventures",
       liebres_dining_experience_name: "Experiencia gastronómica en Las Liebres",
       liebres_dining_about_title: "Sobre esta experiencia",
       liebres_dining_about_p:
-        "Disfrutá una experiencia de almuerzo o cena en Las Liebres, un restaurante boutique en Colonia del Sacramento. Esta actividad está enfocada en el menú gastronómico y el ambiente del restaurante, con traslado privado incluido. Andres, el gerente, te estará esperando para recibir al grupo en Las Liebres. Podés elegir el formato de comida al crear tu pedido.",
+        "Disfrutá una experiencia de almuerzo o cena en Las Liebres, un restaurante boutique en Colonia del Sacramento. Esta actividad está enfocada en el menú gastronómico y el ambiente del restaurante, con traslado privado incluido. Podés elegir el formato de comida al crear tu pedido.",
       liebres_dining_steps_title: "Cómo funciona",
       liebres_dining_step_1:
         "🚐 Traslado privado de ida: Desde tu hotel o terminal de ómnibus.",
@@ -4465,9 +4512,9 @@ const translations = {
         "🌿 Ambiente del restaurante: Experiencia boutique en un entorno relajado.",
       liebres_dining_step_4:
         "🏨 Regreso: Traslado privado de vuelta al hotel o terminal.",
-      liebres_dining_price_title: "Experiencias gastronómicas desde USD 65",
+      liebres_dining_price_title: "Experiencias gastronómicas desde USD 75",
       liebres_dining_price_p:
-        "El transporte privado se cobra por vehículo: USD 40 total para 1–4 huéspedes (un vehículo); USD 80 total para 5–8 huéspedes (dos vehículos). Cada huésped agrega su pedido y el resumen actualiza el total automáticamente.",
+        "El transporte privado se cobra por vehículo: USD 40 total para 1–4 huéspedes (un vehículo).",
       liebres_dining_included_title: "Qué incluye",
       liebres_dining_include_1:
         "✔ Menú de almuerzo o cena en Las Liebres (según paquete)",
@@ -4495,25 +4542,25 @@ const translations = {
       liebres_dining_popup_package_title: "Menú",
       liebres_dining_popup_package_note:
         "(precio por huésped; el prorrateo de transporte aparece en el resumen)",
-      liebres_dining_pkg_vinedo_menu_line: "Menú Viñedo 🍇 — USD 65",
-      liebres_dining_pkg_ceibo_menu_line: "Menú Ceibo 🌳 — USD 80",
+      liebres_dining_pkg_vinedo_menu_line: "Menú Viñedo 🍇 — USD 75",
+      liebres_dining_pkg_ceibo_menu_line: "Menú Ceibo 🌳 — USD 90",
       liebres_dining_meal_heading: "Almuerzo o cena",
       liebres_dining_meal_lunch: "Almuerzo",
       liebres_dining_meal_dinner: "Cena",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Almuerzo — Propuesta Viñedo 🍇 USD 65",
+        "Almuerzo — Propuesta Viñedo 🍇 USD 75",
       liebres_dining_pkg_lunch_vinedo_label: "Almuerzo — Propuesta Viñedo",
       liebres_dining_pkg_lunch_vinedo_sub: "Selección de menú equilibrada",
       liebres_dining_pkg_lunch_ceibo_main:
-        "Almuerzo — Propuesta Ceibo 🌳 USD 80",
+        "Almuerzo — Propuesta Ceibo 🌳 USD 90",
       liebres_dining_pkg_lunch_ceibo_label: "Almuerzo — Propuesta Ceibo",
       liebres_dining_pkg_lunch_ceibo_sub: "Selección de menú premium",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Cena — Propuesta Viñedo 🍇 USD 65",
+        "Cena — Propuesta Viñedo 🍇 USD 75",
       liebres_dining_pkg_dinner_vinedo_label: "Cena — Propuesta Viñedo",
       liebres_dining_pkg_dinner_vinedo_sub: "Selección de menú equilibrada",
       liebres_dining_pkg_dinner_ceibo_main:
-        "Cena — Propuesta Ceibo 🌳 USD 80",
+        "Cena — Propuesta Ceibo 🌳 USD 90",
       liebres_dining_pkg_dinner_ceibo_label: "Cena — Propuesta Ceibo",
       liebres_dining_pkg_dinner_ceibo_sub: "Selección de menú premium",
       liebres_dining_pkg_vinedo_item_1:
@@ -4539,9 +4586,9 @@ const translations = {
       liebres_step_5_title: "Regreso:",
       liebres_step_5_desc:
         "El mismo servicio privado te busca al terminar y te deja en tu hotel o en la terminal.",
-      liebres_price_title: "USD 85 por huésped + guía grupal opcional",
+      liebres_price_title: "USD 85 por huésped",
       liebres_price_p:
-        "La experiencia incluye traslado a Las Liebres, visita al viñedo y huerta, degustación de tres vinos con maridajes, y cabalgata a las afueras de Colonia, cerca de Colonia Soho. Calculá unas 3 a 4 horas puerta a puerta. El transporte privado se factura por vehículo: USD 50 en total para 1–4 huéspedes (un vehículo); USD 100 en total para 5–8 huéspedes (dos vehículos). Sumá un pedido por huésped — el resumen y el total se actualizan solos.",
+        "El transporte privado se factura por vehículo: USD 50 en total para 1–4 huéspedes (un vehículo).",
       liebres_included_title: "Qué incluye",
       liebres_include_1:
         "✔ Cabalgata guiada a las afueras de Colonia, cerca de Colonia Soho",
@@ -4570,6 +4617,7 @@ const translations = {
       liebres_gal_alt_lieb5: "Salón de Las Liebres",
       liebres_gal_alt_lieb6: "Ambiente del restaurante Las Liebres",
       liebres_gal_alt_lieb7: "Degustación de vinos en Las Liebres",
+      liebres_gal_alt_lieb2121: "Ambiente de Las Liebres",
       liebres_gal_alt_lieb22: "Detalle del restaurante Las Liebres",
       liebres_gal_alt_lieb23: "Experiencia gastronómica en Las Liebres",
       liebres_map_title: "Dónde queda Las Liebres",
@@ -4595,7 +4643,7 @@ const translations = {
       liebres_horse_time_12: "12:00",
       liebres_horse_time_13: "13:30",
       liebres_horseback_time_label: "Cabalgata",
-      liebres_horseback_summary_time: "13:30 — desde Las Liebres",
+      liebres_horseback_summary_time: "13:30",
       liebres_order_transfers: "Traslados",
       liebres_horseback_time_required: "Elegí un horario para la cabalgata.",
       liebres_horseback_time_each_required:
@@ -4847,6 +4895,10 @@ const translations = {
       hero_book_tagline: "Reserve online em menos de 2 minutos",
       hero_weekend_promo: "✨ Promoções especiais só por hoje",
       hero_tagline_region: "Atividades em Colonia del Sacramento e arredores",
+      home_activity_search_label: "Buscar atividades",
+      home_activity_search_placeholder: "Buscar atividades…",
+      home_activity_search_clear: "Limpar busca",
+      home_activity_search_empty: "Nenhuma atividade corresponde à sua busca.",
       home_google_reviews_title: "Avaliações no Google",
       home_google_reviews_sub: "Com a confiança de viajantes",
       home_google_reviews_aria: "Ver avaliações da Sacramento Adventures no Google (abre em nova aba)",
@@ -4950,7 +5002,7 @@ const translations = {
         "Jantar à luz de velas na Casa Viera, no Centro Histórico — ambiente elegante, menu gourmet, perfeito para casais.",
       horse_title: "Cavalgada pelo campo de Colonia",
       horse_text:
-        "O lado rural de Colonia a cavalo. Passeio tranquilo pela natureza.",
+        "O lado rural de Colonia a cavalo. Passeio tranquilo pela natureza. Venha conhecer nossos cavalos: Cacha, Mana, Negrita, Bimbo, Rosi e Carmelito.",
       asado_boat_home_title: "Experiência de churrasco (BBQ) e passeio de barco",
       asado_boat_home_meta_1: "Experiência local premium",
       asado_boat_home_meta_2: "Com Alejandro, proprietário e capitão",
@@ -5218,7 +5270,7 @@ const translations = {
       hist_lieb_page_experience_name: "Centro Histórico e Las Liebres",
       hist_lieb_page_about_title: "Sobre esta experiência",
       hist_lieb_page_about_p:
-        "Combine o melhor do Centro Histórico de Colonia, Patrimônio Mundial da UNESCO, com uma visita guiada a Las Liebres — vinhedo boutique, horta orgânica e restaurante. Caminhe pelas ruas de pedra e conheça a história da cidade com um guia local; depois siga para Las Liebres para um passeio entre vinhas e horta, seguido de degustação curada ou almoço completo com harmonizações, conforme o pacote escolhido. Andrés, o gerente, receberá seu grupo em Las Liebres. Reserve cerca de 3 a 4 horas no total (o tempo pode variar conforme o ritmo e o trânsito).",
+        "Combine o melhor do Centro Histórico de Colonia, Patrimônio Mundial da UNESCO, com uma visita guiada a Las Liebres — vinhedo boutique, horta orgânica e restaurante. Caminhe pelas ruas de pedra e conheça a história da cidade com um guia local; depois siga para Las Liebres para um passeio entre vinhas e horta, seguido de degustação curada ou almoço completo com harmonizações, conforme o pacote escolhido. Reserve cerca de 3 a 4 horas no total.",
       hist_lieb_page_steps_title: "Como funciona",
       hist_lieb_page_step_1_title: "Transfer privativo:",
       hist_lieb_page_step_1_desc:
@@ -5238,9 +5290,9 @@ const translations = {
       hist_lieb_page_step_6_title: "Retorno:",
       hist_lieb_page_step_6_desc:
         "O mesmo serviço privativo leva você de volta ao hotel ou ao terminal.",
-      hist_lieb_page_price_title: "Experiências a partir de USD 95",
+      hist_lieb_page_price_title: "Experiências a partir de USD 85",
       hist_lieb_page_price_p:
-        "Os preços listados incluem USD 20 por hóspede para o guia. Mais transporte privativo por veículo: USD 40 no total para 1–4 hóspedes (um veículo); USD 80 no total para 5–8 hóspedes (dois veículos). Cada hóspede adiciona seu pacote abaixo — o resumo mostra a experiência + a parcela proporcional do transporte do grupo.",
+        "Transporte privativo por veículo: USD 40 no total para 1–4 hóspedes (um veículo).",
       hist_lieb_page_included_title: "O que está incluído",
       hist_lieb_page_include_1: "✔ Caminhada guiada pelo Centro Histórico",
       hist_lieb_page_include_2: "✔ Visita guiada ao vinhedo e horta orgânica de Las Liebres",
@@ -5258,23 +5310,23 @@ const translations = {
       hist_lieb_popup_title: "Escolha seu pacote",
       hist_lieb_popup_package_lbl: "Pacote",
       hist_lieb_popup_package_note:
-        "(por pessoa: experiência + USD 20 de guia; transporte dividido no grupo — ver resumo)",
+        "(por pessoa; o transporte é dividido no grupo — ver resumo)",
       hist_lieb_popup_what_you_get: "O que inclui:",
       hist_lieb_pkg_tasting_label: "Centro Histórico + vinhedo e horta + degustação de 3 vinhos",
-      hist_lieb_pkg_tasting_line: "Centro Histórico + vinhedo e horta + degustação 🏛🍷 (USD 65)",
+      hist_lieb_pkg_tasting_line: "Centro Histórico + vinhedo e horta + degustação 🏛🍷 (USD 85)",
       hist_lieb_pkg_tasting_b1: "Caminhada guiada pela cidade velha",
       hist_lieb_pkg_tasting_b2: "Visita à horta orgânica e vinhedo",
       hist_lieb_pkg_tasting_b3: "Três vinhos com harmonizações da cozinha",
       hist_lieb_pkg_tasting_b4: "Mais sua parte do transporte do grupo",
       hist_lieb_pkg_lunch_vinedo_label: "Centro Histórico + almoço (Proposta Viñedo)",
-      hist_lieb_pkg_lunch_vinedo_line: "Centro Histórico + almoço — Proposta Viñedo 🍇 (USD 85)",
+      hist_lieb_pkg_lunch_vinedo_line: "Centro Histórico + almoço — Proposta Viñedo 🍇 (USD 105)",
       hist_lieb_pkg_lunch_vinedo_b1: "Tour histórico pela manhã",
       hist_lieb_pkg_lunch_vinedo_b2: "Almoço: entrada, prato principal e sobremesa (Viñedo)",
       hist_lieb_pkg_lunch_vinedo_b3: "Água, refrigerantes e uma taça de vinho",
       hist_lieb_pkg_lunch_vinedo_b4: "Café ou chá",
       hist_lieb_pkg_lunch_vinedo_b5: "Mais sua parte do transporte do grupo",
       hist_lieb_pkg_lunch_ceibo_label: "Centro Histórico + almoço (Proposta Ceibo)",
-      hist_lieb_pkg_lunch_ceibo_line: "Centro Histórico + almoço — Proposta Ceibo 🌳 (USD 100)",
+      hist_lieb_pkg_lunch_ceibo_line: "Centro Histórico + almoço — Proposta Ceibo 🌳 (USD 120)",
       hist_lieb_pkg_lunch_ceibo_b1: "Tour histórico pela manhã",
       hist_lieb_pkg_lunch_ceibo_b2: "Menu de almoço premium (Ceibo)",
       hist_lieb_pkg_lunch_ceibo_b3: "Água, refrigerantes e uma taça de vinho",
@@ -5471,33 +5523,41 @@ const translations = {
       mate_page_gal_mateatar_alt: "Luz dourada e mate à beira-mar",
       mate_page_gal_matete2_alt: "Mesa de mate: cuias, erva e detalhes",
       mate_page_gal_matedete_alt: "Mate doce e mate de chá na mesa",
-      horse_home_meta_t: "Cerca de 1/1:30 horas",
+      horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Trilhas rurais e natureza",
-      cabal_page_price_line: "USD 70 por pessoa",
-      cabal_weekend_badge: "SÓ POR HOJE · USD 70",
-      cabal_price_original: "USD 80 por pessoa",
-      cabal_price_discount: "USD 70 por pessoa",
+      horse_home_meta_transport: "Transporte disponível incluído (opcional)",
+      cabal_page_price_line: "USD 35 por pessoa",
+      cabal_page_departures:
+        "Horários de partida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 e 17:00 h",
       cabal_availability_whatsapp_notice:
         "Por favor, confirme a disponibilidade conosco pelo WhatsApp antes de concluir a reserva.",
       cabal_about_heading: "Sobre a experiência",
       cabal_about_p:
-        "A cavalgada acontece nos arredores de Colonia, perto de Colonia Soho, em um belo campo no interior.",
+        "A cavalgada acontece nos arredores de Colonia, em um belo campo aberto que leva a uma praia. Muito tranquilo, para conectar com o seu cavalo. Venha conhecer nossos cavalos: Cacha, Mana, Negrita, Bimbo, Rosi e Carmelito.",
       cabal_included_title: "O que está incluído",
-      cabal_include_ride: "Experiência de cavalgada guiada",
+      cabal_include_ride: "Experiência de cavalgada guiada · 1 hora",
       cabal_include_horses: "Cavalos calmos e treinados, adequados para iniciantes",
-      cabal_include_safety: "Equipamento de segurança incluído",
       cabal_include_trails: "Passeio por trilhas rurais e paisagens abertas",
       cabal_include_host: "Assistência de anfitriões locais",
-      cabal_include_transfer: "Transfer incluído",
+      cabal_include_transfer: "Transporte disponível incluído (opcional)",
       cabal_create_subtitle: "Escolha o horário de partida. Até 4 pessoas por turno.",
       cabal_create_btn: "Monte sua experiência",
       cabal_popup_title: "Passeio a cavalo no campo",
       cabal_popup_time_heading: "Horário de partida",
+      cabal_popup_time_10: "10:00 h",
       cabal_popup_time_11: "11:00 h",
       cabal_popup_time_12: "12:00 h",
-      cabal_popup_time_13: "13:30 h",
+      cabal_popup_time_13: "13:00 h",
+      cabal_popup_time_14: "14:00 h",
+      cabal_popup_time_15: "15:00 h",
+      cabal_popup_time_16: "16:00 h",
+      cabal_popup_time_17: "17:00 h",
       cabal_popup_guests_heading: "Número de pessoas",
       cabal_popup_guests_hint: "Mínimo 1 · máximo 4 pessoas por horário.",
+      cabal_popup_transport_heading: "Inclui transporte ida e volta?",
+      cabal_popup_transport_no: "Não",
+      cabal_popup_transport_yes: "Sim (+USD 40 no total · até 4 pessoas)",
+      cabal_popup_transport_hint: "Se sim, somam-se USD 40 para o grupo (até 4 pessoas).",
       cabal_summary_heading: "Sua experiência a cavalo",
       cabal_summary_empty: "Toque em Monte sua experiência para escolher horário e número de pessoas.",
       cabal_summary_time_label: "Horário",
@@ -5506,14 +5566,18 @@ const translations = {
       cabal_alert_reserve_first:
         "Primeiro monte sua experiência com Monte sua experiência.",
       cabal_summary_edit_aria: "Editar horário e número de pessoas",
-      cabal_guide_addon_label: "Incluir guia para o grupo inteiro (USD 25 no total)",
+      cabal_guide_addon_label: "Incluir guia para o grupo inteiro (USD 30 no total)",
       cabal_guide_info_aria: "Saiba mais sobre o acompanhante opcional",
       cabal_guide_help_text:
-        "O guia opcional fica com o grupo inteiro para acompanhar na cavalgada, ajudar a manter todo mundo junto e tirar fotos durante o passeio. Se você tiver outra experiência da Sacramento reservada, ele pode ir com vocês até lá. Juanma e Sabrina conduzem os cavalos, a segurança na trilha e tudo do rancho e do campo — o guia não é especialista em campo nem os substitui.",
+        "O guia opcional fica com o grupo inteiro para acompanhar na cavalgada, ajudar a manter todo mundo junto e tirar fotos durante o passeio.",
       cabal_guide_total_suffix: "guia (grupo inteiro)",
       cabal_summary_guide_label: "Guia acompanhante",
-      cabal_summary_guide_included: "Sim (+USD 25 no total para o grupo)",
+      cabal_summary_guide_included: "Sim (+USD 30 no total para o grupo)",
       cabal_wa_guide_line: "Guia acompanhante para o grupo (fotos; próxima experiência se reservada)",
+      cabal_summary_transport_label: "Transporte ida e volta",
+      cabal_summary_transport_included: "Sim (+USD 40 no total · até 4 pessoas)",
+      cabal_transport_total_suffix: "transporte ida e volta",
+      cabal_wa_transport_line: "Transporte ida e volta (até 4 pessoas)",
       home_mision_title:
         "Noite histórica: La Misión, jantar no Bruma e walking tour",
       home_mision_meta_pf: "Pet friendly",
@@ -6205,6 +6269,10 @@ const translations = {
       barbot_page_moment_3_desc:
         "flight, uma pinta ou uma rodada tranquila - não é um pub crawl empacotado; é a sua noite.",
       barbot_create_title: "Monte sua experiência",
+      barbot_brewpub_visit_date_hint:
+        "Fechado às segundas — escolha outro dia para coordenarmos sua visita com antecedência.",
+      barbot_brewpub_alert_monday:
+        "O Barbot Brewpub fecha às segundas. Escolha outro dia.",
       barbot_create_subtitle:
         "Escolha a data e depois o menu Clássico (USD 34) ou Premium (USD 40) com seus pratos.",
       barbot_create_btn: "+ Monte sua experiência",
@@ -6647,6 +6715,9 @@ const translations = {
         "Somos um grupo de mais de 5 pessoas e gostaríamos de coordenar a reserva.",
       orders_wa_payment_pending:
         "O link de pagamento ainda não pôde ser gerado automaticamente. Confirme e enviaremos em seguida.",
+      orders_wa_pkg_transport_flat: "Transporte (USD {rate} por hóspede × {count})",
+      orders_wa_pkg_guide_opt_note: "(inclui USD {amount} em taxas opcionais de guia)",
+      orders_wa_pkg_guide_incl_note: "(inclui USD {amount} de guia por hóspede)",
       add_passenger: "Adicionar passageiro ou grupo",
       booking_order_label: "Reserva",
       booking_singular: "reserva",
@@ -6869,12 +6940,12 @@ const translations = {
       liebres_choice_drink: "Foco do vinho",
       liebres_about_title: "Sobre esta experiência",
       liebres_about_p:
-        "Um transfer privativo leva você à Comarca Las Liebres, onde Andres, o gerente, estará esperando para receber o grupo. Você percorre o vinhedo e a horta orgânica e degusta três vinhos uruguaios harmonizados com pratos sazonais da cozinha. Depois, um transfer privativo leva você à cavalgada nos arredores de Colonia, perto de Colonia Soho, em um belo campo no interior. Reserve cerca de 3 a 4 horas para a experiência completa (visita, degustação, cavalgada e transfers).",
+        "Um transfer privativo leva você à Comarca Las Liebres. Você percorre o vinhedo e a horta orgânica e degusta três vinhos uruguaios harmonizados com pratos sazonais da cozinha. Depois, um transfer privativo leva você à cavalgada nos arredores de Colonia, em um belo campo no interior. Reserve cerca de 3 a 4 horas para a experiência completa (visita, degustação, cavalgada e transfers).",
       liebres_reel_btn: "🎥 Ver reel em @_sacramentoadventures",
       liebres_dining_experience_name: "Experiência gastronômica no Las Liebres",
       liebres_dining_about_title: "Sobre esta experiência",
       liebres_dining_about_p:
-        "Aproveite uma experiência de almoço ou jantar no Las Liebres, um restaurante boutique em Colonia del Sacramento. Esta atividade foca no menu gastronômico e no ambiente do restaurante, com transfer privado incluído. Andres, o gerente, estará esperando para receber seu grupo no Las Liebres. Você pode escolher o formato da refeição ao criar seu pedido.",
+        "Aproveite uma experiência de almoço ou jantar no Las Liebres, um restaurante boutique em Colonia del Sacramento. Esta atividade foca no menu gastronômico e no ambiente do restaurante, com transfer privado incluído. Você pode escolher o formato da refeição ao criar seu pedido.",
       liebres_dining_steps_title: "Como funciona",
       liebres_dining_step_1:
         "🚐 Transfer privado de ida: Do hotel ou terminal rodoviário.",
@@ -6884,9 +6955,9 @@ const translations = {
         "🌿 Ambiente do restaurante: Experiência boutique em um ambiente relaxado.",
       liebres_dining_step_4:
         "🏨 Retorno: Transfer privado de volta ao hotel ou terminal.",
-      liebres_dining_price_title: "Experiências gastronômicas a partir de USD 65",
+      liebres_dining_price_title: "Experiências gastronômicas a partir de USD 75",
       liebres_dining_price_p:
-        "O transporte privado é cobrado por veículo: USD 40 total para 1–4 hóspedes (um veículo); USD 80 total para 5–8 hóspedes (dois veículos). Cada hóspede adiciona seu pedido e o resumo atualiza o total automaticamente.",
+        "O transporte privado é cobrado por veículo: USD 40 total para 1–4 hóspedes (um veículo).",
       liebres_dining_included_title: "O que está incluído",
       liebres_dining_include_1:
         "✔ Menu de almoço ou jantar no Las Liebres (conforme pacote)",
@@ -6914,25 +6985,25 @@ const translations = {
       liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(preço por hóspede; o rateio do transporte aparece no resumo)",
-      liebres_dining_pkg_vinedo_menu_line: "Menu Viñedo 🍇 — USD 65",
-      liebres_dining_pkg_ceibo_menu_line: "Menu Ceibo 🌳 — USD 80",
+      liebres_dining_pkg_vinedo_menu_line: "Menu Viñedo 🍇 — USD 75",
+      liebres_dining_pkg_ceibo_menu_line: "Menu Ceibo 🌳 — USD 90",
       liebres_dining_meal_heading: "Almoço ou jantar",
       liebres_dining_meal_lunch: "Almoço",
       liebres_dining_meal_dinner: "Jantar",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Almoço — Proposta Viñedo 🍇 USD 65",
+        "Almoço — Proposta Viñedo 🍇 USD 75",
       liebres_dining_pkg_lunch_vinedo_label: "Almoço — Proposta Viñedo",
       liebres_dining_pkg_lunch_vinedo_sub: "Seleção de menu equilibrada",
       liebres_dining_pkg_lunch_ceibo_main:
-        "Almoço — Proposta Ceibo 🌳 USD 80",
+        "Almoço — Proposta Ceibo 🌳 USD 90",
       liebres_dining_pkg_lunch_ceibo_label: "Almoço — Proposta Ceibo",
       liebres_dining_pkg_lunch_ceibo_sub: "Seleção de menu premium",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Jantar — Proposta Viñedo 🍇 USD 65",
+        "Jantar — Proposta Viñedo 🍇 USD 75",
       liebres_dining_pkg_dinner_vinedo_label: "Jantar — Proposta Viñedo",
       liebres_dining_pkg_dinner_vinedo_sub: "Seleção de menu equilibrada",
       liebres_dining_pkg_dinner_ceibo_main:
-        "Jantar — Proposta Ceibo 🌳 USD 80",
+        "Jantar — Proposta Ceibo 🌳 USD 90",
       liebres_dining_pkg_dinner_ceibo_label: "Jantar — Proposta Ceibo",
       liebres_dining_pkg_dinner_ceibo_sub: "Seleção de menu premium",
       liebres_dining_pkg_vinedo_item_1:
@@ -6958,9 +7029,9 @@ const translations = {
       liebres_step_5_title: "Retorno:",
       liebres_step_5_desc:
         "O mesmo serviço privativo busca você ao final e deixa no hotel ou no terminal.",
-      liebres_price_title: "USD 85 por hóspede + guia de grupo opcional",
+      liebres_price_title: "USD 85 por hóspede",
       liebres_price_p:
-        "A experiência inclui transfer para Las Liebres, visita ao vinhedo e horta, degustação de três vinhos com harmonizações, e cavalgada nos arredores de Colonia, perto de Colonia Soho. Calcule cerca de 3 a 4 horas porta a porta. O transporte privativo é cobrado por veículo: USD 50 no total para 1–4 hóspedes (um veículo); USD 100 no total para 5–8 hóspedes (dois veículos). Adicione um pedido por hóspede — o resumo e o total são atualizados automaticamente.",
+        "O transporte privativo é cobrado por veículo: USD 50 no total para 1–4 hóspedes (um veículo).",
       liebres_included_title: "O que está incluído",
       liebres_include_1:
         "✔ Cavalgada guiada nos arredores de Colonia, perto de Colonia Soho",
@@ -6989,6 +7060,7 @@ const translations = {
       liebres_gal_alt_lieb5: "Salão do Las Liebres",
       liebres_gal_alt_lieb6: "Ambiente do restaurante Las Liebres",
       liebres_gal_alt_lieb7: "Degustação de vinhos em Las Liebres",
+      liebres_gal_alt_lieb2121: "Ambiente do Las Liebres",
       liebres_gal_alt_lieb22: "Detalhe do restaurante Las Liebres",
       liebres_gal_alt_lieb23: "Experiência gastronômica em Las Liebres",
       liebres_map_title: "Onde fica Las Liebres",
@@ -7014,7 +7086,7 @@ const translations = {
       liebres_horse_time_12: "12:00",
       liebres_horse_time_13: "13:30",
       liebres_horseback_time_label: "Cavalgada",
-      liebres_horseback_summary_time: "13:30 — saindo de Las Liebres",
+      liebres_horseback_summary_time: "13:30",
       liebres_order_transfers: "Transferências",
       liebres_horseback_time_required: "Escolha um horário para a cavalgada.",
       liebres_horseback_time_each_required:
@@ -8245,6 +8317,14 @@ function initRentPopupBehavior() {
       const dict = translations[language];
       if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
         el.setAttribute("alt", dict[key]);
+      }
+    });
+
+    document.querySelectorAll("[data-translate-placeholder]").forEach((el) => {
+      const key = el.dataset.translatePlaceholder;
+      const dict = translations[language];
+      if (dict && Object.prototype.hasOwnProperty.call(dict, key) && "placeholder" in el) {
+        el.setAttribute("placeholder", dict[key]);
       }
     });
 

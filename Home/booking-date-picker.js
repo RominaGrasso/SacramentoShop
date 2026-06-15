@@ -22,6 +22,37 @@
     return !Number.isNaN(parsed.getTime()) && isWeekendDate(parsed);
   }
 
+  function parseBlockedWeekdays(attr) {
+    if (!attr) return [];
+    return String(attr)
+      .split(",")
+      .map((part) => parseInt(part.trim(), 10))
+      .filter((day) => Number.isFinite(day) && day >= 0 && day <= 6);
+  }
+
+  function isBlockedWeekday(d, blockedWeekdays) {
+    return blockedWeekdays.includes(d.getDay());
+  }
+
+  function isBlockedIso(iso, blockedWeekdays) {
+    if (!blockedWeekdays.length || !/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return false;
+    const parsed = parseIso(iso);
+    return !Number.isNaN(parsed.getTime()) && isBlockedWeekday(parsed, blockedWeekdays);
+  }
+
+  function nextAllowedOnOrAfter(iso, minIso, blockedWeekdays) {
+    let d = parseIso(iso);
+    if (Number.isNaN(d.getTime())) d = new Date();
+    const minDate = parseIso(minIso);
+    if (!Number.isNaN(minDate.getTime()) && d < minDate) d = new Date(minDate);
+    for (let i = 0; i < 366; i += 1) {
+      const candidate = localIso(d);
+      if (!isBlockedWeekday(d, blockedWeekdays) && candidate >= minIso) return candidate;
+      d.setDate(d.getDate() + 1);
+    }
+    return localIso(new Date());
+  }
+
   function nextWeekendOnOrAfter(iso) {
     let d = parseIso(iso);
     if (Number.isNaN(d.getTime())) d = new Date();
@@ -51,10 +82,17 @@
     if (!input || input.tagName !== "INPUT") return;
     const key = input.getAttribute("data-booking-date-key") || "selectedDate";
     const weekendsOnly = input.getAttribute("data-booking-date-weekends-only") === "true";
+    const blockedWeekdays = parseBlockedWeekdays(
+      input.getAttribute("data-booking-date-blocked-weekdays") || ""
+    );
     const invalidI18nKey = input.getAttribute("data-booking-date-invalid-i18n") || "";
     const invalidFallback =
       input.getAttribute("data-booking-date-invalid-msg") ||
-      "Please choose a Saturday or Sunday.";
+      (weekendsOnly
+        ? "Please choose a Saturday or Sunday."
+        : blockedWeekdays.length
+          ? "Please choose an available day."
+          : "Please choose a valid date.");
 
     const todayIso = localIso(new Date());
     if (!input.min) input.min = todayIso;
@@ -69,6 +107,8 @@
       if (!isWeekendIso(value) || value < min) {
         value = nextWeekendOnOrAfter(value < min ? min : value);
       }
+    } else if (blockedWeekdays.length && (isBlockedIso(value, blockedWeekdays) || value < min)) {
+      value = nextAllowedOnOrAfter(value < min ? min : value, min, blockedWeekdays);
     } else if (!storedValid) {
       value = min;
     }
@@ -81,6 +121,17 @@
       if (weekendsOnly && !isWeekendIso(input.value)) {
         const corrected = nextWeekendOnOrAfter(
           input.value >= min ? input.value : min
+        );
+        window.alert(translate(invalidI18nKey, invalidFallback));
+        persistDate(input, key, corrected);
+        return;
+      }
+
+      if (blockedWeekdays.length && isBlockedIso(input.value, blockedWeekdays)) {
+        const corrected = nextAllowedOnOrAfter(
+          input.value >= min ? input.value : min,
+          min,
+          blockedWeekdays
         );
         window.alert(translate(invalidI18nKey, invalidFallback));
         persistDate(input, key, corrected);
