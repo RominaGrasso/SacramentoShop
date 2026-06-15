@@ -181,5 +181,198 @@
     "createdAt": "2026-05-21T17:40:13.795Z",
     "updatedAt": "2026-05-21T17:40:13.795Z",
     "expiresAt": "2026-05-22T17:40:13.803Z"
+  },
+  {
+    "fingerprint": "ceb0aafcb2caf5678dde99a747df297660ac4d0f16b8d2b42908e3ed10d23eb8",
+    "experience": "cabal",
+    "amount": 110,
+    "currency": "USD",
+    "people": 2,
+    "orderPayload": {
+      "cfg": {
+        "time": "12:00",
+        "guests": 2,
+        "transport": true
+      },
+      "total": 110,
+      "experienceName": "Horseback riding, Riachuelo"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_ceb0aafcb2caf567&amount=110&currency=USD",
+    "sessionId": "mock_ceb0aafcb2caf567",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-06-15T03:57:14.902Z",
+    "updatedAt": "2026-06-15T03:57:14.902Z",
+    "expiresAt": "2026-06-16T03:57:14.911Z"
+  },
+  {
+    "fingerprint": "a4c7e3372ec06f5b22ea87a092ce8a720f4b0e755e1a5feb9e6da525c30ab5ba",
+    "experience": "cabal",
+    "amount": 140,
+    "currency": "USD",
+    "people": 4,
+    "orderPayload": {
+      "cfg": {
+        "time": "17:00",
+        "guests": 4,
+        "transport": false
+      },
+      "total": 140,
+      "experienceName": "Horseback riding, Riachuelo"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_a4c7e3372ec06f5b&amount=140&currency=USD",
+    "sessionId": "mock_a4c7e3372ec06f5b",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-06-15T03:58:58.514Z",
+    "updatedAt": "2026-06-15T03:58:58.514Z",
+    "expiresAt": "2026-06-16T03:58:58.516Z"
+  },
+  {
+    "fingerprint": "c44edd68b088f3c74593d63c934531a829628b28930a26742ecbee6a39bbb26a",
+    "experience": "historic_lasliebres",
+    "amount": 370,
+    "currency": "USD",
+    "people": 3,
+    "orderPayload": {
+      "orders": [
+        {
+          "packageId": "casco_lunch_vinedo",
+          "packageLabel": "Casco Histórico + almuerzo (Propuesta Viñedo)",
+          "packagePrice": 105,
+          "preferences": []
+        },
+        {
+          "packageId": "casco_lunch_vinedo",
+          "packageLabel": "Casco Histórico + almuerzo (Propuesta Viñedo)",
+          "packagePrice": 105,
+          "preferences": []
+        },
+        {
+          "packageId": "casco_lunch_ceibo",
+          "packageLabel": "Casco Histórico + almuerzo (Propuesta Ceibo)",
+          "packagePrice": 120,
+          "preferences": []
+        }
+      ],
+      "total": 370,
+      "experienceName": "Historic Quarter & Las Liebres"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_c44edd68b088f3c7&amount=370&currency=USD",
+    "sessionId": "mock_c44edd68b088f3c7",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-06-15T04:42:43.306Z",
+    "updatedAt": "2026-06-15T04:42:43.306Z",
+    "expiresAt": "2026-06-16T04:42:43.318Z"
+  },
+  {
+    "fingerprint": "ffd0fd6c9984d3e878fbf1870c1d2caf6f30fc385ed6aada007c966df68f7423",
+    "experience": "lasliebres_dining",
+    "amount": 205,
+    "currency": "USD",
+    "people": 2,
+    "orderPayload": {
+      "orders": [
+        {
+          "packageId": "lunch_ceibo",
+          "packageLabel": "Almuerzo — Propuesta Ceibo",
+          "packagePrice": 90,
+          "preferences": [
+            "__i18n__:bruma_pref_salt"
+          ]
+        },
+        {
+          "packageId": "lunch_vinedo",
+          "packageLabel": "Almuerzo — Propuesta Viñedo",
+          "packagePrice": 75,
+          "preferences": []
+        }
+      ],
+      "total": 205,
+      "experienceName": "Dining Experience at Las Liebres"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_ffd0fd6c9984d3e8&amount=205&currency=USD",
+    "sessionId": "mock_ffd0fd6c9984d3e8",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-06-15T05:08:01.391Z",
+    "updatedAt": "2026-06-15T05:08:01.391Z",
+    "expiresAt": "2026-06-16T05:08:01.395Z"
+  },
+  {
+    "fingerprint": "5372627f2dda63ea56f0d5721756eea6c286c1537b86a2fa6b864b6390101256",
+    "experience": "lasliebres_dining",
+    "amount": 280,
+    "currency": "USD",
+    "people": 3,
+    "orderPayload": {
+      "orders": [
+        {
+          "packageId": "lunch_ceibo",
+          "packageLabel": "Almuerzo — Propuesta Ceibo",
+          "packagePrice": 90,
+          "preferences": [
+            "__i18n__:bruma_pref_salt"
+          ]
+        },
+        {
+          "packageId": "lunch_vinedo",
+          "packageLabel": "Almuerzo — Propuesta Viñedo",
+          "packagePrice": 75,
+          "preferences": []
+        },
+        {
+          "packageId": "lunch_vinedo",
+          "packageLabel": "Almuerzo — Propuesta Viñedo",
+          "packagePrice": 75,
+          "preferences": []
+        }
+      ],
+      "total": 280,
+      "experienceName": "Dining Experience at Las Liebres"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_5372627f2dda63ea&amount=280&currency=USD",
+    "sessionId": "mock_5372627f2dda63ea",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-06-15T05:08:16.488Z",
+    "updatedAt": "2026-06-15T05:08:16.488Z",
+    "expiresAt": "2026-06-16T05:08:16.493Z"
+  },
+  {
+    "fingerprint": "139e1115f20902d2a76f0df26a383b642c97f5af420bd00160bb9a29dbe35a0f",
+    "experience": "lasliebres",
+    "amount": 135,
+    "currency": "USD",
+    "people": 1,
+    "orderPayload": {
+      "orders": [
+        {
+          "starter": "",
+          "main": "Three wines — seasonal kitchen pairings (standard)",
+          "drink": "",
+          "preferences": [],
+          "horsebackDepartureTime": "13:30"
+        }
+      ],
+      "total": 135,
+      "people": 1,
+      "experienceName": "Wine tasting at Las Liebres (horseback + vineyard)",
+      "groupGuideFlat": 0,
+      "boatPassengers": 0,
+      "boatPerPerson": 0,
+      "boatSubtotal": 0,
+      "boatDepartureTime": "",
+      "rooms": null,
+      "roomSubtotal": 0
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_139e1115f20902d2&amount=135&currency=USD",
+    "sessionId": "mock_139e1115f20902d2",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-06-15T05:10:44.948Z",
+    "updatedAt": "2026-06-15T05:10:44.948Z",
+    "expiresAt": "2026-06-16T05:10:44.954Z"
   }
 ]

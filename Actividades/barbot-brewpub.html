@@ -207,9 +207,9 @@
 <h3 data-translate="barbot_create_title">Create your experience</h3>
 <div class="booking-visit-date-row">
 <label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
-<input autocomplete="off" data-booking-date-key="selectedDateBarbot" id="bookingVisitDate" type="date"/>
-<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
-          Pick the day you plan to come so we can coordinate availability in advance.
+<input autocomplete="off" data-booking-date-blocked-weekdays="1" data-booking-date-invalid-i18n="barbot_brewpub_alert_monday" data-booking-date-key="selectedDateBarbot" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="barbot_brewpub_visit_date_hint">
+          Closed on Mondays — pick another day so we can coordinate your visit in advance.
         </p>
 </div>
 <p data-translate="barbot_create_subtitle">
@@ -434,7 +434,7 @@
 </div>
 </div>
 <script src="../Home/orders.js?v=20260528langfix"></script>
-<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
+<script src="../Home/booking-date-picker.js?v=20260615nobmon"></script>
 <script>
   initExperience({
     experienceName: "Barbot Brewpub",
