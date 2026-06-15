@@ -99,6 +99,12 @@
       new CustomEvent("sacramento:languageChosen", { detail: { language: safe } })
     );
 
+    if (typeof window.sacramentoMaybeShowWelcome === "function") {
+      window.sacramentoMaybeShowWelcome(safe);
+    } else {
+      window.__SACRAMENTO_PENDING_WELCOME_LANG__ = safe;
+    }
+
     if (typeof window.sacramentoBootHomePage === "function") {
       window.sacramentoBootHomePage();
     } else {
@@ -202,4 +208,15 @@
   }
 
   init();
+
+  const promptScript = document.currentScript;
+  if (promptScript?.src) {
+    const welcomeSrc = promptScript.src.replace(/language-prompt\.js(\?.*)?$/i, "welcome-modal.js$1");
+    if (welcomeSrc !== promptScript.src && !document.querySelector('script[src*="welcome-modal.js"]')) {
+      const welcomeScript = document.createElement("script");
+      welcomeScript.src = welcomeSrc;
+      welcomeScript.async = false;
+      document.head.appendChild(welcomeScript);
+    }
+  }
 })();
