@@ -205,11 +205,17 @@
 <div class="coffee-includes">
 <div class="order-start">
 <h3 data-translate="barbot_create_title">Create your experience</h3>
+<div class="barbot-tour-hours-bar" role="note">
+<p class="barbot-tour-hours-bar__line">
+<strong data-translate="barbot_brewpub_hours_label">Hours</strong>
+<span data-translate="barbot_brewpub_hours_value">Mon–Fri from 6:00 PM · Sat &amp; Sun from 12:00 PM · Closed Mondays</span>
+</p>
+</div>
 <div class="booking-visit-date-row">
 <label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
 <input autocomplete="off" data-booking-date-blocked-weekdays="1" data-booking-date-invalid-i18n="barbot_brewpub_alert_monday" data-booking-date-key="selectedDateBarbot" id="bookingVisitDate" type="date"/>
 <p class="booking-visit-date-hint" data-translate="barbot_brewpub_visit_date_hint">
-          Closed on Mondays — pick another day so we can coordinate your visit in advance.
+          Closed on Mondays — choose your visit day and time below.
         </p>
 </div>
 <p data-translate="barbot_create_subtitle">
@@ -435,6 +441,7 @@
 </div>
 <script src="../Home/orders.js?v=20260528langfix"></script>
 <script src="../Home/booking-date-picker.js?v=20260615nobmon"></script>
+<script src="../Home/barbot-brewpub-hours.js?v=20260615barbothours"></script>
 <script>
   initExperience({
     experienceName: "Barbot Brewpub",
@@ -474,6 +481,10 @@
     orderSummaryId: "barbotOrderSummary",
     bookNowBottomId: "barbotReserveBtn",
     selectedDateKey: "selectedDateBarbot",
+    visitTimeBooking: {
+      globalApi: "sacramentoBarbotBrewpubHours",
+      summaryLabelKey: "barbot_brewpub_visit_time_label",
+    },
     storageKey: "orders_barbot_brewpub",
     experienceSkipsPreferencesField: true,
     whatsappNumber: "59898945542",

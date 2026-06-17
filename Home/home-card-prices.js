@@ -24,7 +24,7 @@
     "food1.html": [50],
     "bike.html": [50],
     "barbot.html": [28, 38, 60],
-    "bruma.html": [35, 50],
+    "bruma.html": [40],
     "asado-boat.html": [60, 80],
     "walking-asado.html": [60, 80],
     "barbot-brewpub.html": [34, 40],

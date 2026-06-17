@@ -919,7 +919,11 @@ function initExperience(config) {
      * `{ hostElementId, priceByOccupancy, occupancyOptions?, maxRooms?, minRooms?, defaultOccupancy? }`
      * — persists `${storageKey}_roomBooking`, requires one menu order per derived guest.
      */
-    roomBooking = null
+    roomBooking = null,
+    /**
+     * Optional visit time for date-keyed experiences: `{ globalApi: "windowObjectName", summaryLabelKey? }`.
+     */
+    visitTimeBooking = null
   } = config || {};
 
   if (!pricePerPerson) {
@@ -934,6 +938,13 @@ function initExperience(config) {
     const rbHost = rbCfg ? document.getElementById(String(rbCfg.hostElementId)) : null;
     const rb = rbCfg && rbHost ? rbCfg : null;
     const roomsStorageKey = rb ? `${storageKey}_roomBooking` : null;
+    const visitTimeApi =
+      visitTimeBooking &&
+      typeof visitTimeBooking === "object" &&
+      visitTimeBooking.globalApi &&
+      typeof window[visitTimeBooking.globalApi] === "object"
+        ? window[visitTimeBooking.globalApi]
+        : null;
 
     const renumberRoomGuestIds = (list) => {
       if (!rb || !Array.isArray(list)) return list;
@@ -1887,6 +1898,13 @@ function initExperience(config) {
       if (!boatBookReady()) return false;
       if (!assertBoatMinimumPassengers()) return false;
       if (!assertMinOrders()) return false;
+      if (
+        visitTimeApi &&
+        typeof visitTimeApi.assertReady === "function" &&
+        !visitTimeApi.assertReady()
+      ) {
+        return false;
+      }
       if (!rb) return true;
       const need = calculateGuestsFromRooms();
       if (need <= 0) {
@@ -2648,14 +2666,14 @@ function initExperience(config) {
           : tierWhatsappPremium ||
             (menuUpgradePrice != null
               ? `${getI18nText("tier_word_premium", "Premium")} (${curLabel} ${Number(menuUpgradePrice) || 0})`
-              : getI18nText("bruma_whatsapp_premium", "Premium (USD 45)"));
+              : getI18nText("bruma_whatsapp_premium", "Premium (USD 50)"));
       const tierWaStdLine =
         tierWhatsappStandardKey
           ? getI18nText(tierWhatsappStandardKey, tierWhatsappStandard || "")
           : tierWhatsappStandard ||
             (menuUpgradePrice != null
               ? `${getI18nText("tier_word_standard", "Standard")} (${curLabel} ${Number(pricePerPerson) || 0})`
-              : getI18nText("bruma_whatsapp_standard", "Standard (from USD 35)"));
+              : getI18nText("bruma_whatsapp_standard", "Standard (USD 40)"));
       const ordersText = orders
         .map((o, i) => {
           const prefs = (Array.isArray(o.preferences) ? o.preferences : [])
@@ -2782,6 +2800,14 @@ function initExperience(config) {
             "Hello! I'd like to book the {experience} experience:"
           ).replace(/\{experience\}/g, expName);
       let message = `${waIntro}\n\n${waLine(getI18nText("orders_wa_date_label", "Date"), dateStr)}`;
+      if (visitTimeApi && typeof visitTimeApi.getSelectedTimeLabel === "function") {
+        const visitTime = visitTimeApi.getSelectedTimeLabel();
+        if (visitTime) {
+          const timeKey =
+            (visitTimeBooking && visitTimeBooking.summaryLabelKey) || "orders_visit_time_label";
+          message += `\n${waLine(getI18nText(timeKey, "Visit time"), visitTime)}`;
+        }
+      }
       if (!whatsappSkipsPeopleLine) {
         message += `\n${waLine(getI18nText("orders_wa_people_line", "People"), peopleCount)}`;
       }
@@ -3162,6 +3188,17 @@ function initExperience(config) {
         )}:</strong> ${escapeHtml(getDateForBooking())}</p>`;
       }
 
+      if (visitTimeApi && typeof visitTimeApi.getSelectedTimeLabel === "function") {
+        const visitTime = visitTimeApi.getSelectedTimeLabel();
+        if (visitTime) {
+          const timeKey =
+            (visitTimeBooking && visitTimeBooking.summaryLabelKey) || "orders_visit_time_label";
+          html += `<p class="order-summary-visit-date"><strong>${escapeHtml(
+            t(timeKey, "Visit time")
+          )}:</strong> ${escapeHtml(visitTime)}</p>`;
+        }
+      }
+
       if (rb) {
         const need = calculateGuestsFromRooms();
         const cov =
@@ -3287,14 +3324,14 @@ function initExperience(config) {
             : tierSummaryPremium ||
               (menuUpgradePrice != null
                 ? `${t("tier_word_premium", "Premium")} · ${curLabel} ${Number(menuUpgradePrice) || 0}`
-                : t("bruma_order_tier_premium", "Premium · USD 45"));
+                : t("bruma_order_tier_premium", "Premium · USD 50"));
         const tierCardStd =
           tierSummaryStandardKey
             ? t(tierSummaryStandardKey, tierSummaryStandard || "")
             : tierSummaryStandard ||
               (menuUpgradePrice != null
                 ? `${t("tier_word_standard", "Standard")} · ${curLabel} ${Number(pricePerPerson) || 0}`
-                : t("bruma_order_tier_standard", "Standard · from USD 35"));
+                : t("bruma_order_tier_standard", "Standard · USD 40"));
         const tierRow =
           menuUpgradePrice
             ? `<p class="order-menu-tier"><strong>${escapeHtml(t("bruma_order_tier_label", "Menu"))}:</strong> ${escapeHtml(
@@ -3947,6 +3984,11 @@ function initExperience(config) {
     document.addEventListener("sacramento:visitDateChanged", (e) => {
       if (!selectedDateKey) return;
       if (e.detail && e.detail.key && e.detail.key !== selectedDateKey) return;
+      renderOrders();
+    });
+
+    document.addEventListener("sacramento:visitTimeChanged", () => {
+      if (!visitTimeApi) return;
       renderOrders();
     });
 
