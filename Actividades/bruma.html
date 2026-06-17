@@ -143,7 +143,6 @@
 </header>
 <!-- ================= HERO ================= -->
 <section class="food-hero bruma-hero-promo-wrap" style="background-image: url('../Assets/images/bruman1.webp?v=20260522perf');">
-<div class="discount-badge bruma-hero-discount-badge" data-translate="bruma_discount_badge">Launch price · 22% OFF</div>
 </section>
 <!-- ================= CONTENT ================= -->
 <section class="coffee-content">
@@ -173,12 +172,10 @@
 <h3 class="bruma-promo-price">
 <span class="bruma-promo-price-row">
 <span class="bruma-price-tier-label" data-translate="bruma_price_standard_label">Standard</span>
-<span class="bruma-price-old" data-translate="bruma_price_standard_original">USD 45</span>
-<span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 35 per guest</span>
+<span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 40 per guest</span>
 </span>
 <span class="bruma-promo-price-row">
 <span class="bruma-price-tier-label" data-translate="bruma_price_premium_label">Premium</span>
-<span class="bruma-price-old" data-translate="bruma_price_premium_original">USD 60</span>
 <span class="bruma-price-new" data-translate="bruma_price_premium_discount">USD 50 per guest</span>
 </span>
 </h3>
@@ -259,21 +256,11 @@
 <p class="bruma-tier-heading" data-translate="bruma_tier_heading">Choose your menu</p>
 <label class="bruma-tier-option">
 <input checked="" name="brumaMenuTier" type="radio" value="standard"/>
-<span class="bruma-tier-option-text">
-<span data-translate="bruma_price_standard_label">Standard</span>
-<span>—</span>
-<span class="bruma-price-old" data-translate="bruma_price_standard_original">USD 45</span>
-<span class="bruma-price-new" data-translate="bruma_price_standard_discount">USD 35 per guest</span>
-</span>
+<span class="bruma-tier-option-text" data-translate="bruma_tier_standard_option">Standard — USD 40 per guest</span>
 </label>
 <label class="bruma-tier-option">
 <input name="brumaMenuTier" type="radio" value="premium"/>
-<span class="bruma-tier-option-text">
-<span data-translate="bruma_price_premium_label">Premium</span>
-<span>—</span>
-<span class="bruma-price-old" data-translate="bruma_price_premium_original">USD 60</span>
-<span class="bruma-price-new" data-translate="bruma_price_premium_discount">USD 50 per guest</span>
-</span>
+<span class="bruma-tier-option-text" data-translate="bruma_tier_premium_option">Premium — USD 50 per guest</span>
 </label>
 </div>
 <!-- ================= STANDARD MENU ================= -->
@@ -426,7 +413,7 @@
 <script>
         initExperience({
           experienceName: "Bruma",
-          pricePerPerson: 35,
+          pricePerPerson: 40,
           menuUpgradePrice: 50,
           tierSummaryStandardKey: "bruma_order_tier_standard",
           tierSummaryPremiumKey: "bruma_order_tier_premium",
