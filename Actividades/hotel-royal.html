@@ -7,7 +7,7 @@
 <title data-translate="royal_doc_title">Hotel Royal · Lodging in Colonia | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/royal2.jpg" rel="preload"/>
-<link href="../Styles/styles.css?v=20260613royalcta" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260617royalpetbtn" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 </head>
@@ -91,13 +91,16 @@
 <li data-translate="royal_room_amenity_7">✔ Breakfast included</li>
 <li data-translate="royal_room_amenity_8">✔ Conference room</li>
 </ul>
+<div class="coffee-actions royal-pet-friendly-block">
+<button class="btn royal-pet-conditions-btn" data-translate="royal_pet_conditions_btn" id="royalPetConditionsBtn" type="button">Condiciones pet friendly</button>
+</div>
 <h3 class="experience-steps-title" data-translate="royal_steps_title">How to book</h3>
 <div class="experience-steps">
 <ul>
 <li class="liebres-step-item">
           💬
           <strong data-translate="royal_step_1_title">Message us on WhatsApp:</strong>
-<span data-translate="royal_step_1_desc">We share our exclusive 10% promotional code with you.</span>
+<span data-translate="royal_step_1_desc">We share our exclusive 8% promotional code with you.</span>
 </li>
 <li class="liebres-step-item">
           🌐
@@ -113,7 +116,7 @@
 </div>
 <div class="price-options">
 <div class="price-box">
-<h3 data-translate="royal_promo_title">Promotional code: 10% off</h3>
+<h3 data-translate="royal_promo_title">Promotional code: 8% off</h3>
 <p data-translate="royal_promo_p">
           We have an exclusive promotional code for Hotel Royal. Sacramento Adventures provides the code; you book directly on the hotel website according to availability.
         </p>
@@ -130,7 +133,7 @@
 <div class="includes-list">
 <h3 data-translate="royal_included_title">What's included</h3>
 <ul>
-<li data-translate="royal_include_promo">✔ 10% off with our promotional code</li>
+<li data-translate="royal_include_promo">✔ 8% off with our promotional code</li>
 <li data-translate="royal_include_1">✔ Breakfast included</li>
 <li data-translate="royal_include_2">✔ Outdoor swimming pool</li>
 <li data-translate="royal_include_7">✔ Conference room</li>
@@ -183,9 +186,26 @@
 <a class="btn secondary" data-translate="royal_back_home" href="../Home/index.html">Back to Home</a>
 </div>
 </section>
+<div aria-hidden="true" class="popup-overlay" id="popupRoyalPetConditions">
+<div aria-labelledby="royalPetPopupTitle" aria-modal="true" class="popup-box royal-pet-popup-box" role="dialog">
+<button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeRoyalPetConditions" type="button">✕</button>
+<p><strong class="popup-title" data-translate="royal_pet_popup_title" id="royalPetPopupTitle">Pet Friendly – Mascotas</strong></p>
+<div class="royal-pet-popup-body">
+<p data-translate="royal_pet_popup_p1">Tenemos gusto en informarles que en Royal Hotel somos pet-friendly 🐶 y nos encanta recibir a sus mascotas 🐕🐈 como parte importante de la familia. Para garantizar la comodidad y seguridad de todos nuestros huéspedes, solo aceptamos mascotas de tamaño pequeño.</p>
+<p data-translate="royal_pet_popup_p2">Las mascotas de tamaño pequeño (hasta 15 kg) se adaptan mejor a nuestras instalaciones y nos permiten ofrecer un entorno acogedor y tranquilo para todos.</p>
+<p data-translate="royal_pet_popup_p3">Por este motivo solicitamos una foto 🤳🏻📸 de su mascota, antes de confirmar su reserva.</p>
+<p><strong data-translate="royal_pet_popup_extra_title">Adicionalmente es importante saber:</strong></p>
+<ul class="royal-pet-popup-list">
+<li data-translate="royal_pet_popup_bullet_bed">La mascota debe concurrir con su cama habitual.</li>
+<li data-translate="royal_pet_popup_bullet_cost">El costo de alojar a su mascota con nosotros será de USD 15 por noche.</li>
+</ul>
+<p data-translate="royal_pet_popup_closing">Si tenés alguna consulta adicional, hacelo saber 😉</p>
+</div>
+</div>
+</div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260613royalpromo"></script>
+<script src="../Home/index.js?v=20260617royalpet"></script>
 <script src="../Home/orders.js?v=20260613royalpromo"></script>
 <script>
     (function () {
@@ -238,7 +258,7 @@
         return [
           t(
             "royal_wa_intro",
-            "Hello! I'd like to stay at Hotel Royal and get the 10% promotional code."
+            "Hello! I'd like to stay at Hotel Royal and get the 8% promotional code."
           ),
           "",
           t(
@@ -267,6 +287,31 @@
       document.addEventListener("sacramento:setLanguage", updateBookingSiteLink);
       document.addEventListener("sacramento:languageChosen", updateBookingSiteLink);
       updateBookingSiteLink();
+
+      const petPopup = document.getElementById("popupRoyalPetConditions");
+      const petOpenBtn = document.getElementById("royalPetConditionsBtn");
+      const petCloseBtn = document.getElementById("closeRoyalPetConditions");
+
+      const openPetPopup = () => {
+        if (!petPopup) return;
+        petPopup.classList.add("active");
+        petPopup.setAttribute("aria-hidden", "false");
+      };
+
+      const closePetPopup = () => {
+        if (!petPopup) return;
+        petPopup.classList.remove("active");
+        petPopup.setAttribute("aria-hidden", "true");
+      };
+
+      petOpenBtn?.addEventListener("click", openPetPopup);
+      petCloseBtn?.addEventListener("click", closePetPopup);
+      petPopup?.addEventListener("click", (e) => {
+        if (e.target === petPopup) closePetPopup();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && petPopup?.classList.contains("active")) closePetPopup();
+      });
     })();
   </script>
 <div class="lightbox" id="lightbox">
