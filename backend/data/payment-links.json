@@ -374,5 +374,29 @@
     "createdAt": "2026-06-15T05:10:44.948Z",
     "updatedAt": "2026-06-15T05:10:44.948Z",
     "expiresAt": "2026-06-16T05:10:44.954Z"
+  },
+  {
+    "fingerprint": "2b3de18caa079b9e42d7e36aac3aba12296873bf61ef64248f7938078dd25bea",
+    "experience": "walkingtour",
+    "amount": 10,
+    "currency": "USD",
+    "people": 1,
+    "orderPayload": {
+      "group": {
+        "language": "Spanish guide",
+        "tourTime": "17:00",
+        "people": 1,
+        "mateAddon": false
+      },
+      "total": 10,
+      "experienceName": "Walking Tour"
+    },
+    "paymentUrl": "https://pago.handy.uy/details/?sessionId=mock_2b3de18caa079b9e&amount=10&currency=USD",
+    "sessionId": "mock_2b3de18caa079b9e",
+    "status": "active",
+    "paymentStatus": "awaiting_payment",
+    "createdAt": "2026-06-17T14:30:14.760Z",
+    "updatedAt": "2026-06-17T14:30:14.760Z",
+    "expiresAt": "2026-06-18T14:30:14.769Z"
   }
 ]

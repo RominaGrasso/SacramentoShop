@@ -199,7 +199,7 @@
 </li>
 <li class="activity-meta-row" data-card-meta="cup">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#cup"></use></svg>
-<span data-translate="walking_step_5">Optional: Mate Experience for USD 5 extra</span>
+<span data-translate="walking_step_5">Optional: Mate Experience for USD 15 extra</span>
 </li>
 </ul>
 </div>
@@ -210,9 +210,9 @@
 </div>
 <!-- MATE EXPERIENCE (OPTIONAL) -->
 <div class="price-box price-box--with-blurb walking-mate-experience-box">
-<h3 data-translate="walking_mate_experience_title">Mate Experience · USD 5 extra</h3>
+<h3 data-translate="walking_mate_experience_title">Mate Experience · USD 15 extra</h3>
 <p class="price-box-detail" data-translate="walking_mate_experience_body">
-      Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 5 per person).
+      Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 15 per person).
     </p>
 </div>
 <!-- INCLUDES -->
@@ -246,6 +246,9 @@
 <section class="coffee-gallery">
 <h2 data-translate="walking_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
+<img alt="Family on a walking tour in Colonia" decoding="async" height="220" src="../Assets/images/family.jpg" width="1200"/>
+<img alt="Walking tour in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/adri2.jpg" width="1200"/>
+<img alt="Historic Quarter walking tour" decoding="async" height="220" loading="lazy" src="../Assets/images/sele31.jpg" width="1200"/>
 <img alt="Historic Quarter, Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/historic1.webp?v=20260522perf" width="1200"/>
 <img alt="Cobblestone streets on the walking tour" decoding="async" height="220" loading="lazy" src="../Assets/images/historic2.webp" width="1200"/>
 <img alt="Historic gate, Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/historic3.webp" width="1200"/>
@@ -254,6 +257,9 @@
 <img alt="Mate and walking tour" decoding="async" height="220" loading="lazy" src="../Assets/images/matescon1.webp" width="1200"/>
 <img alt="Mate experience" decoding="async" height="220" loading="lazy" src="../Assets/images/matescon2.webp" width="1200"/>
 <img alt="Mate with friends in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/matescon4.webp" width="1200"/>
+<img alt="Mate experience in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/mateexp.jpg" width="1200"/>
+<img alt="Traditional mate experience" decoding="async" height="220" loading="lazy" src="../Assets/images/mateexp2.jpg" width="1200"/>
+<img alt="Sharing mate with a local guide" decoding="async" height="220" loading="lazy" src="../Assets/images/mateexp3.jpg" width="1200"/>
 <img alt="Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/colonia.webp" width="1200"/>
 </div>
 </section>
@@ -279,9 +285,7 @@
 <label data-card-meta="globe"><input name="walkingTourLanguage" type="radio" value="Portuguese guide"/> <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#globe"></use></svg><span data-translate="walking_lang_pt">Portuguese guide</span></label>
 <h3 class="preferences-title" data-translate="walking_asado_popup_tour_time_heading" id="walkingTourTimeHeading" style="margin-top: 14px;">Walking tour departure time</h3>
 <div aria-labelledby="walkingTourTimeHeading" class="walking-tour-popup-times" role="radiogroup">
-<label><input name="walkingTourDepartureTime" type="radio" value="10:00"/> 10:00</label>
-<label><input name="walkingTourDepartureTime" type="radio" value="10:30"/> 10:30</label>
-<label><input name="walkingTourDepartureTime" type="radio" value="12:00"/> 12:00</label>
+<label><input name="walkingTourDepartureTime" type="radio" value="11:00"/> 11:00</label>
 <label><input name="walkingTourDepartureTime" type="radio" value="14:00"/> 14:00</label>
 <label><input name="walkingTourDepartureTime" type="radio" value="15:30"/> 15:30</label>
 <label><input name="walkingTourDepartureTime" type="radio" value="17:00"/> 17:00</label>
@@ -383,8 +387,9 @@
       const bookNowBottomBtn = document.getElementById("bookNowBottom");
       const storageKey = "orders_walkingtour";
       const whatsappNumber = "59898945542";
-      const TOUR_TIME_SLOTS = ["10:00", "10:30", "12:00", "14:00", "15:30", "17:00"];
+      const TOUR_TIME_SLOTS = ["11:00", "14:00", "15:30", "17:00"];
       const WALKING_TOUR_MAX_PEOPLE = 15;
+      const MATE_ADDON_PRICE_USD = 15;
       const normalizeTourTime = (value) => {
         const s = String(value || "").trim();
         return TOUR_TIME_SLOTS.includes(s) ? s : "";
@@ -456,7 +461,7 @@
         }
         const unitPrice = getPrice(group.language);
         const walkTotal = unitPrice * group.people;
-        const mateTotal = group.mateAddon ? group.people * 5 : 0;
+        const mateTotal = group.mateAddon ? group.people * MATE_ADDON_PRICE_USD : 0;
         const total = walkTotal + mateTotal;
         const date = formatDate();
 
@@ -494,7 +499,7 @@
 
           const mateWaLine =
             group.mateAddon && mateTotal > 0
-              ? `\n${t("walking_wa_mate", "Mate experience")}: +USD ${mateTotal} (${group.people} × USD 5)`
+              ? `\n${t("walking_wa_mate", "Mate experience")}: +USD ${mateTotal} (${group.people} × USD ${MATE_ADDON_PRICE_USD})`
               : "";
           let message =
             `${t("wa_intro_walking", "Hello! I'd like to book the Walking Tour experience:")}\n\n` +
@@ -569,7 +574,7 @@
           group.mateAddon
             ? `<p><strong>${t("walking_label_mate", "Mate experience")}:</strong> ${t(
                 "walking_mate_card_yes",
-                "Yes (+USD 5 per person)"
+                "Yes (+USD 15 per person)"
               )}</p>`
             : "";
         card.innerHTML = `
@@ -592,17 +597,17 @@
         mateRow.className = "walking-summary-mate-row";
         mateRow.innerHTML = `
           <button type="button" class="add-guest-btn" data-action="toggle-mate">${mateBtnLabel}</button>
-          <span class="walking-mate-price-note">${t("walking_mate_price_note", "(USD 5 per person added)")}</span>
+          <span class="walking-mate-price-note">${t("walking_mate_price_note", "(USD 15 per person added)")}</span>
         `;
         summary.appendChild(mateRow);
 
         const unitPrice = getPrice(group.language);
         const walkLineTotal = group.people * unitPrice;
-        const mateLineTotal = group.mateAddon ? group.people * 5 : 0;
+        const mateLineTotal = group.mateAddon ? group.people * MATE_ADDON_PRICE_USD : 0;
         const total = walkLineTotal + mateLineTotal;
         const totalDetailMate =
           mateLineTotal > 0
-            ? ` + ${t("walking_mate_short", "Mate")} (${group.people} × USD 5)`
+            ? ` + ${t("walking_mate_short", "Mate")} (${group.people} × USD ${MATE_ADDON_PRICE_USD})`
             : "";
         const totalBox = document.createElement("div");
         totalBox.className = "total-box";

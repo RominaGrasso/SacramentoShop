@@ -706,7 +706,7 @@ const translations = {
       home_mision_desc:
         "Step back in time with a unique stay at La Misión, a charming posada located in the heart of the historic quarter, right in front of Plaza Mayor. Enjoy a refined dinner at Bruma, just around the corner, and wake up to a cozy breakfast. Complete your experience with a guided walking tour through Colonia’s most iconic streets.",
       home_royal_title: "Hotel Royal · Lodging in Colonia",
-      home_royal_promo_badge: "Promotional code: 10% off",
+      home_royal_promo_badge: "Promotional code: 8% off",
       home_royal_pet_badge: "Pet Friendly",
       home_royal_meta_promo: "Promotional code available",
       home_royal_meta_pet: "Pet friendly",
@@ -741,19 +741,19 @@ const translations = {
         "Hotel Royal is located on one of Colonia del Sacramento's main avenues, just 200 meters from the UNESCO Historic Quarter (World Heritage Site since 1995). The beach is also 200 meters away, and the river and land terminals are eight blocks from the hotel. Enjoy breakfast included, an outdoor swimming pool, a conference room, and comfortable single, double, and triple rooms — an ideal base to explore Colonia.",
       royal_steps_title: "How to book",
       royal_step_1_title: "Message us on WhatsApp:",
-      royal_step_1_desc: "We share our exclusive 10% promotional code with you.",
+      royal_step_1_desc: "We share our exclusive 8% promotional code with you.",
       royal_step_2_title: "Check availability:",
       royal_step_2_desc: "On the hotel's official booking site — live room availability.",
       royal_step_3_title: "Complete your booking:",
       royal_step_3_desc: "Apply the promotional code when you pay on the hotel website.",
-      royal_promo_title: "Promotional code: 10% off",
+      royal_promo_title: "Promotional code: 8% off",
       royal_promo_p:
         "We have an exclusive promotional code for Hotel Royal. Sacramento Adventures provides the code; you book directly on the hotel website according to availability.",
       royal_promo_book_p:
         "Room stock and rates are shown in real time on the hotel's booking platform. After you receive the code from us, enter it at checkout.",
       royal_booking_site_btn: "View availability on hotel website",
       royal_included_title: "What's included",
-      royal_include_promo: "✔ 10% off with our promotional code",
+      royal_include_promo: "✔ 8% off with our promotional code",
       royal_include_1: "✔ Breakfast included",
       royal_include_2: "✔ Outdoor swimming pool",
       royal_include_3: "✔ Single, double & triple rooms",
@@ -787,7 +787,7 @@ const translations = {
       royal_nights_label: "Nights",
       royal_reserve_btn: "Request code on WhatsApp",
       royal_wa_intro:
-        "Hello! I'd like to stay at Hotel Royal and get the 10% promotional code.",
+        "Hello! I'd like to stay at Hotel Royal and get the 8% promotional code.",
       royal_wa_footer:
         "Thank you! I plan to book on the hotel website once I receive the code.",
       royal_support_title: "After you message us",
@@ -796,6 +796,18 @@ const translations = {
       royal_date_tbd: "To be confirmed",
       royal_gallery_title: "Hotel Gallery",
       royal_back_home: "Back to Home",
+      royal_pet_conditions_btn: "Pet-friendly conditions",
+      royal_pet_popup_title: "Pet Friendly – Pets",
+      royal_pet_popup_p1:
+        "We are pleased to inform you that at Royal Hotel we are pet-friendly 🐶 and we love welcoming your pets 🐕🐈 as an important part of the family. To ensure the comfort and safety of all our guests, we only accept small pets.",
+      royal_pet_popup_p2:
+        "Small pets (up to 15 kg) adapt better to our facilities and allow us to offer a cozy, peaceful environment for everyone.",
+      royal_pet_popup_p3:
+        "For this reason, we ask for a photo 🤳🏻📸 of your pet before confirming your reservation.",
+      royal_pet_popup_extra_title: "Additionally, it is important to know:",
+      royal_pet_popup_bullet_bed: "Your pet must bring its usual bed.",
+      royal_pet_popup_bullet_cost: "The cost to host your pet with us is USD 15 per night.",
+      royal_pet_popup_closing: "If you have any additional questions, please let us know 😉",
       home_sio_mision_title:
         "Premium Night Experience: La Misión Stay, SIO Sushi Dinner & Walking Tour",
       home_sio_mision_desc:
@@ -2298,10 +2310,10 @@ const translations = {
       walking_step_3: "Hidden gems: Discover secret corners and best photo spots",
       walking_step_4:
         "End of tour: Finish in the historic area with recommendations to continue exploring",
-      walking_step_5: "Optional: Mate Experience for USD 5 extra",
-      walking_mate_experience_title: "Mate Experience · USD 5 extra",
+      walking_step_5: "Optional: Mate Experience for USD 15 extra",
+      walking_mate_experience_title: "Mate Experience · USD 15 extra",
       walking_mate_experience_body:
-        "Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 5 per person).",
+        "Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 15 per person).",
       walking_price_title: "USD 15 per guest",
       walking_price_heading: "Prices by guide language",
       walking_price_lang_es: "Spanish",
@@ -2338,10 +2350,10 @@ const translations = {
       walking_book_now: "Reserve",
       walking_mate_add_btn: "Add mate",
       walking_mate_remove_btn: "Remove mate",
-      walking_mate_price_note: "(USD 5 per person added)",
+      walking_mate_price_note: "(USD 15 per person added)",
       walking_mate_short: "Mate",
       walking_label_mate: "Mate experience",
-      walking_mate_card_yes: "Yes (+USD 5 per person)",
+      walking_mate_card_yes: "Yes (+USD 15 per person)",
       walking_wa_mate: "Mate experience",
       walking_alert_select_language: "Please select a language",
       walking_alert_select_tour_time: "Please choose a walking tour departure time.",
@@ -3161,7 +3173,7 @@ const translations = {
       home_mision_desc:
         "Hospedaje en La Misión, posada frente a Plaza Mayor; cena en Bruma a la vuelta de la esquina y desayuno. Completá con un walking tour por las calles más icónicas de Colonia.",
       home_royal_title: "Hotel Royal · Hospedaje en Colonia",
-      home_royal_promo_badge: "Código promocional: 10% de descuento",
+      home_royal_promo_badge: "Código promocional: 8% de descuento",
       home_royal_pet_badge: "Pet Friendly",
       home_royal_meta_promo: "Contamos con un código promocional",
       home_royal_meta_pet: "Pet friendly",
@@ -3196,19 +3208,19 @@ const translations = {
         "El Hotel Royal está ubicado en una de las principales avenidas de Colonia del Sacramento, a solo 200 metros del Barrio Histórico, declarado Patrimonio de la Humanidad en 1995. A 200 metros de la playa y a 8 cuadras de las terminales fluvial y terrestre. Desayuno incluido, piscina exterior, sala de conferencias y habitaciones single, doble y triple — una base ideal para explorar Colonia.",
       royal_steps_title: "Cómo reservar",
       royal_step_1_title: "Escribinos por WhatsApp:",
-      royal_step_1_desc: "Te compartimos nuestro código promocional exclusivo del 10% de descuento.",
+      royal_step_1_desc: "Te compartimos nuestro código promocional exclusivo del 8% de descuento.",
       royal_step_2_title: "Verificá disponibilidad:",
       royal_step_2_desc: "En la web oficial del hotel — stock de habitaciones en tiempo real.",
       royal_step_3_title: "Completá tu reserva:",
       royal_step_3_desc: "Aplicá el código promocional al momento del pago en la web del hotel.",
-      royal_promo_title: "Código promocional: 10% de descuento",
+      royal_promo_title: "Código promocional: 8% de descuento",
       royal_promo_p:
         "Contamos con un código promocional exclusivo para el Hotel Royal. Sacramento Adventures te lo facilita; vos reservás directamente en la web del hotel según disponibilidad.",
       royal_promo_book_p:
         "El stock de habitaciones y las tarifas se muestran en tiempo real en la plataforma de reservas del hotel. Una vez que recibas el código, ingresalo al finalizar la compra.",
       royal_booking_site_btn: "Ver disponibilidad en la web del hotel",
       royal_included_title: "Qué incluye",
-      royal_include_promo: "✔ 10% de descuento con nuestro código promocional",
+      royal_include_promo: "✔ 8% de descuento con nuestro código promocional",
       royal_include_1: "✔ Desayuno incluido",
       royal_include_2: "✔ Piscina exterior",
       royal_include_3: "✔ Habitaciones single, doble y triple",
@@ -3242,7 +3254,7 @@ const translations = {
       royal_nights_label: "Noches",
       royal_reserve_btn: "Pedir código por WhatsApp",
       royal_wa_intro:
-        "¡Hola! Me interesa hospedarme en el Hotel Royal y quisiera obtener el código promocional del 10% de descuento.",
+        "¡Hola! Me interesa hospedarme en el Hotel Royal y quisiera obtener el código promocional del 8% de descuento.",
       royal_wa_footer:
         "¡Gracias! Planeo reservar en la web del hotel una vez que reciba el código.",
       royal_support_title: "Después de escribirnos",
@@ -3251,6 +3263,18 @@ const translations = {
       royal_date_tbd: "A confirmar",
       royal_gallery_title: "Galería del hotel",
       royal_back_home: "Volver al inicio",
+      royal_pet_conditions_btn: "Condiciones pet friendly",
+      royal_pet_popup_title: "Pet Friendly – Mascotas",
+      royal_pet_popup_p1:
+        "Tenemos gusto en informarles que en Royal Hotel somos pet-friendly 🐶 y nos encanta recibir a sus mascotas 🐕🐈 como parte importante de la familia. Para garantizar la comodidad y seguridad de todos nuestros huéspedes, solo aceptamos mascotas de tamaño pequeño.",
+      royal_pet_popup_p2:
+        "Las mascotas de tamaño pequeño (hasta 15 kg) se adaptan mejor a nuestras instalaciones y nos permiten ofrecer un entorno acogedor y tranquilo para todos.",
+      royal_pet_popup_p3:
+        "Por este motivo solicitamos una foto 🤳🏻📸 de su mascota, antes de confirmar su reserva.",
+      royal_pet_popup_extra_title: "Adicionalmente es importante saber:",
+      royal_pet_popup_bullet_bed: "La mascota debe concurrir con su cama habitual.",
+      royal_pet_popup_bullet_cost: "El costo de alojar a su mascota con nosotros será de USD 15 por noche.",
+      royal_pet_popup_closing: "Si tenés alguna consulta adicional, hacelo saber 😉",
       home_sio_mision_title:
         "Noche premium: La Misión, cena SIO Sushi y walking tour",
       home_sio_mision_desc:
@@ -4753,10 +4777,10 @@ const translations = {
       walking_step_3: "Rincones ocultos: Descubrí lugares secretos y los mejores spots para fotos",
       walking_step_4:
         "Fin del tour: Terminá en el casco histórico con recomendaciones para seguir explorando",
-      walking_step_5: "Opcional: Mate Experience por USD 5 extra",
-      walking_mate_experience_title: "Mate Experience · USD 5 extra",
+      walking_step_5: "Opcional: Mate Experience por USD 15 extra",
+      walking_mate_experience_title: "Mate Experience · USD 15 extra",
       walking_mate_experience_body:
-        "El mate es parte del día a día en Uruguay: compartir el mate, la bombilla y charlar un rato. Este complemento opcional te invita a vivir un momento de mate relajado y a conocer por qué es tan típico de nuestra cultura (USD 5 por persona).",
+        "El mate es parte del día a día en Uruguay: compartir el mate, la bombilla y charlar un rato. Este complemento opcional te invita a vivir un momento de mate relajado y a conocer por qué es tan típico de nuestra cultura (USD 15 por persona).",
       walking_price_title: "USD 10 por persona",
       walking_price_heading: "Precios según idioma del guía",
       walking_price_lang_es: "Español",
@@ -4793,10 +4817,10 @@ const translations = {
       walking_book_now: "Reservar",
       walking_mate_add_btn: "Agregar Mate",
       walking_mate_remove_btn: "Quitar mate",
-      walking_mate_price_note: "(Se suman USD 5 por persona)",
+      walking_mate_price_note: "(Se suman USD 15 por persona)",
       walking_mate_short: "Mate",
       walking_label_mate: "Mate",
-      walking_mate_card_yes: "Sí (USD 5 por persona)",
+      walking_mate_card_yes: "Sí (USD 15 por persona)",
       walking_wa_mate: "Experiencia mate",
       walking_alert_select_language: "Seleccioná un idioma",
       walking_alert_select_tour_time: "Elegí un horario para el tour a pie.",
@@ -5614,7 +5638,7 @@ const translations = {
       home_mision_desc:
         "Hospedagem na La Misión, em frente à Plaza Mayor; jantar refinado no Bruma e café da manhã. Complete com walking tour pelas ruas mais icônicas.",
       home_royal_title: "Hotel Royal · Hospedagem em Colonia",
-      home_royal_promo_badge: "Código promocional: 10% de desconto",
+      home_royal_promo_badge: "Código promocional: 8% de desconto",
       home_royal_pet_badge: "Pet Friendly",
       home_royal_meta_promo: "Dispomos de um código promocional",
       home_royal_meta_pet: "Pet friendly",
@@ -5649,19 +5673,19 @@ const translations = {
         "O Hotel Royal está localizado em uma das principais avenidas de Colonia del Sacramento, a apenas 200 metros do Bairro Histórico, Patrimônio da Humanidade desde 1995. A 200 metros da praia e a 8 quarteirões dos terminais fluvial e terrestre. Café da manhã incluído, piscina externa, sala de conferências e quartos single, duplo e triplo — uma base ideal para explorar Colonia.",
       royal_steps_title: "Como reservar",
       royal_step_1_title: "Escreva para nós no WhatsApp:",
-      royal_step_1_desc: "Compartilhamos nosso código promocional exclusivo de 10% de desconto.",
+      royal_step_1_desc: "Compartilhamos nosso código promocional exclusivo de 8% de desconto.",
       royal_step_2_title: "Verifique disponibilidade:",
       royal_step_2_desc: "No site oficial de reservas do hotel — estoque de quartos em tempo real.",
       royal_step_3_title: "Conclua sua reserva:",
       royal_step_3_desc: "Aplique o código promocional ao pagar no site do hotel.",
-      royal_promo_title: "Código promocional: 10% de desconto",
+      royal_promo_title: "Código promocional: 8% de desconto",
       royal_promo_p:
         "Temos um código promocional exclusivo para o Hotel Royal. A Sacramento Adventures fornece o código; você reserva diretamente no site do hotel conforme a disponibilidade.",
       royal_promo_book_p:
         "O estoque de quartos e as tarifas são exibidos em tempo real na plataforma de reservas do hotel. Depois de receber o código, insira-o na finalização da compra.",
       royal_booking_site_btn: "Ver disponibilidade no site do hotel",
       royal_included_title: "O que inclui",
-      royal_include_promo: "✔ 10% de desconto com nosso código promocional",
+      royal_include_promo: "✔ 8% de desconto com nosso código promocional",
       royal_include_1: "✔ Café da manhã incluído",
       royal_include_2: "✔ Piscina externa",
       royal_include_3: "✔ Quartos single, duplo e triplo",
@@ -5695,7 +5719,7 @@ const translations = {
       royal_nights_label: "Noites",
       royal_reserve_btn: "Pedir código no WhatsApp",
       royal_wa_intro:
-        "Olá! Tenho interesse em me hospedar no Hotel Royal e gostaria de obter o código promocional de 10% de desconto.",
+        "Olá! Tenho interesse em me hospedar no Hotel Royal e gostaria de obter o código promocional de 8% de desconto.",
       royal_wa_footer:
         "Obrigado! Pretendo reservar no site do hotel assim que receber o código.",
       royal_support_title: "Depois de nos escrever",
@@ -5704,6 +5728,18 @@ const translations = {
       royal_date_tbd: "A confirmar",
       royal_gallery_title: "Galeria do hotel",
       royal_back_home: "Voltar ao início",
+      royal_pet_conditions_btn: "Condições pet friendly",
+      royal_pet_popup_title: "Pet Friendly – Mascotes",
+      royal_pet_popup_p1:
+        "Temos o prazer de informar que no Royal Hotel somos pet-friendly 🐶 e adoramos receber seus mascotes 🐕🐈 como parte importante da família. Para garantir o conforto e a segurança de todos os nossos hóspedes, aceitamos apenas mascotes de porte pequeno.",
+      royal_pet_popup_p2:
+        "Mascotes pequenos (até 15 kg) se adaptam melhor às nossas instalações e nos permitem oferecer um ambiente acolhedor e tranquilo para todos.",
+      royal_pet_popup_p3:
+        "Por esse motivo, solicitamos uma foto 🤳🏻📸 do seu mascote antes de confirmar sua reserva.",
+      royal_pet_popup_extra_title: "Além disso, é importante saber:",
+      royal_pet_popup_bullet_bed: "O mascote deve vir com sua cama habitual.",
+      royal_pet_popup_bullet_cost: "O custo de hospedar seu mascote conosco será de USD 15 por noite.",
+      royal_pet_popup_closing: "Se tiver alguma consulta adicional, avise-nos 😉",
       home_sio_mision_title:
         "Noite premium: La Misión, jantar SIO Sushi e walking tour",
       home_sio_mision_desc:
@@ -7207,10 +7243,10 @@ const translations = {
       walking_step_3: "Cantos escondidos: Descubra lugares secretos e ótimos pontos para fotos",
       walking_step_4:
         "Fim do tour: Termine no centro histórico com recomendações para continuar explorando",
-      walking_step_5: "Opcional: Mate Experience por USD 5 extra",
-      walking_mate_experience_title: "Mate Experience · USD 5 extra",
+      walking_step_5: "Opcional: Mate Experience por USD 15 extra",
+      walking_mate_experience_title: "Mate Experience · USD 15 extra",
       walking_mate_experience_body:
-        "O mate faz parte do cotidiano no Uruguai: compartilhar a cuia, a bomba e conversar um pouco. Este complemento opcional propõe um momento tranquilo de mate e a chance de entender por que é tão típico da nossa cultura (USD 5 por pessoa).",
+        "O mate faz parte do cotidiano no Uruguai: compartilhar a cuia, a bomba e conversar um pouco. Este complemento opcional propõe um momento tranquilo de mate e a chance de entender por que é tão típico da nossa cultura (USD 15 por pessoa).",
       walking_price_title: "USD 15 por pessoa",
       walking_price_heading: "Preços por idioma do guia",
       walking_price_lang_es: "Espanhol",
@@ -7247,10 +7283,10 @@ const translations = {
       walking_book_now: "Reservar",
       walking_mate_add_btn: "Adicionar mate",
       walking_mate_remove_btn: "Remover mate",
-      walking_mate_price_note: "(Acrescentam-se USD 5 por pessoa)",
+      walking_mate_price_note: "(Acrescentam-se USD 15 por pessoa)",
       walking_mate_short: "Mate",
       walking_label_mate: "Experiência mate",
-      walking_mate_card_yes: "Sim (+USD 5 por pessoa)",
+      walking_mate_card_yes: "Sim (+USD 15 por pessoa)",
       walking_wa_mate: "Experiência mate",
       walking_alert_select_language: "Selecione um idioma",
       walking_alert_select_tour_time: "Escolha um horário para o tour a pé.",

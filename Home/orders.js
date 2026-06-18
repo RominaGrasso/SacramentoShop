@@ -561,6 +561,12 @@ function sacramentoInitTaxiFloatLinks(root = document) {
   });
 }
 
+function withWhatsAppInOrderPayload(orderPayload, whatsappMessage) {
+  const text = String(whatsappMessage || "").trim();
+  if (!text) return orderPayload || {};
+  return { ...(orderPayload || {}), whatsappMessage: text };
+}
+
 async function resolveDynamicPaymentLink(dynamicPayment, payload) {
   if (!dynamicPayment || !dynamicPayment.enabled) return "";
   const endpointRaw = dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT;
@@ -3926,6 +3932,8 @@ function initExperience(config) {
           const boatTotalPay = boatPassengersPay * boatRate;
           const total = calculateFinalPrice(orders);
           const boatTimesPayload = buildBoatTimesPayload(orders);
+          const visitDate = getDateForBooking();
+          const waSummary = buildWhatsAppMessage(orders, visitDate, "");
           let paymentUrl = "";
           try {
             paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
@@ -3944,22 +3952,26 @@ function initExperience(config) {
                 rooms: rb ? getRoomRows() : null,
                 roomSubtotal: rb ? calculateTotalRoomCost() : 0
               }),
-              orderPayload: {
-                orders,
-                total,
-                people: peopleCount,
-                experienceName,
-                groupGuideFlat: ggAmt,
-                boatPassengers: boatPassengersPay,
-                boatPerPerson: boatRate,
-                boatSubtotal: boatTotalPay,
-                boatDepartureTime: boatTimesPayload,
-                rooms: rb ? getRoomRows() : null,
-                roomSubtotal: rb ? calculateTotalRoomCost() : 0
-              }
+              orderPayload: withWhatsAppInOrderPayload(
+                {
+                  orders,
+                  total,
+                  people: peopleCount,
+                  experienceName,
+                  visitDate,
+                  groupGuideFlat: ggAmt,
+                  boatPassengers: boatPassengersPay,
+                  boatPerPerson: boatRate,
+                  boatSubtotal: boatTotalPay,
+                  boatDepartureTime: boatTimesPayload,
+                  rooms: rb ? getRoomRows() : null,
+                  roomSubtotal: rb ? calculateTotalRoomCost() : 0
+                },
+                waSummary
+              )
             });
           } catch {}
-          const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
+          const message = buildWhatsAppMessage(orders, visitDate, paymentUrl);
           sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
         });
       }
@@ -4033,6 +4045,8 @@ function initExperience(config) {
             const boatTotalPay = boatPassengersPay * boatRate;
             const total = calculateFinalPrice(orders);
             const boatTimesPayload = buildBoatTimesPayload(orders);
+            const visitDate = getDateForBooking();
+            const waSummary = buildWhatsAppMessage(orders, visitDate, "");
             let paymentUrl = "";
             try {
               paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
@@ -4051,22 +4065,26 @@ function initExperience(config) {
                   rooms: rb ? getRoomRows() : null,
                   roomSubtotal: rb ? calculateTotalRoomCost() : 0
                 }),
-                orderPayload: {
-                  orders,
-                  total,
-                  people: peopleCount,
-                  experienceName,
-                  groupGuideFlat: ggAmt,
-                  boatPassengers: boatPassengersPay,
-                  boatPerPerson: boatRate,
-                  boatSubtotal: boatTotalPay,
-                  boatDepartureTime: boatTimesPayload,
-                  rooms: rb ? getRoomRows() : null,
-                  roomSubtotal: rb ? calculateTotalRoomCost() : 0
-                }
+                orderPayload: withWhatsAppInOrderPayload(
+                  {
+                    orders,
+                    total,
+                    people: peopleCount,
+                    experienceName,
+                    visitDate,
+                    groupGuideFlat: ggAmt,
+                    boatPassengers: boatPassengersPay,
+                    boatPerPerson: boatRate,
+                    boatSubtotal: boatTotalPay,
+                    boatDepartureTime: boatTimesPayload,
+                    rooms: rb ? getRoomRows() : null,
+                    roomSubtotal: rb ? calculateTotalRoomCost() : 0
+                  },
+                  waSummary
+                )
               });
             } catch {}
-            const message = buildWhatsAppMessage(orders, getDateForBooking(), paymentUrl);
+            const message = buildWhatsAppMessage(orders, visitDate, paymentUrl);
             sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
           });
         });
@@ -4635,7 +4653,10 @@ function initFoodExperience(config) {
               currency: dynamicPayment?.currency || "USD",
               people: orders.length,
               orderFingerprint: stableStringify({ orders, total: base.total }),
-              orderPayload: { orders, total: base.total, experienceName, visitDate: getDateForBooking() }
+              orderPayload: withWhatsAppInOrderPayload(
+                { orders, total: base.total, experienceName, visitDate: getDateForBooking() },
+                base.message
+              )
             });
             if (paymentUrl) {
               finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
@@ -4667,7 +4688,10 @@ function initFoodExperience(config) {
                 currency: dynamicPayment?.currency || "USD",
                 people: orders.length,
                 orderFingerprint: stableStringify({ orders, total: base.total }),
-                orderPayload: { orders, total: base.total, experienceName, visitDate: getDateForBooking() }
+                orderPayload: withWhatsAppInOrderPayload(
+                  { orders, total: base.total, experienceName, visitDate: getDateForBooking() },
+                  base.message
+                )
               });
               if (paymentUrl) {
                 finalMessage = buildFoodWhatsAppMessage(orders, paymentUrl).message;
@@ -4948,6 +4972,7 @@ function initPreferencesOrderExperience(config) {
           const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           const people = orders.length;
           const total = people * pricePerPerson;
+          const waSummary = buildWhatsAppMessage(orders, "");
           let paymentUrl = "";
           try {
             paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
@@ -4956,7 +4981,10 @@ function initPreferencesOrderExperience(config) {
               currency: dynamicPayment?.currency || "USD",
               people,
               orderFingerprint: stableStringify({ orders, total, people }),
-              orderPayload: { orders, total, people, experienceName }
+              orderPayload: withWhatsAppInOrderPayload(
+                { orders, total, people, experienceName },
+                waSummary
+              )
             });
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
@@ -5017,6 +5045,7 @@ function initPreferencesOrderExperience(config) {
             const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
             const people = orders.length;
             const total = people * pricePerPerson;
+            const waSummary = buildWhatsAppMessage(orders, "");
             let paymentUrl = "";
             try {
               paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
@@ -5025,7 +5054,10 @@ function initPreferencesOrderExperience(config) {
                 currency: dynamicPayment?.currency || "USD",
                 people,
                 orderFingerprint: stableStringify({ orders, total, people }),
-                orderPayload: { orders, total, people, experienceName }
+                orderPayload: withWhatsAppInOrderPayload(
+                  { orders, total, people, experienceName },
+                  waSummary
+                )
               });
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
@@ -5904,6 +5936,7 @@ function initPackageOrderExperience(config) {
           const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
           const transportTotal = totalTransportForOrders(orders);
           const total = expTotal + transportTotal + groupGuideAmount();
+          const waSummary = buildWhatsAppMessage(orders, "");
           let paymentUrl = "";
           try {
             paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
@@ -5919,7 +5952,7 @@ function initPackageOrderExperience(config) {
                 })),
                 total
               }),
-              orderPayload: { orders, total, experienceName }
+              orderPayload: withWhatsAppInOrderPayload({ orders, total, experienceName }, waSummary)
             });
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
@@ -6004,6 +6037,7 @@ function initPackageOrderExperience(config) {
             const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
             const transportTotal = totalTransportForOrders(orders);
             const total = expTotal + transportTotal + groupGuideAmount();
+            const waSummary = buildWhatsAppMessage(orders, "");
             let paymentUrl = "";
             try {
               paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
@@ -6019,7 +6053,7 @@ function initPackageOrderExperience(config) {
                   })),
                   total
                 }),
-                orderPayload: { orders, total, experienceName }
+                orderPayload: withWhatsAppInOrderPayload({ orders, total, experienceName }, waSummary)
               });
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);
@@ -6429,6 +6463,7 @@ function initSioSpecialNightOrders(userConfig) {
       sacramentoRunReserveWhatsAppFlow(async () => {
         const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
         let finalMessage = buildWhatsAppMessage("");
+        const waSummary = buildWhatsAppMessage("");
         try {
           if (dp && dp.enabled && totalUsd > 0) {
             const paymentUrl = await resolveDynamicPaymentLink(dp, {
@@ -6443,14 +6478,17 @@ function initSioSpecialNightOrders(userConfig) {
                 total: totalUsd,
                 people: peopleCount
               }),
-              orderPayload: {
-                kind: rb ? "mision_sio_night" : "sio_special_night",
-                orders,
-                totalUsd: menuTotal,
-                roomSubtotal: rb ? roomTotal : undefined,
-                rooms: rb ? getRoomRows() : undefined,
-                visitDate: getDateForBooking()
-              }
+              orderPayload: withWhatsAppInOrderPayload(
+                {
+                  kind: rb ? "mision_sio_night" : "sio_special_night",
+                  orders,
+                  totalUsd: menuTotal,
+                  roomSubtotal: rb ? roomTotal : undefined,
+                  rooms: rb ? getRoomRows() : undefined,
+                  visitDate: getDateForBooking()
+                },
+                waSummary
+              )
             });
             if (paymentUrl) {
               finalMessage = buildWhatsAppMessage(paymentUrl);
