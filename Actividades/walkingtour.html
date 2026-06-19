@@ -311,7 +311,7 @@
 <script src="../Home/orders.js?v=20260528langfix"></script>
 <script>
   (function () {
-    const pricesByLang = { es: 10, en: 15, pt: 15 };
+    const pricesByLang = { es: 12, en: 15, pt: 15 };
     const getLang = () => window.getInitialLanguage().toLowerCase();
     const t = (key, fallback) => {
       const lang = getLang();
@@ -320,7 +320,7 @@
     };
     const getListPriceForGuideLanguage = (guideLanguage) => {
       const g = String(guideLanguage || "").toLowerCase();
-      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 10;
+      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 12;
       if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 15;
       if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 15;
       return null;
@@ -349,7 +349,7 @@
     };
 
     const WALKING_GUIDE_PRICE_TIERS = Object.freeze([
-      { langKey: "walking_price_lang_es", fallback: "Spanish", amount: 10 },
+      { langKey: "walking_price_lang_es", fallback: "Spanish", amount: 12 },
       { langKey: "walking_price_lang_en", fallback: "English", amount: 15 },
       { langKey: "walking_price_lang_pt", fallback: "Portuguese", amount: 15 }
     ]);

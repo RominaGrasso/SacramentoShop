@@ -13,10 +13,10 @@
 
   const HOME_CARD_PRICE_USD = {
     "cabal.html": [30],
-    "walkingtour.html": [10, 15],
+    "walkingtour.html": [12, 15],
     "mate.html": [35],
     "traslado-plaza-letras.html": [50],
-    "vinos.html": [20, 25, 30],
+    "vinos.html": [25, 30, 35],
     "quinton.html": [100, 110, 130],
     "fullday-colonia.html": [90],
     "plaza1.html": [80, 60],
@@ -27,7 +27,7 @@
     "bruma.html": [40],
     "asado-boat.html": [60, 80],
     "walking-asado.html": [60, 80],
-    "barbot-brewpub.html": [34, 40],
+    "barbot-brewpub.html": [45, 55],
     "lasliebres-dining.html": [75, 90],
     "historic-lasliebres.html": [85, 105, 120],
     "lasliebres.html": [85],
