@@ -1870,8 +1870,18 @@
     object-position: center 15%;
   }
 
+  /* Cabalgata home card: menos cielo, jinetes más arriba en el recorte */
+  #home-cabal-card .carousel-track img {
+    object-fit: cover;
+    object-position: center 78%;
+  }
+
   #home-cabal-card .carousel-track img[src*="gabino1"] {
-    object-position: center 38%;
+    object-position: center 62%;
+  }
+
+  #home-cabal-card .carousel-track img[src*="gabin21"] {
+    object-position: center 48%;
   }
 
   .logo img {
