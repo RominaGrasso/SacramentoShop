@@ -8,18 +8,19 @@ const translations = {
       hero_weekend_promo: "❤️ Support Responsabilidad Animal — click here",
       animal_donation_title: "🐾 Support Responsabilidad Animal Colonia",
       animal_donation_logo_alt: "Responsabilidad Animal Colonia logo",
-      animal_donation_badge: "🐾 100% direct donation to Responsabilidad Animal Colonia",
       animal_donation_intro:
         "Every contribution, no matter how small, helps feed, assist, and provide a better quality of life for dogs and cats that need support in Colonia del Sacramento. ❤️",
-      animal_donation_amount_heading: "Choose a donation amount:",
-      animal_donation_amount_other: "Other amount",
-      animal_donation_custom_label: "Enter amount (USD)",
-      animal_donation_submit: "❤️ Continue on WhatsApp",
+      animal_donation_explain:
+        "Donations are made directly through Responsabilidad Animal Colonia's official platform.",
+      animal_donation_donate_btn: "❤️ Donate now",
+      animal_donation_trust:
+        "🐾 Donation 100% managed by Responsabilidad Animal Colonia through Colectate.",
+      animal_donation_whatsapp_btn: "💬 Ask on WhatsApp",
       animal_donation_disclaimer:
         "Sacramento Adventures does not manage or receive these donations. Contact is made directly with Responsabilidad Animal.",
       animal_donation_close_aria: "Close donation dialog",
-      animal_donation_wa_message:
-        "Hello! I'd like to make a donation to Responsabilidad Animal Colonia of USD {amount}. Could you send me the details to make the transfer?",
+      animal_donation_wa_info_message:
+        "Hello. I'd like to get more information about how to support Responsabilidad Animal Colonia.",
       hero_tagline_region: "Activities in Colonia del Sacramento and the surrounding area",
       home_activity_search_label: "Search activities",
       home_activity_search_placeholder: "Search activities…",
@@ -2489,18 +2490,19 @@ const translations = {
       hero_weekend_promo: "❤️ Ayudá a Responsabilidad Animal haciendo click aquí",
       animal_donation_title: "🐾 Ayudá a Responsabilidad Animal Colonia",
       animal_donation_logo_alt: "Logo de Responsabilidad Animal Colonia",
-      animal_donation_badge: "🐾 Donación 100% directa a Responsabilidad Animal Colonia",
       animal_donation_intro:
         "Cada aporte, por pequeño que sea, ayuda a alimentar, asistir y brindar una mejor calidad de vida a perros y gatos que necesitan apoyo en Colonia del Sacramento. ❤️",
-      animal_donation_amount_heading: "Elegí un monto para donar:",
-      animal_donation_amount_other: "Otro monto",
-      animal_donation_custom_label: "Ingresá el monto (USD)",
-      animal_donation_submit: "❤️ Continuar por WhatsApp",
+      animal_donation_explain:
+        "Las donaciones se realizan directamente a través de la plataforma oficial de Responsabilidad Animal Colonia.",
+      animal_donation_donate_btn: "❤️ Donar ahora",
+      animal_donation_trust:
+        "🐾 Donación 100% gestionada por Responsabilidad Animal Colonia a través de Colectate.",
+      animal_donation_whatsapp_btn: "💬 Consultar por WhatsApp",
       animal_donation_disclaimer:
         "Sacramento Adventures no administra ni recibe estas donaciones. El contacto se realiza directamente con Responsabilidad Animal.",
       animal_donation_close_aria: "Cerrar ventana de donación",
-      animal_donation_wa_message:
-        "Hola! Quiero hacer una donación a Responsabilidad Animal Colonia de USD {amount}. ¿Podrían enviarme los datos para realizar la transferencia?",
+      animal_donation_wa_info_message:
+        "Hola. Quisiera obtener más información sobre cómo colaborar con Responsabilidad Animal Colonia.",
       hero_tagline_region: "Actividades en Colonia del Sacramento y alrededores",
       home_activity_search_label: "Buscar actividades",
       home_activity_search_placeholder: "Buscar actividades…",
@@ -4970,18 +4972,19 @@ const translations = {
       hero_weekend_promo: "❤️ Apoie a Responsabilidad Animal clicando aqui",
       animal_donation_title: "🐾 Apoie a Responsabilidad Animal Colonia",
       animal_donation_logo_alt: "Logo da Responsabilidad Animal Colonia",
-      animal_donation_badge: "🐾 Doação 100% direta para Responsabilidad Animal Colonia",
       animal_donation_intro:
         "Cada contribuição, por menor que seja, ajuda a alimentar, assistir e oferecer uma melhor qualidade de vida a cães e gatos que precisam de apoio em Colonia del Sacramento. ❤️",
-      animal_donation_amount_heading: "Escolha um valor para doar:",
-      animal_donation_amount_other: "Outro valor",
-      animal_donation_custom_label: "Informe o valor (USD)",
-      animal_donation_submit: "❤️ Continuar pelo WhatsApp",
+      animal_donation_explain:
+        "As doações são feitas diretamente pela plataforma oficial da Responsabilidad Animal Colonia.",
+      animal_donation_donate_btn: "❤️ Doar agora",
+      animal_donation_trust:
+        "🐾 Doação 100% gerenciada pela Responsabilidad Animal Colonia através do Colectate.",
+      animal_donation_whatsapp_btn: "💬 Consultar pelo WhatsApp",
       animal_donation_disclaimer:
         "A Sacramento Adventures não administra nem recebe essas doações. O contato é feito diretamente com a Responsabilidad Animal.",
       animal_donation_close_aria: "Fechar janela de doação",
-      animal_donation_wa_message:
-        "Olá! Quero fazer uma doação para a Responsabilidad Animal Colonia de USD {amount}. Poderiam me enviar os dados para realizar a transferência?",
+      animal_donation_wa_info_message:
+        "Olá. Gostaria de obter mais informações sobre como colaborar com a Responsabilidad Animal Colonia.",
       hero_tagline_region: "Atividades em Colonia del Sacramento e arredores",
       home_activity_search_label: "Buscar atividades",
       home_activity_search_placeholder: "Buscar atividades…",

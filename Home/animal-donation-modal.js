@@ -1,22 +1,16 @@
 /**
  * Animal donation modal — home hero CTA for Responsabilidad Animal Colonia.
- * Opens WhatsApp with a pre-filled donation message after amount selection.
+ * Primary action: official Colectate donation page. Optional: WhatsApp for questions.
  */
 (function () {
+  const COLECTATE_URL = "https://colectate.com.uy/rac";
   const WHATSAPP_NUMBER = "59894420199";
 
   const overlay = document.getElementById("popupAnimalDonation");
   const trigger = document.getElementById("heroAnimalDonationBtn");
-  const submitBtn = document.getElementById("animalDonationSubmit");
-  const customWrap = document.getElementById("animalDonationCustomWrap");
-  const customInput = document.getElementById("animalDonationCustomAmount");
-  const amountCards = overlay
-    ? Array.from(overlay.querySelectorAll(".animal-donation-amount-card"))
-    : [];
+  const whatsappBtn = document.getElementById("animalDonationWhatsAppBtn");
 
-  if (!overlay || !trigger || !submitBtn || !customWrap || !customInput || !amountCards.length) {
-    return;
-  }
+  if (!overlay || !trigger || !whatsappBtn) return;
 
   const getLang = () =>
     (typeof window.getInitialLanguage === "function"
@@ -30,49 +24,11 @@
     return dict?.[lang]?.[key] || dict?.en?.[key] || fallback;
   };
 
-  /** @type {"fixed"|"other"|null} */
-  let selectionMode = null;
-  /** @type {number|null} */
-  let selectedFixedAmount = null;
-
-  const resetForm = () => {
-    selectionMode = null;
-    selectedFixedAmount = null;
-    amountCards.forEach((card) => {
-      card.classList.remove("is-selected");
-      card.setAttribute("aria-checked", "false");
-    });
-    customWrap.hidden = true;
-    customInput.value = "";
-    submitBtn.disabled = true;
-  };
-
-  const getSelectedAmount = () => {
-    if (selectionMode === "fixed" && selectedFixedAmount != null) {
-      return selectedFixedAmount;
-    }
-    if (selectionMode === "other") {
-      const value = Number.parseFloat(String(customInput.value).replace(",", "."));
-      if (!Number.isFinite(value) || value < 1) return null;
-      return Math.round(value * 100) / 100;
-    }
-    return null;
-  };
-
-  const syncSubmitState = () => {
-    submitBtn.disabled = getSelectedAmount() == null;
-  };
-
-  const buildWhatsAppMessage = (amount) => {
-    const template = t(
-      "animal_donation_wa_message",
-      "Hola! Quiero hacer una donación a Responsabilidad Animal Colonia de USD {amount}. ¿Podrían enviarme los datos para realizar la transferencia?"
+  const openWhatsAppInfo = () => {
+    const message = t(
+      "animal_donation_wa_info_message",
+      "Hola. Quisiera obtener más información sobre cómo colaborar con Responsabilidad Animal Colonia."
     );
-    return template.replace("{amount}", String(amount));
-  };
-
-  const openWhatsAppDonation = (amount) => {
-    const message = buildWhatsAppMessage(amount);
     const pendingTab =
       typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
         ? window.sacramentoOpenWhatsAppBlankTabForGesture()
@@ -100,51 +56,16 @@
     );
   };
 
-  amountCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      amountCards.forEach((item) => {
-        item.classList.remove("is-selected");
-        item.setAttribute("aria-checked", "false");
-      });
-      card.classList.add("is-selected");
-      card.setAttribute("aria-checked", "true");
+  whatsappBtn.addEventListener("click", () => openWhatsAppInfo());
 
-      const amount = card.getAttribute("data-amount");
-      if (amount === "other") {
-        selectionMode = "other";
-        selectedFixedAmount = null;
-        customWrap.hidden = false;
-        customInput.focus();
-      } else {
-        selectionMode = "fixed";
-        selectedFixedAmount = Number.parseInt(amount, 10);
-        customWrap.hidden = true;
-        customInput.value = "";
-      }
-
-      syncSubmitState();
-    });
-  });
-
-  customInput.addEventListener("input", syncSubmitState);
-
-  submitBtn.addEventListener("click", () => {
-    const amount = getSelectedAmount();
-    if (amount == null) return;
-    openWhatsAppDonation(amount);
-  });
-
-  const modal = window.bindSacramentoModal({
-    overlay,
-    onOpen: resetForm,
-    onClose: resetForm
-  });
-
+  const modal = window.bindSacramentoModal({ overlay });
   if (!modal) return;
 
   trigger.addEventListener("click", () => modal.open());
 
-  document.addEventListener("sacramento:setLanguage", () => {
-    if (modal.isOpen()) syncSubmitState();
-  });
+  // Ensure Colectate link always points to the official URL.
+  const colectateBtn = document.getElementById("animalDonationColectateBtn");
+  if (colectateBtn) {
+    colectateBtn.setAttribute("href", COLECTATE_URL);
+  }
 })();

@@ -10242,21 +10242,8 @@ body.sacramento-modal-open {
   color: #2f67a3;
 }
 
-.animal-donation-modal__badge {
-  margin: 0 0 12px;
-  padding: 12px 14px;
-  font-size: 0.92rem;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: center;
-  color: #2f67a3;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1.5px solid rgba(79, 143, 201, 0.45);
-  border-radius: 14px;
-}
-
 .animal-donation-modal .animal-donation-modal__intro {
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   padding: 14px 16px;
   font-size: 0.96rem;
   font-weight: 600;
@@ -10269,112 +10256,78 @@ body.sacramento-modal-open {
   box-shadow: none;
 }
 
-.animal-donation-modal .animal-donation-amount-card {
-  appearance: none;
-  -webkit-appearance: none;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #2f67a3;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1.5px solid rgba(79, 143, 201, 0.4);
-  border-radius: 14px;
-  padding: 14px 10px;
-  cursor: pointer;
-  text-align: center;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-}
-
-.animal-donation-modal .animal-donation-amount-card:hover {
-  border-color: rgba(47, 103, 163, 0.65);
-  background: #fff;
-}
-
-.animal-donation-modal .animal-donation-amount-card.is-selected,
-.animal-donation-modal .animal-donation-amount-card.is-selected:hover {
-  color: #fff;
-  background: #2f67a3;
-  border-color: #2f67a3;
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
-}
-
-.animal-donation-modal__amount-heading {
-  margin: 4px 0 12px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #2f67a3;
-  text-align: center;
-}
-
-.animal-donation-amounts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.animal-donation-modal .animal-donation-amount-card[data-amount="other"] {
-  grid-column: 1 / -1;
-}
-
-.animal-donation-modal .animal-donation-amount-card:focus-visible {
-  outline: 2px solid #2f67a3;
-  outline-offset: 2px;
-}
-
-.animal-donation-custom-wrap {
-  margin-bottom: 16px;
-}
-
-.animal-donation-custom-label {
-  display: block;
-  margin-bottom: 8px;
+.animal-donation-modal__explain {
+  margin: 0 0 18px;
   font-size: 0.9rem;
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.animal-donation-custom-input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px 14px;
-  font-size: 1rem;
-  border: 1px solid rgba(47, 103, 163, 0.25);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.animal-donation-custom-input:focus {
-  outline: 2px solid rgba(47, 103, 163, 0.35);
-  border-color: #2f67a3;
+  line-height: 1.5;
+  color: #475569;
+  text-align: center;
 }
 
 .animal-donation-modal__actions {
-  margin-top: 6px;
+  margin-top: 0;
 }
 
-.animal-donation-submit-btn {
+.animal-donation-donate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  box-sizing: border-box;
+  padding: 14px 20px;
   border-radius: 999px;
   background: linear-gradient(135deg, #6ea8e5 0%, #4c8fd4 100%);
   border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
   font-weight: 700;
+  text-decoration: none;
   box-shadow: 0 6px 18px rgba(47, 103, 163, 0.28);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.animal-donation-modal .animal-donation-submit-btn:hover:not(:disabled) {
+.animal-donation-modal .animal-donation-donate-btn:hover {
   background: linear-gradient(135deg, #7cb4ec 0%, #5a9fe0 100%);
   box-shadow: 0 8px 22px rgba(47, 103, 163, 0.35);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
-.animal-donation-modal .animal-donation-submit-btn:disabled {
-  background: linear-gradient(135deg, #b8d4ef 0%, #9ec5e8 100%);
-  opacity: 1;
-  color: rgba(255, 255, 255, 0.95);
-  cursor: not-allowed;
-  pointer-events: none;
-  box-shadow: none;
+.animal-donation-modal__trust {
+  margin: 14px 0 12px;
+  padding: 11px 13px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+  color: #2f67a3;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid rgba(79, 143, 201, 0.45);
+  border-radius: 12px;
+}
+
+.animal-donation-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 4px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1.5px solid rgba(79, 143, 201, 0.45);
+  color: #2f67a3;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.animal-donation-modal .animal-donation-whatsapp-btn:hover {
+  background: #fff;
+  border-color: rgba(47, 103, 163, 0.65);
+  color: #255585;
 }
 
 .animal-donation-disclaimer {
@@ -10405,19 +10358,20 @@ body.sacramento-modal-open {
     height: 80px;
   }
 
-  .animal-donation-modal__badge,
-  .animal-donation-modal .animal-donation-modal__intro {
+  .animal-donation-modal .animal-donation-modal__intro,
+  .animal-donation-modal__trust {
     font-size: 0.88rem;
     padding: 11px 12px;
   }
 
-  .animal-donation-modal__amount-heading {
-    font-size: 0.94rem;
+  .animal-donation-modal__explain {
+    font-size: 0.84rem;
   }
 
-  .animal-donation-modal .animal-donation-amount-card {
-    font-size: 0.88rem;
-    padding: 12px 8px;
+  .animal-donation-donate-btn,
+  .animal-donation-whatsapp-btn {
+    font-size: 0.9rem;
+    padding: 12px 16px;
   }
 
   .animal-donation-modal .close-x {
