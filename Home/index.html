@@ -7,7 +7,7 @@
 <title>Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/colonia.webp?v=20260522perf" rel="preload"/>
-<link href="../Styles/styles.css?v=20260611about8" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260621donationbg3" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -105,9 +105,9 @@
 <p class="hero-book-tagline" data-translate="hero_book_tagline">
         Book online in less than 2 minutes
       </p>
-<p class="hero-weekend-promo" data-translate="hero_weekend_promo">
-        ✨ Special promotions today only
-      </p>
+<button class="hero-weekend-promo" data-translate="hero_weekend_promo" id="heroAnimalDonationBtn" type="button">
+        ❤️ Ayudá a Responsabilidad Animal haciendo click aquí
+      </button>
 <div class="hero-buttons">
 <a class="btn hero-btn-view-activities" data-translate="hero_btn_view_activities" href="#experiences">
           View activities
@@ -442,7 +442,7 @@
 <img alt="Gabino — horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin21.jpg" width="1200"/>
 <img alt="Gabino — horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin22.jpg" width="1200"/>
 <img alt="Gabino — horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin23.jpg" width="1200"/>
-<img alt="Gabino — horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin1.jpg" width="1200"/>
+<img alt="Gabino — horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin11.jpg" width="1200"/>
 </div>
 <button class="carousel-btn prev">‹</button>
 <button class="carousel-btn next">›</button>
@@ -1984,6 +1984,42 @@
 </ul>
 </div>
 </section>
+<!-- ================= ANIMAL DONATION MODAL ================= -->
+<div aria-hidden="true" class="popup-overlay sacramento-modal-overlay" id="popupAnimalDonation">
+<div aria-labelledby="animalDonationPopupTitle" aria-modal="true" class="popup-box sacramento-modal-box animal-donation-modal" role="dialog">
+<div aria-hidden="true" class="animal-donation-modal__backdrop">
+<img alt="" class="animal-donation-modal__bg-photo animal-donation-modal__bg-photo--1" decoding="async" src="../Assets/images/responsabilidad-animal-bg-1.jpg"/>
+<img alt="" class="animal-donation-modal__bg-photo animal-donation-modal__bg-photo--2" decoding="async" src="../Assets/images/responsabilidad-animal-bg-2.jpg"/>
+<img alt="" class="animal-donation-modal__bg-photo animal-donation-modal__bg-photo--3" decoding="async" src="../Assets/images/responsabilidad-animal-bg-3.jpg"/>
+<img alt="" class="animal-donation-modal__bg-photo animal-donation-modal__bg-photo--4" decoding="async" src="../Assets/images/responsabilidad-animal-bg-4.jpg"/>
+</div>
+<button class="close-x" data-translate-aria-label="animal_donation_close_aria" id="closeAnimalDonation" type="button">✕</button>
+<div class="animal-donation-modal__content">
+<div class="animal-donation-modal__header">
+<img alt="Responsabilidad Animal Colonia" class="animal-donation-modal__logo" data-translate-alt="animal_donation_logo_alt" decoding="async" height="96" src="../Assets/images/responsabilidad-animal-logo.png" width="96"/>
+<p class="popup-title animal-donation-modal__title"><strong data-translate="animal_donation_title" id="animalDonationPopupTitle">🐾 Ayudá a Responsabilidad Animal Colonia</strong></p>
+</div>
+<p class="animal-donation-modal__badge" data-translate="animal_donation_badge">🐾 Donación 100% directa a Responsabilidad Animal Colonia</p>
+<p class="animal-donation-modal__intro" data-translate="animal_donation_intro">Cada aporte, por pequeño que sea, ayuda a alimentar, asistir y brindar una mejor calidad de vida a perros y gatos que necesitan apoyo en Colonia del Sacramento. ❤️</p>
+<h3 class="animal-donation-modal__amount-heading" data-translate="animal_donation_amount_heading" id="animalDonationAmountHeading">Elegí un monto para donar:</h3>
+<div aria-labelledby="animalDonationAmountHeading" class="animal-donation-amounts" role="radiogroup">
+<button aria-checked="false" class="animal-donation-amount-card" data-amount="5" role="radio" type="button">USD 5</button>
+<button aria-checked="false" class="animal-donation-amount-card" data-amount="10" role="radio" type="button">USD 10</button>
+<button aria-checked="false" class="animal-donation-amount-card" data-amount="15" role="radio" type="button">USD 15</button>
+<button aria-checked="false" class="animal-donation-amount-card" data-amount="20" role="radio" type="button">USD 20</button>
+<button aria-checked="false" class="animal-donation-amount-card" data-amount="other" data-translate="animal_donation_amount_other" role="radio" type="button">Otro monto</button>
+</div>
+<div class="animal-donation-custom-wrap" hidden="" id="animalDonationCustomWrap">
+<label class="animal-donation-custom-label" data-translate="animal_donation_custom_label" for="animalDonationCustomAmount">Ingresá el monto (USD)</label>
+<input class="animal-donation-custom-input" id="animalDonationCustomAmount" inputmode="decimal" min="1" placeholder="USD" step="1" type="number"/>
+</div>
+<div class="popup-actions animal-donation-modal__actions">
+<button class="btn animal-donation-submit-btn" data-translate="animal_donation_submit" disabled="" id="animalDonationSubmit" type="button">❤️ Continuar por WhatsApp</button>
+</div>
+<p class="animal-donation-disclaimer" data-translate="animal_donation_disclaimer">Sacramento Adventures no administra ni recibe estas donaciones. El contacto se realiza directamente con Responsabilidad Animal.</p>
+</div>
+</div>
+</div>
 <div aria-hidden="true" class="popup-overlay" id="popupLupajackSoon">
 <div aria-labelledby="lupajackSoonPopupTitle" aria-modal="true" class="popup-box" role="dialog">
 <button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeLupajackSoonPopup" type="button">✕</button>
@@ -1999,6 +2035,8 @@
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
 <script src="../Home/whatsapp.js?v=20260522perf"></script>
+<script src="../Home/sacramento-modal.js?v=20260617donation"></script>
+<script src="../Home/animal-donation-modal.js?v=20260617donation"></script>
 <script src="../Home/payments-api-config.js?v=20260522perf"></script>
 <script src="../Home/index.js?v=20260616brumanodiscount"></script>
 <script src="../Home/home-category-nav.js?v=20260530fullday1"></script>
