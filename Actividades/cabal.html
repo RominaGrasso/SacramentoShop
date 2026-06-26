@@ -142,7 +142,7 @@
 <section class="coffee-content">
 <h2 data-translate="cabal_about_heading">About this experience</h2>
 <p data-translate="cabal_about_p">
-        The ride takes place on the outskirts of Colonia, in a beautiful open countryside that leads to a beach. Very peaceful — a chance to connect with your horse. Come meet our horses: Cacha, Mana, Negrita, Bimbo, Rosi, and Carmelito.
+        Just 10 minutes from downtown Colonia del Sacramento, a unique natural setting awaits you. Ride through a wide open countryside that leads to a beautiful beach and enjoy a horseback ride designed to connect with nature and slow down. Along the way you'll meet our loyal companions: Cacha, Mana, Negrita, Bimbo, Rosi, and Carmelito — they'll make the experience even more special. Book your spot and discover Colonia from a whole new perspective!
       </p>
 <!-- INCLUDES + BOOKING -->
 <div class="coffee-includes">
@@ -154,7 +154,7 @@
 <li>✔ <span data-translate="cabal_include_horses">Calm and trained horses suitable for beginners</span></li>
 <li>✔ <span data-translate="cabal_include_trails">Ride through countryside trails and open landscapes</span></li>
 <li>✔ <span data-translate="cabal_include_host">Local host assistance</span></li>
-<li>✔ <span data-translate="cabal_include_transfer">Transport available included (optional)</span></li>
+<li>✔ <span data-translate="cabal_include_transfer">From Colonia del Sacramento · Optional transfer available</span></li>
 </ul>
 </div>
 <div class="order-start page-cabal-order-start">
@@ -234,8 +234,8 @@
 <p class="cabal-popup-guests-hint" data-translate="cabal_popup_guests_hint">Minimum 1 · maximum 4 guests per departure time.</p>
 <h3 class="preferences-title cabal-popup-transport-title" data-translate="cabal_popup_transport_heading">Round-trip transport included?</h3>
 <label><input checked="" name="cabalTransport" type="radio" value="no"/> <span data-translate="cabal_popup_transport_no">No</span></label>
-<label><input name="cabalTransport" type="radio" value="yes"/> <span data-translate="cabal_popup_transport_yes">Yes (+USD 40 total · up to 4 guests)</span></label>
-<p class="cabal-popup-transport-hint" data-translate="cabal_popup_transport_hint">If yes, USD 40 is added for the group (up to 4 people).</p>
+<label><input name="cabalTransport" type="radio" value="yes"/> <span data-translate="cabal_popup_transport_yes">Yes (+USD 25 total · up to 4 guests)</span></label>
+<p class="cabal-popup-transport-hint" data-translate="cabal_popup_transport_hint">If yes, USD 25 is added for the group (up to 4 people).</p>
 </div>
 <div class="popup-actions">
 <button class="btn" data-translate="save_selection" id="saveCabalBooking" type="button">Save selection</button>
@@ -250,7 +250,7 @@
 (function () {
   const STORAGE_KEY = "cabal_booking_config";
   const PRICE_PER_PERSON = 30;
-  const TRANSPORT_FLAT_USD = 40;
+  const TRANSPORT_FLAT_USD = 25;
   const MAX_GUESTS = 4;
   const VALID_TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
   const WHATSAPP_NUMBER = "59898945542";
@@ -366,7 +366,7 @@
         `${t("wa_people_label", "People")}: ${cfg.guests}\n` +
         `${t("cabal_summary_transport_label", "Round-trip transport")}: ${
           cfg.transport
-            ? t("cabal_summary_transport_included", "Yes (+USD 40 total · up to 4 guests)")
+            ? t("cabal_summary_transport_included", "Yes (+USD 25 total · up to 4 guests)")
             : t("cabal_popup_transport_no", "No")
         }\n`;
       message += `\n${t("wa_total_label", "Total")}: USD ${total}`;
@@ -477,7 +477,7 @@
     const pTransport = document.createElement("p");
     pTransport.innerHTML = `<strong>${t("cabal_summary_transport_label", "Round-trip transport")}:</strong> ${
       cfg.transport
-        ? t("cabal_summary_transport_included", "Yes (+USD 40 total · up to 4 guests)")
+        ? t("cabal_summary_transport_included", "Yes (+USD 25 total · up to 4 guests)")
         : t("cabal_popup_transport_no", "No")
     }`;
     card.appendChild(pTransport);
