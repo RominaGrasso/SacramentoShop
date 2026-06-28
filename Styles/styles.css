@@ -3549,6 +3549,7 @@
   }
 
   .taxi-float {
+    display: none !important;
     position: fixed;
     /* Encima del botón WhatsApp (60px + 25px bottom + 12px de espacio) */
     bottom: calc(97px + env(safe-area-inset-bottom, 0px));
@@ -3556,7 +3557,6 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
