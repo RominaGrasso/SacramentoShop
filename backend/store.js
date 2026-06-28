@@ -4,7 +4,11 @@ import { fileURLToPath } from "node:url";
 import { sendPaymentApprovedNotification } from "./sendPaymentApprovedNotification.js";
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = path.join(MODULE_DIR, "data");
+const DEFAULT_DATA_DIR = path.join(MODULE_DIR, "data");
+const DATA_DIR = (() => {
+  const fromEnv = String(process.env.PAYMENT_STORE_DIR || "").trim();
+  return fromEnv ? path.resolve(fromEnv) : DEFAULT_DATA_DIR;
+})();
 const DB_FILE = path.join(DATA_DIR, "payment-links.json");
 /** Compatibilidad con una ruta legacy que dependía del cwd (backend/backend/data). */
 const LEGACY_DB_FILE = path.resolve("backend", "data", "payment-links.json");
@@ -34,6 +38,8 @@ function readAll() {
 function writeAll(items) {
   ensureStore();
   fs.writeFileSync(DB_FILE, JSON.stringify(items, null, 2), "utf8");
+  // eslint-disable-next-line no-console
+  console.log("[payment-store] writeAll", { count: items.length });
 }
 
 function normalizePaymentStatus(status) {
@@ -115,11 +121,18 @@ function markApprovedNotificationEmailSent({ fingerprint, sessionId }) {
 function scheduleApprovedPaymentEmail(prevItem, updatedItem, attempt) {
   const prev = normalizePaymentStatus(prevItem?.paymentStatus);
   const next = normalizePaymentStatus(updatedItem?.paymentStatus);
-  if (next !== "approved" || prev === "approved") return;
+  if (next !== "approved") return;
   if (updatedItem?.approvedNotificationEmailSentAt) {
     // eslint-disable-next-line no-console
     console.warn("[payment-email] omitted: already notified for this payment");
     return;
+  }
+  if (prev === "approved") {
+    // eslint-disable-next-line no-console
+    console.warn("[payment-email] retrying: approved without approvedNotificationEmailSentAt", {
+      fingerprint: updatedItem?.fingerprint || null,
+      sessionId: updatedItem?.sessionId || null
+    });
   }
   const payment = { ...updatedItem };
   const refKey = {
@@ -138,6 +151,18 @@ function scheduleApprovedPaymentEmail(prevItem, updatedItem, attempt) {
       }
     }
   });
+}
+
+/** Active links in store (status === "active") for webhook/store diagnostics. */
+export function listActiveFingerprints() {
+  return readAll()
+    .filter((x) => x.status === "active")
+    .map((x) => ({
+      fingerprint: x.fingerprint || null,
+      sessionId: x.sessionId || null,
+      paymentStatus: normalizePaymentStatus(x.paymentStatus || "awaiting_payment"),
+      expiresAt: x.expiresAt || null
+    }));
 }
 
 export function findReusableLink(fingerprint, nowIso) {
