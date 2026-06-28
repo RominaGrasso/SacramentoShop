@@ -1572,6 +1572,14 @@ const translations = {
       book_btn: "Reserve",
       reserve_loading_primary: "Preparing your booking…",
       reserve_loading_secondary: "Opening WhatsApp…",
+      reserve_payment_link_preparing:
+        "We are preparing your secure payment link. This may take a few seconds.",
+      reserve_payment_link_delayed:
+        "We are experiencing a delay generating your secure payment link. This is usually resolved in a few seconds.",
+      reserve_payment_retry_btn: "Retry",
+      reserve_payment_whatsapp_btn: "Contact us on WhatsApp",
+      reserve_payment_link_failed:
+        "We could not generate the payment link right now. Please try again in a few seconds or contact us on WhatsApp.",
       view_btn: "Explore",
       save_selection: "Save selection",
       update_order: "Update order",
@@ -3720,6 +3728,14 @@ const translations = {
       book_btn: "Reservar",
       reserve_loading_primary: "Preparando tu reserva…",
       reserve_loading_secondary: "Abriendo WhatsApp…",
+      reserve_payment_link_preparing:
+        "Estamos preparando tu link de pago seguro. Puede tardar unos segundos.",
+      reserve_payment_link_delayed:
+        "Estamos teniendo una demora al generar tu link de pago seguro. Esto suele resolverse en unos segundos.",
+      reserve_payment_retry_btn: "Reintentar",
+      reserve_payment_whatsapp_btn: "Contactarnos por WhatsApp",
+      reserve_payment_link_failed:
+        "No pudimos generar el link de pago en este momento. Por favor intentá nuevamente en unos segundos o escribinos por WhatsApp.",
       view_btn: "Explorar",
       save_selection: "Guardar selección",
       update_order: "Actualizar pedido",
@@ -6203,6 +6219,14 @@ const translations = {
       book_btn: "Reservar",
       reserve_loading_primary: "Preparando sua reserva…",
       reserve_loading_secondary: "Abrindo WhatsApp…",
+      reserve_payment_link_preparing:
+        "Estamos preparando seu link de pagamento seguro. Pode levar alguns segundos.",
+      reserve_payment_link_delayed:
+        "Estamos com uma demora para gerar seu link de pagamento seguro. Isso costuma se resolver em alguns segundos.",
+      reserve_payment_retry_btn: "Tentar novamente",
+      reserve_payment_whatsapp_btn: "Falar conosco no WhatsApp",
+      reserve_payment_link_failed:
+        "Não foi possível gerar o link de pagamento agora. Tente novamente em alguns segundos ou fale conosco no WhatsApp.",
       view_btn: "Explorar",
       save_selection: "Salvar seleção",
       update_order: "Atualizar pedido",

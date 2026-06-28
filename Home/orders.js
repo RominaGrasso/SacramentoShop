@@ -258,6 +258,250 @@ function sacramentoIsMobileWhatsAppClient() {
 }
 
 const SACRAMENTO_RESERVE_LOADING_SECONDARY_MS = 5000;
+const RESOLVE_FETCH_TIMEOUT_MS = 4000;
+const RESOLVE_MAX_ATTEMPTS = 2;
+const RESOLVE_RETRY_DELAY_MS = 400;
+const RESOLVE_FLOW_TIMEOUT_MS = 12000;
+
+let sacramentoReserveLoadingPaymentLinkMode = false;
+let sacramentoPaymentRetryInProgress = false;
+
+function isRetryableResolveHttpStatus(status) {
+  return status === 502 || status === 503 || status === 504;
+}
+
+function resolveFetchAbortSignal(timeoutMs) {
+  if (typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function") {
+    return AbortSignal.timeout(timeoutMs);
+  }
+  const controller = new AbortController();
+  window.setTimeout(() => controller.abort(), timeoutMs);
+  return controller.signal;
+}
+
+function delayMs(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+function resolveFlowTimedOutError() {
+  const err = new Error("resolve_flow_timeout");
+  err.name = "ResolveFlowTimeoutError";
+  return err;
+}
+
+async function withResolveFlowTimeout(asyncFn, timeoutMs = RESOLVE_FLOW_TIMEOUT_MS) {
+  let timerId = null;
+  const timeoutPromise = new Promise((_, reject) => {
+    timerId = window.setTimeout(() => reject(resolveFlowTimedOutError()), timeoutMs);
+  });
+  try {
+    return await Promise.race([asyncFn(), timeoutPromise]);
+  } finally {
+    if (timerId != null) window.clearTimeout(timerId);
+  }
+}
+
+function sacramentoResolveFailureReason(err) {
+  if (err && err.name === "ResolveFlowTimeoutError") return "global_timeout";
+  return "unexpected_error";
+}
+
+function sacramentoOfferPaymentRetryAfterFailure({
+  dynamicPayment,
+  bodyPayload,
+  pendingTab,
+  uniqueCandidates,
+  whatsappMessage,
+  whatsappPhone,
+  reason = "exhausted"
+}) {
+  // eslint-disable-next-line no-console
+  console.error("[payments-resolve] offering retry", { reason });
+  sacramentoStorePaymentRetryContext({
+    dynamicPayment,
+    bodyPayload: bodyPayload && typeof bodyPayload === "object" ? bodyPayload : {},
+    pendingTab,
+    uniqueCandidates,
+    whatsappPhone: whatsappPhone || SACRAMENTO_DEFAULT_WHATSAPP_NUMBER,
+    whatsappMessage: String(whatsappMessage || ""),
+    lastPaymentUrl: ""
+  });
+  if (pendingTab && !pendingTab.closed) {
+    sacramentoPaintPendingTabPaymentRetryOffer(pendingTab);
+  } else {
+    sacramentoShowOverlayPaymentRetryOffer();
+  }
+}
+
+function sacramentoSetOverlayRetryButtonsBusy(busy) {
+  const overlay = sacramentoReserveLoadingOverlayEl || document.getElementById("sacramentoReserveLoading");
+  if (!overlay) return;
+  const retryBtn = overlay.querySelector("#sacPaymentOverlayRetryBtn");
+  if (retryBtn) {
+    retryBtn.disabled = Boolean(busy);
+    retryBtn.setAttribute("aria-busy", busy ? "true" : "false");
+  }
+}
+
+function sacramentoSetReserveLoadingPaymentLinkMode(on) {
+  sacramentoReserveLoadingPaymentLinkMode = Boolean(on);
+  if (sacramentoReserveLoadingDepth > 0) sacramentoRefreshReserveLoadingCopy();
+}
+
+function sacramentoPendingTabResolveFailed(tab) {
+  if (!tab || tab.closed) return false;
+  try {
+    return (
+      tab.document?.body?.dataset?.sacPaymentResolveError === "1" ||
+      tab.document?.body?.dataset?.sacPaymentRetryOffer === "1"
+    );
+  } catch {
+    return false;
+  }
+}
+
+function sacramentoPendingTabHasRetryOffer(tab) {
+  if (!tab || tab.closed) return false;
+  try {
+    return tab.document?.body?.dataset?.sacPaymentRetryOffer === "1";
+  } catch {
+    return false;
+  }
+}
+
+function sacramentoStorePaymentRetryContext(ctx) {
+  if (typeof window === "undefined") return;
+  window.__SACRAMENTO_PAYMENT_RETRY_CTX = ctx;
+}
+
+function sacramentoGetPaymentRetryContext() {
+  if (typeof window === "undefined") return null;
+  return window.__SACRAMENTO_PAYMENT_RETRY_CTX || null;
+}
+
+function sacramentoBuildWhatsappMessageWithPaymentLink(baseMessage, paymentUrl) {
+  const base = String(baseMessage || "").trim();
+  const url = String(paymentUrl || "").trim();
+  if (!url) return base;
+  if (base.includes(url)) return base;
+  const prompt = sacramentoReserveLoadingText(
+    "wa_payment_prompt",
+    "To confirm the reservation, please complete the payment here:"
+  );
+  return base ? `${base}\n\n${prompt}\n${url}` : `${prompt}\n${url}`;
+}
+
+function sacramentoPaintPendingTabStatus(pendingTab, config) {
+  if (!pendingTab || pendingTab.closed) return;
+  const {
+    primaryKey,
+    primaryFallback,
+    secondaryKey = "",
+    secondaryFallback = "",
+    showSpinner = false,
+    resolveError = false
+  } = config;
+  try {
+    const primary = sacramentoReserveLoadingText(primaryKey, primaryFallback);
+    const secondary = secondaryKey
+      ? sacramentoReserveLoadingText(secondaryKey, secondaryFallback)
+      : "";
+    const safePrimary = primary.replace(/</g, "&lt;");
+    const safeSecondary = secondary.replace(/</g, "&lt;");
+    const spinnerHtml = showSpinner
+      ? '<div class="spin" aria-hidden="true"></div>'
+      : '<div class="icon" aria-hidden="true">!</div>';
+    const secondaryHtml = secondary ? `<p>${safeSecondary}</p>` : "";
+    pendingTab.document.open();
+    pendingTab.document.write(
+      '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' +
+        safePrimary +
+        '</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#f0f6fc 0%,#e8f2fa 100%);color:#1e3a5f}.wrap{text-align:center;padding:24px;max-width:360px}.spin{width:44px;height:44px;margin:0 auto 20px;border:3px solid rgba(102,166,230,.25);border-top-color:#66a6e6;border-radius:50%;animation:sacspin .85s linear infinite}.icon{width:44px;height:44px;margin:0 auto 20px;border-radius:50%;background:#fdecea;color:#b42318;font:700 1.4rem/44px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}@keyframes sacspin{to{transform:rotate(360deg)}}h1{font-size:1.05rem;font-weight:600;margin:0 0 8px;line-height:1.35}p{font-size:.9rem;margin:0;color:#4a6a8a;line-height:1.45}</style></head><body data-sac-payment-resolve-error="' +
+        (resolveError ? "1" : "0") +
+        '"><div class="wrap">' +
+        spinnerHtml +
+        "<h1>" +
+        safePrimary +
+        "</h1>" +
+        secondaryHtml +
+        "</div></body></html>"
+    );
+    pendingTab.document.close();
+  } catch {
+    /* popup blocked or cross-origin */
+  }
+}
+
+function sacramentoPaintPendingTabPaymentPreparing(pendingTab) {
+  sacramentoPaintPendingTabStatus(pendingTab, {
+    primaryKey: "reserve_payment_link_preparing",
+    primaryFallback: "We are preparing your secure payment link. This may take a few seconds.",
+    showSpinner: true
+  });
+}
+
+function sacramentoGetPaymentRetryOfferCopy() {
+  return {
+    message: sacramentoReserveLoadingText(
+      "reserve_payment_link_delayed",
+      "We are experiencing a delay generating your secure payment link. This is usually resolved in a few seconds."
+    ),
+    retryLabel: sacramentoReserveLoadingText("reserve_payment_retry_btn", "Retry"),
+    waLabel: sacramentoReserveLoadingText("reserve_payment_whatsapp_btn", "Contact us on WhatsApp")
+  };
+}
+
+function sacramentoPaintPendingTabPaymentRetryOffer(pendingTab) {
+  if (!pendingTab || pendingTab.closed) return;
+  const { message, retryLabel, waLabel } = sacramentoGetPaymentRetryOfferCopy();
+  const safeMessage = message.replace(/</g, "&lt;");
+  const safeRetry = retryLabel.replace(/</g, "&lt;");
+  const safeWa = waLabel.replace(/</g, "&lt;");
+  try {
+    pendingTab.document.open();
+    pendingTab.document.write(
+      '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' +
+        safeMessage +
+        '</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#f0f6fc 0%,#e8f2fa 100%);color:#1e3a5f;padding:20px}.wrap{text-align:center;max-width:380px;width:100%}.icon{width:48px;height:48px;margin:0 auto 16px;border-radius:50%;background:#fff3cd;color:#856404;font:700 1.5rem/48px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}h1{font-size:1.05rem;font-weight:600;margin:0 0 20px;line-height:1.4}.actions{display:flex;flex-direction:column;gap:10px}.btn{display:block;width:100%;border:0;border-radius:10px;padding:14px 16px;font-size:.95rem;font-weight:600;cursor:pointer;text-align:center}.btn:disabled{opacity:.6;cursor:wait}.btn-primary{background:#66a6e6;color:#fff}.btn-secondary{background:#fff;color:#1e3a5f;border:1px solid rgba(30,58,95,.2)}</style></head><body data-sac-payment-resolve-error="1" data-sac-payment-retry-offer="1"><div class="wrap"><div class="icon" aria-hidden="true">!</div><h1>' +
+        safeMessage +
+        '</h1><div class="actions"><button type="button" class="btn btn-primary" id="sacPaymentRetryBtn">🔄 ' +
+        safeRetry +
+        '</button><button type="button" class="btn btn-secondary" id="sacPaymentWaBtn">💬 ' +
+        safeWa +
+        "</button></div></div></body></html>"
+    );
+    pendingTab.document.close();
+    const retryBtn = pendingTab.document.getElementById("sacPaymentRetryBtn");
+    const waBtn = pendingTab.document.getElementById("sacPaymentWaBtn");
+    if (retryBtn) {
+      retryBtn.addEventListener("click", () => {
+        if (retryBtn.disabled) return;
+        retryBtn.disabled = true;
+        retryBtn.setAttribute("aria-busy", "true");
+        try {
+          if (window.opener && typeof window.opener.sacramentoRetryPaymentLinkFromPendingTab === "function") {
+            void window.opener.sacramentoRetryPaymentLinkFromPendingTab();
+          }
+        } catch {
+          /* ignore */
+        }
+      });
+    }
+    if (waBtn) {
+      waBtn.addEventListener("click", () => {
+        try {
+          if (window.opener && typeof window.opener.sacramentoOpenReserveWhatsAppFromPendingTab === "function") {
+            window.opener.sacramentoOpenReserveWhatsAppFromPendingTab();
+          }
+        } catch {
+          /* ignore */
+        }
+      });
+    }
+  } catch {
+    /* popup blocked or cross-origin */
+  }
+}
 
 const SACRAMENTO_RESERVE_TRIGGER_SELECTOR = [
   "#bookWithOrder",
@@ -289,6 +533,7 @@ function sacramentoReserveLoadingText(key, fallback) {
 }
 
 let sacramentoReserveLoadingOverlayEl = null;
+let sacramentoPaymentRetryOverlayActive = false;
 
 function sacramentoEnsureReserveLoadingOverlay() {
   if (sacramentoReserveLoadingOverlayEl) return sacramentoReserveLoadingOverlayEl;
@@ -302,13 +547,76 @@ function sacramentoEnsureReserveLoadingOverlay() {
   overlay.hidden = true;
   overlay.innerHTML =
     '<div class="sacramento-reserve-loading__panel">' +
+    '<div class="sacramento-reserve-loading__loading">' +
     '<div class="sacramento-reserve-loading__spinner" aria-hidden="true"></div>' +
     '<p class="sacramento-reserve-loading__primary"></p>' +
     '<p class="sacramento-reserve-loading__secondary" hidden></p>' +
-    "</div>";
+    "</div>" +
+    '<div class="sacramento-reserve-loading__retry" hidden>' +
+    '<div class="sacramento-reserve-loading__retry-icon" aria-hidden="true">!</div>' +
+    '<p class="sacramento-reserve-loading__retry-message"></p>' +
+    '<div class="sacramento-reserve-loading__retry-actions">' +
+    '<button type="button" class="sacramento-reserve-loading__retry-btn sacramento-reserve-loading__retry-btn--primary" id="sacPaymentOverlayRetryBtn"></button>' +
+    '<button type="button" class="sacramento-reserve-loading__retry-btn sacramento-reserve-loading__retry-btn--secondary" id="sacPaymentOverlayWaBtn"></button>' +
+    "</div></div></div>";
   document.body.appendChild(overlay);
+  const retryBtn = overlay.querySelector("#sacPaymentOverlayRetryBtn");
+  const waBtn = overlay.querySelector("#sacPaymentOverlayWaBtn");
+  if (retryBtn) {
+    retryBtn.addEventListener("click", () => {
+      if (retryBtn.disabled || sacramentoPaymentRetryInProgress) return;
+      void sacramentoRetryPaymentLinkFromPendingTab();
+    });
+  }
+  if (waBtn) {
+    waBtn.addEventListener("click", () => {
+      sacramentoOpenReserveWhatsAppFromPendingTab();
+    });
+  }
   sacramentoReserveLoadingOverlayEl = overlay;
   return overlay;
+}
+
+function sacramentoRefreshOverlayPaymentRetryCopy() {
+  const overlay = sacramentoEnsureReserveLoadingOverlay();
+  const { message, retryLabel, waLabel } = sacramentoGetPaymentRetryOfferCopy();
+  const msgEl = overlay.querySelector(".sacramento-reserve-loading__retry-message");
+  const retryBtn = overlay.querySelector("#sacPaymentOverlayRetryBtn");
+  const waBtn = overlay.querySelector("#sacPaymentOverlayWaBtn");
+  if (msgEl) msgEl.textContent = message;
+  if (retryBtn) {
+    retryBtn.textContent = `🔄 ${retryLabel}`;
+    if (!sacramentoPaymentRetryInProgress) {
+      retryBtn.disabled = false;
+      retryBtn.setAttribute("aria-busy", "false");
+    }
+  }
+  if (waBtn) waBtn.textContent = `💬 ${waLabel}`;
+}
+
+function sacramentoShowOverlayLoadingState() {
+  const overlay = sacramentoEnsureReserveLoadingOverlay();
+  const loading = overlay.querySelector(".sacramento-reserve-loading__loading");
+  const retry = overlay.querySelector(".sacramento-reserve-loading__retry");
+  if (loading) loading.hidden = false;
+  if (retry) retry.hidden = true;
+  overlay.setAttribute("aria-busy", "true");
+  sacramentoPaymentRetryOverlayActive = false;
+  sacramentoRefreshReserveLoadingCopy();
+}
+
+function sacramentoShowOverlayPaymentRetryOffer() {
+  const overlay = sacramentoEnsureReserveLoadingOverlay();
+  const loading = overlay.querySelector(".sacramento-reserve-loading__loading");
+  const retry = overlay.querySelector(".sacramento-reserve-loading__retry");
+  sacramentoRefreshOverlayPaymentRetryCopy();
+  if (loading) loading.hidden = true;
+  if (retry) retry.hidden = false;
+  overlay.hidden = false;
+  overlay.setAttribute("aria-busy", "false");
+  document.body.classList.add("sacramento-reserve-loading-active");
+  sacramentoPaymentRetryOverlayActive = true;
+  if (!sacramentoPaymentRetryInProgress) sacramentoSetOverlayRetryButtonsBusy(false);
 }
 
 function sacramentoRefreshReserveLoadingCopy() {
@@ -316,10 +624,15 @@ function sacramentoRefreshReserveLoadingCopy() {
   const primary = overlay.querySelector(".sacramento-reserve-loading__primary");
   const secondary = overlay.querySelector(".sacramento-reserve-loading__secondary");
   if (primary) {
-    primary.textContent = sacramentoReserveLoadingText(
-      "reserve_loading_primary",
-      "Preparing your booking…"
-    );
+    primary.textContent = sacramentoReserveLoadingPaymentLinkMode
+      ? sacramentoReserveLoadingText(
+          "reserve_payment_link_preparing",
+          "We are preparing your secure payment link. This may take a few seconds."
+        )
+      : sacramentoReserveLoadingText(
+          "reserve_loading_primary",
+          "Preparing your booking…"
+        );
   }
   if (secondary) {
     secondary.textContent = sacramentoReserveLoadingText(
@@ -364,7 +677,7 @@ function sacramentoShowReserveLoading() {
   if (typeof document === "undefined") return;
   sacramentoReserveLoadingDepth += 1;
   if (sacramentoReserveLoadingDepth > 1) return;
-  sacramentoRefreshReserveLoadingCopy();
+  sacramentoShowOverlayLoadingState();
   sacramentoDisableReserveTriggers();
   const overlay = sacramentoEnsureReserveLoadingOverlay();
   const secondary = overlay.querySelector(".sacramento-reserve-loading__secondary");
@@ -383,6 +696,7 @@ function sacramentoHideReserveLoading() {
   if (typeof document === "undefined") return;
   sacramentoReserveLoadingDepth = Math.max(0, sacramentoReserveLoadingDepth - 1);
   if (sacramentoReserveLoadingDepth > 0) return;
+  if (sacramentoPaymentRetryOverlayActive) return;
   if (sacramentoReserveLoadingSecondaryTimer) {
     clearTimeout(sacramentoReserveLoadingSecondaryTimer);
     sacramentoReserveLoadingSecondaryTimer = null;
@@ -404,12 +718,18 @@ async function sacramentoRunReserveWhatsAppFlow(workFn) {
     return await workFn();
   } finally {
     sacramentoHideReserveLoading();
+    try {
+      delete window.__SACRAMENTO_RESOLVE_PENDING_TAB;
+    } catch {
+      /* ignore */
+    }
   }
 }
 
 if (typeof document !== "undefined") {
   document.addEventListener("sacramento:setLanguage", () => {
-    if (sacramentoReserveLoadingDepth > 0) sacramentoRefreshReserveLoadingCopy();
+    if (sacramentoPaymentRetryOverlayActive) sacramentoRefreshOverlayPaymentRetryCopy();
+    else if (sacramentoReserveLoadingDepth > 0) sacramentoRefreshReserveLoadingCopy();
     if (typeof window.renderOrders === "function") {
       try {
         window.renderOrders();
@@ -465,6 +785,11 @@ function sacramentoOpenWhatsAppBlankTabForGesture() {
   try {
     const tab = window.open("about:blank", "_blank");
     sacramentoPaintPendingTabLoading(tab);
+    try {
+      window.__SACRAMENTO_RESOLVE_PENDING_TAB = tab;
+    } catch {
+      /* ignore */
+    }
     return tab;
   } catch {
     return null;
@@ -474,6 +799,24 @@ function sacramentoOpenWhatsAppBlankTabForGesture() {
 function sacramentoOpenWhatsApp(phone, text, pendingTab) {
   const waUrl = sacramentoBuildWhatsAppUrl(phone, text);
   if (!waUrl || !sacramentoIsOfficialWhatsAppUrl(waUrl)) return;
+
+  if (pendingTab && sacramentoPendingTabHasRetryOffer(pendingTab)) {
+    const ctx = sacramentoGetPaymentRetryContext();
+    if (ctx) {
+      ctx.whatsappPhone = phone;
+      ctx.whatsappMessage = String(text || ctx.whatsappMessage || "");
+    }
+    return;
+  }
+
+  if (sacramentoPaymentRetryOverlayActive) {
+    const ctx = sacramentoGetPaymentRetryContext();
+    if (ctx) {
+      ctx.whatsappPhone = phone;
+      ctx.whatsappMessage = String(text || ctx.whatsappMessage || "");
+    }
+    return;
+  }
 
   if (sacramentoIsMobileWhatsAppClient()) {
     if (pendingTab) {
@@ -512,6 +855,7 @@ function sacramentoNavigatePendingTabToWhatsApp(pendingTab, waUrl) {
       : null;
 
   if (tab) {
+    if (sacramentoPendingTabHasRetryOffer(tab)) return;
     try {
       tab.opener = null;
     } catch {
@@ -567,15 +911,83 @@ function withWhatsAppInOrderPayload(orderPayload, whatsappMessage) {
   return { ...(orderPayload || {}), whatsappMessage: text };
 }
 
-async function resolveDynamicPaymentLink(dynamicPayment, payload) {
-  if (!dynamicPayment || !dynamicPayment.enabled) return "";
-  const endpointRaw = dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT;
-  const uniqueCandidates = sacramentoBuildResolveEndpointCandidates(endpointRaw);
+async function executeResolvePaymentAttempts(uniqueCandidates, bodyPayload) {
   const isMockPaymentUrl = (url) => {
     const value = String(url || "");
     return value.includes("sessionId=mock_") || /\/mock_[a-z0-9]+/i.test(value);
   };
 
+  for (const endpoint of uniqueCandidates) {
+    for (let attempt = 1; attempt <= RESOLVE_MAX_ATTEMPTS; attempt += 1) {
+      let failureKind = "unknown";
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(bodyPayload),
+          signal: resolveFetchAbortSignal(RESOLVE_FETCH_TIMEOUT_MS)
+        });
+        if (!response.ok) {
+          failureKind = isRetryableResolveHttpStatus(response.status) ? "http_retryable" : "http_non_retryable";
+          // eslint-disable-next-line no-console
+          console.warn("[payments-resolve] HTTP error", {
+            endpoint,
+            attempt,
+            status: response.status,
+            retryable: failureKind === "http_retryable"
+          });
+          if (failureKind === "http_retryable" && attempt < RESOLVE_MAX_ATTEMPTS) {
+            await delayMs(RESOLVE_RETRY_DELAY_MS);
+            continue;
+          }
+          break;
+        }
+        const data = await response.json();
+        const url = data.paymentUrl || data.url || "";
+        if (!url) {
+          failureKind = "missing_payment_url";
+          // eslint-disable-next-line no-console
+          console.warn("[payments-resolve] missing paymentUrl in response", { endpoint, attempt });
+          break;
+        }
+        if (isMockPaymentUrl(url)) {
+          failureKind = "mock_payment_url";
+          // eslint-disable-next-line no-console
+          console.warn("[payments-resolve] mock paymentUrl rejected", { endpoint, attempt });
+          break;
+        }
+        // eslint-disable-next-line no-console
+        console.log("[payments-resolve] success", { endpoint, attempt });
+        return url;
+      } catch (err) {
+        const isTimeout =
+          err instanceof Error &&
+          (err.name === "TimeoutError" || err.name === "AbortError" || /timeout/i.test(err.message));
+        failureKind = isTimeout ? "timeout" : "network";
+        // eslint-disable-next-line no-console
+        console.warn("[payments-resolve] fetch failed", {
+          endpoint,
+          attempt,
+          kind: failureKind,
+          message: err instanceof Error ? err.message : String(err)
+        });
+        if (attempt < RESOLVE_MAX_ATTEMPTS) {
+          await delayMs(RESOLVE_RETRY_DELAY_MS);
+          continue;
+        }
+      }
+      if (failureKind === "http_non_retryable") break;
+    }
+  }
+  return "";
+}
+
+async function buildResolveBodyPayload(dynamicPayment, payload, uniqueCandidates, preparedBodyPayload) {
+  if (preparedBodyPayload && typeof preparedBodyPayload === "object") {
+    return { ...preparedBodyPayload };
+  }
   const origins = [...new Set(uniqueCandidates.map(paymentApiOriginFromResolveUrl).filter(Boolean))];
   let bodyPayload = { ...payload };
   const existingDf =
@@ -601,27 +1013,150 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload) {
       }
     }
   }
+  return bodyPayload;
+}
 
-  for (const endpoint of uniqueCandidates) {
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(bodyPayload)
-      });
-      if (!response.ok) continue;
-      const data = await response.json();
-      const url = data.paymentUrl || data.url || "";
-      if (!url) continue;
-      if (isMockPaymentUrl(url)) continue;
-      return url;
-    } catch {
-      // try next candidate
+async function resolveDynamicPaymentLink(dynamicPayment, payload, options = {}) {
+  if (!dynamicPayment || !dynamicPayment.enabled) return "";
+  const endpointRaw = dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT;
+  const uniqueCandidates = sacramentoBuildResolveEndpointCandidates(endpointRaw);
+  const pendingTab =
+    options?.pendingTab ??
+    (typeof window !== "undefined" ? window.__SACRAMENTO_RESOLVE_PENDING_TAB : null);
+  const whatsappPhone = options?.contactMeta?.phone || SACRAMENTO_DEFAULT_WHATSAPP_NUMBER;
+  const whatsappMessageFallback =
+    options?.contactMeta?.message || payload?.orderPayload?.whatsappMessage || "";
+
+  sacramentoSetReserveLoadingPaymentLinkMode(true);
+  if (pendingTab) sacramentoPaintPendingTabPaymentPreparing(pendingTab);
+
+  let bodyPayload = null;
+  try {
+    const resolveResult = await withResolveFlowTimeout(async () => {
+      bodyPayload = await buildResolveBodyPayload(
+        dynamicPayment,
+        payload,
+        uniqueCandidates,
+        options?.preparedBodyPayload
+      );
+      const paymentUrl = await executeResolvePaymentAttempts(uniqueCandidates, bodyPayload);
+      return { bodyPayload, paymentUrl };
+    });
+
+    if (resolveResult.paymentUrl) {
+      const ctx = sacramentoGetPaymentRetryContext();
+      if (ctx) ctx.lastPaymentUrl = resolveResult.paymentUrl;
+      return resolveResult.paymentUrl;
     }
+
+    // eslint-disable-next-line no-console
+    console.error("[payments-resolve] exhausted attempts without paymentUrl", {
+      candidates: uniqueCandidates,
+      attempts: RESOLVE_MAX_ATTEMPTS
+    });
+
+    const whatsappMessage =
+      whatsappMessageFallback || resolveResult.bodyPayload?.orderPayload?.whatsappMessage || "";
+    sacramentoOfferPaymentRetryAfterFailure({
+      dynamicPayment,
+      bodyPayload: resolveResult.bodyPayload || bodyPayload || payload,
+      pendingTab,
+      uniqueCandidates,
+      whatsappPhone,
+      whatsappMessage,
+      reason: "exhausted"
+    });
+    return "";
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("[payments-resolve] resolve flow failed", {
+      reason: sacramentoResolveFailureReason(err),
+      message: err instanceof Error ? err.message : String(err)
+    });
+    const whatsappMessage = whatsappMessageFallback || bodyPayload?.orderPayload?.whatsappMessage || "";
+    sacramentoOfferPaymentRetryAfterFailure({
+      dynamicPayment,
+      bodyPayload: bodyPayload || payload,
+      pendingTab,
+      uniqueCandidates,
+      whatsappPhone,
+      whatsappMessage,
+      reason: sacramentoResolveFailureReason(err)
+    });
+    return "";
+  } finally {
+    sacramentoSetReserveLoadingPaymentLinkMode(false);
   }
-  return "";
+}
+
+async function sacramentoRetryPaymentLinkFromPendingTab() {
+  if (sacramentoPaymentRetryInProgress) return;
+  const ctx = sacramentoGetPaymentRetryContext();
+  if (!ctx?.dynamicPayment || !ctx?.bodyPayload) return;
+
+  sacramentoPaymentRetryInProgress = true;
+  sacramentoSetOverlayRetryButtonsBusy(true);
+  const pendingTab = ctx.pendingTab;
+  sacramentoShowReserveLoading();
+  sacramentoSetReserveLoadingPaymentLinkMode(true);
+  if (pendingTab && !pendingTab.closed) {
+    sacramentoPaintPendingTabPaymentPreparing(pendingTab);
+  } else {
+    sacramentoShowOverlayLoadingState();
+  }
+
+  let paymentUrl = "";
+  try {
+    const uniqueCandidates =
+      ctx.uniqueCandidates ||
+      sacramentoBuildResolveEndpointCandidates(ctx.dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT);
+    try {
+      paymentUrl = await withResolveFlowTimeout(
+        () => executeResolvePaymentAttempts(uniqueCandidates, ctx.bodyPayload),
+        RESOLVE_FLOW_TIMEOUT_MS
+      );
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("[payments-resolve] manual retry failed", {
+        reason: sacramentoResolveFailureReason(err),
+        message: err instanceof Error ? err.message : String(err)
+      });
+      paymentUrl = "";
+    }
+
+    if (paymentUrl) {
+      ctx.lastPaymentUrl = paymentUrl;
+      if (pendingTab && !pendingTab.closed) {
+        try {
+          pendingTab.location.href = paymentUrl;
+        } catch {
+          window.open(paymentUrl, "_blank", "noopener,noreferrer");
+        }
+      } else {
+        window.location.href = paymentUrl;
+      }
+      return;
+    }
+    if (pendingTab && !pendingTab.closed) {
+      sacramentoPaintPendingTabPaymentRetryOffer(pendingTab);
+    } else {
+      sacramentoShowOverlayPaymentRetryOffer();
+    }
+  } finally {
+    sacramentoPaymentRetryInProgress = false;
+    sacramentoSetOverlayRetryButtonsBusy(false);
+    sacramentoSetReserveLoadingPaymentLinkMode(false);
+    sacramentoHideReserveLoading();
+  }
+}
+
+function sacramentoOpenReserveWhatsAppFromPendingTab() {
+  const ctx = sacramentoGetPaymentRetryContext();
+  if (!ctx) return;
+  const phone = ctx.whatsappPhone || SACRAMENTO_DEFAULT_WHATSAPP_NUMBER;
+  const message = sacramentoBuildWhatsappMessageWithPaymentLink(ctx.whatsappMessage, ctx.lastPaymentUrl);
+  sacramentoPaymentRetryOverlayActive = false;
+  sacramentoOpenWhatsApp(phone, message, null);
 }
 
 const SACRAMENTO_I18N_PREF = "__i18n__:";
@@ -6872,6 +7407,8 @@ window.sacramentoNavigatePendingTabToWhatsApp = sacramentoNavigatePendingTabToWh
 window.sacramentoShowReserveLoading = sacramentoShowReserveLoading;
 window.sacramentoHideReserveLoading = sacramentoHideReserveLoading;
 window.sacramentoRunReserveWhatsAppFlow = sacramentoRunReserveWhatsAppFlow;
+window.sacramentoRetryPaymentLinkFromPendingTab = sacramentoRetryPaymentLinkFromPendingTab;
+window.sacramentoOpenReserveWhatsAppFromPendingTab = sacramentoOpenReserveWhatsAppFromPendingTab;
 window.SACRAMENTO_TAXI_WHATSAPP_NUMBER = SACRAMENTO_TAXI_WHATSAPP_NUMBER;
 window.sacramentoFixWhatsAppAnchorTargets = sacramentoFixWhatsAppAnchorTargets;
 window.sacramentoInitTaxiFloatLinks = sacramentoInitTaxiFloatLinks;
