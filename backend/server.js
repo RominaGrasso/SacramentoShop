@@ -1302,6 +1302,7 @@ app.get("/api/payments/admin/payments", requireAdminAuth, (req, res) => {
   const to = req.query.to != null && String(req.query.to).trim() ? String(req.query.to).trim() : "";
   const sort = req.query.sort === "createdAt" ? "createdAt" : "updatedAt";
   const order = /^asc$/i.test(String(req.query.order || "")) ? "asc" : "desc";
+  const includeMock = /^true$/i.test(String(req.query.includeMock || ""));
 
   const result = listPayments({
     status: status || undefined,
@@ -1312,7 +1313,8 @@ app.get("/api/payments/admin/payments", requireAdminAuth, (req, res) => {
     limit: req.query.limit,
     offset: req.query.offset,
     sort,
-    order
+    order,
+    includeMock
   });
 
   return res.json({ ok: true, ...result });
