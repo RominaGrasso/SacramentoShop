@@ -348,6 +348,20 @@ export function appendPaymentAttemptBySessionId(sessionId, attempt = {}) {
 }
 
 /**
+ * Admin listado: pagos de prueba (mock local / Handy simulado), no borrar del JSON.
+ * Real Plexo: paymentUrl en secure.plexo.com.uy
+ */
+export function isMockPaymentRecord(item) {
+  if (!item || typeof item !== "object") return false;
+  const sessionId = String(item.sessionId || "");
+  const paymentUrl = String(item.paymentUrl || "").toLowerCase();
+  if (sessionId.startsWith("mock_")) return true;
+  if (paymentUrl.includes("pago.handy.uy") || paymentUrl.includes("pago.handby")) return true;
+  if (paymentUrl && !paymentUrl.includes("secure.plexo.com.uy")) return true;
+  return false;
+}
+
+/**
  * Lista pagos desde el JSON local con filtros y orden por fecha (V1 admin).
  * @param {object} filters
  * @param {string} [filters.status] — coincidencia exacta
@@ -359,6 +373,7 @@ export function appendPaymentAttemptBySessionId(sessionId, attempt = {}) {
  * @param {number} [filters.offset=0]
  * @param {'updatedAt'|'createdAt'} [filters.sort='updatedAt']
  * @param {'asc'|'desc'} [filters.order='desc']
+ * @param {boolean} [filters.includeMock=false] — incluir pagos mock en el listado
  */
 export function listPayments(filters = {}) {
   const {
@@ -370,7 +385,8 @@ export function listPayments(filters = {}) {
     limit: limitRaw,
     offset: offsetRaw,
     sort = "updatedAt",
-    order = "desc"
+    order = "desc",
+    includeMock = false
   } = filters;
 
   let items = readAll();
@@ -389,6 +405,10 @@ export function listPayments(filters = {}) {
       oldestCreatedAt: createdDates[0]?.toISOString() ?? null,
       newestCreatedAt: createdDates[createdDates.length - 1]?.toISOString() ?? null
     });
+  }
+
+  if (!includeMock) {
+    items = items.filter((x) => !isMockPaymentRecord(x));
   }
 
   if (status && String(status).trim()) {
