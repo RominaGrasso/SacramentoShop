@@ -375,6 +375,22 @@ export function listPayments(filters = {}) {
 
   let items = readAll();
 
+  // TEMP: diagnóstico store en Render — quitar tras verificar conteo en producción.
+  {
+    const createdDates = items
+      .map((x) => x.createdAt)
+      .filter(Boolean)
+      .map((d) => new Date(d))
+      .filter((d) => !Number.isNaN(d.getTime()));
+    createdDates.sort((a, b) => a - b);
+    // eslint-disable-next-line no-console
+    console.log("[payment-store-diag] readAll snapshot", {
+      total: items.length,
+      oldestCreatedAt: createdDates[0]?.toISOString() ?? null,
+      newestCreatedAt: createdDates[createdDates.length - 1]?.toISOString() ?? null
+    });
+  }
+
   if (status && String(status).trim()) {
     const st = String(status).trim();
     items = items.filter((x) => String(x.status || "") === st);
