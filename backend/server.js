@@ -5,7 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import forge from "node-forge";
-import { findReusableLink, upsertLink, updateStatusBySessionId, updatePaymentByFingerprint, updatePaymentBySessionId, findPaymentByFingerprint, listPayments, getPaymentBySessionId, canApplyPaymentStatusTransition } from "./store.js";
+import { findReusableLink, upsertLink, updateStatusBySessionId, updatePaymentByFingerprint, updatePaymentBySessionId, findPaymentByFingerprint, listPayments, getPaymentBySessionId, canApplyPaymentStatusTransition, listActiveFingerprints } from "./store.js";
 
 dotenv.config({ path: "backend/.env" });
 
@@ -1561,6 +1561,13 @@ app.post("/api/payments/resolve", async (req, res) => {
     reusable &&
     (String(reusable.sessionId || "").startsWith("mock_") || String(reusable.paymentUrl || "").includes("sessionId=mock_"));
   if (reusable && !(PAYMENT_MODE !== "mock" && reusableIsMock)) {
+    // eslint-disable-next-line no-console
+    console.log("[payments-resolve] reused existing link", {
+      fingerprint,
+      sessionId: reusable.sessionId,
+      upsertLink: false,
+      paymentStatus: reusable.paymentStatus || "awaiting_payment"
+    });
     return res.json({
       reused: true,
       paymentUrl: reusable.paymentUrl,
@@ -1591,6 +1598,36 @@ app.post("/api/payments/resolve", async (req, res) => {
       updatedAt: nowIso,
       expiresAt
     });
+
+    const stored = getPaymentBySessionId(created.sessionId);
+    const storedPaymentStatus = String(stored?.paymentStatus || "awaiting_payment")
+      .trim()
+      .toLowerCase();
+    const storeConfirmed =
+      Boolean(stored) &&
+      stored.fingerprint === fingerprint &&
+      stored.status === "active" &&
+      storedPaymentStatus === "awaiting_payment";
+    // eslint-disable-next-line no-console
+    console.log("[payments-resolve] new link stored", {
+      fingerprint,
+      sessionId: created.sessionId,
+      upsertLink: true,
+      storeConfirmed,
+      experience: normalizedPayload.experience,
+      amount: normalizedPayload.amount,
+      currency: normalizedPayload.currency
+    });
+    if (!storeConfirmed) {
+      // eslint-disable-next-line no-console
+      console.warn("[payments-resolve] upsertLink verification failed", {
+        fingerprint,
+        sessionId: created.sessionId,
+        storedFingerprint: stored?.fingerprint || null,
+        storedStatus: stored?.status || null,
+        storedPaymentStatus: stored?.paymentStatus || null
+      });
+    }
 
     return res.json({
       reused: false,
@@ -1685,8 +1722,10 @@ app.post("/api/payments/webhook", (req, res) => {
       updated = updatePaymentBySessionId(payment.sessionId, patch, attempt);
     }
     if (!updated) {
+      const activeFingerprints = listActiveFingerprints();
       // eslint-disable-next-line no-console
       console.warn("[plexo-webhook] payment not found", {
+        fingerprint: fingerprint || purchaseClientReferenceId || null,
         lookupKey: updateKey,
         lookupSource,
         purchaseClientReferenceId,
@@ -1694,7 +1733,9 @@ app.post("/api/payments/webhook", (req, res) => {
         plexoTransactionId,
         purchaseStatus: purchaseOutcome.purchaseStatus,
         transactionCode: purchaseOutcome.transactionCode,
-        incomingPaymentStatus: patch.paymentStatus
+        incomingPaymentStatus: patch.paymentStatus,
+        activeFingerprintCount: activeFingerprints.length,
+        activeFingerprints
       });
     }
 
