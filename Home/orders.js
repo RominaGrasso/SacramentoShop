@@ -345,7 +345,12 @@ function sacramentoSetOverlayRetryButtonsBusy(busy) {
 
 function sacramentoSetReserveLoadingPaymentLinkMode(on) {
   sacramentoReserveLoadingPaymentLinkMode = Boolean(on);
-  if (sacramentoReserveLoadingDepth > 0) sacramentoRefreshReserveLoadingCopy();
+  if (sacramentoReserveLoadingDepth > 0) {
+    sacramentoRefreshReserveLoadingCopy();
+    const overlay = sacramentoReserveLoadingOverlayEl;
+    const secondary = overlay?.querySelector(".sacramento-reserve-loading__secondary");
+    if (secondary && sacramentoReserveLoadingPaymentLinkMode) secondary.hidden = false;
+  }
 }
 
 function sacramentoPendingTabResolveFailed(tab) {
@@ -391,60 +396,125 @@ function sacramentoBuildWhatsappMessageWithPaymentLink(baseMessage, paymentUrl) 
   return base ? `${base}\n\n${prompt}\n${url}` : `${prompt}\n${url}`;
 }
 
-function sacramentoPaintPendingTabStatus(pendingTab, config) {
-  if (!pendingTab || pendingTab.closed) return;
-  const {
-    primaryKey,
-    primaryFallback,
-    secondaryKey = "",
-    secondaryFallback = "",
-    showSpinner = false,
-    resolveError = false
-  } = config;
+function sacramentoEscapeHtml(text) {
+  return String(text || "").replace(/</g, "&lt;");
+}
+
+function sacramentoBuildReservePendingTabAssets() {
+  const fontsHref =
+    "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap";
+  if (typeof window === "undefined") {
+    return {
+      stylesHref: "/Styles/styles.css",
+      logoSrc: "/Assets/images/sacramento-logo-new.svg",
+      fontsHref
+    };
+  }
+  let stylesHref = "/Styles/styles.css";
+  let logoSrc = "/Assets/images/sacramento-logo-new.svg";
   try {
-    const primary = sacramentoReserveLoadingText(primaryKey, primaryFallback);
-    const secondary = secondaryKey
-      ? sacramentoReserveLoadingText(secondaryKey, secondaryFallback)
-      : "";
-    const safePrimary = primary.replace(/</g, "&lt;");
-    const safeSecondary = secondary.replace(/</g, "&lt;");
-    const spinnerHtml = showSpinner
-      ? '<div class="spin" aria-hidden="true"></div>'
-      : '<div class="icon" aria-hidden="true">!</div>';
-    const secondaryHtml = secondary ? `<p>${safeSecondary}</p>` : "";
+    stylesHref = new URL("../Styles/styles.css", window.location.href).href;
+  } catch {
+    /* keep fallback */
+  }
+  try {
+    logoSrc = new URL("../Assets/images/sacramento-logo-new.svg", window.location.href).href;
+  } catch {
+    /* keep fallback */
+  }
+  return { stylesHref, logoSrc, fontsHref };
+}
+
+function sacramentoBuildReservePendingTabShell(title, bodyAttrs, cardInnerHtml, cardClass) {
+  const { stylesHref, logoSrc, fontsHref } = sacramentoBuildReservePendingTabAssets();
+  const safeTitle = sacramentoEscapeHtml(title);
+  const cardCls = cardClass || "payment-result__card payment-result__card--neutral";
+  const bodyAttrStr = bodyAttrs ? ` ${bodyAttrs}` : "";
+  return (
+    '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' +
+    `<title>${safeTitle}</title>` +
+    `<link rel="stylesheet" href="${sacramentoEscapeHtml(stylesHref)}">` +
+    `<link rel="stylesheet" href="${sacramentoEscapeHtml(fontsHref)}">` +
+    `</head><body class="page-payment-result page-sac-reserve-pending"${bodyAttrStr}>` +
+    '<header class="payment-result-header">' +
+    '<span class="payment-result-header__logo">' +
+    `<img alt="Sacramento Adventures" decoding="async" src="${sacramentoEscapeHtml(logoSrc)}">` +
+    "</span></header>" +
+    `<main class="payment-result"><div class="${cardCls}">` +
+    cardInnerHtml +
+    "</div></main></body></html>"
+  );
+}
+
+function sacramentoBuildReserveOverlayLogoHtml() {
+  const { logoSrc } = sacramentoBuildReservePendingTabAssets();
+  return (
+    '<header class="payment-result-header">' +
+    '<span class="payment-result-header__logo">' +
+    `<img alt="Sacramento Adventures" decoding="async" src="${sacramentoEscapeHtml(logoSrc)}">` +
+    "</span></header>"
+  );
+}
+
+function sacramentoBuildReserveLoadingCardHtml(title, subtitle) {
+  const safeTitle = sacramentoEscapeHtml(title);
+  const safeSubtitle = sacramentoEscapeHtml(subtitle);
+  return (
+    '<div class="payment-result__spinner" aria-hidden="true"></div>' +
+    `<h1 class="payment-result__title">${safeTitle}</h1>` +
+    `<p class="payment-result__lead">${safeSubtitle}</p>`
+  );
+}
+
+function sacramentoWritePendingTabDocument(pendingTab, title, bodyAttrs, cardInnerHtml) {
+  if (!pendingTab || pendingTab.closed) return;
+  try {
     pendingTab.document.open();
-    pendingTab.document.write(
-      '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' +
-        safePrimary +
-        '</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#f0f6fc 0%,#e8f2fa 100%);color:#1e3a5f}.wrap{text-align:center;padding:24px;max-width:360px}.spin{width:44px;height:44px;margin:0 auto 20px;border:3px solid rgba(102,166,230,.25);border-top-color:#66a6e6;border-radius:50%;animation:sacspin .85s linear infinite}.icon{width:44px;height:44px;margin:0 auto 20px;border-radius:50%;background:#fdecea;color:#b42318;font:700 1.4rem/44px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}@keyframes sacspin{to{transform:rotate(360deg)}}h1{font-size:1.05rem;font-weight:600;margin:0 0 8px;line-height:1.35}p{font-size:.9rem;margin:0;color:#4a6a8a;line-height:1.45}</style></head><body data-sac-payment-resolve-error="' +
-        (resolveError ? "1" : "0") +
-        '"><div class="wrap">' +
-        spinnerHtml +
-        "<h1>" +
-        safePrimary +
-        "</h1>" +
-        secondaryHtml +
-        "</div></body></html>"
-    );
+    pendingTab.document.write(sacramentoBuildReservePendingTabShell(title, bodyAttrs, cardInnerHtml));
     pendingTab.document.close();
   } catch {
     /* popup blocked or cross-origin */
   }
 }
 
+function sacramentoPaintPendingTabLoading(pendingTab) {
+  const title = sacramentoReserveLoadingText("reserve_loading_primary", "Preparing your booking…");
+  const subtitle = sacramentoReserveLoadingText("reserve_loading_secondary", "Opening WhatsApp…");
+  sacramentoWritePendingTabDocument(
+    pendingTab,
+    title,
+    "",
+    sacramentoBuildReserveLoadingCardHtml(title, subtitle)
+  );
+}
+
 function sacramentoPaintPendingTabPaymentPreparing(pendingTab) {
-  sacramentoPaintPendingTabStatus(pendingTab, {
-    primaryKey: "reserve_payment_link_preparing",
-    primaryFallback: "We are preparing your secure payment link. This may take a few seconds.",
-    showSpinner: true
-  });
+  const title = sacramentoReserveLoadingText(
+    "reserve_payment_link_preparing",
+    "We are preparing your secure payment link."
+  );
+  const subtitle = sacramentoReserveLoadingText(
+    "reserve_payment_link_preparing_subtitle",
+    "This may take a few seconds."
+  );
+  sacramentoWritePendingTabDocument(
+    pendingTab,
+    title,
+    'data-sac-payment-resolve-error="0"',
+    sacramentoBuildReserveLoadingCardHtml(title, subtitle)
+  );
 }
 
 function sacramentoGetPaymentRetryOfferCopy() {
   return {
-    message: sacramentoReserveLoadingText(
+    title: sacramentoReserveLoadingText(
       "reserve_payment_link_delayed",
-      "We are experiencing a delay generating your secure payment link. This is usually resolved in a few seconds."
+      "We are experiencing a delay generating your secure payment link."
+    ),
+    body: sacramentoReserveLoadingText(
+      "reserve_payment_link_delayed_body",
+      "This is usually resolved in a few seconds."
     ),
     retryLabel: sacramentoReserveLoadingText("reserve_payment_retry_btn", "Retry"),
     waLabel: sacramentoReserveLoadingText("reserve_payment_whatsapp_btn", "Contact us on WhatsApp")
@@ -453,22 +523,27 @@ function sacramentoGetPaymentRetryOfferCopy() {
 
 function sacramentoPaintPendingTabPaymentRetryOffer(pendingTab) {
   if (!pendingTab || pendingTab.closed) return;
-  const { message, retryLabel, waLabel } = sacramentoGetPaymentRetryOfferCopy();
-  const safeMessage = message.replace(/</g, "&lt;");
-  const safeRetry = retryLabel.replace(/</g, "&lt;");
-  const safeWa = waLabel.replace(/</g, "&lt;");
+  const { title, body, retryLabel, waLabel } = sacramentoGetPaymentRetryOfferCopy();
+  const safeTitle = sacramentoEscapeHtml(title);
+  const safeBody = sacramentoEscapeHtml(body);
+  const safeRetry = sacramentoEscapeHtml(retryLabel);
+  const safeWa = sacramentoEscapeHtml(waLabel);
+  const cardInner =
+    '<div class="payment-result__icon payment-result__icon--neutral" aria-hidden="true">!</div>' +
+    `<h1 class="payment-result__title">${safeTitle}</h1>` +
+    `<p class="payment-result__body">${safeBody}</p>` +
+    '<div class="payment-result__actions">' +
+    `<button type="button" class="payment-result__btn" id="sacPaymentRetryBtn">${safeRetry}</button>` +
+    `<button type="button" class="payment-result__btn secondary" id="sacPaymentWaBtn">${safeWa}</button>` +
+    "</div>";
   try {
     pendingTab.document.open();
     pendingTab.document.write(
-      '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' +
-        safeMessage +
-        '</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#f0f6fc 0%,#e8f2fa 100%);color:#1e3a5f;padding:20px}.wrap{text-align:center;max-width:380px;width:100%}.icon{width:48px;height:48px;margin:0 auto 16px;border-radius:50%;background:#fff3cd;color:#856404;font:700 1.5rem/48px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}h1{font-size:1.05rem;font-weight:600;margin:0 0 20px;line-height:1.4}.actions{display:flex;flex-direction:column;gap:10px}.btn{display:block;width:100%;border:0;border-radius:10px;padding:14px 16px;font-size:.95rem;font-weight:600;cursor:pointer;text-align:center}.btn:disabled{opacity:.6;cursor:wait}.btn-primary{background:#66a6e6;color:#fff}.btn-secondary{background:#fff;color:#1e3a5f;border:1px solid rgba(30,58,95,.2)}</style></head><body data-sac-payment-resolve-error="1" data-sac-payment-retry-offer="1"><div class="wrap"><div class="icon" aria-hidden="true">!</div><h1>' +
-        safeMessage +
-        '</h1><div class="actions"><button type="button" class="btn btn-primary" id="sacPaymentRetryBtn">🔄 ' +
-        safeRetry +
-        '</button><button type="button" class="btn btn-secondary" id="sacPaymentWaBtn">💬 ' +
-        safeWa +
-        "</button></div></div></body></html>"
+      sacramentoBuildReservePendingTabShell(
+        title,
+        'data-sac-payment-resolve-error="1" data-sac-payment-retry-offer="1"',
+        cardInner
+      )
     );
     pendingTab.document.close();
     const retryBtn = pendingTab.document.getElementById("sacPaymentRetryBtn");
@@ -539,26 +614,29 @@ function sacramentoEnsureReserveLoadingOverlay() {
   if (sacramentoReserveLoadingOverlayEl) return sacramentoReserveLoadingOverlayEl;
   const overlay = document.createElement("div");
   overlay.id = "sacramentoReserveLoading";
-  overlay.className = "sacramento-reserve-loading";
+  overlay.className = "sacramento-reserve-loading page-payment-result";
   overlay.setAttribute("role", "dialog");
   overlay.setAttribute("aria-modal", "true");
   overlay.setAttribute("aria-live", "polite");
   overlay.setAttribute("aria-busy", "true");
   overlay.hidden = true;
   overlay.innerHTML =
-    '<div class="sacramento-reserve-loading__panel">' +
+    sacramentoBuildReserveOverlayLogoHtml() +
+    '<main class="payment-result sacramento-reserve-loading__main">' +
+    '<div class="payment-result__card payment-result__card--neutral sacramento-reserve-loading__card">' +
     '<div class="sacramento-reserve-loading__loading">' +
-    '<div class="sacramento-reserve-loading__spinner" aria-hidden="true"></div>' +
-    '<p class="sacramento-reserve-loading__primary"></p>' +
-    '<p class="sacramento-reserve-loading__secondary" hidden></p>' +
+    '<div class="payment-result__spinner" aria-hidden="true"></div>' +
+    '<h1 class="payment-result__title sacramento-reserve-loading__title"></h1>' +
+    '<p class="payment-result__lead sacramento-reserve-loading__secondary" hidden></p>' +
     "</div>" +
     '<div class="sacramento-reserve-loading__retry" hidden>' +
-    '<div class="sacramento-reserve-loading__retry-icon" aria-hidden="true">!</div>' +
-    '<p class="sacramento-reserve-loading__retry-message"></p>' +
-    '<div class="sacramento-reserve-loading__retry-actions">' +
-    '<button type="button" class="sacramento-reserve-loading__retry-btn sacramento-reserve-loading__retry-btn--primary" id="sacPaymentOverlayRetryBtn"></button>' +
-    '<button type="button" class="sacramento-reserve-loading__retry-btn sacramento-reserve-loading__retry-btn--secondary" id="sacPaymentOverlayWaBtn"></button>' +
-    "</div></div></div>";
+    '<div class="payment-result__icon payment-result__icon--neutral" aria-hidden="true">!</div>' +
+    '<h1 class="payment-result__title sacramento-reserve-loading__retry-title"></h1>' +
+    '<p class="payment-result__body sacramento-reserve-loading__retry-body"></p>' +
+    '<div class="payment-result__actions">' +
+    '<button type="button" class="payment-result__btn" id="sacPaymentOverlayRetryBtn"></button>' +
+    '<button type="button" class="payment-result__btn secondary" id="sacPaymentOverlayWaBtn"></button>' +
+    "</div></div></div></main>";
   document.body.appendChild(overlay);
   const retryBtn = overlay.querySelector("#sacPaymentOverlayRetryBtn");
   const waBtn = overlay.querySelector("#sacPaymentOverlayWaBtn");
@@ -579,19 +657,21 @@ function sacramentoEnsureReserveLoadingOverlay() {
 
 function sacramentoRefreshOverlayPaymentRetryCopy() {
   const overlay = sacramentoEnsureReserveLoadingOverlay();
-  const { message, retryLabel, waLabel } = sacramentoGetPaymentRetryOfferCopy();
-  const msgEl = overlay.querySelector(".sacramento-reserve-loading__retry-message");
+  const { title, body, retryLabel, waLabel } = sacramentoGetPaymentRetryOfferCopy();
+  const titleEl = overlay.querySelector(".sacramento-reserve-loading__retry-title");
+  const bodyEl = overlay.querySelector(".sacramento-reserve-loading__retry-body");
   const retryBtn = overlay.querySelector("#sacPaymentOverlayRetryBtn");
   const waBtn = overlay.querySelector("#sacPaymentOverlayWaBtn");
-  if (msgEl) msgEl.textContent = message;
+  if (titleEl) titleEl.textContent = title;
+  if (bodyEl) bodyEl.textContent = body;
   if (retryBtn) {
-    retryBtn.textContent = `🔄 ${retryLabel}`;
+    retryBtn.textContent = retryLabel;
     if (!sacramentoPaymentRetryInProgress) {
       retryBtn.disabled = false;
       retryBtn.setAttribute("aria-busy", "false");
     }
   }
-  if (waBtn) waBtn.textContent = `💬 ${waLabel}`;
+  if (waBtn) waBtn.textContent = waLabel;
 }
 
 function sacramentoShowOverlayLoadingState() {
@@ -621,24 +701,23 @@ function sacramentoShowOverlayPaymentRetryOffer() {
 
 function sacramentoRefreshReserveLoadingCopy() {
   const overlay = sacramentoEnsureReserveLoadingOverlay();
-  const primary = overlay.querySelector(".sacramento-reserve-loading__primary");
+  const titleEl = overlay.querySelector(".sacramento-reserve-loading__title");
   const secondary = overlay.querySelector(".sacramento-reserve-loading__secondary");
-  if (primary) {
-    primary.textContent = sacramentoReserveLoadingPaymentLinkMode
+  if (titleEl) {
+    titleEl.textContent = sacramentoReserveLoadingPaymentLinkMode
       ? sacramentoReserveLoadingText(
           "reserve_payment_link_preparing",
-          "We are preparing your secure payment link. This may take a few seconds."
+          "We are preparing your secure payment link."
         )
-      : sacramentoReserveLoadingText(
-          "reserve_loading_primary",
-          "Preparing your booking…"
-        );
+      : sacramentoReserveLoadingText("reserve_loading_primary", "Preparing your booking…");
   }
   if (secondary) {
-    secondary.textContent = sacramentoReserveLoadingText(
-      "reserve_loading_secondary",
-      "Opening WhatsApp…"
-    );
+    secondary.textContent = sacramentoReserveLoadingPaymentLinkMode
+      ? sacramentoReserveLoadingText(
+          "reserve_payment_link_preparing_subtitle",
+          "This may take a few seconds."
+        )
+      : sacramentoReserveLoadingText("reserve_loading_secondary", "Opening WhatsApp…");
   }
 }
 
@@ -738,46 +817,6 @@ if (typeof document !== "undefined") {
       }
     }
   });
-}
-
-function sacramentoPaintPendingTabLoading(pendingTab) {
-  if (!pendingTab || pendingTab.closed) return;
-  try {
-    const primary = sacramentoReserveLoadingText(
-      "reserve_loading_primary",
-      "Preparing your booking…"
-    );
-    const secondary = sacramentoReserveLoadingText(
-      "reserve_loading_secondary",
-      "Opening WhatsApp…"
-    );
-    const safePrimary = primary.replace(/</g, "&lt;");
-    const safeSecondary = secondary.replace(/</g, "&lt;");
-    pendingTab.document.open();
-    pendingTab.document.write(
-      "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>" +
-        safePrimary +
-        "</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#f0f6fc 0%,#e8f2fa 100%);color:#1e3a5f}.wrap{text-align:center;padding:24px;max-width:320px}.spin{width:44px;height:44px;margin:0 auto 20px;border:3px solid rgba(102,166,230,.25);border-top-color:#66a6e6;border-radius:50%;animation:sacspin .85s linear infinite}@keyframes sacspin{to{transform:rotate(360deg)}}h1{font-size:1.05rem;font-weight:600;margin:0 0 8px;line-height:1.35}p{font-size:.9rem;margin:0;color:#4a6a8a}</style></head><body><div class=\"wrap\"><div class=\"spin\" aria-hidden=\"true\"></div><h1>" +
-        safePrimary +
-        "</h1><p>" +
-        safeSecondary +
-        "</p></div></body></html>"
-    );
-    pendingTab.document.close();
-    try {
-      const spin = pendingTab.document.querySelector(".spin");
-      if (spin && spin.tagName !== "DIV") {
-        const d = pendingTab.document.createElement("div");
-        d.className = "spin";
-        d.setAttribute("aria-hidden", "true");
-        spin.replaceWith(d);
-      }
-    } catch {
-      /* ignore */
-    }
-  } catch {
-    /* popup blocked */
-  }
 }
 
 function sacramentoOpenWhatsAppBlankTabForGesture() {

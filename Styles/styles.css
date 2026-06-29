@@ -10018,43 +10018,21 @@ body.page-payment-result {
   }
 }
 
-/* Reserve → WhatsApp loading overlay (perception only) */
-.sacramento-reserve-loading {
-  position: fixed;
-  inset: 0;
-  z-index: 10050;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  background: rgba(15, 35, 60, 0.42);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.sacramento-reserve-loading[hidden] {
-  display: none !important;
-}
-
-.sacramento-reserve-loading__panel {
-  width: min(100%, 340px);
-  padding: 28px 24px 24px;
-  border-radius: 16px;
-  background: linear-gradient(165deg, #ffffff 0%, #f4f9fd 100%);
-  box-shadow: 0 18px 48px rgba(15, 35, 60, 0.22);
-  border: 1px solid rgba(102, 166, 230, 0.28);
-  text-align: center;
-}
-
-.sacramento-reserve-loading__spinner {
+.payment-result__spinner {
   width: 44px;
   height: 44px;
-  margin: 0 auto 18px;
+  margin: 0 auto 24px;
   border: 3px solid rgba(102, 166, 230, 0.22);
-  border-top-color: #66a6e6;
+  border-top-color: #5a95cf;
   border-radius: 50%;
   animation: sacramento-reserve-spin 0.85s linear infinite;
+}
+
+.payment-result__btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(90, 149, 207, 0.15);
 }
 
 @keyframes sacramento-reserve-spin {
@@ -10063,80 +10041,38 @@ body.page-payment-result {
   }
 }
 
-.sacramento-reserve-loading__primary {
-  margin: 0 0 8px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  line-height: 1.35;
-  color: #1e3a5f;
+/* Reserve flow overlay + pending tab (matches payment result pages) */
+.sacramento-reserve-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-y: auto;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: linear-gradient(165deg, #f4f8fc 0%, #eef4fa 45%, #f8f8f8 100%);
+  color: #333;
 }
 
-.sacramento-reserve-loading__secondary {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.4;
-  color: #4a6a8a;
-}
-
-.sacramento-reserve-loading__secondary[hidden] {
+.sacramento-reserve-loading[hidden] {
   display: none !important;
 }
 
+.sacramento-reserve-loading__main {
+  flex: 1;
+  width: 100%;
+}
+
+.sacramento-reserve-loading__card {
+  margin: 0 auto;
+}
+
+.sacramento-reserve-loading__secondary[hidden],
 .sacramento-reserve-loading__retry[hidden],
 .sacramento-reserve-loading__loading[hidden] {
   display: none !important;
-}
-
-.sacramento-reserve-loading__retry-icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  background: #fff3cd;
-  color: #856404;
-  font: 700 1.5rem/48px system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-}
-
-.sacramento-reserve-loading__retry-message {
-  margin: 0 0 20px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #1e3a5f;
-}
-
-.sacramento-reserve-loading__retry-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sacramento-reserve-loading__retry-btn {
-  display: block;
-  width: 100%;
-  border: 0;
-  border-radius: 10px;
-  padding: 14px 16px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-}
-
-.sacramento-reserve-loading__retry-btn--primary {
-  background: #66a6e6;
-  color: #fff;
-}
-
-.sacramento-reserve-loading__retry-btn--secondary {
-  background: #fff;
-  color: #1e3a5f;
-  border: 1px solid rgba(30, 58, 95, 0.2);
-}
-
-.sacramento-reserve-loading__retry-btn:disabled {
-  opacity: 0.6;
-  cursor: wait;
 }
 
 body.sacramento-reserve-loading-active {
