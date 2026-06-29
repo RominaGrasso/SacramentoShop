@@ -209,7 +209,7 @@
 </li>
 <li class="activity-meta-row" data-card-meta="cup">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#cup"></use></svg>
-<span data-translate="walking_step_5">Optional: Mate Experience for USD 15 extra</span>
+<span data-translate="walking_step_5">Optional: Mate Experience for USD 20 extra</span>
 </li>
 </ul>
 </div>
@@ -220,9 +220,9 @@
 </div>
 <!-- MATE EXPERIENCE (OPTIONAL) -->
 <div class="price-box price-box--with-blurb walking-mate-experience-box">
-<h3 data-translate="walking_mate_experience_title">Mate Experience · USD 15 extra</h3>
+<h3 data-translate="walking_mate_experience_title">Mate Experience · USD 20 extra</h3>
 <p class="price-box-detail" data-translate="walking_mate_experience_body">
-      Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 15 per person).
+      Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 20 per person).
     </p>
 </div>
 <!-- INCLUDES -->
@@ -241,6 +241,13 @@
 <!-- DERECHA -->
 <div class="order-start">
 <h3 data-translate="walking_create_title">Create your walking tour</h3>
+<div class="booking-visit-date-row">
+<label data-translate="booking_visit_date_label" for="walkingTourVisitDate">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDateWalkingTour" id="walkingTourVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+              Pick the day you plan to come so we can coordinate availability in advance.
+            </p>
+</div>
 <p data-translate="walking_create_subtitle">Select language and departure time, then add people to your group</p>
 <button class="btn primary-btn" data-translate="walking_create_btn" id="createMenuBtn" type="button">+ Create walking tour</button>
 </div>
@@ -302,7 +309,7 @@
 <label><input name="walkingTourDepartureTime" type="radio" value="18:30"/> 18:30</label>
 </div>
 <p id="walkingTourKidsNote" style="margin-top:12px; font-size:0.92rem; color:#2f67a3; font-weight:600;">
-        Children under 12 join for free.
+        Children under 5 years old do not pay.
       </p>
 </div>
 <div class="popup-actions">
@@ -319,10 +326,12 @@
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
 <script src="../Home/index.js?v=20260528ordersfix"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script src="../Home/orders.js?v=20260528langfix"></script>
 <script>
   (function () {
     const pricesByLang = { es: 12, en: 17, pt: 17 };
+    const MATE_ADDON_PRICE_USD = 20;
     const getLang = () => window.getInitialLanguage().toLowerCase();
     const t = (key, fallback) => {
       const lang = getLang();
@@ -343,7 +352,29 @@
       return pricesByLang[getLang()] || 17;
     };
     const getKidsFreeNote = () => {
-      return t("walking_kids_note", "Children under 12 join for free.");
+      return t("walking_kids_note", "Children under 5 years old do not pay.");
+    };
+    const localIsoDate = (d) => {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
+    };
+    const todayIso = () => localIsoDate(new Date());
+    const normalizeVisitDate = (value) => {
+      const iso = String(value || "").trim();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return "";
+      if (iso < todayIso()) return "";
+      return iso;
+    };
+    const formatVisitDate = (iso) => {
+      const safe = normalizeVisitDate(iso);
+      if (!safe) return "";
+      const [y, m, d] = safe.split("-").map(Number);
+      const dt = new Date(y, m - 1, d);
+      if (Number.isNaN(dt.getTime())) return safe;
+      const locale = getLang() === "es" ? "es-UY" : getLang() === "pt" ? "pt-BR" : "en-GB";
+      return dt.toLocaleDateString(locale, { day: "2-digit", month: "short", year: "numeric" });
     };
     const normalizeWalkingLanguage = (value) => {
       const v = String(value || "").trim().toLowerCase();
@@ -381,7 +412,7 @@
       });
 
       if (kidsNote) {
-        kidsNote.textContent = t("walking_kids_note", "Children under 12 join for free.");
+        kidsNote.textContent = t("walking_kids_note", "Children under 5 years old do not pay.");
       }
     }
 
@@ -400,7 +431,7 @@
       const whatsappNumber = "59898945542";
       const TOUR_TIME_SLOTS = ["11:00", "14:00", "15:30", "17:00", "18:30"];
       const WALKING_TOUR_MAX_PEOPLE = 15;
-      const MATE_ADDON_PRICE_USD = 15;
+      const visitDateInput = () => document.getElementById("walkingTourVisitDate");
       const normalizeTourTime = (value) => {
         const s = String(value || "").trim();
         return TOUR_TIME_SLOTS.includes(s) ? s : "";
@@ -425,16 +456,22 @@
         });
       };
 
+      const normalizeGroupConfig = (raw) => {
+        if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+        return {
+          language: normalizeWalkingLanguage(raw.language),
+          tourTime: normalizeTourTime(raw.tourTime),
+          visitDate: normalizeVisitDate(raw.visitDate),
+          people: Math.min(WALKING_TOUR_MAX_PEOPLE, Math.max(1, Math.floor(Number(raw.people) || 1))),
+          mateAddon: Boolean(raw.mateAddon)
+        };
+      };
+
       const getGroupConfig = () => {
         try {
           const raw = JSON.parse(localStorage.getItem(storageKey));
           if (raw && !Array.isArray(raw) && typeof raw === "object") {
-            return {
-              language: normalizeWalkingLanguage(raw.language),
-              tourTime: normalizeTourTime(raw.tourTime),
-              people: Math.min(WALKING_TOUR_MAX_PEOPLE, Math.max(1, Number(raw.people) || 1)),
-              mateAddon: Boolean(raw.mateAddon)
-            };
+            return normalizeGroupConfig(raw);
           }
           if (Array.isArray(raw) && raw.length > 0) {
             const first = raw[0] || {};
@@ -444,12 +481,13 @@
               const idx = basePrefs.findIndex((p) => /guide$/i.test(String(p || "").trim()));
               if (idx >= 0) language = String(basePrefs[idx] || "").trim();
             }
-            return {
-              language: normalizeWalkingLanguage(language || "English guide"),
+            return normalizeGroupConfig({
+              language: language || "English guide",
               tourTime: "",
+              visitDate: "",
               people: Math.min(WALKING_TOUR_MAX_PEOPLE, raw.length),
               mateAddon: false
-            };
+            });
           }
           return null;
         } catch {
@@ -457,24 +495,47 @@
         }
       };
       const setGroupConfig = (group) => {
-        localStorage.setItem(storageKey, JSON.stringify(group));
+        localStorage.setItem(storageKey, JSON.stringify(normalizeGroupConfig(group) || group));
       };
-      const formatDate = () =>
-        new Date().toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric"
-        });
-      const sendBookingToWhatsApp = (group) => {
-        if (!group || !group.tourTime) {
-          alert(t("walking_alert_select_tour_time", "Please choose a walking tour departure time."));
-          return;
+      const getPageVisitDate = () => {
+        const dateEl = visitDateInput();
+        return normalizeVisitDate(dateEl?.value || "");
+      };
+      const syncPageVisitDateToGroup = () => {
+        const visitDate = getPageVisitDate();
+        if (!visitDate) return;
+        const group = getGroupConfig();
+        if (!group) return;
+        if (group.visitDate === visitDate) return;
+        setGroupConfig({ ...group, visitDate });
+      };
+      const validateGroupForBooking = (group) => {
+        if (!group) {
+          alert(t("walking_alert_create_first", "Please create your walking tour group first."));
+          return false;
         }
+        const visitDate = normalizeVisitDate(group.visitDate) || getPageVisitDate();
+        if (!visitDate) {
+          alert(t("walking_alert_select_date", "Please select a visit date."));
+          return false;
+        }
+        if (group.visitDate !== visitDate) {
+          setGroupConfig({ ...group, visitDate });
+          group.visitDate = visitDate;
+        }
+        if (!group.tourTime) {
+          alert(t("walking_alert_select_tour_time", "Please choose a walking tour departure time."));
+          return false;
+        }
+        return true;
+      };
+      const sendBookingToWhatsApp = (group) => {
+        if (!validateGroupForBooking(group)) return;
         const unitPrice = getPrice(group.language);
         const walkTotal = unitPrice * group.people;
         const mateTotal = group.mateAddon ? group.people * MATE_ADDON_PRICE_USD : 0;
         const total = walkTotal + mateTotal;
-        const date = formatDate();
+        const dateLabel = formatVisitDate(group.visitDate);
 
         const runReserveFlow = async () => {
           const pendingTab =
@@ -482,6 +543,26 @@
               ? window.sacramentoOpenWhatsAppBlankTabForGesture()
               : null;
           let paymentUrl = "";
+          const orderPayloadGroup = {
+            language: group.language,
+            tourTime: group.tourTime,
+            visitDate: group.visitDate,
+            people: group.people,
+            mateAddon: group.mateAddon,
+            total
+          };
+          const mateWaLine =
+            group.mateAddon && mateTotal > 0
+              ? `\n${t("walking_wa_mate", "Mate experience")}: +USD ${mateTotal} (${group.people} × USD ${MATE_ADDON_PRICE_USD})`
+              : "";
+          let waSummary =
+            `${t("wa_intro_walking", "Hello! I'd like to book the Walking Tour experience:")}\n\n` +
+            `${t("wa_date_label", "Date")}: ${dateLabel}\n` +
+            `${t("wa_people_label", "People")}: ${group.people}\n` +
+            `${t("wa_language_label", "Language")}: ${localizeWalkingLanguage(group.language)}\n` +
+            `${t("wa_tour_time_label", "Walking tour time")}: ${group.tourTime}${mateWaLine}\n\n` +
+            `${t("wa_total_label", "Total")}: USD ${total}\n` +
+            `${t("wa_note_label", "Note")}: ${getKidsFreeNote()}`;
           try {
             if (typeof resolveDynamicPaymentLink === "function") {
               paymentUrl = await resolveDynamicPaymentLink(
@@ -498,9 +579,15 @@
                   people: group.people,
                   orderFingerprint:
                     typeof stableStringify === "function"
-                      ? stableStringify({ group, total })
-                      : JSON.stringify({ group, total }),
-                  orderPayload: { group, total, experienceName: "Walking Tour" }
+                      ? stableStringify({ group: orderPayloadGroup, total })
+                      : JSON.stringify({ group: orderPayloadGroup, total }),
+                  orderPayload: {
+                    group: orderPayloadGroup,
+                    visitDate: group.visitDate,
+                    total,
+                    experienceName: "Walking Tour",
+                    whatsappMessage: waSummary
+                  }
                 }
               );
             }
@@ -508,29 +595,16 @@
             // Fallback: continue without payment URL
           }
 
-          const mateWaLine =
-            group.mateAddon && mateTotal > 0
-              ? `\n${t("walking_wa_mate", "Mate experience")}: +USD ${mateTotal} (${group.people} × USD ${MATE_ADDON_PRICE_USD})`
-              : "";
-          let message =
-            `${t("wa_intro_walking", "Hello! I'd like to book the Walking Tour experience:")}\n\n` +
-            `${t("wa_date_label", "Date")}: ${date}\n` +
-            `${t("wa_people_label", "People")}: ${group.people}\n` +
-            `${t("wa_language_label", "Language")}: ${localizeWalkingLanguage(group.language)}\n` +
-            `${t("wa_tour_time_label", "Walking tour time")}: ${group.tourTime}${mateWaLine}\n\n` +
-            `${t("wa_total_label", "Total")}: USD ${total}\n` +
-            `${t("wa_note_label", "Note")}: ${getKidsFreeNote()}`;
-
           if (paymentUrl) {
-            message += `\n\n${t("wa_payment_prompt", "To confirm the reservation, please complete the payment here:")}\n${paymentUrl}`;
+            waSummary += `\n\n${t("wa_payment_prompt", "To confirm the reservation, please complete the payment here:")}\n${paymentUrl}`;
           } else {
-            message += `\n\n${t("wa_payment_fallback", "Please share payment instructions to confirm this booking.")}`;
+            waSummary += `\n\n${t("wa_payment_fallback", "Please share payment instructions to confirm this booking.")}`;
           }
 
           if (typeof window.sacramentoOpenWhatsApp === "function") {
-            window.sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
+            window.sacramentoOpenWhatsApp(whatsappNumber, waSummary, pendingTab);
           } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
-            window.location.assign(window.sacramentoBuildWhatsAppUrl(whatsappNumber, message));
+            window.location.assign(window.sacramentoBuildWhatsAppUrl(whatsappNumber, waSummary));
           }
         };
         if (typeof window.sacramentoRunReserveWhatsAppFlow === "function") {
@@ -581,15 +655,19 @@
         }).join("");
         const card = document.createElement("div");
         card.className = "order-card";
+        const visitDateLine = group.visitDate
+          ? `<p><strong>${t("walking_label_visit_date", "Visit date")}:</strong> ${formatVisitDate(group.visitDate)}</p>`
+          : "";
         const mateCardLine =
           group.mateAddon
             ? `<p><strong>${t("walking_label_mate", "Mate experience")}:</strong> ${t(
                 "walking_mate_card_yes",
-                "Yes (+USD 15 per person)"
+                "Yes (+USD 20 per person)"
               )}</p>`
             : "";
         card.innerHTML = `
           <div class="order-header"><strong>${t("walking_group_card_title", "Walking Tour Group")}</strong></div>
+          ${visitDateLine}
           <p><strong>${t("walking_label_people", "People")}:</strong> ${group.people}</p>
           <p><strong>${t("walking_label_language", "Language")}:</strong> ${localizeWalkingLanguage(group.language)}</p>
           <div class="walking-tour-summary-times order-card-walking-tour-times">
@@ -608,7 +686,7 @@
         mateRow.className = "walking-summary-mate-row";
         mateRow.innerHTML = `
           <button type="button" class="add-guest-btn" data-action="toggle-mate">${mateBtnLabel}</button>
-          <span class="walking-mate-price-note">${t("walking_mate_price_note", "(USD 15 per person added)")}</span>
+          <span class="walking-mate-price-note">${t("walking_mate_price_note", "(USD 20 per person added)")}</span>
         `;
         summary.appendChild(mateRow);
 
@@ -642,6 +720,10 @@
       if (!openBtn.dataset.popupBound) {
         openBtn.dataset.popupBound = "1";
         openBtn.addEventListener("click", () => {
+          if (!getPageVisitDate()) {
+            alert(t("walking_alert_select_date", "Please select a visit date."));
+            return;
+          }
           const existing = getGroupConfig();
           if (existing) {
             const proceed = window.confirm(
@@ -675,10 +757,16 @@
             alert(t("walking_alert_select_tour_time", "Please choose a walking tour departure time."));
             return;
           }
+          const visitDate = getPageVisitDate();
+          if (!visitDate) {
+            alert(t("walking_alert_select_date", "Please select a visit date."));
+            return;
+          }
           const prev = getGroupConfig();
           setGroupConfig({
             language,
             tourTime,
+            visitDate,
             people: prev?.people || 1,
             mateAddon: Boolean(prev?.mateAddon)
           });
@@ -771,6 +859,19 @@
           }
           sendBookingToWhatsApp(group);
         });
+      }
+
+      const pageDateInput = visitDateInput();
+      if (pageDateInput && !pageDateInput.dataset.walkingTourDateBound) {
+        pageDateInput.dataset.walkingTourDateBound = "1";
+        pageDateInput.addEventListener("change", () => {
+          syncPageVisitDateToGroup();
+          renderFallbackSummary();
+        });
+        const group = getGroupConfig();
+        if (group?.visitDate && !pageDateInput.value) {
+          pageDateInput.value = group.visitDate;
+        }
       }
 
       refreshWalkingTourSummary = renderFallbackSummary;
