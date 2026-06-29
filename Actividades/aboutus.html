@@ -6,15 +6,9 @@
 <meta charset="utf-8"/>
 <title data-translate="about_doc_title">About Us - Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
-<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260629about3" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<script>
-    (function () {
-      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      document.documentElement.classList.add("js-reveal");
-    })();
-  </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-72TT5VCG5S"></script>
 <script>
@@ -122,9 +116,6 @@
 <img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" loading="lazy" src="../Assets/images/nos3.jpg"/>
 </div>
 <div class="about-hero-slide">
-<img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" loading="lazy" src="../Assets/images/nos4.jpg"/>
-</div>
-<div class="about-hero-slide">
 <img alt="" data-translate-alt="about_hero_gallery_alt" decoding="async" loading="lazy" src="../Assets/images/nos5.jpg"/>
 </div>
 <div class="about-hero-slide">
@@ -145,8 +136,9 @@
 </div>
 <div class="home-about-intro__body about-reveal">
 <p data-translate="about_who_p">
-          We're a group of young people who genuinely love what we do: bringing quality, good energy, and lasting memories to your time in Colonia del Sacramento. We obsess over the details with trusted partners — because we want you to feel truly taken care of.
+          We are a group of young professionals, investing in the tourism growth of Colonia del Sacramento. We love what we do: bringing quality, good energy, and lasting memories to your time in Colonia. We care about the details and work with trusted partners, designing activities and improving our current offerings.
         </p>
+<p class="about-who-invite" data-translate="about_who_p_invite">We invite you to get to know us!</p>
 </div>
 </div>
 </div>
@@ -162,7 +154,7 @@
 </div>
 <div class="team-info">
 <h3>Romina</h3>
-<p class="role" data-translate="about_team_romina_role">Founder</p>
+<p class="role" data-translate="about_team_romina_role">Co-Founder</p>
 <p class="birthday" data-translate="about_team_romina_bday">🎂 Oct 16</p>
 <p data-translate="about_team_romina_bio">
             Romina blends her background in quality engineering with a strategic and entrepreneurial mindset. She brings together local partners, designs meaningful experiences, and ensures every detail reflects quality, authenticity, and human connection.
@@ -178,25 +170,10 @@
 </div>
 <div class="team-info">
 <h3>Maria Eugenia (Maru)</h3>
-<p class="role" data-translate="about_team_maru_role">Designer &amp; photographer - Content creator</p>
+<p class="role" data-translate="about_team_maru_role">Designer &amp; photographer</p>
 <p class="birthday" data-translate="about_team_maru_bday">🎂 Feb 27</p>
 <p data-translate="about_team_maru_bio">
           Maru is a highly entrepreneurial and detail-oriented professional, known for her creativity and strong sense of responsibility. She brings ideas to life with a refined and organized approach.
-          </p>
-</div>
-</div>
-<div class="team-card about-reveal">
-<div class="team-card-aside">
-<img alt="Nicole" data-translate-alt="about_team_nicole_photo_alt" decoding="async" loading="lazy" src="../Assets/images/nicole.jpg"/>
-<p class="team-linkedin-wrap">
-<a class="team-linkedin-link" data-translate="about_team_linkedin_label" href="https://www.linkedin.com/in/nicole-maciel-gonzalez/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
-</p>
-</div>
-<div class="team-info">
-<h3>Nicole</h3>
-<p class="role" data-translate="about_team_nicole_role">Corporate &amp; social events coordinator</p>
-<p data-translate="about_team_nicole_bio">
-          Nicole has extensive experience organizing and coordinating events. Her ability to plan ahead, handle the unexpected, and attend to every detail ensures each experience runs flawlessly.
           </p>
 </div>
 </div>
@@ -345,35 +322,6 @@
       index = (index + 1) % slides.length;
       update();
     });
-  })();
-</script>
-<script>
-  (function () {
-    var nodes = document.querySelectorAll(".about-reveal");
-    if (!nodes.length) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      nodes.forEach(function (el) { el.classList.add("is-visible"); });
-      return;
-    }
-    if (!document.documentElement.classList.contains("js-reveal")) {
-      nodes.forEach(function (el) { el.classList.add("is-visible"); });
-      return;
-    }
-    if (!("IntersectionObserver" in window)) {
-      nodes.forEach(function (el) { el.classList.add("is-visible"); });
-      return;
-    }
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -7% 0px", threshold: 0.08 }
-    );
-    nodes.forEach(function (el) { io.observe(el); });
   })();
 </script>
 <a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">

@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  /** Set your Google reviews URL here when ready (Maps / Business Profile). */
-  const GOOGLE_REVIEWS_URL = "";
+  const GOOGLE_REVIEWS_URL =
+    "https://www.google.com/search?kgmid=/g/11njtm69rq&hl=es-UY&q=Sacramento+Adventures&shem=rimspwouoe&shndl=30&source=sh/x/loc/osrp/m1/2&kgs=52fb083ffdd944d8&utm_source=rimspwouoe,sh/x/loc/osrp/m1/2";
 
   const REVIEWS_JSON_URL = "data/google-reviews.json";
   const AUTOPLAY_MS = 6000;

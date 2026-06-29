@@ -2367,7 +2367,7 @@
     transition: background 0.22s ease;
     flex: 1 1 0;
     min-width: 0;
-    max-width: 33.333%;
+    max-width: 50%;
   }
 
   .hero-social-group__link:hover {
@@ -4327,11 +4327,9 @@
     max-width: min(1040px, 100%);
     border-radius: 18px;
     overflow: hidden;
-    background: #fff;
-    border: 1px solid rgba(102, 166, 230, 0.12);
-    box-shadow:
-      0 8px 32px rgba(47, 103, 163, 0.09),
-      0 2px 8px rgba(0, 0, 0, 0.04);
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 
   .about-hero-track {
@@ -4350,14 +4348,14 @@
     padding: 0;
     box-sizing: border-box;
     overflow: hidden;
-    background: #f2f6fb;
+    background: transparent;
   }
 
   .about-hero-slide img {
     width: 100%;
     height: 100%;
     max-height: none;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     display: block;
   }
@@ -4468,6 +4466,10 @@
 
   .about-content .about-who-intro .home-about-intro__body {
     gap: 0;
+  }
+
+  .about-content .about-who-invite {
+    margin-top: 0.75rem;
   }
 
   /* About Us: entrada al scroll (aboutus.html + html.js-reveal) */
@@ -9164,11 +9166,11 @@
   }
 
   .hero-buttons .hero-btn-view-activities {
-    width: auto;
+    width: 100%;
+    min-width: 0;
     max-width: 100%;
-    min-width: min(14.5rem, 100%);
-    align-self: center;
-    padding: 10px 2.5rem;
+    align-self: stretch;
+    padding: 10px 18px;
   }
 
   .hero-floating-img {
