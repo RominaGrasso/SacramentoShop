@@ -34,6 +34,30 @@ const translations = {
       home_google_reviews_title: "Google Reviews",
       home_google_reviews_sub: "Trusted by travelers",
       home_google_reviews_aria: "Read Sacramento Adventures reviews on Google (opens in new tab)",
+      home_reviews_title: "⭐ What our travelers say",
+      home_reviews_lead:
+        "Real reviews from people who discovered Colonia del Sacramento with Sacramento Adventures.",
+      home_reviews_badge: "5.0 rating on Google",
+      home_reviews_cta: "See all our reviews on Google",
+      home_reviews_carousel_aria: "Google reviews carousel",
+      home_reviews_prev_aria: "Previous review",
+      home_reviews_next_aria: "Next review",
+      home_reviews_read_more: "Read more",
+      home_reviews_read_less: "Read less",
+      home_review_text_maria_mp:
+        "100% recommendable with excellent attention from booking through the end of the tour. My guide Adrián was great at explaining, keeping our interest and answering questions. I definitely know much more about the city and country thanks to the tour. I also recommend adding the mate experience for a relaxed chance to chat and learn more.",
+      home_review_text_carlos_tomezzoli:
+        "Outstanding team attention. We did the guided visit to Barbot Brewery and everything was a 10. Highly recommendable.",
+      home_review_text_karina_schillaci:
+        "We did a guided tour with Alan and it was super interesting and fun. Recommended!",
+      home_review_text_ema_sefcikova:
+        "Adrian was a very friendly and engaging guide. He took us to all the significant landmarks, explaining Uruguay's history and culture. He even brought a Maté with him to show us!",
+      home_review_text_nahuel_valles:
+        "Super good attention! Very kind, both on WhatsApp and in person. You can feel the passion and excitement. Totally worth it to learn the city's history, and with a very competitive price.",
+      home_review_text_dante_zanotta:
+        "Excellent experience today in Colonia del Sacramento. I didn't take photos because I was with my thermos and mate, and I didn't want to miss any detail.",
+      home_review_text_l_franklin_young:
+        "OMG loved this tour! I've visited Colonia a few times before, but am here for the first time with my sister. We wanted to do a walking tour of the city. I happened to notice a dog wearing a Sacramento Adventures vest the other day, did a Google search and found this wonderful company.\n\nAdrian was super knowledgeable, fun, and polite and ELA, our furry guide, was super enjoyable to host us (we were one of her first customers!!).\n\nWhat a great idea to combine a walking tour with fur babies!\n\nThe idea is incredible and Romina and her team member Adrian were fun to work with ❤️\n\nWe'll be recommending to anyone who visits!",
       home_instagram_aria: "Follow Sacramento Adventures on Instagram (opens in new tab)",
       home_instagram_title: "Instagram",
       home_instagram_sub: "@_sacramentoadventures",
@@ -2539,6 +2563,30 @@ const translations = {
       home_google_reviews_title: "Reseñas en Google",
       home_google_reviews_sub: "Con la confianza de viajeros",
       home_google_reviews_aria: "Ver reseñas de Sacramento Adventures en Google (se abre en una pestaña nueva)",
+      home_reviews_title: "⭐ Lo que dicen nuestros viajeros",
+      home_reviews_lead:
+        "Opiniones reales de personas que descubrieron Colonia del Sacramento con Sacramento Adventures.",
+      home_reviews_badge: "Calificación 5.0 en Google",
+      home_reviews_cta: "Ver todas nuestras reseñas en Google",
+      home_reviews_carousel_aria: "Carrusel de reseñas de Google",
+      home_reviews_prev_aria: "Reseña anterior",
+      home_reviews_next_aria: "Reseña siguiente",
+      home_reviews_read_more: "Leer más",
+      home_reviews_read_less: "Leer menos",
+      home_review_text_maria_mp:
+        "Recomendable al 100% y excelente la atención desde el proceso de reserva hasta el final del tour. Mi guía, Adrián, fue muy bueno explicando, manteniendo el interés y contestando a preguntas. Definitivamente tengo mayor conocimiento de la ciudad y el país gracias al tour. Además, recomiendo acompañarlo con la experiencia del mate que da una oportunidad excelente para conversar en un ambiente distendido y conocer más.",
+      home_review_text_carlos_tomezzoli:
+        "Destacable la atención del equipo. Hicimos la visita guiada a la Cervecería Barbot y todo salió de 10. Súper recomendable.",
+      home_review_text_karina_schillaci:
+        "Hicimos un tour guiado con Alan y estuvo súper interesante y divertido. ¡Recomendado!",
+      home_review_text_ema_sefcikova:
+        "Adrián fue un guía muy amable y cercano. Nos llevó a todos los lugares importantes, explicando la historia y cultura de Uruguay. ¡Incluso trajo un mate para mostrarnos!",
+      home_review_text_nahuel_valles:
+        "¡Atención súper buena! Muy amables, tanto en WhatsApp como en persona. Se nota la pasión e ilusión. Vale la pena totalmente para conocer la historia de la ciudad y encima con un precio muy competitivo.",
+      home_review_text_dante_zanotta:
+        "Excelente experiencia vivida hoy en Colonia del Sacramento. No saqué fotos porque estaba con termo y mate, y para no perderme de cada detalle.",
+      home_review_text_l_franklin_young:
+        "¡Me encantó este tour! Había visitado Colonia varias veces antes, pero estoy acá por primera vez con mi hermana. Queríamos hacer un tour a pie por la ciudad. Hace unos días vi un perro con un chaleco de Sacramento Adventures, busqué en Google y encontré esta empresa maravillosa.\n\nAdrián fue super conocedor, divertido y educado, y ELA, nuestra guía peluda, fue un encanto (¡éramos de sus primeros clientes!).\n\n¡Qué gran idea combinar un walking tour con perritos!\n\nLa idea es increíble y Romina y Adrián de su equipo fueron muy divertidos ❤️\n\nLo vamos a recomendar a cualquiera que visite!",
       home_instagram_aria: "Seguir a Sacramento Adventures en Instagram (se abre en una pestaña nueva)",
       home_instagram_title: "Instagram",
       home_instagram_sub: "@_sacramentoadventures",
@@ -5044,6 +5092,30 @@ const translations = {
       home_google_reviews_title: "Avaliações no Google",
       home_google_reviews_sub: "Com a confiança de viajantes",
       home_google_reviews_aria: "Ver avaliações da Sacramento Adventures no Google (abre em nova aba)",
+      home_reviews_title: "⭐ O que dizem nossos viajantes",
+      home_reviews_lead:
+        "Opiniões reais de pessoas que descobriram Colonia del Sacramento com a Sacramento Adventures.",
+      home_reviews_badge: "Avaliação 5.0 no Google",
+      home_reviews_cta: "Ver todas as nossas avaliações no Google",
+      home_reviews_carousel_aria: "Carrossel de avaliações do Google",
+      home_reviews_prev_aria: "Avaliação anterior",
+      home_reviews_next_aria: "Próxima avaliação",
+      home_reviews_read_more: "Ler mais",
+      home_reviews_read_less: "Ler menos",
+      home_review_text_maria_mp:
+        "Recomendo 100% e a atenção foi excelente desde a reserva até o final do tour. Meu guia Adrián foi ótimo explicando, mantendo o interesse e respondendo perguntas. Definitivamente aprendi muito mais sobre a cidade e o país graças ao tour. Também recomendo incluir a experiência do mate para conversar num clima descontraído e conhecer mais.",
+      home_review_text_carlos_tomezzoli:
+        "Destacável a atenção da equipe. Fizemos a visita guiada à Cervejaria Barbot e tudo saiu nota 10. Super recomendável.",
+      home_review_text_karina_schillaci:
+        "Fizemos um tour guiado com Alan e foi super interessante e divertido. Recomendado!",
+      home_review_text_ema_sefcikova:
+        "Adrian foi um guia muito simpático e envolvente. Levou-nos a todos os pontos importantes, explicando a história e a cultura do Uruguai. Até trouxe um mate para nos mostrar!",
+      home_review_text_nahuel_valles:
+        "Atenção excelente! Muito gentis, tanto no WhatsApp quanto pessoalmente. Dá para sentir a paixão e o entusiasmo. Vale totalmente a pena para conhecer a história da cidade, com um preço muito competitivo.",
+      home_review_text_dante_zanotta:
+        "Excelente experiência hoje em Colonia del Sacramento. Não tirei fotos porque estava com termo e mate e não queria perder nenhum detalhe.",
+      home_review_text_l_franklin_young:
+        "Amei este tour! Já visitei Colonia algumas vezes, mas estou aqui pela primeira vez com minha irmã. Queríamos fazer um walking tour pela cidade. Vi um cachorro com colete da Sacramento Adventures, pesquisei no Google e encontrei esta empresa maravilhosa.\n\nAdrian foi super conhecedor, divertido e educado, e ELA, nossa guia peluda, foi um prazer (fomos uns dos primeiros clientes dela!).\n\nQue ideia incrível combinar um tour a pé com cachorrinhos!\n\nA ideia é incrível e Romina e Adrian da equipe foram ótimos ❤️\n\nVamos recomendar a quem visitar!",
       home_instagram_aria: "Seguir Sacramento Adventures no Instagram (abre em nova aba)",
       home_instagram_title: "Instagram",
       home_instagram_sub: "@_sacramentoadventures",
