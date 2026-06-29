@@ -1101,7 +1101,8 @@ const translations = {
       about_hero_gallery_next: "Next photo",
       about_who_h2: "Who we are",
       about_who_p:
-        "We're a group of young people who genuinely love what we do: bringing quality, good energy, and lasting memories to your time in Colonia del Sacramento. We obsess over the details with trusted partners — because we want you to feel truly taken care of.",
+        "We are a group of young professionals, investing in the tourism growth of Colonia del Sacramento. We love what we do: bringing quality, good energy, and lasting memories to your time in Colonia. We care about the details and work with trusted partners, designing activities and improving our current offerings.",
+      about_who_p_invite: "We invite you to get to know us!",
       about_team_note:
         "We're refreshing team photos — three more teammates coming soon. Scroll down to meet everyone.",
       about_closing_quote:
@@ -1118,11 +1119,11 @@ const translations = {
       nav_cat_corporate: "Corporate Experiences",
       about_team_linkedin_label: "LinkedIn",
       about_team_photo_alt: "Team member",
-      about_team_romina_role: "Founder",
+      about_team_romina_role: "Co-Founder",
       about_team_romina_bday: "🎂 Oct 16",
       about_team_romina_bio:
         "Romina blends her background in quality engineering with a strategic and entrepreneurial mindset. She brings together local partners, designs meaningful experiences, and ensures every detail reflects quality, authenticity, and human connection.",
-      about_team_maru_role: "Designer & photographer - Content creator",
+      about_team_maru_role: "Designer & photographer",
       about_team_maru_bday: "🎂 Feb 27",
       about_team_maru_bio:
         "Maru is a highly entrepreneurial and detail-oriented professional, known for her creativity and strong sense of responsibility. She brings ideas to life with a refined and organized approach.",
@@ -3630,7 +3631,8 @@ const translations = {
       about_hero_gallery_next: "Foto siguiente",
       about_who_h2: "Quiénes somos",
       about_who_p:
-        "Somos un grupo de jóvenes que amamos lo que hacemos: llevar calidad, buena energía y recuerdos que duran a tu paso por Colonia del Sacramento. Nos encanta el detalle y trabajamos con partners de confianza — nos importa que te sientas acompañado de verdad.",
+        "Somos un grupo de jóvenes profesionales, invirtiendo en la expansión turística de Colonia del Sacramento. Amamos lo que hacemos: llevar calidad, buena energía y recuerdos que duran a tu paso por Colonia. Nos encanta el detalle y trabajamos con partners de confianza, diseñando actividades y mejorando las propuestas actuales.",
+      about_who_p_invite: "¡Te invitamos a conocernos!",
       about_team_note:
         "Estamos actualizando las fotos del equipo: pronto sumamos tres integrantes más. ¡Seguí bajando para conocer al crew!",
       about_closing_quote:
@@ -3647,11 +3649,11 @@ const translations = {
       nav_cat_corporate: "Experiencias corporativas",
       about_team_linkedin_label: "LinkedIn",
       about_team_photo_alt: "Integrante del equipo",
-      about_team_romina_role: "Fundadora",
+      about_team_romina_role: "Co-Founder",
       about_team_romina_bday: "🎂 16 oct",
       about_team_romina_bio:
         "Romina combina su formación en ingeniería de la calidad con una mirada estratégica y emprendedora. Articula aliados locales, diseña experiencias con sentido y cuida cada detalle para que refleje calidad, autenticidad y vínculo humano.",
-      about_team_maru_role: "Diseñadora y fotógrafa - Creadora de contenido",
+      about_team_maru_role: "Diseñadora y fotógrafa",
       about_team_maru_bday: "🎂 27 feb",
       about_team_maru_bio:
         "Maru es una profesional muy emprendedora y detallista, reconocida por su creatividad y sentido de la responsabilidad. Lleva las ideas a la práctica con un enfoque refinado y ordenado.",
@@ -6157,7 +6159,8 @@ const translations = {
       about_hero_gallery_next: "Próxima foto",
       about_who_h2: "Quem somos",
       about_who_p:
-        "Somos um grupo de jovens que ama o que faz: levar qualidade, boa energia e memórias que ficam para a sua passagem por Colonia del Sacramento. Curtimos cada detalhe com parceiros de confiança — porque queremos que você se sinta realmente acolhido.",
+        "Somos um grupo de jovens profissionais, investindo na expansão turística de Colonia del Sacramento. Amamos o que fazemos: levar qualidade, boa energia e memórias que duram para a sua passagem por Colonia. Gostamos do detalhe e trabalhamos com parceiros de confiança, desenhando atividades e melhorando as propostas atuais.",
+      about_who_p_invite: "Convidamos você a nos conhecer!",
       about_team_note:
         "Estamos atualizando as fotos da equipe — três integrantes a caminho. Role para conhecer todo mundo!",
       about_closing_quote:
@@ -6174,11 +6177,11 @@ const translations = {
       nav_cat_corporate: "Experiências corporativas",
       about_team_linkedin_label: "LinkedIn",
       about_team_photo_alt: "Membro da equipe",
-      about_team_romina_role: "Fundadora",
+      about_team_romina_role: "Co-Founder",
       about_team_romina_bday: "🎂 16 out",
       about_team_romina_bio:
         "Romina une sua formação em engenharia da qualidade a uma visão estratégica e empreendedora. Reúne parceiros locais, desenha experiências significativas e cuida de cada detalhe para refletir qualidade, autenticidade e conexão humana.",
-      about_team_maru_role: "Designer e fotógrafa - Criadora de conteúdo",
+      about_team_maru_role: "Designer e fotógrafa",
       about_team_maru_bday: "🎂 27 fev",
       about_team_maru_bio:
         "Maru é uma profissional muito empreendedora e detalhista, reconhecida pela criatividade e senso de responsabilidade. Transforma ideias em realidade com refinamento e organização.",
