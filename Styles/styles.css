@@ -6178,8 +6178,36 @@
     color: #2c3e50;
   }
 
-  .page-cabal .preferences-inside .cabal-popup-guests-title {
+  .page-cabal .preferences-inside .cabal-popup-guests-title,
+  .page-s34-gin .preferences-inside .cabal-popup-guests-title {
     margin-top: 14px;
+  }
+
+  .page-cabal .cabal-popup-guests-row,
+  .page-s34-gin .cabal-popup-guests-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 6px 0 4px;
+  }
+
+  .page-cabal .cabal-popup-guests-row #cabalGuestsValue,
+  .page-s34-gin .cabal-popup-guests-row #s34GuestsValue {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  .page-cabal .cabal-popup-guests-hint,
+  .page-s34-gin .cabal-popup-guests-hint {
+    font-size: 0.88rem;
+    color: #2f67a3;
+    margin: 8px 0 0;
+    line-height: 1.4;
+    text-align: center;
   }
 
   .page-cabal .cabal-popup-times-grid {
@@ -6221,15 +6249,117 @@
     text-align: center;
   }
 
-  .page-cabal .preferences-inside .cabal-popup-transport-title {
+  .page-cabal .preferences-inside .cabal-popup-transport-title,
+  .page-s34-gin .preferences-inside .cabal-popup-transport-title {
     margin-top: 1.1rem;
   }
 
-  .page-cabal .cabal-popup-transport-hint {
+  .page-cabal .cabal-popup-transport-hint,
+  .page-s34-gin .cabal-popup-transport-hint {
     font-size: 0.88rem;
     color: #2f67a3;
     margin: 8px 0 0;
     line-height: 1.4;
+    text-align: center;
+  }
+
+  .page-s34-gin .fullday-colonia-hero {
+    background-position: center 32%;
+  }
+
+  @media (max-width: 768px) {
+    .page-s34-gin .fullday-colonia-hero {
+      background-position: center 28%;
+    }
+  }
+
+  .page-s34-gin .barbot-experience-card--with-thumb {
+    --s34-exp-thumb-size: 6rem;
+    --s34-exp-thumb-gap: 1.15rem;
+  }
+
+  .page-s34-gin .barbot-experience-card--with-thumb .barbot-experience-card__head {
+    display: grid;
+    grid-template-columns:
+      calc(var(--s34-exp-thumb-size) * 2 + var(--s34-exp-thumb-gap))
+      1fr
+      calc(var(--s34-exp-thumb-size) * 2 + var(--s34-exp-thumb-gap));
+    align-items: start;
+    column-gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(102, 166, 230, 0.16);
+  }
+
+  .page-s34-gin .barbot-experience-card__thumbs {
+    grid-column: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s34-exp-thumb-gap);
+    margin-left: -1.35rem;
+  }
+
+  .page-s34-gin .barbot-experience-card__head-text {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.55rem;
+    min-width: 0;
+  }
+
+  .page-s34-gin .barbot-experience-card__thumb {
+    flex-shrink: 0;
+    margin: 0;
+    width: var(--s34-exp-thumb-size);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(47, 103, 163, 0.14);
+  }
+
+  .page-s34-gin .barbot-experience-card__thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .page-s34-gin .barbot-experience-card--with-thumb {
+      --s34-exp-thumb-size: 5.25rem;
+      --s34-exp-thumb-gap: 0.85rem;
+    }
+  }
+
+  .page-s34-gin .barbot-experience-card:not(.barbot-experience-card--with-thumb) .barbot-experience-card__head {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .page-s34-gin .barbot-experience-card--with-thumb .barbot-price-options--single {
+    display: grid;
+    grid-template-columns:
+      calc(var(--s34-exp-thumb-size) * 2 + var(--s34-exp-thumb-gap))
+      1fr
+      calc(var(--s34-exp-thumb-size) * 2 + var(--s34-exp-thumb-gap));
+    column-gap: 1rem;
+    margin-top: 0.15rem;
+  }
+
+  .page-s34-gin .barbot-experience-card--with-thumb .barbot-price-option {
+    grid-column: 2;
+    justify-self: center;
+    width: min(100%, 13.5rem);
+  }
+
+  .page-s34-gin .barbot-experience-card:not(.barbot-experience-card--with-thumb) .barbot-price-options--single {
+    justify-content: center;
+  }
+
+  .page-s34-gin .barbot-price-option {
     text-align: center;
   }
 
@@ -8303,6 +8433,20 @@
     text-decoration: none;
     transform: translateY(-1px);
   }
+
+  .total-btn--disabled,
+  .total-btn.total-btn--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  .coffee-actions .btn.total-btn--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
 /* contenedor de toda la sección de orders */
 .order-container {
   background-color: #e9eff4; /* 👈 MISMO estilo que Bruma */
@@ -8674,6 +8818,11 @@
   padding: 0;
   border-radius: 0;
   transition: none;
+}
+
+.food-menu-option--locked {
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .food-menu-option-label {

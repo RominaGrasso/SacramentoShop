@@ -5708,7 +5708,18 @@ function initPackageOrderExperience(config) {
     packageComposite = null,
     /** Optional i18n key for each order card / WhatsApp heading (default: order_word). */
     orderCardTitleKey = "order_word",
-    experienceSkipsPreferencesField = false
+    experienceSkipsPreferencesField = false,
+    /** Flat USD for the whole group when optional transport radio is "yes" (e.g. S34 USD 30). */
+    optionalGroupTransportFlat = 0,
+    /** Radio name in popup: value "yes" | "no". */
+    optionalTransportRadioName = "groupTransport",
+    /** When true, all guest orders in one booking must share the same packageId. */
+    singlePackagePerBooking = false,
+    /**
+     * In-popup guest stepper (like cabalgata): `{ valueId, minusId, plusId, min?, max?, hintKey? }`.
+     * Save replaces the whole booking with N identical guest orders.
+     */
+    packageGuestCounter = null
   } = config || {};
 
   const vehicleTransportRate =
@@ -5716,6 +5727,8 @@ function initPackageOrderExperience(config) {
       ? Math.max(0, Number(transportPerVehicle) || 0)
       : Math.max(0, Number(transportPerPerson) || 0);
   const flatGuestTransportRate = Math.max(0, Number(transportPerGuest) || 0);
+  const optionalTransportFlat = Math.max(0, Number(optionalGroupTransportFlat) || 0);
+  const optionalTransportRadio = String(optionalTransportRadioName || "groupTransport");
 
   if (!popupId || !createBtnId || !closeBtnId || !saveBtnId || !orderSummaryId) {
     console.error("initPackageOrderExperience: config incompleta (ids)");
@@ -5747,7 +5760,7 @@ function initPackageOrderExperience(config) {
     const raw = packages[id];
     if (raw == null) return null;
     if (typeof raw === "number") {
-      return { price: raw, label: String(id) };
+      return { price: raw, label: String(id), minGuests: 1 };
     }
     if (typeof raw === "object" && typeof raw.price === "number") {
       const fallbackLabel =
@@ -5756,7 +5769,8 @@ function initPackageOrderExperience(config) {
         typeof raw.labelKey === "string" && raw.labelKey.trim()
           ? getI18nText(raw.labelKey.trim(), fallbackLabel)
           : fallbackLabel;
-      return { price: raw.price, label };
+      const minGuests = Math.max(1, Math.floor(Number(raw.minGuests) || 1));
+      return { price: raw.price, label, minGuests };
     }
     return null;
   };
@@ -5792,6 +5806,59 @@ function initPackageOrderExperience(config) {
     pkgLangSaveBtn = saveBtn;
 
     if (!popup || !createBtn || !closeBtn || !saveBtn || !container) return;
+
+    const pgcRaw =
+      packageGuestCounter && typeof packageGuestCounter === "object" ? packageGuestCounter : null;
+    const pgc =
+      pgcRaw && pgcRaw.valueId && pgcRaw.minusId && pgcRaw.plusId
+        ? {
+            valueId: String(pgcRaw.valueId),
+            minusId: String(pgcRaw.minusId),
+            plusId: String(pgcRaw.plusId),
+            min: Math.max(1, Math.floor(Number(pgcRaw.min) || 1)),
+            max: Math.max(1, Math.floor(Number(pgcRaw.max) || 15)),
+            hintKey:
+              typeof pgcRaw.hintKey === "string" && pgcRaw.hintKey.trim()
+                ? pgcRaw.hintKey.trim()
+                : null
+          }
+        : null;
+    let popupGuestCount = pgc ? pgc.min : 1;
+
+    const pgcValueEl = () =>
+      pgc ? popup.querySelector(`#${pgc.valueId}`) || document.getElementById(pgc.valueId) : null;
+    const pgcMinusBtn = () =>
+      pgc ? popup.querySelector(`#${pgc.minusId}`) || document.getElementById(pgc.minusId) : null;
+    const pgcPlusBtn = () =>
+      pgc ? popup.querySelector(`#${pgc.plusId}`) || document.getElementById(pgc.plusId) : null;
+
+    const syncPopupGuestCountDisplay = () => {
+      const el = pgcValueEl();
+      if (el) el.textContent = String(popupGuestCount);
+    };
+
+    const setPopupGuestCount = (n) => {
+      if (!pgc) return;
+      popupGuestCount = Math.min(pgc.max, Math.max(pgc.min, Math.floor(Number(n) || pgc.min)));
+      syncPopupGuestCountDisplay();
+    };
+
+    const readSelectedPackageMinGuests = () => {
+      const r = popup.querySelector(`input[name="${packageRadioName}"]:checked`);
+      return r ? getMinGuestsForPackageId(r.value) : 1;
+    };
+
+    const enforcePopupGuestCountForPackage = () => {
+      if (!pgc) return;
+      const minPkg = readSelectedPackageMinGuests();
+      if (popupGuestCount < minPkg) setPopupGuestCount(minPkg);
+    };
+
+    const syncPopupGuestCountFromOrders = (orders) => {
+      if (!pgc) return;
+      const n = Array.isArray(orders) && orders.length > 0 ? orders.length : pgc.min;
+      setPopupGuestCount(n);
+    };
 
     const pcRaw = packageComposite && typeof packageComposite === "object" ? packageComposite : null;
     const pc =
@@ -5940,6 +6007,45 @@ function initPackageOrderExperience(config) {
       return groupPrivateTransportTotal(n, vehicleTransportRate);
     };
 
+    const transportMetaKey = `${storageKey}_booking_meta`;
+    const getBookingMeta = () => {
+      try {
+        const raw = localStorage.getItem(transportMetaKey);
+        if (!raw) return { includeTransport: false };
+        const o = JSON.parse(raw);
+        return { includeTransport: Boolean(o && o.includeTransport) };
+      } catch {
+        return { includeTransport: false };
+      }
+    };
+    const setBookingMeta = (meta) => {
+      localStorage.setItem(transportMetaKey, JSON.stringify(meta || { includeTransport: false }));
+    };
+    const usesOptionalGroupTransport = () => optionalTransportFlat > 0;
+    const optionalGroupTransportTotal = (orders) => {
+      if (!usesOptionalGroupTransport() || !Array.isArray(orders) || orders.length === 0) return 0;
+      return getBookingMeta().includeTransport ? optionalTransportFlat : 0;
+    };
+    const syncTransportRadioFromMeta = () => {
+      if (!usesOptionalGroupTransport() || !popup) return;
+      const val = getBookingMeta().includeTransport ? "yes" : "no";
+      const r = popup.querySelector(`input[name="${optionalTransportRadio}"][value="${val}"]`);
+      if (r) r.checked = true;
+      else {
+        const noR = popup.querySelector(`input[name="${optionalTransportRadio}"][value="no"]`);
+        if (noR) noR.checked = true;
+      }
+    };
+    const readTransportFromPopup = () => {
+      if (!usesOptionalGroupTransport() || !popup) return false;
+      const r = popup.querySelector(`input[name="${optionalTransportRadio}"]:checked`);
+      return r?.value === "yes";
+    };
+    const persistTransportFromPopup = () => {
+      if (!usesOptionalGroupTransport()) return;
+      setBookingMeta({ includeTransport: readTransportFromPopup() });
+    };
+
     /** Legacy: transporte fijo por línea (órdenes antiguas sin packageId). */
     const transportForLegacyOrder = (o) => {
       if (o.transportPrice != null) return Number(o.transportPrice) || 0;
@@ -5955,9 +6061,10 @@ function initPackageOrderExperience(config) {
 
     const totalTransportForOrders = (orders) => {
       if (!Array.isArray(orders) || orders.length === 0) return 0;
-      if (usesFlatGuestTransport(orders)) return orders.length * flatGuestTransportRate;
-      if (usesGroupTransport(orders)) return totalGroupTransport(orders);
-      return orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
+      let sum = optionalGroupTransportTotal(orders);
+      if (usesFlatGuestTransport(orders)) return sum + orders.length * flatGuestTransportRate;
+      if (usesGroupTransport(orders)) return sum + totalGroupTransport(orders);
+      return sum + orders.reduce((s, o) => s + transportForLegacyOrder(o), 0);
     };
 
     const lineTotalForOrder = (o, orders) => {
@@ -6028,8 +6135,77 @@ function initPackageOrderExperience(config) {
       localStorage.setItem(storageKey, JSON.stringify(orders));
     };
 
+    const getMinGuestsForPackageId = (packageId) => {
+      const spec = resolvePackageSpec(packageId);
+      return spec?.minGuests ?? 1;
+    };
+
+    const getLockedPackageId = (orders, editingIdx = null) => {
+      if (!singlePackagePerBooking || !Array.isArray(orders) || orders.length === 0) return null;
+      if (editingIdx !== null && editingIdx >= 0) {
+        const others = orders.filter((_, i) => i !== editingIdx);
+        if (others.length > 0) return others[0]?.packageId ?? null;
+        return null;
+      }
+      return orders[0]?.packageId ?? null;
+    };
+
+    const applySinglePackageLock = (orders, editingIdx = null) => {
+      if (pgc || !singlePackagePerBooking || !popup) return;
+      const lockedId = getLockedPackageId(orders, editingIdx);
+      popup.querySelectorAll(`input[name="${packageRadioName}"]`).forEach((r) => {
+        const li = r.closest(".food-menu-option");
+        if (!lockedId) {
+          r.disabled = false;
+          if (li) li.classList.remove("food-menu-option--locked");
+          return;
+        }
+        const isLocked = r.value === String(lockedId);
+        r.checked = isLocked;
+        r.disabled = !isLocked;
+        if (li) li.classList.toggle("food-menu-option--locked", !isLocked);
+      });
+      if (pc && lockedId) {
+        applyOrderPackageIdToComposite(lockedId);
+      }
+    };
+
+    const minGuestsRequiredForOrders = (orders) => {
+      if (!Array.isArray(orders) || orders.length === 0) return 1;
+      return getMinGuestsForPackageId(orders[0]?.packageId);
+    };
+
+    const canReserveOrders = (orders) => {
+      if (!Array.isArray(orders) || orders.length === 0) return false;
+      return orders.length >= minGuestsRequiredForOrders(orders);
+    };
+
+    const alertMinGuestsForPackage = (orders) => {
+      const minG = minGuestsRequiredForOrders(orders);
+      const spec = resolvePackageSpec(orders[0]?.packageId);
+      alert(
+        trTpl(
+          "orders_pkg_alert_min_guests",
+          "This experience requires at least {min} people. Add {remaining} more guest order(s) before reserving.",
+          {
+            min: String(minG),
+            remaining: String(Math.max(0, minG - orders.length))
+          }
+        ).replace(/\{label\}/g, spec?.label || "")
+      );
+    };
+
+    const assertCanReserve = (orders) => {
+      if (!canReserveOrders(orders)) {
+        alertMinGuestsForPackage(orders);
+        return false;
+      }
+      return true;
+    };
+
     const clearPopupForm = () => {
       popup.querySelectorAll('input[type="radio"]').forEach((i) => {
+        if (usesOptionalGroupTransport() && i.name === optionalTransportRadio) return;
         i.checked = false;
       });
       popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((i) => {
@@ -6043,6 +6219,11 @@ function initPackageOrderExperience(config) {
         if (lunch) lunch.checked = true;
         syncCompositePickerToHidden();
       }
+      syncTransportRadioFromMeta();
+      if (pgc) {
+        setPopupGuestCount(pgc.min);
+        syncPopupGuestCountDisplay();
+      }
     };
 
     const resetPopup = () => {
@@ -6052,6 +6233,19 @@ function initPackageOrderExperience(config) {
 
     const openPopup = () => {
       resetPopup();
+      const orders = getOrders();
+      applySinglePackageLock(orders, null);
+      if (pgc) {
+        syncPopupGuestCountFromOrders(orders);
+        if (orders.length === 0) {
+          const firstPkg = popup.querySelector(`input[name="${packageRadioName}"]`);
+          if (firstPkg) firstPkg.checked = true;
+        }
+        enforcePopupGuestCountForPackage();
+      } else if (!popup.querySelector(`input[name="${packageRadioName}"]:checked`)) {
+        const firstPkg = popup.querySelector(`input[name="${packageRadioName}"]`);
+        if (firstPkg) firstPkg.checked = true;
+      }
       popup.classList.add("active");
       popup.setAttribute("aria-hidden", "false");
     };
@@ -6239,6 +6433,30 @@ function initPackageOrderExperience(config) {
         message += formatSubtotal(experienceSubtotal);
       }
 
+      const optionalTransportAmt = optionalGroupTransportTotal(orders);
+      if (usesOptionalGroupTransport() && orders.length > 0) {
+        const transportYes = getBookingMeta().includeTransport;
+        const transportStatus = transportYes
+          ? trTpl(
+              "orders_wa_optional_transport_yes",
+              "Yes (+USD {amount} total · up to 4 guests)",
+              { amount: formatMoney(optionalTransportFlat) }
+            )
+          : getI18nText("orders_wa_optional_transport_no", "No");
+        message += `${waLine(
+          getI18nText("orders_wa_round_trip_transport", "Round-trip transport"),
+          transportStatus
+        )}\n`;
+        if (optionalTransportAmt > 0) {
+          message += `${waLine(
+            trTpl("orders_wa_optional_transport_charge", "Transport (group, USD {amount})", {
+              amount: formatMoney(optionalTransportFlat)
+            }),
+            `USD ${formatMoney(optionalTransportAmt)}`
+          )}\n`;
+        }
+      }
+
       if (groupGuideEnabled) {
         const groupGuideLabel = getI18nText(
           "orders_wa_group_guide_optional",
@@ -6293,7 +6511,7 @@ function initPackageOrderExperience(config) {
 
       let html = `<h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>`;
 
-      if (orders.length > 0) {
+      if (orders.length > 0 && !pgc) {
         html = `
           <button id="addGuestBtn" class="add-guest-btn">
             + ${escapeHtml(getI18nText("add_order", "Add Order"))}
@@ -6302,6 +6520,48 @@ function initPackageOrderExperience(config) {
         `;
       }
 
+      if (pgc && orders.length > 0) {
+        const effPkg = getEffectivePackagePricing(orders[0]);
+        const peopleLabel =
+          orders.length === 1
+            ? trTpl("orders_pkg_summary_one_person", "1 person", {})
+            : trTpl("orders_pkg_summary_n_people", "{n} people", { n: String(orders.length) });
+        const transportOn = getBookingMeta().includeTransport;
+        const transportLine = usesOptionalGroupTransport()
+          ? `<p><strong>${escapeHtml(
+              getI18nText("orders_wa_round_trip_transport", "Round-trip transport")
+            )}:</strong> ${escapeHtml(
+              transportOn
+                ? trTpl(
+                    "orders_wa_optional_transport_yes",
+                    "Yes (+USD {amount} total · up to 4 guests)",
+                    { amount: formatMoney(optionalTransportFlat) }
+                  )
+                : getI18nText("orders_wa_optional_transport_no", "No")
+            )}</p>`
+          : "";
+        html = `<h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>`;
+        html += `
+          <div class="order-card">
+            <div class="order-header">
+              <strong class="order-card-title">${escapeHtml(getI18nText("your_order", "Your order"))}</strong>
+              <div class="order-actions">
+                <span class="edit-order" data-index="0">✏️</span>
+                <span class="delete-order" data-index="0">🗑️</span>
+              </div>
+            </div>
+            <p><strong>${escapeHtml(getI18nText("orders_pkg_package_lbl", "Package:"))}</strong> ${escapeHtml(
+          effPkg.label
+        )} — USD ${escapeHtml(formatMoney(effPkg.price))} ${escapeHtml(
+          getI18nText("orders_pkg_paren_experience", "experience")
+        )}</p>
+            <p><strong>${escapeHtml(getI18nText("wa_people_label", "People"))}:</strong> ${escapeHtml(
+          peopleLabel
+        )}</p>
+            ${transportLine}
+          </div>
+        `;
+      } else if (!pgc) {
       orders.forEach((order, index) => {
         const prefsRaw = Array.isArray(order.preferences) ? order.preferences : [];
         const prefsLine =
@@ -6369,6 +6629,7 @@ function initPackageOrderExperience(config) {
           </div>
         `;
       });
+      }
 
       if (orders.length > 0) {
         const expSum = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
@@ -6385,7 +6646,8 @@ function initPackageOrderExperience(config) {
             : usesGroupTransport(orders) && orders.length > 0
               ? transportSharePerGuest(orders)
               : 0;
-        const detailExtra =
+        const optionalTransportAmt = optionalGroupTransportTotal(orders);
+        let detailExtra =
           transportSharePkg > 0
             ? ` · ${escapeHtml(
                 getI18nText("orders_summary_transport_per_guest", "transport USD {amount} per guest").replace(
@@ -6394,6 +6656,13 @@ function initPackageOrderExperience(config) {
                 )
               )}`
             : "";
+        if (optionalTransportAmt > 0) {
+          detailExtra += ` · ${escapeHtml(
+            trTpl("orders_summary_optional_transport_group", "transport USD {amount} for the group", {
+              amount: formatMoney(optionalTransportAmt)
+            })
+          )}`;
+        }
         let guideDetail = "";
         if (guideFee > 0) {
           if (guideOptional) {
@@ -6416,6 +6685,23 @@ function initPackageOrderExperience(config) {
             formatMoney(ggAmt)
           )}`;
         }
+        const minGuestsReq = minGuestsRequiredForOrders(orders);
+        const reserveReady = canReserveOrders(orders);
+        const minGuestsHint =
+          minGuestsReq > 1 && !reserveReady
+            ? `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(
+                trTpl(
+                  pgc ? "orders_pkg_min_guests_hint_edit" : "orders_pkg_min_guests_hint",
+                  pgc
+                    ? "This package requires at least {min} people — edit your selection and increase the guest count."
+                    : "This package requires at least {min} people — add {remaining} more guest order(s) to reserve.",
+                  {
+                    min: String(minGuestsReq),
+                    remaining: String(Math.max(0, minGuestsReq - orders.length))
+                  }
+                )
+              )}</p>`
+            : "";
         html += `
           <div class="total-box">
             <div class="total-left">
@@ -6427,7 +6713,10 @@ function initPackageOrderExperience(config) {
             <div class="total-right">
               USD ${escapeHtml(formatMoney(total))}
             </div>
-            <a href="#" id="bookWithOrder" class="btn total-btn">
+            ${minGuestsHint}
+            <a href="#" id="bookWithOrder" class="btn total-btn${reserveReady ? "" : " total-btn--disabled"}"${
+          reserveReady ? "" : ' aria-disabled="true"'
+        }>
               ${escapeHtml(getI18nText("book_btn", "Reserve"))}
             </a>
           </div>
@@ -6436,6 +6725,18 @@ function initPackageOrderExperience(config) {
 
       container.innerHTML = html;
       syncGroupGuideWrap();
+      if (bookNowBottomId) {
+        const bottomBtn = document.getElementById(bookNowBottomId);
+        if (bottomBtn) {
+          const ready = canReserveOrders(orders);
+          bottomBtn.classList.toggle("total-btn--disabled", orders.length > 0 && !ready);
+          if (orders.length > 0 && !ready) {
+            bottomBtn.setAttribute("aria-disabled", "true");
+          } else {
+            bottomBtn.removeAttribute("aria-disabled");
+          }
+        }
+      }
     };
 
     container.addEventListener("click", (e) => {
@@ -6452,8 +6753,18 @@ function initPackageOrderExperience(config) {
       if (delEl) {
         const idx = Number(delEl.dataset.index);
         const orders = getOrders();
-        orders.splice(idx, 1);
-        setOrders(orders);
+        if (pgc) {
+          setOrders([]);
+          if (usesOptionalGroupTransport()) {
+            setBookingMeta({ includeTransport: false });
+          }
+        } else {
+          orders.splice(idx, 1);
+          setOrders(orders);
+          if (orders.length === 0 && usesOptionalGroupTransport()) {
+            setBookingMeta({ includeTransport: false });
+          }
+        }
         renderOrders();
         return;
       }
@@ -6465,7 +6776,7 @@ function initPackageOrderExperience(config) {
         const order = orders[idx];
         if (!order) return;
 
-        editingIndex = idx;
+        editingIndex = pgc ? null : idx;
         clearPopupForm();
 
         if (pc) {
@@ -6494,7 +6805,13 @@ function initPackageOrderExperience(config) {
         const og = optionalGuideEl();
         if (og) og.checked = Boolean(order.includeGuide);
 
+        applySinglePackageLock(orders, pgc ? null : idx);
+        if (pgc) {
+          syncPopupGuestCountFromOrders(orders);
+          enforcePopupGuestCountForPackage();
+        }
         saveBtn.textContent = getI18nText("update_order", "Update order");
+        syncTransportRadioFromMeta();
         popup.classList.add("active");
         popup.setAttribute("aria-hidden", "false");
         return;
@@ -6505,6 +6822,7 @@ function initPackageOrderExperience(config) {
         e.preventDefault();
         const orders = getOrders();
         if (orders.length === 0) return;
+        if (!assertCanReserve(orders)) return;
         sacramentoRunReserveWhatsAppFlow(async () => {
           const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
           const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
@@ -6524,9 +6842,13 @@ function initPackageOrderExperience(config) {
                   packagePrice: getEffectivePackagePricing(o).price,
                   packageLabel: getEffectivePackagePricing(o).label
                 })),
+                includeTransport: getBookingMeta().includeTransport,
                 total
               }),
-              orderPayload: withWhatsAppInOrderPayload({ orders, total, experienceName }, waSummary)
+              orderPayload: withWhatsAppInOrderPayload(
+                { orders, total, experienceName, bookingMeta: getBookingMeta() },
+                waSummary
+              )
             });
           } catch {}
           const message = buildWhatsAppMessage(orders, paymentUrl);
@@ -6563,6 +6885,18 @@ function initPackageOrderExperience(config) {
         return;
       }
 
+      const ordersBeforeSave = getOrders();
+      const lockedId = pgc ? null : getLockedPackageId(ordersBeforeSave, editingIndex);
+      if (lockedId != null && packageId !== String(lockedId)) {
+        alert(
+          getI18nText(
+            "orders_pkg_alert_same_package",
+            "All guests must book the same experience. To choose a different package, remove the current guest orders first."
+          )
+        );
+        return;
+      }
+
       const preferences = Array.from(
         popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
       ).map((cb) => {
@@ -6574,7 +6908,20 @@ function initPackageOrderExperience(config) {
       const og = optionalGuideEl();
       const includeGuide = og ? Boolean(og.checked) : false;
 
-      const order = {
+      const guestCount = pgc ? popupGuestCount : 1;
+      const minG = getMinGuestsForPackageId(packageId);
+      if (pgc && guestCount < minG) {
+        alert(
+          trTpl(
+            "orders_pkg_alert_min_guests_save",
+            "This package requires at least {min} people. Increase the number of guests to continue.",
+            { min: String(minG) }
+          )
+        );
+        return;
+      }
+
+      const orderTemplate = {
         packageId,
         packageLabel: spec.label,
         packagePrice: spec.price + (guideOptional ? (includeGuide ? guideFee : 0) : guideFee),
@@ -6582,12 +6929,21 @@ function initPackageOrderExperience(config) {
         ...(guideOptional ? { includeGuide } : {})
       };
 
-      const orders = getOrders();
-      if (editingIndex !== null) {
-        orders[editingIndex] = order;
+      persistTransportFromPopup();
+
+      let orders;
+      if (pgc) {
+        orders = Array.from({ length: guestCount }, () => ({ ...orderTemplate }));
         editingIndex = null;
       } else {
-        orders.push(order);
+        orders = ordersBeforeSave;
+        const order = { ...orderTemplate };
+        if (editingIndex !== null) {
+          orders[editingIndex] = order;
+          editingIndex = null;
+        } else {
+          orders.push(order);
+        }
       }
 
       setOrders(orders);
@@ -6595,6 +6951,29 @@ function initPackageOrderExperience(config) {
       renderOrders();
       scrollToOrderSummary(orderSummaryId);
     });
+
+    if (pgc) {
+      const minusEl = pgcMinusBtn();
+      const plusEl = pgcPlusBtn();
+      if (minusEl) {
+        minusEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          setPopupGuestCount(popupGuestCount - 1);
+        });
+      }
+      if (plusEl) {
+        plusEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          setPopupGuestCount(popupGuestCount + 1);
+        });
+      }
+      popup.addEventListener("change", (e) => {
+        const t = e.target;
+        if (!(t instanceof HTMLInputElement) || t.type !== "radio") return;
+        if (t.name !== packageRadioName) return;
+        enforcePopupGuestCountForPackage();
+      });
+    }
 
     if (bookNowBottomId) {
       const bottomBtn = document.getElementById(bookNowBottomId);
@@ -6606,6 +6985,7 @@ function initPackageOrderExperience(config) {
             alert(getI18nText("orders_alert_create_first", "Please create your order first."));
             return;
           }
+          if (!assertCanReserve(orders)) return;
           sacramentoRunReserveWhatsAppFlow(async () => {
             const pendingTab = sacramentoOpenWhatsAppBlankTabForGesture();
             const expTotal = orders.reduce((s, o) => s + getEffectivePackagePricing(o).price, 0);
@@ -6625,9 +7005,13 @@ function initPackageOrderExperience(config) {
                     packagePrice: getEffectivePackagePricing(o).price,
                     packageLabel: getEffectivePackagePricing(o).label
                   })),
+                  includeTransport: getBookingMeta().includeTransport,
                   total
                 }),
-                orderPayload: withWhatsAppInOrderPayload({ orders, total, experienceName }, waSummary)
+                orderPayload: withWhatsAppInOrderPayload(
+                  { orders, total, experienceName, bookingMeta: getBookingMeta() },
+                  waSummary
+                )
               });
             } catch {}
             const message = buildWhatsAppMessage(orders, paymentUrl);

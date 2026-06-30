@@ -17,6 +17,7 @@
     "mate.html": [35],
     "traslado-plaza-letras.html": [50],
     "vinos.html": [25, 30, 35],
+    "s34-gin.html": [45, 65, 115],
     "quinton.html": [100, 110, 130],
     "fullday-colonia.html": [90],
     "plaza1.html": [80, 60],
