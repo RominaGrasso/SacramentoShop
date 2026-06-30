@@ -331,6 +331,7 @@
     "walking-asado.html": ["tours"],
     "chivito.html": ["gastronomy", "dining"],
     "vinos.html": ["bodega", "gastronomy", "dining"],
+    "s34-gin.html": ["bodega", "gastronomy"],
     "quinton.html": ["bodega", "gastronomy", "dining", "fullday"],
     "food1.html": ["tours", "gastronomy", "dining"],
     "plaza1.html": ["tours", "gastronomy"],
@@ -360,10 +361,11 @@
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
-    tours: ["home-walking-tour-card", "home-traslado-plaza-letras-card"],
-    fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
+    tours: ["home-walking-tour-card"],
+    fullday: ["home-fullday-colonia-card", "home-quinton-card"],
     bodega: [
       "home-vinos-card",
+      "home-s34-gin-card",
       "home-quinton-card",
       "home-legado-card",
       "home-historic-lasliebres-card",
@@ -373,13 +375,12 @@
     lodging: ["home-card-hotel-royal", "home-card-mision-bruma"],
     dining: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
     gastronomy: ["home-vinos-card", "home-quinton-card"],
-    day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
+    day: ["home-fullday-colonia-card"],
   };
 
   const CARD_ID_NAV = {
     "home-walking-tour-card": ["tours"],
-    "home-fullday-colonia-card": ["fullday"],
-    "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
+    "home-fullday-colonia-card": ["fullday", "day"],
     "home-card-hotel-royal": ["lodging", "night"],
     "home-card-mision-bruma": ["lodging", "gastronomy"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
@@ -650,7 +651,7 @@
     const priority = NAV_CARD_ORDER[navKey];
     if (!priority?.length) return cards;
     const prioritySlugs = {
-      tours: ["walkingtour.html", "traslado-plaza-letras.html"],
+      tours: ["walkingtour.html"],
     };
     const used = new Set();
     const first = [];
