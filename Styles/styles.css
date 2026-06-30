@@ -573,6 +573,7 @@
     letter-spacing: -0.02em;
     color: #2f67a3;
     line-height: 1;
+    white-space: nowrap;
   }
 
   .card .card-entry-price__unit {
@@ -606,6 +607,10 @@
 
     .card .card-entry-price__unit {
       font-size: 0.78rem;
+    }
+
+    #experiences .card-buttons {
+      padding-right: 58px;
     }
   }
 
@@ -6263,13 +6268,139 @@
     text-align: center;
   }
 
+  .page-barbot-tour.page-s34-gin .fullday-colonia-hero,
   .page-s34-gin .fullday-colonia-hero {
     background-position: center 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    min-height: 55vh;
+    padding: 0 0 1.35rem;
+    position: relative;
+  }
+
+  .page-barbot-tour.page-s34-gin .fullday-colonia-hero-inner,
+  .page-s34-gin .fullday-colonia-hero-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: none;
+    padding: 0 1.25rem 0.25rem;
+    box-sizing: border-box;
+  }
+
+  .page-s34-gin .fullday-colonia-hero-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .page-s34-gin .fullday-colonia-hero-bottom h1 {
+    width: 100%;
+    max-width: 36rem;
+    margin: 0;
+    box-sizing: border-box;
   }
 
   @media (max-width: 768px) {
+    .page-barbot-tour.page-s34-gin .fullday-colonia-hero,
     .page-s34-gin .fullday-colonia-hero {
-      background-position: center 28%;
+      min-height: min(62vh, 520px);
+      height: auto;
+      padding: 0;
+      background-position: center 22%;
+      overflow: hidden;
+    }
+
+    .page-barbot-tour.page-s34-gin .fullday-colonia-hero::after,
+    .page-s34-gin .fullday-colonia-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 75%;
+      background: linear-gradient(
+        to top,
+        rgba(18, 38, 62, 0.94) 0%,
+        rgba(18, 38, 62, 0.62) 42%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-barbot-tour.page-s34-gin .fullday-colonia-hero-inner,
+    .page-s34-gin .fullday-colonia-hero-inner {
+      position: relative;
+      z-index: 1;
+      justify-content: flex-end;
+      padding:
+        0
+        max(0.75rem, env(safe-area-inset-right, 0px))
+        max(1rem, env(safe-area-inset-bottom, 0px))
+        max(0.75rem, env(safe-area-inset-left, 0px));
+    }
+
+    .page-s34-gin .fullday-colonia-hero-bottom {
+      gap: 0.5rem;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .page-s34-gin .fullday-colonia-hero-bottom h1 {
+      max-width: none;
+      margin: 0;
+      padding: 0.5rem 0.65rem;
+      font-size: clamp(1.08rem, 4.8vw, 1.42rem);
+      line-height: 1.28;
+      border-radius: 10px;
+      background: rgba(18, 38, 62, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      text-align: center;
+      text-shadow: none;
+      box-sizing: border-box;
+    }
+
+    .page-barbot-tour.page-s34-gin .fullday-colonia-hero-deck,
+    .page-s34-gin .fullday-colonia-hero-deck {
+      display: block;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0.55rem 0.65rem;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      border-radius: 10px;
+      background: rgba(18, 38, 62, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #fff;
+      text-shadow: none;
+      box-sizing: border-box;
+    }
+
+    .page-s34-gin .fullday-colonia-hero-badges {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.32rem;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+
+    .page-s34-gin .fullday-colonia-hero-badges li {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.72rem;
+      line-height: 1.3;
+      padding: 0.35rem 0.55rem;
+      box-sizing: border-box;
     }
   }
 
@@ -6328,8 +6459,41 @@
 
   @media (max-width: 768px) {
     .page-s34-gin .barbot-experience-card--with-thumb {
-      --s34-exp-thumb-size: 5.25rem;
-      --s34-exp-thumb-gap: 0.85rem;
+      --s34-exp-thumb-size: 4.5rem;
+      --s34-exp-thumb-gap: 0.55rem;
+    }
+
+    .page-s34-gin .barbot-experience-card--with-thumb .barbot-experience-card__head {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+      column-gap: 0;
+    }
+
+    .page-s34-gin .barbot-experience-card__thumbs {
+      margin-left: 0;
+      align-self: flex-start;
+    }
+
+    .page-s34-gin .barbot-experience-card__head-text {
+      width: 100%;
+    }
+
+    .page-s34-gin .barbot-experience-card--with-thumb .barbot-price-options--single {
+      display: flex;
+      justify-content: center;
+    }
+
+    .page-s34-gin .barbot-experience-card--with-thumb .barbot-price-option {
+      grid-column: auto;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .page-s34-gin .barbot-experience-card--with-thumb {
+      --s34-exp-thumb-size: 4rem;
+      --s34-exp-thumb-gap: 0.45rem;
     }
   }
 
@@ -6361,6 +6525,11 @@
 
   .page-s34-gin .barbot-price-option {
     text-align: center;
+  }
+
+  .page-s34-gin .barbot-price-option__price,
+  .page-s34-gin .fullday-colonia-hero-price {
+    white-space: nowrap;
   }
 
   .page-cabal .cabal-summary-card-row {
@@ -7101,6 +7270,23 @@
       padding: 0.25rem 0.35rem 0.35rem;
       width: 100%;
       max-width: 100%;
+    }
+
+    .page-barbot-tour.page-s34-gin .fullday-colonia-hero {
+      align-items: stretch;
+      justify-content: flex-end;
+      min-height: min(62vh, 520px);
+      padding: 0;
+    }
+
+    .page-barbot-tour.page-s34-gin .fullday-colonia-hero-inner {
+      justify-content: flex-end;
+      margin-top: 0;
+      padding: 0;
+    }
+
+    .page-barbot-tour.page-s34-gin .fullday-colonia-hero-inner h1 {
+      margin: 0;
     }
 
     .page-barbot-tour .fullday-colonia-hero-inner h1 {

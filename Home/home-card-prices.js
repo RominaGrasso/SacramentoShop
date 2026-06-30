@@ -123,6 +123,8 @@
     amount = document.createElement("span");
     amount.className = "card-entry-price__amount";
     amount.setAttribute("data-home-card-price-amount", "");
+    amount.setAttribute("translate", "no");
+    amount.setAttribute("lang", "en");
 
     unit = document.createElement("span");
     unit.className = "card-entry-price__unit";
@@ -192,7 +194,7 @@
 
     unit.hidden = false;
     from.textContent = t("home_card_price_from", "From");
-    amountEl.textContent = `USD ${rounded}`;
+    amountEl.textContent = `USD\u00A0${rounded}`;
     unit.textContent = lodging
       ? t("home_card_price_per_night", "per night")
       : t("home_card_price_per_person", "per person");
