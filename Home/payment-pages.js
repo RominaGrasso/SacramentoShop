@@ -139,8 +139,8 @@
 
   function pageForOutcome(outcome, ref) {
     if (outcome === "success") return "payment-success.html";
-    if (outcome === "pending") return "payment-pending.html";
     const refParam = ref ? `?ref=${encodeURIComponent(ref)}` : "";
+    if (outcome === "pending") return `payment-pending.html${refParam}`;
     return `payment-failed.html${refParam}`;
   }
 
@@ -169,7 +169,7 @@
       }
       await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
     }
-    window.location.replace("payment-pending.html");
+    window.location.replace(`payment-pending.html${ref ? `?ref=${encodeURIComponent(ref)}` : ""}`);
   }
 
   async function runReturnRouter() {
@@ -186,14 +186,17 @@
 
     const watchdog = window.setTimeout(() => {
       if (document.body?.classList.contains("page-payment-return")) {
-        window.location.replace("payment-pending.html");
+        const pendingRef = readRefFromLocation();
+        window.location.replace(
+          `payment-pending.html${pendingRef ? `?ref=${encodeURIComponent(pendingRef)}` : ""}`
+        );
       }
     }, WATCHDOG_MS);
 
     try {
       await pollPaymentResult(ref);
     } catch {
-      window.location.replace("payment-pending.html");
+      window.location.replace(`payment-pending.html?ref=${encodeURIComponent(ref)}`);
     } finally {
       window.clearTimeout(watchdog);
     }
@@ -210,7 +213,11 @@
     return [...new Set(list)];
   }
 
-  async function requestNewPaymentCheckout(ref) {
+  async function requestNewPaymentCheckout(ref, options = {}) {
+    const retryReason =
+      String(options.retryReason || "user_retry").trim() === "user_retry_pending"
+        ? "user_retry_pending"
+        : "user_retry";
     const data = await fetchPaymentResult(ref);
     if (!data?.found || !data.experience || !Number.isFinite(Number(data.amount)) || Number(data.amount) <= 0) {
       throw new Error("retry_context_missing");
@@ -220,7 +227,9 @@
       amount: Number(data.amount),
       currency: data.currency || "USD",
       people: Number.isFinite(Number(data.people)) ? Number(data.people) : null,
-      orderPayload: data.orderPayload ?? null
+      orderPayload: data.orderPayload ?? null,
+      forceNewAttempt: true,
+      retryReason
     };
     const candidates = resolveApiCandidates();
     let lastError = null;
@@ -237,12 +246,15 @@
           continue;
         }
         const created = await res.json();
+        if (created.alreadyApproved === true) {
+          return { alreadyApproved: true };
+        }
         const paymentUrl = String(created.paymentUrl || created.url || "").trim();
         if (!paymentUrl) {
           lastError = new Error("missing_payment_url");
           continue;
         }
-        return paymentUrl;
+        return { paymentUrl };
       } catch (err) {
         lastError = err;
       }
@@ -250,8 +262,8 @@
     throw lastError || new Error("resolve_failed");
   }
 
-  function bindRetry() {
-    const retry = document.getElementById("paymentRetryBtn");
+  function bindPaymentRetryButton(buttonId, retryReason) {
+    const retry = document.getElementById(buttonId);
     if (!retry) return;
     retry.addEventListener("click", (e) => {
       e.preventDefault();
@@ -261,9 +273,13 @@
         return;
       }
       retry.disabled = true;
-      requestNewPaymentCheckout(ref)
-        .then((paymentUrl) => {
-          window.location.replace(paymentUrl);
+      requestNewPaymentCheckout(ref, { retryReason })
+        .then((result) => {
+          if (result?.alreadyApproved) {
+            window.location.replace("payment-success.html");
+            return;
+          }
+          window.location.replace(result.paymentUrl);
         })
         .catch(() => {
           window.location.href = "index.html";
@@ -272,6 +288,11 @@
           retry.disabled = false;
         });
     });
+  }
+
+  function bindRetry() {
+    bindPaymentRetryButton("paymentRetryBtn", "user_retry");
+    bindPaymentRetryButton("paymentPendingRetryBtn", "user_retry_pending");
   }
 
   function boot() {

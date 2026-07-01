@@ -33,8 +33,12 @@
 <p class="payment-result__body" data-translate="payment_pending_body">
         If you completed the payment, confirmation can take a few minutes. Our team will contact you once it is confirmed. You can also message us on WhatsApp.
       </p>
+<p class="payment-result__body payment-result__body--hint" data-translate="payment_pending_retry_hint">
+        If the payment screen kept loading or you could not complete it, you can start a new payment attempt. You will not be charged again if your previous payment was already approved.
+      </p>
 <div class="payment-result__actions">
-<a class="payment-result__btn" data-translate="payment_pending_home_btn" href="index.html">Back to experiences</a>
+<button class="payment-result__btn" data-translate="payment_pending_retry_btn" id="paymentPendingRetryBtn" type="button">Try again</button>
+<a class="payment-result__btn secondary" data-translate="payment_pending_home_btn" href="index.html">Back to experiences</a>
 <a class="payment-result__btn secondary" data-translate="payment_success_wa_btn" href="#" id="paymentWaBtn" rel="noopener noreferrer" target="_blank">Contact us on WhatsApp</a>
 </div>
 </div>
@@ -45,6 +49,6 @@
 <script src="whatsapp.js?v=20260522perf"></script>
 <script src="index.js?v=20260528ordersfix"></script>
 <script src="payments-api-config.js?v=20260522perf"></script>
-<script src="payment-pages.js?v=20260522perf"></script>
+<script src="payment-pages.js?v=20260617pendingretry"></script>
 </body>
 </html>

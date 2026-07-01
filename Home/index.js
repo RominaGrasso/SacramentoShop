@@ -2647,6 +2647,9 @@ const translations = {
       payment_pending_lead: "We have not confirmed your payment yet.",
       payment_pending_body:
         "If you completed the payment, confirmation can take a few minutes. Our team will contact you once it is confirmed. You can also message us on WhatsApp.",
+      payment_pending_retry_hint:
+        "If the payment screen kept loading or you could not complete it, you can start a new payment attempt. You will not be charged again if your previous payment was already approved.",
+      payment_pending_retry_btn: "Try again",
       payment_pending_home_btn: "Back to experiences",
       payment_wa_prefill: "Hello! I have a question about my Sacramento Adventures payment."
     },
@@ -5296,6 +5299,9 @@ const translations = {
       payment_pending_lead: "Todavía no confirmamos tu pago.",
       payment_pending_body:
         "Si completaste el pago, la confirmación puede tardar unos minutos. Nuestro equipo se pondrá en contacto cuando esté confirmado. También podés escribirnos por WhatsApp.",
+      payment_pending_retry_hint:
+        "Si el pago quedó cargando o no pudiste completarlo, podés generar un nuevo intento de pago. No se realizará un nuevo cobro si el pago anterior ya fue aprobado.",
+      payment_pending_retry_btn: "Intentar de nuevo",
       payment_pending_home_btn: "Volver a experiencias",
       payment_wa_prefill: "¡Hola! Tengo una consulta sobre mi pago en Sacramento Adventures."
     },
@@ -7944,6 +7950,9 @@ const translations = {
       payment_pending_lead: "Ainda não confirmamos seu pagamento.",
       payment_pending_body:
         "Se você concluiu o pagamento, a confirmação pode levar alguns minutos. Nossa equipe entrará em contato quando for confirmado. Você também pode nos escrever no WhatsApp.",
+      payment_pending_retry_hint:
+        "Se a tela de pagamento ficou carregando ou você não conseguiu concluir, pode gerar uma nova tentativa de pagamento. Não haverá nova cobrança se o pagamento anterior já foi aprovado.",
+      payment_pending_retry_btn: "Tentar novamente",
       payment_pending_home_btn: "Voltar às experiências",
       payment_wa_prefill: "Olá! Tenho uma dúvida sobre meu pagamento na Sacramento Adventures."
     }
