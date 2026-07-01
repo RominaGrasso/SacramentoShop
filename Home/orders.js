@@ -136,10 +136,37 @@ function paymentApiOriginFromResolveUrl(endpoint) {
       return "";
     }
   }
+  if (e.startsWith("/")) {
+    if (sacramentoIsLocalDevHost()) {
+      if (typeof window !== "undefined" && window.location?.origin) {
+        return window.location.origin;
+      }
+      return sacramentoResolvePaymentsApiBase();
+    }
+    return sacramentoResolvePaymentsApiBase();
+  }
   if (typeof window !== "undefined" && window.location?.origin) {
     return window.location.origin;
   }
   return "";
+}
+
+/** Origins for GET /api/payments/plexo-client-hints — Render first; no static-site /api in prod. */
+function sacramentoBuildPlexoClientHintsOrigins(resolveCandidates) {
+  const origins = [];
+  const apiBase = sacramentoResolvePaymentsApiBase();
+  if (apiBase) origins.push(apiBase);
+  for (const candidate of resolveCandidates || []) {
+    const origin = paymentApiOriginFromResolveUrl(candidate);
+    if (origin && !origins.includes(origin)) origins.push(origin);
+  }
+  if (!sacramentoIsLocalDevHost() && typeof window !== "undefined") {
+    const staticOrigin = window.location?.origin || "";
+    if (staticOrigin) {
+      return origins.filter((o) => o !== staticOrigin);
+    }
+  }
+  return origins;
 }
 
 async function fetchPlexoCybersourceHints(origins) {
@@ -1048,7 +1075,7 @@ async function buildResolveBodyPayload(dynamicPayment, payload, uniqueCandidates
   if (preparedBodyPayload && typeof preparedBodyPayload === "object") {
     return { ...preparedBodyPayload };
   }
-  const origins = [...new Set(uniqueCandidates.map(paymentApiOriginFromResolveUrl).filter(Boolean))];
+  const origins = sacramentoBuildPlexoClientHintsOrigins(uniqueCandidates);
   let bodyPayload = { ...payload };
   const existingDf =
     typeof payload.cybersourceDeviceFingerprint === "string"
