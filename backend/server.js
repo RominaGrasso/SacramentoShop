@@ -452,9 +452,10 @@ function paymentResultPageUrl(outcome, ref) {
       : outcome === "pending"
         ? "payment-pending.html"
         : "payment-failed.html";
+  const refTrimmed = String(ref || "").trim();
   const refParam =
-    outcome === "failed" && String(ref || "").trim()
-      ? `?ref=${encodeURIComponent(String(ref).trim())}`
+    (outcome === "failed" || outcome === "pending") && refTrimmed
+      ? `?ref=${encodeURIComponent(refTrimmed)}`
       : "";
   return `${PLEXO_FRONTEND_BASE_URL}/Home/${page}${refParam}`;
 }
@@ -1537,7 +1538,15 @@ app.post("/api/payments/plexo/commerces/:commerceId/issuers", async (req, res) =
 });
 
 app.post("/api/payments/resolve", async (req, res) => {
-  const { experience, amount, currency = "USD", people, orderPayload, cybersourceDeviceFingerprint } = req.body || {};
+  const {
+    experience,
+    amount,
+    currency = "USD",
+    people,
+    orderPayload,
+    cybersourceDeviceFingerprint,
+    forceNewAttempt
+  } = req.body || {};
   if (!experience || !Number.isFinite(Number(amount)) || Number(amount) <= 0) {
     return res.status(400).json({ error: "Invalid payload: experience/amount required." });
   }
@@ -1557,7 +1566,43 @@ app.post("/api/payments/resolve", async (req, res) => {
 
   const nowIso = new Date().toISOString();
   const fingerprint = hashPayload(normalizedPayload);
-  const reusable = findReusableLink(fingerprint, nowIso);
+  const forceNewAttemptRequested = forceNewAttempt === true;
+  const resolveRetryReason =
+    forceNewAttemptRequested &&
+    (() => {
+      const raw = String(req.body?.retryReason || req.body?.reason || "user_retry").trim();
+      return raw === "user_retry_pending" || raw === "user_retry" ? raw : "user_retry";
+    })();
+  const existingPayment = findPaymentByFingerprint(fingerprint);
+  const previousSessionId = existingPayment?.sessionId ? String(existingPayment.sessionId) : null;
+
+  if (forceNewAttemptRequested) {
+    const existingPaymentStatus = String(existingPayment?.paymentStatus || "")
+      .trim()
+      .toLowerCase();
+    if (existingPaymentStatus === "approved") {
+      // eslint-disable-next-line no-console
+      console.log("[payments-resolve] user_retry skipped: order already approved", {
+        fingerprint,
+        forceNewAttempt: true,
+        reason: resolveRetryReason,
+        previousSessionId,
+        paymentStatus: "approved"
+      });
+      return res.json({
+        alreadyApproved: true,
+        paymentStatus: "approved",
+        fingerprint,
+        sessionId: previousSessionId,
+        previousSessionId,
+        forceNewAttempt: true,
+        reason: resolveRetryReason,
+        reused: false
+      });
+    }
+  }
+
+  const reusable = forceNewAttemptRequested ? null : findReusableLink(fingerprint, nowIso);
 
   const reusableIsMock =
     reusable &&
@@ -1631,11 +1676,28 @@ app.post("/api/payments/resolve", async (req, res) => {
       });
     }
 
+    if (forceNewAttemptRequested) {
+      // eslint-disable-next-line no-console
+      console.log("[payments-resolve] user_retry new express checkout", {
+        fingerprint,
+        forceNewAttempt: true,
+        reason: resolveRetryReason,
+        previousSessionId,
+        newSessionId: created.sessionId,
+        experience: normalizedPayload.experience,
+        amount: normalizedPayload.amount,
+        currency: normalizedPayload.currency
+      });
+    }
+
     return res.json({
       reused: false,
       paymentUrl: created.paymentUrl,
       sessionId: created.sessionId,
-      fingerprint
+      fingerprint,
+      ...(forceNewAttemptRequested
+        ? { forceNewAttempt: true, reason: resolveRetryReason, previousSessionId }
+        : {})
     });
   } catch (error) {
     const detail = error instanceof Error ? error.message : "Unknown error";

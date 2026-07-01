@@ -951,6 +951,7 @@ function withWhatsAppInOrderPayload(orderPayload, whatsappMessage) {
 }
 
 async function executeResolvePaymentAttempts(uniqueCandidates, bodyPayload) {
+  const emptyResult = { paymentUrl: "", alreadyApproved: false, fingerprint: "" };
   const isMockPaymentUrl = (url) => {
     const value = String(url || "");
     return value.includes("sessionId=mock_") || /\/mock_[a-z0-9]+/i.test(value);
@@ -984,6 +985,20 @@ async function executeResolvePaymentAttempts(uniqueCandidates, bodyPayload) {
           break;
         }
         const data = await response.json();
+        if (data.alreadyApproved === true) {
+          // eslint-disable-next-line no-console
+          console.log("[payments-resolve] order already approved", {
+            endpoint,
+            attempt,
+            fingerprint: data.fingerprint || null
+          });
+          return {
+            paymentUrl: "",
+            alreadyApproved: true,
+            fingerprint: String(data.fingerprint || ""),
+            paymentStatus: String(data.paymentStatus || "approved")
+          };
+        }
         const url = data.paymentUrl || data.url || "";
         if (!url) {
           failureKind = "missing_payment_url";
@@ -998,8 +1013,12 @@ async function executeResolvePaymentAttempts(uniqueCandidates, bodyPayload) {
           break;
         }
         // eslint-disable-next-line no-console
-        console.log("[payments-resolve] success", { endpoint, attempt });
-        return url;
+        console.log("[payments-resolve] success", {
+          endpoint,
+          attempt,
+          forceNewAttempt: bodyPayload?.forceNewAttempt === true
+        });
+        return { paymentUrl: url, alreadyApproved: false, fingerprint: String(data.fingerprint || "") };
       } catch (err) {
         const isTimeout =
           err instanceof Error &&
@@ -1020,7 +1039,7 @@ async function executeResolvePaymentAttempts(uniqueCandidates, bodyPayload) {
       if (failureKind === "http_non_retryable") break;
     }
   }
-  return "";
+  return emptyResult;
 }
 
 async function buildResolveBodyPayload(dynamicPayment, payload, uniqueCandidates, preparedBodyPayload) {
@@ -1079,8 +1098,12 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload, options = {}) 
         options?.preparedBodyPayload
       );
       const paymentUrl = await executeResolvePaymentAttempts(uniqueCandidates, bodyPayload);
-      return { bodyPayload, paymentUrl };
+      return { bodyPayload, paymentUrl: paymentUrl.paymentUrl, alreadyApproved: paymentUrl.alreadyApproved };
     });
+
+    if (resolveResult.alreadyApproved) {
+      return "";
+    }
 
     if (resolveResult.paymentUrl) {
       const ctx = sacramentoGetPaymentRetryContext();
@@ -1128,6 +1151,14 @@ async function resolveDynamicPaymentLink(dynamicPayment, payload, options = {}) 
   }
 }
 
+function sacramentoPaymentSuccessPageUrl() {
+  try {
+    return new URL("payment-success.html", window.location.href).href;
+  } catch {
+    return "payment-success.html";
+  }
+}
+
 async function sacramentoRetryPaymentLinkFromPendingTab() {
   if (sacramentoPaymentRetryInProgress) return;
   const ctx = sacramentoGetPaymentRetryContext();
@@ -1149,11 +1180,26 @@ async function sacramentoRetryPaymentLinkFromPendingTab() {
     const uniqueCandidates =
       ctx.uniqueCandidates ||
       sacramentoBuildResolveEndpointCandidates(ctx.dynamicPayment.endpoint || DEFAULT_DYNAMIC_PAYMENT_ENDPOINT);
+    const retryBodyPayload = { ...ctx.bodyPayload, forceNewAttempt: true, retryReason: "user_retry" };
     try {
-      paymentUrl = await withResolveFlowTimeout(
-        () => executeResolvePaymentAttempts(uniqueCandidates, ctx.bodyPayload),
+      const resolveResult = await withResolveFlowTimeout(
+        () => executeResolvePaymentAttempts(uniqueCandidates, retryBodyPayload),
         RESOLVE_FLOW_TIMEOUT_MS
       );
+      if (resolveResult.alreadyApproved) {
+        const successUrl = sacramentoPaymentSuccessPageUrl();
+        if (pendingTab && !pendingTab.closed) {
+          try {
+            pendingTab.location.href = successUrl;
+          } catch {
+            window.location.href = successUrl;
+          }
+        } else {
+          window.location.href = successUrl;
+        }
+        return;
+      }
+      paymentUrl = resolveResult.paymentUrl || "";
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error("[payments-resolve] manual retry failed", {
