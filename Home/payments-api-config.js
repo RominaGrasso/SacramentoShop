@@ -40,12 +40,12 @@
       if (local) {
         candidates.push(`${localBase}${endpoint}`);
         candidates.push(`${productionBase}${endpoint}`);
+      } else {
+        // Static site (Netlify): same-origin /api/* does not exist — Render first.
+        candidates.push(`${productionBase}${endpoint}`);
       }
       if (typeof window !== "undefined" && window.location?.origin && window.location.protocol !== "file:") {
         candidates.push(endpoint);
-      }
-      if (!local) {
-        candidates.push(`${productionBase}${endpoint}`);
       }
     } else {
       const path = `/${endpoint.replace(/^\.?\//, "")}`;

@@ -62,11 +62,12 @@ function sacramentoBuildResolveEndpointCandidates(endpointRaw) {
   } else if (endpoint.startsWith("/")) {
     if (local) {
       candidates.push(`${localBase}${endpoint}`, `${productionBase}${endpoint}`);
+    } else {
+      candidates.push(`${productionBase}${endpoint}`);
     }
     if (typeof window !== "undefined" && window.location?.origin && window.location.protocol !== "file:") {
       candidates.push(endpoint);
     }
-    if (!local) candidates.push(`${productionBase}${endpoint}`);
   } else {
     const path = `/${endpoint.replace(/^\.?\//, "")}`;
     if (local) candidates.push(`${localBase}${path}`, `${productionBase}${path}`);
@@ -81,9 +82,10 @@ function sacramentoBuildResolveEndpointCandidates(endpointRaw) {
 }
 
 const DEFAULT_DYNAMIC_PAYMENT_ENDPOINT =
-  typeof window !== "undefined" && window.location?.protocol === "file:"
+  typeof window !== "undefined" &&
+  (window.location?.protocol === "file:" || sacramentoIsLocalDevHost())
     ? "http://localhost:8787/api/payments/resolve"
-    : "/api/payments/resolve";
+    : "https://sacramento-payments-test.onrender.com/api/payments/resolve";
 
 /** `*Label*: value` line for WhatsApp (bold before the colon). */
 function waLine(label, value) {
