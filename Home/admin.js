@@ -244,37 +244,98 @@
     return parts.join(" · ") || "—";
   }
 
+  function formatPlexoRawValue(value) {
+    if (value === undefined || value === null || value === "") return "—";
+    return String(value);
+  }
+
+  function formatPlexoAttemptResult(raw) {
+    if (!raw || typeof raw !== "object") return "—";
+    const parts = [];
+    if (raw.transactionResultText) parts.push(String(raw.transactionResultText));
+    if (raw.transactionMessage && raw.transactionMessage !== raw.transactionResultText) {
+      parts.push(String(raw.transactionMessage));
+    }
+    if (raw.issuerMessage) parts.push(`Issuer: ${raw.issuerMessage}`);
+    if (raw.errorMessage) parts.push(`Error: ${raw.errorMessage}`);
+    return parts.length ? parts.join(" · ") : "—";
+  }
+
   function renderAttemptRows(attempts) {
     const tbody = el("attempts-tbody");
     tbody.innerHTML = "";
     if (!attempts || attempts.length === 0) {
       const tr = document.createElement("tr");
-      tr.innerHTML = '<td colspan="8" class="admin-empty">Aún no hay intentos registrados por webhook para este pago.</td>';
+      tr.innerHTML =
+        '<td colspan="13" class="admin-empty">Aún no hay intentos registrados por webhook para este pago.</td>';
       tbody.appendChild(tr);
       return;
     }
     const ordered = [...attempts].sort((a, b) => new Date(b.at || 0).getTime() - new Date(a.at || 0).getTime());
     for (const a of ordered) {
+      const raw = a.raw && typeof a.raw === "object" ? a.raw : {};
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${esc(a.at || "—")}</td>
         <td>${esc(a.status || "—")}</td>
         <td>${esc(a.source || "—")}</td>
         <td>${esc(a.gateway || "—")}</td>
+        <td class="mono">${esc(formatPlexoRawValue(raw.purchaseStatus))}</td>
+        <td class="mono">${esc(formatPlexoRawValue(raw.transactionCode))}</td>
+        <td>${esc(formatPlexoAttemptResult(raw))}</td>
+        <td class="mono">${esc(formatPlexoRawValue(raw.paymentInstrumentStatus))}</td>
+        <td class="mono">${esc(formatPlexoRawValue(raw.authorizationCode))}</td>
         <td>${esc(formatCardText(a.card))}</td>
         <td>${esc(a.card?.holderName || a.payer?.name || "—")}</td>
-        <td>${esc(a.issuer?.name || a.issuer?.id || "—")}</td>
-        <td>${esc(a.reference || "—")}</td>
+        <td>${esc(a.issuer?.name || a.issuer?.id || raw.paymentInstrumentIssuer || raw.cardIssuer || "—")}</td>
+        <td class="mono">${esc(a.reference || "—")}</td>
       `;
       tbody.appendChild(tr);
     }
+  }
+
+  function renderPlexoDiagnosticSummary(attempts) {
+    const box = el("detail-plexo-diagnostics");
+    if (!box) return;
+    const webhookAttempts = (attempts || []).filter((a) => a?.source === "webhook_plexo");
+    const latest = webhookAttempts.sort(
+      (a, b) => new Date(b.at || 0).getTime() - new Date(a.at || 0).getTime()
+    )[0];
+    if (!latest?.raw || typeof latest.raw !== "object") {
+      box.hidden = true;
+      box.innerHTML = "";
+      return;
+    }
+    const raw = latest.raw;
+    box.hidden = false;
+    box.innerHTML = [
+      "<h3>Diagnóstico Plexo (último webhook)</h3>",
+      '<div class="admin-detail-grid">',
+      detailCard("Purchase.Status", raw.purchaseStatus),
+      detailCard("TransactionCode", raw.transactionCode),
+      detailCard("TransactionResultText", raw.transactionResultText),
+      detailCard("TransactionMessage", raw.transactionMessage),
+      detailCard("PaymentInstrument.Status", raw.paymentInstrumentStatus),
+      detailCard("PaymentInstrument.Brand", raw.paymentInstrumentBrand),
+      detailCard("PaymentInstrument.Issuer", raw.paymentInstrumentIssuer),
+      detailCard("AuthorizationCode", raw.authorizationCode),
+      detailCard("ResponseCode", raw.responseCode),
+      detailCard("Action", raw.action),
+      detailCard("ResultCode (envelope)", raw.resultCode),
+      detailCard("ErrorMessage", raw.errorMessage),
+      detailCard("IssuerMessage", raw.issuerMessage),
+      "</div>",
+      `<pre class="admin-raw-json mono">${esc(JSON.stringify(raw, null, 2))}</pre>`
+    ].join("");
   }
 
   function renderPaymentDetail(item) {
     const summary = el("detail-summary");
     summary.innerHTML = [
       detailCard("Session ID", item.sessionId),
-      detailCard("Estado actual", item.status),
+      detailCard("Estado link", item.status),
+      detailCard("Estado pago", item.paymentStatus),
+      detailCard("Plexo TransactionCode", item.plexoResultCode),
       detailCard("Intentos webhook", item.attemptsCount),
       detailCard("Experiencia", item.experience),
       detailCard("Restoran", inferRestaurant(item.experience)),
@@ -284,7 +345,9 @@
       detailCard("Actualizado", item.updatedAt),
       detailCard("Fingerprint", item.fingerprint)
     ].join("");
-    renderAttemptRows(Array.isArray(item.paymentAttempts) ? item.paymentAttempts : []);
+    const attempts = Array.isArray(item.paymentAttempts) ? item.paymentAttempts : [];
+    renderAttemptRows(attempts);
+    renderPlexoDiagnosticSummary(attempts);
     el("view-detail").hidden = false;
   }
 

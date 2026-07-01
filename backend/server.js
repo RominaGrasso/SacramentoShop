@@ -1122,6 +1122,104 @@ function pickFirstByPaths(obj, paths) {
   return "";
 }
 
+function extractPlexoPaymentInstrument(...sources) {
+  for (const source of sources) {
+    if (!source || typeof source !== "object") continue;
+    const pi = source.PaymentInstrument ?? source.paymentInstrument;
+    if (pi && typeof pi === "object") return pi;
+  }
+  return null;
+}
+
+function firstPlexoDiagnosticValue(...values) {
+  for (const value of values) {
+    if (value === undefined || value === null) continue;
+    const text = String(value).trim();
+    if (text) return value;
+  }
+  return undefined;
+}
+
+/** Diagnostic fields from Plexo webhook — stored in paymentAttempts.raw (no payment logic). */
+function buildPlexoWebhookDiagnostics(payload) {
+  const root = payload?.Object?.Object || {};
+  const responseObj = root?.Response || {};
+  const purchase = extractPlexoPurchaseTransaction(root);
+  const purchaseOutcome = resolvePlexoPaymentStatusFromPurchase(root);
+  const paymentInstrument = extractPlexoPaymentInstrument(root, responseObj, purchase);
+
+  const purchaseStatusRaw = purchase?.Status ?? purchase?.status;
+  const transactionCodeRaw = purchase?.TransactionCode ?? purchase?.transactionCode;
+
+  return {
+    action: root?.Action ?? null,
+    resultCode: firstPlexoDiagnosticValue(
+      root?.ResultCode,
+      payload?.Object?.ResultCode,
+      payload?.ResultCode
+    ),
+    purchaseStatus:
+      purchaseOutcome.purchaseStatus ??
+      (Number.isFinite(Number(purchaseStatusRaw)) ? Number(purchaseStatusRaw) : purchaseStatusRaw ?? null),
+    transactionCode:
+      purchaseOutcome.transactionCode ??
+      (Number.isFinite(Number(transactionCodeRaw)) ? Number(transactionCodeRaw) : transactionCodeRaw ?? null),
+    transactionResultText: firstPlexoDiagnosticValue(
+      purchase?.TransactionResultText,
+      purchase?.transactionResultText
+    ),
+    transactionMessage:
+      purchaseOutcome.message ??
+      firstPlexoDiagnosticValue(
+        purchase?.TransactionMessage,
+        purchase?.Message,
+        purchase?.ErrorMessage,
+        purchase?.IssuerMessage
+      ),
+    authorizationCode: firstPlexoDiagnosticValue(
+      purchase?.AuthorizationCode,
+      purchase?.authorizationCode,
+      purchase?.Authorization,
+      purchase?.authorization,
+      root?.AuthorizationCode,
+      root?.Authorization
+    ),
+    responseCode: firstPlexoDiagnosticValue(
+      purchase?.ResponseCode,
+      purchase?.responseCode,
+      responseObj?.ResponseCode,
+      root?.ResponseCode
+    ),
+    paymentInstrumentStatus: firstPlexoDiagnosticValue(paymentInstrument?.Status, paymentInstrument?.status),
+    paymentInstrumentBrand: firstPlexoDiagnosticValue(
+      paymentInstrument?.Brand,
+      paymentInstrument?.brand,
+      paymentInstrument?.CardBrand,
+      paymentInstrument?.CardType
+    ),
+    paymentInstrumentIssuer: firstPlexoDiagnosticValue(
+      paymentInstrument?.Issuer,
+      paymentInstrument?.issuer,
+      paymentInstrument?.IssuerName,
+      paymentInstrument?.CardIssuer
+    ),
+    paymentInstrumentIssuerId: firstPlexoDiagnosticValue(
+      paymentInstrument?.IssuerId,
+      paymentInstrument?.issuerId
+    ),
+    issuerMessage: firstPlexoDiagnosticValue(purchase?.IssuerMessage, purchase?.issuerMessage),
+    errorMessage: firstPlexoDiagnosticValue(
+      root?.ErrorMessage,
+      responseObj?.ErrorMessage,
+      payload?.Object?.ErrorMessage
+    ),
+    currentState: root?.CurrentState ?? null,
+    statusCode: root?.Status ?? null,
+    resolved: purchaseOutcome.resolved,
+    paymentStatusDerived: purchaseOutcome.resolved ? purchaseOutcome.paymentStatus : null
+  };
+}
+
 function extractMaskedCardInfo(...sources) {
   const nonNullSources = sources.filter((x) => x && typeof x === "object");
   const masked = pickFirstNonEmpty(
@@ -1176,23 +1274,20 @@ function buildAttemptMetaFromPlexoWebhook(payload) {
   const purchase = extractPlexoPurchaseTransaction(plexoPayload);
   const purchaseOutcome = resolvePlexoPaymentStatusFromPurchase(plexoPayload);
   const paymentStatus = purchaseOutcome.resolved ? purchaseOutcome.paymentStatus : undefined;
-  const card = extractMaskedCardInfo(plexoPayload, responseObj, payload);
-  const transactionResultText =
-    pickFirstNonEmpty(purchase?.TransactionResultText, purchase?.transactionResultText) || undefined;
-  const authorization =
-    pickFirstNonEmpty(
-      purchase?.Authorization,
-      purchase?.authorization,
-      plexoPayload?.Authorization,
-      plexoPayload?.authorization
-    ) || undefined;
+  const diagnostics = buildPlexoWebhookDiagnostics(payload);
+  const paymentInstrument = extractPlexoPaymentInstrument(plexoPayload, responseObj, purchase);
+  const card = extractMaskedCardInfo(plexoPayload, responseObj, paymentInstrument, purchase, payload);
+  if (!card.brand && diagnostics.paymentInstrumentBrand) {
+    card.brand = String(diagnostics.paymentInstrumentBrand);
+  }
   const cardIssuer =
     pickFirstNonEmpty(
       purchase?.CardIssuer,
       purchase?.cardIssuer,
       purchase?.IssuerName,
       plexoPayload?.CardIssuer,
-      plexoPayload?.cardIssuer
+      plexoPayload?.cardIssuer,
+      diagnostics.paymentInstrumentIssuer
     ) || undefined;
   const cardType =
     pickFirstNonEmpty(
@@ -1200,11 +1295,13 @@ function buildAttemptMetaFromPlexoWebhook(payload) {
       purchase?.cardType,
       plexoPayload?.CardType,
       plexoPayload?.cardType,
+      diagnostics.paymentInstrumentBrand,
       card.brand
     ) || undefined;
   const payerName = pickFirstNonEmpty(
     pickFirstByPaths(plexoPayload, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
     pickFirstByPaths(responseObj, [["ClientInformation", "Name"], ["BuyerName"], ["PayerName"]]),
+    pickFirstByPaths(paymentInstrument, [["HolderName"], ["CardHolder"]]),
     card.holderName
   );
   const payerEmail = pickFirstNonEmpty(
@@ -1213,11 +1310,13 @@ function buildAttemptMetaFromPlexoWebhook(payload) {
   );
   const issuerName = pickFirstNonEmpty(
     pickFirstByPaths(plexoPayload, [["IssuerName"]]),
-    pickFirstByPaths(responseObj, [["IssuerName"]])
+    pickFirstByPaths(responseObj, [["IssuerName"]]),
+    diagnostics.paymentInstrumentIssuer
   );
   const issuerId = pickFirstNonEmpty(
     pickFirstByPaths(plexoPayload, [["IssuerId"]]),
-    pickFirstByPaths(responseObj, [["IssuerId"]])
+    pickFirstByPaths(responseObj, [["IssuerId"]]),
+    diagnostics.paymentInstrumentIssuerId
   );
 
   return {
@@ -1235,16 +1334,9 @@ function buildAttemptMetaFromPlexoWebhook(payload) {
     },
     reference: pickFirstNonEmpty(plexoPayload?.TransactionId, plexoPayload?.SessionId, plexoPayload?.Id),
     raw: {
-      purchaseStatus: purchaseOutcome.purchaseStatus,
-      transactionCode: purchaseOutcome.transactionCode,
-      transactionMessage: purchaseOutcome.message,
-      transactionResultText,
-      authorization,
+      ...diagnostics,
       cardIssuer,
-      cardType,
-      resolved: purchaseOutcome.resolved,
-      currentState: plexoPayload?.CurrentState,
-      statusCode: plexoPayload?.Status
+      cardType
     }
   };
 }
