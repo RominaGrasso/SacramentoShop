@@ -439,7 +439,7 @@ function sacramentoBuildReservePendingTabShell(title, bodyAttrs, cardInnerHtml, 
     `</head><body class="page-payment-result page-sac-reserve-pending"${bodyAttrStr}>` +
     '<header class="payment-result-header">' +
     '<span class="payment-result-header__logo">' +
-    `<img alt="Sacramento Adventures" decoding="async" src="${sacramentoEscapeHtml(logoSrc)}">` +
+    `<img alt="Sacramento Adventures" decoding="async" style="display:block;height:60px;width:auto;max-width:180px" src="${sacramentoEscapeHtml(logoSrc)}">` +
     "</span></header>" +
     `<main class="payment-result"><div class="${cardCls}">` +
     cardInnerHtml +
@@ -452,7 +452,7 @@ function sacramentoBuildReserveOverlayLogoHtml() {
   return (
     '<header class="payment-result-header">' +
     '<span class="payment-result-header__logo">' +
-    `<img alt="Sacramento Adventures" decoding="async" src="${sacramentoEscapeHtml(logoSrc)}">` +
+    `<img alt="Sacramento Adventures" decoding="async" style="display:block;height:60px;width:auto;max-width:180px" src="${sacramentoEscapeHtml(logoSrc)}">` +
     "</span></header>"
   );
 }
