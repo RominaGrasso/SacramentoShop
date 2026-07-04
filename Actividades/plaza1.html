@@ -88,7 +88,7 @@
 <section class="coffee-content">
 <h2 data-translate="plaza_page_about_title">About this experience</h2>
 <p data-translate="plaza_page_about_p">
-        Explore the iconic Plaza de Toros Real de San Carlos with private transfer and tickets included — skip the line. After the guided visit, continue at Anita's café in the heart of the Historic Quarter.
+        Explore the iconic Plaza de Toros Real de San Carlos with private transfer and tickets included — skip the line. After the guided visit, continue at A partner café in the heart of the Historic Quarter.
       </p>
 <a class="reel-link-btn" data-translate="food_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
         🎥 Watch Reel on @_sacramentoadventures
@@ -101,7 +101,7 @@
 <ul>
 <li data-translate="plaza_page_include_1">✔ Private transfer — your vehicle waits outside the bullring while you tour inside</li>
 <li data-translate="plaza_page_include_2">✔ Entrance tickets to Plaza de Toros</li>
-<li data-translate="plaza_page_include_4">✔ Anita's café experience (menu below)</li>
+<li data-translate="plaza_page_include_4">✔ A partner café experience (menu below)</li>
 <li data-translate="plaza_page_include_5">✔ Reserved table</li>
 </ul>
 <div class="order-start" id="reservar">
@@ -135,10 +135,10 @@
 <img alt="Inside Plaza de Toros" decoding="async" height="220" loading="lazy" src="../Assets/images/plaz1.webp" width="1200"/>
 <img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza3.jpg" width="1200"/>
 <img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza11.jpg" width="1200"/>
-<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita1.jpg" width="1200"/>
-<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita2.jpg" width="1200"/>
-<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita3.jpg" width="1200"/>
-<img alt="Café Anita" decoding="async" height="220" loading="lazy" src="../Assets/images/anita4.jpg" width="1200"/>
+<img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita1.jpg" width="1200"/>
+<img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita2.jpg" width="1200"/>
+<img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita3.jpg" width="1200"/>
+<img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita4.jpg" width="1200"/>
 </div>
 </section>
 <!-- ================= ACTIONS ================= -->
@@ -287,7 +287,7 @@
     if (onTime) {
       setPopupTitleKey("plaza_popup_time_title", "Choose your pickup time");
     } else {
-      setPopupTitleKey("plaza_popup_title", "Anita's café — choose your menu");
+      setPopupTitleKey("plaza_popup_title", "A partner café — choose your menu");
     }
   };
 
@@ -390,7 +390,7 @@
               orderPayload: {
                 cfg,
                 total,
-                experienceName: "Plaza de Toros with Anita's café"
+                experienceName: "Plaza de Toros with A partner café"
               }
             }
           );
@@ -400,7 +400,7 @@
       }
 
       let message =
-        `${t("wa_intro_plaza_anita", "Hello! I'd like to book the Plaza de Toros experience with Anita's café:")}\n\n` +
+        `${t("wa_intro_plaza_anita", "Hello! I'd like to book the Plaza de Toros experience with A partner café:")}\n\n` +
         `${t("plaza_wa_visit_date", "Preferred visit date")}: ${formatVisitDate(visitIso)}\n` +
         `${t("plaza_wa_pickup_time", "Pickup time")}: ${cfg.pickupTime}\n` +
         `${t("plaza_wa_menu_label", "Anita café menu")}: ${packageLabel(cfg.package)}\n` +

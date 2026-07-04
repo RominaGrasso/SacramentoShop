@@ -201,7 +201,7 @@
   }
 
   function buildWhatsappText(ctx, paymentUrl, paymentAttempted) {
-    const lines = [i18n("barbot_wa_preface", "Hello! I’d like to book Barbot Brewpub with this selection:")];
+    const lines = [i18n("barbot_wa_preface", "Hello! I’d like to book Historic Quarter brewpub with this selection:")];
     lines.push(
       `${i18n("orders_visit_date_label", "Visit date")}: ${formatVisitDate(ctx.visitDate)} (${ctx.visitDate})`
     );
@@ -452,7 +452,7 @@
                 ...snap,
                 total,
                 orderCount: snap.orders.length,
-                experienceName: "Barbot Brewpub"
+                experienceName: "Historic Quarter brewpub"
               }
             });
           }

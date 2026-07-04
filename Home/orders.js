@@ -7136,7 +7136,7 @@ function initSioSpecialNightOrders(userConfig) {
     drinkRadioName: "sioSpecialDrink",
     whatsappNumber: "59898945542",
     experienceNameKey: "sio_hero_h1",
-    experienceNameFallback: "SIO Sushi Experience",
+    experienceNameFallback: "Premium Sushi Experience",
     bookNowBottomId: null,
     /** USD per Special Night menu order (same package × headcount / orders). */
     unitPriceUsd: 70,
@@ -7264,7 +7264,7 @@ function initSioSpecialNightOrders(userConfig) {
     const drinkDisplay = (choice) => {
       const c = String(choice || "").trim();
       if (c === "juice") return getI18nText("sio_special_menu_drink_juice", "Juice");
-      if (c === "wine") return getI18nText("sio_special_menu_drink_wine", "Glass of Deicas wine");
+      if (c === "wine") return getI18nText("sio_special_menu_drink_wine", "Glass of local wine");
       return "—";
     };
 
@@ -7414,7 +7414,7 @@ function initSioSpecialNightOrders(userConfig) {
       const orders = getOrders();
       const intro = getI18nText(
         config.waIntroKey || "sio_wa_intro",
-        "Hello! I'd like to book the SIO Special Night menu:"
+        "Hello! I'd like to book the Special Night sushi menu:"
       );
       const visit = getI18nText("orders_visit_date_label", "Visit date");
       const guestWord = getI18nText("orders_wa_guest_slot", "Guest");
