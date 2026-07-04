@@ -1,5 +1,5 @@
 /**
- * Barbot Brewpub visit hours: Mon–Fri from 18:00, Sat–Sun from 12:00 (Mon closed).
+ * Historic Quarter brewpub visit hours: Mon–Fri from 18:00, Sat–Sun from 12:00 (Mon closed).
  */
 (function () {
   "use strict";
@@ -187,7 +187,7 @@
     const iso = getStoredDate();
     if (isMonday(iso)) {
       window.alert(
-        t("barbot_brewpub_alert_monday", "Barbot Brewpub is closed on Mondays. Please choose another day.")
+        t("barbot_brewpub_alert_monday", "Historic Quarter brewpub is closed on Mondays. Please choose another day.")
       );
       return false;
     }

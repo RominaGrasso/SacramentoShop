@@ -84,13 +84,13 @@
 </header>
 <!-- HERO -->
 <section class="romantic-hero">
-<h1>Casa Viera — Romantic Dinner</h1>
+<h1>Romantic Dinner Experience</h1>
 </section>
 <!-- CONTENT -->
 <section class="coffee-content romantic-content">
-<h2>Una noche especial en Casa Viera</h2>
+<h2>Una noche especial en un restaurante seleccionado</h2>
 <p>
-    Disfrutá una cena romántica para dos en Casa Viera, en el Casco Histórico de Colonia.
+    Disfrutá una cena romántica para dos en un restaurante seleccionado, en el Casco Histórico de Colonia.
     La experiencia incluye una mesa reservada, un menú completo y una ambientación íntima para compartir una noche especial.
   </p>
 <p>
@@ -106,7 +106,7 @@
 <div class="includes-list">
 <h3>Qué incluye</h3>
 <ul>
-<li>✔ Mesa reservada en Casa Viera</li>
+<li>✔ Mesa reservada en el restaurante</li>
 <li><strong>✔ Menú completo para dos personas</strong></li>
 <li>✔ Una entrada a elección</li>
 <li>✔ Un plato principal a elección</li>
@@ -144,7 +144,7 @@
 <div class="popup-overlay" id="popupRomantic">
 <div class="popup-box romantic-menu-popup">
 <button class="close-x" id="closeRomantic" type="button">✕</button>
-<p><strong class="popup-title">Menú Casa Viera para dos</strong></p>
+<p><strong class="popup-title">Menú A partner restaurant para dos</strong></p>
 <p class="bruma-tier-heading">
 <span id="romanticStepTitle">Pedido persona 1</span>
 <span>·</span>
@@ -448,7 +448,7 @@
             date,
             people: totals.people,
             total: totals.total,
-            experienceName: "Casa Viera — Romantic Dinner"
+            experienceName: "Romantic Dinner Experience"
           }
         });
       } catch {
@@ -468,7 +468,7 @@
         return `*Menú pareja ${pairIndex + 1}*\n${pairLines}`;
       }).join("\n\n");
       const totals = bookingTotals(bookings);
-      let message = `Hola! Me gustaría reservar Casa Viera — Romantic Dinner.\n\nFecha: ${date}\nPersonas: ${totals.people}\n\n${orderLines}\n\nTotal: USD ${totals.total}`;
+      let message = `Hola! Me gustaría reservar Romantic Dinner Experience.\n\nFecha: ${date}\nPersonas: ${totals.people}\n\n${orderLines}\n\nTotal: USD ${totals.total}`;
       if (paymentLink) {
         message += `\n\nPara confirmar la reserva, completá el pago acá:\n${paymentLink}`;
       } else {

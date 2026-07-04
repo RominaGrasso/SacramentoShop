@@ -7,7 +7,7 @@
   const REVIEWS_JSON_URL = "data/google-reviews.json";
   const AUTOPLAY_MS = 6000;
   const REVIEW_PREVIEW_MAX_CHARS =
-    "Destacable la atención del equipo. Hicimos la visita guiada a la Cervecería Barbot y todo salió de 10. Súper recomendable.".length;
+    "Destacable la atención del equipo. Hicimos la visita guiada a una cervecería artesanal local y todo salió de 10. Súper recomendable.".length;
 
   const FALLBACK_REVIEWS = [
     {
@@ -20,7 +20,7 @@
       id: "carlos_tomezzoli",
       name: "Carlos Tomezzoli",
       rating: 5,
-      text: "Destacable la atención del equipo. Hicimos la visita guiada a la Cervecería Barbot y todo salió de 10. Súper recomendable."
+      text: "Destacable la atención del equipo. Hicimos la visita guiada a una cervecería artesanal local y todo salió de 10. Súper recomendable."
     },
     {
       id: "karina_schillaci",
