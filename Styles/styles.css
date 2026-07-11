@@ -585,7 +585,26 @@
   }
 
   .card .card-entry-price--promo {
-    padding-bottom: calc(5px + 0.82rem * 1.35);
+    max-width: 100%;
+    min-width: 0;
+    padding-bottom: 0;
+  }
+
+  .card .card-entry-price--promo .card-entry-price__from {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.25;
+  }
+
+  .card .card-entry-price--promo .card-entry-price__amount {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.2;
+    font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+    letter-spacing: -0.01em;
   }
 
   .card .card-entry-price--promo .card-entry-price__unit {
@@ -599,6 +618,11 @@
 
     .card .card-entry-price__amount {
       font-size: clamp(1.35rem, 5.5vw, 1.65rem);
+    }
+
+    .card .card-entry-price--promo .card-entry-price__amount {
+      font-size: clamp(1.05rem, 4.8vw, 1.35rem);
+      line-height: 1.22;
     }
 
     .card .card-entry-price__from {
