@@ -1148,21 +1148,24 @@ const translations = {
         "Enjoy a scenic horseback ride through the countryside, followed by a special dinner at a boutique vineyard restaurant. End the night with a unique stargazing experience led by an astrophotographer who will guide you through the stars and capture unforgettable night sky photos.",
       rent_with_us: "Rent with us!",
       rent_popup_title: "Choose your rental",
-      rent_popup_benefit: "With your rental, you get a 2x1 ticket promo for Plaza de Toros.",
+      rent_popup_info:
+        "We'll help with your booking so you can pick up your bike or cart without waiting in line.",
       rent_popup_choose: "Rental options",
       rent_option_bike: "Bike rental",
       rent_option_cart: "Cart rental (up to 4 guests)",
       rent_option_cart6: "Cart rental (up to 6 guests)",
-      rent_price_bike: "Bike: USD 10 per hour",
+      rent_price_bike_six_hours: "Bike: USD 20 (6 hours)",
       rent_price_cart: "Cart (4): USD 20 per hour",
       rent_price_cart6: "Cart (6): USD 35 per hour",
-      rent_price_bike_day: "Bike: USD 30 per day",
+      rent_price_bike_day: "Bike: USD 40 (full day)",
       rent_price_cart_day: "Cart (4): USD 50 per day",
       rent_price_cart6_day: "Cart (6): USD 70 per day",
       rent_popup_select_first: "Select bike or cart to see the price.",
       rent_mode_label: "Rental type",
       rent_mode_hour: "Per hour",
+      rent_mode_six_hours: "6 hours",
       rent_mode_day: "Per day",
+      rent_mode_full_day: "Full day",
       rent_mode_guided_2h: "2 hours + guide",
       rent_guided_help_text_cart:
         "A guide drives the cart for you and takes you through the most emblematic spots in the city—or wherever you prefer along the route. Since the guide is one seat, this option is up to 3 guests.",
@@ -1183,16 +1186,12 @@ const translations = {
       wa_rent_rate: "Rate",
       wa_rent_hours: "Hours/Days",
       wa_rent_guide: "Guide",
-      wa_rent_bonus: "Bonus",
-      wa_rent_bonus_text: "2x1 Plaza de Toros tickets",
       wa_rent_requirements_label: "Requirements",
       wa_includes_label: "What's included",
       wa_payment_cta: "To confirm the reservation, please complete the payment here:",
       wa_rent_req_bike: "Passenger ID document is required.",
       wa_rent_req_cart:
         "A credit card must be presented at the counter before picking up the cart, plus the passenger's ID document.",
-      rent_post_purchase_note:
-        "After purchase, we'll send you the central pickup address for the bikes/cart and your 2x1 Plaza de Toros voucher.",
       rent_popup_close: "Close",
       explore_btn: "Explore Experiences",
       about_us_nav: "About Us",
@@ -3795,21 +3794,24 @@ const translations = {
         "Cabalgata por el campo, cena especial en un restaurante boutique en una bodega y cierre con observación de estrellas con un astrofotógrafo que te guía bajo el cielo y captura la noche.",
       rent_with_us: "¡Alquilá con nosotros!",
       rent_popup_title: "Elegí tu alquiler",
-      rent_popup_benefit: "Con tu alquiler, tenés promo 2x1 en entradas para Plaza de Toros.",
+      rent_popup_info:
+        "Te ayudamos con tu reserva para que retires tu bici o carrito sin esperas ni filas.",
       rent_popup_choose: "Opciones de alquiler",
       rent_option_bike: "Alquiler de bici",
       rent_option_cart: "Alquiler de carrito (hasta 4 personas)",
       rent_option_cart6: "Alquiler de carrito (hasta 6 personas)",
-      rent_price_bike: "Bici: USD 10 por hora",
+      rent_price_bike_six_hours: "Bici: USD 20 (6 horas)",
       rent_price_cart: "Carrito (4): USD 20 por hora",
       rent_price_cart6: "Carrito (6): USD 35 por hora",
-      rent_price_bike_day: "Bici: USD 30 por día",
+      rent_price_bike_day: "Bici: USD 40 (día completo)",
       rent_price_cart_day: "Carrito (4): USD 50 por día",
       rent_price_cart6_day: "Carrito (6): USD 70 por día",
       rent_popup_select_first: "Seleccioná bici o carrito para ver el precio.",
       rent_mode_label: "Tipo de alquiler",
       rent_mode_hour: "Por hora",
+      rent_mode_six_hours: "6 horas",
       rent_mode_day: "Por día",
+      rent_mode_full_day: "Día completo",
       rent_mode_guided_2h: "2 horas + guía",
       rent_guided_help_text_cart:
         "Un guía maneja el carrito por vos y te lleva por los lugares más emblemáticos de la ciudad, o por donde vos quieras recorrer. Como el guía ocupa un lugar, esta opción es hasta 3 pasajeros.",
@@ -3830,16 +3832,12 @@ const translations = {
       wa_rent_rate: "Tarifa",
       wa_rent_hours: "Horas/Días",
       wa_rent_guide: "Guía",
-      wa_rent_bonus: "Beneficio",
-      wa_rent_bonus_text: "Entradas 2x1 para Plaza de Toros",
       wa_rent_requirements_label: "Requisitos",
       wa_includes_label: "Qué incluye",
       wa_payment_cta: "Para confirmar la reserva, completá el pago aquí:",
       wa_rent_req_bike: "Se requiere documento de identificación del pasajero.",
       wa_rent_req_cart:
         "Se debe presentar una tarjeta de crédito en mostrador antes de retirar el carrito, junto con el documento de identificación del pasajero.",
-      rent_post_purchase_note:
-        "Luego de la compra, te vamos a enviar la dirección de retiro en el centro (bici/carrito) y tu voucher 2x1 para Plaza de Toros.",
       rent_popup_close: "Cerrar",
       explore_btn: "Explorar",
       about_us_nav: "Sobre nosotros",
@@ -6440,21 +6438,24 @@ const translations = {
         "Cavalgada pelo campo, jantar especial no restaurante boutique e noite de observação com um astrofotógrafo que guia sob o céu e registra a noite.",
       rent_with_us: "Alugue com a gente!",
       rent_popup_title: "Escolha seu aluguel",
-      rent_popup_benefit: "Com seu aluguel, você ganha promoção 2x1 nos ingressos da Plaza de Toros.",
+      rent_popup_info:
+        "Ajudamos com sua reserva para que você retire sua bicicleta ou carrinho sem filas nem espera.",
       rent_popup_choose: "Opções de aluguel",
       rent_option_bike: "Aluguel de bicicleta",
       rent_option_cart: "Aluguel de carrinho (até 4 pessoas)",
       rent_option_cart6: "Aluguel de carrinho (até 6 pessoas)",
-      rent_price_bike: "Bicicleta: USD 10 por hora",
+      rent_price_bike_six_hours: "Bicicleta: USD 20 (6 horas)",
       rent_price_cart: "Carrinho (4): USD 20 por hora",
       rent_price_cart6: "Carrinho (6): USD 35 por hora",
-      rent_price_bike_day: "Bicicleta: USD 30 por dia",
+      rent_price_bike_day: "Bicicleta: USD 40 (dia completo)",
       rent_price_cart_day: "Carrinho (4): USD 50 por dia",
       rent_price_cart6_day: "Carrinho (6): USD 70 por dia",
       rent_popup_select_first: "Selecione bicicleta ou carrinho para ver o preço.",
       rent_mode_label: "Tipo de aluguel",
       rent_mode_hour: "Por hora",
+      rent_mode_six_hours: "6 horas",
       rent_mode_day: "Por dia",
+      rent_mode_full_day: "Dia completo",
       rent_mode_guided_2h: "2 horas + guia",
       rent_guided_help_text_cart:
         "Um guia dirige o carrinho por você e leva você pelos lugares mais emblemáticos da cidade—ou por onde preferir no percurso. Como o guia ocupa um assento, esta opção é para até 3 passageiros.",
@@ -6475,16 +6476,12 @@ const translations = {
       wa_rent_rate: "Tarifa",
       wa_rent_hours: "Horas/Dias",
       wa_rent_guide: "Guia",
-      wa_rent_bonus: "Benefício",
-      wa_rent_bonus_text: "Ingressos 2x1 para Plaza de Toros",
       wa_rent_requirements_label: "Requisitos",
       wa_includes_label: "O que está incluído",
       wa_payment_cta: "Para confirmar a reserva, conclua o pagamento aqui:",
       wa_rent_req_bike: "É necessário documento de identificação do passageiro.",
       wa_rent_req_cart:
         "É necessário apresentar um cartão de crédito no balcão antes de retirar o carrinho, junto com o documento de identificação do passageiro.",
-      rent_post_purchase_note:
-        "Após a compra, enviaremos o endereço de retirada no centro (bicicleta/carrinho) e seu voucher 2x1 para Plaza de Toros.",
       rent_popup_close: "Fechar",
       explore_btn: "Explorar",
       about_us_nav: "Sobre nós",
@@ -7999,7 +7996,9 @@ function ensureRentPopup() {
     <div class="popup-box rent-popup-box" role="dialog" aria-modal="true" aria-labelledby="rentPopupTitle">
       <button class="close-x" id="rentPopupCloseX" type="button">✕</button>
       <p><strong class="popup-title" id="rentPopupTitle" data-translate="rent_popup_title">Choose your rental</strong></p>
-      <p class="rent-popup-benefit" data-translate="rent_popup_benefit">With your rental, you get a 2x1 ticket promo for Plaza de Toros.</p>
+      <p class="rent-popup-info" data-translate="rent_popup_info">
+        We'll help with your booking so you can pick up your bike or cart without waiting in line.
+      </p>
       <div class="preferences-inside rent-options">
         <h3 data-translate="rent_popup_choose">Rental options</h3>
         <label class="rent-option">
@@ -8022,15 +8021,19 @@ function ensureRentPopup() {
         <div class="rent-mode-wrap">
           <span class="rent-hours-label" data-translate="rent_mode_label">Rental type</span>
           <div class="rent-mode-options">
-            <label class="rent-option">
+            <label class="rent-option" id="rentModeHourOption">
               <input type="radio" name="rentMode" value="hour" checked>
               <span data-translate="rent_mode_hour">Per hour</span>
             </label>
-            <label class="rent-option">
-              <input type="radio" name="rentMode" value="day">
-              <span data-translate="rent_mode_day">Per day</span>
+            <label class="rent-option" id="rentModeSixHoursOption" hidden>
+              <input type="radio" name="rentMode" value="sixHours">
+              <span data-translate="rent_mode_six_hours">6 hours</span>
             </label>
-            <label class="rent-option">
+            <label class="rent-option" id="rentModeDayOption">
+              <input type="radio" name="rentMode" value="day">
+              <span id="rentModeDayText" data-translate="rent_mode_day">Per day</span>
+            </label>
+            <label class="rent-option" id="rentModeGuidedOption">
               <input type="radio" name="rentMode" value="guided2h">
               <span id="rentGuidedModeLabel" data-translate="rent_mode_guided_2h">2 hours + guide</span>
             </label>
@@ -8047,7 +8050,7 @@ function ensureRentPopup() {
             <button type="button" class="add-guest-btn" id="rentQtyPlus">+</button>
           </div>
         </div>
-        <div class="rent-hours-wrap">
+        <div class="rent-hours-wrap" id="rentUnitsWrap">
           <span class="rent-hours-label" id="rentUnitsLabel" data-translate="rent_units_label_hour">How many hours</span>
           <div class="rent-hours-controls">
             <button type="button" class="add-guest-btn" id="rentUnitsMinus">-</button>
@@ -8064,9 +8067,6 @@ function ensureRentPopup() {
         <div class="total-right" id="rentTotalValue">USD 0</div>
         <a href="#" id="rentBookNowBtn" class="btn total-btn" data-translate="rent_book_now">Book Now</a>
       </div>
-      <p class="rent-post-note" data-translate="rent_post_purchase_note">
-        After purchase, we'll send you the central pickup address for the bikes/cart and your 2x1 Plaza de Toros voucher.
-      </p>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -8142,17 +8142,17 @@ function initRentPopupBehavior() {
   };
 
   const rentRates = {
-    bike: { hour: 10, day: 30 },
+    bike: { sixHours: 20, day: 40 },
     cart: { hour: 20, day: 50 },
     cart6: { hour: 35, day: 70 }
   };
   const GUIDE_ADDON_USD = 30;
 
   const getRateLabelByTypeAndMode = (type, mode) => {
-    if (type === "bike" && mode === "hour") return "rent_price_bike";
+    if (type === "bike" && mode === "sixHours") return "rent_price_bike_six_hours";
+    if (type === "bike" && mode === "day") return "rent_price_bike_day";
     if (type === "cart" && mode === "hour") return "rent_price_cart";
     if (type === "cart6" && mode === "hour") return "rent_price_cart6";
-    if (type === "bike" && mode === "day") return "rent_price_bike_day";
     if (type === "cart" && mode === "day") return "rent_price_cart_day";
     if (type === "cart6" && mode === "day") return "rent_price_cart6_day";
     return "";
@@ -8191,6 +8191,32 @@ function initRentPopupBehavior() {
       tr.rent_guided_help_text_cart || translations.en.rent_guided_help_text_cart;
   };
 
+  const syncRentModeForType = (selected) => {
+    const isBike = selected === "bike";
+    const hourOpt = document.getElementById("rentModeHourOption");
+    const sixOpt = document.getElementById("rentModeSixHoursOption");
+    const guidedOpt = document.getElementById("rentModeGuidedOption");
+    const dayText = document.getElementById("rentModeDayText");
+
+    if (hourOpt) hourOpt.hidden = isBike;
+    if (sixOpt) sixOpt.hidden = !isBike;
+    if (guidedOpt) guidedOpt.style.display = isBike ? "none" : "inline-flex";
+    if (dayText) {
+      dayText.dataset.translate = isBike ? "rent_mode_full_day" : "rent_mode_day";
+    }
+
+    const checked = overlay.querySelector('input[name="rentMode"]:checked')?.value || "hour";
+    if (isBike) {
+      if (checked === "hour" || checked === "guided2h") {
+        const six = overlay.querySelector('input[name="rentMode"][value="sixHours"]');
+        if (six) six.checked = true;
+      }
+    } else if (selected && checked === "sixHours") {
+      const hour = overlay.querySelector('input[name="rentMode"][value="hour"]');
+      if (hour) hour.checked = true;
+    }
+  };
+
   const renderRentPrice = () => {
     const priceBox = document.getElementById("rentPriceBox");
     const configWrap = document.getElementById("rentConfigWrap");
@@ -8198,26 +8224,26 @@ function initRentPopupBehavior() {
     const totalValue = document.getElementById("rentTotalValue");
     const totalDetail = document.getElementById("rentTotalDetail");
     const unitsLabel = document.getElementById("rentUnitsLabel");
+    const unitsWrap = document.getElementById("rentUnitsWrap");
     if (!priceBox) return;
 
     const selected = overlay.querySelector('input[name="rentType"]:checked')?.value || "";
+    syncRentModeForType(selected);
+
     const modeRaw = overlay.querySelector('input[name="rentMode"]:checked')?.value || "hour";
-    // Guided 2h option applies only to carts, not bikes.
-    const mode = selected === "bike" && modeRaw === "guided2h" ? "hour" : modeRaw;
-    if (mode !== modeRaw) {
-      const fallbackHour = overlay.querySelector('input[name="rentMode"][value="hour"]');
-      if (fallbackHour) fallbackHour.checked = true;
+    const isBike = selected === "bike";
+    let mode = modeRaw;
+    if (isBike && (mode === "hour" || mode === "guided2h")) {
+      mode = "sixHours";
     }
 
-    const guidedLabel = overlay.querySelector('input[name="rentMode"][value="guided2h"]')?.closest("label");
-    if (guidedLabel) guidedLabel.style.display = selected === "bike" ? "none" : "inline-flex";
     updateGuidedHelpText(getInitialLanguage(), selected);
 
     const qty = getCounterValue("rentQtyValue", 1);
-    const units = getCounterValue("rentUnitsValue", 1);
+    const units = isBike ? 1 : getCounterValue("rentUnitsValue", 1);
     const rateLookupMode = mode === "guided2h" ? "hour" : mode;
     const rate = rentRates[selected]?.[rateLookupMode] || 0;
-    const effectiveUnits = mode === "guided2h" ? 2 : units;
+    const effectiveUnits = isBike ? 1 : mode === "guided2h" ? 2 : units;
     const guideAddonTotal = mode === "guided2h" ? GUIDE_ADDON_USD : 0;
     const total = rate * qty * effectiveUnits + guideAddonTotal;
     const rateLabelKey =
@@ -8237,13 +8263,17 @@ function initRentPopupBehavior() {
       } else {
         priceBox.innerHTML = `<p class="rent-price-value" data-translate="${rateLabelKey}"></p>`;
       }
-      if (unitsLabel) {
+
+      if (unitsWrap) {
+        unitsWrap.hidden = isBike || mode === "guided2h";
+      }
+      if (unitsLabel && !isBike) {
         unitsLabel.dataset.translate =
           mode === "day" ? "rent_units_label_day" : "rent_units_label_hour";
       }
 
       const unitsControls = document.getElementById("rentUnitsMinus")?.parentElement;
-      if (unitsControls) {
+      if (unitsControls && !isBike) {
         unitsControls.style.opacity = mode === "guided2h" ? "0.45" : "1";
         unitsControls.style.pointerEvents = mode === "guided2h" ? "none" : "auto";
       }
@@ -8258,6 +8288,8 @@ function initRentPopupBehavior() {
           tr.rent_total_detail_guided || translations.en.rent_total_detail_guided;
         if (mode === "guided2h") {
           totalDetail.textContent = qty > 1 ? `${qty} × ${guidedPhrase}` : guidedPhrase;
+        } else if (isBike) {
+          totalDetail.textContent = `${qty} × USD ${rate}`;
         } else {
           const unitSuffix = mode === "day" ? "d" : "h";
           totalDetail.textContent = `${qty} x ${effectiveUnits}${unitSuffix} x USD ${rate}`;
@@ -8336,13 +8368,20 @@ function initRentPopupBehavior() {
     e.preventDefault();
 
     const selected = overlay.querySelector('input[name="rentType"]:checked')?.value || "";
-    const mode = overlay.querySelector('input[name="rentMode"]:checked')?.value || "hour";
-    const effectiveMode = selected === "bike" && mode === "guided2h" ? "hour" : mode;
+    syncRentModeForType(selected);
+    const modeRaw = overlay.querySelector('input[name="rentMode"]:checked')?.value || "hour";
+    const isBike = selected === "bike";
+    const effectiveMode =
+      isBike && (modeRaw === "hour" || modeRaw === "guided2h")
+        ? "sixHours"
+        : modeRaw === "guided2h"
+          ? "guided2h"
+          : modeRaw;
     const rateLookupMode = effectiveMode === "guided2h" ? "hour" : effectiveMode;
     const rate = rentRates[selected]?.[rateLookupMode] || 0;
     if (!rate) return;
     const qty = getCounterValue("rentQtyValue", 1);
-    const units = effectiveMode === "guided2h" ? 2 : getCounterValue("rentUnitsValue", 1);
+    const units = isBike ? 1 : effectiveMode === "guided2h" ? 2 : getCounterValue("rentUnitsValue", 1);
     const guideAddonTotal = effectiveMode === "guided2h" ? GUIDE_ADDON_USD : 0;
     const total = rate * qty * units + guideAddonTotal;
     const language = getInitialLanguage();
@@ -8351,14 +8390,18 @@ function initRentPopupBehavior() {
     const rateKey = getRateLabelByTypeAndMode(selected, effectiveMode);
     const optionText = tr[optionKey] || selected;
     const modeText =
-      effectiveMode === "day"
-        ? (tr.rent_mode_day || "Per day")
-        : effectiveMode === "guided2h"
-          ? (tr.rent_mode_guided_2h || "2 hours + guide")
-          : (tr.rent_mode_hour || "Per hour");
+      isBike && effectiveMode === "sixHours"
+        ? tr.rent_mode_six_hours || "6 hours"
+        : effectiveMode === "day"
+          ? isBike
+            ? tr.rent_mode_full_day || "Full day"
+            : tr.rent_mode_day || "Per day"
+          : effectiveMode === "guided2h"
+            ? tr.rent_mode_guided_2h || "2 hours + guide"
+            : tr.rent_mode_hour || "Per hour";
     const rateText =
       tr[rateKey] ||
-      `USD ${rate}/${effectiveMode === "day" ? "day" : "hour"}`;
+      (isBike ? `USD ${rate}` : `USD ${rate}/${effectiveMode === "day" ? "day" : "hour"}`);
     const requirementsText =
       selected === "bike"
         ? (tr.wa_rent_req_bike || "Passenger ID document is required.")
@@ -8378,13 +8421,12 @@ function initRentPopupBehavior() {
           people: qty,
           orderPayload: {
             option: selected,
-            mode,
+            mode: effectiveMode,
             quantity: qty,
-            units,
+            units: isBike ? 1 : units,
             unitRate: rate,
             guideAddon: guideAddonTotal,
-            total,
-            bonus: "2x1 Plaza de Toros tickets"
+            total
           }
         });
       } catch {
@@ -8398,10 +8440,9 @@ function initRentPopupBehavior() {
           `${tr.wa_rent_mode || "Type"}: ${modeText}\n` +
           `${tr.wa_rent_quantity || "Quantity"}: ${qty}\n` +
           `${tr.wa_rent_rate || "Rate"}: ${rateText}\n` +
-          `${tr.wa_rent_hours || "Hours/Days"}: ${units}\n` +
+          (isBike ? "" : `${tr.wa_rent_hours || "Hours/Days"}: ${units}\n`) +
           (guideAddonTotal > 0 ? `${tr.wa_rent_guide || "Guide"}: USD ${guideAddonTotal}\n` : "") +
           `${tr.rent_total_label || "Total"}: USD ${total}\n\n` +
-          `${tr.wa_rent_bonus || "Bonus"}: ${tr.wa_rent_bonus_text || "2x1 Plaza de Toros tickets"}\n\n` +
           `${tr.wa_rent_requirements_label || "Requirements"}: ${requirementsText}\n\n` +
           (paymentUrl
             ? `${tr.wa_payment_prompt || "To confirm the reservation, please complete the payment here:"}\n${paymentUrl}`
