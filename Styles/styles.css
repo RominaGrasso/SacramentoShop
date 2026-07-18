@@ -2003,14 +2003,18 @@
     font-weight: 700;
   }
 
-  .rent-popup-benefit {
+  .popup-box.rent-popup-box .popup-title {
+    margin-bottom: 10px;
+  }
+
+  .rent-popup-info {
     margin: 0 0 14px;
     padding: 10px 12px;
     border-radius: 10px;
-    background: rgba(255, 127, 127, 0.16);
-    border: 1px solid rgba(255, 95, 95, 0.34);
-    color: #d75454;
-    font-weight: 700;
+    background: rgba(47, 103, 163, 0.1);
+    border: 1px solid rgba(47, 103, 163, 0.28);
+    color: #2f67a3;
+    font-weight: 600;
     line-height: 1.4;
   }
 
@@ -2133,7 +2137,7 @@
 
   .rent-total-box {
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     flex-wrap: nowrap;
     gap: 14px;
   }
@@ -8767,6 +8771,14 @@
   height: 68px;
 }
 
+/* Viaggio (square): ~120px matches rendered width of S34 / Las Liebres at 54px row height */
+.partners .logos-track img[src*="logo-viaggio"] {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
 .partners .logos-slider:hover .logos-track {
   animation-play-state: paused;
 }
@@ -8774,14 +8786,6 @@
 @keyframes logosLoop {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
-}
-
-.rent-post-note {
-  margin: 8px 2px 2px;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: #506070;
-  font-weight: 600;
 }
 
 .food-post-note {
