@@ -93,7 +93,7 @@ function formatOrderPayloadFallback(op) {
   if (Array.isArray(op.rooms) && op.rooms.length > 0) {
     op.rooms.forEach((r, i) => {
       const guests = r?.guests != null ? r.guests : "—";
-      lines.push(line(`Habitación ${i + 1}`, `${guests} huésped(es)`));
+      lines.push(line(`Habitación ${i + 1}`, `${guests} visitante(s)`));
     });
     if (op.roomSubtotal != null) lines.push(line("Subtotal habitaciones", `USD ${op.roomSubtotal}`));
   }

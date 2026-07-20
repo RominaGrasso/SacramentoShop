@@ -106,7 +106,7 @@
 <li data-translate="barbot_tour_highlight_5">Local favorite</li>
 <li data-translate="barbot_tour_highlight_6">Brewmaster experience available</li>
 </ul>
-<p class="fullday-colonia-hero-price" data-translate="barbot_tour_hero_price">From USD 28 · Beer Tasting</p>
+<p class="fullday-colonia-hero-price" data-translate="barbot_tour_hero_price">From USD 35 · Beer Tasting</p>
 </div>
 </section>
 <!-- ================= CONTENT ================= -->
@@ -174,12 +174,12 @@
 <div class="barbot-price-option">
 <span class="barbot-price-option__label" data-translate="barbot_tour_tasting_option_label_1">Option 1</span>
 <p class="barbot-price-option__name" data-translate="barbot_tour_tasting_option_1_name">Our classics x4 (100 ml)</p>
-<p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_1_price">USD 28</p>
+<p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_1_price">USD 35</p>
 </div>
 <div class="barbot-price-option">
 <span class="barbot-price-option__label" data-translate="barbot_tour_tasting_option_label_2">Option 2</span>
 <p class="barbot-price-option__name" data-translate="barbot_tour_tasting_option_2_name">Our classics plus award-winning x7 (100 ml)</p>
-<p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_2_price">USD 38</p>
+<p class="barbot-price-option__price" data-translate="barbot_tour_tasting_option_2_price">USD 45</p>
 </div>
 </div>
 </article>
@@ -228,7 +228,7 @@
 </div>
 <div aria-label="BrewMaster Talk price" class="barbot-price-options barbot-price-options--single">
 <div class="barbot-price-option">
-<p class="barbot-price-option__price" data-translate="barbot_tour_brewmaster_price_amount">USD 60</p>
+<p class="barbot-price-option__price" data-translate="barbot_tour_brewmaster_price_amount">USD 65</p>
 <p class="barbot-price-option__per" data-translate="barbot_tour_brewmaster_price_per">per person</p>
 </div>
 </div>
@@ -289,7 +289,7 @@
 </section>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260528ordersfix"></script>
+<script src="../Home/index.js?v=20260720barbot65"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <div aria-hidden="true" class="popup-overlay" id="popupBarbotTour">
@@ -303,14 +303,14 @@
 <input checked="" name="barbotTourPackage" type="radio" value="classic"/>
 <span class="bruma-tier-option-text">
 <strong data-translate="barbot_tour_tier_classic">Option 1 — Our classics x4 (100 ml)</strong>
-<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_classic_price">USD 28 per person</span>
+<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_classic_price">USD 35 per person</span>
 </span>
 </label>
 <label class="bruma-tier-option">
 <input name="barbotTourPackage" type="radio" value="premium"/>
 <span class="bruma-tier-option-text">
 <strong data-translate="barbot_tour_tier_premium">Option 2 — Our classics plus award-winning x7 (100 ml)</strong>
-<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_premium_price">USD 38 per person</span>
+<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_premium_price">USD 45 per person</span>
 </span>
 </label>
 <p class="barbot-popup-group-label barbot-popup-group-label--premium" data-translate="barbot_tour_popup_brewmaster_group">BrewMaster Talk</p>
@@ -318,7 +318,7 @@
 <input name="barbotTourPackage" type="radio" value="brewmaster"/>
 <span class="bruma-tier-option-text">
 <strong data-translate="barbot_tour_tier_brewmaster">BrewMaster Talk — premium experience</strong>
-<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_brewmaster_price">USD 60 per person · 4 half pints + charcuterie board</span>
+<span class="bruma-tier-price-line" data-translate="barbot_tour_tier_brewmaster_price">USD 65 per person · 4 half pints + charcuterie board</span>
 </span>
 </label>
 <h3 class="preferences-title barbot-popup-guests-heading" data-translate="barbot_tour_guests_heading">Number of guests</h3>
@@ -379,9 +379,9 @@
   const WHATSAPP_NUMBER = "59898945542";
   const MAX_GUESTS = 12;
   const TIERS = Object.freeze({
-    classic: { price: 28, labelKey: "barbot_tour_order_tier_classic" },
-    premium: { price: 38, labelKey: "barbot_tour_order_tier_premium" },
-    brewmaster: { price: 60, labelKey: "barbot_tour_order_tier_brewmaster" }
+    classic: { price: 35, labelKey: "barbot_tour_order_tier_classic" },
+    premium: { price: 45, labelKey: "barbot_tour_order_tier_premium" },
+    brewmaster: { price: 65, labelKey: "barbot_tour_order_tier_brewmaster" }
   });
 
   /** BrewMaster Talk — from June 2026; launch on Sat 20, then 2nd Saturday each month. */
