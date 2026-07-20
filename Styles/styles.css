@@ -205,28 +205,46 @@
     line-height: 1.5;
   }
 
-  .hero-content .hero-book-tagline {
+  .hero-cta-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 6px 0 20px;
+  }
+
+  .hero-content .hero-book-tagline,
+  .hero-content .hero-weekend-promo {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    margin: 6px 0 22px;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
     padding: 11px 20px;
     max-width: 100%;
     box-sizing: border-box;
-    font-size: 1.12rem;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1.35;
     letter-spacing: 0.02em;
+    text-align: center;
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .hero-content .hero-book-tagline {
     color: #fff;
     background: linear-gradient(135deg, #66a6e6 0%, #4a8fd4 55%, #3f7fc4 100%);
     border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 999px;
     box-shadow:
       0 6px 22px rgba(47, 103, 163, 0.4),
       0 0 0 1px rgba(255, 255, 255, 0.12) inset;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
   }
 
   .hero-content .hero-book-tagline::before {
@@ -237,29 +255,13 @@
   }
 
   .hero-content .hero-weekend-promo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    margin: -6px 0 20px;
-    padding: 10px 18px;
-    max-width: 100%;
-    box-sizing: border-box;
-    font-size: 1.02rem;
-    font-weight: 700;
-    line-height: 1.35;
-    letter-spacing: 0.02em;
     color: #fff;
-    text-align: center;
     background: linear-gradient(135deg, #1F7A8C 0%, #2AA198 100%);
     border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 999px;
     box-shadow:
       0 6px 20px rgba(31, 122, 140, 0.42),
       0 0 0 1px rgba(255, 255, 255, 0.14) inset;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
   }
 
   /* Hero CTA: same pill look on <button> as former <p> promo badge */
@@ -9108,6 +9110,20 @@
   display: block;
 }
 
+.order-summary .food-menu-whatyouget--order-summary {
+  display: block;
+  margin: 0 0 0.65rem;
+  padding: 0;
+}
+
+.order-summary .order-card .plaza-summary-package-line {
+  margin-bottom: 0.1rem;
+}
+
+.order-summary .food-menu-whatyouget--order-summary ul {
+  margin-top: 0;
+}
+
 .food-menu-option:has(input[type="radio"]:checked) .food-menu-option-main {
   color: #5a95cf;
 }
@@ -9488,6 +9504,13 @@
     font-size: clamp(0.95rem, 3.8vw, 1.1rem);
   }
 
+  .hero-cta-stack {
+    width: 100%;
+    max-width: 100%;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
   .hero-content .hero-book-tagline,
   .hero-content .hero-weekend-promo {
     display: flex;
@@ -9495,23 +9518,12 @@
     max-width: 100%;
     align-self: stretch;
     justify-content: center;
-    text-align: center;
+    min-height: 46px;
+    padding: 10px 16px;
+    font-size: clamp(0.9rem, 3.4vw, 1rem);
     overflow-wrap: anywhere;
     word-wrap: break-word;
     hyphens: auto;
-  }
-
-  .hero-content .hero-book-tagline {
-    font-size: clamp(0.95rem, 3.6vw, 1.05rem);
-    padding: 10px 16px;
-    margin-bottom: 10px;
-  }
-
-  .hero-content .hero-weekend-promo {
-    font-size: clamp(0.82rem, 3.2vw, 1rem);
-    padding: 9px 14px;
-    margin: 0 0 16px;
-    line-height: 1.4;
   }
 
   .hero-buttons {
@@ -10213,14 +10225,11 @@ body.sacramento-welcome-modal-open {
     font-size: 1.35rem;
   }
 
-  .hero-content .hero-book-tagline {
+  .hero-content .hero-book-tagline,
+  .hero-content .hero-weekend-promo {
     font-size: 0.82rem;
     padding: 8px 12px;
-  }
-
-  .hero-content .hero-weekend-promo {
-    font-size: 0.78rem;
-    padding: 8px 12px;
+    min-height: 42px;
   }
 
   .card-buttons {

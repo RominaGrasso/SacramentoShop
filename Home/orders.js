@@ -3321,14 +3321,14 @@ function initExperience(config) {
           : tierWhatsappPremium ||
             (menuUpgradePrice != null
               ? `${getI18nText("tier_word_premium", "Premium")} (${curLabel} ${Number(menuUpgradePrice) || 0})`
-              : getI18nText("bruma_whatsapp_premium", "Premium (USD 50)"));
+              : getI18nText("bruma_whatsapp_premium", "Premium (USD 60)"));
       const tierWaStdLine =
         tierWhatsappStandardKey
           ? getI18nText(tierWhatsappStandardKey, tierWhatsappStandard || "")
           : tierWhatsappStandard ||
             (menuUpgradePrice != null
               ? `${getI18nText("tier_word_standard", "Standard")} (${curLabel} ${Number(pricePerPerson) || 0})`
-              : getI18nText("bruma_whatsapp_standard", "Standard (USD 40)"));
+              : getI18nText("bruma_whatsapp_standard", "Standard (USD 50)"));
       const ordersText = orders
         .map((o, i) => {
           const prefs = (Array.isArray(o.preferences) ? o.preferences : [])
@@ -3979,14 +3979,14 @@ function initExperience(config) {
             : tierSummaryPremium ||
               (menuUpgradePrice != null
                 ? `${t("tier_word_premium", "Premium")} · ${curLabel} ${Number(menuUpgradePrice) || 0}`
-                : t("bruma_order_tier_premium", "Premium · USD 50"));
+                : t("bruma_order_tier_premium", "Premium · USD 60"));
         const tierCardStd =
           tierSummaryStandardKey
             ? t(tierSummaryStandardKey, tierSummaryStandard || "")
             : tierSummaryStandard ||
               (menuUpgradePrice != null
                 ? `${t("tier_word_standard", "Standard")} · ${curLabel} ${Number(pricePerPerson) || 0}`
-                : t("bruma_order_tier_standard", "Standard · USD 40"));
+                : t("bruma_order_tier_standard", "Standard · USD 50"));
         const tierRow =
           menuUpgradePrice
             ? `<p class="order-menu-tier"><strong>${escapeHtml(t("bruma_order_tier_label", "Menu"))}:</strong> ${escapeHtml(

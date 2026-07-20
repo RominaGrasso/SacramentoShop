@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta charset="utf-8"/>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
-<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260720plazaspacing" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -100,14 +100,14 @@
         🎥 Watch Reel on @_sacramentoadventures
       </a>
 <div class="price-box">
-<h3 data-translate="plaza_page_price_line">From USD 80 (1 person) · USD 120 (2 people)</h3>
+<h3 data-translate="plaza_page_price_line">From USD 80 (1 person) · USD 160 (2 people)</h3>
 </div>
 <div class="coffee-includes">
 <h3 data-translate="plaza_page_included_title">What's included</h3>
 <ul>
 <li data-translate="plaza_page_include_1">✔ Private transfer — your vehicle waits outside the bullring while you tour inside</li>
 <li data-translate="plaza_page_include_2">✔ Entrance tickets to Plaza de Toros</li>
-<li data-translate="plaza_page_include_4">✔ A partner café experience (menu below)</li>
+<li data-translate="plaza_page_include_4">✔ Experiencia en cafe Premium de Barrio Histórico (menú abajo)</li>
 <li data-translate="plaza_page_include_5">✔ Reserved table</li>
 </ul>
 <div class="order-start" id="reservar">
@@ -135,16 +135,15 @@
 <section class="coffee-gallery">
 <h2 data-translate="plaza_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
-<img alt="Electric taxi in Colonia" decoding="async" height="220" src="../Assets/images/electricoroginal.jpg" width="1200"/>
-<img alt="Electric taxi in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/electricoriginal2.jpg" width="1200"/>
-<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza.webp" width="1200"/>
+<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" src="../Assets/images/plaza.webp" width="1200"/>
 <img alt="Inside Plaza de Toros" decoding="async" height="220" loading="lazy" src="../Assets/images/plaz1.webp" width="1200"/>
-<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza3.jpg" width="1200"/>
 <img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza11.jpg" width="1200"/>
 <img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita1.jpg" width="1200"/>
 <img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita2.jpg" width="1200"/>
 <img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita3.jpg" width="1200"/>
 <img alt="Historic Quarter café" decoding="async" height="220" loading="lazy" src="../Assets/images/anita4.jpg" width="1200"/>
+<img alt="Electric taxi in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/electricoroginal.jpg" width="1200"/>
+<img alt="Electric taxi in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/electricoriginal2.jpg" width="1200"/>
 </div>
 </section>
 <!-- ================= ACTIONS ================= -->
@@ -155,7 +154,7 @@
 </section>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260528ordersfix"></script>
+<script src="../Home/index.js?v=20260720plaza80"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <div aria-hidden="true" class="popup-overlay" id="popupPlazaAnita">
@@ -198,7 +197,7 @@
 <label class="food-menu-option-label">
 <input name="plazaAnitaPackage" type="radio" value="anita_2"/>
 <span class="food-menu-option-main" data-translate="plaza_anita_pkg_2_title">For 2 people</span>
-<span class="food-menu-option-sub" data-translate="plaza_anita_pkg_2_price">USD 120</span>
+<span class="food-menu-option-sub" data-translate="plaza_anita_pkg_2_price">USD 160</span>
 </label>
 <div class="food-menu-whatyouget">
 <ul>
@@ -223,8 +222,28 @@
   const VISIT_DATE_KEY = "selectedDatePlazaAnita";
   const WHATSAPP_NUMBER = "59898945542";
   const PACKAGES = Object.freeze({
-    anita_1: { price: 80, guests: 1, labelKey: "plaza_anita_pkg_1_title" },
-    anita_2: { price: 120, guests: 2, labelKey: "plaza_anita_pkg_2_title" }
+    anita_1: {
+      price: 80,
+      guests: 1,
+      labelKey: "plaza_anita_pkg_1_title",
+      itemKeys: [
+        "plaza_anita_pkg_1_item_1",
+        "plaza_anita_pkg_1_item_2",
+        "plaza_anita_pkg_1_item_3",
+        "plaza_anita_pkg_1_item_4"
+      ]
+    },
+    anita_2: {
+      price: 160,
+      guests: 2,
+      labelKey: "plaza_anita_pkg_2_title",
+      itemKeys: [
+        "plaza_anita_pkg_2_item_1",
+        "plaza_anita_pkg_2_item_2",
+        "plaza_anita_pkg_2_item_3",
+        "plaza_anita_pkg_2_item_4"
+      ]
+    }
   });
   const PICKUP_TIMES = Object.freeze(["10:45", "11:45", "12:45", "13:45", "14:45", "15:45"]);
 
@@ -324,6 +343,15 @@
   const packagePrice = (pkg) => (PACKAGES[pkg] || PACKAGES.anita_1).price;
 
   const packageGuests = (pkg) => (PACKAGES[pkg] || PACKAGES.anita_1).guests;
+
+  const packageItemsHtml = (pkg) => {
+    const spec = PACKAGES[pkg] || PACKAGES.anita_1;
+    const items = (spec.itemKeys || [])
+      .map((key) => `<li>${t(key, key)}</li>`)
+      .join("");
+    if (!items) return "";
+    return `<div class="food-menu-whatyouget food-menu-whatyouget--order-summary"><ul>${items}</ul></div>`;
+  };
 
   const getVisitDate = () => {
     const fromInput = visitDateInput?.value?.trim();
@@ -454,7 +482,8 @@
     card.className = "order-card";
     card.innerHTML = `
       <p><strong>${t("plaza_summary_pickup_label", "Pickup time")}:</strong> ${cfg.pickupTime}</p>
-      <p><strong>${t("plaza_summary_package_label", "Menu")}:</strong> ${packageLabel(cfg.package)}</p>
+      <p class="plaza-summary-package-line"><strong>${t("plaza_summary_package_label", "Menu")}:</strong> ${packageLabel(cfg.package)}</p>
+      ${packageItemsHtml(cfg.package)}
       <p><strong>${t("plaza_summary_guests_label", "Guests")}:</strong> ${packageGuests(cfg.package)}</p>
     `;
     summary.appendChild(card);
