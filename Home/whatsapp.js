@@ -331,6 +331,7 @@
     scope.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"]').forEach((anchor) => {
       const href = anchor.getAttribute("href") || "";
       if (!sacramentoIsOfficialWhatsAppUrl(href)) return;
+      if (anchor.classList.contains("home-site-footer__wa-link")) return;
       if (anchor.getAttribute("target") === "_blank") anchor.removeAttribute("target");
     });
   }
@@ -369,6 +370,11 @@
       anchor.setAttribute("href", href);
       if (anchor.getAttribute("target") === "_blank") anchor.removeAttribute("target");
     });
+    scope.querySelectorAll("a.home-site-footer__wa-link").forEach((anchor) => {
+      anchor.setAttribute("href", href);
+      anchor.setAttribute("target", "_blank");
+      anchor.setAttribute("rel", "noopener noreferrer");
+    });
   }
 
   window.SACRAMENTO_TAXI_WHATSAPP_NUMBER = SACRAMENTO_TAXI_WHATSAPP_NUMBER;
@@ -385,6 +391,9 @@
       sacramentoInitTaxiFloatLinks(document);
       sacramentoInitWhatsAppFloatLinks(document);
       sacramentoFixWhatsAppAnchorTargets(document);
+      if (typeof window.sacramentoEnhanceWhatsAppFloatButtons === "function") {
+        window.sacramentoEnhanceWhatsAppFloatButtons(document);
+      }
     };
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", run);
@@ -393,6 +402,9 @@
     }
     document.addEventListener("sacramento:setLanguage", () => {
       sacramentoInitWhatsAppFloatLinks(document);
+      if (typeof window.sacramentoEnhanceWhatsAppFloatButtons === "function") {
+        window.sacramentoEnhanceWhatsAppFloatButtons(document);
+      }
     });
   }
 })();

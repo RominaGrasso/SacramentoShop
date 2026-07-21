@@ -361,8 +361,8 @@
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
-    tours: ["home-walking-tour-card"],
-    fullday: ["home-fullday-colonia-card", "home-quinton-card"],
+    tours: ["home-walking-tour-card", "home-traslado-plaza-letras-card"],
+    fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
       "home-vinos-card",
       "home-s34-gin-card",
@@ -375,12 +375,14 @@
     lodging: ["home-card-hotel-royal", "home-card-mision-bruma"],
     dining: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
     gastronomy: ["home-vinos-card", "home-quinton-card"],
-    day: ["home-fullday-colonia-card"],
+    day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
   const CARD_ID_NAV = {
     "home-walking-tour-card": ["tours"],
     "home-fullday-colonia-card": ["fullday", "day"],
+    "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
+    "home-bike-card": ["tours"],
     "home-card-hotel-royal": ["lodging", "night"],
     "home-card-mision-bruma": ["lodging", "gastronomy"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
@@ -820,6 +822,7 @@
         card.style.display = "none";
       }
     });
+    window.sacramentoSyncHomeExperiencesMore?.();
   }
 
   function clearMainListFilter() {
@@ -830,6 +833,7 @@
       card.classList.remove("card--nav-highlight");
       card.style.removeProperty("display");
     });
+    window.sacramentoSyncHomeExperiencesMore?.();
   }
 
   function setActiveChip(navKey) {
@@ -1084,6 +1088,7 @@
         card.style.removeProperty("display");
       }
     });
+    window.sacramentoSyncHomeExperiencesMore?.();
   }
 
   function applyActivitySearch(rawQuery) {
@@ -1126,10 +1131,13 @@
         if (current && current === query) scrollToExperiences();
       }, 380);
     }
+
+    window.sacramentoSyncHomeExperiencesMore?.();
   }
 
   window.sacramentoClearHomeActivitySearch = clearActivitySearch;
   window.sacramentoApplyHomeActivitySearch = applyActivitySearch;
+  window.sacramentoGetHomeExperienceCards = getExperienceCards;
 
   function initActivitySearch() {
     const input = document.getElementById("homeActivitySearch");

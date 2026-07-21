@@ -26,6 +26,8 @@ const translations = {
       home_activity_search_placeholder: "Search activities…",
       home_activity_search_clear: "Clear search",
       home_activity_search_empty: "No activities match your search.",
+      home_experiences_more_btn: "See more activities",
+      home_experiences_less_btn: "Show fewer activities",
       home_card_price_from: "From",
       home_card_price_per_person: "per person",
       home_card_price_per_night: "per night",
@@ -44,6 +46,10 @@ const translations = {
       home_reviews_next_aria: "Next review",
       home_reviews_read_more: "Read more",
       home_reviews_read_less: "Read less",
+      home_review_text_sonia_alves_oberto:
+        "Beautiful experience, highly recommended! The staff is very pleasant and kind — they make you feel at home! I'd like to highlight their punctuality and responsibility! Thank you for such a lovely experience!!",
+      home_review_text_jonatas_victor:
+        "Very helpful — they responded even late at night. The horseback ride and the experiences are really worth it.",
       home_review_text_maria_mp:
         "100% recommendable with excellent attention from booking through the end of the tour. My guide Adrián was great at explaining, keeping our interest and answering questions. I definitely know much more about the city and country thanks to the tour. I also recommend adding the mate experience for a relaxed chance to chat and learn more.",
       home_review_text_carlos_tomezzoli:
@@ -96,6 +102,22 @@ const translations = {
       home_category_modal_view_list: "View in full list",
       home_category_modal_count: "{count} experiences",
       home_category_modal_empty: "No experiences in this category right now.",
+      home_historic_map_title: "Discover the origins of Colonia",
+      home_historic_map_subtitle: "Colonia del Sacramento in 1680",
+      home_historic_map_text:
+        "Founded by the Portuguese in 1680, Colonia del Sacramento grew around its fortified historic quarter, today recognized as a UNESCO World Heritage Site.",
+      home_historic_map_btn: "Explore our historic tours",
+      home_historic_map_caption: "Historical representation of Colonia del Sacramento, 1680.",
+      home_historic_map_img_alt: "Historical map of Colonia del Sacramento, 1680",
+      home_trust_top_rated_title: "Top-rated experiences",
+      home_trust_top_rated_desc: "Trusted by travelers from around the world.",
+      home_trust_guides_title: "Local expert guides",
+      home_trust_guides_desc: "Authentic experiences in Colonia del Sacramento.",
+      home_trust_payments_title: "Secure payments",
+      home_trust_payments_desc: "Visa, Mastercard & American Express accepted.",
+      home_trust_official_title: "Official Tour Operator",
+      home_trust_official_desc: "Registered with Uruguay's Ministry of Tourism.",
+      home_trust_payment_methods: "Accepted payment methods",
       trust_certified: "Certified guides by Uruguay Ministry of Tourism",
       trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
       trust_local_experts: "Local experts from Colonia del Sacramento",
@@ -182,7 +204,7 @@ const translations = {
       home_chivito_gal_alt_3: "Chivito and local flavors at a local grill in the Historic Quarter",
       home_chivito_gal_alt_4: "a local grill in the Historic Quarter dining experience in Colonia",
       home_chivito_gal_alt_5: "Reserved table",
-      home_vinos_title: "Wine Tasting in the Historic Quarter",
+      home_vinos_title: "Wine Tasting with Empanadas in the Historic Quarter",
       home_vinos_meta_1: "Uruguayan wines",
       home_vinos_meta_2: "Historic Quarter location",
       home_vinos_meta_3: "Perfect after a guided tour",
@@ -198,8 +220,8 @@ const translations = {
       home_vinos_gal_alt_5: "Wine tasting at the wine shop",
       home_vinos_gal_alt_6: "Wine experience at the wine shop",
       home_vinos_gal_alt_7: "Empanadas at the wine shop",
-      vinos_doc_title: "Wine Tasting in the Historic Quarter | Sacramento Adventures",
-      vinos_experience_name: "Wine Tasting in the Historic Quarter",
+      vinos_doc_title: "Wine Tasting with Empanadas in the Historic Quarter | Sacramento Adventures",
+      vinos_experience_name: "Wine Tasting with Empanadas in the Historic Quarter",
       vinos_about_title: "About this experience",
       vinos_about_p:
         "Discover a unique wine experience at the wine shop, a charming wine shop in the heart of Colonia del Sacramento's Historic Quarter. Surrounded by cobblestone streets and colonial architecture, taste selected Uruguayan wines in a cozy, authentic setting — the perfect complement after a guided tour.",
@@ -242,7 +264,7 @@ const translations = {
       vinos_pkg_opt3_price: "USD 30",
       vinos_pkg_opt3_b1: "5 Uruguayan wine tastings",
       vinos_pkg_shared_empanadas: "3 empanadas included",
-      vinos_wa_intro: "Hello! I'd like to book Wine Tasting in the Historic Quarter:",
+      vinos_wa_intro: "Hello! I'd like to book Wine Tasting with Empanadas in the Historic Quarter:",
       home_s34_title: "Artisan Gin Distillery Experience",
       home_s34_meta_1: "45 min to 2 h 45 min",
       home_s34_meta_2: "Internationally awarded distillery",
@@ -1354,6 +1376,19 @@ const translations = {
         "Centro de Salud Colonia (outpatient polyclinic, ASSE) · 18 de Julio 462 · Weekday hours typical; call to confirm",
       services_health_hospital_meta:
         "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Public hospital — emergencies and inpatient care",
+      home_footer_official:
+        "Official Tour Operator registered with Uruguay's Ministry of Tourism.",
+      home_footer_contact_title: "Contact",
+      home_footer_contact_phone_label: "Contact number:",
+      home_footer_contact_email_label: "Email:",
+      home_footer_contact_instagram_label: "Instagram:",
+      home_footer_useful_title: "Useful information",
+      home_footer_terms: "Terms and Conditions",
+      home_footer_privacy: "Privacy Policy",
+      home_footer_cancellation: "Cancellation Policy",
+      home_footer_useful_services: "Useful services in Colonia",
+      home_footer_copyright: "© 2026 Sacramento Adventures. All rights reserved.",
+      home_footer_location: "Colonia del Sacramento, Uruguay.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Often 24 hours",
       pharmacy_c2_meta: "Gral. Flores 450 (corner Alberto Méndez) · Typically daily 8:00–22:00",
       pharmacy_c3_meta: "Gral. Flores 329 · Check current hours",
@@ -1738,6 +1773,7 @@ const translations = {
       bruma_map_iframe_title: "Map: the restaurant, Colonia del Sacramento",
       wa_float_aria: "WhatsApp",
       wa_float_text: "Hello! I'm interested in your experiences in Colonia.",
+      wa_float_cta: "Contact us!",
       bruma_back_home: "Back to Home",
       bruma_popup_title: "Chef's curated menu:",
       bruma_popup_starter: "Starter",
@@ -2672,6 +2708,8 @@ const translations = {
       home_activity_search_placeholder: "Buscar actividades…",
       home_activity_search_clear: "Borrar búsqueda",
       home_activity_search_empty: "No hay actividades que coincidan con tu búsqueda.",
+      home_experiences_more_btn: "Ver más actividades",
+      home_experiences_less_btn: "Ver menos actividades",
       home_card_price_from: "Desde",
       home_card_price_per_person: "por persona",
       home_card_price_per_night: "por noche",
@@ -2690,6 +2728,10 @@ const translations = {
       home_reviews_next_aria: "Reseña siguiente",
       home_reviews_read_more: "Leer más",
       home_reviews_read_less: "Leer menos",
+      home_review_text_sonia_alves_oberto:
+        "Hermosa experiencia, súper recomendable! El personal muy ameno, amable, te hacen sentir como en casa! Destacar la puntualidad y responsabilidad! Gracias por tan linda experiencia!!",
+      home_review_text_jonatas_victor:
+        "Muy atentos, respondieron hasta tarde de la noche. Vale mucho el paseo a caballo y las experiencias.",
       home_review_text_maria_mp:
         "Recomendable al 100% y excelente la atención desde el proceso de reserva hasta el final del tour. Mi guía, Adrián, fue muy bueno explicando, manteniendo el interés y contestando a preguntas. Definitivamente tengo mayor conocimiento de la ciudad y el país gracias al tour. Además, recomiendo acompañarlo con la experiencia del mate que da una oportunidad excelente para conversar en un ambiente distendido y conocer más.",
       home_review_text_carlos_tomezzoli:
@@ -2742,6 +2784,22 @@ const translations = {
       home_category_modal_view_list: "Ver en la lista completa",
       home_category_modal_count: "{count} experiencias",
       home_category_modal_empty: "No hay experiencias en esta categoría por ahora.",
+      home_historic_map_title: "Descubrí los orígenes de Colonia",
+      home_historic_map_subtitle: "Colonia del Sacramento en 1680",
+      home_historic_map_text:
+        "Fundada por los portugueses en 1680, Colonia del Sacramento creció alrededor de su barrio histórico fortificado, hoy reconocido como Patrimonio Mundial por la UNESCO.",
+      home_historic_map_btn: "Conocé nuestros tours históricos",
+      home_historic_map_caption: "Representación histórica de Colonia del Sacramento, 1680.",
+      home_historic_map_img_alt: "Mapa histórico de Colonia del Sacramento, 1680",
+      home_trust_top_rated_title: "Experiencias destacadas",
+      home_trust_top_rated_desc: "Elegidas por viajeros de todo el mundo.",
+      home_trust_guides_title: "Guías locales expertos",
+      home_trust_guides_desc: "Experiencias auténticas en Colonia del Sacramento.",
+      home_trust_payments_title: "Pagos seguros",
+      home_trust_payments_desc: "Aceptamos Visa, Mastercard y American Express.",
+      home_trust_official_title: "Operador Turístico Oficial",
+      home_trust_official_desc: "Registrado ante el Ministerio de Turismo del Uruguay.",
+      home_trust_payment_methods: "Medios de pago aceptados",
       trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
       trust_multilingual: "Tours multilingües: español, inglés y portugués",
       trust_local_experts: "Expertos locales en Colonia del Sacramento",
@@ -2829,7 +2887,7 @@ const translations = {
       home_chivito_gal_alt_3: "Chivito y sabores locales en una parrilla local del Barrio Histórico",
       home_chivito_gal_alt_4: "Experiencia gastronómica en una parrilla local del Barrio Histórico, Colonia",
       home_chivito_gal_alt_5: "Mesa reservada en una parrilla local del Barrio Histórico",
-      home_vinos_title: "Cata de Vinos en el Barrio Histórico",
+      home_vinos_title: "Cata de Vinos con Empanadas en el Barrio Histórico",
       home_vinos_meta_1: "Vinos uruguayos",
       home_vinos_meta_2: "Ubicación en el Barrio Histórico",
       home_vinos_meta_3: "Ideal después de un tour guiado",
@@ -2845,8 +2903,8 @@ const translations = {
       home_vinos_gal_alt_5: "Cata de vinos en el Barrio Histórico",
       home_vinos_gal_alt_6: "Experiencia de vinos en una vinoteca del Barrio Histórico",
       home_vinos_gal_alt_7: "Empanadas en una vinoteca del Barrio Histórico",
-      vinos_doc_title: "Cata de vinos en el Barrio Histórico | Sacramento Adventures",
-      vinos_experience_name: "Cata de vinos en el Barrio Histórico",
+      vinos_doc_title: "Cata de vinos con empanadas en el Barrio Histórico | Sacramento Adventures",
+      vinos_experience_name: "Cata de vinos con empanadas en el Barrio Histórico",
       vinos_about_title: "Sobre esta experiencia",
       vinos_about_p:
         "Descubrí una experiencia única en una vinoteca del Barrio Histórico, una vinoteca encantadora en el corazón del Barrio Histórico de Colonia del Sacramento. Rodeado de calles empedradas y arquitectura colonial, probá vinos uruguayos seleccionados en un ambiente acogedor y auténtico — el complemento perfecto después de un tour guiado.",
@@ -2889,7 +2947,7 @@ const translations = {
       vinos_pkg_opt3_price: "USD 30",
       vinos_pkg_opt3_b1: "5 degustaciones de vinos uruguayos",
       vinos_pkg_shared_empanadas: "3 empanadas incluidas",
-      vinos_wa_intro: "¡Hola! Me gustaría reservar Cata de vinos en el Barrio Histórico:",
+      vinos_wa_intro: "¡Hola! Me gustaría reservar Cata de vinos con empanadas en el Barrio Histórico:",
       home_s34_title: "Experiencia en Destilería Artesanal de Gin",
       home_s34_meta_1: "45 min a 2 h 45 min",
       home_s34_meta_2: "Destilería premiada internacionalmente",
@@ -3998,6 +4056,19 @@ const translations = {
         "Centro de Salud Colonia (policlínica ASSE) · 18 de Julio 462 · Horario habitual entre semana; llamá para confirmar",
       services_health_hospital_meta:
         "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Hospital público — urgencias e internación",
+      home_footer_official:
+        "Operador Turístico Oficial registrado ante el Ministerio de Turismo del Uruguay.",
+      home_footer_contact_title: "Contacto",
+      home_footer_contact_phone_label: "Número de contacto:",
+      home_footer_contact_email_label: "Email:",
+      home_footer_contact_instagram_label: "Instagram:",
+      home_footer_useful_title: "Información útil",
+      home_footer_terms: "Términos y condiciones",
+      home_footer_privacy: "Política de privacidad",
+      home_footer_cancellation: "Política de cancelación",
+      home_footer_useful_services: "Servicios útiles en Colonia",
+      home_footer_copyright: "© 2026 Sacramento Adventures. Todos los derechos reservados.",
+      home_footer_location: "Colonia del Sacramento, Uruguay.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Suele atender 24 hs",
       pharmacy_c2_meta: "Gral. Flores 450 (esq. Alberto Méndez) · Habitualmente todos los días 8 a 22 hs",
       pharmacy_c3_meta: "Gral. Flores 329 · Consultá horario actual",
@@ -4383,6 +4454,7 @@ const translations = {
       bruma_map_iframe_title: "Mapa: el restaurante, Colonia del Sacramento",
       wa_float_aria: "WhatsApp",
       wa_float_text: "¡Hola! Me interesan sus experiencias en Colonia.",
+      wa_float_cta: "¡Contáctanos!",
       bruma_back_home: "Volver al inicio",
       bruma_popup_title: "Menú curado por el chef:",
       bruma_popup_starter: "Entrada",
@@ -5318,6 +5390,8 @@ const translations = {
       home_activity_search_placeholder: "Buscar atividades…",
       home_activity_search_clear: "Limpar busca",
       home_activity_search_empty: "Nenhuma atividade corresponde à sua busca.",
+      home_experiences_more_btn: "Ver mais atividades",
+      home_experiences_less_btn: "Ver menos atividades",
       home_card_price_from: "A partir de",
       home_card_price_per_person: "por pessoa",
       home_card_price_per_night: "por noite",
@@ -5336,6 +5410,10 @@ const translations = {
       home_reviews_next_aria: "Próxima avaliação",
       home_reviews_read_more: "Ler mais",
       home_reviews_read_less: "Ler menos",
+      home_review_text_sonia_alves_oberto:
+        "Experiência linda, super recomendável! A equipe é muito agradável e gentil — fazem você se sentir em casa! Destaco a pontualidade e a responsabilidade! Obrigada por uma experiência tão bonita!!",
+      home_review_text_jonatas_victor:
+        "Muito solícitos, responderam até tarde da noite. Vale muito o passeio de cavalo e as experiências.",
       home_review_text_maria_mp:
         "Recomendo 100% e a atenção foi excelente desde a reserva até o final do tour. Meu guia Adrián foi ótimo explicando, mantendo o interesse e respondendo perguntas. Definitivamente aprendi muito mais sobre a cidade e o país graças ao tour. Também recomendo incluir a experiência do mate para conversar num clima descontraído e conhecer mais.",
       home_review_text_carlos_tomezzoli:
@@ -5388,6 +5466,22 @@ const translations = {
       home_category_modal_view_list: "Ver na lista completa",
       home_category_modal_count: "{count} experiências",
       home_category_modal_empty: "Não há experiências nesta categoria no momento.",
+      home_historic_map_title: "Descubra as origens de Colônia",
+      home_historic_map_subtitle: "Colônia do Sacramento em 1680",
+      home_historic_map_text:
+        "Fundada pelos portugueses em 1680, Colônia do Sacramento cresceu ao redor de seu bairro histórico fortificado, hoje reconhecido como Patrimônio Mundial pela UNESCO.",
+      home_historic_map_btn: "Conheça nossos passeios históricos",
+      home_historic_map_caption: "Representação histórica de Colônia do Sacramento, 1680.",
+      home_historic_map_img_alt: "Mapa histórico de Colônia do Sacramento, 1680",
+      home_trust_top_rated_title: "Experiências bem avaliadas",
+      home_trust_top_rated_desc: "Escolhidas por viajantes de todo o mundo.",
+      home_trust_guides_title: "Guias locais especializados",
+      home_trust_guides_desc: "Experiências autênticas em Colônia do Sacramento.",
+      home_trust_payments_title: "Pagamentos seguros",
+      home_trust_payments_desc: "Aceitamos Visa, Mastercard e American Express.",
+      home_trust_official_title: "Operadora de Turismo Oficial",
+      home_trust_official_desc: "Registrada no Ministério do Turismo do Uruguai.",
+      home_trust_payment_methods: "Formas de pagamento aceitas",
       trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
       trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
       trust_local_experts: "Especialistas locais em Colonia del Sacramento",
@@ -5474,7 +5568,7 @@ const translations = {
       home_chivito_gal_alt_3: "Chivito e sabores locais no churrascaria local",
       home_chivito_gal_alt_4: "Experiência gastronômica no churrascaria local, Colonia",
       home_chivito_gal_alt_5: "Mesa reservada no churrascaria local",
-      home_vinos_title: "Degustação de vinhos no Bairro Histórico",
+      home_vinos_title: "Degustação de vinhos com empanadas no Bairro Histórico",
       home_vinos_meta_1: "Vinhos uruguaios",
       home_vinos_meta_2: "Localização no Bairro Histórico",
       home_vinos_meta_3: "Perfeito após um tour guiado",
@@ -5490,8 +5584,8 @@ const translations = {
       home_vinos_gal_alt_5: "Degustação de vinhos no Bairro Histórico",
       home_vinos_gal_alt_6: "Experiência de vinhos na vinícola do Bairro Histórico",
       home_vinos_gal_alt_7: "Empanadas na vinícola do Bairro Histórico",
-      vinos_doc_title: "Degustação de vinhos no Bairro Histórico | Sacramento Adventures",
-      vinos_experience_name: "Degustação de vinhos no Bairro Histórico",
+      vinos_doc_title: "Degustação de vinhos com empanadas no Bairro Histórico | Sacramento Adventures",
+      vinos_experience_name: "Degustação de vinhos com empanadas no Bairro Histórico",
       vinos_about_title: "Sobre esta experiência",
       vinos_about_p:
         "Descubra uma experiência única na vinícola do Bairro Histórico, uma loja de vinhos charmosa no coração do Bairro Histórico de Colonia del Sacramento. Cercada por ruas de pedra e arquitetura colonial, prove vinhos uruguaios selecionados em um ambiente acolhedor e autêntico — o complemento perfeito após um tour guiado.",
@@ -5534,7 +5628,7 @@ const translations = {
       vinos_pkg_opt3_price: "USD 30",
       vinos_pkg_opt3_b1: "5 degustações de vinhos uruguaios",
       vinos_pkg_shared_empanadas: "3 empanadas incluídas",
-      vinos_wa_intro: "Olá! Gostaria de reservar Degustação de vinhos no Bairro Histórico:",
+      vinos_wa_intro: "Olá! Gostaria de reservar Degustação de vinhos com empanadas no Bairro Histórico:",
       home_s34_title: "Experiência em destilaria artesanal de gin",
       home_s34_meta_1: "45 min a 2 h 45 min",
       home_s34_meta_2: "Destilaria premiada internacionalmente",
@@ -6642,6 +6736,19 @@ const translations = {
         "Centro de Saúde Colonia (policlínica ASSE) · 18 de Julio 462 · Horário típico em dias úteis; ligue para confirmar",
       services_health_hospital_meta:
         "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Hospital público — urgências e internação",
+      home_footer_official:
+        "Operadora de Turismo Oficial registrada no Ministério do Turismo do Uruguai.",
+      home_footer_contact_title: "Contato",
+      home_footer_contact_phone_label: "Número de contato:",
+      home_footer_contact_email_label: "E-mail:",
+      home_footer_contact_instagram_label: "Instagram:",
+      home_footer_useful_title: "Informações úteis",
+      home_footer_terms: "Termos e condições",
+      home_footer_privacy: "Política de privacidade",
+      home_footer_cancellation: "Política de cancelamento",
+      home_footer_useful_services: "Serviços úteis em Colônia",
+      home_footer_copyright: "© 2026 Sacramento Adventures. Todos os direitos reservados.",
+      home_footer_location: "Colônia do Sacramento, Uruguai.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Frequentemente 24 h",
       pharmacy_c2_meta: "Gral. Flores 450 (esq. Alberto Méndez) · Em geral todos os dias 8h–22h",
       pharmacy_c3_meta: "Gral. Flores 329 · Confirme o horário atual",
@@ -7027,6 +7134,7 @@ const translations = {
       bruma_map_iframe_title: "Mapa: o restaurante, Colonia del Sacramento",
       wa_float_aria: "WhatsApp",
       wa_float_text: "Olá! Tenho interesse nas experiências em Colonia.",
+      wa_float_cta: "Fale conosco!",
       bruma_back_home: "Voltar para o início",
       bruma_popup_title: "Menu selecionado pelo chef:",
       bruma_popup_starter: "Entrada",
@@ -9468,11 +9576,19 @@ function initRentPopupBehavior() {
             card.style.display = "none";
           }
         });
+
+        window.sacramentoSyncHomeExperiencesMore?.();
       });
     });
   
   
     scheduleCardSeeMoreRefresh(document.getElementById("experiences") || document);
+
+    document.querySelectorAll(".home-site-footer__link--stub").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+      });
+    });
   }
 
   function sacramentoRunWhenDomReady(fn) {
