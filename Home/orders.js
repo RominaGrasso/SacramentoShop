@@ -7919,6 +7919,9 @@ if (typeof document !== "undefined") {
     sacramentoInitTaxiFloatLinks(document);
     sacramentoInitWhatsAppFloatLinks(document);
     sacramentoFixWhatsAppAnchorTargets(document);
+    if (typeof window.sacramentoEnhanceWhatsAppFloatButtons === "function") {
+      window.sacramentoEnhanceWhatsAppFloatButtons(document);
+    }
   };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", runWaAnchorFix);
@@ -7927,8 +7930,20 @@ if (typeof document !== "undefined") {
   }
   document.addEventListener("sacramento:setLanguage", () => {
     sacramentoInitWhatsAppFloatLinks(document);
+    if (typeof window.sacramentoEnhanceWhatsAppFloatButtons === "function") {
+      window.sacramentoEnhanceWhatsAppFloatButtons(document);
+    }
   });
 }
+
+(function sacramentoLoadWhatsAppFloatUi() {
+  if (typeof window.sacramentoEnhanceWhatsAppFloatButtons === "function") return;
+  if (document.querySelector('script[src*="whatsapp-float-ui.js"]')) return;
+  const script = document.createElement("script");
+  const inActivities = /\/Actividades\//i.test(window.location.pathname);
+  script.src = `${inActivities ? "../Home/" : ""}whatsapp-float-ui.js?v=20260720wa1`;
+  document.head.appendChild(script);
+})();
 
 /** Activity pages load orders.js without payments-api-config.js — same Render prewarm once per session. */
 (function sacramentoPrewarmPaymentsBackendFromOrders() {
