@@ -13,3 +13,13 @@
   from = "/home/"
   to = "/Home/index.html"
   status = 302
+
+[[redirects]]
+  from = "/paquetes"
+  to = "/paquetes/index.html"
+  status = 302
+
+[[redirects]]
+  from = "/paquetes/"
+  to = "/paquetes/index.html"
+  status = 302

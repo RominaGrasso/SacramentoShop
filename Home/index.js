@@ -118,9 +118,9 @@ const translations = {
       home_trust_official_title: "Official Tour Operator",
       home_trust_official_desc: "Registered with Uruguay's Ministry of Tourism.",
       home_trust_payment_methods: "Accepted payment methods",
-      trust_certified: "Certified guides by Uruguay Ministry of Tourism",
-      trust_multilingual: "Multilingual tours: Spanish, English & Portuguese",
-      trust_local_experts: "Local experts from Colonia del Sacramento",
+      trust_certified: "Officially Registered Tour Operator",
+      trust_multilingual: "Tours in Spanish, English & Portuguese",
+      trust_inclusion: "Respect, Inclusion & Authentic Experiences",
       hero_btn_day: "Just for a Day",
       day_page_hero_title: "☀️ Just for a Day",
       day_page_intro_heading: "Perfect daytime experiences",
@@ -1378,17 +1378,37 @@ const translations = {
         "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Public hospital — emergencies and inpatient care",
       home_footer_official:
         "Official Tour Operator registered with Uruguay's Ministry of Tourism.",
+      home_footer_tagline:
+        "Authentic local experiences in Colonia del Sacramento.",
       home_footer_contact_title: "Contact",
-      home_footer_contact_phone_label: "Contact number:",
-      home_footer_contact_email_label: "Email:",
-      home_footer_contact_instagram_label: "Instagram:",
-      home_footer_useful_title: "Useful information",
+      home_footer_explore_title: "Explore",
+      home_footer_experiences: "Our Experiences",
+      home_footer_packages: "Travel Packages",
+      home_footer_about: "About Us",
       home_footer_terms: "Terms and Conditions",
       home_footer_privacy: "Privacy Policy",
       home_footer_cancellation: "Cancellation Policy",
-      home_footer_useful_services: "Useful services in Colonia",
+      home_footer_useful_services: "Useful Services",
       home_footer_copyright: "© 2026 Sacramento Adventures. All rights reserved.",
       home_footer_location: "Colonia del Sacramento, Uruguay.",
+      home_footer_motto: "Designed to help travelers discover the real Colonia.",
+      home_footer_social_instagram_aria: "Follow Sacramento Adventures on Instagram",
+      home_footer_social_facebook_aria: "Follow Sacramento Adventures on Facebook",
+      home_footer_social_whatsapp_aria: "Contact Sacramento Adventures on WhatsApp",
+      legal_terms_doc_title: "Terms and Conditions | Sacramento Adventures",
+      legal_terms_title: "Terms and Conditions",
+      legal_terms_lead:
+        "These terms govern bookings and participation in Sacramento Adventures experiences in Colonia del Sacramento.",
+      legal_privacy_doc_title: "Privacy Policy | Sacramento Adventures",
+      legal_privacy_title: "Privacy Policy",
+      legal_privacy_lead:
+        "We respect your privacy and handle personal data responsibly when you contact us or book an experience.",
+      legal_cancellation_doc_title: "Cancellation Policy | Sacramento Adventures",
+      legal_cancellation_title: "Cancellation Policy",
+      legal_cancellation_lead:
+        "Cancellation and rescheduling rules may vary by experience. Contact us as soon as possible if your plans change.",
+      legal_contact_note:
+        "For questions about these policies, contact us at contacto@sacraadventures.com or +598 98 945 542.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Often 24 hours",
       pharmacy_c2_meta: "Gral. Flores 450 (corner Alberto Méndez) · Typically daily 8:00–22:00",
       pharmacy_c3_meta: "Gral. Flores 329 · Check current hours",
@@ -2800,9 +2820,9 @@ const translations = {
       home_trust_official_title: "Operador Turístico Oficial",
       home_trust_official_desc: "Registrado ante el Ministerio de Turismo del Uruguay.",
       home_trust_payment_methods: "Medios de pago aceptados",
-      trust_certified: "Guías certificados por el Ministerio de Turismo de Uruguay",
-      trust_multilingual: "Tours multilingües: español, inglés y portugués",
-      trust_local_experts: "Expertos locales en Colonia del Sacramento",
+      trust_certified: "Operador turístico registrado oficialmente",
+      trust_multilingual: "Experiencias en Español, Inglés & Portugués",
+      trust_inclusion: "Respeto, inclusión y experiencias auténticas",
       hero_btn_day: "Solo por un día",
       day_page_hero_title: "☀️ Solo por un día",
       day_page_intro_heading: "Experiencias ideales para el día",
@@ -4058,17 +4078,37 @@ const translations = {
         "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Hospital público — urgencias e internación",
       home_footer_official:
         "Operador Turístico Oficial registrado ante el Ministerio de Turismo del Uruguay.",
+      home_footer_tagline:
+        "Experiencias locales auténticas en Colonia del Sacramento.",
       home_footer_contact_title: "Contacto",
-      home_footer_contact_phone_label: "Número de contacto:",
-      home_footer_contact_email_label: "Email:",
-      home_footer_contact_instagram_label: "Instagram:",
-      home_footer_useful_title: "Información útil",
+      home_footer_explore_title: "Explorar",
+      home_footer_experiences: "Nuestras experiencias",
+      home_footer_packages: "Paquetes de viaje",
+      home_footer_about: "Sobre nosotros",
       home_footer_terms: "Términos y condiciones",
       home_footer_privacy: "Política de privacidad",
       home_footer_cancellation: "Política de cancelación",
-      home_footer_useful_services: "Servicios útiles en Colonia",
+      home_footer_useful_services: "Servicios útiles",
       home_footer_copyright: "© 2026 Sacramento Adventures. Todos los derechos reservados.",
       home_footer_location: "Colonia del Sacramento, Uruguay.",
+      home_footer_motto: "Diseñado para ayudar a los viajeros a descubrir la Colonia real.",
+      home_footer_social_instagram_aria: "Seguir a Sacramento Adventures en Instagram",
+      home_footer_social_facebook_aria: "Seguir a Sacramento Adventures en Facebook",
+      home_footer_social_whatsapp_aria: "Contactar a Sacramento Adventures por WhatsApp",
+      legal_terms_doc_title: "Términos y condiciones | Sacramento Adventures",
+      legal_terms_title: "Términos y condiciones",
+      legal_terms_lead:
+        "Estos términos regulan las reservas y la participación en experiencias de Sacramento Adventures en Colonia del Sacramento.",
+      legal_privacy_doc_title: "Política de privacidad | Sacramento Adventures",
+      legal_privacy_title: "Política de privacidad",
+      legal_privacy_lead:
+        "Respetamos tu privacidad y tratamos los datos personales de forma responsable cuando nos contactás o reservás una experiencia.",
+      legal_cancellation_doc_title: "Política de cancelación | Sacramento Adventures",
+      legal_cancellation_title: "Política de cancelación",
+      legal_cancellation_lead:
+        "Las reglas de cancelación y reprogramación pueden variar según la experiencia. Contactanos lo antes posible si cambian tus planes.",
+      legal_contact_note:
+        "Para consultas sobre estas políticas, escribinos a contacto@sacraadventures.com o al +598 98 945 542.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Suele atender 24 hs",
       pharmacy_c2_meta: "Gral. Flores 450 (esq. Alberto Méndez) · Habitualmente todos los días 8 a 22 hs",
       pharmacy_c3_meta: "Gral. Flores 329 · Consultá horario actual",
@@ -5482,9 +5522,9 @@ const translations = {
       home_trust_official_title: "Operadora de Turismo Oficial",
       home_trust_official_desc: "Registrada no Ministério do Turismo do Uruguai.",
       home_trust_payment_methods: "Formas de pagamento aceitas",
-      trust_certified: "Guias certificados pelo Ministério do Turismo do Uruguai",
-      trust_multilingual: "Tours multilíngues: espanhol, inglês e português",
-      trust_local_experts: "Especialistas locais em Colonia del Sacramento",
+      trust_certified: "Operadora de turismo registrada oficialmente",
+      trust_multilingual: "Tours em espanhol, inglês e português",
+      trust_inclusion: "Respeito, inclusão e experiências autênticas",
       hero_btn_day: "Só por um dia",
       day_page_hero_title: "☀️ Só por um dia",
       day_page_intro_heading: "Experiências perfeitas para o dia",
@@ -6738,17 +6778,37 @@ const translations = {
         "Hospital de Colonia del Sacramento (ASSE) · Av. Batlle y Ordóñez 596 · Hospital público — urgências e internação",
       home_footer_official:
         "Operadora de Turismo Oficial registrada no Ministério do Turismo do Uruguai.",
+      home_footer_tagline:
+        "Experiências locais autênticas em Colônia do Sacramento.",
       home_footer_contact_title: "Contato",
-      home_footer_contact_phone_label: "Número de contato:",
-      home_footer_contact_email_label: "E-mail:",
-      home_footer_contact_instagram_label: "Instagram:",
-      home_footer_useful_title: "Informações úteis",
+      home_footer_explore_title: "Explorar",
+      home_footer_experiences: "Nossas experiências",
+      home_footer_packages: "Pacotes de viagem",
+      home_footer_about: "Sobre nós",
       home_footer_terms: "Termos e condições",
       home_footer_privacy: "Política de privacidade",
       home_footer_cancellation: "Política de cancelamento",
-      home_footer_useful_services: "Serviços úteis em Colônia",
+      home_footer_useful_services: "Serviços úteis",
       home_footer_copyright: "© 2026 Sacramento Adventures. Todos os direitos reservados.",
       home_footer_location: "Colônia do Sacramento, Uruguai.",
+      home_footer_motto: "Feito para ajudar viajantes a descobrir a Colônia real.",
+      home_footer_social_instagram_aria: "Seguir Sacramento Adventures no Instagram",
+      home_footer_social_facebook_aria: "Seguir Sacramento Adventures no Facebook",
+      home_footer_social_whatsapp_aria: "Contatar Sacramento Adventures no WhatsApp",
+      legal_terms_doc_title: "Termos e condições | Sacramento Adventures",
+      legal_terms_title: "Termos e condições",
+      legal_terms_lead:
+        "Estes termos regem reservas e participação nas experiências da Sacramento Adventures em Colônia do Sacramento.",
+      legal_privacy_doc_title: "Política de privacidade | Sacramento Adventures",
+      legal_privacy_title: "Política de privacidade",
+      legal_privacy_lead:
+        "Respeitamos sua privacidade e tratamos dados pessoais com responsabilidade quando você entra em contato ou reserva uma experiência.",
+      legal_cancellation_doc_title: "Política de cancelamento | Sacramento Adventures",
+      legal_cancellation_title: "Política de cancelamento",
+      legal_cancellation_lead:
+        "As regras de cancelamento e remarcação podem variar conforme a experiência. Entre em contato o quanto antes se seus planos mudarem.",
+      legal_contact_note:
+        "Para dúvidas sobre estas políticas, escreva para contacto@sacraadventures.com ou ligue para +598 98 945 542.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Frequentemente 24 h",
       pharmacy_c2_meta: "Gral. Flores 450 (esq. Alberto Méndez) · Em geral todos os dias 8h–22h",
       pharmacy_c3_meta: "Gral. Flores 329 · Confirme o horário atual",
@@ -8048,6 +8108,11 @@ const translations = {
     }
   };
   window.__SACRAMENTO_TRANSLATIONS = translations;
+  if (window.__SACRAMENTO_PACKAGES_I18N__) {
+    for (const lang of ["en", "es", "pt"]) {
+      Object.assign(translations[lang], window.__SACRAMENTO_PACKAGES_I18N__[lang] || {});
+    }
+  }
   if (
     typeof window.sacramentoHasUserChosenLanguage === "function" &&
     window.sacramentoHasUserChosenLanguage()
@@ -9583,12 +9648,6 @@ function initRentPopupBehavior() {
   
   
     scheduleCardSeeMoreRefresh(document.getElementById("experiences") || document);
-
-    document.querySelectorAll(".home-site-footer__link--stub").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-      });
-    });
   }
 
   function sacramentoRunWhenDomReady(fn) {

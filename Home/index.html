@@ -7,7 +7,7 @@
 <title>Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/colonia.webp?v=20260522perf" rel="preload"/>
-<link href="../Styles/styles.css?v=20260720wafloatmobile" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260721valijapng" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -96,11 +96,6 @@
 </header>
 <!-- ================= HERO ================= -->
 <section class="hero">
-<div aria-label="Rent with us" class="hero-rent-badge">
-<span class="rent-icon" title="Bike rental">🚲</span>
-<span class="rent-icon" title="Cart rental">🛺</span>
-<span class="rent-text" data-translate="rent_with_us">Rent with us!</span>
-</div>
 <div class="hero-content">
 <h1 data-translate="hero_title">
         Discover Colonia Like a Local
@@ -121,18 +116,18 @@
 </section>
 <section class="trust-bar">
 <div class="trust-item">
-<i class="fa-solid fa-id-card"></i>
-<span data-translate="trust_certified">Certified guides by Uruguay Ministry of Tourism</span>
+<span aria-hidden="true" class="trust-item__icon">✔️</span>
+<span data-translate="trust_certified">Officially Registered Tour Operator</span>
 </div>
 <div class="divider"></div>
 <div class="trust-item">
-<i class="fa-solid fa-globe"></i>
-<span data-translate="trust_multilingual">Multilingual tours: Spanish, English &amp; Portuguese</span>
+<span aria-hidden="true" class="trust-item__icon">🌍</span>
+<span data-translate="trust_multilingual">Tours in Spanish, English &amp; Portuguese</span>
 </div>
 <div class="divider"></div>
 <div class="trust-item">
-<i class="fa-solid fa-map-location-dot"></i>
-<span data-translate="trust_local_experts">Local experts from Colonia del Sacramento</span>
+<span aria-hidden="true" class="trust-item__icon">🌈</span>
+<span data-translate="trust_inclusion">Respect, Inclusion &amp; Authentic Experiences</span>
 </div>
 </section>
 <section aria-label="Área de actividades" class="hero-region-tagline">
@@ -223,6 +218,20 @@
 <span class="home-category-chip__desc" data-translate="home_cat_nav_dining_desc">Restaurants &amp; dining</span>
 </span>
 </button>
+</div>
+</div>
+</section>
+<!-- ================= PACKAGES PROMO ================= -->
+<section aria-labelledby="home-packages-promo-title" class="home-packages-promo">
+<div class="home-packages-promo__inner">
+<div class="home-packages-promo__content">
+<p class="home-packages-promo__eyebrow" data-translate="home_packages_promo_eyebrow">Itinerarios pensados</p>
+<h2 class="home-packages-promo__title" data-translate="home_packages_promo_title" id="home-packages-promo-title">Aprovechá al máximo tu estadía en Colonia</h2>
+<p class="home-packages-promo__text" data-translate="home_packages_promo_desc">Creamos itinerarios pensados para que solo tengas que disfrutar. Combinamos experiencias, gastronomía y traslados en paquetes diseñados para distintos estilos de viaje.</p>
+<a class="btn home-packages-promo__btn" data-translate="home_packages_promo_btn" href="../paquetes/index.html">Descubrí nuestros paquetes</a>
+</div>
+<div aria-hidden="true" class="home-packages-promo__visual suitcase-container">
+<img alt="" class="home-packages-promo__image suitcase-illustration" decoding="async" height="640" loading="lazy" src="../Assets/images/valija.png" width="640"/>
 </div>
 </div>
 </section>
@@ -2088,51 +2097,6 @@
 </ul>
 </div>
 </section>
-<!-- ================= SITE FOOTER ================= -->
-<footer class="home-site-footer" id="home-site-footer">
-<div class="home-site-footer__inner">
-<div class="home-site-footer__columns">
-<div class="home-site-footer__col home-site-footer__col--brand">
-<p class="home-site-footer__brand">Sacramento Adventures</p>
-<p class="home-site-footer__text home-site-footer__text--muted" data-translate="home_footer_official">Official Tour Operator registered with Uruguay's Ministry of Tourism.</p>
-</div>
-<div class="home-site-footer__col">
-<p class="home-site-footer__heading" data-translate="home_footer_contact_title">Contact</p>
-<ul class="home-site-footer__links">
-<li class="home-site-footer__contact-row">
-<span class="home-site-footer__contact-label" data-translate="home_footer_contact_phone_label">Contact number:</span>
-<a class="home-site-footer__link home-site-footer__wa-link" href="https://wa.me/59898945542" rel="noopener noreferrer" target="_blank">+598 98 945 542</a>
-</li>
-<li class="home-site-footer__contact-row">
-<span class="home-site-footer__contact-label" data-translate="home_footer_contact_email_label">Email:</span>
-<a class="home-site-footer__link" href="mailto:contacto@sacraadventures.com">contacto@sacraadventures.com</a>
-</li>
-<li class="home-site-footer__contact-row">
-<span class="home-site-footer__contact-label" data-translate="home_footer_contact_instagram_label">Instagram:</span>
-<a class="home-site-footer__link" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">@_sacramentoadventures</a>
-</li>
-</ul>
-</div>
-<div class="home-site-footer__col">
-<p class="home-site-footer__heading" data-translate="home_footer_useful_title">Useful information</p>
-<ul class="home-site-footer__links">
-<!-- TODO: connect to Terms and Conditions page when published -->
-<li><a class="home-site-footer__link home-site-footer__link--stub" data-footer-stub="terms" data-translate="home_footer_terms" href="#">Terms and Conditions</a></li>
-<!-- TODO: connect to Privacy Policy page when published -->
-<li><a class="home-site-footer__link home-site-footer__link--stub" data-footer-stub="privacy" data-translate="home_footer_privacy" href="#">Privacy Policy</a></li>
-<!-- TODO: connect to Cancellation Policy page when published -->
-<li><a class="home-site-footer__link home-site-footer__link--stub" data-footer-stub="cancellation" data-translate="home_footer_cancellation" href="#">Cancellation Policy</a></li>
-<li><a class="home-site-footer__link" data-translate="home_footer_useful_services" href="#info-util">Useful services in Colonia</a></li>
-</ul>
-</div>
-</div>
-<hr class="home-site-footer__divider"/>
-<div class="home-site-footer__bottom">
-<p class="home-site-footer__copyright" data-translate="home_footer_copyright">© 2026 Sacramento Adventures. All rights reserved.</p>
-<p class="home-site-footer__location" data-translate="home_footer_location">Colonia del Sacramento, Uruguay.</p>
-</div>
-</div>
-</footer>
 <!-- ================= ANIMAL DONATION MODAL ================= -->
 <div aria-hidden="true" class="popup-overlay sacramento-modal-overlay" id="popupAnimalDonation">
 <div aria-labelledby="animalDonationPopupTitle" aria-modal="true" class="popup-box sacramento-modal-box animal-donation-modal" role="dialog">
@@ -2178,7 +2142,9 @@
 <script src="../Home/sacramento-modal.js?v=20260617donation"></script>
 <script src="../Home/animal-donation-modal.js?v=20260621colectate"></script>
 <script src="../Home/payments-api-config.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260720footer"></script>
+<script src="../Home/paquetes-i18n.js?v=20260721packages"></script>
+<script src="../Home/index.js?v=20260721packages"></script>
+<script data-sacramento-footer src="site-footer.js?v=20260721footer"></script>
 <script src="../Home/google-reviews.js?v=20260720reviews2"></script>
 <script src="../Home/home-category-nav.js?v=20260720experiencesmore"></script>
 <script src="../Home/home-experiences-more.js?v=20260720experiencesmore"></script>
