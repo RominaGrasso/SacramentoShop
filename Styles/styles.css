@@ -4530,19 +4530,51 @@
   }
 
   @media (max-width: 599px) {
+    .whatsapp-float {
+      right: calc(14px + env(safe-area-inset-right, 0px));
+      bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+      max-width: calc(100vw - 28px);
+    }
+
     .whatsapp-float--enhanced {
-      width: 54px;
-      height: 54px;
+      width: max-content;
+      max-width: calc(100vw - 28px);
+      height: auto;
+      min-width: 0;
     }
 
     .whatsapp-float__pill {
-      display: none;
+      display: flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 52px 0 18px;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .whatsapp-float__label {
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: visible;
     }
 
     .whatsapp-float__icon {
-      right: 0;
+      right: -2px;
+      width: 48px;
+      height: 48px;
       background: #20BD5A;
       box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .whatsapp-float svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (max-width: 379px) {
+    .whatsapp-float__label {
+      font-size: 13px;
     }
   }
 
@@ -10494,11 +10526,6 @@
 
   .food-menu-popup-box {
     max-width: min(640px, calc(100% - 20px));
-  }
-
-  .whatsapp-float {
-    right: calc(24px + env(safe-area-inset-right, 0px));
-    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   }
 
   .taxi-float {
