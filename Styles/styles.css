@@ -12559,22 +12559,36 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 
 .page-paquetes .packages-itineraries {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem) clamp(1.15rem, 4vw, 2rem)
+    clamp(2.5rem, 5vw, 3.5rem);
+  background: linear-gradient(180deg, #f4f9ff 0%, #ffffff 55%, #f8fbfe 100%);
 }
 
 .page-paquetes .pkg-itinerary {
-  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.15rem, 4vw, 2rem);
-  background: #ffffff;
-  border-bottom: 1px solid rgba(102, 166, 230, 0.1);
+  padding: 0;
+  background: transparent;
+  border-bottom: none;
   scroll-margin-top: 1rem;
 }
 
+.page-paquetes .pkg-itinerary + .pkg-itinerary {
+  margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+
 .page-paquetes .pkg-itinerary:nth-child(even) {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
+  background: transparent;
 }
 
 .page-paquetes .pkg-itinerary__inner {
   max-width: min(920px, 100%);
   margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 3vw, 2rem);
+  background: #ffffff;
+  border: 1px solid rgba(102, 166, 230, 0.14);
+  border-radius: 24px;
+  box-shadow:
+    0 10px 32px rgba(47, 103, 163, 0.07),
+    0 2px 8px rgba(47, 103, 163, 0.04);
 }
 
 .page-paquetes .pkg-itinerary__breadcrumb {
@@ -12616,6 +12630,7 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
   align-items: flex-start;
   text-align: left;
   margin-bottom: clamp(1rem, 2.2vw, 1.25rem);
+  padding: clamp(1.25rem, 2.5vw, 1.65rem) clamp(1.15rem, 2.5vw, 1.5rem);
   background: var(--pkg-celeste);
   border-radius: 18px;
   box-shadow: 0 8px 22px rgba(47, 103, 163, 0.09);
