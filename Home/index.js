@@ -810,7 +810,7 @@ const translations = {
       horse_home_meta_t: "1 hour",
       horse_home_meta_n: "Countryside trails & nature",
       horse_home_meta_transport: "From Colonia del Sacramento · Optional transfer available",
-      cabal_page_price_line: "USD 30 per person",
+      cabal_page_price_line: "USD 35 per person",
       cabal_page_departures:
         "Departure times: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 and 17:00",
       cabal_availability_whatsapp_notice:
@@ -3512,7 +3512,7 @@ const translations = {
       horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Senderos campestres y naturaleza",
       horse_home_meta_transport: "Desde Colonia del Sacramento · Traslado disponible incluido (opcional)",
-      cabal_page_price_line: "USD 30 por persona",
+      cabal_page_price_line: "USD 35 por persona",
       cabal_page_departures:
         "Horarios de salida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 y 17:00 hs",
       cabal_availability_whatsapp_notice:
@@ -6212,7 +6212,7 @@ const translations = {
       horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Trilhas rurais e natureza",
       horse_home_meta_transport: "Desde Colonia del Sacramento · Transporte disponível incluído (opcional)",
-      cabal_page_price_line: "USD 30 por pessoa",
+      cabal_page_price_line: "USD 35 por pessoa",
       cabal_page_departures:
         "Horários de partida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 e 17:00 h",
       cabal_availability_whatsapp_notice:
