@@ -12,7 +12,7 @@
   const HOME_CARD_PROMO_SLUGS = new Set(["hotel-royal.html"]);
 
   const HOME_CARD_PRICE_USD = {
-    "cabal.html": [35],
+    "cabal.html": [40],
     "walkingtour.html": [12, 17],
     "mate.html": [40],
     "traslado-plaza-letras.html": [50],

@@ -810,7 +810,7 @@ const translations = {
       horse_home_meta_t: "1 hour",
       horse_home_meta_n: "Countryside trails & nature",
       horse_home_meta_transport: "From Colonia del Sacramento · Optional transfer available",
-      cabal_page_price_line: "USD 35 per person",
+      cabal_page_price_line: "USD 40 per person",
       cabal_page_departures:
         "Departure times: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 and 17:00",
       cabal_availability_whatsapp_notice:
@@ -840,8 +840,8 @@ const translations = {
       cabal_popup_guests_hint: "Minimum 1 · maximum 4 guests per departure time.",
       cabal_popup_transport_heading: "Round-trip transport included?",
       cabal_popup_transport_no: "No",
-      cabal_popup_transport_yes: "Yes (+USD 25 total · up to 4 guests)",
-      cabal_popup_transport_hint: "If yes, USD 25 is added for the group (up to 4 people).",
+      cabal_popup_transport_yes: "Yes (+USD 30 total · up to 4 guests)",
+      cabal_popup_transport_hint: "If yes, USD 30 is added for the group (up to 4 people).",
       cabal_summary_heading: "Your horseback experience",
       cabal_summary_empty: "Tap Create your experience to choose a time and number of guests.",
       cabal_summary_time_label: "Departure time",
@@ -859,7 +859,7 @@ const translations = {
       cabal_summary_guide_included: "Yes (+USD 30 total for the group)",
       cabal_wa_guide_line: "Companion guide for the group (photos; next experience if booked)",
       cabal_summary_transport_label: "Round-trip transport",
-      cabal_summary_transport_included: "Yes (+USD 25 total · up to 4 guests)",
+      cabal_summary_transport_included: "Yes (+USD 30 total · up to 4 guests)",
       cabal_transport_total_suffix: "round-trip transport",
       cabal_wa_transport_line: "Round-trip transport (up to 4 guests)",
       home_mision_title:
@@ -3512,7 +3512,7 @@ const translations = {
       horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Senderos campestres y naturaleza",
       horse_home_meta_transport: "Desde Colonia del Sacramento · Traslado disponible incluido (opcional)",
-      cabal_page_price_line: "USD 35 por persona",
+      cabal_page_price_line: "USD 40 por persona",
       cabal_page_departures:
         "Horarios de salida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 y 17:00 hs",
       cabal_availability_whatsapp_notice:
@@ -3542,8 +3542,8 @@ const translations = {
       cabal_popup_guests_hint: "Mínimo 1 · máximo 4 personas por horario.",
       cabal_popup_transport_heading: "¿Incluye transporte ida y vuelta?",
       cabal_popup_transport_no: "No",
-      cabal_popup_transport_yes: "Sí (+USD 25 en total · hasta 4 personas)",
-      cabal_popup_transport_hint: "Si elegís sí, se suman USD 25 para el grupo (hasta 4 personas).",
+      cabal_popup_transport_yes: "Sí (+USD 30 en total · hasta 4 personas)",
+      cabal_popup_transport_hint: "Si elegís sí, se suman USD 30 para el grupo (hasta 4 personas).",
       cabal_summary_heading: "Tu experiencia a caballo",
       cabal_summary_empty: "Tocá Creá tu experiencia para elegir horario y cantidad de personas.",
       cabal_summary_time_label: "Horario",
@@ -3561,7 +3561,7 @@ const translations = {
       cabal_summary_guide_included: "Sí (+USD 30 en total para el grupo)",
       cabal_wa_guide_line: "Guía acompañante para el grupo (fotos; otra experiencia si está reservada)",
       cabal_summary_transport_label: "Transporte ida y vuelta",
-      cabal_summary_transport_included: "Sí (+USD 25 en total · hasta 4 personas)",
+      cabal_summary_transport_included: "Sí (+USD 30 en total · hasta 4 personas)",
       cabal_transport_total_suffix: "transporte ida y vuelta",
       cabal_wa_transport_line: "Transporte ida y vuelta (hasta 4 personas)",
       home_mision_title:
@@ -6212,7 +6212,7 @@ const translations = {
       horse_home_meta_t: "1 hora",
       horse_home_meta_n: "Trilhas rurais e natureza",
       horse_home_meta_transport: "Desde Colonia del Sacramento · Transporte disponível incluído (opcional)",
-      cabal_page_price_line: "USD 35 por pessoa",
+      cabal_page_price_line: "USD 40 por pessoa",
       cabal_page_departures:
         "Horários de partida: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 e 17:00 h",
       cabal_availability_whatsapp_notice:
@@ -6242,8 +6242,8 @@ const translations = {
       cabal_popup_guests_hint: "Mínimo 1 · máximo 4 pessoas por horário.",
       cabal_popup_transport_heading: "Inclui transporte ida e volta?",
       cabal_popup_transport_no: "Não",
-      cabal_popup_transport_yes: "Sim (+USD 25 no total · até 4 pessoas)",
-      cabal_popup_transport_hint: "Se sim, somam-se USD 25 para o grupo (até 4 pessoas).",
+      cabal_popup_transport_yes: "Sim (+USD 30 no total · até 4 pessoas)",
+      cabal_popup_transport_hint: "Se sim, somam-se USD 30 para o grupo (até 4 pessoas).",
       cabal_summary_heading: "Sua experiência a cavalo",
       cabal_summary_empty: "Toque em Monte sua experiência para escolher horário e número de pessoas.",
       cabal_summary_time_label: "Horário",
@@ -6261,7 +6261,7 @@ const translations = {
       cabal_summary_guide_included: "Sim (+USD 30 no total para o grupo)",
       cabal_wa_guide_line: "Guia acompanhante para o grupo (fotos; próxima experiência se reservada)",
       cabal_summary_transport_label: "Transporte ida e volta",
-      cabal_summary_transport_included: "Sim (+USD 25 no total · até 4 pessoas)",
+      cabal_summary_transport_included: "Sim (+USD 30 no total · até 4 pessoas)",
       cabal_transport_total_suffix: "transporte ida e volta",
       cabal_wa_transport_line: "Transporte ida e volta (até 4 pessoas)",
       home_mision_title:
