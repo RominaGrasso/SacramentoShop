@@ -356,6 +356,7 @@
     "sunset-boat.html": ["boat"],
     "cabal.html": ["horseback"],
     "legado.html": ["bodega", "fullday"],
+    "experiencia-bodega.html": ["bodega", "gastronomy", "dining"],
     "hotel-royal.html": ["lodging", "night"],
   };
 
@@ -364,6 +365,7 @@
     tours: ["home-walking-tour-card", "home-traslado-plaza-letras-card"],
     fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
+      "home-exp-bodega-card",
       "home-vinos-card",
       "home-s34-gin-card",
       "home-quinton-card",
@@ -374,7 +376,7 @@
     boat: [],
     lodging: ["home-card-hotel-royal", "home-card-mision-bruma"],
     dining: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
-    gastronomy: ["home-vinos-card", "home-quinton-card"],
+    gastronomy: ["home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
@@ -392,6 +394,7 @@
     "home-chivito-card": ["gastronomy", "dining"],
     "home-legado-card": ["bodega", "fullday"],
     "home-vinos-card": ["bodega", "gastronomy", "dining"],
+    "home-exp-bodega-card": ["bodega", "gastronomy", "dining"],
     "home-quinton-card": ["bodega", "gastronomy", "dining", "fullday"],
     "home-food-tour-card": ["tours", "gastronomy"],
     "home-plaza-anita-card": ["tours", "gastronomy"],

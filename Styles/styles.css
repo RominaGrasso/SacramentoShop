@@ -2217,6 +2217,29 @@
     object-position: center 48%;
   }
 
+  #home-exp-bodega-card .carousel-track img {
+    object-fit: cover;
+  }
+
+  #home-exp-bodega-card .carousel-track img[src*="hac8"] {
+    object-position: center 58%;
+  }
+
+  #home-exp-bodega-card .carousel-track img[src*="hac10"],
+  #home-exp-bodega-card .carousel-track img[src*="hac11"] {
+    object-position: center center;
+  }
+
+  #home-exp-bodega-card .carousel-track img[src*="hac12"] {
+    object-position: center 45%;
+  }
+
+  @media (max-width: 768px) {
+    #home-exp-bodega-card .carousel-track img[src*="hac8"] {
+      object-position: center 54%;
+    }
+  }
+
   .logo img {
     height: var(--sacramento-header-logo-height);
     width: auto;
@@ -4855,6 +4878,14 @@
     background-repeat: no-repeat;
   }
 
+  .exp-bodega-hero {
+    height: 43vh;
+    background-image: url("../Assets/images/hac8.jpg");
+    background-size: cover;
+    background-position: center 58%;
+    background-repeat: no-repeat;
+  }
+
   .quinton-hero {
     height: 43vh;
     background-image: url("../Assets/images/quin16.webp");
@@ -4884,6 +4915,11 @@
     .legado-hero {
       height: 39vh;
       background-position: center 40%;
+    }
+
+    .exp-bodega-hero {
+      height: 39vh;
+      background-position: center 54%;
     }
 
     .quinton-hero {
@@ -9917,6 +9953,28 @@ body.page-home .partners .logos-slider {
   color: #6a7788;
   font-size: 0.95rem;
   font-weight: 600;
+}
+
+.food-menu-option-desc {
+  margin: 0.35rem 0 0;
+  padding: 0 0 0 2.05rem;
+  color: #5a6778;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.food-menu-option-badge {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  background: #1f2f46;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 
 .food-menu-whatyouget {

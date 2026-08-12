@@ -5794,7 +5794,17 @@ function initPackageOrderExperience(config) {
      * In-popup guest stepper (like cabalgata): `{ valueId, minusId, plusId, min?, max?, hintKey? }`.
      * Save replaces the whole booking with N identical guest orders.
      */
-    packageGuestCounter = null
+    packageGuestCounter = null,
+    /**
+     * Second popup after package save: `{ popupId, closeBtnId, backBtnId, confirmBtnId,
+     * valueId, minusId, plusId, experienceElId?, pricePerPersonElId?, countElId?, subtotalElId?,
+     * min?, max?, summaryKeys? }`
+     */
+    postSaveGuestPopup = null,
+    /** When true, prices are omitted from UI and payment links until rates are configured. */
+    pricesPending = false,
+    /** localStorage key matching the page date input (`data-booking-date-key`). */
+    selectedDateKey = null
   } = config || {};
 
   const vehicleTransportRate =
@@ -5898,7 +5908,64 @@ function initPackageOrderExperience(config) {
                 : null
           }
         : null;
+    const psgpRaw =
+      postSaveGuestPopup && typeof postSaveGuestPopup === "object" ? postSaveGuestPopup : null;
+    const psgp =
+      psgpRaw &&
+      psgpRaw.popupId &&
+      psgpRaw.closeBtnId &&
+      psgpRaw.backBtnId &&
+      psgpRaw.confirmBtnId &&
+      psgpRaw.valueId &&
+      psgpRaw.minusId &&
+      psgpRaw.plusId
+        ? {
+            popupId: String(psgpRaw.popupId),
+            closeBtnId: String(psgpRaw.closeBtnId),
+            backBtnId: String(psgpRaw.backBtnId),
+            confirmBtnId: String(psgpRaw.confirmBtnId),
+            valueId: String(psgpRaw.valueId),
+            minusId: String(psgpRaw.minusId),
+            plusId: String(psgpRaw.plusId),
+            experienceElId:
+              typeof psgpRaw.experienceElId === "string" ? psgpRaw.experienceElId : null,
+            pricePerPersonElId:
+              typeof psgpRaw.pricePerPersonElId === "string" ? psgpRaw.pricePerPersonElId : null,
+            countElId: typeof psgpRaw.countElId === "string" ? psgpRaw.countElId : null,
+            subtotalElId: typeof psgpRaw.subtotalElId === "string" ? psgpRaw.subtotalElId : null,
+            min: Math.max(1, Math.floor(Number(psgpRaw.min) || 1)),
+            max: Math.max(1, Math.floor(Number(psgpRaw.max) || 20)),
+            summaryKeys:
+              psgpRaw.summaryKeys && typeof psgpRaw.summaryKeys === "object"
+                ? psgpRaw.summaryKeys
+                : {},
+            transportInPopup: Boolean(psgpRaw.transportInPopup),
+            transportRadioName:
+              typeof psgpRaw.transportRadioName === "string"
+                ? psgpRaw.transportRadioName
+                : "",
+            pickupSectionId:
+              typeof psgpRaw.pickupSectionId === "string" ? psgpRaw.pickupSectionId : null,
+            pickupRadioName:
+              typeof psgpRaw.pickupRadioName === "string" ? psgpRaw.pickupRadioName : "",
+            errorElId: typeof psgpRaw.errorElId === "string" ? psgpRaw.errorElId : null,
+            experienceSubtotalElId:
+              typeof psgpRaw.experienceSubtotalElId === "string"
+                ? psgpRaw.experienceSubtotalElId
+                : null,
+            transportSummaryElId:
+              typeof psgpRaw.transportSummaryElId === "string"
+                ? psgpRaw.transportSummaryElId
+                : null,
+            totalElId: typeof psgpRaw.totalElId === "string" ? psgpRaw.totalElId : null
+          }
+        : null;
+    const multiGuestPackage = Boolean(pgc || psgp);
     let popupGuestCount = pgc ? pgc.min : 1;
+    let followUpGuestCount = psgp ? psgp.min : 1;
+    let followUpIncludeTransport = false;
+    let followUpPickupTime = null;
+    let pendingFollowUpSave = null;
 
     const pgcValueEl = () =>
       pgc ? popup.querySelector(`#${pgc.valueId}`) || document.getElementById(pgc.valueId) : null;
@@ -5933,6 +6000,235 @@ function initPackageOrderExperience(config) {
       if (!pgc) return;
       const n = Array.isArray(orders) && orders.length > 0 ? orders.length : pgc.min;
       setPopupGuestCount(n);
+    };
+
+    const psgpPopupEl = () => (psgp ? document.getElementById(psgp.popupId) : null);
+    const psgpValueEl = () =>
+      psgp ? document.getElementById(psgp.valueId) : null;
+    const psgpMinusBtn = () => (psgp ? document.getElementById(psgp.minusId) : null);
+    const psgpPlusBtn = () => (psgp ? document.getElementById(psgp.plusId) : null);
+
+    const syncFollowUpGuestCountDisplay = () => {
+      const el = psgpValueEl();
+      if (el) el.textContent = String(followUpGuestCount);
+    };
+
+    const setFollowUpGuestCount = (n) => {
+      if (!psgp) return;
+      followUpGuestCount = Math.min(
+        psgp.max,
+        Math.max(psgp.min, Math.floor(Number(n) || psgp.min))
+      );
+      syncFollowUpGuestCountDisplay();
+      updateFollowUpGuestPopupSummary();
+    };
+
+    const followUpGuestPopupRoot = () => psgpPopupEl();
+
+    const readFollowUpTransportFromPopup = () => {
+      if (!psgp?.transportInPopup || !psgp.transportRadioName) return false;
+      const root = followUpGuestPopupRoot();
+      if (!root) return false;
+      const r = root.querySelector(`input[name="${psgp.transportRadioName}"]:checked`);
+      return Boolean(r && r.value === "yes");
+    };
+
+    const syncFollowUpTransportRadios = () => {
+      if (!psgp?.transportInPopup || !psgp.transportRadioName) return;
+      const root = followUpGuestPopupRoot();
+      if (!root) return;
+      const val = followUpIncludeTransport ? "yes" : "no";
+      const r = root.querySelector(`input[name="${psgp.transportRadioName}"][value="${val}"]`);
+      if (r) r.checked = true;
+    };
+
+    const clearFollowUpPickupChipSelection = () => {
+      const root = followUpGuestPopupRoot();
+      if (!root) return;
+      root.querySelectorAll(".exp-bodega-guests-pickup-chip.is-active").forEach((btn) => {
+        btn.classList.remove("is-active");
+        btn.setAttribute("aria-pressed", "false");
+      });
+    };
+
+    const syncFollowUpPickupChipSelection = () => {
+      clearFollowUpPickupChipSelection();
+      if (!followUpPickupTime) return;
+      const root = followUpGuestPopupRoot();
+      if (!root) return;
+      const btn = root.querySelector(
+        `.exp-bodega-guests-pickup-chip[data-time="${CSS.escape(followUpPickupTime)}"]`
+      );
+      if (btn) {
+        btn.classList.add("is-active");
+        btn.setAttribute("aria-pressed", "true");
+      }
+    };
+
+    const hideFollowUpGuestError = () => {
+      if (!psgp?.errorElId) return;
+      const el = document.getElementById(psgp.errorElId);
+      if (!el) return;
+      el.hidden = true;
+      el.textContent = "";
+    };
+
+    const showFollowUpGuestError = (message) => {
+      if (!psgp?.errorElId) return;
+      const el = document.getElementById(psgp.errorElId);
+      if (!el) return;
+      el.textContent = message;
+      el.hidden = false;
+    };
+
+    const syncFollowUpTransportUI = () => {
+      if (!psgp?.transportInPopup) return;
+      const section = psgp.pickupSectionId
+        ? document.getElementById(psgp.pickupSectionId)
+        : null;
+      if (section) section.hidden = !followUpIncludeTransport;
+      if (!followUpIncludeTransport) {
+        followUpPickupTime = null;
+        clearFollowUpPickupChipSelection();
+      } else {
+        syncFollowUpPickupChipSelection();
+      }
+      hideFollowUpGuestError();
+    };
+
+    const readFollowUpPickupFromPopup = () => {
+      const root = followUpGuestPopupRoot();
+      if (!root) return null;
+      const active = root.querySelector(".exp-bodega-guests-pickup-chip.is-active");
+      return active && active.dataset.time ? String(active.dataset.time) : null;
+    };
+
+    const onFollowUpTransportChange = () => {
+      followUpIncludeTransport = readFollowUpTransportFromPopup();
+      syncFollowUpTransportUI();
+      updateFollowUpGuestPopupSummary();
+    };
+
+    const followUpGuestCountLabel = () =>
+      followUpGuestCount === 1
+        ? trTpl(
+            (psgp?.summaryKeys || {}).countOne || "orders_pkg_summary_one_person",
+            "1 person",
+            {}
+          )
+        : trTpl(
+            (psgp?.summaryKeys || {}).countMany || "orders_pkg_summary_n_people",
+            "{n} people",
+            { n: String(followUpGuestCount) }
+          );
+
+    const updateFollowUpGuestPopupSummary = () => {
+      if (!psgp || !pendingFollowUpSave) return;
+      const { spec } = pendingFollowUpSave;
+      const pricePerPerson = spec?.price || 0;
+      const experienceSubtotal = pricePerPerson * followUpGuestCount;
+      const transportSubtotal = followUpIncludeTransport ? optionalTransportFlat : 0;
+      const bookingTotal = experienceSubtotal + transportSubtotal;
+      const sk = psgp.summaryKeys || {};
+      const experienceEl = psgp.experienceElId
+        ? document.getElementById(psgp.experienceElId)
+        : null;
+      const priceEl = psgp.pricePerPersonElId
+        ? document.getElementById(psgp.pricePerPersonElId)
+        : null;
+      const countEl = psgp.countElId ? document.getElementById(psgp.countElId) : null;
+      const subtotalEl = psgp.subtotalElId ? document.getElementById(psgp.subtotalElId) : null;
+      const summaryCountEl = document.getElementById("expBodegaGuestsSummaryCount");
+      const transportSummaryEl = psgp.transportSummaryElId
+        ? document.getElementById(psgp.transportSummaryElId)
+        : null;
+      const totalEl = psgp.totalElId ? document.getElementById(psgp.totalElId) : null;
+      const countLabel = followUpGuestCountLabel();
+      if (experienceEl) experienceEl.textContent = spec?.label || "";
+      if (priceEl) {
+        priceEl.textContent = pricesPending
+          ? getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
+          : trTpl(sk.pricePerPerson || "orders_pkg_price_per_person_line", "USD {amount} per person", {
+              amount: formatMoney(pricePerPerson)
+            });
+      }
+      if (countEl) countEl.textContent = countLabel;
+      if (summaryCountEl) summaryCountEl.textContent = countLabel;
+      if (subtotalEl) {
+        subtotalEl.textContent = pricesPending
+          ? getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
+          : trTpl(sk.subtotal || "orders_pkg_experience_subtotal_amount", "USD {amount}", {
+              amount: formatMoney(experienceSubtotal)
+            });
+      }
+      if (transportSummaryEl) {
+        transportSummaryEl.textContent = followUpIncludeTransport
+          ? trTpl(
+              sk.transportIncluded || "exp_bodega_guests_transport_included",
+              "Round trip — USD {amount}",
+              { amount: formatMoney(optionalTransportFlat) }
+            )
+          : getI18nText(sk.transportExcluded || "exp_bodega_guests_transport_excluded", "Not included");
+      }
+      if (totalEl) {
+        totalEl.textContent = pricesPending
+          ? getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
+          : trTpl(sk.totalAmount || "exp_bodega_guests_total_amount", "USD {amount}", {
+              amount: formatMoney(bookingTotal)
+            });
+      }
+    };
+
+    const openFollowUpGuestPopup = (savePayload) => {
+      if (!psgp) return;
+      pendingFollowUpSave = savePayload;
+      const existing = getOrders();
+      if (Array.isArray(existing) && existing.length > 0) {
+        followUpGuestCount = existing.length;
+        const meta = getBookingMeta();
+        followUpIncludeTransport = Boolean(meta.includeTransport);
+        followUpPickupTime = meta.pickupTime || null;
+      } else {
+        followUpGuestCount = psgp.min;
+        followUpIncludeTransport = false;
+        followUpPickupTime = null;
+      }
+      syncFollowUpGuestCountDisplay();
+      syncFollowUpTransportRadios();
+      syncFollowUpTransportUI();
+      hideFollowUpGuestError();
+      updateFollowUpGuestPopupSummary();
+      const guestPopup = psgpPopupEl();
+      if (guestPopup) {
+        guestPopup.classList.add("active");
+        guestPopup.setAttribute("aria-hidden", "false");
+      }
+    };
+
+    const closeFollowUpGuestPopup = () => {
+      if (!psgp) return;
+      const guestPopup = psgpPopupEl();
+      if (guestPopup) {
+        guestPopup.classList.remove("active");
+        guestPopup.setAttribute("aria-hidden", "true");
+      }
+      pendingFollowUpSave = null;
+    };
+
+    const reopenExperiencePopupPreservingSelection = () => {
+      popup.dataset.sacramentoPreservePackagePopup = "1";
+      popup.classList.add("active");
+      popup.setAttribute("aria-hidden", "false");
+    };
+
+    const commitMultiGuestOrders = (guestCount, orderTemplate) => {
+      const orders = Array.from({ length: guestCount }, () => ({ ...orderTemplate }));
+      editingIndex = null;
+      setOrders(orders);
+      closePopup();
+      closeFollowUpGuestPopup();
+      renderOrders();
+      scrollToOrderSummary(orderSummaryId);
     };
 
     const pcRaw = packageComposite && typeof packageComposite === "object" ? packageComposite : null;
@@ -6086,15 +6382,30 @@ function initPackageOrderExperience(config) {
     const getBookingMeta = () => {
       try {
         const raw = localStorage.getItem(transportMetaKey);
-        if (!raw) return { includeTransport: false };
+        if (!raw) return { includeTransport: false, pickupTime: null };
         const o = JSON.parse(raw);
-        return { includeTransport: Boolean(o && o.includeTransport) };
+        const pickupTime =
+          o && typeof o.pickupTime === "string" && o.pickupTime.trim()
+            ? o.pickupTime.trim()
+            : null;
+        return { includeTransport: Boolean(o && o.includeTransport), pickupTime };
       } catch {
-        return { includeTransport: false };
+        return { includeTransport: false, pickupTime: null };
       }
     };
     const setBookingMeta = (meta) => {
-      localStorage.setItem(transportMetaKey, JSON.stringify(meta || { includeTransport: false }));
+      const includeTransport = Boolean(meta && meta.includeTransport);
+      const pickupTime =
+        includeTransport &&
+        meta &&
+        typeof meta.pickupTime === "string" &&
+        meta.pickupTime.trim()
+          ? meta.pickupTime.trim()
+          : null;
+      localStorage.setItem(
+        transportMetaKey,
+        JSON.stringify({ includeTransport, pickupTime })
+      );
     };
     const usesOptionalGroupTransport = () => optionalTransportFlat > 0;
     const optionalGroupTransportTotal = (orders) => {
@@ -6117,8 +6428,8 @@ function initPackageOrderExperience(config) {
       return r?.value === "yes";
     };
     const persistTransportFromPopup = () => {
-      if (!usesOptionalGroupTransport()) return;
-      setBookingMeta({ includeTransport: readTransportFromPopup() });
+      if (!usesOptionalGroupTransport() || psgp?.transportInPopup) return;
+      setBookingMeta({ includeTransport: readTransportFromPopup(), pickupTime: null });
     };
 
     /** Legacy: transporte fijo por línea (órdenes antiguas sin packageId). */
@@ -6337,8 +6648,38 @@ function initPackageOrderExperience(config) {
       return Number.isInteger(v) ? String(v) : v.toFixed(2);
     };
 
+    const getDateForBooking = () => {
+      const lang = getSiteLanguage();
+      const dateLocale = lang === "es" ? "es-UY" : lang === "pt" ? "pt-BR" : "en-GB";
+      const formatStored = (stored) => {
+        if (stored && /^\d{4}-\d{2}-\d{2}$/.test(stored)) {
+          const [y, m, d] = stored.split("-").map(Number);
+          const parsed = new Date(y, m - 1, d);
+          if (!Number.isNaN(parsed.getTime())) {
+            return parsed.toLocaleDateString(dateLocale, {
+              day: "2-digit",
+              month: "short",
+              year: "numeric"
+            });
+          }
+        }
+        return stored || "";
+      };
+      if (selectedDateKey) {
+        const stored = localStorage.getItem(selectedDateKey);
+        const formatted = formatStored(stored);
+        if (formatted) return formatted;
+      }
+      return new Date().toLocaleDateString(dateLocale, {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      });
+    };
+
     const packageLineForOrder = (o, orders) => {
       const eff = getEffectivePackagePricing(o);
+      if (pricesPending && eff.label) return eff.label;
       const pkgPrice = eff.price;
       const share = transportAmountForOrder(o, orders);
       const total = lineTotalForOrder(o, orders);
@@ -6382,14 +6723,8 @@ function initPackageOrderExperience(config) {
     };
 
     const buildWhatsAppMessage = (orders, paymentLinkOverride = "") => {
-      const dynamicEnabled = Boolean(dynamicPayment && dynamicPayment.enabled);
-      const lang = getSiteLanguage();
-      const dateLocale = lang === "es" ? "es-UY" : lang === "pt" ? "pt-BR" : "en-GB";
-      const date = new Date().toLocaleDateString(dateLocale, {
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-      });
+      const dynamicEnabled = Boolean(dynamicPayment && dynamicPayment.enabled && !pricesPending);
+      const date = getDateForBooking();
 
       const pkgLabel = getI18nText("orders_pkg_package_lbl", "Package:").replace(/:?\s*$/, "");
 
@@ -6504,7 +6839,7 @@ function initPackageOrderExperience(config) {
             )
           );
         }
-      } else if (orders.length > 0) {
+      } else if (orders.length > 0 && !pricesPending) {
         message += formatSubtotal(experienceSubtotal);
       }
 
@@ -6530,6 +6865,13 @@ function initPackageOrderExperience(config) {
             `USD ${formatMoney(optionalTransportAmt)}`
           )}\n`;
         }
+        const pickupTime = getBookingMeta().pickupTime;
+        if (transportYes && pickupTime) {
+          message += `${waLine(
+            getI18nText("exp_bodega_summary_pickup", "Pickup time"),
+            pickupTime
+          )}\n`;
+        }
       }
 
       if (groupGuideEnabled) {
@@ -6546,7 +6888,14 @@ function initPackageOrderExperience(config) {
             : getI18nText("guide_no", "No");
         message += `${waLine(groupGuideLabel, groupGuideValue)}\n`;
       }
-      message += `${waLine(getI18nText("orders_wa_total_label", "Total"), `USD ${formatMoney(total)}`)}\n`;
+      if (pricesPending) {
+        message += `${waLine(
+          getI18nText("orders_wa_total_label", "Total"),
+          getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
+        )}\n`;
+      } else {
+        message += `${waLine(getI18nText("orders_wa_total_label", "Total"), `USD ${formatMoney(total)}`)}\n`;
+      }
 
       if (paymentLinkOverride) {
         message += `\n\n${getI18nText(
@@ -6566,10 +6915,15 @@ function initPackageOrderExperience(config) {
             "To confirm the reservation, please complete the payment here:"
           )}\n${link}`;
         }
-      } else if (!paymentLinkOverride) {
+      } else if (!paymentLinkOverride && !pricesPending) {
         message += `\n\n${getI18nText(
           "orders_wa_payment_pending",
           "Payment link could not be generated automatically yet. Please confirm and we will send it right away."
+        )}`;
+      } else if (pricesPending) {
+        message += `\n\n${getI18nText(
+          "orders_wa_price_confirm_note",
+          "We will confirm the price and availability for your selected option."
         )}`;
       }
 
@@ -6586,36 +6940,115 @@ function initPackageOrderExperience(config) {
 
       let html = `<h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>`;
 
-      if (orders.length > 0 && !pgc) {
+      const visitDateSummaryHtml = selectedDateKey
+        ? `<p class="order-summary-visit-date"><strong>${escapeHtml(
+            getI18nText("orders_visit_date_label", "Visit date")
+          )}:</strong> ${escapeHtml(getDateForBooking())}</p>`
+        : "";
+
+      if (visitDateSummaryHtml) html += visitDateSummaryHtml;
+
+      if (orders.length > 0 && !multiGuestPackage) {
         html = `
           <button id="addGuestBtn" class="add-guest-btn">
             + ${escapeHtml(getI18nText("add_order", "Add Order"))}
           </button>
           <h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>
+          ${visitDateSummaryHtml}
         `;
       }
 
-      if (pgc && orders.length > 0) {
+      if (multiGuestPackage && orders.length > 0) {
         const effPkg = getEffectivePackagePricing(orders[0]);
         const peopleLabel =
           orders.length === 1
             ? trTpl("orders_pkg_summary_one_person", "1 person", {})
             : trTpl("orders_pkg_summary_n_people", "{n} people", { n: String(orders.length) });
         const transportOn = getBookingMeta().includeTransport;
+        const bookingMeta = getBookingMeta();
         const transportLine = usesOptionalGroupTransport()
           ? `<p><strong>${escapeHtml(
-              getI18nText("orders_wa_round_trip_transport", "Round-trip transport")
+              getI18nText(
+                psgp
+                  ? "exp_bodega_summary_transport"
+                  : "orders_wa_round_trip_transport",
+                psgp ? "Transport" : "Round-trip transport"
+              )
             )}:</strong> ${escapeHtml(
               transportOn
-                ? trTpl(
-                    "orders_wa_optional_transport_yes",
-                    "Yes (+USD {amount} total · up to 4 guests)",
-                    { amount: formatMoney(optionalTransportFlat) }
-                  )
-                : getI18nText("orders_wa_optional_transport_no", "No")
-            )}</p>`
+                ? psgp
+                  ? trTpl("exp_bodega_summary_transport_yes", "Round trip — USD {amount}", {
+                      amount: formatMoney(optionalTransportFlat)
+                    })
+                  : trTpl(
+                      "orders_wa_optional_transport_yes",
+                      "Yes (+USD {amount} total · up to 4 guests)",
+                      { amount: formatMoney(optionalTransportFlat) }
+                    )
+                : psgp
+                  ? getI18nText("exp_bodega_summary_transport_no", "Not included")
+                  : getI18nText("orders_wa_optional_transport_no", "No")
+            )}</p>${
+              psgp && transportOn && bookingMeta.pickupTime
+                ? `<p><strong>${escapeHtml(
+                    getI18nText("exp_bodega_summary_pickup", "Pickup time")
+                  )}:</strong> ${escapeHtml(bookingMeta.pickupTime)}</p>`
+                : ""
+            }`
           : "";
-        html = `<h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>`;
+        html = `<h3>${escapeHtml(getI18nText("your_order", "Your order"))}</h3>${visitDateSummaryHtml}`;
+        const pricePerPerson = effPkg.price;
+        const experienceSubtotal = pricePerPerson * orders.length;
+        const psgpSummaryKeys = psgp?.summaryKeys || {};
+        const pgcPackageLine = pricesPending
+          ? `<strong>${escapeHtml(getI18nText("orders_pkg_package_lbl", "Package:"))}</strong> ${escapeHtml(
+              effPkg.label
+            )}`
+          : psgp
+            ? `<strong>${escapeHtml(getI18nText("orders_pkg_package_lbl", "Package:"))}</strong> ${escapeHtml(
+                effPkg.label
+              )}`
+            : `<strong>${escapeHtml(getI18nText("orders_pkg_package_lbl", "Package:"))}</strong> ${escapeHtml(
+                effPkg.label
+              )} — USD ${escapeHtml(formatMoney(effPkg.price))} ${escapeHtml(
+                getI18nText("orders_pkg_paren_experience", "experience")
+              )}`;
+        const psgpDetailBlock = psgp
+          ? `
+            <p>${pgcPackageLine}</p>
+            <p><strong>${escapeHtml(
+              getI18nText(
+                psgpSummaryKeys.passengersLabel || "exp_bodega_summary_passengers",
+                "Number of people"
+              )
+            )}:</strong> ${escapeHtml(peopleLabel)}</p>
+            <p><strong>${escapeHtml(
+              getI18nText(
+                psgpSummaryKeys.pricePerPersonLabel || "exp_bodega_summary_price_per_person",
+                "Price per person"
+              )
+            )}:</strong> ${escapeHtml(
+              pricesPending
+                ? getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
+                : `USD ${formatMoney(pricePerPerson)}`
+            )}</p>
+            <p><strong>${escapeHtml(
+              getI18nText(
+                psgpSummaryKeys.subtotalLabel || "exp_bodega_summary_experience_subtotal",
+                "Experience subtotal"
+              )
+            )}:</strong> ${escapeHtml(
+              pricesPending
+                ? getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
+                : `USD ${formatMoney(experienceSubtotal)}`
+            )}</p>
+          `
+          : `
+            <p>${pgcPackageLine}</p>
+            <p><strong>${escapeHtml(getI18nText("wa_people_label", "People"))}:</strong> ${escapeHtml(
+              peopleLabel
+            )}</p>
+          `;
         html += `
           <div class="order-card">
             <div class="order-header">
@@ -6625,18 +7058,11 @@ function initPackageOrderExperience(config) {
                 <span class="delete-order" data-index="0">🗑️</span>
               </div>
             </div>
-            <p><strong>${escapeHtml(getI18nText("orders_pkg_package_lbl", "Package:"))}</strong> ${escapeHtml(
-          effPkg.label
-        )} — USD ${escapeHtml(formatMoney(effPkg.price))} ${escapeHtml(
-          getI18nText("orders_pkg_paren_experience", "experience")
-        )}</p>
-            <p><strong>${escapeHtml(getI18nText("wa_people_label", "People"))}:</strong> ${escapeHtml(
-          peopleLabel
-        )}</p>
+            ${psgpDetailBlock}
             ${transportLine}
           </div>
         `;
-      } else if (!pgc) {
+      } else if (!multiGuestPackage) {
       orders.forEach((order, index) => {
         const prefsRaw = Array.isArray(order.preferences) ? order.preferences : [];
         const prefsLine =
@@ -6666,9 +7092,11 @@ function initPackageOrderExperience(config) {
           );
         })();
         const pkgLbl = escapeHtml(getI18nText("orders_pkg_package_lbl", "Package:"));
-        let packageHtml = `<strong>${pkgLbl}</strong> ${escapeHtml(effPkg.label)} — USD ${escapeHtml(
-          String(pkgPrice)
-        )} (${escapeHtml(expLabel)})`;
+        let packageHtml = pricesPending
+          ? `<strong>${pkgLbl}</strong> ${escapeHtml(effPkg.label)}`
+          : `<strong>${pkgLbl}</strong> ${escapeHtml(effPkg.label)} — USD ${escapeHtml(
+              String(pkgPrice)
+            )} (${escapeHtml(expLabel)})`;
         if (share > 0 && usesGroupTransport(orders)) {
           packageHtml += `<br><strong>${escapeHtml(
             getI18nText("orders_pkg_transport_share", "Transport (your share of the group):")
@@ -6766,8 +7194,8 @@ function initPackageOrderExperience(config) {
           minGuestsReq > 1 && !reserveReady
             ? `<p class="sunset-boat-passengers-slot-hint">${escapeHtml(
                 trTpl(
-                  pgc ? "orders_pkg_min_guests_hint_edit" : "orders_pkg_min_guests_hint",
-                  pgc
+                  multiGuestPackage ? "orders_pkg_min_guests_hint_edit" : "orders_pkg_min_guests_hint",
+                  multiGuestPackage
                     ? "This package requires at least {min} people — edit your selection and increase the guest count."
                     : "This package requires at least {min} people — add {remaining} more guest order(s) to reserve.",
                   {
@@ -6777,16 +7205,24 @@ function initPackageOrderExperience(config) {
                 )
               )}</p>`
             : "";
+        const totalDetail = pricesPending
+          ? `${orders.length} ${escapeHtml(guestUnit)} · ${escapeHtml(
+              getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
+            )}`
+          : `${orders.length} ${escapeHtml(guestUnit)} · ${escapeHtml(
+              getI18nText("orders_summary_experiences", "experiences")
+            )} USD ${escapeHtml(formatMoney(expSum))}${guideDetail}${detailExtra}`;
+        const totalRight = pricesPending
+          ? escapeHtml(getI18nText("orders_pkg_price_on_request", "Price to confirm with our team"))
+          : `USD ${escapeHtml(formatMoney(total))}`;
         html += `
           <div class="total-box">
             <div class="total-left">
               <span class="total-label">${escapeHtml(getI18nText("total_label", "Total"))}</span>
-              <span class="total-detail">${orders.length} ${escapeHtml(guestUnit)} · ${escapeHtml(
-          getI18nText("orders_summary_experiences", "experiences")
-        )} USD ${escapeHtml(formatMoney(expSum))}${guideDetail}${detailExtra}</span>
+              <span class="total-detail">${totalDetail}</span>
             </div>
             <div class="total-right">
-              USD ${escapeHtml(formatMoney(total))}
+              ${totalRight}
             </div>
             ${minGuestsHint}
             <a href="#" id="bookWithOrder" class="btn total-btn${reserveReady ? "" : " total-btn--disabled"}"${
@@ -6828,16 +7264,16 @@ function initPackageOrderExperience(config) {
       if (delEl) {
         const idx = Number(delEl.dataset.index);
         const orders = getOrders();
-        if (pgc) {
+        if (multiGuestPackage) {
           setOrders([]);
           if (usesOptionalGroupTransport()) {
-            setBookingMeta({ includeTransport: false });
+            setBookingMeta({ includeTransport: false, pickupTime: null });
           }
         } else {
           orders.splice(idx, 1);
           setOrders(orders);
           if (orders.length === 0 && usesOptionalGroupTransport()) {
-            setBookingMeta({ includeTransport: false });
+            setBookingMeta({ includeTransport: false, pickupTime: null });
           }
         }
         renderOrders();
@@ -6851,7 +7287,7 @@ function initPackageOrderExperience(config) {
         const order = orders[idx];
         if (!order) return;
 
-        editingIndex = pgc ? null : idx;
+        editingIndex = multiGuestPackage ? null : idx;
         clearPopupForm();
 
         if (pc) {
@@ -6880,7 +7316,7 @@ function initPackageOrderExperience(config) {
         const og = optionalGuideEl();
         if (og) og.checked = Boolean(order.includeGuide);
 
-        applySinglePackageLock(orders, pgc ? null : idx);
+        applySinglePackageLock(orders, multiGuestPackage ? null : idx);
         if (pgc) {
           syncPopupGuestCountFromOrders(orders);
           enforcePopupGuestCountForPackage();
@@ -6905,27 +7341,29 @@ function initPackageOrderExperience(config) {
           const total = expTotal + transportTotal + groupGuideAmount();
           const waSummary = buildWhatsAppMessage(orders, "");
           let paymentUrl = "";
-          try {
-            paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-              experience: dynamicPayment?.experienceId || experienceName,
-              amount: total,
-              currency: dynamicPayment?.currency || "USD",
-              people: orders.length,
-              orderFingerprint: stableStringify({
-                orders: orders.map((o) => ({
-                  ...o,
-                  packagePrice: getEffectivePackagePricing(o).price,
-                  packageLabel: getEffectivePackagePricing(o).label
-                })),
-                includeTransport: getBookingMeta().includeTransport,
-                total
-              }),
-              orderPayload: withWhatsAppInOrderPayload(
-                { orders, total, experienceName, bookingMeta: getBookingMeta() },
-                waSummary
-              )
-            });
-          } catch {}
+          if (!pricesPending) {
+            try {
+              paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+                experience: dynamicPayment?.experienceId || experienceName,
+                amount: total,
+                currency: dynamicPayment?.currency || "USD",
+                people: orders.length,
+                orderFingerprint: stableStringify({
+                  orders: orders.map((o) => ({
+                    ...o,
+                    packagePrice: getEffectivePackagePricing(o).price,
+                    packageLabel: getEffectivePackagePricing(o).label
+                  })),
+                  includeTransport: getBookingMeta().includeTransport,
+                  total
+                }),
+                orderPayload: withWhatsAppInOrderPayload(
+                  { orders, total, experienceName, bookingMeta: getBookingMeta() },
+                  waSummary
+                )
+              });
+            } catch {}
+          }
           const message = buildWhatsAppMessage(orders, paymentUrl);
           sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
         });
@@ -6955,13 +7393,13 @@ function initPackageOrderExperience(config) {
       const packageId = selectedPackage.value;
       const spec = resolvePackageSpec(packageId);
 
-      if (!spec || !spec.price) {
+      if (!spec || (!pricesPending && !spec.price)) {
         alert(getI18nText("orders_pkg_alert_invalid", "Invalid package"));
         return;
       }
 
       const ordersBeforeSave = getOrders();
-      const lockedId = pgc ? null : getLockedPackageId(ordersBeforeSave, editingIndex);
+      const lockedId = multiGuestPackage ? null : getLockedPackageId(ordersBeforeSave, editingIndex);
       if (lockedId != null && packageId !== String(lockedId)) {
         alert(
           getI18nText(
@@ -6983,6 +7421,28 @@ function initPackageOrderExperience(config) {
       const og = optionalGuideEl();
       const includeGuide = og ? Boolean(og.checked) : false;
 
+      const orderTemplate = {
+        packageId,
+        packageLabel: spec.label,
+        packagePrice: spec.price + (guideOptional ? (includeGuide ? guideFee : 0) : guideFee),
+        preferences,
+        ...(guideOptional ? { includeGuide } : {})
+      };
+
+      persistTransportFromPopup();
+
+      if (psgp) {
+        const existingCount =
+          Array.isArray(ordersBeforeSave) && ordersBeforeSave.length > 0
+            ? ordersBeforeSave.length
+            : psgp.min;
+        followUpGuestCount = existingCount;
+        syncFollowUpGuestCountDisplay();
+        closePopup();
+        openFollowUpGuestPopup({ orderTemplate, packageId, spec });
+        return;
+      }
+
       const guestCount = pgc ? popupGuestCount : 1;
       const minG = getMinGuestsForPackageId(packageId);
       if (pgc && guestCount < minG) {
@@ -6995,16 +7455,6 @@ function initPackageOrderExperience(config) {
         );
         return;
       }
-
-      const orderTemplate = {
-        packageId,
-        packageLabel: spec.label,
-        packagePrice: spec.price + (guideOptional ? (includeGuide ? guideFee : 0) : guideFee),
-        preferences,
-        ...(guideOptional ? { includeGuide } : {})
-      };
-
-      persistTransportFromPopup();
 
       let orders;
       if (pgc) {
@@ -7026,6 +7476,96 @@ function initPackageOrderExperience(config) {
       renderOrders();
       scrollToOrderSummary(orderSummaryId);
     });
+
+    if (psgp) {
+      const guestPopup = psgpPopupEl();
+      const closeGuestBtn = document.getElementById(psgp.closeBtnId);
+      const backGuestBtn = document.getElementById(psgp.backBtnId);
+      const confirmGuestBtn = document.getElementById(psgp.confirmBtnId);
+      const minusEl = psgpMinusBtn();
+      const plusEl = psgpPlusBtn();
+
+      const returnToExperiencePopup = (e) => {
+        if (e) e.preventDefault();
+        closeFollowUpGuestPopup();
+        reopenExperiencePopupPreservingSelection();
+      };
+
+      if (closeGuestBtn) closeGuestBtn.addEventListener("click", returnToExperiencePopup);
+      if (backGuestBtn) backGuestBtn.addEventListener("click", returnToExperiencePopup);
+
+      if (minusEl) {
+        minusEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          setFollowUpGuestCount(followUpGuestCount - 1);
+        });
+      }
+      if (plusEl) {
+        plusEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          setFollowUpGuestCount(followUpGuestCount + 1);
+        });
+      }
+
+      if (confirmGuestBtn) {
+        confirmGuestBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (!pendingFollowUpSave) return;
+          if (!Number.isInteger(followUpGuestCount) || followUpGuestCount < psgp.min) return;
+          if (psgp.transportInPopup) {
+            followUpIncludeTransport = readFollowUpTransportFromPopup();
+            followUpPickupTime = followUpIncludeTransport ? readFollowUpPickupFromPopup() : null;
+            if (followUpIncludeTransport && !followUpPickupTime) {
+              showFollowUpGuestError(
+                getI18nText(
+                  "exp_bodega_guests_pickup_required",
+                  "Please select a pickup time to continue."
+                )
+              );
+              return;
+            }
+            setBookingMeta({
+              includeTransport: followUpIncludeTransport,
+              pickupTime: followUpIncludeTransport ? followUpPickupTime : null
+            });
+          }
+          commitMultiGuestOrders(followUpGuestCount, pendingFollowUpSave.orderTemplate);
+        });
+      }
+
+      if (psgp.transportInPopup && psgp.transportRadioName) {
+        const root = followUpGuestPopupRoot();
+        if (root) {
+          root.querySelectorAll(`input[name="${psgp.transportRadioName}"]`).forEach((radio) => {
+            radio.addEventListener("change", onFollowUpTransportChange);
+          });
+        }
+      }
+
+      const pickupRoot = followUpGuestPopupRoot();
+      if (pickupRoot) {
+        pickupRoot.querySelectorAll(".exp-bodega-guests-pickup-chip").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (!followUpIncludeTransport) return;
+            followUpPickupTime = btn.dataset.time || null;
+            syncFollowUpPickupChipSelection();
+            hideFollowUpGuestError();
+            updateFollowUpGuestPopupSummary();
+          });
+        });
+      }
+
+      if (guestPopup) {
+        guestPopup.addEventListener("click", (e) => {
+          if (e.target === guestPopup) returnToExperiencePopup(e);
+        });
+      }
+
+      document.addEventListener("sacramento:setLanguage", () => {
+        if (pendingFollowUpSave) updateFollowUpGuestPopupSummary();
+      });
+    }
 
     if (pgc) {
       const minusEl = pgcMinusBtn();
@@ -7068,33 +7608,41 @@ function initPackageOrderExperience(config) {
             const total = expTotal + transportTotal + groupGuideAmount();
             const waSummary = buildWhatsAppMessage(orders, "");
             let paymentUrl = "";
-            try {
-              paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
-                experience: dynamicPayment?.experienceId || experienceName,
-                amount: total,
-                currency: dynamicPayment?.currency || "USD",
-                people: orders.length,
-                orderFingerprint: stableStringify({
-                  orders: orders.map((o) => ({
-                    ...o,
-                    packagePrice: getEffectivePackagePricing(o).price,
-                    packageLabel: getEffectivePackagePricing(o).label
-                  })),
-                  includeTransport: getBookingMeta().includeTransport,
-                  total
-                }),
-                orderPayload: withWhatsAppInOrderPayload(
-                  { orders, total, experienceName, bookingMeta: getBookingMeta() },
-                  waSummary
-                )
-              });
-            } catch {}
+            if (!pricesPending) {
+              try {
+                paymentUrl = await resolveDynamicPaymentLink(dynamicPayment, {
+                  experience: dynamicPayment?.experienceId || experienceName,
+                  amount: total,
+                  currency: dynamicPayment?.currency || "USD",
+                  people: orders.length,
+                  orderFingerprint: stableStringify({
+                    orders: orders.map((o) => ({
+                      ...o,
+                      packagePrice: getEffectivePackagePricing(o).price,
+                      packageLabel: getEffectivePackagePricing(o).label
+                    })),
+                    includeTransport: getBookingMeta().includeTransport,
+                    total
+                  }),
+                  orderPayload: withWhatsAppInOrderPayload(
+                    { orders, total, experienceName, bookingMeta: getBookingMeta() },
+                    waSummary
+                  )
+                });
+              } catch {}
+            }
             const message = buildWhatsAppMessage(orders, paymentUrl);
             sacramentoOpenWhatsApp(whatsappNumber, message, pendingTab);
           });
         });
       }
     }
+
+    document.addEventListener("sacramento:visitDateChanged", (e) => {
+      if (!selectedDateKey) return;
+      if (e.detail && e.detail.key && e.detail.key !== selectedDateKey) return;
+      renderOrders();
+    });
 
     if (groupGuideEnabled && groupGuideCheckboxId) {
       const gel = groupGuideEl();
