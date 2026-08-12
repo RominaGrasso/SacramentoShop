@@ -122,7 +122,7 @@
 <p class="medical">🛡️ <span data-translate="sunset_boat_medical">Medical assistance included</span></p>
 <!-- PRICE -->
 <div class="price-box price-box--with-blurb">
-<h3 data-translate="sunset_boat_price_title">USD 30 per guest</h3>
+<h3 data-translate="sunset_boat_price_title">USD 40 per guest</h3>
 <p class="price-box-detail" data-translate="sunset_boat_price_detail">
           Price per person for the boat experience. Drinks are not included unless specified in your booking confirmation.
         </p>
@@ -142,9 +142,9 @@
 <h3 data-translate="sunset_boat_create_title">Book your spot</h3>
 <div class="booking-visit-date-row">
 <label data-translate="booking_visit_date_label" for="bookingVisitDate">Preferred visit date</label>
-<input autocomplete="off" data-booking-date-key="selectedDate" id="bookingVisitDate" type="date"/>
-<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
-                Pick the day you plan to come so we can coordinate availability in advance.
+<input autocomplete="off" data-booking-date-invalid-i18n="sunset_boat_alert_weekday" data-booking-date-key="selectedDate" data-booking-date-weekends-only="true" id="bookingVisitDate" type="date"/>
+<p class="booking-visit-date-hint" data-translate="sunset_boat_visit_date_hint">
+                Saturdays and Sundays only.
               </p>
 </div>
 <p data-translate="sunset_boat_create_subtitle">
@@ -227,14 +227,13 @@
       initExperience({
         experienceName: "Sunset Boat Experience",
         experienceNameKey: "sunset_boat_experience_name",
-        pricePerPerson: 30,
+        pricePerPerson: 40,
         experienceSkipsMenuChoices: true,
         boatTimePerOrder: true,
         boatTimePopupRadioName: "sunsetBoatOrderTime",
         boatPerPersonPrice: 0,
         boatTimeSlots: ["11:00am", "13:30pm", "15:30pm", "17:00pm"],
         boatPassengersMax: 23,
-        boatPassengersMin: 10,
         experienceSkipsDrinkField: true,
         starterName: "starter",
         mainName: "main",

@@ -36,7 +36,7 @@
     "legado.html": [35, 55, 85],
     "sio.html": [70],
     "romantic.html": [70],
-    "sunset-boat.html": [30],
+    "sunset-boat.html": [40],
     "mision-night.html": [115],
     "sio-night.html": [115],
     "corporate-boat.html": [150],

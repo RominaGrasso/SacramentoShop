@@ -4308,6 +4308,40 @@
     display: none !important;
   }
 
+  .home-category-modal__cards .card-modal-explore-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .home-category-modal__cards .card-modal-explore-link--title {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .home-category-modal__cards .card-modal-explore-link--title:hover,
+  .home-category-modal__cards .card-modal-explore-link--title:focus-visible {
+    opacity: 0.88;
+    outline: none;
+  }
+
+  .home-category-modal__cards .card-modal-explore-link--media {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .home-category-modal__cards .card-modal-explore-link--media:hover,
+  .home-category-modal__cards .card-modal-explore-link--media:focus-visible {
+    opacity: 0.94;
+    outline: none;
+  }
+
+  .home-category-modal__cards .card.card--category-modal .card-image.carousel .carousel-btn {
+    z-index: 3;
+  }
+
   .home-category-modal__cards .card.card--category-modal .carousel-track img,
   .home-category-modal__cards .card.card--category-modal .carousel-track video {
     flex: 0 0 100%;
@@ -9645,6 +9679,10 @@
 
 .partners .logos-track img[src*="quintonlogo"] {
   height: 68px;
+}
+
+.partners .logos-track img[src*="haciendalogo"] {
+  height: 64px;
 }
 
 /* Viaggio (square): ~120px matches rendered width of S34 / Las Liebres at 54px row height */

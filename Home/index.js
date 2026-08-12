@@ -102,6 +102,8 @@ const translations = {
       home_category_modal_view_list: "View in full list",
       home_category_modal_count: "{count} experiences",
       home_category_modal_empty: "No experiences in this category right now.",
+      home_category_modal_explore_aria: "Explore {title}",
+      home_category_modal_explore_fallback: "this experience",
       home_historic_map_title: "Discover the origins of Colonia",
       home_historic_map_subtitle: "Colonia del Sacramento in 1680",
       home_historic_map_text:
@@ -2201,7 +2203,6 @@ const translations = {
       orders_visit_date_label: "Visit date",
       passengers_label: "Passengers",
       gallery_video_badge: "Video",
-      boat_min_pax_badge: "Minimum 10 people",
       sunset_boat_passengers_per_slot:
         "Up to {max} passengers allowed per departure time.",
       sunset_boat_popup_time_title: "Departure time",
@@ -2226,15 +2227,18 @@ const translations = {
         "🌅 Sunset & relax: Ideal for photos, calm waters, and a memorable end of the day.",
       sunset_boat_step_4: "⏱️ Duration: About 1.5 hours",
       sunset_boat_medical: "Medical assistance included",
-      sunset_boat_price_title: "USD 30 per guest",
+      sunset_boat_price_title: "USD 40 per guest",
       sunset_boat_price_detail:
-        "Price per person for the boat experience. Minimum 10 passengers per booking. Drinks are not included unless specified in your booking confirmation.",
+        "Price per person for the boat experience. Drinks are not included unless specified in your booking confirmation.",
       sunset_boat_included_title: "What's included",
       sunset_boat_include_1: "✔ Scenic boat tour on the Río de la Plata",
       sunset_boat_include_2: "✔ Captain & host",
       sunset_boat_include_3: "✔ Life jackets and safety briefing",
       sunset_boat_include_4: "✔ Small-group atmosphere",
       sunset_boat_create_title: "Book your spot",
+      sunset_boat_visit_date_hint: "Saturdays and Sundays only.",
+      sunset_boat_alert_weekday:
+        "The Sunset Boat experience is only available on Saturdays and Sundays. Please pick a weekend date.",
       sunset_boat_create_subtitle:
         "Choose your visit date below, then add a booking and pick a departure time in the popup. Use +/− on each booking for more than one passenger at the same time.",
       sunset_boat_create_btn: "+ Add passenger or group",
@@ -2348,9 +2352,9 @@ const translations = {
       asado_boat_price_menu_title: "Standard USD 60 · Premium USD 80 per menu",
       asado_boat_price_menu_detail:
         "Includes the BBQ menu for your group (Standard or Premium parrillero) and your choice of side dishes. Generally, the Standard BBQ is enough for about 2–3 people; Premium for about 4. Drinks and beverages are not included — you can order them on site.",
-      asado_boat_price_boat_title: "Boat USD 30 per person",
+      asado_boat_price_boat_title: "Boat USD 40 per person",
       asado_boat_price_boat_detail:
-        "Charged per passenger for the boat tour (minimum 10 passengers on the boat), in addition to your BBQ menu order(s).",
+        "Charged per passenger for the boat tour, in addition to your BBQ menu order(s).",
       asado_boat_included_title: "What's included",
       asado_boat_include_1: "✔ Traditional Uruguayan asado (Standard or Premium grill selection)",
       asado_boat_include_2: "✔ Side dish(es) as per your menu choice",
@@ -2920,6 +2924,8 @@ const translations = {
       home_category_modal_view_list: "Ver en la lista completa",
       home_category_modal_count: "{count} experiencias",
       home_category_modal_empty: "No hay experiencias en esta categoría por ahora.",
+      home_category_modal_explore_aria: "Explorar {title}",
+      home_category_modal_explore_fallback: "esta experiencia",
       home_historic_map_title: "Descubrí los orígenes de Colonia",
       home_historic_map_subtitle: "Colonia del Sacramento en 1680",
       home_historic_map_text:
@@ -3116,7 +3122,7 @@ const translations = {
       exp_bodega_included_title: "Qué incluye",
       exp_bodega_include_1: "✔ Degustación de vinos uruguayos (opción a elección)",
       exp_bodega_include_2: "✔ Visitas guiadas a viña y bodega en opciones seleccionadas",
-      exp_bodega_include_3: "✔ Quesos locales y maridajes regionales en opciones seleccionadas",
+      exp_bodega_include_3: "✔ Quesos, fiambres locales y aceite extra virgen en opciones seleccionadas",
       exp_bodega_include_4: "✔ Coordinación y soporte de Sacramento Adventures",
       exp_bodega_create_title: "Creá tu experiencia",
       exp_bodega_create_subtitle: "Elegí la fecha de visita y luego seleccioná tu opción de degustación.",
@@ -5019,7 +5025,6 @@ const translations = {
       orders_visit_date_label: "Fecha de la visita",
       passengers_label: "Pasajeros",
       gallery_video_badge: "Vídeo",
-      boat_min_pax_badge: "Mínimo 10 personas",
       sunset_boat_passengers_per_slot:
         "Se permiten hasta {max} pasajeros por horario de salida.",
       sunset_boat_popup_time_title: "Horario de salida",
@@ -5044,15 +5049,18 @@ const translations = {
         "🌅 Atardecer y relax: Ideal para fotos, aguas tranquilas y un cierre de día memorable.",
       sunset_boat_step_4: "⏱️ Duración: Aprox. 1,5 horas",
       sunset_boat_medical: "Asistencia médica incluida",
-      sunset_boat_price_title: "USD 30 por persona",
+      sunset_boat_price_title: "USD 40 por persona",
       sunset_boat_price_detail:
-        "Precio por persona por la experiencia en barco. Mínimo 10 pasajeros por reserva. Las bebidas no están incluidas salvo que se indique en la confirmación.",
+        "Precio por persona por la experiencia en barco. Las bebidas no están incluidas salvo que se indique en la confirmación.",
       sunset_boat_included_title: "Qué incluye",
       sunset_boat_include_1: "✔ Paseo escénico en el Río de la Plata",
       sunset_boat_include_2: "✔ Capitán y anfitrión",
-      sunset_boat_include_3: "✔ Chalecos salvavidas y indicaciones de seguridad",
+      sunset_boat_include_3: "✔ Chalecos salvavidas e indicaciones de seguridad",
       sunset_boat_include_4: "✔ Ambiente de grupo reducido",
       sunset_boat_create_title: "Reservá tu lugar",
+      sunset_boat_visit_date_hint: "Solo sábados y domingos.",
+      sunset_boat_alert_weekday:
+        "La experiencia Sunset Boat está disponible solo sábados y domingos. Elegí una fecha de fin de semana.",
       sunset_boat_create_subtitle:
         "Elegí la fecha de visita abajo, después agregá una reserva y el horario de salida en el popup. Con +/− en cada reserva podés sumar más de un pasajero al mismo horario.",
       sunset_boat_create_btn: "+ Agregar pasajero o grupo",
@@ -5166,9 +5174,9 @@ const translations = {
       asado_boat_price_menu_title: "Menú estándar USD 60 · premium USD 80 por menú",
       asado_boat_price_menu_detail:
         "Incluye el menú de parrilla para tu grupo (estándar o premium) y la elección de guarniciones. En general el menú estándar alcanza para unas 2–3 personas; el premium para unas 4. Las bebidas no están incluidas: podés pedirlas en el lugar.",
-      asado_boat_price_boat_title: "Barco USD 30 por persona",
+      asado_boat_price_boat_title: "Barco USD 40 por persona",
       asado_boat_price_boat_detail:
-        "Se cobra por pasajero del paseo en barco (mínimo 10 pasajeros en el barco), además de tu(s) pedido(s) de menú de parrilla.",
+        "Se cobra por pasajero del paseo en barco, además de tu(s) pedido(s) de menú de parrilla.",
       asado_boat_included_title: "Qué incluye",
       asado_boat_include_1: "✔ Asado uruguayo tradicional (selección estándar o premium)",
       asado_boat_include_2: "✔ Guarnición(es) según tu elección de menú",
@@ -5738,6 +5746,8 @@ const translations = {
       home_category_modal_view_list: "Ver na lista completa",
       home_category_modal_count: "{count} experiências",
       home_category_modal_empty: "Não há experiências nesta categoria no momento.",
+      home_category_modal_explore_aria: "Explorar {title}",
+      home_category_modal_explore_fallback: "esta experiência",
       home_historic_map_title: "Descubra as origens de Colônia",
       home_historic_map_subtitle: "Colônia do Sacramento em 1680",
       home_historic_map_text:
@@ -7836,7 +7846,6 @@ const translations = {
       orders_visit_date_label: "Data da visita",
       passengers_label: "Passageiros",
       gallery_video_badge: "Vídeo",
-      boat_min_pax_badge: "Mínimo 10 pessoas",
       sunset_boat_passengers_per_slot:
         "São permitidos até {max} passageiros por horário de saída.",
       sunset_boat_popup_time_title: "Horário de saída",
@@ -7861,15 +7870,18 @@ const translations = {
         "🌅 Pôr do sol e relax: Ideal para fotos, águas calmas e um fim de tarde memorável.",
       sunset_boat_step_4: "⏱️ Duração: Cerca de 1,5 horas",
       sunset_boat_medical: "Assistência médica incluída",
-      sunset_boat_price_title: "USD 30 por pessoa",
+      sunset_boat_price_title: "USD 40 por pessoa",
       sunset_boat_price_detail:
-        "Preço por pessoa pela experiência de barco. Mínimo de 10 passageiros por reserva. Bebidas não inclusas salvo confirmação em contrário.",
+        "Preço por pessoa pela experiência de barco. Bebidas não inclusas salvo confirmação em contrário.",
       sunset_boat_included_title: "O que está incluído",
       sunset_boat_include_1: "✔ Passeio cênico no Rio da Prata",
       sunset_boat_include_2: "✔ Capitão e anfitrião",
       sunset_boat_include_3: "✔ Coletes salva-vidas e orientações de segurança",
       sunset_boat_include_4: "✔ Experiência em grupo pequeno",
       sunset_boat_create_title: "Reserve seu lugar",
+      sunset_boat_visit_date_hint: "Somente sábados e domingos.",
+      sunset_boat_alert_weekday:
+        "A experiência Sunset Boat está disponível apenas aos sábados e domingos. Escolha uma data de fim de semana.",
       sunset_boat_create_subtitle:
         "Escolha a data da visita abaixo, depois adicione uma reserva e o horário de saída no popup. Use +/− em cada reserva para mais de um passageiro no mesmo horário.",
       sunset_boat_create_btn: "+ Adicionar passageiro ou grupo",
@@ -7983,9 +7995,9 @@ const translations = {
       asado_boat_price_menu_title: "Menu padrão USD 60 · premium USD 80 por menu",
       asado_boat_price_menu_detail:
         "Inclui o menu de churrasco para o seu grupo (padrão ou premium) e a escolha de guarnições. Em geral o menu padrão serve cerca de 2–3 pessoas; o premium cerca de 4. Bebidas não estão incluídas — podem ser pedidas no local.",
-      asado_boat_price_boat_title: "Barco USD 30 por pessoa",
+      asado_boat_price_boat_title: "Barco USD 40 por pessoa",
       asado_boat_price_boat_detail:
-        "Cobrado por passageiro do passeio de barco (mínimo de 10 passageiros no barco), além do(s) pedido(s) de menu de churrasco.",
+        "Cobrado por passageiro do passeio de barco, além do(s) pedido(s) de menu de churrasco.",
       asado_boat_included_title: "O que está incluído",
       asado_boat_include_1: "✔ Asado uruguaio tradicional (seleção padrão ou premium)",
       asado_boat_include_2: "✔ Guarnição(ões) conforme sua escolha de menu",
