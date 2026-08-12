@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title data-translate="exp_bodega_doc_title">Winery Experience | Sacramento Adventures</title>
+<link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
+<link as="image" fetchpriority="high" href="../Assets/images/hac8.jpg" rel="preload"/>
+<link href="../Styles/styles.css?v=20260811expbodegahero" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-72TT5VCG5S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-72TT5VCG5S');
+</script>
+
+<!-- Meta Pixel Code -->
+<script src="../Home/meta-pixel.js?v=20260715"></script>
+<noscript><img alt="" height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=980635468354179&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+  .page-experiencia-bodega .coffee-gallery .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 900px) {
+    .page-experiencia-bodega .coffee-gallery .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .page-experiencia-bodega .coffee-gallery .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-duration {
+    margin: 0.35rem 0 0.85rem;
+    color: #6a7788;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-summary {
+    margin: 0 0 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(31, 47, 70, 0.08);
+    color: #4a5a6a;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-summary p {
+    margin: 0 0 0.35rem;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-summary strong,
+  #popupExpBodegaGuests .exp-bodega-guests-price-summary strong {
+    display: block;
+    margin-bottom: 0.12rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1f2f46;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-summary p span,
+  #popupExpBodegaGuests .exp-bodega-guests-price-summary p span {
+    display: block;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-section {
+    margin: 0 0 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(31, 47, 70, 0.08);
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-section__label {
+    margin: 0 0 0.45rem;
+    color: #1f2f46;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-section__hint {
+    margin: 0 0 0.55rem;
+    color: #6a7788;
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-transport-options label {
+    display: block;
+    margin: 0 0 0.45rem;
+    color: #1f2f46;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    cursor: pointer;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-transport-options input {
+    margin-right: 0.45rem;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-transport-options strong {
+    display: inline;
+    margin-bottom: 0;
+    font-size: inherit;
+    font-weight: 700;
+    color: #1f2f46;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-pickup-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-pickup-chip {
+    flex: 0 0 auto;
+    min-width: 4.75rem;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid rgba(31, 47, 70, 0.16);
+    border-radius: 10px;
+    background: #fff;
+    color: #1f2f46;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-pickup-chip:hover {
+    border-color: rgba(102, 166, 230, 0.55);
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-pickup-chip.is-active {
+    border-color: #66a6e6;
+    background: rgba(102, 166, 230, 0.14);
+    color: #1f2f46;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-counter__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-counter__label {
+    margin: 0 0 0.65rem;
+    color: #1f2f46;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-counter__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-counter__row .add-guest-btn {
+    margin-bottom: 0;
+    flex: 0 0 auto;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-counter__row span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1f2f46;
+    line-height: 1;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-counter__count {
+    margin: 0.2rem 0 0;
+    text-align: center;
+    color: #6a7788;
+    font-size: 0.88rem;
+    line-height: 1.35;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-price-summary {
+    margin: 0 0 0.75rem;
+    padding: 0.85rem 0.95rem;
+    border-radius: 12px;
+    background: rgba(102, 166, 230, 0.1);
+    color: #1f2f46;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-price-summary p {
+    margin: 0 0 0.3rem;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-price-summary__total {
+    margin: 0.45rem 0 0;
+    padding-top: 0.45rem;
+    border-top: 1px solid rgba(31, 47, 70, 0.1);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  #popupExpBodegaGuests .exp-bodega-guests-error {
+    margin: 0 0 0.65rem;
+    color: #b42318;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 768px) {
+    #popupExpBodegaGuests .exp-bodega-guests-counter__label {
+      font-size: 1.35rem;
+    }
+
+    #popupExpBodegaGuests .exp-bodega-guests-counter__row .add-guest-btn {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+    }
+  }
+</style>
+
+</head>
+<body class="page-actividad page-experiencia-bodega">
+<header>
+<div class="logo-container">
+<a class="logo" href="../Home/index.html">
+<img alt="Sacramento Adventures Logo" decoding="async" src="../Assets/images/sacramento-logo-new.svg"/>
+</a>
+</div>
+<div class="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="top-links">
+<a class="nav-about-link" href="../Actividades/aboutus.html" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="nav-about-icon" focusable="false" height="18" width="18"><use href="../Assets/icons/nav-header.svg#nav-about"></use></svg><span data-translate="about_us_nav">About Us</span>
+</a>
+</nav>
+<div class="language-switch">
+<button class="lang-btn active" data-lang="en" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-us"></use></svg><span>EN</span></button>
+<button class="lang-btn" data-lang="es" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-uy"></use></svg><span>ES</span></button>
+<button class="lang-btn" data-lang="pt" type="button"><svg aria-hidden="true" class="lang-flag-icon" focusable="false" height="13" width="18"><use href="../Assets/icons/nav-header.svg#flag-br"></use></svg><span>PT</span></button>
+</div>
+<nav class="hamburger-menu">
+<ul>
+<li data-filter="fullday">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-fullday"></use></svg>
+<span data-translate="nav_cat_fullday">Full Day Experiences</span>
+</li>
+<li data-filter="day">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-day"></use></svg>
+<span data-translate="nav_cat_day">Just for a Day</span>
+</li>
+<li data-filter="night">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-night"></use></svg>
+<span data-translate="nav_cat_night">Just for a Night</span>
+</li>
+<li data-filter="tour">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-tours"></use></svg>
+<span data-translate="nav_cat_tours">Guided Tours</span>
+</li>
+<li data-filter="gastronomy">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-gastro"></use></svg>
+<span data-translate="nav_cat_gastro">Gastronomy</span>
+</li>
+<li data-filter="nature">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-nature"></use></svg>
+<span data-translate="nav_cat_nature">Nature and Animals</span>
+</li>
+<li data-filter="culture">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-culture"></use></svg>
+<span data-translate="nav_cat_culture">Tradition &amp; Culture</span>
+</li>
+<li data-filter="romantic">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-romantic"></use></svg>
+<span data-translate="nav_cat_romantic">Romantic</span>
+</li>
+<li data-filter="corporate">
+<svg aria-hidden="true" class="nav-cat-icon" focusable="false" height="22" width="22"><use href="../Assets/icons/nav-categories.svg#nav-corporate"></use></svg>
+<span data-translate="nav_cat_corporate">Corporate Experiences</span>
+</li>
+</ul>
+</nav>
+</header>
+<section aria-label="Winery experience in Colonia" class="exp-bodega-hero" role="img"></section>
+<section class="coffee-content">
+<h2 data-translate="exp_bodega_about_title">About this experience</h2>
+<p data-translate="exp_bodega_about_p">
+      Live an experience among vineyards and Uruguayan wines at a local winery in Colonia. Enjoy guided walks through the vines, tastings, and different pairing proposals with regional products.
+    </p>
+<a class="reel-link-btn" data-translate="food_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
+      🎥 Watch Reel on @_sacramentoadventures
+    </a>
+<h3 class="experience-steps-title" data-translate="exp_bodega_steps_title">How it works</h3>
+<div class="experience-steps">
+<ul>
+<li class="liebres-step-item">
+          🗓️
+          <strong data-translate="exp_bodega_step_1_title">Choose your date:</strong>
+<span data-translate="exp_bodega_step_1_desc">Pick the day you want to visit and create your experience.</span>
+</li>
+<li class="liebres-step-item">
+          🍇
+          <strong data-translate="exp_bodega_step_2_title">Choose your option:</strong>
+<span data-translate="exp_bodega_step_2_desc">After tapping "Create your experience", pick the proposal you like best.</span>
+</li>
+<li class="liebres-step-item">
+          👥
+          <strong data-translate="exp_bodega_step_3_title">Tell us how many people:</strong>
+<span data-translate="exp_bodega_step_3_desc">Select how many people will enjoy the experience.</span>
+</li>
+<li class="liebres-step-item">
+          🚗
+          <strong data-translate="exp_bodega_step_4_title">Add transport if you need it:</strong>
+<span data-translate="exp_bodega_step_4_desc">You can add round-trip transport and choose your pickup time.</span>
+</li>
+<li class="liebres-step-item">
+          🍷
+          <strong data-translate="exp_bodega_step_5_title">Enjoy the winery:</strong>
+<span data-translate="exp_bodega_step_5_desc">Discover Uruguayan wines with guided visits and pairings, depending on your choice.</span>
+</li>
+<li class="liebres-step-item">
+          ✨
+          <strong data-translate="exp_bodega_step_6_title">We coordinate the details:</strong>
+<span data-translate="exp_bodega_step_6_desc">Our team confirms availability and final details before your visit.</span>
+</li>
+</ul>
+</div>
+<div class="coffee-includes">
+<div class="includes-preferences">
+<div class="includes-list">
+<h3 data-translate="exp_bodega_included_title">What's included</h3>
+<ul>
+<li data-translate="exp_bodega_include_1">✔ Uruguayan wine tasting (option of your choice)</li>
+<li data-translate="exp_bodega_include_2">✔ Guided vineyard and winery visits on selected options</li>
+<li data-translate="exp_bodega_include_3">✔ Local cheeses and regional pairings on selected options</li>
+<li data-translate="exp_bodega_include_4">✔ Coordination and support from Sacramento Adventures</li>
+</ul>
+</div>
+<div class="order-start">
+<h3 data-translate="exp_bodega_create_title">Create your experience</h3>
+<p class="experience-availability-notice" data-translate="mision_room_availability_notice">
+            Please check availability with us on WhatsApp before completing your reservation.
+          </p>
+<div class="booking-visit-date-row">
+<label data-translate="booking_visit_date_label" for="bookingVisitDateExpBodega">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-blocked-weekdays="1,2,3,4" data-booking-date-invalid-i18n="exp_bodega_alert_visit_day" data-booking-date-key="selectedDateExpBodega" id="bookingVisitDateExpBodega" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+              Pick the day you plan to come so we can coordinate availability in advance.
+            </p>
+</div>
+<p data-translate="exp_bodega_create_subtitle">Choose your visit date, then select your tasting option.</p>
+<button class="btn primary-btn" data-translate="exp_bodega_create_btn" id="createMenuBtnExpBodega" type="button">
+            + Create your experience
+          </button>
+</div>
+</div>
+</div>
+<div class="order-summary" id="orderSummaryExpBodega"></div>
+<div class="experience-support-notice" role="status">
+<p>
+<strong data-translate="food_support_title">After your reservation</strong><span data-translate="food_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
+</p>
+</div>
+<section class="coffee-gallery">
+<h2 data-translate="exp_bodega_gallery_title">Experience Gallery</h2>
+<div class="gallery-grid">
+<img alt="Rosé wine and tasting setup at the winery" decoding="async" height="220" loading="lazy" src="../Assets/images/hac1.jpg" width="1200"/>
+<img alt="Winery grounds and vineyard landscape" decoding="async" height="220" loading="lazy" src="../Assets/images/hac8.jpg" width="1200"/>
+<img alt="Wine tasting and regional flavors" decoding="async" height="220" loading="lazy" src="../Assets/images/hac10.jpg" width="1200"/>
+<img alt="Winery visit and local wine experience" decoding="async" height="220" loading="lazy" src="../Assets/images/hac11.jpg" width="1200"/>
+<img alt="Hacienda del Sacramento winery experience" decoding="async" height="220" loading="lazy" src="../Assets/images/hac12.jpg" width="1200"/>
+<img alt="Vineyard and winery grounds at Hacienda del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/hac13.jpg" width="1200"/>
+<img alt="Wine tasting and regional products at the winery" decoding="async" height="220" loading="lazy" src="../Assets/images/hac14.jpg" width="1200"/>
+<img alt="Winery visit and local wine experience" decoding="async" height="220" loading="lazy" src="../Assets/images/hac15.jpg" width="1200"/>
+<img alt="Winery building and mural detail" decoding="async" height="220" loading="lazy" src="../Assets/images/hac3.jpg" width="1200"/>
+<div aria-label="Video — tap to enlarge" class="gallery-video-thumb" role="button" tabindex="0" title="Winery experience video">
+<video class="gallery-grid-video-el" muted="" playsinline="" preload="metadata">
+<source src="../Assets/images/hac4.mp4" type="video/mp4"/>
+</video>
+<div aria-hidden="true" class="gallery-video-overlay">
+<span class="gallery-video-play">▶</span>
+</div>
+<span class="gallery-video-badge" data-translate="gallery_video_badge">Video</span>
+</div>
+<div aria-label="Video — tap to enlarge" class="gallery-video-thumb" role="button" tabindex="0" title="Winery experience video">
+<video class="gallery-grid-video-el" muted="" playsinline="" preload="metadata">
+<source src="../Assets/images/hac5.mp4" type="video/mp4"/>
+</video>
+<div aria-hidden="true" class="gallery-video-overlay">
+<span class="gallery-video-play">▶</span>
+</div>
+<span class="gallery-video-badge" data-translate="gallery_video_badge">Video</span>
+</div>
+<div aria-label="Video — tap to enlarge" class="gallery-video-thumb" role="button" tabindex="0" title="Winery experience video">
+<video class="gallery-grid-video-el" muted="" playsinline="" preload="metadata">
+<source src="../Assets/images/hac7.mp4" type="video/mp4"/>
+</video>
+<div aria-hidden="true" class="gallery-video-overlay">
+<span class="gallery-video-play">▶</span>
+</div>
+<span class="gallery-video-badge" data-translate="gallery_video_badge">Video</span>
+</div>
+<img alt="5-wine tasting experience" decoding="async" height="220" loading="lazy" src="../Assets/images/5copas.jpg" width="1200"/>
+<img alt="Wines and cheeses pairing experience" decoding="async" height="220" loading="lazy" src="../Assets/images/quesos.jpg" width="1200"/>
+<img alt="Premium wine and local flavors experience" decoding="async" height="220" loading="lazy" src="../Assets/images/premium.jpg" width="1200"/>
+</div>
+</section>
+<div class="coffee-actions">
+<a class="btn" data-translate="book_btn" href="#" id="bookNowBottomExpBodega">Reserve</a>
+<a class="btn secondary" data-translate="exp_bodega_back_home" href="../Home/index.html">Back to Home</a>
+</div>
+</section>
+<script src="../Home/language-init.js?v=20260522perf"></script>
+<script src="../Home/language-prompt.js?v=20260522perf"></script>
+<script src="../Home/index.js?v=20260811expbodega10"></script>
+<script data-sacramento-footer src="../Home/site-footer.js?v=20260721footer"></script>
+<script src="../Home/orders.js?v=20260811expbodega4"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
+<div aria-hidden="true" class="popup-overlay" id="popupExpBodega">
+<div aria-labelledby="expBodegaPopupTitle" aria-modal="true" class="popup-box food-menu-popup-box exp-bodega-stepper-popup" role="dialog">
+<button class="close-x" id="closeExpBodega" type="button">✕</button>
+<p><strong class="popup-title exp-bodega-stepper-title" data-translate="exp_bodega_popup_title" id="expBodegaPopupTitle">Choose your experience</strong></p>
+<p aria-live="polite" class="exp-bodega-stepper-progress"><span id="expBodegaStepProgress">1 of 3</span></p>
+<div class="exp-bodega-stepper-body" id="expBodegaStepperBody">
+<section class="exp-bodega-step exp-bodega-step--active" data-package="degustacion_5_vinos" data-step="1">
+<h3 class="exp-bodega-step__name" data-translate="exp_bodega_pkg_opt1_label">5-wine tasting</h3>
+<p class="exp-bodega-step__price" data-translate="exp_bodega_pkg_opt1_price">USD 35 per person</p>
+<p class="exp-bodega-step__desc" data-translate="exp_bodega_pkg_opt1_desc">An ideal way to discover different styles of Uruguayan wines through a tasting of five labels.</p>
+<h4 class="exp-bodega-step__includes-title" data-translate="exp_bodega_stepper_includes">What's included</h4>
+<ul class="exp-bodega-step__list">
+<li data-translate="exp_bodega_pkg_opt1_b1">Viognier white</li>
+<li data-translate="exp_bodega_pkg_opt1_b2">Pinot Noir rosé</li>
+<li data-translate="exp_bodega_pkg_opt1_b3">Merlot</li>
+<li data-translate="exp_bodega_pkg_opt1_b4">Tannat Merlot</li>
+<li data-translate="exp_bodega_pkg_opt1_b5">Tannat</li>
+<li data-translate="exp_bodega_pkg_opt1_b6">Peanuts and dried fruits</li>
+</ul>
+<p class="exp-bodega-step__note" data-translate="exp_bodega_pkg_opt1_note">Does not include guided vineyard and winery visit</p>
+<div class="exp-bodega-step__gallery" role="group" aria-label="Experience photos">
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--5copas" decoding="async" loading="lazy" src="../Assets/images/5copas.jpg"/>
+</figure>
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--hac8" decoding="async" loading="lazy" src="../Assets/images/hac8.jpg"/>
+</figure>
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--hac11" decoding="async" loading="lazy" src="../Assets/images/hac11.jpg"/>
+</figure>
+</div>
+<button class="exp-bodega-step-select" data-package-id="degustacion_5_vinos" type="button">
+<span aria-hidden="true" class="exp-bodega-step-select__indicator"></span>
+<span data-translate="exp_bodega_stepper_select">Select this experience</span>
+</button>
+<input class="exp-bodega-package-radio" name="packageId" type="radio" value="degustacion_5_vinos"/>
+</section>
+<section class="exp-bodega-step" data-package="vinos_quesos" data-step="2" hidden="">
+<h3 class="exp-bodega-step__name" data-translate="exp_bodega_pkg_opt2_label">Wines &amp; Cheeses</h3>
+<p class="exp-bodega-step__price" data-translate="exp_bodega_pkg_opt2_price">USD 50 per person</p>
+<p class="exp-bodega-step__desc" data-translate="exp_bodega_pkg_opt2_desc">Tour the vineyard and winery and enjoy a wine tasting paired with local cheeses.</p>
+<h4 class="exp-bodega-step__includes-title" data-translate="exp_bodega_stepper_includes">What's included</h4>
+<ul class="exp-bodega-step__list">
+<li data-translate="exp_bodega_pkg_opt2_b1">Guided vineyard visit</li>
+<li data-translate="exp_bodega_pkg_opt2_b2">Guided winery visit</li>
+<li data-translate="exp_bodega_pkg_opt2_b3">4-wine tasting</li>
+<li data-translate="exp_bodega_pkg_opt2_b4">Selection of cheeses from Colonia department</li>
+</ul>
+<div class="exp-bodega-step__gallery" role="group" aria-label="Experience photos">
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--quesos" decoding="async" loading="lazy" src="../Assets/images/quesos.jpg"/>
+</figure>
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--hac8" decoding="async" loading="lazy" src="../Assets/images/hac8.jpg"/>
+</figure>
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--hac11" decoding="async" loading="lazy" src="../Assets/images/hac11.jpg"/>
+</figure>
+</div>
+<button class="exp-bodega-step-select" data-package-id="vinos_quesos" type="button">
+<span aria-hidden="true" class="exp-bodega-step-select__indicator"></span>
+<span data-translate="exp_bodega_stepper_select">Select this experience</span>
+</button>
+<input class="exp-bodega-package-radio" name="packageId" type="radio" value="vinos_quesos"/>
+</section>
+<section class="exp-bodega-step" data-package="premium_vinos_sabores" data-step="3" hidden="">
+<h3 class="exp-bodega-step__name">
+<span data-translate="exp_bodega_pkg_opt3_label">Premium Wine &amp; Local Flavors Experience</span>
+<span class="exp-bodega-step__badge" data-translate="exp_bodega_premium_badge">Premium</span>
+</h3>
+<p class="exp-bodega-step__price" data-translate="exp_bodega_pkg_opt3_price">USD 70 per person</p>
+<p class="exp-bodega-step__desc" data-translate="exp_bodega_pkg_opt3_desc">A more complete experience combining Uruguayan wines with a curated selection of local products and flavors.</p>
+<h4 class="exp-bodega-step__includes-title" data-translate="exp_bodega_stepper_includes">What's included</h4>
+<ul class="exp-bodega-step__list">
+<li data-translate="exp_bodega_pkg_opt2_b1">Guided vineyard visit</li>
+<li data-translate="exp_bodega_pkg_opt2_b2">Guided winery visit</li>
+<li data-translate="exp_bodega_pkg_opt2_b3">4-wine tasting</li>
+<li data-translate="exp_bodega_pkg_opt3_b1">Charcuterie board</li>
+<li data-translate="exp_bodega_pkg_opt3_b2">Local cheeses</li>
+<li data-translate="exp_bodega_pkg_opt3_b3">Homemade bread</li>
+<li data-translate="exp_bodega_pkg_opt3_b4">Grissini</li>
+<li data-translate="exp_bodega_pkg_opt3_b5">Artisan cookies</li>
+<li data-translate="exp_bodega_pkg_opt3_b6">Dried fruits</li>
+<li data-translate="exp_bodega_pkg_opt3_b7">Organic cherry tomatoes</li>
+<li data-translate="exp_bodega_pkg_opt3_b8">Marinated olives</li>
+<li data-translate="exp_bodega_pkg_opt3_b9">Extra virgin olive oil</li>
+<li data-translate="exp_bodega_pkg_opt3_b10">Red berry jam</li>
+</ul>
+<div class="exp-bodega-step__gallery" role="group" aria-label="Experience photos">
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--premium" decoding="async" loading="lazy" src="../Assets/images/premium.jpg"/>
+</figure>
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--hac8" decoding="async" loading="lazy" src="../Assets/images/hac8.jpg"/>
+</figure>
+<figure class="exp-bodega-gallery__item">
+<img alt="" class="exp-bodega-gallery__img exp-bodega-gallery__img--hac11" decoding="async" loading="lazy" src="../Assets/images/hac11.jpg"/>
+</figure>
+</div>
+<button class="exp-bodega-step-select" data-package-id="premium_vinos_sabores" type="button">
+<span aria-hidden="true" class="exp-bodega-step-select__indicator"></span>
+<span data-translate="exp_bodega_stepper_select">Select this experience</span>
+</button>
+<input class="exp-bodega-package-radio" name="packageId" type="radio" value="premium_vinos_sabores"/>
+</section>
+</div>
+<p class="exp-bodega-stepper-error" data-translate="exp_bodega_stepper_select_required" hidden="" id="expBodegaStepperError" role="alert">Please select an experience to continue.</p>
+<div class="popup-actions exp-bodega-stepper-actions">
+<button class="btn secondary exp-bodega-stepper-prev" data-translate="exp_bodega_stepper_prev" hidden="" id="expBodegaStepPrev" type="button">← Previous</button>
+<button class="btn primary-btn exp-bodega-stepper-next" data-translate="exp_bodega_stepper_next" id="expBodegaStepNext" type="button">Next →</button>
+<button class="btn primary-btn exp-bodega-stepper-save" data-translate="save_selection" hidden="" id="saveMenuExpBodega" type="button">Save selection</button>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="popup-overlay" id="popupExpBodegaGuests">
+<div aria-labelledby="expBodegaGuestsPopupTitle" aria-modal="true" class="popup-box food-menu-popup-box exp-bodega-guests-popup" role="dialog">
+<button class="close-x" id="closeExpBodegaGuests" type="button">✕</button>
+<div class="exp-bodega-guests-popup__body">
+<p><strong class="popup-title exp-bodega-stepper-title" data-translate="exp_bodega_guests_popup_title" id="expBodegaGuestsPopupTitle">How many people is this experience for?</strong></p>
+<p class="exp-bodega-guests-duration" data-translate="exp_bodega_guests_duration">Approximate duration: 3 hours</p>
+<div class="exp-bodega-guests-summary">
+<p><strong data-translate="exp_bodega_guests_experience_lbl">Experience</strong> <span id="expBodegaGuestsExperience"></span></p>
+<p><span id="expBodegaGuestsPrice"></span></p>
+</div>
+<div class="exp-bodega-guests-section exp-bodega-guests-counter">
+<p class="exp-bodega-guests-counter__label" data-translate="exp_bodega_guests_count_lbl">Quantity</p>
+<div class="exp-bodega-guests-counter__controls">
+<div class="cabal-popup-guests-row exp-bodega-guests-counter__row">
+<button aria-label="−" class="add-guest-btn" id="expBodegaGuestsMinus" type="button">−</button>
+<span id="expBodegaGuestsValue">1</span>
+<button aria-label="+" class="add-guest-btn" id="expBodegaGuestsPlus" type="button">+</button>
+</div>
+<p class="exp-bodega-guests-counter__count"><span id="expBodegaGuestsCountLabel">1 person</span></p>
+</div>
+</div>
+<div class="exp-bodega-guests-section exp-bodega-guests-transport">
+<p class="exp-bodega-guests-section__label" data-translate="exp_bodega_guests_transport_question">Would you like round-trip transport?</p>
+<div class="exp-bodega-guests-transport-options">
+<label><input checked="" name="expBodegaGuestsTransport" type="radio" value="no"/> <span data-translate="exp_bodega_guests_transport_no">No, we'll arrange our own transport</span></label>
+<label><input name="expBodegaGuestsTransport" type="radio" value="yes"/> <span data-translate-html="exp_bodega_guests_transport_yes">Yes, add round-trip transport — <strong>USD 60 total</strong></span></label>
+</div>
+</div>
+<div class="exp-bodega-guests-section exp-bodega-guests-pickup" hidden="" id="expBodegaGuestsPickupSection">
+<p class="exp-bodega-guests-section__label" data-translate="exp_bodega_guests_pickup_lbl">Pickup time</p>
+<p class="exp-bodega-guests-section__hint" data-translate="exp_bodega_guests_pickup_hint">Choose when you'd like us to pick you up</p>
+<div class="exp-bodega-guests-pickup-chips" role="radiogroup">
+<button class="exp-bodega-guests-pickup-chip" data-time="11:00" type="button">11:00</button>
+<button class="exp-bodega-guests-pickup-chip" data-time="12:00" type="button">12:00</button>
+<button class="exp-bodega-guests-pickup-chip" data-time="13:00" type="button">13:00</button>
+<button class="exp-bodega-guests-pickup-chip" data-time="14:00" type="button">14:00</button>
+</div>
+</div>
+<div class="exp-bodega-guests-price-summary">
+<p><strong data-translate="exp_bodega_guests_summary_count_lbl">Quantity</strong> <span id="expBodegaGuestsSummaryCount">1 person</span></p>
+<p><strong data-translate="exp_bodega_guests_summary_experience_lbl">Experience</strong> <span id="expBodegaGuestsSubtotal">USD 35</span></p>
+<p><strong data-translate="exp_bodega_guests_summary_transport_lbl">Round-trip transport</strong> <span id="expBodegaGuestsTransportSummary">Not included</span></p>
+<p class="exp-bodega-guests-price-summary__total"><strong data-translate="exp_bodega_guests_summary_total_lbl">Total</strong> <span id="expBodegaGuestsTotal">USD 35</span></p>
+</div>
+<p class="exp-bodega-guests-error" hidden="" id="expBodegaGuestsError" role="alert"></p>
+</div>
+<div class="popup-actions exp-bodega-stepper-actions">
+<button class="btn secondary exp-bodega-stepper-prev" data-translate="exp_bodega_guests_back" id="expBodegaGuestsBack" type="button">Back</button>
+<button class="btn primary-btn" data-translate="exp_bodega_guests_confirm" id="expBodegaGuestsConfirm" type="button">Confirm</button>
+</div>
+</div>
+</div>
+<style>
+  #popupExpBodega .exp-bodega-stepper-popup.popup-box,
+  #popupExpBodegaGuests .exp-bodega-guests-popup.popup-box {
+    display: flex;
+    flex-direction: column;
+    width: min(88vw, 820px);
+    max-width: 820px;
+    max-height: 88vh;
+    padding: 2rem 2.25rem 1.25rem;
+    overflow: hidden;
+    text-align: left;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-title,
+  #popupExpBodegaGuests .exp-bodega-stepper-title {
+    display: block;
+    flex: 0 0 auto;
+    margin: 0 2.25rem 0.25rem 0;
+    font-size: 1.3rem;
+    line-height: 1.3;
+    text-align: left;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-progress {
+    flex: 0 0 auto;
+    margin: 0 0 0.85rem;
+    color: #6a7788;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-body,
+  #popupExpBodegaGuests .exp-bodega-guests-popup__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 0.25rem;
+  }
+
+  #popupExpBodega .exp-bodega-step {
+    width: 100%;
+    max-width: 100%;
+    animation: expBodegaStepIn 0.22s ease;
+  }
+
+  @keyframes expBodegaStepIn {
+    from {
+      opacity: 0;
+      transform: translateX(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  #popupExpBodega .exp-bodega-step__name {
+    margin: 0 0 0.5rem;
+    color: #1f2f46;
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #popupExpBodega .exp-bodega-step__badge {
+    display: inline-block;
+    margin-left: 0.45rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(31, 47, 70, 0.08);
+    border: 1px solid rgba(31, 47, 70, 0.14);
+    color: #1f2f46;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  #popupExpBodega .exp-bodega-step__price {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin: 0 0 1.25rem;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(102, 166, 230, 0.16);
+    color: #1f2f46;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  #popupExpBodega .exp-bodega-step__desc {
+    margin: 0 0 0.65rem;
+    color: #4a5a6a;
+    font-size: 0.94rem;
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  #popupExpBodega .exp-bodega-step__includes-title {
+    margin: 0 0 0.35rem;
+    color: #1f2f46;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  #popupExpBodega .exp-bodega-step__list {
+    margin: 0 0 0.65rem;
+    padding-left: 1.2rem;
+    color: #4a5a6a;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    max-width: none;
+  }
+
+  #popupExpBodega .exp-bodega-step__list li + li {
+    margin-top: 0.15rem;
+  }
+
+  #popupExpBodega .exp-bodega-step__note {
+    margin: -0.2rem 0 0.75rem;
+    color: #6a7788;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  #popupExpBodega .exp-bodega-step__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 0 0 0.75rem;
+    width: 100%;
+  }
+
+  #popupExpBodega .exp-bodega-gallery__item {
+    margin: 0;
+    height: 190px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f2f5f8;
+  }
+
+  #popupExpBodega .exp-bodega-gallery__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+  }
+
+  #popupExpBodega .exp-bodega-gallery__img--5copas {
+    object-position: center center;
+  }
+
+  #popupExpBodega .exp-bodega-gallery__img--quesos {
+    object-position: center center;
+  }
+
+  #popupExpBodega .exp-bodega-gallery__img--premium {
+    object-position: center center;
+  }
+
+  #popupExpBodega .exp-bodega-gallery__img--hac1 {
+    object-position: center 72%;
+  }
+
+  #popupExpBodega .exp-bodega-gallery__img--hac2 {
+    object-position: 55% center;
+  }
+
+  #popupExpBodega .exp-bodega-package-radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  #popupExpBodega .exp-bodega-step-select {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 0.35rem;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #d8e0ea;
+    border-radius: 12px;
+    background: #f8fafc;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  #popupExpBodega .exp-bodega-step-select:hover {
+    border-color: #b8c8dc;
+    background: #f3f7fb;
+  }
+
+  #popupExpBodega .exp-bodega-step-select--checked {
+    border-color: #2f6fad;
+    background: #eef5fc;
+    box-shadow: 0 0 0 1px rgba(47, 111, 173, 0.12);
+  }
+
+  #popupExpBodega .exp-bodega-step-select__indicator {
+    position: relative;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin-top: 0.1rem;
+    border: 2px solid #8fa3b8;
+    border-radius: 50%;
+    background: #fff;
+    box-sizing: border-box;
+  }
+
+  #popupExpBodega .exp-bodega-step-select--checked .exp-bodega-step-select__indicator {
+    border-color: #2f6fad;
+  }
+
+  #popupExpBodega .exp-bodega-step-select--checked .exp-bodega-step-select__indicator::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2f6fad;
+    transform: translate(-50%, -50%);
+  }
+
+  #popupExpBodega .exp-bodega-step-select span:last-child {
+    color: #1f2f46;
+    font-size: 0.96rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-error {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin: 0.35rem 0 0.15rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #c53030;
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-error::before {
+    content: "⚠";
+    flex: 0 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-error[hidden] {
+    display: none;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-save.total-btn--disabled {
+    opacity: 0.55;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-actions,
+  #popupExpBodegaGuests .exp-bodega-stepper-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    gap: 0.65rem;
+    margin-top: 0.65rem;
+    padding-top: 0.15rem;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-actions .exp-bodega-stepper-prev,
+  #popupExpBodegaGuests .exp-bodega-stepper-actions .exp-bodega-stepper-prev {
+    margin-right: auto;
+  }
+
+  #popupExpBodega .exp-bodega-stepper-actions .btn,
+  #popupExpBodegaGuests .exp-bodega-stepper-actions .btn {
+    min-width: 7.5rem;
+  }
+
+  @media (max-width: 768px) {
+    #popupExpBodega .exp-bodega-stepper-popup.popup-box,
+    #popupExpBodegaGuests .exp-bodega-guests-popup.popup-box {
+      width: 92vw;
+      max-width: none;
+      max-height: 88vh;
+      padding: 1.15rem 1rem 1rem;
+    }
+
+    #popupExpBodega .exp-bodega-stepper-title,
+    #popupExpBodegaGuests .exp-bodega-stepper-title {
+      font-size: 1.15rem;
+    }
+
+    #popupExpBodega .exp-bodega-stepper-progress {
+      margin-bottom: 0.7rem;
+    }
+
+    #popupExpBodega .exp-bodega-step__name {
+      font-size: 1.375rem;
+    }
+
+    #popupExpBodega .exp-bodega-step__price {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+
+    #popupExpBodega .exp-bodega-step__gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 10px;
+      margin-bottom: 0.65rem;
+      scrollbar-width: none;
+    }
+
+    #popupExpBodega .exp-bodega-step__gallery::-webkit-scrollbar {
+      display: none;
+    }
+
+    #popupExpBodega .exp-bodega-gallery__item {
+      flex: 0 0 85%;
+      height: 200px;
+      scroll-snap-align: start;
+    }
+
+    #popupExpBodega .exp-bodega-stepper-actions,
+    #popupExpBodegaGuests .exp-bodega-stepper-actions {
+      flex-wrap: wrap;
+    }
+
+    #popupExpBodega .exp-bodega-stepper-actions .exp-bodega-stepper-prev,
+    #popupExpBodegaGuests .exp-bodega-stepper-actions .exp-bodega-stepper-prev {
+      flex: 1 1 calc(50% - 0.35rem);
+      min-width: 0;
+      margin-right: 0;
+    }
+
+    #popupExpBodega .exp-bodega-stepper-actions .exp-bodega-stepper-next,
+    #popupExpBodega .exp-bodega-stepper-actions .exp-bodega-stepper-save,
+    #popupExpBodegaGuests .exp-bodega-stepper-actions .btn.primary-btn {
+      flex: 1 1 calc(50% - 0.35rem);
+      min-width: 0;
+    }
+  }
+</style>
+<script>
+  (function initExpBodegaStepper() {
+    const popup = document.getElementById("popupExpBodega");
+    if (!popup) return;
+
+    popup.classList.add("exp-bodega-stepper-popup-root");
+
+    const TOTAL_STEPS = 3;
+    const PACKAGE_TO_STEP = {
+      degustacion_5_vinos: 1,
+      vinos_quesos: 2,
+      premium_vinos_sabores: 3
+    };
+
+    const progressEl = document.getElementById("expBodegaStepProgress");
+    const bodyEl = document.getElementById("expBodegaStepperBody");
+    const prevBtn = document.getElementById("expBodegaStepPrev");
+    const nextBtn = document.getElementById("expBodegaStepNext");
+    const saveBtn = document.getElementById("saveMenuExpBodega");
+    const errorEl = document.getElementById("expBodegaStepperError");
+    const steps = Array.from(popup.querySelectorAll(".exp-bodega-step"));
+    const selectBtns = Array.from(popup.querySelectorAll(".exp-bodega-step-select"));
+    const packageRadios = Array.from(popup.querySelectorAll(".exp-bodega-package-radio"));
+    let currentStep = 1;
+    let selectedPackageId = null;
+
+    function siteLang() {
+      if (typeof window.getInitialLanguage === "function") return window.getInitialLanguage();
+      return localStorage.getItem("selectedLanguage") || "en";
+    }
+
+    function t(key, fallback) {
+      const lang = siteLang();
+      const tr = window.__SACRAMENTO_TRANSLATIONS || {};
+      return tr[lang]?.[key] || tr.en?.[key] || fallback || key;
+    }
+
+    function progressLabel(step) {
+      return t("exp_bodega_stepper_progress", "{current} of {total}")
+        .replace("{current}", String(step))
+        .replace("{total}", String(TOTAL_STEPS));
+    }
+
+    function isEditMode() {
+      const updateLabel = t("update_order", "Update order");
+      return Boolean(saveBtn && saveBtn.textContent.trim() === updateLabel);
+    }
+
+    function stepForPackage(packageId) {
+      return PACKAGE_TO_STEP[packageId] || 1;
+    }
+
+    function radioForPackage(packageId) {
+      return popup.querySelector(`.exp-bodega-package-radio[value="${packageId}"]`);
+    }
+
+    function clearPackageRadios() {
+      packageRadios.forEach((radio) => {
+        radio.checked = false;
+      });
+    }
+
+    function applySelectedPackage(packageId) {
+      selectedPackageId = packageId || null;
+      clearPackageRadios();
+      if (selectedPackageId) {
+        const radio = radioForPackage(selectedPackageId);
+        if (radio) radio.checked = true;
+      }
+      syncSelectStyles();
+      updateSaveButtonState();
+      hideValidationError();
+    }
+
+    function syncSelectStyles() {
+      selectBtns.forEach((btn) => {
+        const pkg = btn.dataset.packageId || "";
+        btn.classList.toggle("exp-bodega-step-select--checked", pkg === selectedPackageId);
+        btn.setAttribute("aria-pressed", pkg === selectedPackageId ? "true" : "false");
+      });
+    }
+
+    function hideValidationError() {
+      if (!errorEl) return;
+      errorEl.hidden = true;
+    }
+
+    function showValidationError() {
+      if (!errorEl) return;
+      errorEl.textContent = t(
+        "exp_bodega_stepper_select_required",
+        "Seleccioná una experiencia para continuar."
+      );
+      errorEl.hidden = false;
+      window.requestAnimationFrame(() => {
+        errorEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    }
+
+    function updateSaveButtonState() {
+      if (!saveBtn || currentStep !== TOTAL_STEPS) return;
+      const ready = Boolean(selectedPackageId);
+      saveBtn.classList.toggle("total-btn--disabled", !ready);
+      if (ready) {
+        saveBtn.removeAttribute("aria-disabled");
+      } else {
+        saveBtn.setAttribute("aria-disabled", "true");
+      }
+    }
+
+    function setStep(step, animate) {
+      currentStep = Math.min(TOTAL_STEPS, Math.max(1, step));
+      steps.forEach((section) => {
+        const isActive = Number(section.dataset.step) === currentStep;
+        section.hidden = !isActive;
+        section.classList.toggle("exp-bodega-step--active", isActive);
+        if (isActive && animate) {
+          section.style.animation = "none";
+          void section.offsetHeight;
+          section.style.animation = "";
+        }
+      });
+      if (progressEl) progressEl.textContent = progressLabel(currentStep);
+      if (prevBtn) prevBtn.hidden = currentStep === 1;
+      if (nextBtn) nextBtn.hidden = currentStep === TOTAL_STEPS;
+      if (saveBtn) saveBtn.hidden = currentStep !== TOTAL_STEPS;
+      updateSaveButtonState();
+      if (bodyEl) bodyEl.scrollTop = 0;
+    }
+
+    function resetForNewOpen() {
+      applySelectedPackage(null);
+      hideValidationError();
+      setStep(1, false);
+    }
+
+    function syncFromPopupState() {
+      if (popup.dataset.sacramentoPreservePackagePopup === "1") {
+        delete popup.dataset.sacramentoPreservePackagePopup;
+        const checked = packageRadios.find((radio) => radio.checked);
+        if (checked) {
+          selectedPackageId = checked.value;
+          syncSelectStyles();
+          setStep(stepForPackage(selectedPackageId), false);
+          updateSaveButtonState();
+        }
+        hideValidationError();
+        return;
+      }
+
+      const checked = packageRadios.find((radio) => radio.checked);
+      if (isEditMode() && checked) {
+        selectedPackageId = checked.value;
+        syncSelectStyles();
+        setStep(stepForPackage(selectedPackageId), false);
+        updateSaveButtonState();
+        return;
+      }
+      if (!isEditMode()) {
+        resetForNewOpen();
+      }
+    }
+
+    function togglePackageSelection(packageId) {
+      if (selectedPackageId === packageId) {
+        applySelectedPackage(null);
+        return;
+      }
+      applySelectedPackage(packageId);
+    }
+
+    selectBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const packageId = btn.dataset.packageId;
+        if (!packageId) return;
+        togglePackageSelection(packageId);
+      });
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        hideValidationError();
+        if (currentStep > 1) setStep(currentStep - 1, true);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        hideValidationError();
+        if (currentStep < TOTAL_STEPS) setStep(currentStep + 1, true);
+      });
+    }
+
+    if (saveBtn) {
+      saveBtn.addEventListener(
+        "click",
+        (e) => {
+          if (currentStep !== TOTAL_STEPS) return;
+          if (!selectedPackageId) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            showValidationError();
+            return;
+          }
+          hideValidationError();
+        },
+        true
+      );
+    }
+
+    const observer = new MutationObserver(() => {
+      if (!popup.classList.contains("active")) return;
+      window.requestAnimationFrame(syncFromPopupState);
+    });
+    observer.observe(popup, { attributes: true, attributeFilter: ["class"] });
+
+    document.addEventListener("sacramento:setLanguage", () => {
+      if (progressEl) progressEl.textContent = progressLabel(currentStep);
+      if (errorEl && !errorEl.hidden) {
+        errorEl.textContent = t(
+          "exp_bodega_stepper_select_required",
+          "Please select an experience to continue."
+        );
+      }
+    });
+
+    applySelectedPackage(null);
+    setStep(1, false);
+  })();
+</script>
+<script>
+    initPackageOrderExperience({
+      experienceName: "Winery Experience",
+      experienceNameKey: "exp_bodega_experience_name",
+      whatsappIntroKey: "exp_bodega_wa_intro",
+      whatsappNumber: "59898945542",
+      popupId: "popupExpBodega",
+      createBtnId: "createMenuBtnExpBodega",
+      closeBtnId: "closeExpBodega",
+      saveBtnId: "saveMenuExpBodega",
+      orderSummaryId: "orderSummaryExpBodega",
+      bookNowBottomId: "bookNowBottomExpBodega",
+      storageKey: "orders_exp_bodega",
+      selectedDateKey: "selectedDateExpBodega",
+      experienceSkipsPreferencesField: true,
+      orderCardTitleKey: "person_order_label",
+      packageRadioName: "packageId",
+      optionalGroupTransportFlat: 60,
+      postSaveGuestPopup: {
+        popupId: "popupExpBodegaGuests",
+        closeBtnId: "closeExpBodegaGuests",
+        backBtnId: "expBodegaGuestsBack",
+        confirmBtnId: "expBodegaGuestsConfirm",
+        valueId: "expBodegaGuestsValue",
+        minusId: "expBodegaGuestsMinus",
+        plusId: "expBodegaGuestsPlus",
+        experienceElId: "expBodegaGuestsExperience",
+        pricePerPersonElId: "expBodegaGuestsPrice",
+        countElId: "expBodegaGuestsCountLabel",
+        subtotalElId: "expBodegaGuestsSubtotal",
+        min: 1,
+        max: 20,
+        transportInPopup: true,
+        transportRadioName: "expBodegaGuestsTransport",
+        pickupSectionId: "expBodegaGuestsPickupSection",
+        errorElId: "expBodegaGuestsError",
+        transportSummaryElId: "expBodegaGuestsTransportSummary",
+        totalElId: "expBodegaGuestsTotal",
+        summaryKeys: {
+          pricePerPerson: "exp_bodega_guests_price_per_person_line",
+          countOne: "orders_pkg_summary_one_person",
+          countMany: "orders_pkg_summary_n_people",
+          subtotal: "exp_bodega_guests_subtotal_amount",
+          passengersLabel: "exp_bodega_summary_passengers",
+          pricePerPersonLabel: "exp_bodega_summary_price_per_person",
+          subtotalLabel: "exp_bodega_summary_experience_subtotal",
+          transportIncluded: "exp_bodega_guests_transport_included",
+          transportExcluded: "exp_bodega_guests_transport_excluded",
+          totalAmount: "exp_bodega_guests_total_amount"
+        }
+      },
+      dynamicPayment: {
+        enabled: true,
+        endpoint: "/api/payments/resolve",
+        experienceId: "exp_bodega",
+        currency: "USD"
+      },
+      packages: {
+        degustacion_5_vinos: {
+          price: 35,
+          label: "5-wine tasting",
+          labelKey: "exp_bodega_pkg_opt1_label"
+        },
+        vinos_quesos: {
+          price: 50,
+          label: "Wines & Cheeses",
+          labelKey: "exp_bodega_pkg_opt2_label"
+        },
+        premium_vinos_sabores: {
+          price: 70,
+          label: "Premium Wine & Local Flavors Experience",
+          labelKey: "exp_bodega_pkg_opt3_label"
+        }
+      }
+    });
+  </script>
+<div class="lightbox" id="lightbox">
+<span class="close-lightbox" id="closeLightbox">✕</span>
+<button class="lightbox-btn prev" id="prevBtn">‹</button>
+<img alt="" class="lightbox-img" decoding="async" id="lightboxImg"/>
+<button class="lightbox-btn next" id="nextBtn">›</button>
+</div>
+<a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer" target="_blank">
+<img alt="" decoding="async" height="48" src="../Assets/images/logoetaxi.jpg" width="48"/>
+</a>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/59898945542?text=Hello!%20I'm%20interested%20in%20your%20experiences%20in%20Colonia." rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg>
+</a>
+</body>
+</html>

@@ -13,10 +13,11 @@
 
   const HOME_CARD_PRICE_USD = {
     "cabal.html": [40],
-    "walkingtour.html": [12, 17],
+    "walkingtour.html": [15, 20],
     "mate.html": [40],
     "traslado-plaza-letras.html": [50],
     "vinos.html": [30, 35, 40],
+    "experiencia-bodega.html": [35, 50, 70],
     "s34-gin.html": [50, 70, 120],
     "quinton.html": [100, 110, 130],
     "fullday-colonia.html": [90],
