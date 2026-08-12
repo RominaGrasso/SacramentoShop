@@ -331,7 +331,7 @@
     "walking-asado.html": ["tours"],
     "chivito.html": ["gastronomy", "dining"],
     "vinos.html": ["bodega", "gastronomy", "dining"],
-    "s34-gin.html": ["bodega", "gastronomy"],
+    "s34-gin.html": ["gastronomy"],
     "quinton.html": ["bodega", "gastronomy", "dining", "fullday"],
     "food1.html": ["tours", "gastronomy", "dining"],
     "plaza1.html": ["tours", "gastronomy"],
@@ -367,7 +367,6 @@
     bodega: [
       "home-exp-bodega-card",
       "home-vinos-card",
-      "home-s34-gin-card",
       "home-quinton-card",
       "home-legado-card",
       "home-historic-lasliebres-card",
@@ -693,6 +692,69 @@
     return prepareModalCard(clone);
   }
 
+  function getCardExploreAnchor(card) {
+    const buttons = card.querySelector(".card-buttons");
+    if (!buttons) return null;
+    for (const link of buttons.querySelectorAll("a.btn")) {
+      if (link.classList.contains("secondary")) continue;
+      const href = String(link.getAttribute("href") || "").trim();
+      if (href && href !== "#") return link;
+    }
+    return null;
+  }
+
+  function cardExploreAriaLabel(card) {
+    const title =
+      card.querySelector(".card-content h3")?.textContent?.replace(/\s+/g, " ").trim() || "";
+    const subject =
+      title || t("home_category_modal_explore_fallback", "this experience");
+    return t("home_category_modal_explore_aria", "Explore {title}").replace("{title}", subject);
+  }
+
+  function copyExploreLinkAttrs(fromAnchor, toLink, card) {
+    toLink.href = fromAnchor.getAttribute("href") || "#";
+    const target = fromAnchor.getAttribute("target");
+    const rel = fromAnchor.getAttribute("rel");
+    if (target) toLink.setAttribute("target", target);
+    else toLink.removeAttribute("target");
+    if (rel) toLink.setAttribute("rel", rel);
+    else toLink.removeAttribute("rel");
+    toLink.setAttribute("aria-label", cardExploreAriaLabel(card));
+  }
+
+  function wireModalCardExploreNavigation(card) {
+    const exploreAnchor = getCardExploreAnchor(card);
+    if (!exploreAnchor) return;
+
+    const h3 = card.querySelector(".card-content h3");
+    if (h3 && !h3.querySelector(".card-modal-explore-link--title")) {
+      const titleLink = document.createElement("a");
+      titleLink.className = "card-modal-explore-link card-modal-explore-link--title";
+      copyExploreLinkAttrs(exploreAnchor, titleLink, card);
+      while (h3.firstChild) titleLink.appendChild(h3.firstChild);
+      h3.appendChild(titleLink);
+    }
+
+    const cardImage = card.querySelector(".card-image");
+    if (!cardImage || cardImage.querySelector(".card-modal-explore-link--media")) return;
+
+    const track = cardImage.querySelector(".carousel-track");
+    const singleImg = !track ? cardImage.querySelector(":scope > img") : null;
+    if (!track && !singleImg) return;
+
+    const mediaLink = document.createElement("a");
+    mediaLink.className = "card-modal-explore-link card-modal-explore-link--media";
+    copyExploreLinkAttrs(exploreAnchor, mediaLink, card);
+
+    if (track) {
+      cardImage.insertBefore(mediaLink, track);
+      mediaLink.appendChild(track);
+    } else {
+      cardImage.insertBefore(mediaLink, singleImg);
+      mediaLink.appendChild(singleImg);
+    }
+  }
+
   function prepareModalCard(card) {
     card.classList.add("card--category-modal");
     card.style.removeProperty("height");
@@ -722,6 +784,8 @@
       video.pause();
       video.currentTime = 0;
     });
+
+    wireModalCardExploreNavigation(card);
 
     return card;
   }
@@ -765,11 +829,13 @@
     };
 
     prevBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       slideIndex = (slideIndex - 1 + slides.length) % slides.length;
       update();
     });
     nextBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       slideIndex = (slideIndex + 1) % slides.length;
       update();
