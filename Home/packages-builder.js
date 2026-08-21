@@ -7,6 +7,8 @@
 
   const WHATSAPP_NUMBER = "59898945542";
   const HOME_HTML_URL = "../Home/index.html";
+  const MOBILE_LIST_MQ = "(max-width: 899px)";
+  const MOBILE_LIST_PREVIEW = 4;
   const SKIP_SLUGS = new Set([
     "hotel-royal.html",
     "candombe.html",
@@ -23,7 +25,8 @@
     selected: new Map(),
     /** @type {Array<{ slug: string, title: string, titleKey: string, image: string, description: string, descKey: string }>} */
     experiences: [],
-    loaded: false
+    loaded: false,
+    listExpanded: false
   };
 
   let modalApi = null;
@@ -210,6 +213,34 @@
     renderAll();
   }
 
+  function isMobileListViewport() {
+    return window.matchMedia(MOBILE_LIST_MQ).matches;
+  }
+
+  function syncExperienceListCollapse() {
+    const listEl = document.getElementById("pkgBuilderExperienceList");
+    const moreBtn = document.getElementById("pkgBuilderMoreBtn");
+    if (!listEl || !moreBtn) return;
+
+    const mobile = isMobileListViewport();
+    const needsToggle = mobile && state.experiences.length > MOBILE_LIST_PREVIEW;
+
+    if (!needsToggle) {
+      listEl.classList.remove("is-collapsed");
+      moreBtn.hidden = true;
+      moreBtn.setAttribute("aria-expanded", "true");
+      return;
+    }
+
+    const collapsed = !state.listExpanded;
+    listEl.classList.toggle("is-collapsed", collapsed);
+    moreBtn.hidden = false;
+    moreBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    moreBtn.textContent = collapsed
+      ? t("pkg_builder_show_more", "View more experiences")
+      : t("pkg_builder_show_less", "Show less");
+  }
+
   function renderExperienceCards() {
     const listEl = document.getElementById("pkgBuilderExperienceList");
     if (!listEl) return;
@@ -218,6 +249,7 @@
       listEl.innerHTML = `<p class="pkg-builder__empty">${escapeHtml(
         t("pkg_builder_load_error", "Could not load experiences. Please refresh the page.")
       )}</p>`;
+      syncExperienceListCollapse();
       return;
     }
 
@@ -291,6 +323,8 @@
         </article>`;
       })
       .join("");
+
+    syncExperienceListCollapse();
   }
 
   function removeFromPackage(slug) {
@@ -456,10 +490,20 @@
     document.querySelectorAll("[data-pkg-builder-open]").forEach((btn) => {
       btn.addEventListener("click", async (event) => {
         event.preventDefault();
+        state.listExpanded = false;
         await loadExperiences();
         renderAll();
         modalApi?.open();
       });
+    });
+
+    document.getElementById("pkgBuilderMoreBtn")?.addEventListener("click", () => {
+      state.listExpanded = !state.listExpanded;
+      syncExperienceListCollapse();
+    });
+
+    window.matchMedia(MOBILE_LIST_MQ).addEventListener("change", () => {
+      syncExperienceListCollapse();
     });
 
     document.getElementById("pkgBuilderGuestsMinus")?.addEventListener("click", () => {
