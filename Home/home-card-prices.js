@@ -11,13 +11,25 @@
 
   const HOME_CARD_PROMO_SLUGS = new Set(["hotel-royal.html"]);
 
+  /** Slugs whose entry price is a fixed group total (unit label ≠ per person). */
+  const HOME_CARD_GROUP_UNIT_SLUGS = {
+    "golfcart.html": {
+      key: "home_card_price_up_to_3",
+      fallback: "up to 3 guests"
+    },
+    "experiencia-bodega.html": {
+      key: "home_card_price_transfer_included",
+      fallback: "transfer included"
+    }
+  };
+
   const HOME_CARD_PRICE_USD = {
     "cabal.html": [40],
     "walkingtour.html": [15, 20],
     "mate.html": [40],
     "traslado-plaza-letras.html": [50],
     "vinos.html": [30, 35, 40],
-    "experiencia-bodega.html": [35, 50, 70],
+    "experiencia-bodega.html": [95],
     "s34-gin.html": [50, 70, 120],
     "quinton.html": [100, 110, 130],
     "fullday-colonia.html": [90],
@@ -25,6 +37,7 @@
     "chivito.html": [40],
     "food1.html": [55],
     "bike.html": [60],
+    "golfcart.html": [140],
     "barbot.html": [35, 45, 65],
     "bruma.html": [50],
     "asado-boat.html": [60, 80],
@@ -192,13 +205,16 @@
     const { from, amount: amountEl, unit } = ensurePriceStructure(block);
     const rounded = Math.round(amount);
     const lodging = isLodgingPriceCard(card, slug);
+    const groupUnit = slug ? HOME_CARD_GROUP_UNIT_SLUGS[slug] : null;
 
     unit.hidden = false;
     from.textContent = t("home_card_price_from", "From");
     amountEl.textContent = `USD\u00A0${rounded}`;
-    unit.textContent = lodging
-      ? t("home_card_price_per_night", "per night")
-      : t("home_card_price_per_person", "per person");
+    unit.textContent = groupUnit
+      ? t(groupUnit.key, groupUnit.fallback)
+      : lodging
+        ? t("home_card_price_per_night", "per night")
+        : t("home_card_price_per_person", "per person");
   }
 
   function isListedCard(card) {
@@ -234,6 +250,24 @@
   }
 
   window.sacramentoMountHomeCardPrices = mountHomeCardPrices;
+
+  /** Shared pricing metadata for package builder and other surfaces. */
+  window.__SACRAMENTO_HOME_CARD_PRICING__ = {
+    pricesBySlug: HOME_CARD_PRICE_USD,
+    groupUnitBySlug: HOME_CARD_GROUP_UNIT_SLUGS,
+    lodgingSlugs: HOME_CARD_LODGING_SLUGS,
+    promoSlugs: HOME_CARD_PROMO_SLUGS,
+    minUsdForSlug,
+    isLodgingSlug(slug) {
+      return Boolean(slug && HOME_CARD_LODGING_SLUGS.has(slug));
+    },
+    isPromoSlug(slug) {
+      return Boolean(slug && HOME_CARD_PROMO_SLUGS.has(slug));
+    },
+    isGroupUnitSlug(slug) {
+      return Boolean(slug && HOME_CARD_GROUP_UNIT_SLUGS[slug]);
+    }
+  };
 
   function init() {
     mountHomeCardPrices(document.getElementById("experiences"));

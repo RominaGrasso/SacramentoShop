@@ -328,6 +328,7 @@
   const SLUG_NAV = {
     "walkingtour.html": ["tours"],
     "bike.html": ["tours"],
+    "golfcart.html": ["tours"],
     "walking-asado.html": ["tours"],
     "chivito.html": ["gastronomy", "dining"],
     "vinos.html": ["bodega", "gastronomy", "dining"],
@@ -384,6 +385,7 @@
     "home-fullday-colonia-card": ["fullday", "day"],
     "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
     "home-bike-card": ["tours"],
+    "home-golfcart-card": ["tours"],
     "home-card-hotel-royal": ["lodging", "night"],
     "home-card-mision-bruma": ["lodging", "gastronomy"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],

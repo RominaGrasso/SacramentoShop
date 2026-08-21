@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title data-translate="packages_page_title">Paquetes | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
-<link href="../Styles/styles.css?v=20260721pkgcard" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260820pkgdiv" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-72TT5VCG5S"></script>
@@ -107,16 +107,25 @@
         </div>
       </a>
     </div>
-    <article class="packages-custom-banner">
-      <span aria-hidden="true" class="packages-custom-banner__icon"><i class="fa-solid fa-user"></i></span>
-      <div class="packages-custom-banner__content">
-        <h2 class="packages-custom-banner__title" data-translate="pkg_custom_name">Experiencia Personalizada</h2>
-        <p class="packages-custom-banner__text" data-translate="packages_custom_banner_text">Diseñamos un itinerario completamente adaptado a tus intereses.</p>
+    <article class="packages-custom-banner packages-build-banner">
+      <div class="packages-build-banner__copy">
+        <h2 class="packages-custom-banner__title packages-build-banner__title" data-translate="pkg_builder_title">Armá tu propio paquete</h2>
+        <p class="packages-custom-banner__text packages-build-banner__lead" data-translate="pkg_builder_desc">Elegí qué querés hacer en Colonia y combiná tus experiencias en un solo itinerario.</p>
+        <p class="packages-build-banner__support" data-translate="pkg_builder_desc_secondary">Seleccioná actividades, conocé el precio estimado y envianos tu propuesta. Nosotros te ayudamos a coordinar horarios, traslados y disponibilidad.</p>
       </div>
-      <a class="btn packages-custom-banner__btn" href="#pkg-custom"><span data-translate="packages_custom_banner_btn">Solicitar propuesta</span><span aria-hidden="true" class="packages-custom-banner__btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+      <div class="packages-build-banner__action">
+        <button class="btn packages-custom-banner__btn packages-build-banner__btn" data-pkg-builder-open type="button"><span data-translate="pkg_builder_cta">Armá tu paquete</span><span aria-hidden="true" class="packages-custom-banner__btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></button>
+      </div>
     </article>
   </div>
 </section>
+<div class="packages-curated-divider" aria-labelledby="packages-curated-divider-title">
+  <div class="packages-curated-divider__wrap">
+    <span aria-hidden="true" class="packages-curated-divider__line"></span>
+    <h2 class="packages-curated-divider__title" data-translate="packages_curated_divider_title" id="packages-curated-divider-title">Itinerarios seleccionados</h2>
+    <span aria-hidden="true" class="packages-curated-divider__line"></span>
+  </div>
+</div>
 <main class="packages-itineraries">
 <article class="pkg-itinerary" id="pkg-essential">
   <div class="pkg-itinerary__inner">
@@ -538,76 +547,51 @@
     </aside>
   </div>
 </article>
-<article class="pkg-itinerary pkg-itinerary--custom" id="pkg-custom">
-  <div class="pkg-itinerary__inner">
-    <nav aria-label="Breadcrumb" class="pkg-itinerary__breadcrumb">
-      <a class="pkg-itinerary__crumb-link" href="../Home/index.html" data-translate="packages_breadcrumb_home">Inicio</a>
-      <span aria-hidden="true" class="pkg-itinerary__crumb-sep">›</span>
-      <a class="pkg-itinerary__crumb-link" href="../paquetes/index.html#pkg-custom" data-translate="packages_breadcrumb_packages">Paquetes</a>
-      <span aria-hidden="true" class="pkg-itinerary__crumb-sep">›</span>
-      <span class="pkg-itinerary__crumb-current" data-translate="pkg_custom_name"></span>
-    </nav>
-    <header class="pkg-itinerary__header">
-      <p class="pkg-itinerary__eyebrow" data-translate="packages_itinerary_eyebrow">Itinerario curado</p>
-      <h2 class="pkg-itinerary__title" data-translate="pkg_custom_name"></h2>
-      <p class="pkg-itinerary__intro" data-translate="pkg_custom_intro"></p>
-    </header>
-    <div class="pkg-itinerary__gallery">
-      <img alt="" class="pkg-itinerary__gallery-img" data-translate-alt="pkg_custom_gallery_1_alt" decoding="async" height="480" loading="lazy" src="../Assets/images/map.jpg" width="640"/>
-      <img alt="" class="pkg-itinerary__gallery-img" data-translate-alt="pkg_custom_gallery_2_alt" decoding="async" height="480" loading="lazy" src="../Assets/images/grupo1.webp" width="640"/>
-      <img alt="" class="pkg-itinerary__gallery-img" data-translate-alt="pkg_custom_gallery_3_alt" decoding="async" height="480" loading="lazy" src="../Assets/images/SA333.webp" width="640"/>
-    </div>
-    <section class="pkg-itinerary__includes">
-      <h3 class="pkg-itinerary__heading" data-translate="packages_custom_heading"></h3>
-      <ul class="pkg-itinerary__steps">
-      <li class="pkg-itinerary__step">
-        <span aria-hidden="true" class="pkg-itinerary__step-icon"><i class="fa-solid fa-pen-ruler"></i></span>
-        <span class="pkg-itinerary__step-text" data-translate="pkg_custom_item_1"></span>
-      </li>
-      <li class="pkg-itinerary__step">
-        <span aria-hidden="true" class="pkg-itinerary__step-icon"><i class="fa-solid fa-route"></i></span>
-        <span class="pkg-itinerary__step-text" data-translate="pkg_custom_item_2"></span>
-      </li>
-      <li class="pkg-itinerary__step">
-        <span aria-hidden="true" class="pkg-itinerary__step-icon"><i class="fa-solid fa-users"></i></span>
-        <span class="pkg-itinerary__step-text" data-translate="pkg_custom_item_3"></span>
-      </li>
-      <li class="pkg-itinerary__step">
-        <span aria-hidden="true" class="pkg-itinerary__step-icon"><i class="fa-solid fa-comments"></i></span>
-        <span class="pkg-itinerary__step-text" data-translate="pkg_custom_item_4"></span>
-      </li>
-      </ul>
-    </section>
-    <section class="pkg-itinerary__facts">
-      <div class="pkg-itinerary__facts-row">
-      <div class="pkg-itinerary__fact">
-        <span aria-hidden="true" class="pkg-itinerary__fact-icon"><i class="fa-solid fa-clock"></i></span>
-        <span class="pkg-itinerary__fact-label" data-translate="packages_meta_duration"></span>
-        <span class="pkg-itinerary__fact-value" data-translate="pkg_custom_duration"></span>
-      </div>
-      <div class="pkg-itinerary__fact">
-        <span aria-hidden="true" class="pkg-itinerary__fact-icon"><i class="fa-solid fa-user-group"></i></span>
-        <span class="pkg-itinerary__fact-label" data-translate="packages_meta_ideal"></span>
-        <span class="pkg-itinerary__fact-value" data-translate="pkg_custom_ideal"></span>
-      </div>
-      </div>
-    </section>
-    <aside class="pkg-itinerary__cta">
-      <h3 class="pkg-itinerary__cta-title" data-translate="packages_custom_cta_title"></h3>
-      <p class="pkg-itinerary__cta-text" data-translate="packages_custom_cta_text"></p>
-      <a class="btn pkg-itinerary__wa" data-package-id="custom" href="#" data-translate="packages_btn_custom_proposal"></a>
-    </aside>
-  </div>
-</article>
 </main>
+<div aria-hidden="true" class="popup-overlay sacramento-modal-overlay pkg-builder-overlay" id="pkgBuilderModal">
+  <div aria-labelledby="pkgBuilderModalTitle" aria-modal="true" class="popup-box sacramento-modal-box pkg-builder-modal" role="dialog">
+    <button aria-label="Close" class="close-x" data-pkg-builder-close data-translate-aria-label="pkg_builder_close" type="button">×</button>
+    <header class="pkg-builder__header">
+      <h2 class="pkg-builder__title" data-translate="pkg_builder_modal_title" id="pkgBuilderModalTitle">Armá tu paquete. Tu aventura empieza acá.</h2>
+    </header>
+    <div class="pkg-builder__layout">
+      <div class="pkg-builder__main">
+        <div class="pkg-builder__guests">
+          <span class="pkg-builder__guests-label" data-translate="pkg_builder_guests_label">Cantidad de personas</span>
+          <div class="pkg-builder__guests-control" role="group">
+            <button aria-label="−" class="pkg-builder__guests-btn" id="pkgBuilderGuestsMinus" type="button">−</button>
+            <span class="pkg-builder__guests-value" id="pkgBuilderGuestsValue">2</span>
+            <button aria-label="+" class="pkg-builder__guests-btn" id="pkgBuilderGuestsPlus" type="button">+</button>
+          </div>
+        </div>
+        <div class="pkg-builder__list" id="pkgBuilderExperienceList"></div>
+      </div>
+      <aside class="pkg-builder__summary">
+        <h3 class="pkg-builder__summary-title" data-translate="pkg_builder_summary_title">Tu paquete</h3>
+        <p class="pkg-builder__summary-guests" id="pkgBuilderSummaryGuests"></p>
+        <div class="pkg-builder__summary-body" id="pkgBuilderSummaryBody"></div>
+        <div class="pkg-builder__total">
+          <span class="pkg-builder__total-label" data-translate="pkg_builder_total_label">Total estimado</span>
+          <strong class="pkg-builder__total-value" id="pkgBuilderTotalValue">USD 0</strong>
+        </div>
+        <p class="pkg-builder__disclaimer" data-translate="pkg_builder_disclaimer">Total estimado sujeto a disponibilidad y coordinación de horarios.</p>
+        <button class="btn pkg-builder__send" id="pkgBuilderSendBtn" type="button" data-translate="pkg_builder_send">Enviar propuesta</button>
+      </aside>
+    </div>
+  </div>
+</div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
 <script src="../Home/whatsapp.js?v=20260720footer"></script>
 <script src="../Home/whatsapp-float-ui.js?v=20260720wa1"></script>
 <script src="../Home/paquetes-data.js?v=20260721detail"></script>
-<script src="../Home/paquetes-i18n.js?v=20260721catalog"></script>
+<script src="../Home/paquetes-i18n.js?v=20260820pkgdiv"></script>
 <script src="../Home/index.js?v=20260721packages"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260721footer"></script>
 <script src="../Home/paquetes-page.js?v=20260721pricewa"></script>
+<script src="../Home/sacramento-modal.js?v=20260617donation"></script>
+<script src="../Home/home-card-prices.js?v=20260820bodega95"></script>
+<script src="../Home/packages-builder-pricing.js?v=20260820builder1"></script>
+<script src="../Home/packages-builder.js?v=20260820pkgremove"></script>
 <a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/59898945542" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="currentColor" height="34" viewbox="0 0 448 512" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 223.1-99.6 223.1-222 0-59.3-25.2-115-67.1-157zm-157 341.5c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s54 81.2 54 130.5c0 101.8-82.8 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 18-19.4 43.8s19.9 50.8 22.6 54.3c2.8 3.5 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.1 31.5 11.2 13.2 4.2 25.2 3.2 34.6 3.8 10.6 1.4 32.8-1.3 37.4-8.4 4.6-7.1 4.6-13.1 3.2-14.4-1.3-1.3-5.1-2.8-10.6-4.5z"></path></svg></a>
 </body></html>
