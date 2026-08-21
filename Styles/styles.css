@@ -6889,6 +6889,31 @@
     margin-right: 0;
   }
 
+  /* Mobile: keep reviews in normal flow (no side-by-side squeeze over the title) */
+  @media (max-width: 768px) {
+    .experience-about-head {
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 0.75rem;
+      min-height: 0;
+    }
+
+    .experience-about-head h2 {
+      order: 2;
+      width: 100%;
+      padding-right: 0;
+    }
+
+    .experience-about-head .google-reviews-cta {
+      order: 1;
+      position: static;
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+    }
+  }
+
   .page-fullday-colonia .coffee-content {
     overflow: visible;
   }
@@ -12483,11 +12508,19 @@ body.sacramento-modal-open {
   text-wrap: pretty;
 }
 
+.home-packages-promo__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
 .home-packages-promo .btn,
 .home-packages-promo__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.45rem;
   min-height: 48px;
   padding: 0 26px;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -12505,12 +12538,27 @@ body.sacramento-modal-open {
     box-shadow 0.2s ease;
 }
 
+.home-packages-promo__btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+
 .home-packages-promo .btn:hover,
 .home-packages-promo__btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(102, 166, 230, 0.32);
   color: #ffffff;
   text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-packages-promo__btn:hover .home-packages-promo__btn-arrow {
+    transform: translateX(3px);
+  }
 }
 
 .home-packages-promo__visual {
@@ -12593,6 +12641,10 @@ body.sacramento-modal-open {
     text-align: center;
   }
 
+  .home-packages-promo__actions {
+    align-items: center;
+  }
+
   .home-packages-promo__text {
     margin-left: auto;
     margin-right: auto;
@@ -12611,6 +12663,28 @@ body.sacramento-modal-open {
 body.page-home .home-packages-promo,
 body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):not(.far):not(.fa-brands):not(.fab) {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Home: excursions catalog section title (above activity cards) */
+#experiences > .home-excursions-title {
+  grid-column: 1 / -1;
+  margin: 0.35rem 0 0.15rem;
+  padding: 0.65rem 0 0.85rem;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: #243b5a;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  #experiences > .home-excursions-title {
+    margin-top: 0.15rem;
+    padding: 0.5rem 0 0.65rem;
+    text-align: left;
+  }
 }
 
 /* ===== Packages page (/paquetes) ===== */
@@ -13201,6 +13275,44 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
   gap: 0.75rem;
 }
 
+.pkg-builder__more-wrap {
+  display: none;
+  justify-content: center;
+  margin: 0.85rem 0 0.25rem;
+}
+
+.pkg-builder__more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--pkg-blue-mid);
+  background: #ffffff;
+  color: var(--pkg-navy);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pkg-builder__more-btn:hover {
+    background: var(--pkg-blue-soft);
+    color: var(--pkg-navy);
+    border-color: var(--pkg-blue-mid);
+  }
+}
+
+.pkg-builder__more-btn:focus-visible {
+  outline: 2px solid var(--pkg-blue-mid);
+  outline-offset: 2px;
+}
+
 .pkg-builder-card {
   display: grid;
   grid-template-columns: 88px 1fr;
@@ -13542,6 +13654,14 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 
   .pkg-builder__main {
     overflow: visible;
+  }
+
+  .pkg-builder__more-wrap:has(#pkgBuilderMoreBtn:not([hidden])) {
+    display: flex;
+  }
+
+  .pkg-builder__list.is-collapsed .pkg-builder-card:nth-child(n + 5) {
+    display: none;
   }
 }
 
