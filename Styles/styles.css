@@ -3996,7 +3996,7 @@
     font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-weight: 400;
     padding: clamp(2rem, 5vw, 3.25rem) clamp(1.15rem, 4vw, 2.75rem)
-      clamp(2.25rem, 5.5vw, 3.75rem);
+      clamp(1.7rem, 4vw, 2.6rem);
     background: #ffffff;
   }
 
@@ -7250,6 +7250,174 @@
 
     .page-mate-experience #popupMateExperience .mate-times-segment .mate-time-chip,
     .page-mate-experience #popupMateExperience .mate-times-segment .mate-time-chip__face {
+      min-height: 2.55rem;
+    }
+  }
+
+  /* Golden Mile popup — mirrors Mate popup proportions (Mate rules untouched) */
+  .page-golden-mile #popupGoldenMile .mate-popup-box {
+    max-width: min(470px, 92vw);
+    width: min(470px, 92vw);
+    padding: 1.2rem 1.35rem 1.15rem;
+    text-align: left;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-popup-heading {
+    margin: 0 0 0.85rem;
+    text-align: center;
+    padding-right: 1.25rem;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-popup-heading .popup-title {
+    display: block;
+    font-size: clamp(1.12rem, 3.2vw, 1.28rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #243b5a;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-popup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 0;
+    text-align: left;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-section-label {
+    margin: 0.45rem 0 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #243b5a;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-section-label:first-child {
+    margin-top: 0;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-popup-guests-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin: 0.1rem 0 0;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-guest-btn.add-guest-btn {
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 999px;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-popup-guests-row #goldenMileGuestsValue {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #243b5a;
+    min-width: 1.25rem;
+    text-align: center;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-popup-guests-hint {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #6a859c;
+    text-align: left;
+  }
+
+  .page-golden-mile #popupGoldenMile .golden-mile-date-row {
+    margin: 0.1rem 0 0;
+  }
+
+  .page-golden-mile #popupGoldenMile .golden-mile-date-row label {
+    display: none;
+  }
+
+  .page-golden-mile #popupGoldenMile .golden-mile-date-row input[type="date"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 2.4rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid rgba(76, 149, 222, 0.35);
+    border-radius: 12px;
+    font-size: 0.92rem;
+    color: #243b5a;
+    background: #ffffff;
+  }
+
+  .page-golden-mile #popupGoldenMile .golden-mile-date-row input[type="date"]:focus {
+    outline: none;
+    border-color: #4c95de;
+    box-shadow: 0 0 0 3px rgba(76, 149, 222, 0.18);
+  }
+
+  .page-golden-mile #popupGoldenMile .golden-mile-time-inline {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin: 0.15rem 0 0;
+  }
+
+  .page-golden-mile #popupGoldenMile .golden-mile-time-inline #goldenMileStartTimeValue {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #243b5a;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-popup-actions {
+    margin-top: 0.95rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-save-btn {
+    min-width: 12.75rem;
+    width: auto;
+    max-width: 100%;
+    min-height: 2.55rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    background: #4c95de;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 8px 18px rgba(76, 149, 222, 0.28);
+  }
+
+  .page-golden-mile #popupGoldenMile .mate-save-btn:disabled,
+  .page-golden-mile #popupGoldenMile #saveMenuGoldenMile:disabled {
+    background: #a9c4de;
+    color: #ffffff;
+    opacity: 1;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+  }
+
+  @media (max-width: 560px) {
+    .page-golden-mile #popupGoldenMile .mate-popup-box {
+      width: min(470px, calc(100vw - 1.5rem));
+      max-width: calc(100vw - 1.5rem);
+      padding: 1.1rem 1.1rem 1rem;
+    }
+
+    .page-golden-mile #popupGoldenMile .mate-guest-btn.add-guest-btn {
+      width: 2.25rem;
+      height: 2.25rem;
+      min-width: 2.25rem;
+      min-height: 2.25rem;
+    }
+
+    .page-golden-mile #popupGoldenMile .golden-mile-date-row input[type="date"] {
       min-height: 2.55rem;
     }
   }
@@ -12451,7 +12619,8 @@ body.sacramento-modal-open {
 .home-packages-promo {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
-  padding: clamp(1.75rem, 3.5vw, 2.85rem) clamp(1.25rem, 4vw, 2.5rem);
+  padding: clamp(1.35rem, 3vw, 2.1rem) clamp(1.25rem, 4vw, 2.5rem)
+    clamp(1.75rem, 3.5vw, 2.85rem);
   background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
   border-top: 1px solid rgba(102, 166, 230, 0.08);
   border-bottom: 1px solid rgba(102, 166, 230, 0.08);
@@ -12619,10 +12788,41 @@ body.sacramento-modal-open {
 }
 
 @media (min-width: 768px) {
+  .home-category-nav {
+    padding-bottom: clamp(1.05rem, 2.4vw, 1.7rem);
+  }
+
+  .home-packages-promo {
+    padding-top: clamp(0.85rem, 1.7vw, 1.35rem);
+  }
+
+  .home-packages-promo__inner {
+    align-items: start;
+  }
+
   .home-packages-promo__visual {
     justify-content: flex-start;
+    align-self: start;
+    padding-top: 0.1rem;
     padding-left: 0;
     padding-right: clamp(0.25rem, 1.5vw, 1rem);
+  }
+
+  .home-packages-promo__image.suitcase-illustration {
+    transform: translateY(-0.55rem) rotate(-11deg) scale(1);
+  }
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .suitcase-container:hover .suitcase-illustration {
+    transform: translateY(calc(-0.55rem - 8px)) rotate(-13deg) scale(1.025);
+  }
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: reduce) {
+  .home-packages-promo__image.suitcase-illustration,
+  .suitcase-container:hover .suitcase-illustration {
+    transform: translateY(-0.55rem) rotate(-11deg) scale(1);
   }
 }
 
@@ -13378,6 +13578,14 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
   color: var(--pkg-text-secondary);
 }
 
+.pkg-builder-card__schedule {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--pkg-blue-mid);
+}
+
 .pkg-builder-card__variant {
   display: flex;
   flex-direction: column;
@@ -13514,6 +13722,16 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
   font-size: 0.82rem;
   line-height: 1.35;
   color: var(--pkg-navy);
+}
+
+.pkg-builder-summary__item-schedule {
+  display: block;
+  width: 100%;
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--pkg-blue-mid);
 }
 
 .pkg-builder-summary__item-meta {
