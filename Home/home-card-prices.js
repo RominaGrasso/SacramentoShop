@@ -38,6 +38,7 @@
     "food1.html": [55],
     "bike.html": [60],
     "golfcart.html": [140],
+    "golden-mile.html": [120],
     "barbot.html": [35, 45, 65],
     "bruma.html": [50],
     "asado-boat.html": [60, 80],

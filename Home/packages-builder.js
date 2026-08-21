@@ -19,6 +19,14 @@
     "fullday4.html"
   ]);
 
+  /** Fixed schedule notes shown when an experience is selected (slug → i18n). */
+  const SLUG_SCHEDULE_NOTES = {
+    "golden-mile.html": {
+      key: "golden_mile_pkg_builder_schedule",
+      fallback: "Thursday, Friday & Saturday · 20:00"
+    }
+  };
+
   const state = {
     guests: 2,
     /** @type {Map<string, { variantId: string }>} */
@@ -290,6 +298,14 @@
           </label>`;
         }
 
+        const scheduleNote = SLUG_SCHEDULE_NOTES[exp.slug];
+        const scheduleHtml =
+          selected && scheduleNote
+            ? `<p class="pkg-builder-card__schedule">${escapeHtml(
+                t(scheduleNote.key, scheduleNote.fallback)
+              )}</p>`
+            : "";
+
         const desc = experienceDesc(exp);
         const shortDesc = desc.length > 110 ? `${desc.slice(0, 107)}…` : desc;
 
@@ -309,6 +325,7 @@
             <h3 class="pkg-builder-card__title">${escapeHtml(experienceTitle(exp))}</h3>
             <p class="pkg-builder-card__price">${escapeHtml(priceText)}</p>
             ${shortDesc ? `<p class="pkg-builder-card__desc">${escapeHtml(shortDesc)}</p>` : ""}
+            ${scheduleHtml}
             ${variantHtml}
             <button class="btn pkg-builder-card__toggle${selected ? " is-added" : ""}" data-pkg-toggle="${escapeHtml(
               exp.slug
@@ -382,11 +399,18 @@
           "{name}",
           name
         );
+        const scheduleNote = SLUG_SCHEDULE_NOTES[slug];
+        const scheduleLine = scheduleNote
+          ? `<span class="pkg-builder-summary__item-schedule">${escapeHtml(
+              t(scheduleNote.key, scheduleNote.fallback)
+            )}</span>`
+          : "";
         lines.push(`<li class="pkg-builder-summary__item">
           <div class="pkg-builder-summary__item-main">
             <span class="pkg-builder-summary__item-name">${escapeHtml(name)}${escapeHtml(
               variantText
             )}</span>
+            ${scheduleLine}
             <div class="pkg-builder-summary__item-meta">
               <span class="pkg-builder-summary__item-price">USD ${escapeHtml(
                 formatUsd(amount)
@@ -441,6 +465,10 @@
         const variantText =
           spec && spec.variants.length > 1 && variant ? ` – ${variantLabel(variant)}` : "";
         lines.push(`- ${name}${variantText} – USD ${formatUsd(amount)}`);
+        const scheduleNote = SLUG_SCHEDULE_NOTES[slug];
+        if (scheduleNote) {
+          lines.push(`  ${t(scheduleNote.key, scheduleNote.fallback)}`);
+        }
       });
     }
 
