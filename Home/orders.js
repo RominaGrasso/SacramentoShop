@@ -5784,6 +5784,13 @@ function initPackageOrderExperience(config) {
     /** Optional i18n key for each order card / WhatsApp heading (default: order_word). */
     orderCardTitleKey = "order_word",
     experienceSkipsPreferencesField = false,
+    /** Optional i18n key replacing `preferences_word` in order cards / WhatsApp (package experiences). */
+    preferencesSummaryLabelKey = null,
+    /**
+     * When true, package amounts are fixed group totals (not per person): summary/WhatsApp use
+     * "per group" wording and a simpler total detail line.
+     */
+    packagePriceIsGroupTotal = false,
     /** Flat USD for the whole group when optional transport radio is "yes" (e.g. S34 USD 30). */
     optionalGroupTransportFlat = 0,
     /** Radio name in popup: value "yes" | "no". */
@@ -6685,10 +6692,15 @@ function initPackageOrderExperience(config) {
       const total = lineTotalForOrder(o, orders);
       if (o.packageId != null && eff.label) {
         if (usesFlatGuestTransport(orders)) {
-          const pkgLine = trTpl("orders_pkg_line_per_person", "{label} (USD {pkg} per person)", {
-            label: eff.label,
-            pkg: formatMoney(pkgPrice)
-          });
+          const pkgLine = packagePriceIsGroupTotal
+            ? trTpl("orders_pkg_line_per_group", "{label} (USD {pkg} per group)", {
+                label: eff.label,
+                pkg: formatMoney(pkgPrice)
+              })
+            : trTpl("orders_pkg_line_per_person", "{label} (USD {pkg} per person)", {
+                label: eff.label,
+                pkg: formatMoney(pkgPrice)
+              });
           const transportLine = trTpl(
             "orders_pkg_transport_flat_amount",
             "Transport: USD {transport}",
@@ -6707,6 +6719,12 @@ function initPackageOrderExperience(config) {
               total: formatMoney(total)
             }
           );
+        }
+        if (packagePriceIsGroupTotal) {
+          return trTpl("orders_pkg_line_per_group", "{label} (USD {pkg} per group)", {
+            label: eff.label,
+            pkg: pkgPrice
+          });
         }
         return trTpl("orders_pkg_line_per_person", "{label} (USD {pkg} per person)", {
           label: eff.label,
@@ -6745,7 +6763,10 @@ function initPackageOrderExperience(config) {
         )}${
           experienceSkipsPreferencesField
             ? "\n\n"
-            : `\n${waLine(getI18nText("preferences_label", "Preferences"), prefsWa)}\n\n`
+            : `\n${waLine(
+                getI18nText(preferencesSummaryLabelKey || "preferences_word", "Preferences"),
+                prefsWa
+              )}\n\n`
         }`;
       });
 
@@ -7125,9 +7146,9 @@ function initPackageOrderExperience(config) {
             ${
               experienceSkipsPreferencesField
                 ? ""
-                : `<p><strong>${escapeHtml(getI18nText("preferences_word", "Preferences"))}:</strong> ${escapeHtml(
-                    prefsLine
-                  )}</p>`
+                : `<p><strong>${escapeHtml(
+                    getI18nText(preferencesSummaryLabelKey || "preferences_word", "Preferences")
+                  )}:</strong> ${escapeHtml(prefsLine)}</p>`
             }
           </div>
         `;
@@ -7209,9 +7230,24 @@ function initPackageOrderExperience(config) {
           ? `${orders.length} ${escapeHtml(guestUnit)} · ${escapeHtml(
               getI18nText("orders_pkg_price_on_request", "Price to confirm with our team")
             )}`
-          : `${orders.length} ${escapeHtml(guestUnit)} · ${escapeHtml(
-              getI18nText("orders_summary_experiences", "experiences")
-            )} USD ${escapeHtml(formatMoney(expSum))}${guideDetail}${detailExtra}`;
+          : packagePriceIsGroupTotal
+            ? escapeHtml(
+                trTpl(
+                  orders.length === 1
+                    ? "orders_pkg_summary_group_detail_one"
+                    : "orders_pkg_summary_group_detail_many",
+                  orders.length === 1
+                    ? "{n} experience · USD {amount}"
+                    : "{n} experiences · USD {amount}",
+                  {
+                    n: String(orders.length),
+                    amount: formatMoney(expSum)
+                  }
+                )
+              ) + guideDetail + detailExtra
+            : `${orders.length} ${escapeHtml(guestUnit)} · ${escapeHtml(
+                getI18nText("orders_summary_experiences", "experiences")
+              )} USD ${escapeHtml(formatMoney(expSum))}${guideDetail}${detailExtra}`;
         const totalRight = pricesPending
           ? escapeHtml(getI18nText("orders_pkg_price_on_request", "Price to confirm with our team"))
           : `USD ${escapeHtml(formatMoney(total))}`;

@@ -6,7 +6,7 @@
 <meta charset="utf-8"/>
 <title>Traditional Mate Experience | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
-<link href="../Styles/styles.css?v=20260522perf" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260820wide1120" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -122,6 +122,11 @@
 <p data-translate="mate_page_create_subtitle">
         Choose the language for your session and how many guests will join.
       </p>
+<div class="cabal-availability-notice" role="note">
+<p data-translate="cabal_availability_whatsapp_notice">
+        Please confirm availability with us on WhatsApp before completing your reservation.
+      </p>
+</div>
 <button class="btn primary-btn" data-translate="mate_page_create_btn" id="mateCreateBtn" type="button">
         + Create your mate experience
       </button>
@@ -155,28 +160,49 @@
 </section>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260720mate40"></script>
+<script src="../Home/index.js?v=20260820availnotice"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260721footer"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
 <div aria-hidden="true" class="popup-overlay" id="popupMateExperience">
-<div aria-labelledby="matePopupTitle" aria-modal="true" class="popup-box" role="dialog">
+<div aria-labelledby="matePopupTitle" aria-modal="true" class="popup-box mate-popup-box" role="dialog">
 <button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeMateExperience" type="button">✕</button>
-<p><strong class="popup-title" data-translate="mate_popup_title" id="matePopupTitle">Traditional Mate Experience</strong></p>
-<div class="preferences-inside">
-<h3 class="preferences-title" data-translate="mate_popup_lang_heading" id="matePopupLangHeading">Experience language</h3>
-<label><input checked="" name="mateExpLang" type="radio" value="es"/> <span data-translate="mate_popup_lang_es">🌐 Spanish</span></label>
-<label><input name="mateExpLang" type="radio" value="en"/> <span data-translate="mate_popup_lang_en">🌐 English</span></label>
-<label><input name="mateExpLang" type="radio" value="pt"/> <span data-translate="mate_popup_lang_pt">🌐 Portuguese</span></label>
-<h3 class="preferences-title" data-translate="mate_popup_guests_heading" id="matePopupGuestsHeading" style="margin-top: 14px;">Number of guests</h3>
+<p class="mate-popup-heading"><strong class="popup-title" data-translate="mate_popup_title" id="matePopupTitle">Traditional Mate Experience</strong></p>
+<div class="preferences-inside mate-popup-fields">
+<p class="mate-section-label" data-translate="mate_popup_lang_heading" id="matePopupLangHeading">Language</p>
+<div class="mate-lang-row" role="radiogroup" aria-labelledby="matePopupLangHeading">
+<label class="mate-lang-option"><input checked="" name="mateExpLang" type="radio" value="es"/> <span data-translate="mate_popup_lang_es">Spanish</span></label>
+<label class="mate-lang-option"><input name="mateExpLang" type="radio" value="en"/> <span data-translate="mate_popup_lang_en">English</span></label>
+<label class="mate-lang-option"><input name="mateExpLang" type="radio" value="pt"/> <span data-translate="mate_popup_lang_pt">Portuguese</span></label>
+</div>
+<p class="mate-section-label" data-translate="mate_popup_guests_heading" id="matePopupGuestsHeading">Guests</p>
 <div class="mate-popup-guests-row">
-<button aria-label="−" class="add-guest-btn" id="mateGuestsMinus" type="button">−</button>
+<button aria-label="−" class="add-guest-btn mate-guest-btn" id="mateGuestsMinus" type="button">−</button>
 <span id="mateGuestsValue">1</span>
-<button aria-label="+" class="add-guest-btn" id="mateGuestsPlus" type="button">+</button>
+<button aria-label="+" class="add-guest-btn mate-guest-btn" id="mateGuestsPlus" type="button">+</button>
 </div>
-<p class="mate-popup-guests-hint" data-translate="mate_popup_guests_hint">Minimum 1 guest · maximum 6 per booking.</p>
+<p class="mate-popup-guests-hint" data-translate="mate_popup_guests_hint">Up to 6 guests</p>
+<p class="mate-section-label" data-translate="mate_popup_time_heading" id="matePopupTimeHeading">Choose a time</p>
+<div aria-label="Experience times" class="mate-times-segment" role="radiogroup">
+<label class="mate-time-chip">
+<input name="mateExpTime" type="radio" value="10:00"/>
+<span class="mate-time-chip__face">10:00</span>
+</label>
+<label class="mate-time-chip">
+<input name="mateExpTime" type="radio" value="12:00"/>
+<span class="mate-time-chip__face">12:00</span>
+</label>
+<label class="mate-time-chip">
+<input name="mateExpTime" type="radio" value="15:00"/>
+<span class="mate-time-chip__face">15:00</span>
+</label>
+<label class="mate-time-chip">
+<input name="mateExpTime" type="radio" value="16:30"/>
+<span class="mate-time-chip__face">16:30</span>
+</label>
 </div>
-<div class="popup-actions">
-<button class="btn" data-translate="save_selection" id="saveMateExperience" type="button">Save selection</button>
+</div>
+<div class="popup-actions mate-popup-actions">
+<button class="btn mate-save-btn" data-translate="save_selection" disabled id="saveMateExperience" type="button">Save selection</button>
 </div>
 </div>
 </div>
@@ -195,6 +221,7 @@
 <script>
 (function () {
   const STORAGE_KEY = "mate_experience_config";
+  const MATE_TIMES = ["10:00", "12:00", "15:00", "16:30"];
   const PRICE_PER_PERSON = 40;
   const MAX_GUESTS = 6;
   const WHATSAPP_NUMBER = "59898945542";
@@ -224,9 +251,11 @@
       if (!raw) return null;
       const o = JSON.parse(raw);
       if (!o || typeof o !== "object") return null;
-      const lang = ["es", "en", "pt"].includes(o.language) ? o.language : "es";
+      const language = ["es", "en", "pt"].includes(o.language) ? o.language : "es";
       const guests = Math.min(MAX_GUESTS, Math.max(1, parseInt(o.guests, 10) || 1));
-      return { language: lang, guests };
+      const time = MATE_TIMES.includes(o.time) ? o.time : null;
+      if (!time) return null;
+      return { language, guests, time };
     } catch {
       return null;
     }
@@ -240,6 +269,32 @@
     if (code === "en") return t("mate_popup_lang_en", "🌐 English");
     if (code === "pt") return t("mate_popup_lang_pt", "🌐 Portuguese");
     return t("mate_popup_lang_es", "🌐 Spanish");
+  };
+
+  const formatTimeLabel = (time) => {
+    const lang = getLang();
+    if (lang === "es") return `${time} hs`;
+    return time;
+  };
+
+  const selectedLang = () => {
+    const langInput = popup.querySelector('input[name="mateExpLang"]:checked');
+    return langInput && ["es", "en", "pt"].includes(langInput.value) ? langInput.value : null;
+  };
+
+  const selectedTime = () => {
+    const timeInput = popup.querySelector('input[name="mateExpTime"]:checked');
+    return timeInput && MATE_TIMES.includes(timeInput.value) ? timeInput.value : null;
+  };
+
+  const syncSaveEnabled = () => {
+    const ready =
+      Boolean(selectedLang()) &&
+      guestCount >= 1 &&
+      guestCount <= MAX_GUESTS &&
+      Boolean(selectedTime());
+    saveBtn.disabled = !ready;
+    saveBtn.setAttribute("aria-disabled", ready ? "false" : "true");
   };
 
   const formatDate = () =>
@@ -302,7 +357,8 @@
         `${t("wa_intro_mate", "Hello! I'd like to book the Traditional Mate Experience:")}\n\n` +
         `${t("wa_date_label", "Date")}: ${date}\n` +
         `${t("wa_people_label", "People")}: ${cfg.guests}\n` +
-        `${t("wa_language_label", "Language")}: ${langLabel(cfg.language)}\n\n` +
+        `${t("wa_language_label", "Language")}: ${langLabel(cfg.language)}\n` +
+        `${t("mate_summary_time_label", "Experience time")}: ${formatTimeLabel(cfg.time)}\n\n` +
         `${t("wa_total_label", "Total")}: USD ${total}`;
 
       if (paymentUrl) {
@@ -328,6 +384,7 @@
 
   const syncGuestDisplay = () => {
     guestsEl.textContent = String(guestCount);
+    syncSaveEnabled();
   };
 
   const syncPopupFromStorage = () => {
@@ -338,6 +395,10 @@
     syncGuestDisplay();
     const r = popup.querySelector(`input[name="mateExpLang"][value="${initialLang}"]`);
     if (r) r.checked = true;
+    popup.querySelectorAll('input[name="mateExpTime"]').forEach((input) => {
+      input.checked = Boolean(cfg?.time) && input.value === cfg.time;
+    });
+    syncSaveEnabled();
   };
 
   const openPopup = () => {
@@ -357,7 +418,7 @@
     btn.className = "mate-summary-edit-pencil";
     btn.setAttribute(
       "aria-label",
-      t("mate_summary_edit_aria", "Edit language and number of guests")
+      t("mate_summary_edit_aria", "Edit language, guests, and experience time")
     );
     const icon = document.createElement("i");
     icon.className = "fa-solid fa-pencil";
@@ -376,7 +437,10 @@
 
     if (!cfg) {
       const p = document.createElement("p");
-      p.textContent = t("mate_summary_empty", "Tap + Create your mate experience to choose language and number of guests.");
+      p.textContent = t(
+        "mate_summary_empty",
+        "Tap + Create your mate experience to choose language, guests, and experience time."
+      );
       summary.appendChild(p);
       return;
     }
@@ -403,6 +467,13 @@
     guestsNum.textContent = String(cfg.guests);
     pGuests.appendChild(guestsNum);
     card.appendChild(pGuests);
+
+    const pTime = document.createElement("p");
+    const strongTime = document.createElement("strong");
+    strongTime.textContent = `${t("mate_summary_time_label", "Experience time")}:`;
+    pTime.appendChild(strongTime);
+    pTime.appendChild(document.createTextNode(` ${formatTimeLabel(cfg.time)}`));
+    card.appendChild(pTime);
 
     summary.appendChild(card);
 
@@ -446,10 +517,20 @@
     syncGuestDisplay();
   });
 
+  popup.addEventListener("change", (e) => {
+    if (e.target && (e.target.name === "mateExpLang" || e.target.name === "mateExpTime")) {
+      syncSaveEnabled();
+    }
+  });
+
   saveBtn.addEventListener("click", () => {
-    const langInput = popup.querySelector('input[name="mateExpLang"]:checked');
-    const language = langInput ? langInput.value : "es";
-    setConfig({ language, guests: guestCount });
+    const language = selectedLang();
+    const time = selectedTime();
+    if (!language || !time || guestCount < 1 || guestCount > MAX_GUESTS) {
+      syncSaveEnabled();
+      return;
+    }
+    setConfig({ language, guests: guestCount, time });
     closePopup();
     renderSummary();
     if (typeof window.scrollToOrderSummary === "function") {
@@ -468,6 +549,7 @@
     });
   }
 
+  syncSaveEnabled();
   renderSummary();
 })();
 </script>
