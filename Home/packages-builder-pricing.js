@@ -148,6 +148,7 @@
     ["bruma.html", 50],
     ["fullday-colonia.html", 90],
     ["golden-mile.html", 120],
+    ["night-walkingtour.html", 25],
     ["lasliebres.html", 85],
     ["sio.html", 70],
     ["romantic.html", 70],

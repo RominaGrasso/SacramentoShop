@@ -689,6 +689,10 @@
     color: #e4572e;
   }
 
+  .card [data-card-meta~="candle"] .card-meta__ic {
+    color: #e08d23;
+  }
+
   .card [data-card-meta~="sunset"] .card-meta__ic {
     color: #e08d23;
   }
@@ -871,11 +875,13 @@
   }
 
   /* Walking tour: sin overlay; vertical ajustada (menos piso) */
-  .coffee-hero--walking-tour {
+  .coffee-hero--walking-tour,
+  .coffee-hero--night-walking-tour {
     background-position: center 66%;
   }
 
-  .coffee-hero--walking-tour::before {
+  .coffee-hero--walking-tour::before,
+  .coffee-hero--night-walking-tour::before {
     display: none;
   }
   
@@ -12620,7 +12626,7 @@ body.sacramento-modal-open {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
   padding: clamp(1.35rem, 3vw, 2.1rem) clamp(1.25rem, 4vw, 2.5rem)
-    clamp(1.75rem, 3.5vw, 2.85rem);
+    clamp(0.75rem, 1.6vw, 1.25rem);
   background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
   border-top: 1px solid rgba(102, 166, 230, 0.08);
   border-bottom: 1px solid rgba(102, 166, 230, 0.08);
@@ -12828,7 +12834,8 @@ body.sacramento-modal-open {
 
 @media (max-width: 767px) {
   .home-packages-promo {
-    padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1rem, 3vw, 1.5rem)
+      clamp(0.85rem, 2vw, 1.25rem);
   }
 
   .home-packages-promo__inner {
@@ -12868,8 +12875,8 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 /* Home: excursions catalog section title (above activity cards) */
 #experiences > .home-excursions-title {
   grid-column: 1 / -1;
-  margin: 0.35rem 0 0.15rem;
-  padding: 0.65rem 0 0.85rem;
+  margin: 0.15rem 0 0.15rem;
+  padding: 0.35rem 0 0.85rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(1.35rem, 2.8vw, 1.75rem);
   font-weight: 700;
@@ -12881,9 +12888,26 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 
 @media (max-width: 767px) {
   #experiences > .home-excursions-title {
-    margin-top: 0.15rem;
-    padding: 0.5rem 0 0.65rem;
+    margin-top: 0.1rem;
+    padding: 0.3rem 0 0.65rem;
     text-align: left;
+  }
+}
+
+/* Home: tighten gap between packages promo (suitcase) and excursions catalog */
+body.page-home #experiences.cards {
+  padding-top: 13px;
+}
+
+@media (max-width: 767px) {
+  body.page-home #experiences.cards {
+    padding-top: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  body.page-home #experiences.cards {
+    padding-top: 12px;
   }
 }
 
