@@ -26,6 +26,7 @@
   const HOME_CARD_PRICE_USD = {
     "cabal.html": [40],
     "walkingtour.html": [15, 20],
+    "night-walkingtour.html": [25],
     "mate.html": [40],
     "traslado-plaza-letras.html": [50],
     "vinos.html": [30, 35, 40],

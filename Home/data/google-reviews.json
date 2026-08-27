@@ -1,5 +1,17 @@
 [
   {
+    "id": "ellen_c",
+    "name": "ellen c",
+    "rating": 5,
+    "text": "No puedo creer lo increíble que resultó el viaje. Desde la degustación de comida y vino hasta la cabalgata. ¡Qué combo tan divertido! Romina hizo seguimiento en cada paso para asegurarse de que todo saliera fluido y perfecto. Le pondría más estrellas a esta reseña si pudiera."
+  },
+  {
+    "id": "natalia_mendoza_chavez",
+    "name": "Natalia Mendoza Chávez",
+    "rating": 5,
+    "text": "Excelente experiencia, todo coordinado perfecto y en constante comunicación. Visita guiada en Viñedo El Quintón, de las mejores experiencias. Muy recomendable el servicio."
+  },
+  {
     "id": "sonia_alves_oberto",
     "name": "Sonia Alves Oberto",
     "rating": 5,

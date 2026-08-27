@@ -327,6 +327,7 @@
   /** Explore link slug → nav groups (a card may appear in multiple categories). */
   const SLUG_NAV = {
     "walkingtour.html": ["tours"],
+    "night-walkingtour.html": ["tours", "night"],
     "bike.html": ["tours"],
     "golfcart.html": ["tours"],
     "golden-mile.html": ["tours", "night", "gastronomy"],
@@ -364,7 +365,7 @@
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
-    tours: ["home-walking-tour-card", "home-traslado-plaza-letras-card"],
+    tours: ["home-walking-tour-card", "home-night-walking-tour-card", "home-traslado-plaza-letras-card"],
     fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
       "home-exp-bodega-card",
@@ -383,6 +384,7 @@
 
   const CARD_ID_NAV = {
     "home-walking-tour-card": ["tours"],
+    "home-night-walking-tour-card": ["tours", "night"],
     "home-fullday-colonia-card": ["fullday", "day"],
     "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
     "home-bike-card": ["tours"],
@@ -659,7 +661,7 @@
     const priority = NAV_CARD_ORDER[navKey];
     if (!priority?.length) return cards;
     const prioritySlugs = {
-      tours: ["walkingtour.html"],
+      tours: ["walkingtour.html", "night-walkingtour.html"],
     };
     const used = new Set();
     const first = [];
