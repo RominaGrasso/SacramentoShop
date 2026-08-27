@@ -2906,7 +2906,7 @@ golden_mile_step_note:
       night_walking_delete_group: "Delete group",
       night_walking_minus_person: "- Person",
       night_walking_plus_person: "+ Person",
-      night_walking_group_card_title: "Night Walking Tour Group",
+      night_walking_group_card_title: "Night Walking Tour: Secrets and Legends of Colonia — Group",
       night_walking_label_people: "People",
       night_walking_label_visit_date: "Visit date",
       night_walking_alert_select_language: "Please select a language",
@@ -5911,7 +5911,7 @@ golden_mile_step_note:
       night_walking_doc_title: "Tour Nocturno: Historias, Secretos y Leyendas de Colonia | Sacramento Adventures",
       night_walking_meta_description:
         "Tour nocturno en Colonia del Sacramento: historias, secretos y leyendas del Casco Histórico con guía local.",
-      night_walking_home_title: "Tour Nocturno",
+      night_walking_home_title: "Tour Nocturno: Historias, Secretos y Leyendas de Colonia",
       night_walking_card_desc:
         "Descubrí el encanto de Colonia del Sacramento a la luz de las velas y conocé las historias, secretos y leyendas que nadie suele contarte. Recorré el Casco Histórico al caer la noche y descubrí una cara completamente diferente de la ciudad.",
       night_walking_home_meta_duration: "1 h 30 min",
@@ -5960,7 +5960,7 @@ golden_mile_step_note:
       night_walking_delete_group: "Eliminar grupo",
       night_walking_minus_person: "- Persona",
       night_walking_plus_person: "+ Persona",
-      night_walking_group_card_title: "Grupo Tour Nocturno",
+      night_walking_group_card_title: "Grupo — Tour Nocturno: Historias, Secretos y Leyendas de Colonia",
       night_walking_label_people: "Personas",
       night_walking_label_visit_date: "Fecha de visita",
       night_walking_alert_select_language: "Por favor elegí un idioma",
@@ -5970,7 +5970,7 @@ golden_mile_step_note:
       night_walking_confirm_replace:
         "Ya tenés un grupo configurado para este tour. Si continuás, vas a editar o reemplazar esa configuración.",
       night_walking_passengers_per_slot: "Hasta {max} personas por horario de salida del tour nocturno.",
-      night_walking_wa_intro: "¡Hola! Quiero reservar el Tour Nocturno:",
+      night_walking_wa_intro: "¡Hola! Quiero reservar el Tour Nocturno: Historias, Secretos y Leyendas de Colonia:",
       night_walking_wa_tour_time_label: "Horario del tour nocturno",
       night_walking_gal_alt_1: "Tour nocturno en Colonia del Sacramento",
       night_walking_gal_alt_2: "Calles del Casco Histórico de noche en Colonia",
@@ -8964,7 +8964,7 @@ golden_mile_step_note:
       night_walking_doc_title: "Tour Noturno: Histórias, Segredos e Lendas de Colônia | Sacramento Adventures",
       night_walking_meta_description:
         "Tour noturno em Colônia do Sacramento: histórias, segredos e lendas do Bairro Histórico com guia local.",
-      night_walking_home_title: "Tour Noturno",
+      night_walking_home_title: "Tour Noturno: Histórias, Segredos e Lendas de Colônia",
       night_walking_card_desc:
         "Descubra o encanto de Colônia do Sacramento à luz de velas e conheça as histórias, segredos e lendas que quase ninguém conta. Caminhe pelo Bairro Histórico ao anoitecer e descubra um lado completamente diferente da cidade.",
       night_walking_home_meta_duration: "1 h 30 min",
@@ -9013,7 +9013,7 @@ golden_mile_step_note:
       night_walking_delete_group: "Excluir grupo",
       night_walking_minus_person: "- Pessoa",
       night_walking_plus_person: "+ Pessoa",
-      night_walking_group_card_title: "Grupo Tour Noturno",
+      night_walking_group_card_title: "Grupo — Tour Noturno: Histórias, Segredos e Lendas de Colônia",
       night_walking_label_people: "Pessoas",
       night_walking_label_visit_date: "Data da visita",
       night_walking_alert_select_language: "Por favor selecione um idioma",
@@ -9023,7 +9023,7 @@ golden_mile_step_note:
       night_walking_confirm_replace:
         "Você já tem um grupo configurado para este tour. Se continuar, editará ou substituirá essa configuração.",
       night_walking_passengers_per_slot: "Até {max} pessoas por horário de saída do tour noturno.",
-      night_walking_wa_intro: "Olá! Quero reservar o Tour Noturno:",
+      night_walking_wa_intro: "Olá! Quero reservar o Tour Noturno: Histórias, Segredos e Lendas de Colônia:",
       night_walking_wa_tour_time_label: "Horário do tour noturno",
       night_walking_gal_alt_1: "Tour noturno em Colônia do Sacramento",
       night_walking_gal_alt_2: "Ruas do Bairro Histórico à noite em Colônia",
