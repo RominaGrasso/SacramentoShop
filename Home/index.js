@@ -98,7 +98,7 @@ const translations = {
       home_cat_nav_boat_desc: "Río de la Plata",
       home_cat_nav_lodging: "Lodging",
       home_cat_nav_lodging_desc: "Stays & overnights",
-      home_cat_nav_dining: "Lunch / Dinner only",
+      home_cat_nav_dining: "Lunch or Dinner",
       home_cat_nav_dining_desc: "Restaurants & dining",
       home_category_modal_close: "Close",
       home_category_modal_view_list: "View in full list",
@@ -1543,11 +1543,15 @@ golden_mile_step_note:
       about_team_adrian_role: "Tour guide",
       about_team_adrian_bday: "🎂 Jun 23",
       about_team_adrian_bio:
-        "He thinks big and approaches every challenge with a strategic mindset. His strong business vision and innovative ideas help drive the project forward and unlock new opportunities.",
+        "Warm, attentive and committed, he has a way of connecting with people and making them feel comfortable and welcome. His warmth shows in every experience.",
       about_team_alan_role: "Tour guide",
       about_team_alan_bday: "🎂 Feb 1",
       about_team_alan_bio:
         "Naturally charismatic and people-oriented, he ensures every guest feels welcome and comfortable. His positive energy plays a key role in creating memorable experiences.",
+      about_team_agustin_photo_alt: "Agustín",
+      about_team_agustin_role: "Commercial Team",
+      about_team_agustin_bio:
+        "Agustín is part of the commercial team at Sacramento Adventures. He helps us connect each traveler with the experiences that best match what they are looking for, supporting the process from the first contact.",
       about_team_lupa_role: "Chief Happiness Officer",
       about_team_lupa_age: "Age: 5 years",
       about_team_lupa_bio:
@@ -1655,9 +1659,10 @@ golden_mile_step_note:
       home_footer_experiences: "Our Experiences",
       home_footer_packages: "Travel Packages",
       home_footer_about: "About Us",
-      home_footer_terms: "Terms and Conditions",
+      home_footer_terms: "Terms & Conditions",
       home_footer_privacy: "Privacy Policy",
       home_footer_cancellation: "Cancellation Policy",
+      home_footer_cookie_preferences: "Cookie Preferences",
       home_footer_useful_services: "Useful Services",
       home_footer_copyright: "© 2026 Sacramento Adventures. All rights reserved.",
       home_footer_location: "Colonia del Sacramento, Uruguay.",
@@ -1665,18 +1670,220 @@ golden_mile_step_note:
       home_footer_social_instagram_aria: "Follow Sacramento Adventures on Instagram",
       home_footer_social_facebook_aria: "Follow Sacramento Adventures on Facebook",
       home_footer_social_whatsapp_aria: "Contact Sacramento Adventures on WhatsApp",
-      legal_terms_doc_title: "Terms and Conditions | Sacramento Adventures",
-      legal_terms_title: "Terms and Conditions",
+      cookie_consent_title: "Cookies",
+      cookie_consent_text: "We use cookies to improve your browsing experience.",
+      cookie_consent_accept: "Accept",
+      cookie_consent_reject: "Reject",
+      cookie_consent_aria_label: "Cookie notice",
+      legal_terms_doc_title: "Terms & Conditions | Sacramento Adventures",
+      legal_terms_meta_description:
+        "Booking, payment, participation and service conditions for Sacramento Adventures experiences in Colonia del Sacramento.",
+      legal_terms_title: "Terms & Conditions",
       legal_terms_lead:
-        "These terms govern bookings and participation in Sacramento Adventures experiences in Colonia del Sacramento.",
+        "By booking an activity or service with Sacramento Adventures, you agree to the following Terms & Conditions.",
+      legal_terms_s1_title: "1. Bookings and confirmation",
+      legal_terms_s1_p1:
+        "A booking is considered confirmed once the required payment or deposit has been received and confirmation has been provided by Sacramento Adventures.",
+      legal_terms_s1_p2:
+        "Customers are responsible for providing accurate contact information and all information necessary to operate the booked service.",
+      legal_terms_s2_title: "2. Prices and payments",
+      legal_terms_s2_p1: "All prices are displayed in the currency indicated at the time of booking.",
+      legal_terms_s2_p2:
+        "Depending on the activity, full payment or a deposit may be required to confirm the reservation. Any remaining balance must be paid according to the conditions communicated at the time of booking.",
+      legal_terms_s2_p3:
+        "Any additional services or expenses not expressly stated as included in the booking are not included in the price.",
+      legal_terms_s3_title: "3. Activity descriptions and inclusions",
+      legal_terms_s3_p1:
+        "The services included in each booking are those expressly stated in the activity description, itinerary or personalized proposal provided by Sacramento Adventures.",
+      legal_terms_s3_p2:
+        "Services not specifically listed as included should not be considered part of the booking.",
+      legal_terms_s3_p3:
+        "If travelers have questions regarding what is or is not included in an experience, they are encouraged to contact Sacramento Adventures before completing their reservation.",
+      legal_terms_s4_title: "4. Cancellations and refunds",
+      legal_terms_s4_p1_prefix: "Cancellations and refunds are subject to our ",
+      legal_terms_s4_p1_suffix: ", available separately on our website.",
+      legal_terms_s4_p2:
+        "If an outdoor activity cannot safely operate due to weather conditions, Sacramento Adventures may reschedule or cancel the activity in accordance with that policy.",
+      legal_terms_s5_title: "5. Changes to activities and itineraries",
+      legal_terms_s5_p1:
+        "Schedules, routes, meeting points or certain elements of an experience may occasionally need to be adjusted due to weather, traffic, safety considerations, availability of suppliers or other operational circumstances.",
+      legal_terms_s5_p2:
+        "Whenever possible, Sacramento Adventures will inform travelers in advance and provide a suitable alternative without substantially changing the nature of the booked experience.",
+      legal_terms_s6_title: "6. Arrival times and meeting points",
+      legal_terms_s6_p1: "Travelers are responsible for arriving at the communicated meeting point at the indicated time.",
+      legal_terms_s6_p2: "For activities that include pick-up, travelers must be ready at the agreed location and time.",
+      legal_terms_s6_p3:
+        "Late arrival may result in a shortened experience or, when the activity cannot be delayed, the inability to participate.",
+      legal_terms_s7_title: "7. Safety and participation",
+      legal_terms_s7_p1:
+        "Travelers must follow the safety instructions provided by Sacramento Adventures, guides, instructors, drivers and activity providers.",
+      legal_terms_s7_p2:
+        "Some experiences may involve physical activity, outdoor environments, animals, bicycles, boats or other activities that carry inherent risks.",
+      legal_terms_s7_p3:
+        "Travelers are responsible for informing Sacramento Adventures before the activity of any relevant circumstances that could affect their ability to safely participate.",
+      legal_terms_s7_p4:
+        "Sacramento Adventures and its providers reserve the right to refuse or discontinue participation when a traveler's behavior may endanger themselves, other participants, staff or third parties.",
+      legal_terms_s8_title: "8. Children and minors",
+      legal_terms_s8_p1: "Minors must be accompanied by a responsible adult unless otherwise expressly agreed.",
+      legal_terms_s8_p2:
+        "Some activities may have specific minimum age, height or other participation requirements. These conditions will be communicated when applicable.",
+      legal_terms_s9_title: "9. Personal belongings",
+      legal_terms_s9_p1: "Travelers are responsible for their personal belongings during activities and transfers.",
+      legal_terms_s9_p2:
+        "Sacramento Adventures cannot guarantee the recovery of items that are lost, forgotten or damaged during an experience.",
+      legal_terms_s10_title: "10. Third-party providers",
+      legal_terms_s10_p1:
+        "Some experiences offered by Sacramento Adventures include services operated in collaboration with local providers, such as wineries, restaurants, horseback riding providers, transportation companies, bicycle rentals and other tourism partners.",
+      legal_terms_s10_p2:
+        "Sacramento Adventures coordinates these services as part of the traveler's experience. Certain operational conditions may therefore depend on the corresponding provider.",
+      legal_terms_s11_title: "11. Force majeure",
+      legal_terms_s11_p1:
+        "Sacramento Adventures will not be responsible for delays, modifications or cancellations resulting from circumstances beyond its reasonable control, including severe weather, government restrictions, strikes, transportation disruptions, natural events or other extraordinary circumstances.",
+      legal_terms_s11_p2:
+        "Whenever possible, Sacramento Adventures will assist travelers in finding a reasonable alternative.",
+      legal_terms_s12_title: "12. Contact",
+      legal_terms_s12_p1:
+        "If you have any questions about your booking, an activity or these Terms & Conditions, please contact Sacramento Adventures before your experience.",
       legal_privacy_doc_title: "Privacy Policy | Sacramento Adventures",
+      legal_privacy_meta_description:
+        "Learn how Sacramento Adventures handles personal information related to bookings, payments, website use and tourism services in Colonia del Sacramento.",
       legal_privacy_title: "Privacy Policy",
       legal_privacy_lead:
-        "We respect your privacy and handle personal data responsibly when you contact us or book an experience.",
+        "At Sacramento Adventures, we respect your privacy and are committed to handling your personal information responsibly.",
+      legal_privacy_intro:
+        "This Privacy Policy explains what information we may collect when you use our website, make a reservation, contact us or use our services, and how that information may be used.",
+      legal_privacy_uruguay_note:
+        "Sacramento Adventures operates in Uruguay. We handle personal information in line with the general principles of applicable local data protection rules, including lawful use, purpose limitation, data quality and security.",
+      legal_privacy_s1_title: "1. Information we may collect",
+      legal_privacy_s1_intro: "Depending on how you interact with Sacramento Adventures, we may collect information such as:",
+      legal_privacy_s1_item_1: "Name and surname",
+      legal_privacy_s1_item_2: "Email address",
+      legal_privacy_s1_item_3: "Telephone number or WhatsApp contact",
+      legal_privacy_s1_item_4: "Preferred language",
+      legal_privacy_s1_item_5: "Booking and activity details",
+      legal_privacy_s1_item_6: "Number of travelers",
+      legal_privacy_s1_item_7: "Pick-up or meeting information when required for the service",
+      legal_privacy_s1_item_8: "Messages, requests or information you voluntarily provide to us",
+      legal_privacy_s1_item_9:
+        "Technical information related to the use of our website, such as browser, device, pages visited and interactions with the website",
+      legal_privacy_s1_p2:
+        "We only request information that is reasonably necessary to manage your booking, communicate with you or provide our services.",
+      legal_privacy_s2_title: "2. How we use your information",
+      legal_privacy_s2_intro: "We may use personal information to:",
+      legal_privacy_s2_item_1: "Process and manage reservations",
+      legal_privacy_s2_item_2: "Coordinate tours, transfers and activities",
+      legal_privacy_s2_item_3: "Communicate booking information and service updates",
+      legal_privacy_s2_item_4: "Provide customer support",
+      legal_privacy_s2_item_5: "Respond to questions or requests",
+      legal_privacy_s2_item_6: "Coordinate services with guides, drivers and tourism providers",
+      legal_privacy_s2_item_7: "Process payments and confirm payment status",
+      legal_privacy_s2_item_8: "Improve our website, services and customer experience",
+      legal_privacy_s2_item_9: "Understand how visitors interact with our website",
+      legal_privacy_s2_item_10: "Prevent fraud, security incidents or misuse of our services",
+      legal_privacy_s2_item_11: "Comply with applicable legal or administrative obligations",
+      legal_privacy_s2_p2: "We do not sell travelers' personal information.",
+      legal_privacy_s3_title: "3. Bookings and service providers",
+      legal_privacy_s3_p1:
+        "Some experiences offered by Sacramento Adventures are operated in collaboration with local providers, including guides, drivers, wineries, restaurants, horseback riding providers, bicycle rental companies and other tourism partners.",
+      legal_privacy_s3_p2:
+        "When necessary to provide the booked service, Sacramento Adventures may share only the information reasonably required for that provider to operate the activity.",
+      legal_privacy_s3_p3:
+        "For example, this may include the traveler's name, number of passengers, pick-up location, preferred language or other relevant booking information.",
+      legal_privacy_s3_p4: "Providers should only receive the information necessary to perform the requested service.",
+      legal_privacy_s4_title: "4. Payment information",
+      legal_privacy_s4_p1:
+        "Payments made through our website may be processed by third-party payment service providers, including Plexo checkout services used for online card payments.",
+      legal_privacy_s4_p2:
+        "Sacramento Adventures does not intentionally store complete credit or debit card information on its own systems.",
+      legal_privacy_s4_p3:
+        "Payment providers may process personal and financial information according to their own privacy and security policies.",
+      legal_privacy_s6_title: "5. Communications",
+      legal_privacy_s6_p1:
+        "Sacramento Adventures may contact travelers using the contact information they provide in connection with a reservation or request.",
+      legal_privacy_s6_p2:
+        "This may include booking confirmations, itinerary details, meeting points, schedule changes, payment information, reminders or other communications necessary to provide the service.",
+      legal_privacy_s7_title: "6. Data retention",
+      legal_privacy_s7_p1:
+        "Personal information may be retained for as long as reasonably necessary to manage reservations, provide services, maintain business and accounting records, resolve disputes, comply with legal obligations or protect legitimate business interests.",
+      legal_privacy_s7_p2:
+        "Information that is no longer reasonably required should not be retained indefinitely without a legitimate purpose.",
+      legal_privacy_s8_title: "7. Data security",
+      legal_privacy_s8_p1:
+        "Sacramento Adventures takes reasonable organizational and technical measures to protect personal information from unauthorized access, misuse, loss or disclosure.",
+      legal_privacy_s8_p2:
+        "However, no internet-based system or electronic communication method can be guaranteed to be completely secure.",
+      legal_privacy_s9_title: "8. Your rights",
+      legal_privacy_s9_p1:
+        "Depending on applicable law, travelers may have the right to request access to, correction of or deletion of personal information held by Sacramento Adventures.",
+      legal_privacy_s9_p2:
+        "They may also contact Sacramento Adventures if they believe that information is inaccurate or is being used improperly.",
+      legal_privacy_s9_p3: "Requests will be handled in accordance with applicable data protection requirements.",
+      legal_privacy_s10_title: "9. Children and minors",
+      legal_privacy_s10_p1:
+        "Information relating to minors should only be provided by a parent, legal guardian or responsible adult when necessary to manage a booking or participation in an activity.",
+      legal_privacy_s10_p2:
+        "Sacramento Adventures does not intentionally request unnecessary personal information directly from children.",
+      legal_privacy_s11_title: "10. Third-party links and services",
+      legal_privacy_s11_p1:
+        "The Sacramento Adventures website may contain links to third-party websites or services, including maps, social networks, payment services, booking platforms or tourism partners.",
+      legal_privacy_s11_p2:
+        "Sacramento Adventures is not responsible for the privacy practices of third-party websites once a traveler leaves our website.",
+      legal_privacy_s11_p3: "Travelers are encouraged to review the privacy policies of those third parties when appropriate.",
+      legal_privacy_s12_title: "11. Photos and videos",
+      legal_privacy_s12_p1:
+        "Photographs or videos created during activities may contain personal information when individuals can be identified.",
+      legal_privacy_s12_p2:
+        "This Privacy Policy does not itself grant Sacramento Adventures unrestricted authorization to use a traveler's image for advertising or promotional purposes.",
+      legal_privacy_s13_title: "12. Changes to this Privacy Policy",
+      legal_privacy_s13_p1:
+        "Sacramento Adventures may update this Privacy Policy when necessary to reflect changes in our website, services, technologies or legal requirements.",
+      legal_privacy_s13_p2:
+        "The latest version published on the website will apply from its stated effective or updated date.",
+      legal_privacy_cookies_title: "13. Cookies",
+      legal_privacy_cookies_p1: "Our website uses cookies to improve your browsing experience.",
+      legal_privacy_cookies_p2:
+        "You can choose to accept or reject cookies when the cookie notice is displayed and change your choice later through the Cookie Preferences option available on our website.",
+      legal_privacy_s14_title: "14. Contact",
+      legal_privacy_s14_p1:
+        "If you have questions about this Privacy Policy or would like to make a request regarding your personal information, please contact Sacramento Adventures through the contact channels available on our website.",
       legal_cancellation_doc_title: "Cancellation Policy | Sacramento Adventures",
+      legal_cancellation_meta_description:
+        "Cancellation, weather-related changes and refund policy for Sacramento Adventures experiences in Colonia del Sacramento.",
       legal_cancellation_title: "Cancellation Policy",
       legal_cancellation_lead:
-        "Cancellation and rescheduling rules may vary by experience. Contact us as soon as possible if your plans change.",
+        "At Sacramento Adventures, we want your experience in Colonia del Sacramento to be enjoyable, safe and stress-free.",
+      legal_cancel_weather_title: "Weather-related cancellations",
+      legal_cancel_weather_p1:
+        "Outdoor activities such as horseback riding, walking tours, bike tours and other experiences that depend on weather conditions may be cancelled when conditions are not considered safe.",
+      legal_cancel_weather_p2:
+        "Bad weather may include, among other situations, heavy rain, strong winds, thunderstorms, hail or other weather conditions that could affect the safety or quality of the experience.",
+      legal_cancel_weather_intro:
+        "If an activity is cancelled by Sacramento Adventures due to weather conditions, you may choose between:",
+      legal_cancel_weather_option_1: "Rescheduling the activity, subject to availability.",
+      legal_cancel_weather_option_2: "Receiving a 100% refund of the amount paid.",
+      legal_cancel_traveler_title: "Cancellations by the traveler",
+      legal_cancel_traveler_intro: "Plans can change, so we offer the following cancellation conditions:",
+      legal_cancel_traveler_rule_1: "More than 24 hours before the activity: 100% refund.",
+      legal_cancel_traveler_rule_2: "Less than 24 hours before the activity: 50% refund.",
+      legal_cancel_traveler_rule_3: "No-show: No refund.",
+      legal_cancel_traveler_note:
+        "The cancellation time is calculated according to the scheduled starting time of the activity.",
+      legal_cancel_late_title: "Late arrivals",
+      legal_cancel_late_p1: "We recommend arriving at the meeting point at the indicated time.",
+      legal_cancel_late_p2:
+        "If a traveler arrives late, we will always do our best to accommodate them whenever possible. However, some activities may not be able to wait or be rescheduled, especially when they involve guides, transfers, reservations or third-party providers.",
+      legal_cancel_sa_title: "Cancellations by Sacramento Adventures",
+      legal_cancel_sa_p1:
+        "In the unlikely event that Sacramento Adventures needs to cancel an activity for operational, safety or unforeseen reasons, travelers will be offered the option to reschedule or receive a 100% refund.",
+      legal_cancel_refunds_title: "Refunds",
+      legal_cancel_refunds_p1:
+        "Approved refunds will be processed using the original payment method whenever possible.",
+      legal_cancel_refunds_p2:
+        "Please note that, depending on the payment provider or bank, the refunded amount may take several business days to appear in your account.",
+      legal_cancel_help_title: "Need help?",
+      legal_cancel_help_p1:
+        "If you need to cancel, reschedule or have any questions about your booking, please contact us and we'll be happy to assist you.",
+      legal_cancel_contact_cta: "Contact us",
       legal_contact_note:
         "For questions about these policies, contact us at contacto@sacraadventures.com or +598 98 945 542.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Often 24 hours",
@@ -2466,13 +2673,13 @@ golden_mile_step_note:
       walking_tour_time_each_required:
         "Each order needs a walking tour departure time. Edit the order to choose a time.",
       orders_wa_walking_tour_time: "Walking tour time",
-      walking_asado_price_tour_title: "Guided walking tour · USD 15",
+      walking_asado_price_tour_title: "Guided walking tour · USD 12",
       walking_asado_price_tour_detail:
         "Use Quantity under each order in the summary to set how many guests join the walk for that menu (the total updates automatically).",
       walking_asado_quantity_label: "Quantity",
       walking_asado_wa_tour_quantity: "Walking tour guests",
       walking_asado_wa_guide_in_subtotal:
-        "walking tour guide USD 15 × quantity per order is included in the subtotal",
+        "walking tour guide USD 12 × quantity per order is included in the subtotal",
       asado_boat_order_serving_standard: "Generally enough for about 2–3 people.",
       asado_boat_order_serving_premium: "Generally enough for about 4 people.",
       asado_boat_group_guide_cb:
@@ -2813,7 +3020,7 @@ golden_mile_step_note:
       walking_mate_experience_title: "Mate Experience · USD 20 extra",
       walking_mate_experience_body:
         "Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 20 per person).",
-      walking_price_title: "USD 20 per guest",
+      walking_price_title: "USD 17 per guest",
       walking_price_heading: "Prices by guide language",
       walking_price_lang_es: "Spanish",
       walking_price_lang_en: "English",
@@ -2882,7 +3089,7 @@ golden_mile_step_note:
       night_walking_step_2: "Guided night walk through cobblestone streets with a local expert",
       night_walking_step_3: "Stories, secrets and legends of Colonia del Sacramento",
       night_walking_step_4: "Duration: 1.5 hours",
-      night_walking_price_line: "USD 25 per person",
+      night_walking_price_line: "USD 20 per person",
       night_walking_included_title: "What's included",
       night_walking_include_1: "Guided night walking tour with local expert",
       night_walking_include_2: "Candle provided for the candlelight experience",
@@ -2927,6 +3134,12 @@ golden_mile_step_note:
       night_walking_gal_alt_7: "Colonia del Sacramento night walking tour",
       night_walking_gal_alt_8: "Evening guided walk in Colonia",
       night_walking_gal_alt_9: "Night tour of Colonia's Historic Quarter",
+      night_walking_gal_alt_10: "Candlelit streets on the night walking tour in Colonia",
+      night_walking_gal_alt_11: "Night walk through Colonia del Sacramento's Historic Quarter",
+      night_walking_gal_alt_12: "Guided evening tour in Colonia by candlelight",
+      night_walking_gal_alt_13: "Colonia at night on the secrets and legends tour",
+      night_walking_gal_alt_14: "Historic Quarter night tour experience in Colonia",
+      night_walking_gal_alt_15: "Evening walking tour through Colonia del Sacramento",
 
       walking_mate_add_btn: "Add mate",
       walking_mate_remove_btn: "Remove mate",
@@ -3152,7 +3365,7 @@ golden_mile_step_note:
       home_cat_nav_boat_desc: "Río de la Plata",
       home_cat_nav_lodging: "Hospedaje",
       home_cat_nav_lodging_desc: "Estadías y noches",
-      home_cat_nav_dining: "Solo almuerzo/cena",
+      home_cat_nav_dining: "Almuerzo o Cena",
       home_cat_nav_dining_desc: "Restaurantes y mesa",
       home_category_modal_close: "Cerrar",
       home_category_modal_view_list: "Ver en la lista completa",
@@ -4597,11 +4810,15 @@ golden_mile_step_note:
       about_team_adrian_role: "Guía turístico",
       about_team_adrian_bday: "🎂 23 jun",
       about_team_adrian_bio:
-        "Piensa en grande y encara cada desafío con mirada estratégica. Su visión de negocio y sus ideas innovadoras impulsan el proyecto y abren nuevas oportunidades.",
+        "Cercano, atento y comprometido, tiene una forma de conectar con las personas y hacerlas sentir cómodas y bien recibidas. Su calidez se nota en cada experiencia.",
       about_team_alan_role: "Guía turístico",
       about_team_alan_bday: "🎂 1 feb",
       about_team_alan_bio:
         "Carismático y orientado a las personas, hace que cada visita se sienta bienvenida y cómoda. Su energía positiva es clave para experiencias memorables.",
+      about_team_agustin_photo_alt: "Agustín",
+      about_team_agustin_role: "Área Comercial",
+      about_team_agustin_bio:
+        "Agustín forma parte del área comercial de Sacramento Adventures. Nos ayuda a conectar a cada viajero con las experiencias que mejor se adaptan a lo que busca, acompañando el proceso desde el primer contacto.",
       about_team_lupa_role: "Chief Happiness Officer",
       about_team_lupa_age: "Edad: 5 años",
       about_team_lupa_bio:
@@ -4707,9 +4924,10 @@ golden_mile_step_note:
       home_footer_experiences: "Nuestras experiencias",
       home_footer_packages: "Paquetes de viaje",
       home_footer_about: "Sobre nosotros",
-      home_footer_terms: "Términos y condiciones",
-      home_footer_privacy: "Política de privacidad",
-      home_footer_cancellation: "Política de cancelación",
+      home_footer_terms: "Términos y Condiciones",
+      home_footer_privacy: "Política de Privacidad",
+      home_footer_cancellation: "Política de Cancelación",
+      home_footer_cookie_preferences: "Preferencias de cookies",
       home_footer_useful_services: "Servicios útiles",
       home_footer_copyright: "© 2026 Sacramento Adventures. Todos los derechos reservados.",
       home_footer_location: "Colonia del Sacramento, Uruguay.",
@@ -4717,18 +4935,220 @@ golden_mile_step_note:
       home_footer_social_instagram_aria: "Seguir a Sacramento Adventures en Instagram",
       home_footer_social_facebook_aria: "Seguir a Sacramento Adventures en Facebook",
       home_footer_social_whatsapp_aria: "Contactar a Sacramento Adventures por WhatsApp",
-      legal_terms_doc_title: "Términos y condiciones | Sacramento Adventures",
-      legal_terms_title: "Términos y condiciones",
+      cookie_consent_title: "Cookies",
+      cookie_consent_text: "Utilizamos cookies para mejorar tu experiencia de navegación.",
+      cookie_consent_accept: "Aceptar",
+      cookie_consent_reject: "Rechazar",
+      cookie_consent_aria_label: "Aviso de cookies",
+      legal_terms_doc_title: "Términos y Condiciones | Sacramento Adventures",
+      legal_terms_meta_description:
+        "Condiciones de reserva, pago, participación y servicios de las experiencias de Sacramento Adventures en Colonia del Sacramento.",
+      legal_terms_title: "Términos y Condiciones",
       legal_terms_lead:
-        "Estos términos regulan las reservas y la participación en experiencias de Sacramento Adventures en Colonia del Sacramento.",
-      legal_privacy_doc_title: "Política de privacidad | Sacramento Adventures",
-      legal_privacy_title: "Política de privacidad",
+        "Al reservar una actividad o servicio con Sacramento Adventures, aceptás los siguientes Términos y Condiciones.",
+      legal_terms_s1_title: "1. Reservas y confirmación",
+      legal_terms_s1_p1:
+        "Una reserva se considera confirmada una vez recibido el pago o depósito requerido y emitida la confirmación por parte de Sacramento Adventures.",
+      legal_terms_s1_p2:
+        "Los clientes son responsables de proporcionar información de contacto precisa y todos los datos necesarios para operar el servicio reservado.",
+      legal_terms_s2_title: "2. Precios y pagos",
+      legal_terms_s2_p1: "Todos los precios se muestran en la moneda indicada al momento de la reserva.",
+      legal_terms_s2_p2:
+        "Según la actividad, puede requerirse el pago total o un depósito para confirmar la reserva. Cualquier saldo pendiente deberá abonarse según las condiciones comunicadas al momento de la reserva.",
+      legal_terms_s2_p3:
+        "Cualquier servicio adicional o gasto no indicado expresamente como incluido en la reserva no está comprendido en el precio.",
+      legal_terms_s3_title: "3. Descripción de actividades e inclusiones",
+      legal_terms_s3_p1:
+        "Los servicios incluidos en cada reserva son aquellos indicados expresamente en la descripción de la actividad, el itinerario o la propuesta personalizada proporcionada por Sacramento Adventures.",
+      legal_terms_s3_p2:
+        "Los servicios no listados específicamente como incluidos no deben considerarse parte de la reserva.",
+      legal_terms_s3_p3:
+        "Si los viajeros tienen dudas sobre qué está o no incluido en una experiencia, recomendamos contactar a Sacramento Adventures antes de completar la reserva.",
+      legal_terms_s4_title: "4. Cancelaciones y reembolsos",
+      legal_terms_s4_p1_prefix: "Las cancelaciones y reembolsos están sujetos a nuestra ",
+      legal_terms_s4_p1_suffix: ", disponible por separado en nuestro sitio web.",
+      legal_terms_s4_p2:
+        "Si una actividad al aire libre no puede realizarse de forma segura por condiciones climáticas, Sacramento Adventures podrá reprogramar o cancelar la actividad de acuerdo con dicha política.",
+      legal_terms_s5_title: "5. Cambios en actividades e itinerarios",
+      legal_terms_s5_p1:
+        "Los horarios, recorridos, puntos de encuentro u otros elementos de una experiencia pueden requerir ajustes ocasionales debido al clima, el tránsito, consideraciones de seguridad, disponibilidad de proveedores u otras circunstancias operativas.",
+      legal_terms_s5_p2:
+        "Siempre que sea posible, Sacramento Adventures informará a los viajeros con anticipación y ofrecerá una alternativa adecuada sin modificar sustancialmente la naturaleza de la experiencia reservada.",
+      legal_terms_s6_title: "6. Horarios de llegada y puntos de encuentro",
+      legal_terms_s6_p1: "Los viajeros son responsables de llegar al punto de encuentro indicado en el horario comunicado.",
+      legal_terms_s6_p2: "En actividades con traslado incluido, los viajeros deben estar listos en el lugar y horario acordados.",
+      legal_terms_s6_p3:
+        "La llegada tardía puede resultar en una experiencia acortada o, cuando la actividad no pueda demorarse, en la imposibilidad de participar.",
+      legal_terms_s7_title: "7. Seguridad y participación",
+      legal_terms_s7_p1:
+        "Los viajeros deben seguir las instrucciones de seguridad proporcionadas por Sacramento Adventures, guías, instructores, conductores y proveedores de actividades.",
+      legal_terms_s7_p2:
+        "Algunas experiencias pueden implicar actividad física, entornos al aire libre, animales, bicicletas, embarcaciones u otras actividades con riesgos inherentes.",
+      legal_terms_s7_p3:
+        "Los viajeros son responsables de informar a Sacramento Adventures antes de la actividad sobre cualquier circunstancia relevante que pueda afectar su capacidad de participar de forma segura.",
+      legal_terms_s7_p4:
+        "Sacramento Adventures y sus proveedores se reservan el derecho de rechazar o interrumpir la participación cuando la conducta de un viajero pueda poner en riesgo a sí mismo, a otros participantes, al personal o a terceros.",
+      legal_terms_s8_title: "8. Niños y menores",
+      legal_terms_s8_p1: "Los menores deben estar acompañados por un adulto responsable, salvo acuerdo expreso en contrario.",
+      legal_terms_s8_p2:
+        "Algunas actividades pueden tener requisitos específicos de edad mínima, altura u otros requisitos de participación. Estas condiciones se comunicarán cuando corresponda.",
+      legal_terms_s9_title: "9. Objetos personales",
+      legal_terms_s9_p1: "Los viajeros son responsables de sus pertenencias personales durante las actividades y traslados.",
+      legal_terms_s9_p2:
+        "Sacramento Adventures no puede garantizar la recuperación de objetos perdidos, olvidados o dañados durante una experiencia.",
+      legal_terms_s10_title: "10. Proveedores externos",
+      legal_terms_s10_p1:
+        "Algunas experiencias ofrecidas por Sacramento Adventures incluyen servicios operados en colaboración con proveedores locales, como bodegas, restaurantes, cabalgatas, empresas de transporte, alquiler de bicicletas y otros socios turísticos.",
+      legal_terms_s10_p2:
+        "Sacramento Adventures coordina estos servicios como parte de la experiencia del viajero. Por ello, ciertas condiciones operativas pueden depender del proveedor correspondiente.",
+      legal_terms_s11_title: "11. Fuerza mayor",
+      legal_terms_s11_p1:
+        "Sacramento Adventures no será responsable por demoras, modificaciones o cancelaciones derivadas de circunstancias fuera de su control razonable, incluyendo clima severo, restricciones gubernamentales, huelgas, interrupciones de transporte, eventos naturales u otras circunstancias extraordinarias.",
+      legal_terms_s11_p2:
+        "Siempre que sea posible, Sacramento Adventures ayudará a los viajeros a encontrar una alternativa razonable.",
+      legal_terms_s12_title: "12. Contacto",
+      legal_terms_s12_p1:
+        "Si tenés consultas sobre tu reserva, una actividad o estos Términos y Condiciones, contactá a Sacramento Adventures antes de tu experiencia.",
+      legal_privacy_doc_title: "Política de Privacidad | Sacramento Adventures",
+      legal_privacy_meta_description:
+        "Conocé cómo Sacramento Adventures gestiona la información personal relacionada con reservas, pagos, uso del sitio web y servicios turísticos en Colonia del Sacramento.",
+      legal_privacy_title: "Política de Privacidad",
       legal_privacy_lead:
-        "Respetamos tu privacidad y tratamos los datos personales de forma responsable cuando nos contactás o reservás una experiencia.",
-      legal_cancellation_doc_title: "Política de cancelación | Sacramento Adventures",
-      legal_cancellation_title: "Política de cancelación",
+        "En Sacramento Adventures respetamos tu privacidad y nos comprometemos a tratar tu información personal de forma responsable.",
+      legal_privacy_intro:
+        "Esta Política de Privacidad explica qué información podemos recopilar cuando usás nuestro sitio web, realizás una reserva, nos contactás o utilizás nuestros servicios, y cómo puede utilizarse esa información.",
+      legal_privacy_uruguay_note:
+        "Sacramento Adventures opera en Uruguay. Tratamos la información personal conforme a los principios generales de la normativa local de protección de datos aplicable, incluyendo licitud, finalidad, calidad y seguridad.",
+      legal_privacy_s1_title: "1. Información que podemos recopilar",
+      legal_privacy_s1_intro: "Según cómo interactúes con Sacramento Adventures, podemos recopilar información como:",
+      legal_privacy_s1_item_1: "Nombre y apellido",
+      legal_privacy_s1_item_2: "Correo electrónico",
+      legal_privacy_s1_item_3: "Número de teléfono o contacto de WhatsApp",
+      legal_privacy_s1_item_4: "Idioma preferido",
+      legal_privacy_s1_item_5: "Detalles de la reserva y la actividad",
+      legal_privacy_s1_item_6: "Cantidad de viajeros",
+      legal_privacy_s1_item_7: "Información de punto de encuentro o traslado cuando sea necesaria para el servicio",
+      legal_privacy_s1_item_8: "Mensajes, consultas o información que nos proporciones voluntariamente",
+      legal_privacy_s1_item_9:
+        "Información técnica relacionada con el uso de nuestro sitio web, como navegador, dispositivo, páginas visitadas e interacciones con el sitio",
+      legal_privacy_s1_p2:
+        "Solo solicitamos información razonablemente necesaria para gestionar tu reserva, comunicarnos contigo o prestar nuestros servicios.",
+      legal_privacy_s2_title: "2. Cómo usamos tu información",
+      legal_privacy_s2_intro: "Podemos usar la información personal para:",
+      legal_privacy_s2_item_1: "Procesar y gestionar reservas",
+      legal_privacy_s2_item_2: "Coordinar tours, traslados y actividades",
+      legal_privacy_s2_item_3: "Comunicar información de reserva y actualizaciones del servicio",
+      legal_privacy_s2_item_4: "Brindar atención al cliente",
+      legal_privacy_s2_item_5: "Responder consultas o solicitudes",
+      legal_privacy_s2_item_6: "Coordinar servicios con guías, conductores y proveedores turísticos",
+      legal_privacy_s2_item_7: "Procesar pagos y confirmar el estado del pago",
+      legal_privacy_s2_item_8: "Mejorar nuestro sitio web, servicios y experiencia del cliente",
+      legal_privacy_s2_item_9: "Entender cómo los visitantes interactúan con nuestro sitio web",
+      legal_privacy_s2_item_10: "Prevenir fraude, incidentes de seguridad o uso indebido de nuestros servicios",
+      legal_privacy_s2_item_11: "Cumplir obligaciones legales o administrativas aplicables",
+      legal_privacy_s2_p2: "No vendemos la información personal de los viajeros.",
+      legal_privacy_s3_title: "3. Reservas y proveedores de servicios",
+      legal_privacy_s3_p1:
+        "Algunas experiencias ofrecidas por Sacramento Adventures se operan en colaboración con proveedores locales, incluyendo guías, conductores, bodegas, restaurantes, cabalgatas, empresas de alquiler de bicicletas y otros socios turísticos.",
+      legal_privacy_s3_p2:
+        "Cuando sea necesario para prestar el servicio reservado, Sacramento Adventures puede compartir únicamente la información razonablemente requerida para que ese proveedor opere la actividad.",
+      legal_privacy_s3_p3:
+        "Por ejemplo, esto puede incluir el nombre del viajero, cantidad de pasajeros, lugar de traslado, idioma preferido u otra información relevante de la reserva.",
+      legal_privacy_s3_p4: "Los proveedores solo deben recibir la información necesaria para prestar el servicio solicitado.",
+      legal_privacy_s4_title: "4. Información de pago",
+      legal_privacy_s4_p1:
+        "Los pagos realizados a través de nuestro sitio web pueden ser procesados por proveedores de servicios de pago externos, incluidos los servicios de checkout de Plexo utilizados para pagos con tarjeta en línea.",
+      legal_privacy_s4_p2:
+        "Sacramento Adventures no almacena intencionalmente información completa de tarjetas de crédito o débito en sus propios sistemas.",
+      legal_privacy_s4_p3:
+        "Los proveedores de pago pueden procesar información personal y financiera según sus propias políticas de privacidad y seguridad.",
+      legal_privacy_s6_title: "5. Comunicaciones",
+      legal_privacy_s6_p1:
+        "Sacramento Adventures puede contactar a los viajeros utilizando los datos de contacto que proporcionen en relación con una reserva o consulta.",
+      legal_privacy_s6_p2:
+        "Esto puede incluir confirmaciones de reserva, detalles del itinerario, puntos de encuentro, cambios de horario, información de pago, recordatorios u otras comunicaciones necesarias para prestar el servicio.",
+      legal_privacy_s7_title: "6. Conservación de datos",
+      legal_privacy_s7_p1:
+        "La información personal puede conservarse el tiempo razonablemente necesario para gestionar reservas, prestar servicios, mantener registros comerciales y contables, resolver disputas, cumplir obligaciones legales o proteger intereses comerciales legítimos.",
+      legal_privacy_s7_p2:
+        "La información que ya no sea razonablemente necesaria no debe conservarse indefinidamente sin un propósito legítimo.",
+      legal_privacy_s8_title: "7. Seguridad de los datos",
+      legal_privacy_s8_p1:
+        "Sacramento Adventures adopta medidas organizativas y técnicas razonables para proteger la información personal contra acceso no autorizado, uso indebido, pérdida o divulgación.",
+      legal_privacy_s8_p2:
+        "Sin embargo, ningún sistema basado en internet ni método de comunicación electrónica puede garantizarse como completamente seguro.",
+      legal_privacy_s9_title: "8. Tus derechos",
+      legal_privacy_s9_p1:
+        "Según la normativa aplicable, los viajeros pueden tener derecho a solicitar acceso, corrección o eliminación de la información personal que obre en Sacramento Adventures.",
+      legal_privacy_s9_p2:
+        "También pueden contactarnos si consideran que la información es inexacta o se utiliza de forma indebida.",
+      legal_privacy_s9_p3: "Las solicitudes serán atendidas conforme a los requisitos de protección de datos aplicables.",
+      legal_privacy_s10_title: "9. Niños y menores",
+      legal_privacy_s10_p1:
+        "La información relativa a menores debe ser proporcionada únicamente por un padre, tutor legal o adulto responsable cuando sea necesario para gestionar una reserva o participación en una actividad.",
+      legal_privacy_s10_p2:
+        "Sacramento Adventures no solicita intencionalmente información personal innecesaria directamente a niños.",
+      legal_privacy_s11_title: "10. Enlaces y servicios de terceros",
+      legal_privacy_s11_p1:
+        "El sitio web de Sacramento Adventures puede contener enlaces a sitios o servicios de terceros, incluyendo mapas, redes sociales, servicios de pago, plataformas de reserva o socios turísticos.",
+      legal_privacy_s11_p2:
+        "Sacramento Adventures no es responsable de las prácticas de privacidad de sitios web de terceros una vez que el viajero abandona nuestro sitio.",
+      legal_privacy_s11_p3: "Recomendamos revisar las políticas de privacidad de esos terceros cuando corresponda.",
+      legal_privacy_s12_title: "11. Fotos y videos",
+      legal_privacy_s12_p1:
+        "Las fotografías o videos creados durante las actividades pueden contener información personal cuando las personas pueden ser identificadas.",
+      legal_privacy_s12_p2:
+        "Esta Política de Privacidad no otorga por sí sola a Sacramento Adventures autorización irrestricta para usar la imagen de un viajero con fines publicitarios o promocionales.",
+      legal_privacy_s13_title: "12. Cambios en esta Política de Privacidad",
+      legal_privacy_s13_p1:
+        "Sacramento Adventures puede actualizar esta Política de Privacidad cuando sea necesario para reflejar cambios en nuestro sitio web, servicios, tecnologías o requisitos legales.",
+      legal_privacy_s13_p2:
+        "La última versión publicada en el sitio web aplicará desde su fecha de vigencia o actualización indicada.",
+      legal_privacy_cookies_title: "13. Cookies",
+      legal_privacy_cookies_p1: "Nuestro sitio web utiliza cookies para mejorar tu experiencia de navegación.",
+      legal_privacy_cookies_p2:
+        "Podés elegir aceptar o rechazar las cookies cuando se muestre el aviso y cambiar tu elección posteriormente desde la opción Preferencias de cookies disponible en nuestro sitio web.",
+      legal_privacy_s14_title: "14. Contacto",
+      legal_privacy_s14_p1:
+        "Si tenés consultas sobre esta Política de Privacidad o deseás hacer una solicitud relacionada con tu información personal, contactá a Sacramento Adventures a través de los canales disponibles en nuestro sitio web.",
+      legal_cancellation_doc_title: "Política de Cancelación | Sacramento Adventures",
+      legal_cancellation_meta_description:
+        "Política de cancelación, cambios por clima y reembolsos de las experiencias de Sacramento Adventures en Colonia del Sacramento.",
+      legal_cancellation_title: "Política de Cancelación",
       legal_cancellation_lead:
-        "Las reglas de cancelación y reprogramación pueden variar según la experiencia. Contactanos lo antes posible si cambian tus planes.",
+        "En Sacramento Adventures queremos que tu experiencia en Colonia del Sacramento sea agradable, segura y sin estrés.",
+      legal_cancel_weather_title: "Cancelaciones por clima",
+      legal_cancel_weather_p1:
+        "Las actividades al aire libre, como cabalgatas, tours a pie, tours en bicicleta y otras experiencias que dependen de las condiciones climáticas, pueden cancelarse cuando las condiciones no se consideren seguras.",
+      legal_cancel_weather_p2:
+        "El mal tiempo puede incluir, entre otras situaciones, lluvias intensas, vientos fuertes, tormentas eléctricas, granizo u otras condiciones meteorológicas que puedan afectar la seguridad o la calidad de la experiencia.",
+      legal_cancel_weather_intro:
+        "Si una actividad es cancelada por Sacramento Adventures debido a condiciones climáticas, podés elegir entre:",
+      legal_cancel_weather_option_1: "Reprogramar la actividad, sujeto a disponibilidad.",
+      legal_cancel_weather_option_2: "Recibir un reembolso del 100% del monto abonado.",
+      legal_cancel_traveler_title: "Cancelaciones por parte del viajero",
+      legal_cancel_traveler_intro: "Los planes pueden cambiar, por eso ofrecemos las siguientes condiciones de cancelación:",
+      legal_cancel_traveler_rule_1: "Más de 24 horas antes de la actividad: reembolso del 100%.",
+      legal_cancel_traveler_rule_2: "Menos de 24 horas antes de la actividad: reembolso del 50%.",
+      legal_cancel_traveler_rule_3: "No presentarse (no-show): sin reembolso.",
+      legal_cancel_traveler_note:
+        "El plazo de cancelación se calcula según el horario de inicio programado de la actividad.",
+      legal_cancel_late_title: "Llegadas tarde",
+      legal_cancel_late_p1: "Recomendamos llegar al punto de encuentro en el horario indicado.",
+      legal_cancel_late_p2:
+        "Si un viajero llega tarde, siempre haremos lo posible por recibirlo cuando sea viable. Sin embargo, algunas actividades pueden no poder esperar ni reprogramarse, especialmente cuando involucran guías, traslados, reservas o proveedores externos.",
+      legal_cancel_sa_title: "Cancelaciones por Sacramento Adventures",
+      legal_cancel_sa_p1:
+        "En el improbable caso de que Sacramento Adventures deba cancelar una actividad por motivos operativos, de seguridad o imprevistos, se ofrecerá al viajero la opción de reprogramar o recibir un reembolso del 100%.",
+      legal_cancel_refunds_title: "Reembolsos",
+      legal_cancel_refunds_p1:
+        "Los reembolsos aprobados se procesarán por el mismo medio de pago utilizado originalmente, siempre que sea posible.",
+      legal_cancel_refunds_p2:
+        "Tené en cuenta que, según el proveedor de pago o el banco, el monto reembolsado puede demorar varios días hábiles en reflejarse en tu cuenta.",
+      legal_cancel_help_title: "¿Necesitás ayuda?",
+      legal_cancel_help_p1:
+        "Si necesitás cancelar, reprogramar o tenés alguna consulta sobre tu reserva, contactanos y estaremos encantados de ayudarte.",
+      legal_cancel_contact_cta: "Contactanos",
       legal_contact_note:
         "Para consultas sobre estas políticas, escribinos a contacto@sacraadventures.com o al +598 98 945 542.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Suele atender 24 hs",
@@ -5520,13 +5940,13 @@ golden_mile_step_note:
       walking_tour_time_each_required:
         "Cada pedido necesita un horario del tour a pie. Editá el pedido para elegir un horario.",
       orders_wa_walking_tour_time: "Horario del tour a pie",
-      walking_asado_price_tour_title: "Tour a pie guiado · USD 15",
+      walking_asado_price_tour_title: "Tour a pie guiado · USD 12",
       walking_asado_price_tour_detail:
         "Usá Cantidad debajo de cada pedido en el resumen para indicar cuántas personas hacen el tour con ese menú (el total se actualiza solo).",
       walking_asado_quantity_label: "Cantidad",
       walking_asado_wa_tour_quantity: "Personas en el tour a pie",
       walking_asado_wa_guide_in_subtotal:
-        "guía del tour a pie USD 15 × cantidad por pedido incluida en el subtotal",
+        "guía del tour a pie USD 12 × cantidad por pedido incluida en el subtotal",
       asado_boat_order_serving_standard: "En general alcanza para unas 2–3 personas.",
       asado_boat_order_serving_premium: "En general alcanza para unas 4 personas.",
       asado_boat_group_guide_cb:
@@ -5867,7 +6287,7 @@ golden_mile_step_note:
       walking_mate_experience_title: "Experiencia de mate · USD 20 extra",
       walking_mate_experience_body:
         "El mate es parte del día a día en Uruguay: compartir el mate, la bombilla y charlar un rato. Este complemento opcional te invita a vivir un momento de mate relajado y a conocer por qué es tan típico de nuestra cultura (USD 20 por persona).",
-      walking_price_title: "USD 15 por persona",
+      walking_price_title: "USD 12 por persona",
       walking_price_heading: "Precios según idioma del guía",
       walking_price_lang_es: "Español",
       walking_price_lang_en: "Inglés",
@@ -5936,7 +6356,7 @@ golden_mile_step_note:
       night_walking_step_2: "Recorrido nocturno guiado por calles empedradas con un guía local",
       night_walking_step_3: "Historias, secretos y leyendas de Colonia del Sacramento",
       night_walking_step_4: "Duración: 1,5 horas",
-      night_walking_price_line: "USD 25 por persona",
+      night_walking_price_line: "USD 20 por persona",
       night_walking_included_title: "Qué incluye",
       night_walking_include_1: "Tour nocturno guiado con guía local",
       night_walking_include_2: "Vela incluida para la experiencia a la luz de las velas",
@@ -5981,6 +6401,12 @@ golden_mile_step_note:
       night_walking_gal_alt_7: "Tour nocturno a pie en Colonia del Sacramento",
       night_walking_gal_alt_8: "Paseo guiado nocturno en Colonia",
       night_walking_gal_alt_9: "Tour nocturno del Casco Histórico de Colonia",
+      night_walking_gal_alt_10: "Calles a la luz de las velas en el tour nocturno de Colonia",
+      night_walking_gal_alt_11: "Paseo nocturno por el Casco Histórico de Colonia del Sacramento",
+      night_walking_gal_alt_12: "Tour guiado nocturno a la luz de las velas en Colonia",
+      night_walking_gal_alt_13: "Colonia de noche en el tour de historias y leyendas",
+      night_walking_gal_alt_14: "Experiencia de tour nocturno en el Casco Histórico de Colonia",
+      night_walking_gal_alt_15: "Tour nocturno a pie por Colonia del Sacramento",
 
       walking_mate_add_btn: "Agregar Mate",
       walking_mate_remove_btn: "Quitar mate",
@@ -6206,7 +6632,7 @@ golden_mile_step_note:
       home_cat_nav_boat_desc: "Rio da Prata",
       home_cat_nav_lodging: "Hospedagem",
       home_cat_nav_lodging_desc: "Estadias e pernoites",
-      home_cat_nav_dining: "Só almoço/jantar",
+      home_cat_nav_dining: "Almoço ou Jantar",
       home_cat_nav_dining_desc: "Restaurantes e refeições",
       home_category_modal_close: "Fechar",
       home_category_modal_view_list: "Ver na lista completa",
@@ -7649,11 +8075,15 @@ golden_mile_step_note:
       about_team_adrian_role: "Guia turístico",
       about_team_adrian_bday: "🎂 23 jun",
       about_team_adrian_bio:
-        "Pensa grande e encara cada desafio com visão estratégica. Sua visão de negócios e ideias inovadoras impulsionam o projeto e abrem novas oportunidades.",
+        "Próximo, atento e comprometido, tem uma forma de se conectar com as pessoas e fazê-las sentir-se confortáveis e bem recebidas. Seu calor humano se nota em cada experiência.",
       about_team_alan_role: "Guia turístico",
       about_team_alan_bday: "🎂 1 fev",
       about_team_alan_bio:
         "Carismático e voltado às pessoas, faz com que cada visitante se sinta bem-vindo e à vontade. Sua energia positiva é fundamental para experiências memoráveis.",
+      about_team_agustin_photo_alt: "Agustín",
+      about_team_agustin_role: "Área Comercial",
+      about_team_agustin_bio:
+        "Agustín faz parte da área comercial da Sacramento Adventures. Ele nos ajuda a conectar cada viajante com as experiências que melhor combinam com o que procura, acompanhando o processo desde o primeiro contato.",
       about_team_lupa_role: "Chief Happiness Officer",
       about_team_lupa_age: "Idade: 5 anos",
       about_team_lupa_bio:
@@ -7759,9 +8189,10 @@ golden_mile_step_note:
       home_footer_experiences: "Nossas experiências",
       home_footer_packages: "Pacotes de viagem",
       home_footer_about: "Sobre nós",
-      home_footer_terms: "Termos e condições",
-      home_footer_privacy: "Política de privacidade",
-      home_footer_cancellation: "Política de cancelamento",
+      home_footer_terms: "Termos e Condições",
+      home_footer_privacy: "Política de Privacidade",
+      home_footer_cancellation: "Política de Cancelamento",
+      home_footer_cookie_preferences: "Preferências de cookies",
       home_footer_useful_services: "Serviços úteis",
       home_footer_copyright: "© 2026 Sacramento Adventures. Todos os direitos reservados.",
       home_footer_location: "Colônia do Sacramento, Uruguai.",
@@ -7769,18 +8200,220 @@ golden_mile_step_note:
       home_footer_social_instagram_aria: "Seguir Sacramento Adventures no Instagram",
       home_footer_social_facebook_aria: "Seguir Sacramento Adventures no Facebook",
       home_footer_social_whatsapp_aria: "Contatar Sacramento Adventures no WhatsApp",
-      legal_terms_doc_title: "Termos e condições | Sacramento Adventures",
-      legal_terms_title: "Termos e condições",
+      cookie_consent_title: "Cookies",
+      cookie_consent_text: "Utilizamos cookies para melhorar sua experiência de navegação.",
+      cookie_consent_accept: "Aceitar",
+      cookie_consent_reject: "Recusar",
+      cookie_consent_aria_label: "Aviso de cookies",
+      legal_terms_doc_title: "Termos e Condições | Sacramento Adventures",
+      legal_terms_meta_description:
+        "Condições de reserva, pagamento, participação e serviços das experiências da Sacramento Adventures em Colônia do Sacramento.",
+      legal_terms_title: "Termos e Condições",
       legal_terms_lead:
-        "Estes termos regem reservas e participação nas experiências da Sacramento Adventures em Colônia do Sacramento.",
-      legal_privacy_doc_title: "Política de privacidade | Sacramento Adventures",
-      legal_privacy_title: "Política de privacidade",
+        "Ao reservar uma atividade ou serviço com a Sacramento Adventures, você concorda com os seguintes Termos e Condições.",
+      legal_terms_s1_title: "1. Reservas e confirmação",
+      legal_terms_s1_p1:
+        "Uma reserva é considerada confirmada após o recebimento do pagamento ou depósito exigido e a confirmação fornecida pela Sacramento Adventures.",
+      legal_terms_s1_p2:
+        "Os clientes são responsáveis por fornecer informações de contato precisas e todos os dados necessários para operar o serviço reservado.",
+      legal_terms_s2_title: "2. Preços e pagamentos",
+      legal_terms_s2_p1: "Todos os preços são exibidos na moeda indicada no momento da reserva.",
+      legal_terms_s2_p2:
+        "Dependendo da atividade, pode ser necessário pagamento integral ou depósito para confirmar a reserva. Qualquer saldo restante deve ser pago conforme as condições comunicadas no momento da reserva.",
+      legal_terms_s2_p3:
+        "Serviços adicionais ou despesas não indicados expressamente como incluídos na reserva não estão compreendidos no preço.",
+      legal_terms_s3_title: "3. Descrição das atividades e inclusões",
+      legal_terms_s3_p1:
+        "Os serviços incluídos em cada reserva são aqueles indicados expressamente na descrição da atividade, no itinerário ou na proposta personalizada fornecida pela Sacramento Adventures.",
+      legal_terms_s3_p2:
+        "Serviços não listados especificamente como incluídos não devem ser considerados parte da reserva.",
+      legal_terms_s3_p3:
+        "Se os viajantes tiverem dúvidas sobre o que está ou não incluído em uma experiência, recomendamos entrar em contato com a Sacramento Adventures antes de concluir a reserva.",
+      legal_terms_s4_title: "4. Cancelamentos e reembolsos",
+      legal_terms_s4_p1_prefix: "Cancelamentos e reembolsos estão sujeitos à nossa ",
+      legal_terms_s4_p1_suffix: ", disponível separadamente em nosso site.",
+      legal_terms_s4_p2:
+        "Se uma atividade ao ar livre não puder operar com segurança devido às condições climáticas, a Sacramento Adventures poderá remarcar ou cancelar a atividade de acordo com essa política.",
+      legal_terms_s5_title: "5. Alterações em atividades e itinerários",
+      legal_terms_s5_p1:
+        "Horários, rotas, pontos de encontro ou certos elementos de uma experiência podem precisar ser ajustados ocasionalmente devido ao clima, trânsito, considerações de segurança, disponibilidade de fornecedores ou outras circunstâncias operacionais.",
+      legal_terms_s5_p2:
+        "Sempre que possível, a Sacramento Adventures informará os viajantes com antecedência e oferecerá uma alternativa adequada sem alterar substancialmente a natureza da experiência reservada.",
+      legal_terms_s6_title: "6. Horários de chegada e pontos de encontro",
+      legal_terms_s6_p1: "Os viajantes são responsáveis por chegar ao ponto de encontro informado no horário indicado.",
+      legal_terms_s6_p2: "Em atividades com transfer incluído, os viajantes devem estar prontos no local e horário combinados.",
+      legal_terms_s6_p3:
+        "A chegada tardia pode resultar em uma experiência encurtada ou, quando a atividade não puder ser adiada, na impossibilidade de participar.",
+      legal_terms_s7_title: "7. Segurança e participação",
+      legal_terms_s7_p1:
+        "Os viajantes devem seguir as instruções de segurança fornecidas pela Sacramento Adventures, guias, instrutores, motoristas e prestadores de atividades.",
+      legal_terms_s7_p2:
+        "Algumas experiências podem envolver atividade física, ambientes ao ar livre, animais, bicicletas, embarcações ou outras atividades com riscos inerentes.",
+      legal_terms_s7_p3:
+        "Os viajantes são responsáveis por informar a Sacramento Adventures antes da atividade sobre quaisquer circunstâncias relevantes que possam afetar sua capacidade de participar com segurança.",
+      legal_terms_s7_p4:
+        "A Sacramento Adventures e seus prestadores reservam-se o direito de recusar ou interromper a participação quando o comportamento de um viajante possa colocar em risco a si mesmo, outros participantes, a equipe ou terceiros.",
+      legal_terms_s8_title: "8. Crianças e menores",
+      legal_terms_s8_p1: "Menores devem estar acompanhados por um adulto responsável, salvo acordo expresso em contrário.",
+      legal_terms_s8_p2:
+        "Algumas atividades podem ter requisitos específicos de idade mínima, altura ou outros requisitos de participação. Essas condições serão comunicadas quando aplicável.",
+      legal_terms_s9_title: "9. Pertences pessoais",
+      legal_terms_s9_p1: "Os viajantes são responsáveis por seus pertences pessoais durante as atividades e transfers.",
+      legal_terms_s9_p2:
+        "A Sacramento Adventures não pode garantir a recuperação de itens perdidos, esquecidos ou danificados durante uma experiência.",
+      legal_terms_s10_title: "10. Fornecedores terceirizados",
+      legal_terms_s10_p1:
+        "Algumas experiências oferecidas pela Sacramento Adventures incluem serviços operados em colaboração com fornecedores locais, como vinícolas, restaurantes, provedores de cavalgada, empresas de transporte, aluguel de bicicletas e outros parceiros turísticos.",
+      legal_terms_s10_p2:
+        "A Sacramento Adventures coordena esses serviços como parte da experiência do viajante. Portanto, certas condições operacionais podem depender do fornecedor correspondente.",
+      legal_terms_s11_title: "11. Força maior",
+      legal_terms_s11_p1:
+        "A Sacramento Adventures não será responsável por atrasos, modificações ou cancelamentos resultantes de circunstâncias fora de seu controle razoável, incluindo clima severo, restrições governamentais, greves, interrupções de transporte, eventos naturais ou outras circunstâncias extraordinárias.",
+      legal_terms_s11_p2:
+        "Sempre que possível, a Sacramento Adventures ajudará os viajantes a encontrar uma alternativa razoável.",
+      legal_terms_s12_title: "12. Contato",
+      legal_terms_s12_p1:
+        "Se você tiver dúvidas sobre sua reserva, uma atividade ou estes Termos e Condições, entre em contato com a Sacramento Adventures antes da sua experiência.",
+      legal_privacy_doc_title: "Política de Privacidade | Sacramento Adventures",
+      legal_privacy_meta_description:
+        "Saiba como a Sacramento Adventures trata informações pessoais relacionadas a reservas, pagamentos, uso do site e serviços turísticos em Colônia do Sacramento.",
+      legal_privacy_title: "Política de Privacidade",
       legal_privacy_lead:
-        "Respeitamos sua privacidade e tratamos dados pessoais com responsabilidade quando você entra em contato ou reserva uma experiência.",
-      legal_cancellation_doc_title: "Política de cancelamento | Sacramento Adventures",
-      legal_cancellation_title: "Política de cancelamento",
+        "Na Sacramento Adventures respeitamos sua privacidade e nos comprometemos a tratar suas informações pessoais de forma responsável.",
+      legal_privacy_intro:
+        "Esta Política de Privacidade explica quais informações podemos coletar quando você usa nosso site, faz uma reserva, entra em contato conosco ou utiliza nossos serviços, e como essas informações podem ser usadas.",
+      legal_privacy_uruguay_note:
+        "A Sacramento Adventures opera no Uruguai. Tratamos informações pessoais de acordo com os princípios gerais da legislação local de proteção de dados aplicável, incluindo licitude, finalidade, qualidade e segurança.",
+      legal_privacy_s1_title: "1. Informações que podemos coletar",
+      legal_privacy_s1_intro: "Dependendo de como você interage com a Sacramento Adventures, podemos coletar informações como:",
+      legal_privacy_s1_item_1: "Nome e sobrenome",
+      legal_privacy_s1_item_2: "Endereço de e-mail",
+      legal_privacy_s1_item_3: "Número de telefone ou contato do WhatsApp",
+      legal_privacy_s1_item_4: "Idioma preferido",
+      legal_privacy_s1_item_5: "Detalhes da reserva e da atividade",
+      legal_privacy_s1_item_6: "Número de viajantes",
+      legal_privacy_s1_item_7: "Informações de ponto de encontro ou transfer quando necessárias para o serviço",
+      legal_privacy_s1_item_8: "Mensagens, solicitações ou informações que você nos fornece voluntariamente",
+      legal_privacy_s1_item_9:
+        "Informações técnicas relacionadas ao uso do nosso site, como navegador, dispositivo, páginas visitadas e interações com o site",
+      legal_privacy_s1_p2:
+        "Solicitamos apenas informações razoavelmente necessárias para gerenciar sua reserva, comunicar-nos com você ou prestar nossos serviços.",
+      legal_privacy_s2_title: "2. Como usamos suas informações",
+      legal_privacy_s2_intro: "Podemos usar informações pessoais para:",
+      legal_privacy_s2_item_1: "Processar e gerenciar reservas",
+      legal_privacy_s2_item_2: "Coordenar tours, transfers e atividades",
+      legal_privacy_s2_item_3: "Comunicar informações de reserva e atualizações do serviço",
+      legal_privacy_s2_item_4: "Oferecer suporte ao cliente",
+      legal_privacy_s2_item_5: "Responder a perguntas ou solicitações",
+      legal_privacy_s2_item_6: "Coordenar serviços com guias, motoristas e fornecedores turísticos",
+      legal_privacy_s2_item_7: "Processar pagamentos e confirmar o status do pagamento",
+      legal_privacy_s2_item_8: "Melhorar nosso site, serviços e experiência do cliente",
+      legal_privacy_s2_item_9: "Entender como os visitantes interagem com nosso site",
+      legal_privacy_s2_item_10: "Prevenir fraudes, incidentes de segurança ou uso indevido de nossos serviços",
+      legal_privacy_s2_item_11: "Cumprir obrigações legais ou administrativas aplicáveis",
+      legal_privacy_s2_p2: "Não vendemos informações pessoais de viajantes.",
+      legal_privacy_s3_title: "3. Reservas e prestadores de serviços",
+      legal_privacy_s3_p1:
+        "Algumas experiências oferecidas pela Sacramento Adventures são operadas em colaboração com prestadores locais, incluindo guias, motoristas, vinícolas, restaurantes, cavalgadas, empresas de aluguel de bicicletas e outros parceiros turísticos.",
+      legal_privacy_s3_p2:
+        "Quando necessário para prestar o serviço reservado, a Sacramento Adventures pode compartilhar apenas as informações razoavelmente exigidas para que esse prestador opere a atividade.",
+      legal_privacy_s3_p3:
+        "Por exemplo, isso pode incluir o nome do viajante, número de passageiros, local de transfer, idioma preferido ou outras informações relevantes da reserva.",
+      legal_privacy_s3_p4: "Os prestadores devem receber apenas as informações necessárias para prestar o serviço solicitado.",
+      legal_privacy_s4_title: "4. Informações de pagamento",
+      legal_privacy_s4_p1:
+        "Os pagamentos feitos pelo nosso site podem ser processados por prestadores de serviços de pagamento terceiros, incluindo os serviços de checkout da Plexo utilizados para pagamentos com cartão online.",
+      legal_privacy_s4_p2:
+        "A Sacramento Adventures não armazena intencionalmente informações completas de cartões de crédito ou débito em seus próprios sistemas.",
+      legal_privacy_s4_p3:
+        "Os prestadores de pagamento podem processar informações pessoais e financeiras de acordo com suas próprias políticas de privacidade e segurança.",
+      legal_privacy_s6_title: "5. Comunicações",
+      legal_privacy_s6_p1:
+        "A Sacramento Adventures pode entrar em contato com viajantes usando os dados de contato fornecidos em relação a uma reserva ou solicitação.",
+      legal_privacy_s6_p2:
+        "Isso pode incluir confirmações de reserva, detalhes do itinerário, pontos de encontro, alterações de horário, informações de pagamento, lembretes ou outras comunicações necessárias para prestar o serviço.",
+      legal_privacy_s7_title: "6. Retenção de dados",
+      legal_privacy_s7_p1:
+        "As informações pessoais podem ser mantidas pelo tempo razoavelmente necessário para gerenciar reservas, prestar serviços, manter registros comerciais e contábeis, resolver disputas, cumprir obrigações legais ou proteger interesses comerciais legítimos.",
+      legal_privacy_s7_p2:
+        "Informações que não sejam mais razoavelmente necessárias não devem ser mantidas indefinidamente sem um propósito legítimo.",
+      legal_privacy_s8_title: "7. Segurança dos dados",
+      legal_privacy_s8_p1:
+        "A Sacramento Adventures adota medidas organizacionais e técnicas razoáveis para proteger informações pessoais contra acesso não autorizado, uso indevido, perda ou divulgação.",
+      legal_privacy_s8_p2:
+        "No entanto, nenhum sistema baseado na internet ou método de comunicação eletrônica pode ser garantido como completamente seguro.",
+      legal_privacy_s9_title: "8. Seus direitos",
+      legal_privacy_s9_p1:
+        "De acordo com a legislação aplicável, os viajantes podem ter direito a solicitar acesso, correção ou exclusão das informações pessoais mantidas pela Sacramento Adventures.",
+      legal_privacy_s9_p2:
+        "Também podem entrar em contato conosco se acreditarem que as informações são imprecisas ou estão sendo usadas de forma inadequada.",
+      legal_privacy_s9_p3: "As solicitações serão atendidas de acordo com os requisitos de proteção de dados aplicáveis.",
+      legal_privacy_s10_title: "9. Crianças e menores",
+      legal_privacy_s10_p1:
+        "Informações relativas a menores devem ser fornecidas apenas por um pai, responsável legal ou adulto responsável quando necessário para gerenciar uma reserva ou participação em uma atividade.",
+      legal_privacy_s10_p2:
+        "A Sacramento Adventures não solicita intencionalmente informações pessoais desnecessárias diretamente de crianças.",
+      legal_privacy_s11_title: "10. Links e serviços de terceiros",
+      legal_privacy_s11_p1:
+        "O site da Sacramento Adventures pode conter links para sites ou serviços de terceiros, incluindo mapas, redes sociais, serviços de pagamento, plataformas de reserva ou parceiros turísticos.",
+      legal_privacy_s11_p2:
+        "A Sacramento Adventures não é responsável pelas práticas de privacidade de sites de terceiros depois que o viajante deixa nosso site.",
+      legal_privacy_s11_p3: "Recomendamos revisar as políticas de privacidade desses terceiros quando apropriado.",
+      legal_privacy_s12_title: "11. Fotos e vídeos",
+      legal_privacy_s12_p1:
+        "Fotografias ou vídeos criados durante as atividades podem conter informações pessoais quando indivíduos podem ser identificados.",
+      legal_privacy_s12_p2:
+        "Esta Política de Privacidade não concede por si só à Sacramento Adventures autorização irrestrita para usar a imagem de um viajante para fins publicitários ou promocionais.",
+      legal_privacy_s13_title: "12. Alterações nesta Política de Privacidade",
+      legal_privacy_s13_p1:
+        "A Sacramento Adventures pode atualizar esta Política de Privacidade quando necessário para refletir alterações em nosso site, serviços, tecnologias ou requisitos legais.",
+      legal_privacy_s13_p2:
+        "A versão mais recente publicada no site aplicará a partir de sua data de vigência ou atualização indicada.",
+      legal_privacy_cookies_title: "13. Cookies",
+      legal_privacy_cookies_p1: "Nosso site utiliza cookies para melhorar sua experiência de navegação.",
+      legal_privacy_cookies_p2:
+        "Você pode escolher aceitar ou recusar cookies quando o aviso for exibido e alterar sua escolha posteriormente através da opção Preferências de cookies disponível em nosso site.",
+      legal_privacy_s14_title: "14. Contato",
+      legal_privacy_s14_p1:
+        "Se você tiver dúvidas sobre esta Política de Privacidade ou quiser fazer uma solicitação relacionada às suas informações pessoais, entre em contato com a Sacramento Adventures pelos canais disponíveis em nosso site.",
+      legal_cancellation_doc_title: "Política de Cancelamento | Sacramento Adventures",
+      legal_cancellation_meta_description:
+        "Política de cancelamento, alterações por clima e reembolsos das experiências da Sacramento Adventures em Colônia do Sacramento.",
+      legal_cancellation_title: "Política de Cancelamento",
       legal_cancellation_lead:
-        "As regras de cancelamento e remarcação podem variar conforme a experiência. Entre em contato o quanto antes se seus planos mudarem.",
+        "Na Sacramento Adventures, queremos que sua experiência em Colônia do Sacramento seja agradável, segura e sem estresse.",
+      legal_cancel_weather_title: "Cancelamentos por clima",
+      legal_cancel_weather_p1:
+        "Atividades ao ar livre, como cavalgadas, tours a pé, tours de bicicleta e outras experiências que dependem das condições climáticas, podem ser canceladas quando as condições não forem consideradas seguras.",
+      legal_cancel_weather_p2:
+        "Mau tempo pode incluir, entre outras situações, chuvas intensas, ventos fortes, tempestades, granizo ou outras condições meteorológicas que possam afetar a segurança ou a qualidade da experiência.",
+      legal_cancel_weather_intro:
+        "Se uma atividade for cancelada pela Sacramento Adventures devido a condições climáticas, você poderá escolher entre:",
+      legal_cancel_weather_option_1: "Reagendar a atividade, sujeito à disponibilidade.",
+      legal_cancel_weather_option_2: "Receber reembolso de 100% do valor pago.",
+      legal_cancel_traveler_title: "Cancelamentos pelo viajante",
+      legal_cancel_traveler_intro: "Planos podem mudar, por isso oferecemos as seguintes condições de cancelamento:",
+      legal_cancel_traveler_rule_1: "Mais de 24 horas antes da atividade: reembolso de 100%.",
+      legal_cancel_traveler_rule_2: "Menos de 24 horas antes da atividade: reembolso de 50%.",
+      legal_cancel_traveler_rule_3: "Não comparecimento (no-show): sem reembolso.",
+      legal_cancel_traveler_note:
+        "O prazo de cancelamento é calculado de acordo com o horário de início programado da atividade.",
+      legal_cancel_late_title: "Chegadas tardias",
+      legal_cancel_late_p1: "Recomendamos chegar ao ponto de encontro no horário indicado.",
+      legal_cancel_late_p2:
+        "Se um viajante chegar atrasado, faremos o possível para recebê-lo sempre que for viável. No entanto, algumas atividades podem não poder aguardar ou ser remarcadas, especialmente quando envolvem guias, transfers, reservas ou fornecedores terceirizados.",
+      legal_cancel_sa_title: "Cancelamentos pela Sacramento Adventures",
+      legal_cancel_sa_p1:
+        "No improvável caso de a Sacramento Adventures precisar cancelar uma atividade por motivos operacionais, de segurança ou imprevistos, o viajante terá a opção de reagendar ou receber reembolso de 100%.",
+      legal_cancel_refunds_title: "Reembolsos",
+      legal_cancel_refunds_p1:
+        "Reembolsos aprovados serão processados pelo mesmo método de pagamento utilizado originalmente, sempre que possível.",
+      legal_cancel_refunds_p2:
+        "Observe que, dependendo do provedor de pagamento ou do banco, o valor reembolsado pode levar vários dias úteis para aparecer em sua conta.",
+      legal_cancel_help_title: "Precisa de ajuda?",
+      legal_cancel_help_p1:
+        "Se você precisar cancelar, remarcar ou tiver alguma dúvida sobre sua reserva, entre em contato conosco e teremos prazer em ajudar.",
+      legal_cancel_contact_cta: "Fale conosco",
       legal_contact_note:
         "Para dúvidas sobre estas políticas, escreva para contacto@sacraadventures.com ou ligue para +598 98 945 542.",
       pharmacy_c1_meta: "Manuel de Lobo 454 · Frequentemente 24 h",
@@ -8573,13 +9206,13 @@ golden_mile_step_note:
       walking_tour_time_each_required:
         "Cada pedido precisa de um horário do tour a pé. Edite o pedido para escolher um horário.",
       orders_wa_walking_tour_time: "Horário do tour a pé",
-      walking_asado_price_tour_title: "Tour a pé guiado · USD 15",
+      walking_asado_price_tour_title: "Tour a pé guiado · USD 12",
       walking_asado_price_tour_detail:
         "Use Quantidade abaixo de cada pedido no resumo para indicar quantas pessoas fazem o tour com aquele menu (o total atualiza sozinho).",
       walking_asado_quantity_label: "Quantidade",
       walking_asado_wa_tour_quantity: "Pessoas no tour a pé",
       walking_asado_wa_guide_in_subtotal:
-        "guia do tour a pé USD 15 × quantidade por pedido incluída no subtotal",
+        "guia do tour a pé USD 12 × quantidade por pedido incluída no subtotal",
       asado_boat_order_serving_standard: "Em geral serve cerca de 2–3 pessoas.",
       asado_boat_order_serving_premium: "Em geral serve cerca de 4 pessoas.",
       asado_boat_group_guide_cb:
@@ -8920,7 +9553,7 @@ golden_mile_step_note:
       walking_mate_experience_title: "Experiência de mate · USD 20 extra",
       walking_mate_experience_body:
         "O mate faz parte do cotidiano no Uruguai: compartilhar a cuia, a bomba e conversar um pouco. Este complemento opcional propõe um momento tranquilo de mate e a chance de entender por que é tão típico da nossa cultura (USD 20 por pessoa).",
-      walking_price_title: "USD 20 por pessoa",
+      walking_price_title: "USD 17 por pessoa",
       walking_price_heading: "Preços por idioma do guia",
       walking_price_lang_es: "Espanhol",
       walking_price_lang_en: "Inglês",
@@ -8989,7 +9622,7 @@ golden_mile_step_note:
       night_walking_step_2: "Caminhada noturna guiada por ruas de pedra com um guia local",
       night_walking_step_3: "Histórias, segredos e lendas de Colônia do Sacramento",
       night_walking_step_4: "Duração: 1,5 horas",
-      night_walking_price_line: "USD 25 por pessoa",
+      night_walking_price_line: "USD 20 por pessoa",
       night_walking_included_title: "O que inclui",
       night_walking_include_1: "Tour noturno guiado com guia local",
       night_walking_include_2: "Vela incluída para a experiência à luz de velas",
@@ -9034,6 +9667,12 @@ golden_mile_step_note:
       night_walking_gal_alt_7: "Tour noturno a pé em Colônia do Sacramento",
       night_walking_gal_alt_8: "Caminhada guiada noturna em Colônia",
       night_walking_gal_alt_9: "Tour noturno do Bairro Histórico de Colônia",
+      night_walking_gal_alt_10: "Ruas à luz de velas no tour noturno de Colônia",
+      night_walking_gal_alt_11: "Passeio noturno pelo Bairro Histórico de Colônia do Sacramento",
+      night_walking_gal_alt_12: "Tour guiado noturno à luz de velas em Colônia",
+      night_walking_gal_alt_13: "Colônia à noite no tour de histórias e lendas",
+      night_walking_gal_alt_14: "Experiência de tour noturno no Bairro Histórico de Colônia",
+      night_walking_gal_alt_15: "Tour noturno a pé por Colônia do Sacramento",
 
       walking_mate_add_btn: "Adicionar mate",
       walking_mate_remove_btn: "Remover mate",

@@ -156,6 +156,7 @@
       '<li><a class="home-site-footer__link" href="' +
       paths.cancellation +
       '" data-translate="home_footer_cancellation">Cancellation Policy</a></li>' +
+      '<li><button type="button" class="home-site-footer__link home-site-footer__cookie-prefs-link" data-translate="home_footer_cookie_preferences">Cookie Preferences</button></li>' +
       "</ul>" +
       "</div>" +
       "</div>" +
@@ -177,6 +178,23 @@
       document.querySelector("script[data-sacramento-footer]") ||
       null
     );
+  }
+
+  function resolveCookieConsentScriptPath() {
+    var pathname = String(window.location.pathname || "").replace(/\\/g, "/");
+    if (/\/Actividades\//i.test(pathname) || /\/paquetes\//i.test(pathname)) {
+      return "../Home/cookie-consent.js?v=20260828cookies";
+    }
+    return "cookie-consent.js?v=20260828cookies";
+  }
+
+  function loadCookieConsentScript() {
+    if (document.querySelector("script[data-sacramento-cookie-consent]")) return;
+    var script = document.createElement("script");
+    script.src = resolveCookieConsentScriptPath();
+    script.defer = true;
+    script.setAttribute("data-sacramento-cookie-consent", "");
+    document.body.appendChild(script);
   }
 
   function mountSacramentoSiteFooter() {
@@ -210,6 +228,8 @@
     }
 
     document.dispatchEvent(new CustomEvent("sacramento:footerMounted"));
+
+    loadCookieConsentScript();
 
     if (typeof window.setLanguage === "function" && typeof window.getInitialLanguage === "function") {
       window.setLanguage(window.getInitialLanguage());

@@ -3507,7 +3507,7 @@ function initExperience(config) {
         if (orderWalkingPartyMaxNum > 0 && orderLanguageRadioName) {
           message += ` (${getI18nText(
             "walking_asado_wa_guide_in_subtotal",
-            "walking tour guide USD 15 × quantity per order is included in the subtotal"
+            "walking tour guide USD 12 × quantity per order is included in the subtotal"
           )})`;
         } else {
           message += ` (includes USD ${guideFee} guide fee per guest)`;
