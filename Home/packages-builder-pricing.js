@@ -118,9 +118,9 @@
     "walkingtour.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "lang_es", price: 15, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
-        { id: "lang_en", price: 20, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
-        { id: "lang_pt", price: 20, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
+        { id: "lang_es", price: 12, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
+        { id: "lang_en", price: 17, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
+        { id: "lang_pt", price: 17, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
       ]
     },
     "mision-night.html": {
@@ -148,7 +148,7 @@
     ["bruma.html", 50],
     ["fullday-colonia.html", 90],
     ["golden-mile.html", 120],
-    ["night-walkingtour.html", 25],
+    ["night-walkingtour.html", 20],
     ["lasliebres.html", 85],
     ["sio.html", 70],
     ["romantic.html", 70],
