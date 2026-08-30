@@ -2,8 +2,11 @@
 
 const translations = {
     en: {
+      home_doc_title: "Tours & Experiences in Colonia del Sacramento | Sacramento Adventures",
+      home_meta_description:
+        "Discover tours and experiences in Colonia del Sacramento, including wineries, gastronomy, nature and authentic local activities. Book online.",
       hero_title: "Discover Colonia Like a Local",
-      hero_text: "Handpicked experiences for curious travelers.",
+      hero_text: "Selected tours, excursions and experiences in Colonia del Sacramento.",
       hero_book_tagline: "Book online in less than 2 minutes",
       hero_weekend_promo: "❤️ Support Responsabilidad Animal — click here",
       animal_donation_title: "🐾 Support Responsabilidad Animal Colonia",
@@ -3269,8 +3272,11 @@ golden_mile_step_note:
       payment_wa_prefill: "Hello! I have a question about my Sacramento Adventures payment."
     },
     es: {
+      home_doc_title: "Excursiones en Colonia del Sacramento | Sacramento Adventures",
+      home_meta_description:
+        "Descubrí excursiones y experiencias en Colonia del Sacramento: tours, bodegas, gastronomía, naturaleza y actividades locales. Reservá online.",
       hero_title: "Descubrí Colonia como un local",
-      hero_text: "Experiencias seleccionadas.",
+      hero_text: "Tours, excursiones y experiencias seleccionadas en Colonia del Sacramento.",
       hero_book_tagline: "Reservá online en menos de 2 minutos",
       hero_weekend_promo: "❤️ Ayudá a Responsabilidad Animal haciendo click aquí",
       animal_donation_title: "🐾 Ayudá a Responsabilidad Animal Colonia",
@@ -6536,8 +6542,11 @@ golden_mile_step_note:
       payment_wa_prefill: "¡Hola! Tengo una consulta sobre mi pago en Sacramento Adventures."
     },
     pt: {
+      home_doc_title: "Passeios em Colonia del Sacramento | Sacramento Adventures",
+      home_meta_description:
+        "Descubra passeios e experiências em Colonia del Sacramento, incluindo vinícolas, gastronomia, natureza e atividades locais. Reserve online.",
       hero_title: "Descubra Colonia",
-      hero_text: "Experiências selecionadas.",
+      hero_text: "Passeios, excursões e experiências selecionadas em Colonia del Sacramento.",
       hero_book_tagline: "Reserve online em menos de 2 minutos",
       hero_weekend_promo: "❤️ Apoie a Responsabilidad Animal clicando aqui",
       animal_donation_title: "🐾 Apoie a Responsabilidad Animal Colonia",
