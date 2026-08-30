@@ -4,7 +4,8 @@
 <head>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta charset="utf-8"/>
-<title>Sacramento Adventures</title>
+<title data-translate="home_doc_title">Tours &amp; Experiences in Colonia del Sacramento | Sacramento Adventures</title>
+<meta content="Discover tours and experiences in Colonia del Sacramento, including wineries, gastronomy, nature and authentic local activities. Book online." name="description"/>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/colonia.webp?v=20260522perf" rel="preload"/>
 <link href="../Styles/styles.css?v=20260821homePromoGap" rel="stylesheet"/>
@@ -101,7 +102,7 @@
         Discover Colonia Like a Local
       </h1>
 <p data-translate="hero_text">
-        Handpicked experiences for curious travelers.
+        Selected tours, excursions and experiences in Colonia del Sacramento.
       </p>
 <div class="hero-cta-stack">
 <p class="hero-book-tagline" data-translate="hero_book_tagline">
@@ -2305,6 +2306,30 @@
 <script src="../Home/payments-api-config.js?v=20260522perf"></script>
 <script src="../Home/paquetes-i18n.js?v=20260820excursions"></script>
 <script src="../Home/index.js?v=20260827nightwalking"></script>
+<script>
+  (function () {
+    function updateHomeMeta() {
+      var lang =
+        typeof window.getInitialLanguage === "function"
+          ? window.getInitialLanguage()
+          : "en";
+      var dict = (window.__SACRAMENTO_TRANSLATIONS || {})[lang] ||
+        (window.__SACRAMENTO_TRANSLATIONS || {}).en ||
+        {};
+      var meta = document.querySelector('meta[name="description"]');
+      if (meta && dict.home_meta_description) {
+        meta.setAttribute("content", dict.home_meta_description);
+      }
+    }
+
+    document.addEventListener("sacramento:setLanguage", updateHomeMeta);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", updateHomeMeta);
+    } else {
+      updateHomeMeta();
+    }
+  })();
+</script>
 <script data-sacramento-footer src="site-footer.js?v=20260721footer"></script>
 <script src="../Home/google-reviews.js?v=20260720reviews2"></script>
 <script src="../Home/home-category-nav.js?v=20260821goldenmile"></script>
