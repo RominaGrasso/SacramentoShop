@@ -29,7 +29,7 @@ const translations = {
       home_activity_search_placeholder: "Search activities…",
       home_activity_search_clear: "Clear search",
       home_activity_search_empty: "No activities match your search.",
-      home_experiences_more_btn: "See more activities",
+      home_experiences_more_btn: "View all activities",
       home_experiences_less_btn: "Show fewer activities",
       home_card_price_from: "From",
       home_card_price_per_person: "per person",
@@ -142,7 +142,7 @@ const translations = {
       night_page_intro_text:
         "Discover unforgettable evening experiences in Colonia del Sacramento — romantic dinners, wine tastings, cultural nights, and unique local moments.",
       hero_btn_aftertour: "After Tour",
-      hero_btn_view_activities: "View activities",
+      hero_btn_view_activities: "View all activities",
       aftertour_page_hero_title: "🍽 After Tour",
       aftertour_page_intro_heading: "Gastronomy without an overnight stay",
       aftertour_page_intro_text:
@@ -3299,7 +3299,7 @@ golden_mile_step_note:
       home_activity_search_placeholder: "Buscar actividades…",
       home_activity_search_clear: "Borrar búsqueda",
       home_activity_search_empty: "No hay actividades que coincidan con tu búsqueda.",
-      home_experiences_more_btn: "Ver más actividades",
+      home_experiences_more_btn: "Ver todas las actividades",
       home_experiences_less_btn: "Ver menos actividades",
       home_card_price_from: "Desde",
       home_card_price_per_person: "por persona",
@@ -3412,7 +3412,7 @@ golden_mile_step_note:
       night_page_intro_text:
         "Descubrí experiencias nocturnas inolvidables en Colonia del Sacramento: cenas románticas, degustaciones de vino y noches culturales con momentos locales únicos.",
       hero_btn_aftertour: "After Tour",
-      hero_btn_view_activities: "Ver actividades",
+      hero_btn_view_activities: "Ver todas las actividades",
       aftertour_page_hero_title: "🍽 After Tour",
       aftertour_page_intro_heading: "Gastronomía sin estadía",
       aftertour_page_intro_text:
@@ -6569,7 +6569,7 @@ golden_mile_step_note:
       home_activity_search_placeholder: "Buscar atividades…",
       home_activity_search_clear: "Limpar busca",
       home_activity_search_empty: "Nenhuma atividade corresponde à sua busca.",
-      home_experiences_more_btn: "Ver mais atividades",
+      home_experiences_more_btn: "Ver todas as atividades",
       home_experiences_less_btn: "Ver menos atividades",
       home_card_price_from: "A partir de",
       home_card_price_per_person: "por pessoa",
@@ -6682,7 +6682,7 @@ golden_mile_step_note:
       night_page_intro_text:
         "Descubra experiências noturnas inesquecíveis em Colonia del Sacramento — jantares românticos, degustações de vinho, noites culturais e momentos locais únicos.",
       hero_btn_aftertour: "After Tour",
-      hero_btn_view_activities: "Ver atividades",
+      hero_btn_view_activities: "Ver todas as atividades",
       aftertour_page_hero_title: "🍽 After Tour",
       aftertour_page_intro_heading: "Gastronomia sem hospedagem",
       aftertour_page_intro_text:
@@ -11252,19 +11252,41 @@ function initRentPopupBehavior() {
     initGalleryLightbox();
   
   
-    /* ===== SMOOTH SCROLL ===== */
+    /* ===== SMOOTH SCROLL (hero CTA → #experiences) ===== */
+    function scrollToExperiencesSection() {
+      const section = document.getElementById("experiences");
+      if (!section) return;
+
+      const header = document.querySelector("header");
+      const offset = header ? header.offsetHeight + 12 : 72;
+      const top = section.getBoundingClientRect().top + window.scrollY - offset;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: reduced ? "auto" : "smooth",
+      });
+    }
+
+    const heroViewActivitiesBtn = document.getElementById("heroViewActivitiesBtn");
+
+    if (heroViewActivitiesBtn) {
+      heroViewActivitiesBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        scrollToExperiencesSection();
+      });
+    }
+
     const exploreBtn = document.getElementById("exploreBtn");
-  
+
     if (exploreBtn) {
-      exploreBtn.addEventListener("click", e => {
+      exploreBtn.addEventListener("click", (e) => {
         e.preventDefault();
         const section = document.getElementById("experiences");
         section?.querySelectorAll(".card").forEach((card) => {
           card.style.removeProperty("display");
         });
-        section?.scrollIntoView({
-          behavior: "smooth"
-        });
+        scrollToExperiencesSection();
       });
     }
   

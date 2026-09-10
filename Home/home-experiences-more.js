@@ -73,7 +73,7 @@
     toggleBtn.dataset.translate = key;
     toggleBtn.textContent = t(
       key,
-      expanded ? "Show fewer activities" : "See more activities"
+      expanded ? "Show fewer activities" : "View all activities"
     );
   }
 
@@ -224,7 +224,7 @@
     toggleBtn.setAttribute("aria-controls", PANEL_ID);
     toggleBtn.setAttribute("aria-expanded", "false");
     toggleBtn.dataset.translate = "home_experiences_more_btn";
-    toggleBtn.textContent = t("home_experiences_more_btn", "See more activities");
+    toggleBtn.textContent = t("home_experiences_more_btn", "View all activities");
     toggleBtn.addEventListener("click", onToggleClick);
     actions.appendChild(toggleBtn);
 
