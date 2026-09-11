@@ -11330,10 +11330,6 @@ body.page-home .partners .logos-slider {
     gap: 0;
   }
 
-  body.page-home .hero {
-    min-height: min(68vh, 660px);
-  }
-
   .hero-content {
     flex: 0 1 auto;
     order: 1;
@@ -12181,11 +12177,13 @@ body.page-home .hero-content h1 {
   font-weight: 700;
 }
 
-body.page-home .hero {
-  height: min(68vh, 600px);
-  min-height: 440px;
-  align-items: center;
-  padding-bottom: 28px;
+@media (min-width: 769px) {
+  body.page-home .hero {
+    height: min(68vh, 600px);
+    min-height: 440px;
+    align-items: center;
+    padding-bottom: 28px;
+  }
 }
 
 body.page-home #experiences {
@@ -12195,6 +12193,74 @@ body.page-home #experiences {
 body.page-home .hero-region-tagline__text {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 700;
+}
+
+/* ===== Home hero: mobile layout (max 768px) — desktop unchanged above ===== */
+@media (max-width: 768px) {
+  body.page-home .hero {
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 18px 20px 22px;
+    gap: 14px;
+  }
+
+  body.page-home .hero-content {
+    order: 1;
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  body.page-home .hero-content h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 6.8vw, 1.95rem);
+    line-height: 1.22;
+    text-align: center;
+    overflow-wrap: normal;
+    word-wrap: break-word;
+    hyphens: manual;
+  }
+
+  body.page-home .hero-content p {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 18px;
+    font-size: clamp(0.92rem, 3.6vw, 1.05rem);
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  body.page-home .hero-cta-stack {
+    width: 100%;
+    max-width: min(100%, 22rem);
+    margin: 0 auto;
+    gap: 10px;
+    align-self: center;
+  }
+
+  body.page-home .hero-cta-stack .hero-buttons {
+    width: 100%;
+  }
+
+  body.page-home .hero-cta-stack .hero-buttons .hero-btn-view-activities,
+  body.page-home .hero-cta-stack .hero-book-tagline {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body.page-home .hero-floating-img {
+    order: 2;
+    width: min(148px, 40vw);
+    max-width: 160px;
+    margin: 4px auto 0;
+  }
 }
 
 body.page-home .home-about-social,
