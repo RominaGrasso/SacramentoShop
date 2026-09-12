@@ -41,9 +41,9 @@
     "legado.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "tour_tasting", price: 35, labelKey: "legado_pkg_opt1_label", labelFallback: "Tour with tasting" },
-        { id: "tour_tasting_picada", price: 55, labelKey: "legado_pkg_opt2_label", labelFallback: "Tour, tasting & picada" },
-        { id: "full_experience", price: 85, labelKey: "legado_pkg_opt3_label", labelFallback: "Full experience" }
+        { id: "tour_tasting", price: 45, labelKey: "legado_pkg_opt1_label", labelFallback: "Tour with tasting" },
+        { id: "tour_tasting_picada", price: 65, labelKey: "legado_pkg_opt2_label", labelFallback: "Tour, tasting & picada" },
+        { id: "full_experience", price: 95, labelKey: "legado_pkg_opt3_label", labelFallback: "Full experience" }
       ]
     },
     "s34-gin.html": {
@@ -57,9 +57,9 @@
     "quinton.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "opt1", price: 100, labelKey: "quinton_pkg_1_title", labelFallback: "Option 1" },
-        { id: "opt2", price: 110, labelKey: "quinton_pkg_2_title", labelFallback: "Option 2" },
-        { id: "opt3", price: 130, labelKey: "quinton_pkg_3_title", labelFallback: "Option 3" }
+        { id: "opt1", price: 110, labelKey: "quinton_pkg_1_title", labelFallback: "Option 1" },
+        { id: "opt2", price: 120, labelKey: "quinton_pkg_2_title", labelFallback: "Option 2" },
+        { id: "opt3", price: 140, labelKey: "quinton_pkg_3_title", labelFallback: "Option 3" }
       ]
     },
     "historic-lasliebres.html": {
@@ -149,7 +149,7 @@
     ["fullday-colonia.html", 90],
     ["golden-mile.html", 120],
     ["night-walkingtour.html", 20],
-    ["lasliebres.html", 85],
+    ["lasliebres.html", 95],
     ["sio.html", 70],
     ["romantic.html", 70],
     ["sunset-boat.html", 40]
