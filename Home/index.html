@@ -8,7 +8,7 @@
 <meta content="Discover tours and experiences in Colonia del Sacramento, including wineries, gastronomy, nature and authentic local activities. Book online." name="description"/>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/colonia.webp?v=20260522perf" rel="preload"/>
-<link href="../Styles/styles.css?v=20260911heroMobile" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20260913transfersRows" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -197,7 +197,7 @@
 <span aria-hidden="true" class="home-category-chip__icon home-category-chip__icon--fa"><i class="fa-solid fa-beer-mug-empty"></i></span>
 <span class="home-category-chip__text">
 <span class="home-category-chip__label" data-translate="home_cat_nav_craft_beer">Craft beer</span>
-<span class="home-category-chip__desc" data-translate="home_cat_nav_craft_beer_desc">A local craft brewery &amp; brewery</span>
+<span class="home-category-chip__desc" data-translate="home_cat_nav_craft_beer_desc">Local craft brewery</span>
 </span>
 </button>
 <button class="home-category-chip" data-home-nav="boat" type="button">
@@ -219,6 +219,13 @@
 <span class="home-category-chip__text">
 <span class="home-category-chip__label" data-translate="home_cat_nav_dining">Lunch or Dinner</span>
 <span class="home-category-chip__desc" data-translate="home_cat_nav_dining_desc">Restaurants &amp; dining</span>
+</span>
+</button>
+<button class="home-category-chip home-category-chip--full" data-home-transfers-open="" type="button">
+<span aria-hidden="true" class="home-category-chip__icon home-category-chip__icon--fa"><i class="fa-solid fa-car"></i></span>
+<span class="home-category-chip__text">
+<span class="home-category-chip__label" data-translate="home_cat_nav_transfers">Transfers</span>
+<span class="home-category-chip__desc" data-translate="home_cat_nav_transfers_desc">Private transfers from Colonia</span>
 </span>
 </button>
 </div>
@@ -255,6 +262,53 @@
 <span data-translate="home_category_modal_view_list">View in full list</span>
 <i aria-hidden="true" class="fa-solid fa-arrow-down"></i>
 </button>
+</div>
+</div>
+</div>
+<div aria-hidden="true" aria-labelledby="homeTransfersModalTitle" class="home-category-modal home-transfers-modal" id="homeTransfersModal" role="dialog">
+<div class="home-category-modal__backdrop" data-home-transfers-close="" tabindex="-1"></div>
+<div class="home-category-modal__panel">
+<button aria-label="Close" class="home-category-modal__close" data-home-transfers-close="" data-translate-aria-label="home_category_modal_close" type="button"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
+<div class="home-category-modal__head">
+<h2 class="home-category-modal__title" data-translate="home_transfers_modal_title" id="homeTransfersModalTitle">Private Transfers</h2>
+<p class="home-category-modal__count" data-translate="home_transfers_modal_subtitle">Travel comfortably and at your own pace with our private transfers from Colonia del Sacramento.</p>
+</div>
+<div class="home-category-modal__cards home-transfers-modal__cards" id="homeTransfersModalCards"></div>
+<div aria-hidden="true" aria-labelledby="homeTransfersDateTitle" class="home-transfers-date-sheet" hidden="" id="homeTransfersDateSheet" role="dialog">
+<div class="home-transfers-date-sheet__backdrop" data-home-transfers-date-close="" tabindex="-1"></div>
+<div class="home-transfers-date-sheet__panel">
+<button aria-label="Close" class="home-category-modal__close home-transfers-date-sheet__close" data-home-transfers-date-close="" data-translate-aria-label="home_category_modal_close" type="button"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
+<h3 class="home-transfers-date-sheet__title" data-translate="home_transfers_select_date_time" id="homeTransfersDateTitle">Select date and time</h3>
+<p class="home-transfers-date-sheet__transfer" id="homeTransfersDateTransferName"></p>
+<div class="home-transfers-form-field">
+<label class="home-transfers-form-field__label" data-translate="home_transfers_date_label" for="homeTransfersDateInput">Date</label>
+<div class="booking-visit-date-row home-transfers-date-sheet__picker">
+<input autocomplete="off" id="homeTransfersDateInput" type="date"/>
+</div>
+</div>
+<div class="home-transfers-form-field">
+<label class="home-transfers-form-field__label" for="homeTransfersTimeInput"><i aria-hidden="true" class="fa-regular fa-clock home-transfers-form-field__label-icon"></i><span data-translate="home_transfers_time_label">Time</span></label>
+<div class="booking-visit-date-row home-transfers-date-sheet__picker">
+<select id="homeTransfersTimeInput">
+<option disabled="" selected="" value="" data-translate="home_transfers_time_placeholder">Select a time</option>
+</select>
+</div>
+<p class="home-transfers-form-field__hint" data-translate="home_transfers_time_hint" id="homeTransfersTimeHint">Available from 10:00 to 17:00</p>
+</div>
+<div class="home-transfers-form-field home-transfers-cars-field">
+<p class="home-transfers-form-field__label" data-translate="home_transfers_cars_label" id="homeTransfersCarsLabel">Number of cars</p>
+<div aria-labelledby="homeTransfersCarsLabel" class="barbot-qty-stepper home-transfers-cars-stepper" id="homeTransfersCarsStepper" role="group">
+<button aria-label="Decrease" class="barbot-qty-btn" data-home-transfers-cars-minus="" data-translate-aria-label="home_transfers_cars_minus_aria" disabled="" type="button">−</button>
+<span aria-live="polite" class="home-transfers-cars-stepper__value" id="homeTransfersCarsValue" translate="no">1</span>
+<button aria-label="Increase" class="barbot-qty-btn" data-home-transfers-cars-plus="" data-translate-aria-label="home_transfers_cars_plus_aria" type="button">+</button>
+</div>
+<p class="home-transfers-form-field__hint" data-translate="home_transfers_cars_hint">Each car can accommodate up to 4 people.</p>
+</div>
+<button class="home-category-modal__cta home-transfers-date-sheet__wa" disabled="" id="homeTransfersWhatsAppBtn" type="button">
+<i aria-hidden="true" class="fa-brands fa-whatsapp"></i>
+<span data-translate="home_transfers_go_whatsapp">Go to WhatsApp</span>
+</button>
+</div>
 </div>
 </div>
 </div>
@@ -2335,6 +2389,7 @@
 <script data-sacramento-footer src="site-footer.js?v=20260721footer"></script>
 <script src="../Home/google-reviews.js?v=20260720reviews2"></script>
 <script src="../Home/home-category-nav.js?v=20260821goldenmile"></script>
+<script src="../Home/home-transfers-modal.js?v=20260913rows"></script>
 <script src="../Home/home-experiences-more.js?v=20260720experiencesmore"></script>
 <script src="../Home/home-card-prices.js?v=20260821goldenmile"></script>
 <!-- ================= CAROUSEL ================= -->
