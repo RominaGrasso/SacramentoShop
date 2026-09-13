@@ -943,6 +943,10 @@
   function openModal(navKey) {
     if (!modal || !modalCards) return;
 
+    if (typeof window.sacramentoCloseHomeTransfersModal === "function") {
+      window.sacramentoCloseHomeTransfersModal();
+    }
+
     const matches = cardsForNav(navKey);
     const labelKey = NAV_LABEL_KEYS[navKey];
     const title = t(labelKey, navKey);
@@ -1271,7 +1275,13 @@
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal?.classList.contains("is-open")) {
+      if (e.key !== "Escape") return;
+      if (typeof window.sacramentoIsHomeTransfersDateSheetOpen === "function" &&
+        window.sacramentoIsHomeTransfersDateSheetOpen()) {
+        return;
+      }
+      if (document.getElementById("homeTransfersModal")?.classList.contains("is-open")) return;
+      if (modal?.classList.contains("is-open")) {
         closeModal(false);
       }
     });
