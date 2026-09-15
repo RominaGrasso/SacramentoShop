@@ -620,6 +620,8 @@ const SACRAMENTO_RESERVE_TRIGGER_SELECTOR = [
   "#mateExperienceSummary a.total-btn",
   "#cabalFooterReserve",
   "#cabalBookingSummary a.total-btn",
+  "#kayakFooterReserve",
+  "#kayakBookingSummary a.total-btn",
   "#rentBookNowBtn",
   "#barbotReserveBtn",
   '[data-action="book-now"]',

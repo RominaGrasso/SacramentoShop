@@ -2584,6 +2584,11 @@
     background-position: center center;
   }
 
+  .page-kayak .horse-hero {
+    background-image: url("../Assets/images/kayak1.jpg");
+    background-position: center center;
+  }
+
   .page-cabal .coffee-gallery .gallery-grid img[src*="fam"],
   .page-cabal .coffee-gallery .gallery-grid img[src*="gabino"],
   .page-cabal .coffee-gallery .gallery-grid img[src*="gabin"] {
