@@ -140,6 +140,7 @@
   /** Single-rate activities from home-card prices (per person unless overridden). */
   const SINGLE_PER_PERSON = [
     ["cabal.html", 40],
+    ["kayak.html", 80],
     ["mate.html", 40],
     ["traslado-plaza-letras.html", 50],
     ["chivito.html", 40],
