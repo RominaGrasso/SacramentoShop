@@ -2584,6 +2584,58 @@
     background-position: center center;
   }
 
+  .page-candombe .mate-only-hero {
+    background-image: url("../Assets/images/tambores1.jpeg");
+    background-position: center center;
+  }
+
+  .page-candombe .candombe-about-copy {
+    margin-bottom: 0.25rem;
+  }
+
+  .page-candombe .candombe-about-copy p {
+    margin: 0 0 0.65rem;
+    font-size: 1.06rem;
+    line-height: 1.65;
+  }
+
+  .page-candombe .candombe-about-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-candombe .price-box .price-box-detail a {
+    color: #5a7294;
+    font-weight: 500;
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+
+  .page-candombe .price-box .price-box-detail a:hover,
+  .page-candombe .price-box .price-box-detail a:focus-visible {
+    color: #2f67a3;
+    text-decoration: underline;
+  }
+
+  .page-private-walking .private-walking-page-title {
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    margin: 0 0 1rem;
+    line-height: 1.25;
+    color: #1f2f46;
+  }
+
+  .page-private-walking .price-box .price-box-detail a {
+    color: #5a7294;
+    font-weight: 500;
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+
+  .page-private-walking .price-box .price-box-detail a:hover,
+  .page-private-walking .price-box .price-box-detail a:focus-visible {
+    color: #2f67a3;
+    text-decoration: underline;
+  }
+
   .page-kayak .horse-hero {
     background-image: url("../Assets/images/kayak1.jpg");
     background-position: center center;
@@ -4401,7 +4453,7 @@
   /* Home: explore by category (between About and cards) */
   .home-category-nav {
     --home-celeste: #b0d6ff;
-    --home-celeste-transfers: #9ec4f5;
+    --home-celeste-transfers: #80ade7;
     position: relative;
     font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-weight: 400;
@@ -6883,18 +6935,34 @@
     }
   }
 
-  .card-image.carousel > .discount-badge.discount-badge--coming-soon {
+  .card-image.carousel > .discount-badge.discount-badge--coming-soon,
+  .card-image.carousel > .discount-badge.discount-badge--whatsapp-inquiry {
     top: auto;
     bottom: 12px;
     left: 12px;
     display: inline-flex;
     align-items: center;
     font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-shadow: none;
+  }
+
+  .card-image.carousel > .discount-badge.discount-badge--coming-soon {
     background: linear-gradient(135deg, #c9a227, #e8c547);
     color: #2c2416;
     border: 1px solid rgba(90, 70, 20, 0.22);
     box-shadow: 0 2px 8px rgba(44, 36, 22, 0.18);
-    text-shadow: none;
+  }
+
+  .card-image.carousel > .discount-badge.discount-badge--whatsapp-inquiry {
+    background: linear-gradient(135deg, #128c7e, #25d366);
+    color: #fff;
+    border: 1px solid rgba(18, 140, 126, 0.35);
+    box-shadow: 0 2px 8px rgba(18, 140, 126, 0.28);
+    font-size: 0.84rem;
+    letter-spacing: 0.12px;
+    line-height: 1.25;
+    max-width: calc(100% - 32px);
+    text-align: center;
   }
 
   .card-buttons .btn {

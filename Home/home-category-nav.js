@@ -193,6 +193,17 @@
         "city tour",
         "letras",
         "candombe",
+        "tambor",
+        "tambores",
+        "drum",
+        "drums",
+        "chico",
+        "repique",
+        "piano",
+        "cuerda",
+        "workshop",
+        "taller",
+        "oficina",
         "culture",
         "cultura",
       ],
@@ -332,6 +343,7 @@
   /** Explore link slug → nav groups (a card may appear in multiple categories). */
   const SLUG_NAV = {
     "walkingtour.html": ["tours"],
+    "private-walkingtour.html": ["tours"],
     "night-walkingtour.html": ["tours", "night"],
     "bike.html": ["tours"],
     "golfcart.html": ["tours"],
@@ -354,6 +366,7 @@
     "romantic.html": ["dining", "gastronomy"],
     "mision-night.html": ["lodging", "gastronomy"],
     "sio-night.html": ["lodging", "gastronomy"],
+    "candombe.html": ["culture"],
     "mate.html": ["gastronomy"],
     "barbot.html": ["craft-beer"],
     "barbot-brewpub.html": ["craft-beer", "dining", "gastronomy"],
@@ -371,7 +384,7 @@
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
-    tours: ["home-walking-tour-card", "home-night-walking-tour-card", "home-traslado-plaza-letras-card"],
+    tours: ["home-walking-tour-card", "home-private-walking-tour-card", "home-night-walking-tour-card", "home-traslado-plaza-letras-card"],
     fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
       "home-exp-bodega-card",
@@ -390,6 +403,7 @@
 
   const CARD_ID_NAV = {
     "home-walking-tour-card": ["tours"],
+    "home-private-walking-tour-card": ["tours"],
     "home-night-walking-tour-card": ["tours", "night"],
     "home-fullday-colonia-card": ["fullday", "day"],
     "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
@@ -401,6 +415,7 @@
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
     "home-cabal-card": ["horseback"],
     "home-kayak-card": ["boat"],
+    "home-candombe-card": ["culture"],
     "home-barbot-tour-card": ["craft-beer"],
     "home-barbot-brewpub-card": ["craft-beer", "dining"],
     "home-chivito-card": ["gastronomy", "dining"],
@@ -417,6 +432,8 @@
     "homeLupajackExploreBtn",
     "homeMateAsadoExploreBtn",
   ]);
+
+  const WHATSAPP_INQUIRY_EXPLORE_IDS = new Set(["homeCorporateBoatExploreBtn"]);
 
   let activeNav = null;
   let modalCarouselSeq = 0;
@@ -500,6 +517,9 @@
         if (id === "homeLupajackExploreBtn") return "__soon_lupajack__";
         if (id === "homeMateAsadoExploreBtn") return "__soon_mate_asado__";
       }
+    }
+    for (const id of WHATSAPP_INQUIRY_EXPLORE_IDS) {
+      if (card.querySelector(`#${id}`)) return "__whatsapp_corporate_boat__";
     }
     return "";
   }
@@ -668,7 +688,7 @@
     const priority = NAV_CARD_ORDER[navKey];
     if (!priority?.length) return cards;
     const prioritySlugs = {
-      tours: ["walkingtour.html", "night-walkingtour.html"],
+      tours: ["walkingtour.html", "private-walkingtour.html", "night-walkingtour.html"],
     };
     const used = new Set();
     const first = [];
@@ -862,6 +882,16 @@
     overlay.setAttribute("aria-hidden", "false");
   }
 
+  function openWhatsAppInquiryFromCard(card) {
+    if (card?.querySelector("#homeCorporateBoatExploreBtn")) {
+      if (typeof window.openHomeCorporateBoatWhatsApp === "function") {
+        window.openHomeCorporateBoatWhatsApp();
+      }
+      return true;
+    }
+    return false;
+  }
+
   function bindModalCardInteractions(root) {
     root.querySelectorAll(".carousel").forEach(initCarousel);
 
@@ -872,6 +902,10 @@
 
       const card = e.target.closest(".card");
       if (!card) return;
+      if (openWhatsAppInquiryFromCard(card)) {
+        e.preventDefault();
+        return;
+      }
       const soonBtn = card.querySelector(".card-buttons button.btn:not(.secondary)");
       if (soonBtn && soonBtn.tagName === "BUTTON") {
         e.preventDefault();
@@ -883,6 +917,10 @@
       if (btn.tagName !== "BUTTON") return;
       btn.addEventListener("click", (e) => {
         e.preventDefault();
+        if (btn.id && WHATSAPP_INQUIRY_EXPLORE_IDS.has(btn.id)) {
+          openWhatsAppInquiryFromCard(btn.closest(".card"));
+          return;
+        }
         openSoonPopup();
       });
     });
