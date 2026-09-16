@@ -141,6 +141,7 @@
   const SINGLE_PER_PERSON = [
     ["cabal.html", 40],
     ["kayak.html", 80],
+    ["candombe.html", 80],
     ["mate.html", 40],
     ["traslado-plaza-letras.html", 50],
     ["chivito.html", 40],
@@ -149,6 +150,7 @@
     ["bruma.html", 50],
     ["fullday-colonia.html", 90],
     ["golden-mile.html", 120],
+    ["private-walkingtour.html", 50],
     ["night-walkingtour.html", 20],
     ["lasliebres.html", 95],
     ["sio.html", 70],

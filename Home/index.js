@@ -260,16 +260,16 @@ const translations = {
       golfcart_order_label: "Booking",
       golfcart_wa_intro: "Hello! I'd like to book the Private Golf Cart City Tour:",
 
-      golden_mile_home_title: "The Golden Mile – Colonia Bar Tour",
+      golden_mile_home_title: "Colonia Bar Tour",
       golden_mile_home_desc:
         "Discover Colonia after dark with a local host, 3 bars, craft beer, signature cocktails, music and nightlife.",
       golden_mile_home_meta_1: "3 local bars",
       golden_mile_home_meta_2: "Craft beer tasting",
       golden_mile_home_meta_3: "Signature cocktails",
       golden_mile_home_meta_4: "Music & nightlife",
-      golden_mile_doc_title: "The Golden Mile – Colonia Bar Tour | Sacramento Adventures",
-      golden_mile_experience_name: "The Golden Mile – Colonia Bar Tour",
-      golden_mile_page_title: "The Golden Mile – Colonia Bar Tour",
+      golden_mile_doc_title: "Colonia Bar Tour | Sacramento Adventures",
+      golden_mile_experience_name: "Colonia Bar Tour",
+      golden_mile_page_title: "Colonia Bar Tour",
       golden_mile_page_subtitle: "3 bars. 3 experiences. One night in Colonia.",
       golden_mile_about_title: "About this experience",
       golden_mile_about_p1:
@@ -314,22 +314,22 @@ golden_mile_step_note:
       golden_mile_gallery_title: "Experience Gallery",
       golden_mile_back_home: "Back to Home",
       golden_mile_popup_title: "Create your experience",
-      golden_mile_popup_package_title: "The Golden Mile – Colonia Bar Tour",
+      golden_mile_popup_package_title: "Colonia Bar Tour",
       golden_mile_popup_lang_heading: "Experience language",
       golden_mile_lang_es: "Spanish",
       golden_mile_lang_en: "English",
       golden_mile_lang_pt: "Portuguese",
-      golden_mile_pkg_label: "The Golden Mile – Colonia Bar Tour",
+      golden_mile_pkg_label: "Colonia Bar Tour",
       golden_mile_pkg_price: "USD 120 per person",
       golden_mile_pkg_b1: "Guided tour to 3 bars",
       golden_mile_pkg_b2: "4 craft beer tastings + 2 cocktails + 1 final drink",
       golden_mile_pkg_b3: "Local host throughout the night",
-      golden_mile_wa_intro: "Hello! I'd like to book The Golden Mile – Colonia Bar Tour.",
+      golden_mile_wa_intro: "Hello! I'd like to book the Colonia Bar Tour.",
       golden_mile_gal_alt_1: "Colonia nightlife bar tour",
       golden_mile_gal_alt_2: "Craft beer tasting on a Colonia bar tour",
       golden_mile_gal_alt_3: "Local bar experience in Colonia",
       golden_mile_gal_alt_4: "Nightlife in Colonia del Sacramento",
-      golden_mile_gal_alt_5: "Craft brewery stop on The Golden Mile",
+      golden_mile_gal_alt_5: "Craft brewery stop on the bar tour",
       golden_mile_gal_alt_6: "Cocktails and nightlife in Colonia",
 
       golden_mile_schedule_line: "Thursday, Friday & Saturday · 20:00",
@@ -341,7 +341,7 @@ golden_mile_step_note:
       golden_mile_alert_visit_day: "Please choose a Thursday, Friday or Saturday.",
       golden_mile_alert_reserve_first:
         "Please set up your experience first using + Create your experience.",
-      golden_mile_summary_heading: "Your Golden Mile experience",
+      golden_mile_summary_heading: "Your bar tour experience",
       golden_mile_summary_empty:
         "Tap + Create your experience to choose guests and a Thursday, Friday or Saturday date.",
       golden_mile_summary_date_label: "Date",
@@ -1237,6 +1237,73 @@ golden_mile_step_note:
       kayak_gal_alt_6: "Kayak paddling in a wooded natural area near Colonia del Sacramento",
       kayak_gal_alt_7: "Guided kayak experience on calm waters near Colonia del Sacramento",
       kayak_gal_alt_9: "Kayak tour exploring nature and wildlife in Colonia del Sacramento",
+      candombe_title: "Candombe Workshop",
+      candombe_text:
+        "Discover the history and culture of Candombe and experience playing its three traditional drums: chico, repique and piano. Learn to recognize their rhythms step by step and discover how they sound together as a cuerda de tambores.",
+      candombe_home_meta_t: "1 h 15 min",
+      candombe_home_meta_play: "Hands-on · you play the drums",
+      candombe_doc_title: "Candombe Workshop in Colonia del Sacramento | Sacramento Adventures",
+      candombe_meta_description:
+        "Experience Candombe in Colonia del Sacramento. Learn about its history and culture, play the chico, repique and piano drums and discover how their rhythms come together.",
+      candombe_experience_name: "Candombe Workshop",
+      candombe_hero_deck: "You'll play the chico, repique and piano yourself.",
+      candombe_hands_on_title: "A participatory experience — you'll play the drums",
+      candombe_hands_on_chico: "🥁 Play the chico",
+      candombe_hands_on_repique: "🥁 Play the repique",
+      candombe_hands_on_piano: "🥁 Play the piano",
+      candombe_hands_on_together: "Discover how they sound together in a cuerda de tambores",
+      candombe_about_heading: "About this experience",
+      candombe_about_p1: "Experience Candombe from the inside 🥁🇺🇾",
+      candombe_about_p2:
+        "Discover one of Uruguay's most representative cultural expressions through a 1-hour-and-15-minute participatory experience.",
+      candombe_about_p3:
+        "During the workshop, you'll learn about the origins, history and culture of Candombe while discovering the three traditional drums that bring its rhythm to life: chico, repique and piano.",
+      candombe_about_p4:
+        "You'll have the opportunity to play and try each of the three drums yourself. Step by step, you'll be guided to recognize their different sounds and understand the role each drum plays within the rhythm.",
+      candombe_about_p5:
+        "Then it's time to bring them together. Discover how the chico, repique and piano interact when played as a group, recreating the dynamics of a traditional cuerda de tambores.",
+      candombe_about_p6:
+        "An experience designed to learn, play, listen and feel Candombe while connecting with Uruguayan culture in an authentic, fun and participatory way.",
+      candombe_included_title: "What's included",
+      candombe_include_duration: "✔ Participatory Candombe workshop · 1 h 15 min",
+      candombe_include_origins: "✔ Origins, history and cultural significance of Candombe in Uruguay",
+      candombe_include_drums: "✔ The three traditional drums: chico, repique and piano",
+      candombe_include_play: "✔ Play and try each drum step by step with guided support",
+      candombe_include_group: "Experience how the rhythms come together like a real cuerda de tambores",
+      candombe_page_price_line: "USD 80 per person",
+      candombe_group_pricing_cta: "Coming with a group? Ask about our special group rates.",
+      candombe_group_pricing_wa:
+        "Hello! I'm interested in the Candombe Workshop and would like to ask about special group rates.",
+      candombe_create_title: "Create your Candombe workshop",
+      candombe_create_subtitle: "Select language and start time, then add people to your group",
+      candombe_create_btn: "+ Create your Candombe workshop",
+      candombe_book_now: "Reserve",
+      candombe_lang_en: "English guide",
+      candombe_lang_es: "Spanish guide",
+      candombe_lang_pt: "Portuguese guide",
+      candombe_label_language: "Language",
+      candombe_popup_tour_time_heading: "Workshop start time",
+      candombe_orders_time_label: "Workshop time",
+      candombe_group_title: "Your group",
+      candombe_group_create_first: "Create your Candombe workshop configuration first.",
+      candombe_group_card_title: "Candombe Workshop — Group",
+      candombe_label_people: "People",
+      candombe_label_visit_date: "Visit date",
+      candombe_alert_select_language: "Please select a language",
+      candombe_alert_select_date: "Please select a visit date.",
+      candombe_alert_select_time: "Please choose a workshop start time.",
+      candombe_alert_create_first: "Please create your Candombe workshop group first.",
+      candombe_confirm_replace:
+        "You already have a group configured for this workshop. If you continue, you'll be editing/replacing that group setup.",
+      candombe_passengers_per_slot: "Up to {max} people per workshop start time.",
+      candombe_wa_intro: "Hello! I'd like to book the Candombe Workshop:",
+      candombe_wa_time_label: "Workshop time",
+      candombe_gal_alt_1: "Candombe workshop in Colonia del Sacramento",
+      candombe_gal_alt_2: "Playing traditional Candombe drums in Colonia",
+      candombe_gal_alt_3: "Hands-on Candombe experience in Uruguay",
+      candombe_gal_alt_4: "Candombe drums chico, repique and piano",
+      candombe_gal_alt_5: "Participatory Candombe workshop in Colonia del Sacramento",
+      candombe_gal_alt_6: "Cuerda de tambores Candombe experience in Colonia",
       home_mision_title:
         "Historic Night Experience: Boutique Stay & Full Dinner & Guided Tour",
       home_mision_meta_pf: "Pet friendly",
@@ -1354,6 +1421,9 @@ golden_mile_step_note:
       home_sio_mision_desc:
         "Experience Colonia at its most exclusive. Stay at a boutique posada, a boutique posada in Colonia, and enjoy a world-class sushi dinner at the restaurant, one of the most renowned culinary experiences in the city. Wake up to a delightful breakfast and complete your stay with a guided walking tour.",
       home_corp_boat_badge: "Exclusive corporate experience",
+      home_corp_boat_whatsapp_badge: "WhatsApp inquiries",
+      home_corp_boat_whatsapp_message:
+        "Hello! I'd like to inquire about the Corporate Sunset Boat Experience & included dinner.",
       home_corp_boat_title: "Sunset Boat Experience & Included dinner",
       home_corp_boat_meta_1_sunset: "Sunset experience",
       home_corp_boat_meta_1_boat: "Private boat with your captain",
@@ -3107,6 +3177,92 @@ golden_mile_step_note:
       walking_free_badge: "TODAY ONLY · FREE TOUR",
       walking_price_free: "FREE",
       historic_title: "Guided Historic Quarter Walking Tour",
+      private_walking_home_title: "Private Historic Quarter Guided Tour",
+      private_walking_home_desc:
+        "Discover Colonia's Historic Quarter with a guide exclusively dedicated to you and your group. We'll pick you up at the port or your accommodation and adapt the tour to your interests.",
+      private_walking_home_meta_1: "100% private tour",
+      private_walking_home_meta_2: "Pickup included",
+      private_walking_home_meta_3: "Personalized route",
+      private_walking_home_meta_4: "English · Spanish · Portuguese",
+      private_walking_home_meta_duration: "2 hours",
+      private_walking_price_line: "USD 50 per person",
+      private_walking_group_pricing_cta: "Coming with a group? Ask about our special group rates.",
+      private_walking_group_pricing_wa:
+        "Hello! I'm interested in the Private Historic Quarter Guided Tour and would like to ask about special group rates.",
+      private_walking_duration_line: "Duration: 2 hours",
+      private_walking_meta_duration_t: "2 hours",
+      private_walking_label_duration: "Duration",
+      private_walking_doc_title: "Private Historic Quarter Tour in Colonia | Sacramento Adventures",
+      private_walking_meta_description:
+        "Explore Colonia del Sacramento's Historic Quarter with a private guide, pickup at the port or your accommodation and a tour adapted to your interests.",
+      private_walking_experience_name: "Private Historic Quarter Guided Tour",
+      private_walking_page_title: "Private Historic Quarter Guided Tour",
+      private_walking_intro_p1: "Discover Colonia del Sacramento your way.",
+      private_walking_intro_p2:
+        "Enjoy a private tour of the Historic Quarter accompanied by a guide exclusively dedicated to you and your group.",
+      private_walking_intro_p3:
+        "To make the experience even more comfortable, we'll meet you directly at the Colonia ferry terminal or your accommodation and begin discovering the city together from there.",
+      private_walking_intro_p4:
+        "Unlike a regular group tour, this private experience allows the itinerary to be adapted to your interests. History, architecture, local culture, fascinating stories or particular places you'd like to discover — the experience can be adjusted so you can explore Colonia from the perspective that interests you most.",
+      private_walking_intro_p5:
+        "With no other travelers joining your group and the full attention of your guide, you'll be able to discover the Historic Quarter at your own pace, ask questions and enjoy a much more personal experience.",
+      private_walking_highlight_private: "Private experience — only you and your group",
+      private_walking_highlight_pickup: "Pickup at the port or your accommodation",
+      private_walking_highlight_personalized: "Tour adapted to your interests",
+      private_walking_benefits_title: "An experience designed around you",
+      private_walking_benefit_1: "✓ Completely private tour",
+      private_walking_benefit_2: "✓ Only you and your group",
+      private_walking_benefit_3: "✓ Dedicated guide throughout the experience",
+      private_walking_benefit_4: "✓ Pickup at the port or your accommodation",
+      private_walking_benefit_5: "✓ Tour adapted to your interests",
+      private_walking_benefit_6: "✓ Explore Colonia at your own pace",
+      private_walking_pickup_title: "Pickup included",
+      private_walking_pickup_port: "Colonia ferry terminal / port",
+      private_walking_pickup_accommodation: "Your accommodation in Colonia del Sacramento",
+      private_walking_pickup_port_short: "Port",
+      private_walking_pickup_accommodation_short: "Accommodation",
+      private_walking_price_pending: "Price and schedule to be confirmed",
+      private_walking_price_pending_detail:
+        "Our team will confirm the rate and available start times for your private tour when you reserve.",
+      private_walking_price_pending_short: "To be confirmed",
+      private_walking_include_1: "Private guided tour with local expert",
+      private_walking_include_2: "Pickup at the port or your accommodation",
+      private_walking_include_3: "Tour adapted to your interests",
+      private_walking_include_4: "Spanish, English & Portuguese guides available",
+      private_walking_create_title: "Create your private tour",
+      private_walking_create_subtitle:
+        "Select language, pickup point and departure time, then add people to your group",
+      private_walking_create_btn: "+ Create your private tour",
+      private_walking_popup_time_heading: "Tour start time",
+      private_walking_schedule_pending: "Available start times will be confirmed when you reserve.",
+      private_walking_orders_time_label: "Tour time",
+      private_walking_time_pending: "To be confirmed",
+      private_walking_label_pickup: "Pickup",
+      private_walking_group_title: "Your private tour",
+      private_walking_group_create_first: "Create your private tour configuration first.",
+      private_walking_group_card_title: "Private Historic Quarter Guided Tour",
+      private_walking_private_only_hint:
+        "This is a private tour — exclusively for you and your group. No other travelers will join.",
+      private_walking_book_now: "Reserve",
+      private_walking_back_home: "Back to Home",
+      private_walking_gallery_title: "Experience Gallery",
+      private_walking_gal_alt_1: "Private guided tour in Colonia del Sacramento",
+      private_walking_gal_alt_2: "Historic Quarter private walking tour",
+      private_walking_gal_alt_3: "Private tour of Colonia's Historic Quarter",
+      private_walking_gal_alt_4: "Cobblestone streets on a private walking tour",
+      private_walking_gal_alt_5: "Historic gate on a private tour in Colonia",
+      private_walking_gal_alt_6: "Local guide on a private Historic Quarter tour",
+      private_walking_alert_select_language: "Please select a language",
+      private_walking_alert_select_pickup: "Please select a pickup point.",
+      private_walking_alert_select_date: "Please select a visit date.",
+      private_walking_alert_select_time: "Please choose a tour start time.",
+      private_walking_alert_create_first: "Please create your private tour group first.",
+      private_walking_alert_max_people: "Maximum group size reached for this private tour.",
+      private_walking_confirm_replace:
+        "You already have a private tour configured. If you continue, you'll be editing/replacing that setup.",
+      private_walking_wa_intro: "Hello! I'd like to book the Private Historic Quarter Guided Tour:",
+      private_walking_wa_private_note: "Private tour — exclusively for our group.",
+      private_walking_wa_price_pending: "Total: to be confirmed by our team.",
       historic_meta_popular: "Most popular experience",
       historic_meta_duration_t: "1.5 hours",
       historic_meta_duration_l: "English • Spanish • Portuguese",
@@ -3633,16 +3789,16 @@ golden_mile_step_note:
       golfcart_order_label: "Reserva",
       golfcart_wa_intro: "¡Hola! Me gustaría reservar el City Tour Privado en Carrito de Golf:",
 
-      golden_mile_home_title: "The Golden Mile – Tour de Bares en Colonia",
+      golden_mile_home_title: "Tour de Bares en Colonia",
       golden_mile_home_desc:
         "Descubrí Colonia de noche junto a un anfitrión local, recorriendo 3 bares con cerveza artesanal, cócteles, música y vida nocturna.",
       golden_mile_home_meta_1: "3 bares locales",
       golden_mile_home_meta_2: "Degustación de cerveza artesanal",
       golden_mile_home_meta_3: "Cócteles de autor",
       golden_mile_home_meta_4: "Música y vida nocturna",
-      golden_mile_doc_title: "The Golden Mile – Tour de Bares en Colonia | Sacramento Adventures",
-      golden_mile_experience_name: "The Golden Mile – Tour de Bares en Colonia",
-      golden_mile_page_title: "The Golden Mile – Tour de Bares en Colonia",
+      golden_mile_doc_title: "Tour de Bares en Colonia | Sacramento Adventures",
+      golden_mile_experience_name: "Tour de Bares en Colonia",
+      golden_mile_page_title: "Tour de Bares en Colonia",
       golden_mile_page_subtitle: "3 bares. 3 experiencias. Una noche en Colonia.",
       golden_mile_about_title: "Sobre esta experiencia",
       golden_mile_about_p1:
@@ -3687,22 +3843,22 @@ golden_mile_step_note:
       golden_mile_gallery_title: "Galería de la experiencia",
       golden_mile_back_home: "Volver al inicio",
       golden_mile_popup_title: "Creá tu experiencia",
-      golden_mile_popup_package_title: "The Golden Mile – Tour de Bares en Colonia",
+      golden_mile_popup_package_title: "Tour de Bares en Colonia",
       golden_mile_popup_lang_heading: "Idioma de la experiencia",
       golden_mile_lang_es: "Español",
       golden_mile_lang_en: "Inglés",
       golden_mile_lang_pt: "Portugués",
-      golden_mile_pkg_label: "The Golden Mile – Tour de Bares en Colonia",
+      golden_mile_pkg_label: "Tour de Bares en Colonia",
       golden_mile_pkg_price: "USD 120 por persona",
       golden_mile_pkg_b1: "Tour guiado a 3 bares",
       golden_mile_pkg_b2: "4 degustaciones de cerveza + 2 cócteles + 1 trago final",
       golden_mile_pkg_b3: "Anfitrión local durante toda la noche",
-      golden_mile_wa_intro: "¡Hola! Quisiera reservar The Golden Mile – Tour de Bares en Colonia.",
+      golden_mile_wa_intro: "¡Hola! Quisiera reservar el Tour de Bares en Colonia.",
       golden_mile_gal_alt_1: "Tour de bares nocturno en Colonia",
       golden_mile_gal_alt_2: "Degustación de cerveza artesanal en un tour de bares",
       golden_mile_gal_alt_3: "Experiencia en un bar local de Colonia",
       golden_mile_gal_alt_4: "Vida nocturna en Colonia del Sacramento",
-      golden_mile_gal_alt_5: "Parada en cervecería artesanal en The Golden Mile",
+      golden_mile_gal_alt_5: "Parada en cervecería artesanal en el tour de bares",
       golden_mile_gal_alt_6: "Cócteles y vida nocturna en Colonia",
 
       golden_mile_schedule_line: "Jueves, viernes y sábados · 20:00 hs",
@@ -3714,7 +3870,7 @@ golden_mile_step_note:
       golden_mile_alert_visit_day: "Elegí un jueves, viernes o sábado.",
       golden_mile_alert_reserve_first:
         "Primero armá tu experiencia con + Creá tu experiencia.",
-      golden_mile_summary_heading: "Tu experiencia Golden Mile",
+      golden_mile_summary_heading: "Tu tour de bares",
       golden_mile_summary_empty:
         "Tocá + Creá tu experiencia para elegir personas y una fecha de jueves, viernes o sábado.",
       golden_mile_summary_date_label: "Fecha",
@@ -4608,6 +4764,73 @@ golden_mile_step_note:
       kayak_gal_alt_6: "Remando en kayak por un entorno natural arbolado cerca de Colonia del Sacramento",
       kayak_gal_alt_7: "Experiencia guiada en kayak sobre aguas tranquilas cerca de Colonia del Sacramento",
       kayak_gal_alt_9: "Tour en kayak explorando naturaleza y fauna en Colonia del Sacramento",
+      candombe_title: "Taller de Candombe",
+      candombe_text:
+        "Conocé la historia y la cultura del candombe y animate a tocar sus tres tambores: chico, repique y piano. Aprendé a reconocer sus ritmos paso a paso y descubrí cómo suenan juntos en una cuerda de tambores.",
+      candombe_home_meta_t: "1 h 15 min",
+      candombe_home_meta_play: "Participativo · vas a tocar los tambores",
+      candombe_doc_title: "Taller de Candombe en Colonia del Sacramento | Sacramento Adventures",
+      candombe_meta_description:
+        "Viví el candombe desde adentro en Colonia del Sacramento. Conocé su historia y cultura, tocá los tambores chico, repique y piano y descubrí cómo suenan juntos.",
+      candombe_experience_name: "Taller de Candombe",
+      candombe_hero_deck: "Vas a tocar el chico, el repique y el piano.",
+      candombe_hands_on_title: "Una experiencia participativa — vas a tocar los tambores",
+      candombe_hands_on_chico: "🥁 Tocá el chico",
+      candombe_hands_on_repique: "🥁 Tocá el repique",
+      candombe_hands_on_piano: "🥁 Tocá el piano",
+      candombe_hands_on_together: "Descubrí cómo suenan juntos en una cuerda de tambores",
+      candombe_about_heading: "Sobre esta experiencia",
+      candombe_about_p1: "Viví el candombe desde adentro 🥁🇺🇾",
+      candombe_about_p2:
+        "Descubrí una de las expresiones culturales más representativas de Uruguay a través de una experiencia participativa de 1 hora y 15 minutos.",
+      candombe_about_p3:
+        "Durante el taller conocerás el origen, la historia y la cultura del candombe mientras descubrís los tres tambores que dan vida a su ritmo: chico, repique y piano.",
+      candombe_about_p4:
+        "Vas a tener la oportunidad de tocar y probar cada uno de los tambores, mientras te guiamos paso a paso para que puedas reconocer sus diferentes sonidos y comprender el papel que cumple cada uno.",
+      candombe_about_p5:
+        "Después llega el momento de unirlos: descubrirás cómo dialogan el chico, el repique y el piano cuando suenan juntos, recreando la dinámica de una cuerda de tambores.",
+      candombe_about_p6:
+        "Una experiencia para aprender, tocar, escuchar y sentir el candombe, acercándote a la cultura uruguaya de una forma auténtica, divertida y participativa.",
+      candombe_included_title: "Qué incluye",
+      candombe_include_duration: "✔ Taller participativo de candombe · 1 h 15 min",
+      candombe_include_origins: "✔ Origen, historia y significado cultural del candombe en Uruguay",
+      candombe_include_drums: "✔ Los tres tambores tradicionales: chico, repique y piano",
+      candombe_include_play: "✔ Tocar y probar cada tambor paso a paso con guía",
+      candombe_include_group: "Experimentá cómo se unen los ritmos como en una cuerda de tambores",
+      candombe_page_price_line: "USD 80 por persona",
+      candombe_group_pricing_cta: "¿Venís en grupo? Consultá precios especiales para grupos.",
+      candombe_group_pricing_wa:
+        "¡Hola! Me interesa el Taller de Candombe y quiero consultar precios especiales para grupos.",
+      candombe_create_title: "Creá tu taller de candombe",
+      candombe_create_subtitle: "Elegí idioma y horario de inicio, luego agregá personas a tu grupo",
+      candombe_create_btn: "+ Creá tu taller de candombe",
+      candombe_book_now: "Reservar",
+      candombe_lang_en: "Guía en inglés",
+      candombe_lang_es: "Guía en español",
+      candombe_lang_pt: "Guía en portugués",
+      candombe_label_language: "Idioma",
+      candombe_popup_tour_time_heading: "Horario de inicio del taller",
+      candombe_orders_time_label: "Horario del taller",
+      candombe_group_title: "Tu grupo",
+      candombe_group_create_first: "Primero creá la configuración de tu taller de candombe.",
+      candombe_group_card_title: "Taller de Candombe — Grupo",
+      candombe_label_people: "Personas",
+      candombe_label_visit_date: "Fecha de visita",
+      candombe_alert_select_language: "Por favor seleccioná un idioma",
+      candombe_alert_select_date: "Por favor seleccioná una fecha de visita.",
+      candombe_alert_select_time: "Por favor elegí un horario de inicio del taller.",
+      candombe_alert_create_first: "Primero creá tu grupo para el taller de candombe.",
+      candombe_confirm_replace:
+        "Ya tenés un grupo configurado para este taller. Si continuás, vas a editar o reemplazar esa configuración.",
+      candombe_passengers_per_slot: "Hasta {max} personas por horario de inicio del taller.",
+      candombe_wa_intro: "¡Hola! Quiero reservar el Taller de Candombe:",
+      candombe_wa_time_label: "Horario del taller",
+      candombe_gal_alt_1: "Taller de candombe en Colonia del Sacramento",
+      candombe_gal_alt_2: "Tocando tambores de candombe en Colonia",
+      candombe_gal_alt_3: "Experiencia participativa de candombe en Uruguay",
+      candombe_gal_alt_4: "Tambores de candombe chico, repique y piano",
+      candombe_gal_alt_5: "Taller participativo de candombe en Colonia del Sacramento",
+      candombe_gal_alt_6: "Experiencia de cuerda de tambores en Colonia",
       home_mision_title:
         "Noche Histórica: Posada Boutique, Cena Completa y Tour Guiado",
       home_mision_meta_pf: "Pet friendly",
@@ -4725,6 +4948,9 @@ golden_mile_step_note:
       home_sio_mision_desc:
         "La experiencia más exclusiva: estadía en una posada boutique y cena sushi de primer nivel en el restaurante. Desayuno y recorrido a pie guiado por Colonia.",
       home_corp_boat_badge: "Experiencia corporativa exclusiva",
+      home_corp_boat_whatsapp_badge: "Consultas por WhatsApp",
+      home_corp_boat_whatsapp_message:
+        "¡Hola! Quiero consultar por la experiencia corporativa Atardecer en Barco y Cena incluida.",
       home_corp_boat_title: "Atardecer en Barco y Cena en un Restaurante Seleccionado",
       home_corp_boat_meta_1_sunset: "Atardecer",
       home_corp_boat_meta_1_boat: "Barco privado con tu capitán",
@@ -6478,6 +6704,92 @@ golden_mile_step_note:
       walking_free_badge: "SOLO POR HOY · FREE TOUR",
       walking_price_free: "FREE",
       historic_title: "Tour Guiado por el Barrio Histórico",
+      private_walking_home_title: "Tour Guiado Privado por el Barrio Histórico",
+      private_walking_home_desc:
+        "Descubrí el Barrio Histórico de Colonia con un guía exclusivo para vos y tu grupo. Te buscamos en el puerto o en tu alojamiento y adaptamos el recorrido a tus intereses.",
+      private_walking_home_meta_1: "Tour 100% privado",
+      private_walking_home_meta_2: "Pickup incluido",
+      private_walking_home_meta_3: "Recorrido personalizado",
+      private_walking_home_meta_4: "Inglés · español · portugués",
+      private_walking_home_meta_duration: "2 horas",
+      private_walking_price_line: "USD 50 por persona",
+      private_walking_group_pricing_cta: "¿Son un grupo? Consultá precios especiales para grupos.",
+      private_walking_group_pricing_wa:
+        "¡Hola! Me interesa el Tour Guiado Privado por el Barrio Histórico y quiero consultar precios especiales para grupos.",
+      private_walking_duration_line: "Duración: 2 horas",
+      private_walking_meta_duration_t: "2 horas",
+      private_walking_label_duration: "Duración",
+      private_walking_doc_title: "Tour Privado por el Barrio Histórico de Colonia | Sacramento Adventures",
+      private_walking_meta_description:
+        "Descubrí el Barrio Histórico de Colonia del Sacramento con un guía privado. Pickup en el puerto o alojamiento y recorrido adaptable a tus intereses.",
+      private_walking_experience_name: "Tour Guiado Privado por el Barrio Histórico",
+      private_walking_page_title: "Tour Guiado Privado por el Barrio Histórico",
+      private_walking_intro_p1: "Descubrí Colonia del Sacramento a tu manera.",
+      private_walking_intro_p2:
+        "Disfrutá de un recorrido privado por el Barrio Histórico acompañado por un guía dedicado exclusivamente a vos y a tu grupo.",
+      private_walking_intro_p3:
+        "Para que la experiencia sea todavía más cómoda, te buscamos directamente en el puerto de Colonia o en tu alojamiento y desde allí comenzamos a descubrir la ciudad juntos.",
+      private_walking_intro_p4:
+        "A diferencia de un tour regular, esta experiencia nos permite adaptar el recorrido a tus intereses. Historia, arquitectura, cultura local, curiosidades o aquellos rincones que más te interese conocer: el paseo puede ajustarse para que descubras Colonia desde la perspectiva que más te atraiga.",
+      private_walking_intro_p5:
+        "Sin otros viajeros incorporándose al grupo y con la atención exclusiva de tu guía, vas a poder recorrer el Barrio Histórico a tu propio ritmo, hacer preguntas y disfrutar de una experiencia mucho más personal.",
+      private_walking_highlight_private: "Experiencia privada — solo vos y tu grupo",
+      private_walking_highlight_pickup: "Pickup en el puerto o tu alojamiento",
+      private_walking_highlight_personalized: "Recorrido adaptable a tus intereses",
+      private_walking_benefits_title: "Una experiencia diseñada para vos",
+      private_walking_benefit_1: "✓ Tour exclusivamente privado",
+      private_walking_benefit_2: "✓ Solo vos y tu grupo",
+      private_walking_benefit_3: "✓ Guía dedicado durante toda la experiencia",
+      private_walking_benefit_4: "✓ Pickup en el puerto o alojamiento",
+      private_walking_benefit_5: "✓ Recorrido adaptable a tus intereses",
+      private_walking_benefit_6: "✓ Explorá Colonia a tu propio ritmo",
+      private_walking_pickup_title: "Pickup incluido",
+      private_walking_pickup_port: "Terminal de ferry / puerto de Colonia",
+      private_walking_pickup_accommodation: "Tu alojamiento en Colonia del Sacramento",
+      private_walking_pickup_port_short: "Puerto",
+      private_walking_pickup_accommodation_short: "Alojamiento",
+      private_walking_price_pending: "Precio y horarios a confirmar",
+      private_walking_price_pending_detail:
+        "Nuestro equipo confirmará la tarifa y los horarios disponibles para tu tour privado al reservar.",
+      private_walking_price_pending_short: "A confirmar",
+      private_walking_include_1: "Tour guiado privado con guía local",
+      private_walking_include_2: "Pickup en el puerto o tu alojamiento",
+      private_walking_include_3: "Recorrido adaptable a tus intereses",
+      private_walking_include_4: "Guías en español, inglés y portugués",
+      private_walking_create_title: "Creá tu tour privado",
+      private_walking_create_subtitle:
+        "Elegí idioma, punto de pickup y horario de salida, luego agregá personas a tu grupo",
+      private_walking_create_btn: "+ Creá tu tour privado",
+      private_walking_popup_time_heading: "Horario de inicio del tour",
+      private_walking_schedule_pending: "Los horarios disponibles se confirmarán al reservar.",
+      private_walking_orders_time_label: "Horario del tour",
+      private_walking_time_pending: "A confirmar",
+      private_walking_label_pickup: "Pickup",
+      private_walking_group_title: "Tu tour privado",
+      private_walking_group_create_first: "Creá primero la configuración de tu tour privado.",
+      private_walking_group_card_title: "Tour Guiado Privado por el Barrio Histórico",
+      private_walking_private_only_hint:
+        "Este es un tour privado — exclusivamente para vos y tu grupo. No se sumarán otros viajeros.",
+      private_walking_book_now: "Reservar",
+      private_walking_back_home: "Volver al inicio",
+      private_walking_gallery_title: "Galería de la experiencia",
+      private_walking_gal_alt_1: "Tour guiado privado en Colonia del Sacramento",
+      private_walking_gal_alt_2: "Recorrido privado por el Barrio Histórico",
+      private_walking_gal_alt_3: "Tour privado por el Barrio Histórico de Colonia",
+      private_walking_gal_alt_4: "Calles empedradas en un tour privado a pie",
+      private_walking_gal_alt_5: "Puerta histórica en un tour privado en Colonia",
+      private_walking_gal_alt_6: "Guía local en un tour privado por el Barrio Histórico",
+      private_walking_alert_select_language: "Por favor seleccioná un idioma",
+      private_walking_alert_select_pickup: "Por favor seleccioná un punto de pickup.",
+      private_walking_alert_select_date: "Por favor seleccioná una fecha de visita.",
+      private_walking_alert_select_time: "Por favor elegí un horario de inicio del tour.",
+      private_walking_alert_create_first: "Por favor creá primero tu grupo de tour privado.",
+      private_walking_alert_max_people: "Se alcanzó el tamaño máximo de grupo para este tour privado.",
+      private_walking_confirm_replace:
+        "Ya tenés un tour privado configurado. Si continuás, vas a editar/reemplazar esa configuración.",
+      private_walking_wa_intro: "¡Hola! Quiero reservar el Tour Guiado Privado por el Barrio Histórico:",
+      private_walking_wa_private_note: "Tour privado — exclusivamente para nuestro grupo.",
+      private_walking_wa_price_pending: "Total: a confirmar por nuestro equipo.",
       historic_meta_popular: "Experiencia más popular",
       historic_meta_duration_t: "1,5 horas",
       historic_meta_duration_l: "Inglés • español • portugués",
@@ -7003,16 +7315,16 @@ golden_mile_step_note:
       golfcart_order_label: "Reserva",
       golfcart_wa_intro: "Olá! Gostaria de reservar o City Tour Privado em Carrinho de Golf:",
 
-      golden_mile_home_title: "The Golden Mile – Tour de Bares em Colônia",
+      golden_mile_home_title: "Tour de Bares em Colônia",
       golden_mile_home_desc:
         "Descubra Colônia à noite com um anfitrião local, visitando 3 bares com cerveja artesanal, coquetéis, música e vida noturna.",
       golden_mile_home_meta_1: "3 bares locais",
       golden_mile_home_meta_2: "Degustação de cerveja artesanal",
       golden_mile_home_meta_3: "Coquetéis autorais",
       golden_mile_home_meta_4: "Música e vida noturna",
-      golden_mile_doc_title: "The Golden Mile – Tour de Bares em Colônia | Sacramento Adventures",
-      golden_mile_experience_name: "The Golden Mile – Tour de Bares em Colônia",
-      golden_mile_page_title: "The Golden Mile – Tour de Bares em Colônia",
+      golden_mile_doc_title: "Tour de Bares em Colônia | Sacramento Adventures",
+      golden_mile_experience_name: "Tour de Bares em Colônia",
+      golden_mile_page_title: "Tour de Bares em Colônia",
       golden_mile_page_subtitle: "3 bares. 3 experiências. Uma noite em Colônia.",
       golden_mile_about_title: "Sobre esta experiência",
       golden_mile_about_p1:
@@ -7057,22 +7369,22 @@ golden_mile_step_note:
       golden_mile_gallery_title: "Galeria da experiência",
       golden_mile_back_home: "Voltar ao início",
       golden_mile_popup_title: "Crie sua experiência",
-      golden_mile_popup_package_title: "The Golden Mile – Tour de Bares em Colônia",
+      golden_mile_popup_package_title: "Tour de Bares em Colônia",
       golden_mile_popup_lang_heading: "Idioma da experiência",
       golden_mile_lang_es: "Espanhol",
       golden_mile_lang_en: "Inglês",
       golden_mile_lang_pt: "Português",
-      golden_mile_pkg_label: "The Golden Mile – Tour de Bares em Colônia",
+      golden_mile_pkg_label: "Tour de Bares em Colônia",
       golden_mile_pkg_price: "USD 120 por pessoa",
       golden_mile_pkg_b1: "Tour guiado a 3 bares",
       golden_mile_pkg_b2: "4 degustações de cerveja + 2 coquetéis + 1 drink final",
       golden_mile_pkg_b3: "Anfitrião local durante toda a noite",
-      golden_mile_wa_intro: "Olá! Gostaria de reservar The Golden Mile – Tour de Bares em Colônia.",
+      golden_mile_wa_intro: "Olá! Gostaria de reservar o Tour de Bares em Colônia.",
       golden_mile_gal_alt_1: "Tour de bares noturno em Colônia",
       golden_mile_gal_alt_2: "Degustação de cerveja artesanal em um tour de bares",
       golden_mile_gal_alt_3: "Experiência em um bar local de Colônia",
       golden_mile_gal_alt_4: "Vida noturna em Colônia del Sacramento",
-      golden_mile_gal_alt_5: "Parada em cervejaria artesanal no The Golden Mile",
+      golden_mile_gal_alt_5: "Parada em cervejaria artesanal no tour de bares",
       golden_mile_gal_alt_6: "Coquetéis e vida noturna em Colônia",
 
       golden_mile_schedule_line: "Quintas, sextas e sábados · 20:00",
@@ -7084,7 +7396,7 @@ golden_mile_step_note:
       golden_mile_alert_visit_day: "Escolha uma quinta, sexta ou sábado.",
       golden_mile_alert_reserve_first:
         "Configure sua experiência primeiro com + Crie sua experiência.",
-      golden_mile_summary_heading: "Sua experiência Golden Mile",
+      golden_mile_summary_heading: "Seu tour de bares",
       golden_mile_summary_empty:
         "Toque em + Crie sua experiência para escolher pessoas e uma data de quinta, sexta ou sábado.",
       golden_mile_summary_date_label: "Data",
@@ -7977,6 +8289,73 @@ golden_mile_step_note:
       kayak_gal_alt_6: "Remando de caiaque em uma área natural arborizada perto de Colonia del Sacramento",
       kayak_gal_alt_7: "Experiência guiada de caiaque em águas calmas perto de Colonia del Sacramento",
       kayak_gal_alt_9: "Tour de caiaque explorando natureza e fauna em Colonia del Sacramento",
+      candombe_title: "Oficina de Candombe",
+      candombe_text:
+        "Conheça a história e a cultura do Candombe e experimente tocar seus três tambores tradicionais: chico, repique e piano. Aprenda a reconhecer seus ritmos passo a passo e descubra como eles soam juntos em uma cuerda de tambores.",
+      candombe_home_meta_t: "1 h 15 min",
+      candombe_home_meta_play: "Participativo · você toca os tambores",
+      candombe_doc_title: "Oficina de Candombe em Colonia del Sacramento | Sacramento Adventures",
+      candombe_meta_description:
+        "Viva o Candombe em Colonia del Sacramento. Conheça sua história e cultura, toque os tambores chico, repique e piano e descubra como seus ritmos se unem.",
+      candombe_experience_name: "Oficina de Candombe",
+      candombe_hero_deck: "Você vai tocar o chico, o repique e o piano.",
+      candombe_hands_on_title: "Uma experiência participativa — você vai tocar os tambores",
+      candombe_hands_on_chico: "🥁 Toque o chico",
+      candombe_hands_on_repique: "🥁 Toque o repique",
+      candombe_hands_on_piano: "🥁 Toque o piano",
+      candombe_hands_on_together: "Descubra como eles soam juntos em uma cuerda de tambores",
+      candombe_about_heading: "Sobre a experiência",
+      candombe_about_p1: "Viva o Candombe por dentro 🥁🇺🇾",
+      candombe_about_p2:
+        "Descubra uma das expressões culturais mais representativas do Uruguai através de uma experiência participativa de 1 hora e 15 minutos.",
+      candombe_about_p3:
+        "Durante a oficina, você conhecerá a origem, a história e a cultura do Candombe enquanto descobre os três tambores tradicionais que dão vida ao seu ritmo: chico, repique e piano.",
+      candombe_about_p4:
+        "Você terá a oportunidade de tocar e experimentar cada um dos três tambores. Passo a passo, será guiado para reconhecer seus diferentes sons e compreender o papel de cada tambor dentro do ritmo.",
+      candombe_about_p5:
+        "Depois chega o momento de uni-los. Descubra como o chico, o repique e o piano interagem quando são tocados juntos, recriando a dinâmica de uma tradicional cuerda de tambores.",
+      candombe_about_p6:
+        "Uma experiência para aprender, tocar, ouvir e sentir o Candombe, aproximando-se da cultura uruguaia de uma forma autêntica, divertida e participativa.",
+      candombe_included_title: "O que está incluído",
+      candombe_include_duration: "✔ Oficina participativa de Candombe · 1 h 15 min",
+      candombe_include_origins: "✔ Origem, história e significado cultural do Candombe no Uruguai",
+      candombe_include_drums: "✔ Os três tambores tradicionais: chico, repique e piano",
+      candombe_include_play: "✔ Tocar e experimentar cada tambor passo a passo com orientação",
+      candombe_include_group: "Experimente como os ritmos se unem como em uma cuerda de tambores",
+      candombe_page_price_line: "USD 80 por pessoa",
+      candombe_group_pricing_cta: "Vem em grupo? Consulte nossos preços especiais para grupos.",
+      candombe_group_pricing_wa:
+        "Olá! Tenho interesse na Oficina de Candombe e gostaria de consultar preços especiais para grupos.",
+      candombe_create_title: "Monte sua oficina de Candombe",
+      candombe_create_subtitle: "Selecione idioma e horário de início, depois adicione pessoas ao seu grupo",
+      candombe_create_btn: "+ Monte sua oficina de Candombe",
+      candombe_book_now: "Reservar",
+      candombe_lang_en: "Guia em inglês",
+      candombe_lang_es: "Guia em espanhol",
+      candombe_lang_pt: "Guia em português",
+      candombe_label_language: "Idioma",
+      candombe_popup_tour_time_heading: "Horário de início da oficina",
+      candombe_orders_time_label: "Horário da oficina",
+      candombe_group_title: "Seu grupo",
+      candombe_group_create_first: "Primeiro crie a configuração da sua oficina de Candombe.",
+      candombe_group_card_title: "Oficina de Candombe — Grupo",
+      candombe_label_people: "Pessoas",
+      candombe_label_visit_date: "Data da visita",
+      candombe_alert_select_language: "Por favor selecione um idioma",
+      candombe_alert_select_date: "Por favor selecione uma data de visita.",
+      candombe_alert_select_time: "Por favor escolha um horário de início da oficina.",
+      candombe_alert_create_first: "Primeiro crie seu grupo para a oficina de Candombe.",
+      candombe_confirm_replace:
+        "Você já tem um grupo configurado para esta oficina. Se continuar, editará ou substituirá essa configuração.",
+      candombe_passengers_per_slot: "Até {max} pessoas por horário de início da oficina.",
+      candombe_wa_intro: "Olá! Quero reservar a Oficina de Candombe:",
+      candombe_wa_time_label: "Horário da oficina",
+      candombe_gal_alt_1: "Oficina de Candombe em Colonia del Sacramento",
+      candombe_gal_alt_2: "Tocando tambores de Candombe em Colonia",
+      candombe_gal_alt_3: "Experiência participativa de Candombe no Uruguai",
+      candombe_gal_alt_4: "Tambores de Candombe chico, repique e piano",
+      candombe_gal_alt_5: "Oficina participativa de Candombe em Colonia del Sacramento",
+      candombe_gal_alt_6: "Experiência de cuerda de tambores em Colonia",
       home_mision_title:
         "Noite histórica: pousada boutique, jantar completo e tour guiado",
       home_mision_meta_pf: "Pet friendly",
@@ -8094,6 +8473,9 @@ golden_mile_step_note:
       home_sio_mision_desc:
         "Estadia na pousada boutique e jantar sushi de alto nível no restaurante de sushi premium. Café da manhã e tour a pé guiado por Colonia.",
       home_corp_boat_badge: "Experiência corporativa exclusiva",
+      home_corp_boat_whatsapp_badge: "Consultas por WhatsApp",
+      home_corp_boat_whatsapp_message:
+        "Olá! Gostaria de consultar sobre a experiência corporativa Pôr do sol de barco e jantar incluído.",
       home_corp_boat_title: "Pôr do sol de barco e jantar em um restaurante selecionado",
       home_corp_boat_meta_1_sunset: "Pôr do sol",
       home_corp_boat_meta_1_boat: "Barco privado com seu capitão",
@@ -9848,6 +10230,92 @@ golden_mile_step_note:
       walking_free_badge: "SÓ POR HOJE · TOUR GRÁTIS",
       walking_price_free: "GRÁTIS",
       historic_title: "Tour guiado pelo Centro Histórico",
+      private_walking_home_title: "Tour Guiado Privado pelo Bairro Histórico",
+      private_walking_home_desc:
+        "Descubra o Bairro Histórico de Colonia com um guia exclusivo para você e seu grupo. Buscamos vocês no porto ou na hospedagem e adaptamos o passeio aos seus interesses.",
+      private_walking_home_meta_1: "Tour 100% privado",
+      private_walking_home_meta_2: "Pickup incluído",
+      private_walking_home_meta_3: "Roteiro personalizado",
+      private_walking_home_meta_4: "Inglês · espanhol · português",
+      private_walking_home_meta_duration: "2 horas",
+      private_walking_price_line: "USD 50 por pessoa",
+      private_walking_group_pricing_cta: "Vem em grupo? Consulte nossos preços especiais para grupos.",
+      private_walking_group_pricing_wa:
+        "Olá! Tenho interesse no Tour Guiado Privado pelo Bairro Histórico e gostaria de consultar preços especiais para grupos.",
+      private_walking_duration_line: "Duração: 2 horas",
+      private_walking_meta_duration_t: "2 horas",
+      private_walking_label_duration: "Duração",
+      private_walking_doc_title: "Tour Privado pelo Bairro Histórico de Colonia | Sacramento Adventures",
+      private_walking_meta_description:
+        "Conheça o Bairro Histórico de Colonia del Sacramento com guia privado, pickup no porto ou hospedagem e roteiro adaptado aos seus interesses.",
+      private_walking_experience_name: "Tour Guiado Privado pelo Bairro Histórico",
+      private_walking_page_title: "Tour Guiado Privado pelo Bairro Histórico",
+      private_walking_intro_p1: "Descubra Colonia del Sacramento do seu jeito.",
+      private_walking_intro_p2:
+        "Desfrute de um passeio privado pelo Bairro Histórico acompanhado por um guia dedicado exclusivamente a você e ao seu grupo.",
+      private_walking_intro_p3:
+        "Para tornar a experiência ainda mais confortável, buscamos vocês diretamente no porto de Colonia ou na hospedagem e, a partir dali, começamos juntos a descobrir a cidade.",
+      private_walking_intro_p4:
+        "Diferentemente de um passeio regular em grupo, esta experiência privada permite adaptar o roteiro aos seus interesses. História, arquitetura, cultura local, curiosidades ou lugares específicos que vocês gostariam de conhecer — o passeio pode ser ajustado para que descubram Colonia a partir da perspectiva que mais lhes interessa.",
+      private_walking_intro_p5:
+        "Sem outros viajantes integrando o grupo e com a atenção exclusiva do guia, vocês poderão conhecer o Bairro Histórico no seu próprio ritmo, fazer perguntas e aproveitar uma experiência muito mais personalizada.",
+      private_walking_highlight_private: "Experiência privada — somente você e seu grupo",
+      private_walking_highlight_pickup: "Pickup no porto ou na hospedagem",
+      private_walking_highlight_personalized: "Roteiro adaptável aos seus interesses",
+      private_walking_benefits_title: "Uma experiência pensada para você",
+      private_walking_benefit_1: "✓ Tour totalmente privado",
+      private_walking_benefit_2: "✓ Somente você e seu grupo",
+      private_walking_benefit_3: "✓ Guia dedicado durante toda a experiência",
+      private_walking_benefit_4: "✓ Pickup no porto ou na hospedagem",
+      private_walking_benefit_5: "✓ Roteiro adaptável aos seus interesses",
+      private_walking_benefit_6: "✓ Conheça Colonia no seu próprio ritmo",
+      private_walking_pickup_title: "Pickup incluído",
+      private_walking_pickup_port: "Terminal de ferry / porto de Colonia",
+      private_walking_pickup_accommodation: "Sua hospedagem em Colonia del Sacramento",
+      private_walking_pickup_port_short: "Porto",
+      private_walking_pickup_accommodation_short: "Hospedagem",
+      private_walking_price_pending: "Preço e horários a confirmar",
+      private_walking_price_pending_detail:
+        "Nossa equipe confirmará a tarifa e os horários disponíveis para seu tour privado ao reservar.",
+      private_walking_price_pending_short: "A confirmar",
+      private_walking_include_1: "Tour guiado privado com guia local",
+      private_walking_include_2: "Pickup no porto ou na hospedagem",
+      private_walking_include_3: "Roteiro adaptável aos seus interesses",
+      private_walking_include_4: "Guias em espanhol, inglês e português",
+      private_walking_create_title: "Crie seu tour privado",
+      private_walking_create_subtitle:
+        "Selecione idioma, ponto de pickup e horário de saída, depois adicione pessoas ao seu grupo",
+      private_walking_create_btn: "+ Crie seu tour privado",
+      private_walking_popup_time_heading: "Horário de início do tour",
+      private_walking_schedule_pending: "Os horários disponíveis serão confirmados ao reservar.",
+      private_walking_orders_time_label: "Horário do tour",
+      private_walking_time_pending: "A confirmar",
+      private_walking_label_pickup: "Pickup",
+      private_walking_group_title: "Seu tour privado",
+      private_walking_group_create_first: "Crie primeiro a configuração do seu tour privado.",
+      private_walking_group_card_title: "Tour Guiado Privado pelo Bairro Histórico",
+      private_walking_private_only_hint:
+        "Este é um tour privado — exclusivamente para você e seu grupo. Nenhum outro viajante se juntará.",
+      private_walking_book_now: "Reservar",
+      private_walking_back_home: "Voltar ao início",
+      private_walking_gallery_title: "Galeria da experiência",
+      private_walking_gal_alt_1: "Tour guiado privado em Colonia del Sacramento",
+      private_walking_gal_alt_2: "Passeio privado pelo Bairro Histórico",
+      private_walking_gal_alt_3: "Tour privado pelo Bairro Histórico de Colonia",
+      private_walking_gal_alt_4: "Ruas de paralelepípedos em um tour privado a pé",
+      private_walking_gal_alt_5: "Portão histórico em um tour privado em Colonia",
+      private_walking_gal_alt_6: "Guia local em um tour privado pelo Bairro Histórico",
+      private_walking_alert_select_language: "Por favor selecione um idioma",
+      private_walking_alert_select_pickup: "Por favor selecione um ponto de pickup.",
+      private_walking_alert_select_date: "Por favor selecione uma data de visita.",
+      private_walking_alert_select_time: "Por favor escolha um horário de início do tour.",
+      private_walking_alert_create_first: "Por favor crie primeiro seu grupo de tour privado.",
+      private_walking_alert_max_people: "Tamanho máximo de grupo atingido para este tour privado.",
+      private_walking_confirm_replace:
+        "Você já tem um tour privado configurado. Se continuar, editará/substituirá essa configuração.",
+      private_walking_wa_intro: "Olá! Gostaria de reservar o Tour Guiado Privado pelo Bairro Histórico:",
+      private_walking_wa_private_note: "Tour privado — exclusivamente para nosso grupo.",
+      private_walking_wa_price_pending: "Total: a confirmar pela nossa equipe.",
       historic_meta_popular: "Experiência mais popular",
       historic_meta_duration_t: "1,5 h",
       historic_meta_duration_l: "Inglês • espanhol • português",
@@ -11202,6 +11670,7 @@ function initRentPopupBehavior() {
 
   const CARD_SOON_EXPLORE_SELECTOR =
     "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn";
+  const CARD_WHATSAPP_INQUIRY_SELECTOR = "#homeCorporateBoatExploreBtn";
 
   function getCardExperiencePageUrl(card) {
     const buttons = card.querySelector(".card-buttons");
@@ -11237,6 +11706,11 @@ function initRentPopupBehavior() {
           return;
         }
 
+        if (card.querySelector(CARD_WHATSAPP_INQUIRY_SELECTOR)) {
+          openHomeCorporateBoatWhatsApp();
+          return;
+        }
+
         const pageHref = getCardExperiencePageUrl(card);
         if (!pageHref) return;
 
@@ -11248,6 +11722,37 @@ function initRentPopupBehavior() {
   }
 
   window.sacramentoInitCardReserveButtons = sacramentoInitCardReserveButtons;
+
+  function openHomeCorporateBoatWhatsApp() {
+    const lang = typeof getSiteLanguage === "function" ? getSiteLanguage() : "en";
+    const dict =
+      window.__SACRAMENTO_TRANSLATIONS?.[lang] || window.__SACRAMENTO_TRANSLATIONS?.en || {};
+    const message =
+      dict.home_corp_boat_whatsapp_message ||
+      "Hello! I'd like to inquire about the Corporate Sunset Boat Experience & included dinner.";
+    const pendingTab =
+      typeof window.sacramentoOpenWhatsAppBlankTabForGesture === "function"
+        ? window.sacramentoOpenWhatsAppBlankTabForGesture()
+        : null;
+    if (typeof window.sacramentoOpenWhatsApp === "function") {
+      window.sacramentoOpenWhatsApp(null, message, pendingTab);
+    } else if (typeof window.sacramentoBuildWhatsAppUrl === "function") {
+      window.location.assign(window.sacramentoBuildWhatsAppUrl(null, message));
+    }
+  }
+
+  window.openHomeCorporateBoatWhatsApp = openHomeCorporateBoatWhatsApp;
+
+  function initHomeCorporateBoatWhatsAppCard() {
+    const exploreBtn = document.getElementById("homeCorporateBoatExploreBtn");
+    if (exploreBtn && exploreBtn.dataset.corpBoatWaBound !== "1") {
+      exploreBtn.dataset.corpBoatWaBound = "1";
+      exploreBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        openHomeCorporateBoatWhatsApp();
+      });
+    }
+  }
 
   function openHomeLupajackSoonPopup() {
     const overlay = document.getElementById("popupLupajackSoon");
@@ -11514,6 +12019,7 @@ function initRentPopupBehavior() {
     startActivityEmojiIconObserver();
 
     initHomeLupajackSoonPopup();
+    initHomeCorporateBoatWhatsAppCard();
     sacramentoInitCardReserveButtons(
       document.getElementById("experiences") || document
     );
@@ -11528,6 +12034,7 @@ function initRentPopupBehavior() {
         const exploreSoonBtn = card.querySelector(
           "#homeLupajackExploreBtn, #homeMateAsadoExploreBtn"
         );
+        const whatsappInquiryBtn = card.querySelector(CARD_WHATSAPP_INQUIRY_SELECTOR);
         const link = Array.from(card.querySelectorAll(".card-buttons a.btn")).find((a) => {
           const h = a.getAttribute("href");
           return h && h !== "#" && h !== "";
@@ -11544,6 +12051,12 @@ function initRentPopupBehavior() {
           if (exploreSoonBtn) {
             e.preventDefault();
             openHomeLupajackSoonPopup();
+            return;
+          }
+
+          if (whatsappInquiryBtn) {
+            e.preventDefault();
+            openHomeCorporateBoatWhatsApp();
             return;
           }
 
