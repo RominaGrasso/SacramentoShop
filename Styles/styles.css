@@ -2636,6 +2636,405 @@
     text-decoration: underline;
   }
 
+  .page-colonia-wellness .wellness-page-title {
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    margin: 0 0 0.65rem;
+    line-height: 1.25;
+    color: #1f2f46;
+  }
+
+  .page-colonia-wellness .wellness-page-subtitle {
+    margin-bottom: 1.5rem;
+  }
+
+  .page-colonia-wellness .wellness-intro p {
+    margin: 0 0 1.125rem;
+    line-height: 1.65;
+    color: #444;
+  }
+
+  .page-colonia-wellness .wellness-intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-colonia-wellness .wellness-intro__closing {
+    margin-top: 0.15rem;
+  }
+
+  .page-colonia-wellness .wellness-intro {
+    margin-bottom: 1.75rem;
+  }
+
+  .page-colonia-wellness .wellness-history-fold {
+    margin: 0 0 2rem;
+    padding: 1.15rem 1.2rem;
+    border: 1px solid rgba(90, 149, 207, 0.22);
+    border-radius: 14px;
+    background: linear-gradient(180deg, #f7fbff 0%, #f2f8fc 100%);
+  }
+
+  .page-colonia-wellness .wellness-history-fold__teaser-title {
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+    color: #243b5a;
+  }
+
+  .page-colonia-wellness .wellness-history-fold__teaser-text {
+    margin: 0 0 0.85rem;
+    color: #4a5f75;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  .page-colonia-wellness .wellness-history-fold__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #5a7294;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .page-colonia-wellness .wellness-history-fold__toggle:hover,
+  .page-colonia-wellness .wellness-history-fold__toggle:focus-visible {
+    color: #2f67a3;
+    text-decoration: underline;
+  }
+
+  .page-colonia-wellness .wellness-history-fold__panel {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(90, 149, 207, 0.18);
+  }
+
+  .page-colonia-wellness .wellness-history-fold__panel-title {
+    margin: 0 0 0.75rem;
+    font-size: 1.02rem;
+    color: #243b5a;
+  }
+
+  .page-colonia-wellness .wellness-history-fold__panel p {
+    margin: 0 0 0.85rem;
+    line-height: 1.55;
+    color: #3d5568;
+    font-size: 0.94rem;
+  }
+
+  .page-colonia-wellness .wellness-history-fold__quote {
+    margin: 1rem 0 1.1rem;
+    padding: 0.75rem 0.95rem;
+    border-left: 3px solid #5a95cf;
+    background: rgba(255, 255, 255, 0.65);
+    font-style: italic;
+    color: #2f4a66;
+    line-height: 1.45;
+  }
+
+  .page-colonia-wellness .wellness-history-fold__toggle--collapse {
+    margin-top: 0.25rem;
+  }
+
+  .page-colonia-wellness .wellness-transfer-option-label {
+    margin: 0.35rem 0 0.25rem;
+    color: #3d5568;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .page-colonia-wellness .wellness-transfer-booking-note {
+    margin: 0 0 0.85rem;
+    color: #6a7788;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .page-colonia-wellness .includes-list h3 {
+    margin: 0 0 0.85rem;
+  }
+
+  .page-colonia-wellness .wellness-includes-list .activity-meta-row {
+    margin-bottom: 10px;
+    line-height: 1.45;
+  }
+
+  .page-colonia-wellness .wellness-includes-list > li:not(.activity-meta-row) {
+    margin-top: 0.9rem;
+    padding-left: 30px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #555;
+  }
+
+  .page-colonia-wellness .wellness-includes-list [data-card-meta~="sparkles"] .activity-meta-icon {
+    color: #9b5de5;
+  }
+
+  .page-colonia-wellness .page-colonia-wellness-order-start h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    color: #2c3e50;
+  }
+
+  .page-colonia-wellness .page-colonia-wellness-order-start .booking-visit-date-row {
+    margin-bottom: 0.85rem;
+  }
+
+  .page-colonia-wellness .wellness-summary-availability-hint {
+    margin: 0.75rem 0 0;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: #6a7788;
+  }
+
+  .page-colonia-wellness .cabal-summary-card-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .page-colonia-wellness .cabal-summary-card-row-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .page-colonia-wellness .cabal-summary-edit-pencil {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0.3rem 0.4rem;
+    border: none;
+    background: transparent;
+    color: #2f67a3;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+
+  .page-colonia-wellness .cabal-summary-edit-pencil:hover,
+  .page-colonia-wellness .cabal-summary-edit-pencil:focus-visible {
+    background: rgba(47, 103, 163, 0.12);
+    color: #1e3a5f;
+    outline: none;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup {
+    max-width: 340px;
+    width: min(92vw, 340px);
+    padding: 1.1rem 1.15rem 1rem;
+    text-align: center;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__header {
+    margin: 0 0 0.85rem;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__title {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    color: #1e3a5f;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__title .popup-title {
+    font-weight: 700;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__price {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.35;
+    color: #4a5c72;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__price strong {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__body {
+    text-align: left;
+    gap: 0;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__body.preferences-inside label {
+    margin-bottom: 0;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-field {
+    margin-bottom: 0.75rem;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-field:last-of-type {
+    margin-bottom: 0.55rem;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-label {
+    margin: 0 0 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #5a6572;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-option {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.35;
+    color: #2c3e50;
+    cursor: pointer;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-option input[type="radio"] {
+    accent-color: #2f67a3;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-field--guests {
+    text-align: center;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-field--guests .wellness-config-label,
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-field--guests .wellness-config-hint {
+    text-align: center;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-guests-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    margin: 0.1rem 0 0.25rem;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-guest-btn.add-guest-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #c8d4e2;
+    border-radius: 999px;
+    background: #f6f9fc;
+    color: #1e3a5f;
+    font-size: 0.95rem;
+    line-height: 1;
+    box-shadow: none;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-guest-btn.add-guest-btn:hover {
+    background: #eef4fa;
+    border-color: #9eb8d4;
+    color: #1e3a5f;
+    transform: none;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-guests-value {
+    min-width: 1.25rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: #1e3a5f;
+    text-align: center;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-hint {
+    margin: 0.15rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: #7a8798;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-totals {
+    margin-top: 0.15rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e2e8ef;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-totals__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-totals__row--meta .wellness-config-totals__desc {
+    font-size: 0.8rem;
+    color: #6a7788;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-totals__amount--addon {
+    font-size: 0.8rem;
+    color: #6a7788;
+    white-space: nowrap;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-totals__row--total {
+    margin-top: 0.45rem;
+    margin-bottom: 0;
+    padding-top: 0.55rem;
+    border-top: 1px solid #e2e8ef;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-totals__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e3a5f;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-totals__total {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    white-space: nowrap;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__actions {
+    margin-top: 0.85rem;
+    padding-top: 0;
+  }
+
+  .page-colonia-wellness #popupWellnessExperience .wellness-config-popup__save {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.55rem 1rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .page-colonia-wellness .wellness-history-fold {
+      padding: 1rem;
+    }
+
+    .page-colonia-wellness #popupWellnessExperience .wellness-config-popup {
+      max-width: min(92vw, 340px);
+      padding: 1rem 1rem 0.9rem;
+    }
+  }
+
   .page-kayak .horse-hero {
     background-image: url("../Assets/images/kayak1.jpg");
     background-position: center center;
