@@ -2776,6 +2776,16 @@
     color: #9b5de5;
   }
 
+  .page-colonia-wellness .page-colonia-wellness-order-start .cabal-inline-price {
+    margin: 0 0 0.65rem;
+    font-size: 1.12rem;
+    color: #1e3a5f;
+  }
+
+  .page-colonia-wellness .page-colonia-wellness-order-start .cabal-inline-price strong {
+    font-weight: 700;
+  }
+
   .page-colonia-wellness .page-colonia-wellness-order-start h3 {
     margin: 0 0 0.75rem;
     font-size: 1.05rem;

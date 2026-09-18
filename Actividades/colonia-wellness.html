@@ -114,6 +114,9 @@
 </ul>
 </div>
 <div class="order-start page-colonia-wellness-order-start">
+<p class="cabal-inline-price">
+<strong data-translate="wellness_page_price_line">USD 95 per person</strong>
+</p>
 <h3 data-translate="wellness_create_title">Create your wellness experience</h3>
 <div class="booking-visit-date-row">
 <label data-translate="booking_visit_date_label" for="wellnessVisitDate">Preferred visit date</label>
@@ -158,7 +161,7 @@
 <button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeWellnessExperience" type="button">✕</button>
 <div class="wellness-config-popup__header">
 <p class="wellness-config-popup__title"><strong class="popup-title" data-translate="wellness_popup_title" id="wellnessPopupTitle">Colonia Wellness</strong></p>
-<p class="wellness-config-popup__price"><strong data-translate="wellness_page_price_line">USD 85 per person</strong></p>
+<p class="wellness-config-popup__price"><strong data-translate="wellness_page_price_line">USD 95 per person</strong></p>
 </div>
 <div class="preferences-inside wellness-config-popup__body">
 <div class="wellness-config-field">
@@ -188,7 +191,7 @@
 </div>
 <div aria-live="polite" class="wellness-config-totals">
 <div class="wellness-config-totals__row wellness-config-totals__row--meta">
-<span class="wellness-config-totals__desc" id="wellnessPopupGuestsLine">1 × USD 85</span>
+<span class="wellness-config-totals__desc" id="wellnessPopupGuestsLine">1 × USD 95</span>
 </div>
 <div class="wellness-config-totals__row wellness-config-totals__row--meta wellness-config-totals__row--transport" hidden="" id="wellnessPopupTransportLine">
 <span class="wellness-config-totals__desc" data-translate="wellness_popup_transport_line_label">Transfer</span>
@@ -196,7 +199,7 @@
 </div>
 <div class="wellness-config-totals__row wellness-config-totals__row--total">
 <span class="wellness-config-totals__label" data-translate="total_label">Total</span>
-<span class="wellness-config-totals__total" id="wellnessPopupTotalAmount">USD 85</span>
+<span class="wellness-config-totals__total" id="wellnessPopupTotalAmount">USD 95</span>
 </div>
 </div>
 </div>
@@ -213,14 +216,14 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260918wellnessmodal"></script>
+<script src="../Home/index.js?v=20260918wellness95"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260721footer"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script src="../Home/orders.js?v=20260918wellness"></script>
 <script>
 (function () {
   const STORAGE_KEY = "colonia_wellness_config";
-  const PRICE_PER_PERSON = 85;
+  const PRICE_PER_PERSON = 95;
   const TRANSPORT_FLAT_USD = 60;
   const MAX_GUESTS = 15;
   const WHATSAPP_NUMBER = "59898945542";
@@ -437,7 +440,7 @@
       card.appendChild(pGuests);
 
       const pPrice = document.createElement("p");
-      pPrice.innerHTML = `<strong>${t("wellness_summary_price_label", "Price")}:</strong> ${t("wellness_page_price_line", "USD 85 per person")}`;
+      pPrice.innerHTML = `<strong>${t("wellness_summary_price_label", "Price")}:</strong> ${t("wellness_page_price_line", "USD 95 per person")}`;
       card.appendChild(pPrice);
 
       const pTransport = document.createElement("p");

@@ -25,7 +25,7 @@
 
   const HOME_CARD_PRICE_USD = {
     "cabal.html": [40],
-    "colonia-wellness.html": [85],
+    "colonia-wellness.html": [95],
     "kayak.html": [80],
     "walkingtour.html": [12, 17],
     "private-walkingtour.html": [50],

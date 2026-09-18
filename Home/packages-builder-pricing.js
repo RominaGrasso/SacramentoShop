@@ -140,7 +140,7 @@
   /** Single-rate activities from home-card prices (per person unless overridden). */
   const SINGLE_PER_PERSON = [
     ["cabal.html", 40],
-    ["colonia-wellness.html", 85],
+    ["colonia-wellness.html", 95],
     ["kayak.html", 80],
     ["candombe.html", 80],
     ["mate.html", 40],

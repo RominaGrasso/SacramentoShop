@@ -1357,7 +1357,7 @@ golden_mile_step_note:
       wellness_include_4: "Afternoon tea in a calm setting",
       wellness_include_5: "Time outdoors to enjoy the landscape and sunset",
       wellness_include_6: "Half-day wellness experience in San Pedro",
-      wellness_page_price_line: "USD 85 per person",
+      wellness_page_price_line: "USD 95 per person",
       wellness_transfer_option_label: "Round-trip transfer (optional) — USD 60",
       wellness_transfer_booking_note:
         "You can add round-trip transportation from Colonia del Sacramento when booking.",
@@ -4992,7 +4992,7 @@ golden_mile_step_note:
       wellness_include_4: "Té de la tarde en un entorno tranquilo",
       wellness_include_5: "Tiempo al aire libre para disfrutar del paisaje y la puesta de sol",
       wellness_include_6: "Experiencia wellness de media jornada en San Pedro",
-      wellness_page_price_line: "USD 85 por persona",
+      wellness_page_price_line: "USD 95 por persona",
       wellness_transfer_option_label: "Traslado ida y vuelta (opcional) — USD 60",
       wellness_transfer_booking_note:
         "Podés agregar traslado ida y vuelta desde Colonia del Sacramento al realizar tu reserva.",
@@ -8627,7 +8627,7 @@ golden_mile_step_note:
       wellness_include_4: "Chá da tarde em um ambiente tranquilo",
       wellness_include_5: "Tempo ao ar livre para desfrutar da paisagem e do pôr do sol",
       wellness_include_6: "Experiência wellness de meio dia em San Pedro",
-      wellness_page_price_line: "USD 85 por pessoa",
+      wellness_page_price_line: "USD 95 por pessoa",
       wellness_transfer_option_label: "Traslado de ida e volta (opcional) — USD 60",
       wellness_transfer_booking_note:
         "Você pode adicionar o traslado de ida e volta desde Colonia del Sacramento ao fazer sua reserva.",
