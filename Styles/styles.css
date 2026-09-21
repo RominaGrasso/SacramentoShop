@@ -5847,6 +5847,499 @@
     background-color: rgba(255,255,255,0.6);
   }
 
+  .home-agencies-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 46px;
+    padding: 0.55rem 1.25rem;
+    box-sizing: border-box;
+    background-color: #2a5f9e;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .home-agencies-bar:hover {
+    background-color: #244f86;
+  }
+
+  .home-agencies-bar__inner {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem 0.45rem;
+    max-width: 100%;
+    font-size: 0.92rem;
+    line-height: 1.35;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .home-agencies-bar__cta {
+    font-weight: 600;
+  }
+
+  .home-agencies-bar__arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .home-agencies-bar:hover .home-agencies-bar__arrow {
+    transform: translateX(3px);
+  }
+
+  .page-agencies {
+    background: #f8fafc;
+    color: #2c3e50;
+  }
+
+  .page-agencies header,
+  .page-agencies .agencies-main {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  .page-agencies .agencies-hero {
+    position: relative;
+    min-height: clamp(220px, 32vh, 320px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.25rem;
+    background-image: url("../Assets/images/colonia.webp");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .page-agencies .agencies-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 45, 78, 0.72) 0%, rgba(30, 58, 95, 0.82) 100%);
+  }
+
+  .page-agencies .agencies-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .page-agencies .agencies-hero__kicker {
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 0 1.75rem;
+    padding: 0.52rem 1.45rem;
+    border-radius: 999px;
+    background: #66a6e6;
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.25;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.22) inset;
+    box-sizing: border-box;
+  }
+
+  .page-agencies .agencies-hero__title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.45rem, 3.2vw, 2rem);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .page-agencies .agencies-hero__subtitle {
+    margin: 0 0 1.25rem;
+    font-size: clamp(0.92rem, 2.2vw, 1.05rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .page-agencies .agencies-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    margin: 0;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .page-agencies .agencies-hero__cta:link,
+  .page-agencies .agencies-hero__cta:visited,
+  .page-agencies .agencies-hero__cta:hover,
+  .page-agencies .agencies-hero__cta:focus,
+  .page-agencies .agencies-hero__cta:active {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .page-agencies .agencies-hero__cta::after {
+    content: "→";
+    display: inline-block;
+    margin-left: 0.2rem;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .page-agencies .agencies-hero__cta:hover {
+    background: linear-gradient(135deg, #5f9ad8, #4a87c0);
+    transform: translateY(-1px);
+  }
+
+  .page-agencies .agencies-hero__cta:hover::after {
+    transform: translateX(3px);
+  }
+
+  .page-agencies .agencies-hero__cta:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 3px;
+  }
+
+  .page-agencies .agencies-main {
+    padding-bottom: 2.5rem;
+  }
+
+  .page-agencies .agencies-section {
+    padding: 2rem 1.25rem;
+  }
+
+  .page-agencies .agencies-section.agencies-intro {
+    padding: 2rem 1.25rem 0.35rem;
+  }
+
+  .page-agencies .agencies-intro .agencies-section__text:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-agencies .agencies-section.agencies-services {
+    padding: 0.85rem 1.25rem 2rem;
+  }
+
+  .page-agencies .agencies-section__inner {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .page-agencies .agencies-section__title {
+    margin: 0 0 0.85rem;
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    font-weight: 700;
+    color: #1e3a5f;
+  }
+
+  .page-agencies .agencies-section__text,
+  .page-agencies .agencies-section__lead {
+    margin: 0 0 0.75rem;
+    font-size: 0.96rem;
+    line-height: 1.65;
+    color: #4a5c72;
+  }
+
+  .page-agencies .agencies-section__lead {
+    margin-bottom: 1.25rem;
+  }
+
+  .page-agencies .agencies-service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .page-agencies .agencies-service-tags li {
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: #eef4fb;
+    border: 1px solid rgba(47, 103, 163, 0.18);
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: #1e3a5f;
+  }
+
+  .page-agencies .agencies-why__grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(140px, 190px);
+    gap: 1.5rem 2rem;
+    align-items: center;
+  }
+
+  .page-agencies .agencies-why-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .page-agencies .agencies-why-list li {
+    margin-bottom: 0.85rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #4a5c72;
+  }
+
+  .page-agencies .agencies-why-list li strong {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: #1e3a5f;
+    font-weight: 600;
+  }
+
+  .page-agencies .agencies-why__badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page-agencies .agencies-why__badge img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .page-agencies .agencies-form-section {
+    padding-top: 1.5rem;
+  }
+
+  .page-agencies .agencies-form-section__inner {
+    max-width: 720px;
+    padding: 1.35rem 1.25rem 1.5rem;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid rgba(47, 103, 163, 0.12);
+  }
+
+  .page-agencies .agencies-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-agencies .agencies-field {
+    display: grid;
+    grid-template-rows: minmax(2.75em, auto) auto;
+    gap: 0.3rem;
+    align-content: start;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .page-agencies .agencies-field--full {
+    grid-column: 1 / -1;
+  }
+
+  .page-agencies .agencies-field__label-wrap {
+    min-height: 2.75em;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #3d5568;
+    line-height: 1.35;
+  }
+
+  .page-agencies .agencies-field--full:not(.agencies-field--required) .agencies-field__label-wrap {
+    min-height: 0;
+  }
+
+  .page-agencies .agencies-form > .agencies-field.agencies-field--full {
+    grid-template-rows: auto auto;
+  }
+
+  .page-agencies .agencies-form > .agencies-field.agencies-field--full .agencies-field__label-wrap {
+    min-height: 0;
+  }
+
+  .page-agencies .agencies-field__label {
+    display: inline;
+  }
+
+  .page-agencies .agencies-field__asterisk {
+    white-space: nowrap;
+  }
+
+  .page-agencies .agencies-field input,
+  .page-agencies .agencies-field select,
+  .page-agencies .agencies-field textarea {
+    font: inherit;
+    font-weight: 400;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid #c8d4e2;
+    border-radius: 8px;
+    background: #fff;
+    color: #2c3e50;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 2.625rem;
+  }
+
+  .page-agencies .agencies-field textarea {
+    resize: vertical;
+    min-height: 96px;
+  }
+
+  .page-agencies .agencies-field input:focus,
+  .page-agencies .agencies-field select:focus,
+  .page-agencies .agencies-field textarea:focus {
+    outline: none;
+    border-color: #66a6e6;
+    box-shadow: 0 0 0 2px rgba(102, 166, 230, 0.25);
+  }
+
+  .page-agencies .agencies-fieldset {
+    margin: 0 0 1rem;
+    padding: 0;
+    border: none;
+  }
+
+  .page-agencies .agencies-fieldset legend {
+    margin-bottom: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #3d5568;
+  }
+
+  .page-agencies .agencies-check-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 0.75rem;
+  }
+
+  .page-agencies .agencies-check-grid label,
+  .page-agencies .agencies-radio-row label,
+  .page-agencies .agencies-privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #4a5c72;
+    cursor: pointer;
+  }
+
+  .page-agencies .agencies-radio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+  }
+
+  .page-agencies .agencies-privacy {
+    margin: 0.85rem 0 1rem;
+  }
+
+  .page-agencies .agencies-privacy a {
+    color: #2f67a3;
+    font-weight: 600;
+  }
+
+  .page-agencies .agencies-form__submit {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .page-agencies .agencies-form__submit:disabled {
+    opacity: 0.72;
+    cursor: wait;
+  }
+
+  .page-agencies .agencies-form__hp-wrap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .page-agencies .agencies-form-error {
+    margin: 0 0 1rem;
+    padding: 0.85rem 0.9rem;
+    border-radius: 8px;
+    background: #fef2f2;
+    border: 1px solid rgba(185, 28, 28, 0.18);
+  }
+
+  .page-agencies .agencies-form-error p {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #7f1d1d;
+  }
+
+  .page-agencies .agencies-form-error__wa {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .page-agencies .agencies-form-success {
+    text-align: center;
+    padding: 1rem 0.5rem;
+  }
+
+  .page-agencies .agencies-form-success h2 {
+    margin: 0 0 0.65rem;
+    font-size: 1.25rem;
+    color: #1e3a5f;
+  }
+
+  .page-agencies .agencies-form-success p {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+    color: #4a5c72;
+  }
+
+  @media (max-width: 768px) {
+    .page-agencies .agencies-hero {
+      min-height: 200px;
+      padding: 2rem 1rem;
+    }
+
+    .page-agencies .agencies-hero__kicker {
+      margin-bottom: 1.5rem;
+      padding: 0.48rem 1.15rem;
+      font-size: 0.9375rem;
+      letter-spacing: 0.05em;
+    }
+
+    .page-agencies .agencies-section.agencies-intro {
+      padding: 1.5rem 1rem 0.25rem;
+    }
+
+    .page-agencies .agencies-section.agencies-services {
+      padding: 0.65rem 1rem 1.5rem;
+    }
+
+    .page-agencies .agencies-why__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .page-agencies .agencies-why__badge {
+      order: -1;
+      max-width: 160px;
+      margin: 0 auto 0.5rem;
+    }
+
+    .page-agencies .agencies-form__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .page-agencies .agencies-check-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .page-agencies .agencies-form-section__inner {
+      padding: 1.1rem 1rem 1.25rem;
+    }
+  }
+
   .card-video {
     width: 100%;
     height: 220px;
@@ -12322,6 +12815,17 @@ body.page-home .partners .logos-slider {
     flex-shrink: 0;
   }
 
+  .home-agencies-bar {
+    min-height: auto;
+    padding: 0.5rem max(14px, env(safe-area-inset-left, 0px));
+    padding-right: max(14px, env(safe-area-inset-right, 0px));
+  }
+
+  .home-agencies-bar__inner {
+    font-size: clamp(0.82rem, 3.4vw, 0.92rem);
+    line-height: 1.4;
+  }
+
   .cards {
     padding: 28px 12px;
     gap: 22px;
@@ -12977,6 +13481,7 @@ body.page-actividad .about-quote {
 body.page-home header,
 body.page-home .hero,
 body.page-home .trust-bar,
+body.page-home .home-agencies-bar,
 body.page-home .hero-region-tagline {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
@@ -12985,6 +13490,7 @@ body.page-home .hero-region-tagline {
 body.page-home header *,
 body.page-home .hero *,
 body.page-home .trust-bar *,
+body.page-home .home-agencies-bar *,
 body.page-home .hero-region-tagline * {
   font-family: inherit;
 }
