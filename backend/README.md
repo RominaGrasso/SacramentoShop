@@ -27,6 +27,125 @@ Rejected browser origins are logged as `[cors] rejected origin: …` (disable wi
 - `GET /api/payments/health/detail` — admin JWT; full Plexo/config diagnostic (former `/health` body)
 - `POST /api/payments/resolve`
 - `POST /api/payments/webhook`
+- `POST /api/agencies/inquiry` — solicitud tarifas B2B (`agencies.html`); envía email vía Resend
+
+### Agencies inquiry payload
+
+```json
+{
+  "name": "Jane Doe",
+  "company": "Example Travel",
+  "country": "Argentina",
+  "city": "Buenos Aires",
+  "email": "jane@example.com",
+  "phone": "+54 11 1234 5678",
+  "website": "https://example.com",
+  "companyType": "travel_agency",
+  "interests": ["tours", "transfers"],
+  "passengerTypes": ["groups"],
+  "message": "Optional message",
+  "language": "es",
+  "privacyAccepted": true
+}
+```
+
+Requires `RESEND_API_KEY`. Optional `AGENCIES_INQUIRY_EMAIL` (defaults to `NOTIFICATION_EMAIL` or `contacto@sacraadventures.com`).
+
+## Post-deploy checklist — Área de Agencias (`agencies.html`)
+
+Usar este checklist después de cada deploy del backend que incluya `POST /api/agencies/inquiry`.
+
+### 1. Variables en Render
+
+Confirmar en el servicio de backend (mismo que pagos) que existen:
+
+- `RESEND_API_KEY`
+- `RESEND_FROM`
+- `AGENCIES_INQUIRY_EMAIL=contacto@sacraadventures.com`
+
+### 2. Remitente Resend
+
+Verificar que `RESEND_FROM` use un dominio/remitente **verificado** en el panel de Resend (no solo `onboarding@resend.dev` salvo pruebas puntuales).
+
+### 3. Deploy y disponibilidad del endpoint
+
+- Confirmar que el deploy en Render terminó sin errores.
+- Confirmar que el endpoint responde:
+
+  `POST /api/agencies/inquiry`
+
+  (URL pública típica: `https://sacramento-payments-test.onrender.com/api/agencies/inquiry`)
+
+### 4. Smoke test (curl)
+
+Ejecutar con datos ficticios (ajustar la URL base si usás otro entorno):
+
+```bash
+curl -sS -w "\nHTTP %{http_code}\n" -X POST \
+  "https://sacramento-payments-test.onrender.com/api/agencies/inquiry" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{
+    "name": "Smoke Test",
+    "company": "Agencia Ficticia QA",
+    "country": "Uruguay",
+    "city": "Colonia",
+    "email": "qa-agency@example.com",
+    "phone": "+598 99 000 000",
+    "website": "https://example.com",
+    "companyType": "travel_agency",
+    "interests": ["tours", "transfers"],
+    "passengerTypes": ["groups"],
+    "message": "Prueba post-deploy — ignorar",
+    "language": "es",
+    "privacyAccepted": true
+  }'
+```
+
+### 5. Respuesta esperada del smoke test
+
+- **HTTP 200**
+- Cuerpo JSON: `{ "ok": true }`
+
+Si falta `RESEND_API_KEY` o Resend rechaza el envío, el endpoint puede responder **503** / **502** (no considerar el deploy listo para producción).
+
+### 6. Bandeja de entrada
+
+Confirmar que el correo llegó a **contacto@sacraadventures.com** con asunto del tipo:
+
+`Nueva solicitud de tarifas B2B — Agencia Ficticia QA`
+
+Revisar también spam/cuarentena si no aparece de inmediato.
+
+### 7. Reply-To
+
+Abrir el email recibido y verificar que **Reply-To** (responder) sea **qa-agency@example.com** (el email del payload de prueba), para poder contestar directamente al interesado.
+
+### 8. Prueba end-to-end en producción (`agencies.html`)
+
+Desde el sitio publicado (p. ej. `https://sacraadventures.com/Home/agencies.html`):
+
+- [ ] Al enviar, el botón muestra el estado **“Enviando…”** / **“Sending…”** (según idioma) mientras dura el POST.
+- [ ] Llega un email real a **contacto@sacraadventures.com** con los datos del formulario.
+- [ ] El mensaje **“¡Gracias por contactarnos! / Recibimos tu solicitud…”** aparece **solo después** de un **200** del servidor.
+- [ ] Tras el éxito, el formulario se **resetea** y se muestra el panel de confirmación.
+
+### 9. Fallo controlado (frontend)
+
+Simular fallo del backend (p. ej. quitar temporalmente `RESEND_API_KEY` en un entorno de staging, o detener el servicio) y enviar el formulario:
+
+- [ ] **No** debe mostrarse el mensaje de éxito “Recibimos tu solicitud”.
+- [ ] Los datos ingresados **permanecen** en el formulario.
+- [ ] Debe mostrarse el aviso de error y el botón **“Contactar por WhatsApp”** (fallback con los datos ya cargados).
+
+Restaurar la configuración correcta después de la prueba.
+
+### 10. Honeypot y rate limit
+
+Sin cambiar código:
+
+- **Honeypot:** un POST con `"hp_field": "bot"` (u otro valor no vacío) debe responder **200** `{ "ok": true }` **sin** enviar email (comprobar que no llega correo).
+- **Rate limit:** más de **8** solicitudes válidas desde la misma IP en **15 minutos** debe responder **429** (`Too many requests`).
 
 ### Resolve payload
 

@@ -7,6 +7,8 @@
     email: "contacto@sacraadventures.com",
     instagram: "https://www.instagram.com/_sacramentoadventures/",
     instagramHandle: "@_sacramentoadventures",
+    linkedin: "https://www.linkedin.com/company/sacramento-adventures",
+    linkedinLabel: "Sacramento Adventures",
     facebook: "https://www.facebook.com/profile.php?id=61590489881741",
     whatsappNumber: "59898945542",
   };
@@ -127,6 +129,16 @@
       '<i class="fa-brands fa-instagram home-site-footer__contact-icon" aria-hidden="true"></i>' +
       "<span>" +
       CONTACT.instagramHandle +
+      "</span>" +
+      "</a>" +
+      "</li>" +
+      "<li>" +
+      '<a class="home-site-footer__link home-site-footer__contact-link" href="' +
+      CONTACT.linkedin +
+      '" rel="noopener noreferrer" target="_blank" data-translate-aria-label="home_footer_contact_linkedin_aria" aria-label="Sacramento Adventures on LinkedIn">' +
+      '<i class="fa-brands fa-linkedin-in home-site-footer__contact-icon" aria-hidden="true"></i>' +
+      "<span>" +
+      CONTACT.linkedinLabel +
       "</span>" +
       "</a>" +
       "</li>" +

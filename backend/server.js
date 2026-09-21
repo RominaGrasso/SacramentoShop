@@ -6,6 +6,7 @@ import helmet from "helmet";
 import dotenv from "dotenv";
 import forge from "node-forge";
 import { findReusableLink, upsertLink, updateStatusBySessionId, updatePaymentByFingerprint, updatePaymentBySessionId, findPaymentByFingerprint, listPayments, getPaymentBySessionId, canApplyPaymentStatusTransition, listActiveFingerprints } from "./store.js";
+import { createAgenciesInquiryHandler } from "./agenciesInquiryRoute.js";
 
 dotenv.config({ path: "backend/.env" });
 
@@ -1803,6 +1804,8 @@ app.post("/api/payments/resolve", async (req, res) => {
     });
   }
 });
+
+app.post("/api/agencies/inquiry", createAgenciesInquiryHandler());
 
 app.post("/api/payments/webhook", (req, res) => {
   const plexoPayload = req.body?.Object?.Object;
