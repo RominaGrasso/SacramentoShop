@@ -144,7 +144,7 @@ Restaurar la configuración correcta después de la prueba.
 
 Sin cambiar código:
 
-- **Honeypot:** un POST con `"hp_field": "bot"` (u otro valor no vacío) debe responder **200** `{ "ok": true }` **sin** enviar email (comprobar que no llega correo).
+- **Honeypot:** un POST JSON directo con `"hp_field": "bot"` debe responder **200** `{ "ok": true, "accepted": true }` **sin** enviar email (log: `[agencies-inquiry] honeypot triggered`). El formulario web **no** incluye `hp_field` en el JSON (evita falsos positivos por autocompletado del navegador).
 - **Rate limit:** más de **8** solicitudes válidas desde la misma IP en **15 minutos** debe responder **429** (`Too many requests`).
 
 ### Resolve payload

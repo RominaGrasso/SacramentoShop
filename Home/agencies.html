@@ -135,7 +135,7 @@
 <p class="agencies-section__lead" data-translate="agencies_form_lead">Fill in your details and our commercial team will contact you to share our B2B rates and understand your agency’s needs.</p>
 <form class="agencies-form" id="agenciesRatesForm" novalidate="">
 <div aria-hidden="true" class="agencies-form__hp-wrap">
-<label>Nombre<input autocomplete="off" name="agencies_hp_field" tabindex="-1" type="text"/></label>
+<label for="agencies_hp_field"><span class="visually-hidden">Leave this field empty</span><input autocomplete="new-password" id="agencies_hp_field" name="agencies_hp_field" tabindex="-1" type="text" value=""/></label>
 </div>
 <div class="agencies-form__grid">
 <label class="agencies-field agencies-field--required">
@@ -236,6 +236,6 @@
 <script src="payments-api-config.js?v=20260921agenciesapi"></script>
 <script src="whatsapp.js?v=20260720footer"></script>
 <script data-sacramento-footer src="site-footer.js?v=20260921footerlinkedin"></script>
-<script src="agencies-form.js?v=20260921agenciesapi"></script>
+<script src="agencies-form.js?v=20260921agencieshpfix"></script>
 </body>
 </html>
