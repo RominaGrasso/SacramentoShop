@@ -144,7 +144,7 @@ export async function sendAgenciesInquiryNotification(data) {
 
   if (!apiKey) {
     // eslint-disable-next-line no-console
-    console.warn("[agencies-inquiry] omitted: RESEND_API_KEY not configured");
+    console.warn("[agencies-inquiry] notification omitted: RESEND_API_KEY not configured");
     return { sent: false, omitted: true, error: "email_not_configured" };
   }
 
@@ -177,25 +177,43 @@ export async function sendAgenciesInquiryNotification(data) {
       body: JSON.stringify(payload)
     });
 
+    const responseText = await res.text().catch(() => "");
+    let responseJson = null;
+    try {
+      responseJson = responseText ? JSON.parse(responseText) : null;
+    } catch {
+      responseJson = null;
+    }
+
     if (!res.ok) {
-      const detail = await res.text().catch(() => "");
       // eslint-disable-next-line no-console
-      console.warn("[agencies-inquiry] email error", {
+      console.warn("[agencies-inquiry] resend rejected notification", {
         status: res.status,
-        detail: String(detail).slice(0, 300)
+        detail: String(responseText).slice(0, 300)
+      });
+      return { sent: false, error: "email_send_failed" };
+    }
+
+    const resendId =
+      responseJson && typeof responseJson.id === "string" ? responseJson.id : "";
+    if (!resendId) {
+      // eslint-disable-next-line no-console
+      console.warn("[agencies-inquiry] resend response missing id", {
+        status: res.status,
+        detail: String(responseText).slice(0, 300)
       });
       return { sent: false, error: "email_send_failed" };
     }
 
     // eslint-disable-next-line no-console
-    console.log("[agencies-inquiry] email sent", {
+    console.log("[agencies-inquiry] resend accepted notification", {
       company: data.company,
-      to
+      resendId
     });
-    return { sent: true };
+    return { sent: true, resendId };
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.warn("[agencies-inquiry] email error", {
+    console.warn("[agencies-inquiry] resend request failed", {
       message: err instanceof Error ? err.message : String(err)
     });
     return { sent: false, error: "email_send_failed" };

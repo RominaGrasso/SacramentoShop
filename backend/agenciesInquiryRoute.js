@@ -127,6 +127,8 @@ export function createAgenciesInquiryHandler() {
   return async function agenciesInquiryHandler(req, res) {
     const hp = trimStr(req.body?.hp_field, 200);
     if (hp) {
+      // eslint-disable-next-line no-console
+      console.log("[agencies-inquiry] honeypot triggered, skipping send");
       return res.status(200).json({ ok: true, accepted: true });
     }
 
@@ -143,13 +145,30 @@ export function createAgenciesInquiryHandler() {
       });
     }
 
+    // eslint-disable-next-line no-console
+    console.log("[agencies-inquiry] sending notification", {
+      company: validated.data.company,
+      language: validated.data.language
+    });
+
     const emailResult = await sendAgenciesInquiryNotification(validated.data);
     if (!emailResult.sent) {
       const status = emailResult.omitted ? 503 : 502;
+      // eslint-disable-next-line no-console
+      console.warn("[agencies-inquiry] notification failed", {
+        omitted: Boolean(emailResult.omitted),
+        error: emailResult.error || "unknown"
+      });
       return res.status(status).json({
         error: emailResult.omitted ? "Email service not configured" : "Failed to send inquiry email"
       });
     }
+
+    // eslint-disable-next-line no-console
+    console.log("[agencies-inquiry] notification sent", {
+      company: validated.data.company,
+      resendId: emailResult.resendId || null
+    });
 
     await sendAgenciesInquiryConfirmationToApplicant(validated.data);
 

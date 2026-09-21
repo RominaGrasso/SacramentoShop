@@ -137,8 +137,7 @@
       passengerTypes: data.passengerTypes,
       message: data.message,
       language: getLang(),
-      privacyAccepted: data.privacyAccepted,
-      hp_field: data.hp_field
+      privacyAccepted: data.privacyAccepted
     };
   }
 
