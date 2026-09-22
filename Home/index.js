@@ -533,7 +533,7 @@ golden_mile_step_note:
       vinos_price_title: "From USD 30 per guest",
       vinos_hours: "Mon–Fri · 11 AM – 7 PM",
       vinos_price_p:
-        "Three tasting options at the wine shop (USD 30, USD 35, or USD 40). Uruguayan wines. Options 1 and 2 include three empanadas. Add one order per guest — the summary and total update automatically.",
+        "Three tasting options at the wine shop (USD 30 or USD 40). Uruguayan wines. Options 1 and 2 include three empanadas. Add one order per guest — the summary and total update automatically.",
       vinos_included_title: "What's included",
       vinos_include_1: "✔ Tasting option of your choice (Uruguayan wines)",
       vinos_include_2: "✔ Three empanadas included with options 1 and 2",
@@ -552,7 +552,7 @@ golden_mile_step_note:
       vinos_pkg_opt1_price: "USD 40",
       vinos_pkg_opt1_b1: "5 Uruguayan wine tastings",
       vinos_pkg_opt2_label: "3 Uruguayan wine tastings + 3 empanadas",
-      vinos_pkg_opt2_price: "USD 35",
+      vinos_pkg_opt2_price: "USD 40",
       vinos_pkg_opt2_b1: "3 Uruguayan wine tastings",
       vinos_pkg_opt3_label: "5 Uruguayan wine tastings",
       vinos_pkg_opt3_price: "USD 30",
@@ -3247,7 +3247,7 @@ golden_mile_step_note:
       liebres_step_5_title: "Return:",
       liebres_step_5_desc:
         "The same private service picks you up when you finish and drops you at your hotel or the terminal.",
-      liebres_price_title: "USD 95 per guest",
+      liebres_price_title: "USD 100 per guest",
       liebres_price_p:
         "Private transport is billed by vehicle: USD 50 total for 1–4 guests (one vehicle).",
       liebres_included_title: "What's included",
@@ -4267,7 +4267,7 @@ golden_mile_step_note:
       vinos_price_title: "Desde USD 30 por visitante",
       vinos_hours: "Lun–Vie · 11 AM – 7 PM",
       vinos_price_p:
-        "Tres opciones de degustación en una vinoteca del Barrio Histórico (USD 30, USD 35 o USD 40). Vinos uruguayos. Las opciones 1 y 2 incluyen tres empanadas. Agregá un pedido por visitante — el resumen y el total se actualizan solos.",
+        "Tres opciones de degustación en una vinoteca del Barrio Histórico (USD 30 o USD 40). Vinos uruguayos. Las opciones 1 y 2 incluyen tres empanadas. Agregá un pedido por visitante — el resumen y el total se actualizan solos.",
       vinos_included_title: "Qué incluye",
       vinos_include_1: "✔ Opción de degustación a elección (vinos uruguayos)",
       vinos_include_2: "✔ Tres empanadas incluidas en las opciones 1 y 2",
@@ -4286,7 +4286,7 @@ golden_mile_step_note:
       vinos_pkg_opt1_price: "USD 40",
       vinos_pkg_opt1_b1: "5 degustaciones de vinos uruguayos",
       vinos_pkg_opt2_label: "3 degustaciones de vinos uruguayos + 3 empanadas",
-      vinos_pkg_opt2_price: "USD 35",
+      vinos_pkg_opt2_price: "USD 40",
       vinos_pkg_opt2_b1: "3 degustaciones de vinos uruguayos",
       vinos_pkg_opt3_label: "5 degustaciones de vinos uruguayos",
       vinos_pkg_opt3_price: "USD 30",
@@ -6981,7 +6981,7 @@ golden_mile_step_note:
       liebres_step_5_title: "Regreso:",
       liebres_step_5_desc:
         "El mismo servicio privado te busca al terminar y te deja en tu hotel o en la terminal.",
-      liebres_price_title: "USD 95 por visitante",
+      liebres_price_title: "USD 100 por visitante",
       liebres_price_p:
         "El transporte privado se factura por vehículo: USD 50 en total para 1–4 visitantes (un vehículo).",
       liebres_included_title: "Qué incluye",
@@ -7219,7 +7219,7 @@ golden_mile_step_note:
       walking_mate_experience_title: "Experiencia de mate · USD 20 extra",
       walking_mate_experience_body:
         "El mate es parte del día a día en Uruguay: compartir el mate, la bombilla y charlar un rato. Este complemento opcional te invita a vivir un momento de mate relajado y a conocer por qué es tan típico de nuestra cultura (USD 20 por persona).",
-      walking_price_title: "USD 12 por persona",
+      walking_price_title: "USD 15 por persona",
       walking_price_heading: "Precios según idioma del guía",
       walking_price_lang_es: "Español",
       walking_price_lang_en: "Inglés",
@@ -8000,7 +8000,7 @@ golden_mile_step_note:
       vinos_price_title: "A partir de USD 30 por visitante",
       vinos_hours: "Seg–Sex · 11h – 19h",
       vinos_price_p:
-        "Três opções de degustação na vinícola do Bairro Histórico (USD 30, USD 35 ou USD 40). Vinhos uruguaios. As opções 1 e 2 incluem três empanadas. Adicione um pedido por visitante — o resumo e o total são atualizados automaticamente.",
+        "Três opções de degustação na vinícola do Bairro Histórico (USD 30 ou USD 40). Vinhos uruguaios. As opções 1 e 2 incluem três empanadas. Adicione um pedido por visitante — o resumo e o total são atualizados automaticamente.",
       vinos_included_title: "O que está incluído",
       vinos_include_1: "✔ Opção de degustação à escolha (vinhos uruguaios)",
       vinos_include_2: "✔ Três empanadas incluídas nas opções 1 e 2",
@@ -8019,7 +8019,7 @@ golden_mile_step_note:
       vinos_pkg_opt1_price: "USD 40",
       vinos_pkg_opt1_b1: "5 degustações de vinhos uruguaios",
       vinos_pkg_opt2_label: "3 degustações de vinhos uruguaios + 3 empanadas",
-      vinos_pkg_opt2_price: "USD 35",
+      vinos_pkg_opt2_price: "USD 40",
       vinos_pkg_opt2_b1: "3 degustações de vinhos uruguaios",
       vinos_pkg_opt3_label: "5 degustações de vinhos uruguaios",
       vinos_pkg_opt3_price: "USD 30",
@@ -10714,7 +10714,7 @@ golden_mile_step_note:
       liebres_step_5_title: "Retorno:",
       liebres_step_5_desc:
         "O mesmo serviço privativo busca você ao final e deixa no hotel ou no terminal.",
-      liebres_price_title: "USD 95 por visitante",
+      liebres_price_title: "USD 100 por visitante",
       liebres_price_p:
         "O transporte privativo é cobrado por veículo: USD 50 no total para 1–4 visitantes (um veículo).",
       liebres_included_title: "O que está incluído",
