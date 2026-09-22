@@ -26,7 +26,7 @@
       pricingMode: "perPerson",
       variants: [
         { id: "copas_5_empanadas", price: 40, labelKey: "vinos_pkg_opt1_label", labelFallback: "5 wines + empanadas" },
-        { id: "copas_3_empanadas", price: 35, labelKey: "vinos_pkg_opt2_label", labelFallback: "3 wines + empanadas" },
+        { id: "copas_3_empanadas", price: 40, labelKey: "vinos_pkg_opt2_label", labelFallback: "3 wines + empanadas" },
         { id: "copas_5", price: 30, labelKey: "vinos_pkg_opt3_label", labelFallback: "5 wines" }
       ]
     },
@@ -118,7 +118,7 @@
     "walkingtour.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "lang_es", price: 12, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
+        { id: "lang_es", price: 15, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
         { id: "lang_en", price: 17, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
         { id: "lang_pt", price: 17, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
       ]
@@ -153,7 +153,7 @@
     ["golden-mile.html", 120],
     ["private-walkingtour.html", 50],
     ["night-walkingtour.html", 20],
-    ["lasliebres.html", 95],
+    ["lasliebres.html", 100],
     ["sio.html", 70],
     ["romantic.html", 70],
     ["sunset-boat.html", 40]
