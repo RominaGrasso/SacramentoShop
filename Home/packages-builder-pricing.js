@@ -18,8 +18,8 @@
     "golfcart.html": {
       pricingMode: "group",
       variants: [
-        { id: "up_to_3", price: 140, labelKey: "golfcart_pkg_opt1_label", labelFallback: "Up to 3 guests" },
-        { id: "up_to_5", price: 180, labelKey: "golfcart_pkg_opt2_label", labelFallback: "Up to 5 guests" }
+        { id: "up_to_3", price: 160, labelKey: "golfcart_pkg_opt1_label", labelFallback: "Up to 3 guests" },
+        { id: "up_to_5", price: 200, labelKey: "golfcart_pkg_opt2_label", labelFallback: "Up to 5 guests" }
       ]
     },
     "vinos.html": {
@@ -43,7 +43,7 @@
       variants: [
         { id: "tour_tasting", price: 45, labelKey: "legado_pkg_opt1_label", labelFallback: "Tour with tasting" },
         { id: "tour_tasting_picada", price: 65, labelKey: "legado_pkg_opt2_label", labelFallback: "Tour, tasting & picada" },
-        { id: "full_experience", price: 95, labelKey: "legado_pkg_opt3_label", labelFallback: "Full experience" }
+        { id: "full_experience", price: 110, labelKey: "legado_pkg_opt3_label", labelFallback: "Full experience" }
       ]
     },
     "s34-gin.html": {
