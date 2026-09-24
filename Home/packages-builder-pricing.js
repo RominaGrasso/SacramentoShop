@@ -33,9 +33,9 @@
     "experiencia-bodega.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "degustacion_5_vinos", price: 35, labelKey: "exp_bodega_pkg_opt1_label", labelFallback: "5-wine tasting" },
-        { id: "vinos_quesos", price: 50, labelKey: "exp_bodega_pkg_opt2_label", labelFallback: "Wines & Cheeses" },
-        { id: "premium_vinos_sabores", price: 70, labelKey: "exp_bodega_pkg_opt3_label", labelFallback: "Premium Wine & Local Flavors" }
+        { id: "degustacion_5_vinos", price: 45, labelKey: "exp_bodega_pkg_opt1_label", labelFallback: "5-wine tasting" },
+        { id: "vinos_quesos", price: 60, labelKey: "exp_bodega_pkg_opt2_label", labelFallback: "Wines & Cheeses" },
+        { id: "premium_vinos_sabores", price: 80, labelKey: "exp_bodega_pkg_opt3_label", labelFallback: "Premium Wine & Local Flavors" }
       ]
     },
     "legado.html": {
@@ -57,9 +57,9 @@
     "quinton.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "opt1", price: 110, labelKey: "quinton_pkg_1_title", labelFallback: "Option 1" },
-        { id: "opt2", price: 120, labelKey: "quinton_pkg_2_title", labelFallback: "Option 2" },
-        { id: "opt3", price: 140, labelKey: "quinton_pkg_3_title", labelFallback: "Option 3" }
+        { id: "opt1", price: 120, labelKey: "quinton_pkg_1_title", labelFallback: "Option 1" },
+        { id: "opt2", price: 130, labelKey: "quinton_pkg_2_title", labelFallback: "Option 2" },
+        { id: "opt3", price: 150, labelKey: "quinton_pkg_3_title", labelFallback: "Option 3" }
       ]
     },
     "historic-lasliebres.html": {
@@ -153,7 +153,7 @@
     ["golden-mile.html", 120],
     ["private-walkingtour.html", 50],
     ["night-walkingtour.html", 20],
-    ["lasliebres.html", 100],
+    ["lasliebres.html", 110],
     ["sio.html", 70],
     ["romantic.html", 70],
     ["sunset-boat.html", 40]
