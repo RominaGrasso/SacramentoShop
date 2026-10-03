@@ -24,7 +24,7 @@ const translations = {
       animal_donation_close_aria: "Close donation dialog",
       animal_donation_wa_info_message:
         "Hello. I'd like to get more information about how to support Responsabilidad Animal Colonia.",
-      hero_tagline_region: "Activities in Colonia del Sacramento and the surrounding area",
+      hero_tagline_region: "Activities in Colonia del Sacramento and other destinations in Uruguay",
       home_activity_search_label: "Search activities",
       home_activity_search_placeholder: "Search activities…",
       home_activity_search_clear: "Clear search",
@@ -180,6 +180,8 @@ const translations = {
       agencies_hero_subtitle:
         "Experiences, transfers and tailor-made itineraries for travel agencies, tour operators, individual travelers and groups.",
       agencies_hero_cta: "Request Agency Rates",
+      agencies_gallery_alt: "Group experiences with Sacramento Adventures",
+      agencies_gallery_aria: "Group travel photos",
       agencies_intro_title: "Local operation. One point of contact.",
       agencies_intro_p1:
         "Sacramento Adventures is an inbound tour operator in Colonia del Sacramento. We work with travel agencies and tour operators, coordinating experiences, transfers and itineraries for individual travelers and groups.",
@@ -1872,10 +1874,8 @@ golden_mile_step_note:
       about_hero_gallery_next: "Next photo",
       about_who_h2: "Who we are",
       about_who_p:
-        "We are a group of young professionals, investing in the tourism growth of Colonia del Sacramento. We love what we do: bringing quality, good energy, and lasting memories to your time in Colonia. We care about the details and work with trusted partners, designing activities and improving our current offerings.",
+        "We are a group of young professionals, investing in the tourism growth of Colonia del Sacramento and Uruguay. We love what we do: bringing quality, good energy, and lasting memories to your time in Colonia. We care about the details and work with trusted partners, designing activities and improving our current offerings.",
       about_who_p_invite: "We invite you to get to know us!",
-      about_team_note:
-        "We're refreshing team photos — three more teammates coming soon. Scroll down to meet everyone.",
       about_closing_quote:
         "Behind every process, every accomplishment, and every step forward, there is dedication, effort, and a genuine drive to do things right.",
       nav_cat_all: "All experiences",
@@ -1889,59 +1889,20 @@ golden_mile_step_note:
       nav_cat_romantic: "Romantic",
       nav_cat_corporate: "Corporate Experiences",
       about_team_linkedin_label: "LinkedIn",
-      about_team_photo_alt: "Team member",
       about_team_romina_role: "Co-Founder",
-      about_team_romina_bday: "🎂 Oct 16",
       about_team_romina_bio:
         "Romina blends her background in quality engineering with a strategic and entrepreneurial mindset. She brings together local partners, designs meaningful experiences, and ensures every detail reflects quality, authenticity, and human connection.",
-      about_team_maru_role: "Designer & photographer",
-      about_team_maru_bday: "🎂 Feb 27",
-      about_team_maru_bio:
-        "Maru is a highly entrepreneurial and detail-oriented professional, known for her creativity and strong sense of responsibility. She brings ideas to life with a refined and organized approach.",
-      about_team_nicole_photo_alt: "Nicole",
-      about_team_nicole_role: "Corporate & social events coordinator",
-      about_team_nicole_bio:
-        "Nicole has extensive experience organizing and coordinating events. Her ability to plan ahead, handle the unexpected, and attend to every detail ensures each experience runs flawlessly.",
-      about_team_matias_role: "Web support assistant",
-      about_team_matias_bday: "🎂 Oct 15",
-      about_team_matias_bio:
-        "Contributes to specific project tasks to improve the user experience.",
-      about_team_selena_maite_role: "Tour guide",
-      about_team_selena_maite_bday: "🎂 Jan 31",
-      about_team_selena_maite_bio:
-        "She brings strong leadership and character to the team. Her deep knowledge of Colonia's history and culture, combined with a passionate and driven mindset, makes her a key force in shaping authentic experiences and advancing our project.",
-      about_team_selena_role: "Tour guide",
-      about_team_selena_bday: "🎂 Sep 1",
-      about_team_selena_bio:
-        "Deeply passionate about culture and the arts, she brings extensive knowledge and a unique perspective to every experience, helping visitors connect with the true essence of Colonia.",
-      about_team_laura_role: "Tour guide",
-      about_team_laura_bday: "🎂 Jul 6",
-      about_team_laura_bio:
-        "She combines professionalism with a refined understanding of gastronomy and wine. She carefully curates high-quality experiences, bringing elegance and attention to detail to every moment.",
-      about_team_adrian_role: "Tour guide",
-      about_team_adrian_bday: "🎂 Jun 23",
-      about_team_adrian_bio:
-        "Warm, attentive and committed, he has a way of connecting with people and making them feel comfortable and welcome. His warmth shows in every experience.",
-      about_team_alan_role: "Tour guide",
-      about_team_alan_bday: "🎂 Feb 1",
-      about_team_alan_bio:
-        "Naturally charismatic and people-oriented, he ensures every guest feels welcome and comfortable. His positive energy plays a key role in creating memorable experiences.",
       about_team_agustin_photo_alt: "Agustín",
       about_team_agustin_role: "Commercial Team",
       about_team_agustin_bio:
         "Agustín is part of the commercial team at Sacramento Adventures. He helps us connect each traveler with the experiences that best match what they are looking for, supporting the process from the first contact.",
-      about_team_lupa_role: "Chief Happiness Officer",
-      about_team_lupa_age: "Age: 5 years",
-      about_team_lupa_bio:
-        "She supports the overall guest experience by contributing to a welcoming and positive brand atmosphere.",
-      about_team_sam_role: "Walking companion expert",
-      about_team_sam_age: "Age: 9 years",
-      about_team_sam_bio:
-        "He loves exploring every corner of Colonia and joining guests on relaxed walks. Sam brings a calm and friendly presence to every experience.",
-      about_team_jack_role: "Director of First Impressions",
-      about_team_jack_age: "Age: 3 years",
-      about_team_jack_bio:
-        "He embodies the brand's commitment to creating a friendly and memorable first impression for every guest.",
+      about_local_team_h2: "A local team behind every experience",
+      about_local_team_p1:
+        "At Sacramento Adventures we work with a team of local guides and collaborators who share our way of living and showing Colonia.",
+      about_local_team_p2:
+        "We offer support in Spanish, English and Portuguese, and we match the right professional to each experience according to language, type of activity and the character of each group.",
+      about_local_team_p3:
+        "Our goal is for every traveler to feel accompanied, welcomed and connected to the local essence.",
       coffee_title: "☕ Coffee with stunning views",
       coffee_text: "Discover hidden gems and enjoy specialty coffee at Beduina.",
       plaza_title: "Plaza de Toros Experience with Café Stop",
@@ -3756,7 +3717,7 @@ golden_mile_step_note:
       animal_donation_close_aria: "Cerrar ventana de donación",
       animal_donation_wa_info_message:
         "Hola. Quisiera obtener más información sobre cómo colaborar con Responsabilidad Animal Colonia.",
-      hero_tagline_region: "Actividades en Colonia del Sacramento y alrededores",
+      hero_tagline_region: "Actividades en Colonia del Sacramento y otros destinos de Uruguay",
       home_activity_search_label: "Buscar actividades",
       home_activity_search_placeholder: "Buscar actividades…",
       home_activity_search_clear: "Borrar búsqueda",
@@ -3913,6 +3874,8 @@ golden_mile_step_note:
       agencies_hero_subtitle:
         "Experiencias, traslados e itinerarios para agencias, operadores turísticos, viajeros individuales y grupos.",
       agencies_hero_cta: "Solicitar tarifas para agencias",
+      agencies_gallery_alt: "Experiencias en grupo con Sacramento Adventures",
+      agencies_gallery_aria: "Fotos de viajes en grupo",
       agencies_intro_title: "Operación local. Un solo punto de contacto.",
       agencies_intro_p1:
         "Sacramento Adventures es un operador turístico receptivo en Colonia del Sacramento. Trabajamos junto a agencias y operadores turísticos coordinando experiencias, traslados e itinerarios para viajeros individuales y grupos.",
@@ -5606,10 +5569,8 @@ golden_mile_step_note:
       about_hero_gallery_next: "Foto siguiente",
       about_who_h2: "Quiénes somos",
       about_who_p:
-        "Somos un grupo de jóvenes profesionales, invirtiendo en la expansión turística de Colonia del Sacramento. Amamos lo que hacemos: llevar calidad, buena energía y recuerdos que duran a tu paso por Colonia. Nos encanta el detalle y trabajamos con partners de confianza, diseñando actividades y mejorando las propuestas actuales.",
+        "Somos un grupo de jóvenes profesionales, invirtiendo en la expansión turística de Colonia del Sacramento y Uruguay. Amamos lo que hacemos: llevar calidad, buena energía y recuerdos que duran a tu paso por Colonia. Nos encanta el detalle y trabajamos con partners de confianza, diseñando actividades y mejorando las propuestas actuales.",
       about_who_p_invite: "¡Te invitamos a conocernos!",
-      about_team_note:
-        "Estamos actualizando las fotos del equipo: pronto sumamos tres integrantes más. ¡Seguí bajando para conocer al crew!",
       about_closing_quote:
         "Detrás de cada proceso, cada logro y cada avance, hay dedicación, esfuerzo y muchas ganas de hacer las cosas bien.",
       nav_cat_all: "Todas las experiencias",
@@ -5623,59 +5584,20 @@ golden_mile_step_note:
       nav_cat_romantic: "Romántico",
       nav_cat_corporate: "Experiencias corporativas",
       about_team_linkedin_label: "LinkedIn",
-      about_team_photo_alt: "Integrante del equipo",
       about_team_romina_role: "Co-Founder",
-      about_team_romina_bday: "🎂 16 oct",
       about_team_romina_bio:
         "Romina combina su formación en ingeniería de la calidad con una mirada estratégica y emprendedora. Articula aliados locales, diseña experiencias con sentido y cuida cada detalle para que refleje calidad, autenticidad y vínculo humano.",
-      about_team_maru_role: "Diseñadora y fotógrafa",
-      about_team_maru_bday: "🎂 27 feb",
-      about_team_maru_bio:
-        "Maru es una profesional muy emprendedora y detallista, reconocida por su creatividad y sentido de la responsabilidad. Lleva las ideas a la práctica con un enfoque refinado y ordenado.",
-      about_team_nicole_photo_alt: "Nicole",
-      about_team_nicole_role: "Coordinadora de Eventos Corporativos y Sociales",
-      about_team_nicole_bio:
-        "Nicole cuenta con una amplia experiencia en la organización y coordinación de eventos. Su capacidad para planificar, resolver imprevistos y cuidar cada detalle hace que cada experiencia se desarrolle de manera impecable.",
-      about_team_matias_role: "Auxiliar de Soporte Web",
-      about_team_matias_bday: "🎂 15 oct",
-      about_team_matias_bio:
-        "Colabora con tareas específicas del proyecto para mejorar la experiencia de usuario.",
-      about_team_selena_maite_role: "Guía turística",
-      about_team_selena_maite_bday: "🎂 31 ene",
-      about_team_selena_maite_bio:
-        "Aporta liderazgo y carácter al equipo. Su profundo conocimiento de la historia y la cultura de Colonia, junto con una actitud apasionada y empujadora, la convierte en una pieza clave para experiencias auténticas y para nuestro proyecto.",
-      about_team_selena_role: "Guía turística",
-      about_team_selena_bday: "🎂 1 sep",
-      about_team_selena_bio:
-        "Apasionada por la cultura y las artes, suma conocimiento y una mirada única a cada experiencia y ayuda a los visitantes a conectar con la esencia de Colonia.",
-      about_team_laura_role: "Guía turística",
-      about_team_laura_bday: "🎂 6 jul",
-      about_team_laura_bio:
-        "Combina profesionalismo con una mirada fina sobre gastronomía y vinos. Diseña experiencias de alta calidad con elegancia y atención al detalle en cada momento.",
-      about_team_adrian_role: "Guía turístico",
-      about_team_adrian_bday: "🎂 23 jun",
-      about_team_adrian_bio:
-        "Cercano, atento y comprometido, tiene una forma de conectar con las personas y hacerlas sentir cómodas y bien recibidas. Su calidez se nota en cada experiencia.",
-      about_team_alan_role: "Guía turístico",
-      about_team_alan_bday: "🎂 1 feb",
-      about_team_alan_bio:
-        "Carismático y orientado a las personas, hace que cada visita se sienta bienvenida y cómoda. Su energía positiva es clave para experiencias memorables.",
       about_team_agustin_photo_alt: "Agustín",
       about_team_agustin_role: "Área Comercial",
       about_team_agustin_bio:
         "Agustín forma parte del área comercial de Sacramento Adventures. Nos ayuda a conectar a cada viajero con las experiencias que mejor se adaptan a lo que busca, acompañando el proceso desde el primer contacto.",
-      about_team_lupa_role: "Chief Happiness Officer",
-      about_team_lupa_age: "Edad: 5 años",
-      about_team_lupa_bio:
-        "Contribuye a que la experiencia del visitante sea cálida y positiva, sumando buena onda al ambiente de la marca.",
-      about_team_sam_role: "Experto en compañía en caminatas",
-      about_team_sam_age: "Edad: 9 años",
-      about_team_sam_bio:
-        "Le encanta recorrer cada rincón de Colonia y acompañar a los visitantes en caminatas relajadas. Sam aporta calma y simpatía en cada salida.",
-      about_team_jack_role: "Director de primeras impresiones",
-      about_team_jack_age: "Edad: 3 años",
-      about_team_jack_bio:
-        "Encarna el compromiso de la marca con una primera impresión cálida y memorable para cada visita.",
+      about_local_team_h2: "Un equipo local detrás de cada experiencia",
+      about_local_team_p1:
+        "En Sacramento Adventures trabajamos junto a un equipo de guías y colaboradores locales que comparten nuestra forma de vivir y mostrar Colonia.",
+      about_local_team_p2:
+        "Contamos con atención en español, inglés y portugués, y seleccionamos al profesional adecuado para cada experiencia según el idioma, el tipo de actividad y las características de cada grupo.",
+      about_local_team_p3:
+        "Nuestro objetivo es que cada viajero se sienta acompañado, bien recibido y conectado con la esencia local.",
       plaza_title: "Experiencia en la Plaza de Toros y Merienda Completa",
       plaza_meta_transfer: "Traslado incluido",
       plaza_meta_tickets: "Entradas incluidas",
@@ -7490,7 +7412,7 @@ golden_mile_step_note:
       animal_donation_close_aria: "Fechar janela de doação",
       animal_donation_wa_info_message:
         "Olá. Gostaria de obter mais informações sobre como colaborar com a Responsabilidad Animal Colonia.",
-      hero_tagline_region: "Atividades em Colonia del Sacramento e arredores",
+      hero_tagline_region: "Atividades em Colonia del Sacramento e outros destinos do Uruguai",
       home_activity_search_label: "Buscar atividades",
       home_activity_search_placeholder: "Buscar atividades…",
       home_activity_search_clear: "Limpar busca",
@@ -7647,6 +7569,8 @@ golden_mile_step_note:
       agencies_hero_subtitle:
         "Experiências, traslados e roteiros personalizados para agências, operadoras de turismo, viajantes individuais e grupos.",
       agencies_hero_cta: "Solicitar tarifas para agências",
+      agencies_gallery_alt: "Experiências em grupo com a Sacramento Adventures",
+      agencies_gallery_aria: "Fotos de viagens em grupo",
       agencies_intro_title: "Operação local. Um único ponto de contato.",
       agencies_intro_p1:
         "A Sacramento Adventures é uma operadora receptiva em Colonia del Sacramento. Trabalhamos com agências e operadoras de turismo, coordenando experiências, traslados e roteiros para viajantes individuais e grupos.",
@@ -9338,10 +9262,8 @@ golden_mile_step_note:
       about_hero_gallery_next: "Próxima foto",
       about_who_h2: "Quem somos",
       about_who_p:
-        "Somos um grupo de jovens profissionais, investindo na expansão turística de Colonia del Sacramento. Amamos o que fazemos: levar qualidade, boa energia e memórias que duram para a sua passagem por Colonia. Gostamos do detalhe e trabalhamos com parceiros de confiança, desenhando atividades e melhorando as propostas atuais.",
+        "Somos um grupo de jovens profissionais, investindo na expansão turística de Colonia del Sacramento e Uruguai. Amamos o que fazemos: levar qualidade, boa energia e memórias que duram para a sua passagem por Colonia. Gostamos do detalhe e trabalhamos com parceiros de confiança, desenhando atividades e melhorando as propostas atuais.",
       about_who_p_invite: "Convidamos você a nos conhecer!",
-      about_team_note:
-        "Estamos atualizando as fotos da equipe — três integrantes a caminho. Role para conhecer todo mundo!",
       about_closing_quote:
         "Por trás de cada processo, cada conquista e cada avanço, há dedicação, esforço e muita vontade de fazer bem as coisas.",
       nav_cat_all: "Todas as experiências",
@@ -9355,59 +9277,20 @@ golden_mile_step_note:
       nav_cat_romantic: "Romântico",
       nav_cat_corporate: "Experiências corporativas",
       about_team_linkedin_label: "LinkedIn",
-      about_team_photo_alt: "Membro da equipe",
       about_team_romina_role: "Co-Founder",
-      about_team_romina_bday: "🎂 16 out",
       about_team_romina_bio:
         "Romina une sua formação em engenharia da qualidade a uma visão estratégica e empreendedora. Reúne parceiros locais, desenha experiências significativas e cuida de cada detalhe para refletir qualidade, autenticidade e conexão humana.",
-      about_team_maru_role: "Designer e fotógrafa",
-      about_team_maru_bday: "🎂 27 fev",
-      about_team_maru_bio:
-        "Maru é uma profissional muito empreendedora e detalhista, reconhecida pela criatividade e senso de responsabilidade. Transforma ideias em realidade com refinamento e organização.",
-      about_team_nicole_photo_alt: "Nicole",
-      about_team_nicole_role: "Coordenadora de Eventos Corporativos e Sociais",
-      about_team_nicole_bio:
-        "Nicole tem ampla experiência na organização e coordenação de eventos. Sua capacidade de planejar, resolver imprevistos e cuidar de cada detalhe faz com que cada experiência aconteça de forma impecável.",
-      about_team_matias_role: "Auxiliar de suporte web",
-      about_team_matias_bday: "🎂 15 out",
-      about_team_matias_bio:
-        "Colabora em tarefas específicas do projeto para melhorar a experiência do usuário.",
-      about_team_selena_maite_role: "Guia turística",
-      about_team_selena_maite_bday: "🎂 31 jan",
-      about_team_selena_maite_bio:
-        "Traz liderança e personalidade forte para a equipe. Seu profundo conhecimento da história e da cultura de Colonia, somado a uma postura apaixonada e determinada, faz dela uma força central em experiências autênticas e no nosso projeto.",
-      about_team_selena_role: "Guia turística",
-      about_team_selena_bday: "🎂 1 set",
-      about_team_selena_bio:
-        "Profundamente apaixonada por cultura e artes, traz conhecimento e um olhar único para cada experiência, ajudando visitantes a conectar com a essência de Colonia.",
-      about_team_laura_role: "Guia turística",
-      about_team_laura_bday: "🎂 6 jul",
-      about_team_laura_bio:
-        "Combina profissionalismo com uma compreensão refinada de gastronomia e vinhos. Curadoria de experiências de alta qualidade, com elegância e atenção ao detalhe.",
-      about_team_adrian_role: "Guia turístico",
-      about_team_adrian_bday: "🎂 23 jun",
-      about_team_adrian_bio:
-        "Próximo, atento e comprometido, tem uma forma de se conectar com as pessoas e fazê-las sentir-se confortáveis e bem recebidas. Seu calor humano se nota em cada experiência.",
-      about_team_alan_role: "Guia turístico",
-      about_team_alan_bday: "🎂 1 fev",
-      about_team_alan_bio:
-        "Carismático e voltado às pessoas, faz com que cada visitante se sinta bem-vindo e à vontade. Sua energia positiva é fundamental para experiências memoráveis.",
       about_team_agustin_photo_alt: "Agustín",
       about_team_agustin_role: "Área Comercial",
       about_team_agustin_bio:
         "Agustín faz parte da área comercial da Sacramento Adventures. Ele nos ajuda a conectar cada viajante com as experiências que melhor combinam com o que procura, acompanhando o processo desde o primeiro contato.",
-      about_team_lupa_role: "Chief Happiness Officer",
-      about_team_lupa_age: "Idade: 5 anos",
-      about_team_lupa_bio:
-        "Contribui para uma experiência acolhedora e positiva, reforçando o clima da marca.",
-      about_team_sam_role: "Especialista em companhia para caminhadas",
-      about_team_sam_age: "Idade: 9 anos",
-      about_team_sam_bio:
-        "Adora explorar cada cantinho de Colonia e acompanhar os visitantes em caminhadas tranquilas. Sam traz calma e simpatia em cada passeio.",
-      about_team_jack_role: "Diretor de primeiras impressões",
-      about_team_jack_age: "Idade: 3 anos",
-      about_team_jack_bio:
-        "Encarna o compromisso da marca com uma primeira impressão calorosa e memorável para cada visita.",
+      about_local_team_h2: "Uma equipe local por trás de cada experiência",
+      about_local_team_p1:
+        "Na Sacramento Adventures trabalhamos com uma equipe de guias e colaboradores locais que compartilham nossa forma de viver e mostrar Colonia.",
+      about_local_team_p2:
+        "Contamos com atendimento em espanhol, inglês e português, e escolhemos o profissional adequado para cada experiência de acordo com o idioma, o tipo de atividade e as características de cada grupo.",
+      about_local_team_p3:
+        "Nosso objetivo é que cada viajante se sinta acompanhado, bem recebido e conectado com a essência local.",
       plaza_title: "Experiência na Plaza de Toros com o café da Partner café",
       plaza_meta_transfer: "Transfer incluído",
       plaza_meta_tickets: "Ingressos incluídos",

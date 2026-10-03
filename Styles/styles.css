@@ -3422,6 +3422,7 @@
     background: linear-gradient(180deg, #fafcfd 0%, #ffffff 55%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 20px rgba(47, 103, 163, 0.06);
     position: relative;
+    scroll-margin-top: 12px;
   }
 
   /* Misma tipografía que .about-quote (cierre About Us) */
@@ -4731,11 +4732,12 @@
     outline-offset: 3px;
   }
 
-  /* Home: trust section (before historic map) */
+  /* Home: trust section (confidence stripe before excursions catalog) */
   .home-trust-section {
     font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-weight: 400;
-    padding: clamp(3rem, 7vw, 5rem) clamp(1.15rem, 4vw, 2.75rem);
+    padding: clamp(1.35rem, 3.2vw, 2.1rem) clamp(1.15rem, 4vw, 2.75rem)
+      clamp(0.7rem, 1.6vw, 1.05rem);
     background: #ffffff;
     box-shadow: inset 0 1px 0 rgba(102, 166, 230, 0.06);
   }
@@ -4791,7 +4793,7 @@
   .home-trust-section__divider {
     border: none;
     height: 1px;
-    margin: clamp(2rem, 4vw, 3rem) auto;
+    margin: clamp(1rem, 2.2vw, 1.45rem) auto;
     max-width: min(720px, 100%);
     background: linear-gradient(
       90deg,
@@ -4806,7 +4808,7 @@
   }
 
   .home-trust-section__payments-title {
-    margin: 0 0 clamp(1.35rem, 3vw, 1.75rem);
+    margin: 0 0 clamp(0.7rem, 1.8vw, 0.95rem);
     font-family: inherit;
     font-size: clamp(1.05rem, 2.4vw, 1.22rem);
     font-weight: 700;
@@ -4822,7 +4824,7 @@
     justify-content: center;
     gap: clamp(1.35rem, 3.5vw, 2.35rem);
     list-style: none;
-    padding: 0.25rem 0 0.5rem;
+    padding: 0.15rem 0 0;
     margin: 0;
   }
 
@@ -5807,6 +5809,12 @@
       margin-left: -12px;
       margin-right: -12px;
     }
+
+    .about-content .about-local-team.about-who-intro {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   .trust-bar {
@@ -5852,18 +5860,23 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 46px;
-    padding: 0.55rem 1.25rem;
+    min-height: 42px;
+    padding: 0.45rem 1.35rem;
     box-sizing: border-box;
-    background-color: #2a5f9e;
+    background-color: #355f96;
     color: #fff;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.25s ease;
   }
 
   .home-agencies-bar:hover {
-    background-color: #244f86;
+    background-color: #355f96;
+  }
+
+  .home-agencies-bar:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.55);
+    outline-offset: -3px;
   }
 
   .home-agencies-bar__inner {
@@ -5871,25 +5884,41 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 0.35rem 0.45rem;
-    max-width: 100%;
+    gap: 0.35rem 0.85rem;
+    max-width: min(1120px, 100%);
     font-size: 0.92rem;
     line-height: 1.35;
-    font-weight: 500;
     text-align: center;
   }
 
+  .home-agencies-bar__lead {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.96);
+  }
+
   .home-agencies-bar__cta {
-    font-weight: 600;
+    font-weight: 700;
+    color: #fff;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
   }
 
   .home-agencies-bar__arrow {
     display: inline-block;
-    transition: transform 0.2s ease;
+    font-weight: 500;
+    opacity: 0.92;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .home-agencies-bar:hover .home-agencies-bar__cta {
+    opacity: 0.86;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
   }
 
   .home-agencies-bar:hover .home-agencies-bar__arrow {
-    transform: translateX(3px);
+    transform: translateX(2px);
+    opacity: 0.86;
   }
 
   .page-agencies {
@@ -6004,6 +6033,17 @@
 
   .page-agencies .agencies-main {
     padding-bottom: 2.5rem;
+  }
+
+  .page-agencies .agencies-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.75rem 1.25rem 0.35rem;
+  }
+
+  .page-agencies .agencies-gallery .about-hero-carousel {
+    max-width: min(600px, 100%);
   }
 
   .page-agencies .agencies-section {
@@ -6312,6 +6352,10 @@
     .page-agencies .agencies-hero {
       min-height: 200px;
       padding: 2rem 1rem;
+    }
+
+    .page-agencies .agencies-gallery {
+      padding: 1.25rem 1rem 0.2rem;
     }
 
     .page-agencies .agencies-hero__kicker {
@@ -7003,7 +7047,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: clamp(1.1rem, 2.8vw, 1.65rem) clamp(1rem, 3.5vw, 1.35rem) clamp(1.35rem, 3vw, 1.85rem);
+    padding: clamp(1rem, 2.4vw, 1.4rem) clamp(1rem, 3.5vw, 1.35rem) clamp(0.7rem, 1.8vw, 1.05rem);
     background: transparent;
   }
 
@@ -7014,10 +7058,10 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     text-align: center;
-    margin: 0 0 clamp(0.85rem, 2vw, 1.1rem);
+    margin: 0 0 clamp(0.4rem, 1.1vw, 0.65rem);
     padding: 0 12px;
     width: 100%;
-    max-width: min(1040px, 100%);
+    max-width: min(600px, 100%);
     box-sizing: border-box;
     text-wrap: balance;
   }
@@ -7025,7 +7069,7 @@
   .about-hero-carousel {
     position: relative;
     width: 100%;
-    max-width: min(1040px, 100%);
+    max-width: min(600px, 100%);
     border-radius: 18px;
     overflow: hidden;
     background: transparent;
@@ -7045,7 +7089,7 @@
     position: relative;
     aspect-ratio: 4 / 3;
     min-height: 220px;
-    max-height: min(72vh, 560px);
+    max-height: min(56vh, 450px);
     padding: 0;
     box-sizing: border-box;
     overflow: hidden;
@@ -7061,7 +7105,8 @@
     display: block;
   }
 
-  .about-hero .about-hero-carousel-btn {
+  .about-hero .about-hero-carousel-btn,
+  .agencies-gallery .about-hero-carousel-btn {
     z-index: 3;
     top: 50%;
     width: 2.75rem;
@@ -7089,7 +7134,8 @@
       box-shadow 0.25s ease;
   }
 
-  .about-hero .about-hero-carousel-btn:hover {
+  .about-hero .about-hero-carousel-btn:hover,
+  .agencies-gallery .about-hero-carousel-btn:hover {
     opacity: 1;
     background: rgba(255, 255, 255, 0.95);
     color: #1e3a5f;
@@ -7097,15 +7143,18 @@
     transform: translateY(-50%) scale(1.05);
   }
 
-  .about-hero .about-hero-carousel-btn:active {
+  .about-hero .about-hero-carousel-btn:active,
+  .agencies-gallery .about-hero-carousel-btn:active {
     transform: translateY(-50%) scale(0.98);
   }
 
-  .about-hero .about-hero-carousel-btn.prev {
+  .about-hero .about-hero-carousel-btn.prev,
+  .agencies-gallery .about-hero-carousel-btn.prev {
     left: 14px;
   }
 
-  .about-hero .about-hero-carousel-btn.next {
+  .about-hero .about-hero-carousel-btn.next,
+  .agencies-gallery .about-hero-carousel-btn.next {
     right: 14px;
   }
 
@@ -7117,22 +7166,25 @@
 
     .about-hero-slide {
       aspect-ratio: 3 / 4;
-      min-height: 240px;
-      max-height: min(68vh, 480px);
+      min-height: 220px;
+      max-height: min(58vh, 420px);
     }
 
-    .about-hero .about-hero-carousel-btn {
+    .about-hero .about-hero-carousel-btn,
+    .agencies-gallery .about-hero-carousel-btn {
       width: 2.45rem;
       height: 2.45rem;
       font-size: 1.22rem;
       opacity: 0.88;
     }
 
-    .about-hero .about-hero-carousel-btn.prev {
+    .about-hero .about-hero-carousel-btn.prev,
+    .agencies-gallery .about-hero-carousel-btn.prev {
       left: 10px;
     }
 
-    .about-hero .about-hero-carousel-btn.next {
+    .about-hero .about-hero-carousel-btn.next,
+    .agencies-gallery .about-hero-carousel-btn.next {
       right: 10px;
     }
   }
@@ -7141,8 +7193,8 @@
   
   .about-content {
     max-width: 1000px;
-    margin: 48px auto;
-    padding: 0 20px;
+    margin: clamp(1.35rem, 3.2vw, 2.1rem) auto 0;
+    padding: 0 20px clamp(1.5rem, 4vw, 2.5rem);
     min-width: 0;
     width: 100%;
     box-sizing: border-box;
@@ -7228,19 +7280,120 @@
     line-height: 1.6;
     color: #2c2c2c;
     margin: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
   }
 
   .about-quote-wrap {
-    margin-top: 3.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin-top: clamp(3.25rem, 8vw, 5.25rem);
+    margin-bottom: 0;
+    padding: 0 0 clamp(2.25rem, 6vw, 3.5rem);
+    border: none;
+    border-top: none;
+    border-bottom: none;
+    background: none;
+    box-shadow: none;
     text-align: center;
   }
 
+  .about-quote-wrap::before,
+  .about-quote-wrap::after {
+    content: none;
+    display: none;
+  }
+
   .about-quote--closing {
-    max-width: 720px;
+    max-width: 640px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .about-content .about-local-team.home-about-intro,
+  .about-content .about-local-team {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin: clamp(2.75rem, 6.5vw, 4.25rem) 0 0;
+    padding: 0;
+    overflow: visible;
+    background: none;
+    box-shadow: none;
+    border: none;
+  }
+
+  .about-content .about-local-team::before,
+  .about-content .about-local-team::after {
+    content: none;
+    display: none;
+  }
+
+  .about-content .about-local-team .home-about-intro__inner {
+    max-width: min(760px, 100%);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .about-content .about-local-team .about-who-intro__head {
+    margin-bottom: clamp(1.35rem, 3.5vw, 1.9rem);
+  }
+
+  .about-content .about-local-team .about-who-intro__head .home-about-intro__accent {
+    margin-bottom: 0;
+  }
+
+  .about-content .about-local-team .home-about-intro__body {
+    max-width: min(620px, 100%);
+    margin: 0 auto;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .about-local-team__photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: min(720px, 100%);
+    margin: 0 auto clamp(1.6rem, 4.2vw, 2.35rem);
+  }
+
+  .about-local-team__photos img {
+    width: 100%;
+    height: 168px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: none;
+    box-shadow: none;
+  }
+
+  html.js-reveal .about-content .about-local-team .about-who-intro__head.about-reveal {
+    transition-delay: 0.04s;
+  }
+
+  html.js-reveal .about-content .about-local-team .about-local-team__photos.about-reveal {
+    transition-delay: 0.1s;
+  }
+
+  html.js-reveal .about-content .about-local-team .home-about-intro__body.about-reveal {
+    transition-delay: 0.16s;
+  }
+
+  @media (max-width: 768px) {
+    .about-local-team__photos {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .about-local-team__photos img {
+      height: 96px;
+    }
+
+    .about-content .about-local-team .home-about-intro__body {
+      gap: 0.95rem;
+      text-align: center;
+    }
   }
   
   /* TEAM GRID (IMPORTANTE) */
@@ -12829,13 +12982,14 @@ body.page-home .partners .logos-slider {
 
   .home-agencies-bar {
     min-height: auto;
-    padding: 0.5rem max(14px, env(safe-area-inset-left, 0px));
-    padding-right: max(14px, env(safe-area-inset-right, 0px));
+    padding: 0.5rem max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
 
   .home-agencies-bar__inner {
-    font-size: clamp(0.82rem, 3.4vw, 0.92rem);
-    line-height: 1.4;
+    font-size: clamp(0.84rem, 3.4vw, 0.94rem);
+    line-height: 1.45;
+    gap: 0.25rem 0.7rem;
   }
 
   .cards {
@@ -13483,6 +13637,11 @@ body.page-actividad header .logo-sub {
 }
 
 /* About page blocks that used Playfair */
+body.page-actividad .about-hero-title {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
 body.page-actividad .about-content .about-who-intro,
 body.page-actividad .about-quote {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -14470,15 +14629,15 @@ body.sacramento-modal-open {
   }
 }
 
-/* ===== Home: packages promo (below explore by category) ===== */
+/* ===== Home: packages promo (intro to excursions catalog) ===== */
 .home-packages-promo {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
-  padding: clamp(1.35rem, 3vw, 2.1rem) clamp(1.25rem, 4vw, 2.5rem)
-    clamp(0.75rem, 1.6vw, 1.25rem);
-  background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
-  border-top: 1px solid rgba(102, 166, 230, 0.08);
-  border-bottom: 1px solid rgba(102, 166, 230, 0.08);
+  padding: clamp(0.9rem, 2.2vw, 1.45rem) clamp(1.25rem, 4vw, 2.5rem)
+    clamp(0.2rem, 0.7vw, 0.4rem);
+  background: #ffffff;
+  border: none;
+  box-shadow: none;
 }
 
 .home-packages-promo__inner {
@@ -14603,7 +14762,7 @@ body.sacramento-modal-open {
 
 .home-packages-promo__image {
   display: block;
-  width: clamp(15rem, 28vw, 24rem);
+  width: clamp(13rem, 24vw, 20rem);
   max-width: 100%;
   height: auto;
   object-fit: contain;
@@ -14648,7 +14807,7 @@ body.sacramento-modal-open {
   }
 
   .home-packages-promo {
-    padding-top: clamp(0.85rem, 1.7vw, 1.35rem);
+    padding-top: clamp(0.65rem, 1.4vw, 1rem);
   }
 
   .home-packages-promo__inner {
@@ -14683,8 +14842,8 @@ body.sacramento-modal-open {
 
 @media (max-width: 767px) {
   .home-packages-promo {
-    padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1rem, 3vw, 1.5rem)
-      clamp(0.85rem, 2vw, 1.25rem);
+    padding: clamp(1rem, 3.2vw, 1.45rem) clamp(1rem, 3vw, 1.5rem)
+      clamp(0.25rem, 1vw, 0.45rem);
   }
 
   .home-packages-promo__inner {
@@ -14712,8 +14871,14 @@ body.sacramento-modal-open {
   }
 
   .home-packages-promo__image {
-    width: clamp(11rem, 48vw, 20rem);
+    width: clamp(9.5rem, 42vw, 15.5rem);
   }
+}
+
+body.page-home .home-packages-promo {
+  background: #ffffff;
+  border: none;
+  box-shadow: none;
 }
 
 body.page-home .home-packages-promo,
@@ -14745,18 +14910,18 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 
 /* Home: tighten gap between packages promo (suitcase) and excursions catalog */
 body.page-home #experiences.cards {
-  padding-top: 13px;
+  padding-top: 4px;
 }
 
 @media (max-width: 767px) {
   body.page-home #experiences.cards {
-    padding-top: 14px;
+    padding-top: 6px;
   }
 }
 
 @media (max-width: 360px) {
   body.page-home #experiences.cards {
-    padding-top: 12px;
+    padding-top: 4px;
   }
 }
 
