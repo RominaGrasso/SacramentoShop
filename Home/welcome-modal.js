@@ -11,9 +11,12 @@
   const COPY = {
     es: {
       title: "💙 Tu reserva genera impacto local",
-      item1: "🌎 Apoya a guías locales",
-      item2: "🤝 Apoya a emprendedores locales",
-      item3: "🐾 Ayuda a financiar iniciativas de bienestar animal",
+      item1Icon: "🌎",
+      item1: "Apoya a guías locales",
+      item2Icon: "🤝",
+      item2: "Apoya a emprendedores locales",
+      item3Icon: "🐾",
+      item3: "Ayuda a financiar iniciativas de bienestar animal",
       howTitle: "Reservar es muy fácil",
       howStep1: "Elegí tu actividad",
       howStep2: "Personas",
@@ -25,9 +28,12 @@
     },
     en: {
       title: "💙 Your booking creates local impact",
-      item1: "🌎 Supports local guides",
-      item2: "🤝 Supports local entrepreneurs",
-      item3: "🐾 Helps fund animal welfare initiatives",
+      item1Icon: "🌎",
+      item1: "Supports local guides",
+      item2Icon: "🤝",
+      item2: "Supports local entrepreneurs",
+      item3Icon: "🐾",
+      item3: "Helps fund animal welfare initiatives",
       howTitle: "Booking is very easy",
       howStep1: "Choose your activity",
       howStep2: "People",
@@ -39,9 +45,12 @@
     },
     pt: {
       title: "💙 Sua reserva gera impacto local",
-      item1: "🌎 Apoia guias locais",
-      item2: "🤝 Apoia empreendedores locais",
-      item3: "🐾 Ajuda a financiar iniciativas de bem-estar animal",
+      item1Icon: "🌎",
+      item1: "Apoia guias locais",
+      item2Icon: "🤝",
+      item2: "Apoia empreendedores locais",
+      item3Icon: "🐾",
+      item3: "Ajuda a financiar iniciativas de bem-estar animal",
       howTitle: "Reservar é muito fácil",
       howStep1: "Escolha sua atividade",
       howStep2: "Pessoas",
@@ -159,9 +168,9 @@
         <p class="sacramento-welcome-modal__brand">Sacramento Adventures</p>
         <h2 id="sacramentoWelcomeModalTitle">${c.title}</h2>
         <ul class="sacramento-welcome-modal__list">
-          <li>${c.item1}</li>
-          <li>${c.item2}</li>
-          <li>${c.item3}</li>
+          <li><span aria-hidden="true" class="sacramento-welcome-modal__list-icon">${c.item1Icon}</span><span>${c.item1}</span></li>
+          <li><span aria-hidden="true" class="sacramento-welcome-modal__list-icon">${c.item2Icon}</span><span>${c.item2}</span></li>
+          <li><span aria-hidden="true" class="sacramento-welcome-modal__list-icon">${c.item3Icon}</span><span>${c.item3}</span></li>
         </ul>
         <div class="sacramento-welcome-modal__howto">
           <p class="sacramento-welcome-modal__howto-title">${c.howTitle}</p>
