@@ -13443,10 +13443,21 @@ body.sacramento-welcome-modal-open {
 }
 
 .sacramento-welcome-modal__list li {
+  display: grid;
+  grid-template-columns: 1.55em minmax(0, 1fr);
+  column-gap: 0.4em;
+  align-items: start;
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.4;
   color: #3d5a78;
+}
+
+.sacramento-welcome-modal__list-icon {
+  display: block;
+  width: 1.55em;
+  text-align: center;
+  line-height: 1.4;
 }
 
 .sacramento-welcome-modal__howto {
