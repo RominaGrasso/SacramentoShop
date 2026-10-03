@@ -7,7 +7,7 @@
 <meta content="B2B services for travel agencies and tour operators in Colonia del Sacramento. Tours, transfers, experiences and itineraries for individual travelers and groups." name="description"/>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/colonia.webp" rel="preload"/>
-<link href="../Styles/styles.css?v=20260921agenciesapi" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20261003agenciesgal" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-72TT5VCG5S"></script>
@@ -60,6 +60,26 @@
 </section>
 
 <main class="agencies-main">
+<section aria-label="Group travel photos" class="agencies-gallery" data-translate-aria-label="agencies_gallery_aria">
+<div aria-roledescription="carousel" class="about-hero-carousel">
+<div class="about-hero-track">
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="agencies_gallery_alt" decoding="async" src="../Assets/images/grupo1.jpeg"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="agencies_gallery_alt" decoding="async" loading="lazy" src="../Assets/images/grupo2.jpeg"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="agencies_gallery_alt" decoding="async" loading="lazy" src="../Assets/images/grupo3.jpeg"/>
+</div>
+<div class="about-hero-slide">
+<img alt="" data-translate-alt="agencies_gallery_alt" decoding="async" loading="lazy" src="../Assets/images/grupo4.jpeg"/>
+</div>
+</div>
+<button class="carousel-btn prev about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_prev" type="button">‹</button>
+<button class="carousel-btn next about-hero-carousel-btn" data-translate-aria-label="about_hero_gallery_next" type="button">›</button>
+</div>
+</section>
 <section class="agencies-section agencies-intro">
 <div class="agencies-section__inner">
 <h2 class="agencies-section__title" data-translate="agencies_intro_title">Local operation. One point of contact.</h2>
@@ -232,10 +252,36 @@
 
 <script src="language-init.js?v=20260522perf"></script>
 <script src="language-prompt.js?v=20260522perf"></script>
-<script src="index.js?v=20260921agenciesapi"></script>
+<script src="index.js?v=20261003agenciesgal"></script>
 <script src="payments-api-config.js?v=20260921agenciesapi"></script>
 <script src="whatsapp.js?v=20260720footer"></script>
 <script data-sacramento-footer src="site-footer.js?v=20260921footerlinkedin"></script>
 <script src="agencies-form.js?v=20260921agencieshpfix"></script>
+<script>
+  (function () {
+    var carousel = document.querySelector(".agencies-gallery .about-hero-carousel");
+    if (!carousel) return;
+    var track = carousel.querySelector(".about-hero-track");
+    var slides = carousel.querySelectorAll(".about-hero-slide");
+    var prevBtn = carousel.querySelector(".carousel-btn.prev");
+    var nextBtn = carousel.querySelector(".carousel-btn.next");
+    if (!track || !slides.length || !prevBtn || !nextBtn) return;
+
+    var index = 0;
+    var update = function () {
+      track.style.transform = "translateX(-" + index * 100 + "%)";
+    };
+
+    prevBtn.addEventListener("click", function () {
+      index = (index - 1 + slides.length) % slides.length;
+      update();
+    });
+
+    nextBtn.addEventListener("click", function () {
+      index = (index + 1) % slides.length;
+      update();
+    });
+  })();
+</script>
 </body>
 </html>

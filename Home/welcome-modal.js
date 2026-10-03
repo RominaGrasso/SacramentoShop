@@ -61,6 +61,63 @@
     window.setTimeout(() => overlay.remove(), 280);
   }
 
+  function prefersReducedMotion() {
+    try {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function stickyHeaderOffset() {
+    const header = document.querySelector("header");
+    if (!header) return 12;
+    const pos = window.getComputedStyle(header).position;
+    if (pos === "fixed" || pos === "sticky") {
+      return Math.ceil(header.getBoundingClientRect().height) + 10;
+    }
+    return 12;
+  }
+
+  function activitiesSection() {
+    return document.querySelector(".hero-region-tagline");
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function animateScrollTo(destY, duration) {
+    const startY = window.pageYOffset;
+    const distance = destY - startY;
+    if (Math.abs(distance) < 2) return;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min(1, (now - start) / duration);
+      window.scrollTo(0, startY + distance * easeInOutCubic(t));
+      if (t < 1) window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+  }
+
+  function scrollHomeToActivities() {
+    const target = activitiesSection();
+    if (!target) return;
+
+    const offset = stickyHeaderOffset();
+    target.style.scrollMarginTop = offset + "px";
+    const destY = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - offset);
+
+    if (prefersReducedMotion()) {
+      window.scrollTo(0, destY);
+      return;
+    }
+
+    const distance = Math.abs(destY - window.pageYOffset);
+    const duration = Math.min(1200, Math.max(800, Math.round(distance * 0.7)));
+    animateScrollTo(destY, duration);
+  }
+
   function mountWelcome(lang) {
     if (welcomeSeen() || document.getElementById("sacramentoWelcomeModal")) return;
 
@@ -90,6 +147,8 @@
 
     overlay.querySelector("[data-welcome-dismiss]").addEventListener("click", () => {
       closeWelcome(overlay);
+      if (!activitiesSection()) return;
+      window.setTimeout(scrollHomeToActivities, 260);
     });
 
     document.body.appendChild(overlay);
