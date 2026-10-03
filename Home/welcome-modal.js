@@ -14,6 +14,13 @@
       item1: "🌎 Apoya a guías locales",
       item2: "🤝 Apoya a emprendedores locales",
       item3: "🐾 Ayuda a financiar iniciativas de bienestar animal",
+      howTitle: "Reservar es muy fácil",
+      howStep1: "Elegí tu actividad",
+      howStep2: "Indicá cuántas personas",
+      howStep3: "¿Necesitás traslado?",
+      howStep4: "Reservá",
+      howNote1: "El link de pago se genera automáticamente.",
+      howNote2: "Una vez realizado el pago, tu experiencia queda reservada.",
       cta: "Explorar experiencias",
     },
     en: {
@@ -21,6 +28,13 @@
       item1: "🌎 Supports local guides",
       item2: "🤝 Supports local entrepreneurs",
       item3: "🐾 Helps fund animal welfare initiatives",
+      howTitle: "Booking is very easy",
+      howStep1: "Choose your activity",
+      howStep2: "Enter how many people",
+      howStep3: "Need a transfer?",
+      howStep4: "Book",
+      howNote1: "The payment link is generated automatically.",
+      howNote2: "Once payment is completed, your experience is booked.",
       cta: "Explore experiences",
     },
     pt: {
@@ -28,6 +42,13 @@
       item1: "🌎 Apoia guias locais",
       item2: "🤝 Apoia empreendedores locais",
       item3: "🐾 Ajuda a financiar iniciativas de bem-estar animal",
+      howTitle: "Reservar é muito fácil",
+      howStep1: "Escolha sua atividade",
+      howStep2: "Informe quantas pessoas",
+      howStep3: "Precisa de traslado?",
+      howStep4: "Reserve",
+      howNote1: "O link de pagamento é gerado automaticamente.",
+      howNote2: "Depois do pagamento, sua experiência fica reservada.",
       cta: "Explorar experiências",
     },
   };
@@ -79,8 +100,11 @@
     return 12;
   }
 
-  function activitiesSection() {
-    return document.querySelector(".hero-region-tagline");
+  function excursionsTitle() {
+    return (
+      document.getElementById("home-excursions-title") ||
+      document.getElementById("experiences")
+    );
   }
 
   function easeInOutCubic(t) {
@@ -100,8 +124,8 @@
     window.requestAnimationFrame(step);
   }
 
-  function scrollHomeToActivities() {
-    const target = activitiesSection();
+  function scrollHomeToExcursions() {
+    const target = excursionsTitle();
     if (!target) return;
 
     const offset = stickyHeaderOffset();
@@ -114,7 +138,7 @@
     }
 
     const distance = Math.abs(destY - window.pageYOffset);
-    const duration = Math.min(1200, Math.max(800, Math.round(distance * 0.7)));
+    const duration = Math.max(800, Math.round(distance * 0.7));
     animateScrollTo(destY, duration);
   }
 
@@ -139,6 +163,16 @@
           <li>${c.item2}</li>
           <li>${c.item3}</li>
         </ul>
+        <div class="sacramento-welcome-modal__howto">
+          <p class="sacramento-welcome-modal__howto-title">${c.howTitle}</p>
+          <ol class="sacramento-welcome-modal__steps">
+            <li>${c.howStep1}</li>
+            <li>${c.howStep2}</li>
+            <li>${c.howStep3}</li>
+            <li>${c.howStep4}</li>
+          </ol>
+          <p class="sacramento-welcome-modal__howto-note">${c.howNote1}<br>${c.howNote2}</p>
+        </div>
         <button type="button" class="sacramento-welcome-modal__cta" data-welcome-dismiss>
           ${c.cta}
         </button>
@@ -147,8 +181,8 @@
 
     overlay.querySelector("[data-welcome-dismiss]").addEventListener("click", () => {
       closeWelcome(overlay);
-      if (!activitiesSection()) return;
-      window.setTimeout(scrollHomeToActivities, 260);
+      if (!excursionsTitle()) return;
+      window.setTimeout(scrollHomeToExcursions, 260);
     });
 
     document.body.appendChild(overlay);
