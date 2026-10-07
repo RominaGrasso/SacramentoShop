@@ -49,7 +49,7 @@
     "asado-boat.html": [60, 80],
     "walking-asado.html": [60, 80],
     "barbot-brewpub.html": [45, 55],
-    "lasliebres-dining.html": [75, 90],
+    "lasliebres-dining.html": [110],
     "historic-lasliebres.html": [85, 105, 120],
     "lasliebres.html": [110],
     "legado.html": [45, 65, 110],

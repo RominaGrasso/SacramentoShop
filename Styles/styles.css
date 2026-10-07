@@ -6698,9 +6698,9 @@
 
   .liebres-dining-hero {
     height: 43vh;
-    background-image: url("../Assets/images/lieb2121.webp?v=20260522perf");
+    background-image: url("../Assets/images/lieb2.webp");
     background-size: cover;
-    background-position: center 66%;
+    background-position: center 32%;
     background-repeat: no-repeat;
   }
 
@@ -6743,7 +6743,7 @@
     .liebres-dining-hero {
       height: 39vh;
       background-size: cover;
-      background-position: center 64%;
+      background-position: center 30%;
     }
 
     .legado-hero {

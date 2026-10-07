@@ -5775,6 +5775,12 @@ function initPackageOrderExperience(config) {
     storageKey = "orders",
     packages,
     packageRadioName = "packageId",
+    requirePackageSelection = false,
+    packageRequiredAlertKey = "orders_pkg_alert_select",
+    packageSummaryExtraKeyById = null,
+    packageTransportGroupById = null,
+    packageTransportGroupLabelKeyById = null,
+    packageTransportShareLabelKey = "",
     transportPerVehicle,
     transportPerPerson = 0,
     transportPerGuest = 0,
@@ -6384,16 +6390,87 @@ function initPackageOrderExperience(config) {
       Array.isArray(orders) &&
       orders.some((x) => x && x.packageId != null);
 
-    const transportSharePerGuest = (orders) => {
-      const n = Array.isArray(orders) ? orders.length : 0;
-      if (!usesGroupTransport(orders) || n === 0) return 0;
+    const usesPackageTransportGroups = () =>
+      Boolean(packageTransportGroupById && typeof packageTransportGroupById === "object");
+
+    const transportGroupKeyForOrder = (o) => {
+      if (!usesPackageTransportGroups() || !o || o.packageId == null) return null;
+      if (Object.prototype.hasOwnProperty.call(packageTransportGroupById, o.packageId)) {
+        return String(packageTransportGroupById[o.packageId]);
+      }
+      return String(o.packageId);
+    };
+
+    const ordersForTransportGroup = (orders, o) => {
+      if (!usesPackageTransportGroups()) return orders;
+      const key = transportGroupKeyForOrder(o);
+      return (Array.isArray(orders) ? orders : []).filter((x) => transportGroupKeyForOrder(x) === key);
+    };
+
+    const transportGroupLabelForOrder = (o) => {
+      const key = transportGroupKeyForOrder(o);
+      if (!key) return "";
+      const labelMap =
+        packageTransportGroupLabelKeyById && typeof packageTransportGroupLabelKeyById === "object"
+          ? packageTransportGroupLabelKeyById
+          : null;
+      const labelKey = labelMap && labelMap[key];
+      if (typeof labelKey === "string" && labelKey.trim()) {
+        return getI18nText(labelKey.trim(), key);
+      }
+      return key;
+    };
+
+    const transportShareLabelForOrder = (o) => {
+      const groupLabel = transportGroupLabelForOrder(o);
+      if (packageTransportShareLabelKey && groupLabel) {
+        return trTpl(
+          packageTransportShareLabelKey,
+          "Transport (your share of the {group} group):",
+          { group: groupLabel }
+        );
+      }
+      return getI18nText("orders_pkg_transport_share", "Transport (your share of the group):");
+    };
+
+    const transportSharePerGuest = (orders, o) => {
+      if (!usesGroupTransport(orders)) return 0;
+      const group = o && usesPackageTransportGroups() ? ordersForTransportGroup(orders, o) : orders;
+      const n = Array.isArray(group) ? group.length : 0;
+      if (n === 0) return 0;
       return groupPrivateTransportTotal(n, vehicleTransportRate) / n;
     };
 
     const totalGroupTransport = (orders) => {
-      const n = Array.isArray(orders) ? orders.length : 0;
-      if (!usesGroupTransport(orders) || n === 0) return 0;
-      return groupPrivateTransportTotal(n, vehicleTransportRate);
+      if (!usesGroupTransport(orders)) return 0;
+      if (!usesPackageTransportGroups()) {
+        return groupPrivateTransportTotal(orders.length, vehicleTransportRate);
+      }
+      const seen = new Set();
+      let sum = 0;
+      (orders || []).forEach((o) => {
+        const key = transportGroupKeyForOrder(o);
+        if (key == null || seen.has(key)) return;
+        seen.add(key);
+        const group = ordersForTransportGroup(orders, o);
+        sum += groupPrivateTransportTotal(group.length, vehicleTransportRate);
+      });
+      return sum;
+    };
+
+    const groupTransportVehicleCount = (orders) => {
+      if (!usesGroupTransport(orders)) return 0;
+      if (!usesPackageTransportGroups()) return Math.ceil(orders.length / 4);
+      const seen = new Set();
+      let vehicles = 0;
+      (orders || []).forEach((o) => {
+        const key = transportGroupKeyForOrder(o);
+        if (key == null || seen.has(key)) return;
+        seen.add(key);
+        const group = ordersForTransportGroup(orders, o);
+        vehicles += groupPrivateTransportVehicleCount(group.length);
+      });
+      return vehicles;
     };
 
     const transportMetaKey = `${storageKey}_booking_meta`;
@@ -6459,7 +6536,7 @@ function initPackageOrderExperience(config) {
 
     const transportAmountForOrder = (o, orders) => {
       if (usesFlatGuestTransport(orders)) return flatGuestTransportRate;
-      if (usesGroupTransport(orders)) return transportSharePerGuest(orders);
+      if (usesGroupTransport(orders)) return transportSharePerGuest(orders, o);
       return transportForLegacyOrder(o);
     };
 
@@ -6646,7 +6723,10 @@ function initPackageOrderExperience(config) {
           if (firstPkg) firstPkg.checked = true;
         }
         enforcePopupGuestCountForPackage();
-      } else if (!popup.querySelector(`input[name="${packageRadioName}"]:checked`)) {
+      } else if (
+        !requirePackageSelection &&
+        !popup.querySelector(`input[name="${packageRadioName}"]:checked`)
+      ) {
         const firstPkg = popup.querySelector(`input[name="${packageRadioName}"]`);
         if (firstPkg) firstPkg.checked = true;
       }
@@ -6693,6 +6773,15 @@ function initPackageOrderExperience(config) {
         month: "short",
         year: "numeric"
       });
+    };
+
+    const packageExtraSummaryLine = (o) => {
+      if (!packageSummaryExtraKeyById || typeof packageSummaryExtraKeyById !== "object" || !o) {
+        return "";
+      }
+      const key = packageSummaryExtraKeyById[o.packageId];
+      if (typeof key !== "string" || !key.trim()) return "";
+      return getI18nText(key.trim(), "");
     };
 
     const packageLineForOrder = (o, orders) => {
@@ -6768,10 +6857,11 @@ function initPackageOrderExperience(config) {
             ? "-"
             : prefs.map(decoratePkgPref).filter((p) => p && p !== "-").join(", ") || "-";
 
+        const extraSummary = packageExtraSummaryLine(o);
         ordersText += `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*\n${waLine(
           pkgLabel,
           packageLineForOrder(o, orders)
-        )}${
+        )}${extraSummary ? `\n${extraSummary}` : ""}${
           experienceSkipsPreferencesField
             ? "\n\n"
             : `\n${waLine(
@@ -6810,7 +6900,7 @@ function initPackageOrderExperience(config) {
           `USD ${formatMoney(transportTotal)}`
         )}\n`;
       } else if (usesGroupTransport(orders) && orders.length > 0) {
-        const vehicles = Math.ceil(orders.length / 4);
+        const vehicles = groupTransportVehicleCount(orders);
         const guideTotalOptional =
           guideOptional && guideFee > 0
             ? orders.reduce((s, o) => s + (o && o.includeGuide ? guideFee : 0), 0)
@@ -7131,7 +7221,7 @@ function initPackageOrderExperience(config) {
             )} (${escapeHtml(expLabel)})`;
         if (share > 0 && usesGroupTransport(orders)) {
           packageHtml += `<br><strong>${escapeHtml(
-            getI18nText("orders_pkg_transport_share", "Transport (your share of the group):")
+            transportShareLabelForOrder(order)
           )}</strong> USD ${escapeHtml(formatMoney(share))}`;
           packageHtml += `<br><strong>${escapeHtml(
             getI18nText("orders_pkg_guest_total", "Guest total:")
@@ -7154,6 +7244,20 @@ function initPackageOrderExperience(config) {
               </div>
             </div>
             <p>${packageHtml}</p>
+            ${
+              packageExtraSummaryLine(order)
+                ? (() => {
+                    const extra = packageExtraSummaryLine(order);
+                    const colon = extra.indexOf(":");
+                    if (colon === -1) {
+                      return `<p><strong>${escapeHtml(extra)}</strong></p>`;
+                    }
+                    return `<p><strong>${escapeHtml(extra.slice(0, colon + 1))}</strong>${escapeHtml(
+                      extra.slice(colon + 1)
+                    )}</p>`;
+                  })()
+                : ""
+            }
             ${
               experienceSkipsPreferencesField
                 ? ""
@@ -7178,7 +7282,7 @@ function initPackageOrderExperience(config) {
         const transportSharePkg =
           usesFlatGuestTransport(orders) && orders.length > 0
             ? flatGuestTransportRate
-            : usesGroupTransport(orders) && orders.length > 0
+            : usesGroupTransport(orders) && orders.length > 0 && !usesPackageTransportGroups()
               ? transportSharePerGuest(orders)
               : 0;
         const optionalTransportAmt = optionalGroupTransportTotal(orders);
@@ -7433,7 +7537,12 @@ function initPackageOrderExperience(config) {
 
       const selectedPackage = popup.querySelector(`input[name="${packageRadioName}"]:checked`);
       if (!selectedPackage) {
-        alert(getI18nText("orders_pkg_alert_select", "Please select a package"));
+        alert(
+          getI18nText(
+            packageRequiredAlertKey || "orders_pkg_alert_select",
+            "Please select a package"
+          )
+        );
         return;
       }
 
