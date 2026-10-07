@@ -73,10 +73,8 @@
     "lasliebres-dining.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "lunch_vinedo", price: 75, labelKey: "liebres_dining_pkg_lunch_vinedo_label", labelFallback: "Lunch Viñedo" },
-        { id: "lunch_ceibo", price: 90, labelKey: "liebres_dining_pkg_lunch_ceibo_label", labelFallback: "Lunch Ceibo" },
-        { id: "dinner_vinedo", price: 75, labelKey: "liebres_dining_pkg_dinner_vinedo_label", labelFallback: "Dinner Viñedo" },
-        { id: "dinner_ceibo", price: 90, labelKey: "liebres_dining_pkg_dinner_ceibo_label", labelFallback: "Dinner Ceibo" }
+        { id: "lunch_vinedo", price: 110, labelKey: "liebres_dining_pkg_lunch_vinedo_label", labelFallback: "Lunch Viñedo" },
+        { id: "dinner_vinedo", price: 110, labelKey: "liebres_dining_pkg_dinner_vinedo_label", labelFallback: "Dinner Viñedo" }
       ]
     },
     "barbot.html": {

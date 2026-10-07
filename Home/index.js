@@ -450,9 +450,9 @@ golden_mile_step_note:
       golfcart_gal_alt_2: "Golf cart tour through Colonia del Sacramento",
       golfcart_gal_alt_3: "Scenic stop on a private golf cart tour",
       golfcart_gal_alt_4: "Private golf cart experience in Colonia",
-      lieb_title: "Lunch or Dinner at a Boutique Vineyard Restaurant",
+      lieb_title: "Organic Garden & Vineyard + Tasting + Lunch or Dinner",
       lieb_text:
-        "Enjoy an elegant lunch or dinner experience at a boutique vineyard restaurant in Colonia del Sacramento. Enjoy signature dishes in a relaxed and intimate setting, with private transfer included. Perfect for guests looking for a dedicated dining experience.",
+        "Guided organic garden visit, vineyard walk, paired tasting of 3 wines and garden products, then a full lunch or dinner with the Viñedo menu. Private transfer included.",
       lupajack_title: "Walk with Local Hosts · Experience Colonia Like a Local",
       lupajack_coming_soon_badge: "Coming soon",
       lupajack_soon_popup_body: "This experience will be available very soon. Stay tuned!",
@@ -944,9 +944,9 @@ golden_mile_step_note:
       bruma_home_desc:
         "Enjoy a unique dining experience at a boutique restaurant in the heart of Colonia’s Historic Quarter. Surrounded by cobblestone streets and colonial charm, it offers high-quality international cuisine and a relaxed atmosphere — the perfect complement after a guided tour.",
       lieb_home_meta_1_time: "3 - 4 hours",
-      lieb_home_meta_1_food: "Signature dishes",
+      lieb_home_meta_1_food: "Paired tasting + Viñedo menu",
       lieb_home_meta_2_transfer: "Transfer included",
-      lieb_home_meta_2_style: "Boutique dining experience",
+      lieb_home_meta_2_style: "Organic garden & vineyard",
       home_hist_lieb_title: "Guided Historic Quarter Tour + Vineyard Visit",
       home_hist_lieb_meta_1_town: "Guided tour in the Old Town",
       home_hist_lieb_meta_1_vine: "Vineyard & organic garden",
@@ -3121,32 +3121,40 @@ golden_mile_step_note:
       liebres_about_p:
         "A private transfer takes you to a boutique vineyard estate. You'll walk through the vineyard and organic garden and enjoy a curated tasting of three Uruguayan wines paired with seasonal dishes from the kitchen. Then a private transfer takes you to a guided horseback ride on the outskirts of Colonia, in beautiful open countryside. Plan on about 3 to 4 hours for the full experience (visit, tasting, ride, and transfers).",
       liebres_reel_btn: "🎥 Watch Reel on @_sacramentoadventures",
-      liebres_dining_experience_name: "Dining Experience at a Boutique Restaurant",
+      liebres_dining_doc_title:
+        "Organic Garden & Vineyard + Tasting + Lunch or Dinner | Sacramento Adventures",
+      liebres_dining_experience_name:
+        "Organic Garden & Vineyard + Tasting + Lunch or Dinner",
       liebres_dining_about_title: "About this experience",
       liebres_dining_about_p:
-        "Enjoy a lunch or dinner experience at a boutique vineyard restaurant, a boutique restaurant in Colonia del Sacramento. This activity focuses on the gastronomic menu and restaurant atmosphere, with private transfer included. You can choose your preferred meal format when you create your order.",
+        "Guided visit to the organic garden, vineyard walk, paired tasting of 3 wines and garden products, then a full lunch or dinner with the Viñedo menu. You can choose lunch or dinner when you book. Private transfer included.",
       liebres_dining_steps_title: "How it works",
       liebres_dining_step_1:
         "🚐 Private pick-up: Transfer from your hotel or the bus terminal.",
       liebres_dining_step_2:
-        "🍽 Lunch or dinner: Choose your menu at a boutique vineyard restaurant when creating your order.",
+        "🌱 Guided visit to the organic garden: Learn what is planted and discover the herbs and produce grown on site. Small samples of some herbs are shared so you can smell them and get to know their characteristics.",
       liebres_dining_step_3:
-        "🌿 Restaurant setting: Boutique dining experience in a relaxed atmosphere.",
+        "🍇 Vineyard visit: See the different varieties on site and walk the surroundings.",
       liebres_dining_step_4:
+        "🍷 Paired tasting of 3 wines and products from the garden.",
+      liebres_dining_step_5:
+        "🍽 Full lunch or dinner — Viñedo menu, according to the time you choose.",
+      liebres_dining_step_6:
         "🏨 Return: Private drop-off back to your hotel or terminal.",
-      liebres_dining_price_title: "Dining experiences from USD 75",
+      liebres_dining_price_title: "USD 110 per person",
       liebres_dining_price_p:
         "Private transport is billed by vehicle: USD 40 total for 1–4 guests (one vehicle).",
       liebres_dining_included_title: "What's included",
-      liebres_dining_include_1:
-        "✔ Lunch or dinner menu at a boutique vineyard restaurant (depending on package)",
-      liebres_dining_include_2: "✔ Boutique restaurant atmosphere",
-      liebres_dining_include_3: "✔ Welcome coordination at the venue",
-      liebres_dining_include_4:
+      liebres_dining_include_1: "✔ Guided visit to the organic garden",
+      liebres_dining_include_2: "✔ Vineyard visit",
+      liebres_dining_include_3:
+        "✔ Paired tasting of 3 wines and products from the garden",
+      liebres_dining_include_4: "✔ Full lunch or dinner — Viñedo menu",
+      liebres_dining_include_5:
         "✔ Private round-trip transfer (hotel or terminal)",
       liebres_dining_create_title: "Create your order",
       liebres_dining_create_subtitle:
-        "Choose Viñedo or Ceibo, then lunch or dinner, and add preferences.",
+        "Choose lunch or dinner (Viñedo menu), then add preferences.",
       liebres_dining_create_btn: "+ Create your order",
       liebres_dining_guide_help_aria:
         "More information about the optional group guide",
@@ -3160,17 +3168,39 @@ golden_mile_step_note:
       liebres_dining_map_iframe_title:
         "Map: a boutique vineyard restaurant, Colonia del Sacramento",
       liebres_dining_back_home: "Back to Home",
-      liebres_dining_popup_title: "Choose menu & meal",
+      liebres_dining_popup_title: "Choose lunch or dinner",
+      liebres_dining_step1_title: "What you’ll experience",
+      liebres_dining_step1_tasting_title: "Paired tasting",
+      liebres_dining_step1_intro:
+        "Before you sit down to eat, you’ll discover the setting and the flavors of the place.",
+      liebres_dining_step1_b1: "Guided visit to the organic garden",
+      liebres_dining_step1_b2:
+        "Discover the different species, herbs and produce grown on site",
+      liebres_dining_step1_b3:
+        "During the walk you can try samples of some of the herbs",
+      liebres_dining_step1_b4: "Walk through the vineyard and its different varieties",
+      liebres_dining_step1_b5: "Paired tasting of 3 wines",
+      liebres_dining_step1_b6: "Pairing with products from the garden",
+      liebres_dining_step1_after:
+        "After the tasting, the experience continues with your lunch or dinner.",
+      liebres_dining_step1_continue: "Continue →",
+      liebres_dining_step1_back: "← Back",
       liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(price per guest; transport share appears in summary)",
-      liebres_dining_pkg_vinedo_menu_line: "Viñedo menu 🍇 — USD 75",
+      liebres_dining_pkg_vinedo_menu_line: "Viñedo menu 🍇 — USD 110",
       liebres_dining_pkg_ceibo_menu_line: "Ceibo menu 🌳 — USD 90",
       liebres_dining_meal_heading: "Lunch or dinner",
       liebres_dining_meal_lunch: "Lunch",
       liebres_dining_meal_dinner: "Dinner",
+      liebres_dining_pickup_title: "🚐 Pickup included",
+      liebres_dining_pickup_lunch: "We’ll pick you up at your lodging at 11:00.",
+      liebres_dining_pickup_dinner: "We’ll pick you up at your lodging at 19:00.",
+      liebres_dining_pickup_lunch_summary: "Pickup: 11:00 at your lodging",
+      liebres_dining_pickup_dinner_summary: "Pickup: 19:00 at your lodging",
+      liebres_dining_transport_share: "Transport (your share of the {group} group):",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Lunch — Viñedo menu 🍇 USD 75",
+        "Lunch — Viñedo menu 🍇 USD 110",
       liebres_dining_pkg_lunch_vinedo_label: "Lunch — Viñedo menu",
       liebres_dining_pkg_lunch_vinedo_sub: "Balanced menu selection",
       liebres_dining_pkg_lunch_ceibo_main:
@@ -3178,7 +3208,7 @@ golden_mile_step_note:
       liebres_dining_pkg_lunch_ceibo_label: "Lunch — Ceibo menu",
       liebres_dining_pkg_lunch_ceibo_sub: "Premium menu selection",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Dinner — Viñedo menu 🍇 USD 75",
+        "Dinner — Viñedo menu 🍇 USD 110",
       liebres_dining_pkg_dinner_vinedo_label: "Dinner — Viñedo menu",
       liebres_dining_pkg_dinner_vinedo_sub: "Balanced menu selection",
       liebres_dining_pkg_dinner_ceibo_main:
@@ -3186,12 +3216,29 @@ golden_mile_step_note:
       liebres_dining_pkg_dinner_ceibo_label: "Dinner — Ceibo menu",
       liebres_dining_pkg_dinner_ceibo_sub: "Premium menu selection",
       liebres_dining_pkg_vinedo_item_1:
-        "Starter, main and dessert from the Viñedo menu",
+        "Starter, main course and dessert of your choice",
       liebres_dining_pkg_ceibo_item_1:
         "Premium starter, main and dessert from the Ceibo menu",
-      liebres_dining_pkg_item_2: "Plus water/soft drink",
-      liebres_dining_pkg_item_3: "One glass of wine and coffee or tea",
+      liebres_dining_pkg_item_2: "Water or a soft drink",
+      liebres_dining_pkg_item_3: "One glass of wine",
+      liebres_dining_pkg_item_4: "Coffee or tea",
+      liebres_dining_popup_menu_name: "Viñedo menu",
+      liebres_dining_popup_menu_price: "USD 110 per person",
+      liebres_dining_popup_menu_note: "Dishes are chosen from the menu on site.",
+      liebres_dining_alert_meal: "Please choose lunch or dinner.",
       liebres_dining_pref_no_alcohol: "No alcohol",
+      liebres_dining_gal_alt_1: "Organic garden and vineyard experience in Colonia",
+      liebres_dining_gal_alt_2: "Paired wine tasting with garden products",
+      liebres_dining_gal_alt_3: "Viñedo menu dishes",
+      liebres_dining_gal_alt_4: "Lunch or dinner at the vineyard restaurant",
+      liebres_dining_gal_alt_5: "Dining room at the vineyard restaurant",
+      liebres_dining_gal_alt_6: "Vineyard restaurant atmosphere",
+      liebres_dining_gal_alt_7: "Vineyard surroundings in Colonia",
+      liebres_dining_gal_alt_8: "Vineyard and garden setting",
+      liebres_dining_gal_alt_9: "Full lunch or dinner experience",
+      liebres_dining_gal_alt_10: "Paired tasting of three wines",
+      liebres_dining_gal_alt_11: "Table setting for lunch or dinner",
+      liebres_dining_gal_alt_12: "Lunch or dinner at the vineyard",
       liebres_steps_title: "How it works",
       liebres_step_1_title: "Transfer to a boutique vineyard restaurant:",
       liebres_step_1_desc:
@@ -4145,9 +4192,9 @@ golden_mile_step_note:
       golfcart_gal_alt_2: "Recorrido en carrito de golf por Colonia del Sacramento",
       golfcart_gal_alt_3: "Parada panorámica en un city tour en carrito de golf",
       golfcart_gal_alt_4: "Experiencia privada en carrito de golf en Colonia",
-      lieb_title: "Almuerzo o Cena en un Restaurante Boutique",
+      lieb_title: "Huerta Orgánica & Viñedo + Degustación + Almuerzo o Cena",
       lieb_text:
-        "Experiencia elegante en un restaurante boutique en una bodega, restaurante boutique en Colonia. Platos insignia, ambiente íntimo y traslado privado incluido. Para quienes quieren una comida dedicada.",
+        "Visita guiada por la huerta orgánica, recorrido por el viñedo, degustación maridada de 3 vinos y productos de la huerta, y luego almuerzo o cena completos con el Menú Viñedo. Traslado privado incluido.",
       lupajack_title: "Paseo con Anfitriones Locales · Colonia como un Local",
       lupajack_coming_soon_badge: "Próximamente",
       lupajack_soon_popup_body: "Esta actividad estará disponible muy pronto. ¡Mantenete atento!",
@@ -4639,9 +4686,9 @@ golden_mile_step_note:
       bruma_home_desc:
         "Disfrutá una experiencia gastronómica única en un restaurante boutique en el corazón del Casco Histórico de Colonia. Entre calles empedradas y encanto colonial, ofrece cocina internacional de alta calidad y ambiente relajado — el complemento perfecto después de un tour guiado.",
       lieb_home_meta_1_time: "3 - 4 horas",
-      lieb_home_meta_1_food: "Platos insignia",
+      lieb_home_meta_1_food: "Degustación maridada + Menú Viñedo",
       lieb_home_meta_2_transfer: "Traslado incluido",
-      lieb_home_meta_2_style: "Experiencia boutique",
+      lieb_home_meta_2_style: "Huerta orgánica y viñedo",
       home_hist_lieb_title: "Tour Guiado por el Casco Histórico + Visita a Bodega",
       home_hist_lieb_meta_1_town: "Tour guiado en la ciudad vieja",
       home_hist_lieb_meta_1_vine: "Viñedo y huerta orgánica",
@@ -6816,32 +6863,40 @@ golden_mile_step_note:
       liebres_about_p:
         "Un traslado privado te lleva a una bodega boutique. Recorrés el viñedo y la huerta orgánica y degustás tres vinos uruguayos maridados con platos de temporada de la cocina. Después, un traslado privado te lleva a la cabalgata a las afueras de Colonia, en un campo muy lindo del interior. Calculá unas 3 a 4 horas para toda la experiencia (visita, degustación, cabalgata y traslados).",
       liebres_reel_btn: "🎥 Ver reel en @_sacramentoadventures",
-      liebres_dining_experience_name: "Experiencia gastronómica en un restaurante boutique",
+      liebres_dining_doc_title:
+        "Huerta Orgánica & Viñedo + Degustación + Almuerzo o Cena | Sacramento Adventures",
+      liebres_dining_experience_name:
+        "Huerta Orgánica & Viñedo + Degustación + Almuerzo o Cena",
       liebres_dining_about_title: "Sobre esta experiencia",
       liebres_dining_about_p:
-        "Disfrutá una experiencia de almuerzo o cena en un restaurante boutique en una bodega, un restaurante boutique en Colonia del Sacramento. Esta actividad está enfocada en el menú gastronómico y el ambiente del restaurante, con traslado privado incluido. Podés elegir el formato de comida al crear tu pedido.",
+        "Visita guiada por la huerta orgánica, recorrido por el viñedo, degustación maridada de 3 vinos y productos de la huerta, y luego almuerzo o cena completos con el Menú Viñedo. Podés elegir almuerzo o cena al reservar. Traslado privado incluido.",
       liebres_dining_steps_title: "Cómo funciona",
       liebres_dining_step_1:
         "🚐 Traslado privado de ida: Desde tu hotel o terminal de ómnibus.",
       liebres_dining_step_2:
-        "🍽 Almuerzo o cena: Elegí tu menú de un restaurante boutique en una bodega al crear tu pedido.",
+        "🌱 Visita guiada por la huerta orgánica: se explica qué hay plantado y se presentan las especies, hierbas y productos cultivados en el lugar. Durante el recorrido se reparten pequeñas muestras de algunas hierbas para conocerlas, sentir sus aromas y descubrir sus características.",
       liebres_dining_step_3:
-        "🌿 Ambiente del restaurante: Experiencia boutique en un entorno relajado.",
+        "🍇 Visita al viñedo: conocé las diferentes variedades presentes en el lugar y recorré el entorno.",
       liebres_dining_step_4:
+        "🍷 Degustación maridada de 3 vinos y productos de la huerta.",
+      liebres_dining_step_5:
+        "🍽 Almuerzo o cena completos — Menú Viñedo, según el horario que elijas.",
+      liebres_dining_step_6:
         "🏨 Regreso: Traslado privado de vuelta al hotel o terminal.",
-      liebres_dining_price_title: "Experiencias gastronómicas desde USD 75",
+      liebres_dining_price_title: "USD 110 por persona",
       liebres_dining_price_p:
         "El transporte privado se cobra por vehículo: USD 40 total para 1–4 visitantes (un vehículo).",
       liebres_dining_included_title: "Qué incluye",
-      liebres_dining_include_1:
-        "✔ Menú de almuerzo o cena en un restaurante boutique en una bodega (según paquete)",
-      liebres_dining_include_2: "✔ Ambiente de restaurante boutique",
-      liebres_dining_include_3: "✔ Coordinación de bienvenida en el lugar",
-      liebres_dining_include_4:
+      liebres_dining_include_1: "✔ Visita guiada por la huerta orgánica",
+      liebres_dining_include_2: "✔ Visita al viñedo",
+      liebres_dining_include_3:
+        "✔ Degustación maridada de 3 vinos y productos de la huerta",
+      liebres_dining_include_4: "✔ Almuerzo o cena completos — Menú Viñedo",
+      liebres_dining_include_5:
         "✔ Traslado privado ida y vuelta (hotel o terminal)",
       liebres_dining_create_title: "Creá tu pedido",
       liebres_dining_create_subtitle:
-        "Elegí Viñedo o Ceibo, luego almuerzo o cena, y agregá preferencias.",
+        "Elegí almuerzo o cena (Menú Viñedo) y agregá preferencias.",
       liebres_dining_create_btn: "+ Crear tu pedido",
       liebres_dining_guide_help_aria:
         "Más información sobre la guía opcional para el grupo",
@@ -6855,17 +6910,39 @@ golden_mile_step_note:
       liebres_dining_map_iframe_title:
         "Mapa: bodega boutique, Colonia del Sacramento",
       liebres_dining_back_home: "Volver al inicio",
-      liebres_dining_popup_title: "Elegí menú y almuerzo o cena",
+      liebres_dining_popup_title: "Elegí almuerzo o cena",
+      liebres_dining_step1_title: "Lo que vas a vivir",
+      liebres_dining_step1_tasting_title: "Degustación maridada",
+      liebres_dining_step1_intro:
+        "Antes de sentarte a la mesa, vas a descubrir el entorno y los sabores del lugar.",
+      liebres_dining_step1_b1: "Visita guiada por la huerta orgánica",
+      liebres_dining_step1_b2:
+        "Conocé las diferentes especies, hierbas y productos cultivados",
+      liebres_dining_step1_b3:
+        "Durante el recorrido podrás conocer y probar muestras de algunas de las hierbas",
+      liebres_dining_step1_b4: "Recorrido por el viñedo y sus diferentes variedades",
+      liebres_dining_step1_b5: "Degustación maridada de 3 vinos",
+      liebres_dining_step1_b6: "Maridaje con productos de la propia huerta",
+      liebres_dining_step1_after:
+        "Después de la degustación, la experiencia continúa con tu almuerzo o cena.",
+      liebres_dining_step1_continue: "Continuar →",
+      liebres_dining_step1_back: "← Volver",
       liebres_dining_popup_package_title: "Menú",
       liebres_dining_popup_package_note:
         "(precio por visitante; el prorrateo de transporte aparece en el resumen)",
-      liebres_dining_pkg_vinedo_menu_line: "Menú Viñedo 🍇 — USD 75",
+      liebres_dining_pkg_vinedo_menu_line: "Menú Viñedo 🍇 — USD 110",
       liebres_dining_pkg_ceibo_menu_line: "Menú Ceibo 🌳 — USD 90",
       liebres_dining_meal_heading: "Almuerzo o cena",
       liebres_dining_meal_lunch: "Almuerzo",
       liebres_dining_meal_dinner: "Cena",
+      liebres_dining_pickup_title: "🚐 Pickup incluido",
+      liebres_dining_pickup_lunch: "Te pasamos a buscar por tu alojamiento a las 11:00 hs.",
+      liebres_dining_pickup_dinner: "Te pasamos a buscar por tu alojamiento a las 19:00 hs.",
+      liebres_dining_pickup_lunch_summary: "Pickup: 11:00 hs por tu alojamiento",
+      liebres_dining_pickup_dinner_summary: "Pickup: 19:00 hs por tu alojamiento",
+      liebres_dining_transport_share: "Transporte (tu parte del grupo {group}):",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Almuerzo — Propuesta Viñedo 🍇 USD 75",
+        "Almuerzo — Propuesta Viñedo 🍇 USD 110",
       liebres_dining_pkg_lunch_vinedo_label: "Almuerzo — Propuesta Viñedo",
       liebres_dining_pkg_lunch_vinedo_sub: "Selección de menú equilibrada",
       liebres_dining_pkg_lunch_ceibo_main:
@@ -6873,7 +6950,7 @@ golden_mile_step_note:
       liebres_dining_pkg_lunch_ceibo_label: "Almuerzo — Propuesta Ceibo",
       liebres_dining_pkg_lunch_ceibo_sub: "Selección de menú premium",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Cena — Propuesta Viñedo 🍇 USD 75",
+        "Cena — Propuesta Viñedo 🍇 USD 110",
       liebres_dining_pkg_dinner_vinedo_label: "Cena — Propuesta Viñedo",
       liebres_dining_pkg_dinner_vinedo_sub: "Selección de menú equilibrada",
       liebres_dining_pkg_dinner_ceibo_main:
@@ -6881,12 +6958,29 @@ golden_mile_step_note:
       liebres_dining_pkg_dinner_ceibo_label: "Cena — Propuesta Ceibo",
       liebres_dining_pkg_dinner_ceibo_sub: "Selección de menú premium",
       liebres_dining_pkg_vinedo_item_1:
-        "Entrada, principal y postre del menú Viñedo",
+        "Entrada, plato principal y postre a elección",
       liebres_dining_pkg_ceibo_item_1:
         "Entrada, principal y postre premium del menú Ceibo",
-      liebres_dining_pkg_item_2: "Incluye agua/refresco",
-      liebres_dining_pkg_item_3: "Una copa de vino y café o té",
+      liebres_dining_pkg_item_2: "Agua o refresco",
+      liebres_dining_pkg_item_3: "Una copa de vino",
+      liebres_dining_pkg_item_4: "Café o té",
+      liebres_dining_popup_menu_name: "Menú Viñedo",
+      liebres_dining_popup_menu_price: "USD 110 por persona",
+      liebres_dining_popup_menu_note: "Los platos se eligen directamente de la carta en el lugar.",
+      liebres_dining_alert_meal: "Elegí almuerzo o cena.",
       liebres_dining_pref_no_alcohol: "Sin alcohol",
+      liebres_dining_gal_alt_1: "Experiencia de huerta orgánica y viñedo en Colonia",
+      liebres_dining_gal_alt_2: "Degustación maridada con productos de la huerta",
+      liebres_dining_gal_alt_3: "Platos del Menú Viñedo",
+      liebres_dining_gal_alt_4: "Almuerzo o cena en el restaurante del viñedo",
+      liebres_dining_gal_alt_5: "Salón del restaurante del viñedo",
+      liebres_dining_gal_alt_6: "Ambiente del restaurante del viñedo",
+      liebres_dining_gal_alt_7: "Entorno del viñedo en Colonia",
+      liebres_dining_gal_alt_8: "Viñedo y huerta",
+      liebres_dining_gal_alt_9: "Almuerzo o cena completos",
+      liebres_dining_gal_alt_10: "Degustación maridada de tres vinos",
+      liebres_dining_gal_alt_11: "Mesa para almuerzo o cena",
+      liebres_dining_gal_alt_12: "Almuerzo o cena en el viñedo",
       liebres_steps_title: "Cómo funciona",
       liebres_step_1_title: "Traslado a un restaurante boutique en una bodega:",
       liebres_step_1_desc:
@@ -7839,9 +7933,9 @@ golden_mile_step_note:
       golfcart_gal_alt_2: "Passeio de carrinho de golf por Colonia del Sacramento",
       golfcart_gal_alt_3: "Parada panorâmica em um city tour de carrinho de golf",
       golfcart_gal_alt_4: "Experiência privada de carrinho de golf em Colonia",
-      lieb_title: "Almoço ou jantar em restaurante boutique",
+      lieb_title: "Horta Orgânica & Vinhedo + Degustação + Almoço ou Jantar",
       lieb_text:
-        "Experiência elegante no restaurante boutique, restaurante boutique em Colonia. Pratos assinatura, clima íntimo e transfer privado incluído.",
+        "Visita guiada à horta orgânica, passeio pelo vinhedo, degustação harmonizada de 3 vinhos e produtos da horta, e depois almoço ou jantar completos com o Menu Viñedo. Transfer privado incluído.",
       lupajack_title: "Passeio com Anfitriões locais · Colonia como um morador",
       lupajack_coming_soon_badge: "Em breve",
       lupajack_soon_popup_body: "Esta experiência estará disponível em breve. Fique de olho!",
@@ -8333,9 +8427,9 @@ golden_mile_step_note:
       bruma_home_desc:
         "Uma experiência gastronômica única em um restaurante boutique no coração do Centro Histórico de Colonia. Ruas de pedra e charme colonial, alta cozinha internacional e ambiente relaxado — o complemento ideal após um tour.",
       lieb_home_meta_1_time: "3 - 4 horas",
-      lieb_home_meta_1_food: "Pratos assinatura",
+      lieb_home_meta_1_food: "Degustação harmonizada + Menu Viñedo",
       lieb_home_meta_2_transfer: "Transfer incluído",
-      lieb_home_meta_2_style: "Experiência boutique",
+      lieb_home_meta_2_style: "Horta orgânica e vinhedo",
       home_hist_lieb_title: "Tour guiado pelo Centro Histórico + visita à vinícola",
       home_hist_lieb_meta_1_town: "Tour guiado na cidade velha",
       home_hist_lieb_meta_1_vine: "Vinhedo e horta orgânica",
@@ -10510,32 +10604,40 @@ golden_mile_step_note:
       liebres_about_p:
         "Um transfer privativo leva você à uma vinícola boutique. Você percorre o vinhedo e a horta orgânica e degusta três vinhos uruguaios harmonizados com pratos sazonais da cozinha. Depois, um transfer privativo leva você à cavalgada nos arredores de Colonia, em um belo campo no interior. Reserve cerca de 3 a 4 horas para a experiência completa (visita, degustação, cavalgada e transfers).",
       liebres_reel_btn: "🎥 Ver reel em @_sacramentoadventures",
-      liebres_dining_experience_name: "Experiência gastronômica em um restaurante boutique em uma vinícola",
+      liebres_dining_doc_title:
+        "Horta Orgânica & Vinhedo + Degustação + Almoço ou Jantar | Sacramento Adventures",
+      liebres_dining_experience_name:
+        "Horta Orgânica & Vinhedo + Degustação + Almoço ou Jantar",
       liebres_dining_about_title: "Sobre esta experiência",
       liebres_dining_about_p:
-        "Aproveite uma experiência de almoço ou jantar em um restaurante boutique em uma vinícola, um restaurante boutique em Colonia del Sacramento. Esta atividade foca no menu gastronômico e no ambiente do restaurante, com transfer privado incluído. Você pode escolher o formato da refeição ao criar seu pedido.",
+        "Visita guiada à horta orgânica, passeio pelo vinhedo, degustação harmonizada de 3 vinhos e produtos da horta, e depois almoço ou jantar completos com o Menu Viñedo. Você pode escolher almoço ou jantar na reserva. Transfer privado incluído.",
       liebres_dining_steps_title: "Como funciona",
       liebres_dining_step_1:
         "🚐 Transfer privado de ida: Do hotel ou terminal rodoviário.",
       liebres_dining_step_2:
-        "🍽 Almoço ou jantar: Escolha seu menu em um restaurante boutique em uma vinícola ao criar seu pedido.",
+        "🌱 Visita guiada à horta orgânica: conheça o que está plantado e as espécies, ervas e produtos cultivados no local. Durante o percurso são oferecidas pequenas amostras de algumas ervas para conhecê-las, sentir os aromas e descobrir suas características.",
       liebres_dining_step_3:
-        "🌿 Ambiente do restaurante: Experiência boutique em um ambiente relaxado.",
+        "🍇 Visita ao vinhedo: conheça as diferentes variedades presentes no local e percorra o entorno.",
       liebres_dining_step_4:
+        "🍷 Degustação harmonizada de 3 vinhos e produtos da horta.",
+      liebres_dining_step_5:
+        "🍽 Almoço ou jantar completos — Menu Viñedo, conforme o horário escolhido.",
+      liebres_dining_step_6:
         "🏨 Retorno: Transfer privado de volta ao hotel ou terminal.",
-      liebres_dining_price_title: "Experiências gastronômicas a partir de USD 75",
+      liebres_dining_price_title: "USD 110 por pessoa",
       liebres_dining_price_p:
         "O transporte privado é cobrado por veículo: USD 40 total para 1–4 visitantes (um veículo).",
       liebres_dining_included_title: "O que está incluído",
-      liebres_dining_include_1:
-        "✔ Menu de almoço ou jantar em um restaurante boutique em uma vinícola (conforme pacote)",
-      liebres_dining_include_2: "✔ Ambiente de restaurante boutique",
-      liebres_dining_include_3: "✔ Coordenação de recepção no local",
-      liebres_dining_include_4:
+      liebres_dining_include_1: "✔ Visita guiada à horta orgânica",
+      liebres_dining_include_2: "✔ Visita ao vinhedo",
+      liebres_dining_include_3:
+        "✔ Degustação harmonizada de 3 vinhos e produtos da horta",
+      liebres_dining_include_4: "✔ Almoço ou jantar completos — Menu Viñedo",
+      liebres_dining_include_5:
         "✔ Transfer privado de ida e volta (hotel ou terminal)",
       liebres_dining_create_title: "Monte seu pedido",
       liebres_dining_create_subtitle:
-        "Escolha Viñedo ou Ceibo, depois almoço ou jantar, e adicione preferências.",
+        "Escolha almoço ou jantar (Menu Viñedo) e adicione preferências.",
       liebres_dining_create_btn: "+ Montar pedido",
       liebres_dining_guide_help_aria:
         "Mais informações sobre o guia opcional para o grupo",
@@ -10549,17 +10651,39 @@ golden_mile_step_note:
       liebres_dining_map_iframe_title:
         "Mapa: vinícola boutique, Colonia del Sacramento",
       liebres_dining_back_home: "Voltar para o início",
-      liebres_dining_popup_title: "Escolha menu e refeição",
+      liebres_dining_popup_title: "Escolha almoço ou jantar",
+      liebres_dining_step1_title: "O que você vai viver",
+      liebres_dining_step1_tasting_title: "Degustação harmonizada",
+      liebres_dining_step1_intro:
+        "Antes de se sentar à mesa, você vai descobrir o entorno e os sabores do lugar.",
+      liebres_dining_step1_b1: "Visita guiada à horta orgânica",
+      liebres_dining_step1_b2:
+        "Conheça as diferentes espécies, ervas e produtos cultivados",
+      liebres_dining_step1_b3:
+        "Durante o percurso você poderá conhecer e provar amostras de algumas ervas",
+      liebres_dining_step1_b4: "Passeio pelo vinhedo e suas diferentes variedades",
+      liebres_dining_step1_b5: "Degustação harmonizada de 3 vinhos",
+      liebres_dining_step1_b6: "Harmonização com produtos da própria horta",
+      liebres_dining_step1_after:
+        "Depois da degustação, a experiência continua com seu almoço ou jantar.",
+      liebres_dining_step1_continue: "Continuar →",
+      liebres_dining_step1_back: "← Voltar",
       liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(preço por visitante; o rateio do transporte aparece no resumo)",
-      liebres_dining_pkg_vinedo_menu_line: "Menu Viñedo 🍇 — USD 75",
+      liebres_dining_pkg_vinedo_menu_line: "Menu Viñedo 🍇 — USD 110",
       liebres_dining_pkg_ceibo_menu_line: "Menu Ceibo 🌳 — USD 90",
       liebres_dining_meal_heading: "Almoço ou jantar",
       liebres_dining_meal_lunch: "Almoço",
       liebres_dining_meal_dinner: "Jantar",
+      liebres_dining_pickup_title: "🚐 Pickup incluído",
+      liebres_dining_pickup_lunch: "Buscamos você no seu alojamento às 11:00.",
+      liebres_dining_pickup_dinner: "Buscamos você no seu alojamento às 19:00.",
+      liebres_dining_pickup_lunch_summary: "Pickup: 11:00 no seu alojamento",
+      liebres_dining_pickup_dinner_summary: "Pickup: 19:00 no seu alojamento",
+      liebres_dining_transport_share: "Transporte (sua parte do grupo {group}):",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Almoço — Proposta Viñedo 🍇 USD 75",
+        "Almoço — Proposta Viñedo 🍇 USD 110",
       liebres_dining_pkg_lunch_vinedo_label: "Almoço — Proposta Viñedo",
       liebres_dining_pkg_lunch_vinedo_sub: "Seleção de menu equilibrada",
       liebres_dining_pkg_lunch_ceibo_main:
@@ -10567,7 +10691,7 @@ golden_mile_step_note:
       liebres_dining_pkg_lunch_ceibo_label: "Almoço — Proposta Ceibo",
       liebres_dining_pkg_lunch_ceibo_sub: "Seleção de menu premium",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Jantar — Proposta Viñedo 🍇 USD 75",
+        "Jantar — Proposta Viñedo 🍇 USD 110",
       liebres_dining_pkg_dinner_vinedo_label: "Jantar — Proposta Viñedo",
       liebres_dining_pkg_dinner_vinedo_sub: "Seleção de menu equilibrada",
       liebres_dining_pkg_dinner_ceibo_main:
@@ -10575,12 +10699,29 @@ golden_mile_step_note:
       liebres_dining_pkg_dinner_ceibo_label: "Jantar — Proposta Ceibo",
       liebres_dining_pkg_dinner_ceibo_sub: "Seleção de menu premium",
       liebres_dining_pkg_vinedo_item_1:
-        "Entrada, principal e sobremesa do menu Viñedo",
+        "Entrada, prato principal e sobremesa à escolha",
       liebres_dining_pkg_ceibo_item_1:
         "Entrada, principal e sobremesa premium do menu Ceibo",
-      liebres_dining_pkg_item_2: "Inclui água/refrigerante",
-      liebres_dining_pkg_item_3: "Uma taça de vinho e café ou chá",
+      liebres_dining_pkg_item_2: "Água ou refrigerante",
+      liebres_dining_pkg_item_3: "Uma taça de vinho",
+      liebres_dining_pkg_item_4: "Café ou chá",
+      liebres_dining_popup_menu_name: "Menu Viñedo",
+      liebres_dining_popup_menu_price: "USD 110 por pessoa",
+      liebres_dining_popup_menu_note: "Os pratos são escolhidos diretamente no cardápio no local.",
+      liebres_dining_alert_meal: "Escolha almoço ou jantar.",
       liebres_dining_pref_no_alcohol: "Sem álcool",
+      liebres_dining_gal_alt_1: "Experiência de horta orgânica e vinhedo em Colonia",
+      liebres_dining_gal_alt_2: "Degustação harmonizada com produtos da horta",
+      liebres_dining_gal_alt_3: "Pratos do Menu Viñedo",
+      liebres_dining_gal_alt_4: "Almoço ou jantar no restaurante do vinhedo",
+      liebres_dining_gal_alt_5: "Salão do restaurante do vinhedo",
+      liebres_dining_gal_alt_6: "Ambiente do restaurante do vinhedo",
+      liebres_dining_gal_alt_7: "Entorno do vinhedo em Colonia",
+      liebres_dining_gal_alt_8: "Vinhedo e horta",
+      liebres_dining_gal_alt_9: "Almoço ou jantar completos",
+      liebres_dining_gal_alt_10: "Degustação harmonizada de três vinhos",
+      liebres_dining_gal_alt_11: "Mesa para almoço ou jantar",
+      liebres_dining_gal_alt_12: "Almoço ou jantar no vinhedo",
       liebres_steps_title: "Como funciona",
       liebres_step_1_title: "Transfer para um restaurante boutique em uma vinícola:",
       liebres_step_1_desc:

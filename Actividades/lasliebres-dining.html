@@ -4,9 +4,9 @@
 <head>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta charset="utf-8"/>
-<title>Dining Experience at a Boutique Restaurant | Sacramento Adventures</title>
+<title data-translate="liebres_dining_doc_title">Organic Garden &amp; Vineyard + Tasting + Lunch or Dinner | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
-<link href="../Styles/styles.css?v=20260820wide1120" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20261007diningheropos" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -23,11 +23,214 @@
 <script src="../Home/meta-pixel.js?v=20260715"></script>
 <noscript><img alt="" height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=980635468354179&amp;ev=PageView&amp;noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
-
-
+<style>
+  [id="popuprestaurante boutiqueDining"] .popup-box {
+    max-width: 400px;
+    max-height: min(90vh, 740px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  [id="popuprestaurante boutiqueDining"] .popup-title {
+    text-align: center;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-wizard-progress {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 0 0.55rem;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-wizard-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #c5d4e4;
+  }
+  [id="popuprestaurante boutiqueDining"][data-dining-step="1"] .liebres-dining-wizard-dot[data-step-dot="1"],
+  [id="popuprestaurante boutiqueDining"][data-dining-step="2"] .liebres-dining-wizard-dot[data-step-dot="2"] {
+    background: #2f67a3;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-step {
+    display: none;
+  }
+  [id="popuprestaurante boutiqueDining"][data-dining-step="1"] .liebres-dining-step[data-wizard-step="1"],
+  [id="popuprestaurante boutiqueDining"][data-dining-step="2"] .liebres-dining-step[data-wizard-step="2"] {
+    display: block;
+    animation: liebresDiningStepIn 0.28s ease;
+  }
+  @keyframes liebresDiningStepIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-step1-subtitle {
+    margin: 0 0 0.4rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    line-height: 1.25;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-step1-intro {
+    margin: 0 auto 0.5rem;
+    max-width: 20rem;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: #4a5a6a;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-step1-after {
+    margin: 0.55rem auto 0.85rem;
+    max-width: 20rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #6b7c8d;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-wizard-back {
+    display: inline-block;
+    margin: 0 0 0.35rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #6b8eb8;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-wizard-back:hover {
+    color: #2f67a3;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-step1-continue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-popup-photo {
+    display: block;
+    width: min(100%, 210px);
+    height: 108px;
+    margin: 0.15rem auto 0.7rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-included {
+    margin: 0 0 0.75rem;
+    text-align: center;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-included-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    line-height: 1.25;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-included-price {
+    margin: 0.2rem 0 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2f67a3;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-included-note {
+    margin: 0 auto 0.45rem;
+    max-width: 17.5rem;
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: #6b7c8d;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-included-list {
+    margin: 0 auto;
+    padding: 0 0 0 1.15rem;
+    max-width: 17.5rem;
+    list-style: disc;
+    text-align: left;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: #4a5a6a;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-included-list li {
+    display: list-item;
+    margin: 0 0 0.18rem;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-meal-wrap {
+    margin: 0.35rem 0 0.65rem;
+    text-align: center;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-meal-heading {
+    margin: 0 0 0.4rem;
+    font-size: 0.95rem;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-meal-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem 1.35rem;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-meal-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-meal-option input[type="radio"] {
+    margin: 0;
+    accent-color: #5a95cf;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-meal-option input:checked + span {
+    color: #5a95cf;
+    font-weight: 600;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-pickup {
+    margin: 0.5rem auto 0.15rem;
+    max-width: 17.5rem;
+    padding: 0.5rem 0.7rem;
+    text-align: left;
+    background: rgba(47, 103, 163, 0.06);
+    border-radius: 10px;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-pickup[hidden] {
+    display: none;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-pickup-kicker,
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-pickup-text {
+    margin: 0;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-pickup-kicker {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e3a5f;
+    line-height: 1.3;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-pickup-text {
+    margin-top: 0.18rem;
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: #4a5a6a;
+  }
+  [id="popuprestaurante boutiqueDining"] .liebres-dining-pickup-text[hidden] {
+    display: none;
+  }
+  [id="popuprestaurante boutiqueDining"] .preferences-inside {
+    margin-top: 0.15rem;
+  }
+  @media (max-width: 768px) {
+    [id="popuprestaurante boutiqueDining"] .liebres-dining-popup-photo {
+      width: min(100%, 168px);
+      height: 86px;
+      margin-bottom: 0.55rem;
+    }
+    [id="popuprestaurante boutiqueDining"] .liebres-dining-included-title {
+      font-size: 1rem;
+    }
+    [id="popuprestaurante boutiqueDining"] .liebres-dining-included-list {
+      font-size: 0.82rem;
+    }
+  }
+</style>
 </head>
 <body class="page-actividad">
-<link href="../Styles/styles.css?v=20260820wide1120" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20261007diningheropos" rel="stylesheet"/>
 <header>
 <div class="logo-container">
 <a class="logo" href="../Home/index.html">
@@ -92,9 +295,7 @@
 <section class="coffee-content">
 <h2 data-translate="liebres_dining_about_title">About this experience</h2>
 <p data-translate="liebres_dining_about_p">
-      Enjoy a lunch or dinner experience at <strong>A boutique vineyard restaurant</strong>, a boutique restaurant in Colonia del
-      Sacramento. This activity focuses on the gastronomic menu and restaurant atmosphere, with private transfer
-      included. You can choose your preferred meal format when you create your order.
+      Guided visit to the organic garden, vineyard walk, paired tasting of 3 wines and garden products, then a full lunch or dinner with the Viñedo menu. You can choose lunch or dinner when you book. Private transfer included.
     </p>
 <a class="reel-link-btn" data-translate="liebres_reel_btn" href="https://www.instagram.com/_sacramentoadventures/" rel="noopener noreferrer" target="_blank">
       🎥 Watch Reel on @_sacramentoadventures
@@ -102,15 +303,17 @@
 <h3 class="experience-steps-title" data-translate="liebres_dining_steps_title">How it works</h3>
 <div class="experience-steps">
 <ul>
-<li data-translate="liebres_dining_step_1">🚐 <strong>Private pick-up:</strong> Transfer from your hotel or the bus terminal.</li>
-<li data-translate="liebres_dining_step_2">🍽 <strong>Lunch or dinner:</strong> Choose your menu at A boutique vineyard restaurant when creating your order.</li>
-<li data-translate="liebres_dining_step_3">🌿 <strong>Restaurant setting:</strong> Boutique dining experience in a relaxed atmosphere.</li>
-<li data-translate="liebres_dining_step_4">🏨 <strong>Return:</strong> Private drop-off back to your hotel or terminal.</li>
+<li data-translate="liebres_dining_step_1">🚐 Private pick-up: Transfer from your hotel or the bus terminal.</li>
+<li data-translate="liebres_dining_step_2">🌱 Guided visit to the organic garden: Learn what is planted and discover the herbs and produce grown on site. Small samples of some herbs are shared so you can smell them and get to know their characteristics.</li>
+<li data-translate="liebres_dining_step_3">🍇 Vineyard visit: See the different varieties on site and walk the surroundings.</li>
+<li data-translate="liebres_dining_step_4">🍷 Paired tasting of 3 wines and products from the garden.</li>
+<li data-translate="liebres_dining_step_5">🍽 Full lunch or dinner — Viñedo menu, according to the time you choose.</li>
+<li data-translate="liebres_dining_step_6">🏨 Return: Private drop-off back to your hotel or terminal.</li>
 </ul>
 </div>
 <div class="price-options">
 <div class="price-box">
-<h3 data-translate="liebres_dining_price_title">Dining experiences from USD 75</h3>
+<h3 data-translate="liebres_dining_price_title">USD 110 per person</h3>
 <p data-translate="liebres_dining_price_p">
           Private transport is billed by vehicle: <strong>USD 40</strong> total for 1–4 guests (one vehicle).
         </p>
@@ -121,15 +324,16 @@
 <div class="includes-list">
 <h3 data-translate="liebres_dining_included_title">What's included</h3>
 <ul>
-<li data-translate="liebres_dining_include_1">✔ Lunch or dinner menu at A boutique vineyard restaurant (depending on package)</li>
-<li data-translate="liebres_dining_include_2">✔ Boutique restaurant atmosphere</li>
-<li data-translate="liebres_dining_include_3">✔ Welcome coordination at the venue</li>
-<li data-translate="liebres_dining_include_4">✔ Private round-trip transfer (hotel or terminal)</li>
+<li data-translate="liebres_dining_include_1">✔ Guided visit to the organic garden</li>
+<li data-translate="liebres_dining_include_2">✔ Vineyard visit</li>
+<li data-translate="liebres_dining_include_3">✔ Paired tasting of 3 wines and products from the garden</li>
+<li data-translate="liebres_dining_include_4">✔ Full lunch or dinner — Viñedo menu</li>
+<li data-translate="liebres_dining_include_5">✔ Private round-trip transfer (hotel or terminal)</li>
 </ul>
 </div>
 <div class="order-start">
 <h3 data-translate="liebres_dining_create_title">Create your order</h3>
-<p data-translate="liebres_dining_create_subtitle">Choose lunch or dinner and menu style (Viñedo or Ceibo), then add preferences.</p>
+<p data-translate="liebres_dining_create_subtitle">Choose lunch or dinner (Viñedo menu), then add preferences.</p>
 <button class="btn primary-btn" data-translate="liebres_dining_create_btn" id="createMenuBtnrestaurante boutiqueDining" type="button">
             + Create your order
           </button>
@@ -145,18 +349,18 @@
 <section class="coffee-gallery">
 <h2 data-translate="liebres_dining_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
-<img alt="Boutique vineyard restaurant in Colonia" data-translate-alt="liebres_gal_alt_lieb1" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb228.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant table setting" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant signature dishes" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb3.webp" width="1200"/>
-<img alt="Boutique dining atmosphere" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb4.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant restaurant detail" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb5.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant restaurant atmosphere" data-translate-alt="liebres_gal_alt_lieb6" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb6.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant venue in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2020.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant restaurant detail" data-translate-alt="liebres_gal_alt_lieb22" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb22.webp" width="1200"/>
-<img alt="Dining experience at A boutique vineyard restaurant" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb20.webp" width="1200"/>
-<img alt="Wine tasting at A boutique vineyard restaurant" data-translate-alt="liebres_gal_alt_lieb7" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb7.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant ambiance" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2121.webp" width="1200"/>
-<img alt="A boutique vineyard restaurant dining experience" data-translate-alt="liebres_gal_alt_lieb23" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb23.webp" width="1200"/>
+<img alt="Organic garden and vineyard experience in Colonia" data-translate-alt="liebres_dining_gal_alt_1" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb228.webp" width="1200"/>
+<img alt="Paired wine tasting with garden products" data-translate-alt="liebres_dining_gal_alt_2" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2.webp" width="1200"/>
+<img alt="Viñedo menu dishes" data-translate-alt="liebres_dining_gal_alt_3" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb3.webp" width="1200"/>
+<img alt="Lunch or dinner at the vineyard restaurant" data-translate-alt="liebres_dining_gal_alt_4" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb4.webp" width="1200"/>
+<img alt="Dining room at the vineyard restaurant" data-translate-alt="liebres_dining_gal_alt_5" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb5.webp" width="1200"/>
+<img alt="Vineyard restaurant atmosphere" data-translate-alt="liebres_dining_gal_alt_6" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb6.webp" width="1200"/>
+<img alt="Vineyard surroundings in Colonia" data-translate-alt="liebres_dining_gal_alt_7" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2020.webp" width="1200"/>
+<img alt="Vineyard and garden setting" data-translate-alt="liebres_dining_gal_alt_8" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb22.webp" width="1200"/>
+<img alt="Full lunch or dinner experience" data-translate-alt="liebres_dining_gal_alt_9" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb20.webp" width="1200"/>
+<img alt="Paired tasting of three wines" data-translate-alt="liebres_dining_gal_alt_10" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb7.webp" width="1200"/>
+<img alt="Table setting for lunch or dinner" data-translate-alt="liebres_dining_gal_alt_11" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb2121.webp" width="1200"/>
+<img alt="Lunch or dinner at the vineyard" data-translate-alt="liebres_dining_gal_alt_12" decoding="async" height="220" loading="lazy" src="../Assets/images/lieb23.webp" width="1200"/>
 </div>
 </section>
 <div class="coffee-actions">
@@ -166,12 +370,12 @@
 </section>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260528ordersfix"></script>
+<script src="../Home/index.js?v=20261007mealsplit"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
-<script src="../Home/orders.js?v=20260702plexhints"></script>
+<script src="../Home/orders.js?v=20261007mealsplit"></script>
 <script>
     initPackageOrderExperience({
-      experienceName: "Dining Experience at a Boutique Restaurant",
+      experienceName: "Organic Garden & Vineyard + Tasting + Lunch or Dinner",
       experienceNameKey: "liebres_dining_experience_name",
       whatsappNumber: "59898945542",
       popupId: "popuprestaurante boutiqueDining",
@@ -189,112 +393,191 @@
         currency: "USD"
       },
       packageRadioName: "packageId",
+      requirePackageSelection: true,
+      packageRequiredAlertKey: "liebres_dining_alert_meal",
       transportPerVehicle: 40,
       packages: {
         lunch_vinedo: {
-          price: 75,
-          label: "Lunch — Propuesta Viñedo",
-          labelKey: "liebres_dining_pkg_lunch_vinedo_label"
-        },
-        lunch_ceibo: {
-          price: 90,
-          label: "Lunch — Propuesta Ceibo",
-          labelKey: "liebres_dining_pkg_lunch_ceibo_label"
+          price: 110,
+          label: "Lunch",
+          labelKey: "liebres_dining_meal_lunch"
         },
         dinner_vinedo: {
-          price: 75,
-          label: "Dinner — Propuesta Viñedo",
-          labelKey: "liebres_dining_pkg_dinner_vinedo_label"
-        },
-        dinner_ceibo: {
-          price: 90,
-          label: "Dinner — Propuesta Ceibo",
-          labelKey: "liebres_dining_pkg_dinner_ceibo_label"
+          price: 110,
+          label: "Dinner",
+          labelKey: "liebres_dining_meal_dinner"
         }
       },
+      packageSummaryExtraKeyById: {
+        lunch_vinedo: "liebres_dining_pickup_lunch_summary",
+        dinner_vinedo: "liebres_dining_pickup_dinner_summary"
+      },
+      packageTransportGroupById: {
+        lunch_vinedo: "lunch",
+        dinner_vinedo: "dinner"
+      },
+      packageTransportGroupLabelKeyById: {
+        lunch: "liebres_dining_meal_lunch",
+        dinner: "liebres_dining_meal_dinner"
+      },
+      packageTransportShareLabelKey: "liebres_dining_transport_share",
       paymentLinksByPackage: {
         lunch_vinedo: "https://pago.handy.uy/details/?sessionId=LINK_LL_LUNCH_VINEDO",
-        lunch_ceibo: "https://pago.handy.uy/details/?sessionId=LINK_LL_LUNCH_CEIBO",
-        dinner_vinedo: "https://pago.handy.uy/details/?sessionId=LINK_LL_DINNER_VINEDO",
-        dinner_ceibo: "https://pago.handy.uy/details/?sessionId=LINK_LL_DINNER_CEIBO"
-      },
-      packageComposite: {
-        menuRadioName: "liebresDiningMenu",
-        mealRadioName: "liebresDiningMeal"
+        dinner_vinedo: "https://pago.handy.uy/details/?sessionId=LINK_LL_DINNER_VINEDO"
       }
     });
+
+    (function () {
+      function bindDiningWizard() {
+        var popup = document.getElementById("popuprestaurante boutiqueDining");
+        if (!popup || popup.dataset.diningWizardBound === "1") return;
+        popup.dataset.diningWizardBound = "1";
+        var box = popup.querySelector(".popup-box");
+        var continueBtn = popup.querySelector("[data-dining-continue]");
+        var backBtn = popup.querySelector("[data-dining-back]");
+        var pickupHint = popup.querySelector("#liebresDiningPickupHint");
+        var wasActive = popup.classList.contains("active");
+
+        function updatePickupHint() {
+          if (!pickupHint) return;
+          var selected = popup.querySelector('input[name="packageId"]:checked');
+          var meal = selected && selected.value === "dinner_vinedo"
+            ? "dinner"
+            : selected && selected.value === "lunch_vinedo"
+              ? "lunch"
+              : "";
+          pickupHint.hidden = !meal;
+          pickupHint.querySelectorAll("[data-pickup-meal]").forEach(function (el) {
+            el.hidden = el.getAttribute("data-pickup-meal") !== meal;
+          });
+        }
+
+        function setStep(step) {
+          popup.setAttribute("data-dining-step", String(step));
+          if (box) {
+            box.setAttribute(
+              "aria-labelledby",
+              step === 2 ? "liebresDiningPopupTitle" : "liebresDiningStep1Title"
+            );
+          }
+          popup.scrollTop = 0;
+          if (box) box.scrollTop = 0;
+          if (step === 2) updatePickupHint();
+        }
+
+        setStep(1);
+        updatePickupHint();
+        popup.addEventListener("change", function (e) {
+          var t = e.target;
+          if (t && t.name === "packageId") updatePickupHint();
+        });
+
+        if (continueBtn) {
+          continueBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            setStep(2);
+          });
+        }
+        if (backBtn) {
+          backBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            setStep(1);
+          });
+        }
+
+        new MutationObserver(function () {
+          var active = popup.classList.contains("active");
+          if (active && !wasActive) {
+            setStep(1);
+            window.requestAnimationFrame(updatePickupHint);
+          }
+          wasActive = active;
+        }).observe(popup, { attributes: true, attributeFilter: ["class"] });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindDiningWizard);
+      } else {
+        bindDiningWizard();
+      }
+    })();
   </script>
-<div aria-hidden="true" class="popup-overlay" id="popuprestaurante boutiqueDining">
-<div aria-labelledby="liebresDiningPopupTitle" aria-modal="true" class="popup-box" role="dialog">
+<div aria-hidden="true" class="popup-overlay" data-dining-step="1" id="popuprestaurante boutiqueDining">
+<div aria-labelledby="liebresDiningStep1Title" aria-modal="true" class="popup-box" role="dialog">
 <button class="close-x" id="closerestaurante boutiqueDining" type="button">✕</button>
+<p aria-hidden="true" class="liebres-dining-wizard-progress">
+<span class="liebres-dining-wizard-dot" data-step-dot="1"></span>
+<span class="liebres-dining-wizard-dot" data-step-dot="2"></span>
+</p>
+<div class="liebres-dining-step" data-wizard-step="1">
+<p>
+<strong class="popup-title" id="liebresDiningStep1Title">
+<span data-translate="liebres_dining_step1_title">What you’ll experience</span>
+</strong>
+</p>
+<img alt="Lunch or dinner at the vineyard restaurant" class="liebres-dining-popup-photo" data-translate-alt="liebres_dining_gal_alt_4" decoding="async" height="108" src="../Assets/images/lieb4.webp" width="210"/>
+<p class="liebres-dining-step1-subtitle" data-translate="liebres_dining_step1_tasting_title">Paired tasting</p>
+<p class="liebres-dining-step1-intro" data-translate="liebres_dining_step1_intro">Before you sit down to eat, you’ll discover the setting and the flavors of the place.</p>
+<ul class="liebres-dining-included-list">
+<li data-translate="liebres_dining_step1_b1">Guided visit to the organic garden</li>
+<li data-translate="liebres_dining_step1_b2">Discover the different species, herbs and produce grown on site</li>
+<li data-translate="liebres_dining_step1_b3">During the walk you can try samples of some of the herbs</li>
+<li data-translate="liebres_dining_step1_b4">Walk through the vineyard and its different varieties</li>
+<li data-translate="liebres_dining_step1_b5">Paired tasting of 3 wines</li>
+<li data-translate="liebres_dining_step1_b6">Pairing with products from the garden</li>
+</ul>
+<p class="liebres-dining-step1-after" data-translate="liebres_dining_step1_after">After the tasting, the experience continues with your lunch or dinner.</p>
+<div class="popup-actions">
+<button class="btn liebres-dining-step1-continue" data-dining-continue="" data-translate="liebres_dining_step1_continue" type="button">Continue →</button>
+</div>
+</div>
+<div class="liebres-dining-step" data-wizard-step="2">
+<button class="liebres-dining-wizard-back" data-dining-back="" data-translate="liebres_dining_step1_back" type="button">← Back</button>
 <p>
 <strong class="popup-title" id="liebresDiningPopupTitle">
 <span data-translate="liebres_dining_popup_title">Choose lunch or dinner</span>
 </strong>
 </p>
-<p>
-<strong data-translate="liebres_dining_popup_package_title">Menu</strong>
-<small data-translate="liebres_dining_popup_package_note">(price per guest; transport share appears in summary)</small>
-</p>
-<ul class="popup-list liebres-dining-popup-menu">
-<li class="liebres-dining-menu-li">
-<div class="liebres-dining-pkg-stack">
-<label>
-<input name="liebresDiningMenu" type="radio" value="vinedo"/>
-<span data-translate="liebres_dining_pkg_vinedo_menu_line">Viñedo menu 🍇 — USD 75</span>
-</label>
-<p class="liebres-dining-pkg-subline"><small data-translate="liebres_dining_pkg_lunch_vinedo_sub">Balanced menu selection</small></p>
-<ul class="liebres-dining-pkg-bullets">
-<li data-translate="liebres_dining_pkg_vinedo_item_1">Starter, main and dessert from the Viñedo menu</li>
-<li data-translate="liebres_dining_pkg_item_2">Plus water/soft drink</li>
-<li data-translate="liebres_dining_pkg_item_3">One glass of wine and coffee or tea</li>
+<img alt="Paired tasting of three wines" class="liebres-dining-popup-photo" data-translate-alt="liebres_dining_gal_alt_10" decoding="async" height="108" src="../Assets/images/lieb7.webp" width="210"/>
+<div class="liebres-dining-included">
+<p class="liebres-dining-included-title" data-translate="liebres_dining_popup_menu_name">Viñedo menu</p>
+<p class="liebres-dining-included-price" data-translate="liebres_dining_popup_menu_price">USD 110 per person</p>
+<p class="liebres-dining-included-note" data-translate="liebres_dining_popup_menu_note">Dishes are chosen from the menu on site.</p>
+<ul class="liebres-dining-included-list">
+<li data-translate="liebres_dining_pkg_vinedo_item_1">Starter, main course and dessert of your choice</li>
+<li data-translate="liebres_dining_pkg_item_2">Water or a soft drink</li>
+<li data-translate="liebres_dining_pkg_item_3">One glass of wine</li>
+<li data-translate="liebres_dining_pkg_item_4">Coffee or tea</li>
 </ul>
 </div>
-</li>
-<li class="liebres-dining-menu-li">
-<div class="liebres-dining-pkg-stack">
-<label>
-<input name="liebresDiningMenu" type="radio" value="ceibo"/>
-<span data-translate="liebres_dining_pkg_ceibo_menu_line">Ceibo menu 🌳 — USD 90</span>
-</label>
-<p class="liebres-dining-pkg-subline"><small data-translate="liebres_dining_pkg_lunch_ceibo_sub">Premium menu selection</small></p>
-<ul class="liebres-dining-pkg-bullets">
-<li data-translate="liebres_dining_pkg_ceibo_item_1">Premium starter, main and dessert from the Ceibo menu</li>
-<li data-translate="liebres_dining_pkg_item_2">Plus water/soft drink</li>
-<li data-translate="liebres_dining_pkg_item_3">One glass of wine and coffee or tea</li>
-</ul>
-</div>
-</li>
-</ul>
 <div class="liebres-dining-meal-wrap" id="liebresDiningMealWrap">
 <p class="liebres-dining-meal-heading">
 <strong data-translate="liebres_dining_meal_heading">Lunch or dinner</strong>
 </p>
 <div class="liebres-dining-meal-options">
 <label class="liebres-dining-meal-option">
-<input checked="" name="liebresDiningMeal" type="radio" value="lunch"/>
+<input name="packageId" type="radio" value="lunch_vinedo"/>
 <span data-translate="liebres_dining_meal_lunch">Lunch</span>
 </label>
 <label class="liebres-dining-meal-option">
-<input name="liebresDiningMeal" type="radio" value="dinner"/>
+<input name="packageId" type="radio" value="dinner_vinedo"/>
 <span data-translate="liebres_dining_meal_dinner">Dinner</span>
 </label>
 </div>
+<div class="liebres-dining-pickup" hidden="" id="liebresDiningPickupHint">
+<p class="liebres-dining-pickup-kicker" data-translate="liebres_dining_pickup_title">🚐 Pickup included</p>
+<p class="liebres-dining-pickup-text" data-pickup-meal="lunch" data-translate="liebres_dining_pickup_lunch" hidden="">We’ll pick you up at your lodging at 11:00.</p>
+<p class="liebres-dining-pickup-text" data-pickup-meal="dinner" data-translate="liebres_dining_pickup_dinner" hidden="">We’ll pick you up at your lodging at 19:00.</p>
 </div>
-<div aria-hidden="true" class="liebres-dining-pkg-id-sync">
-<input name="packageId" tabindex="-1" type="radio" value="lunch_vinedo"/>
-<input name="packageId" tabindex="-1" type="radio" value="lunch_ceibo"/>
-<input name="packageId" tabindex="-1" type="radio" value="dinner_vinedo"/>
-<input name="packageId" tabindex="-1" type="radio" value="dinner_ceibo"/>
 </div>
 <div class="preferences-inside">
 <h3 class="preferences-title" data-translate="bruma_preferences_title">Your preferences</h3>
-<label><input type="checkbox" value="No alcohol"/> 🚫 <span data-translate="liebres_dining_pref_no_alcohol">No alcohol</span></label>
 <label><input type="checkbox" value="Low salt"/> 🧂 <span data-translate="bruma_pref_salt">Low salt</span></label>
 <label><input type="checkbox" value="No spicy food"/> 🌶 <span data-translate="bruma_pref_spicy">No spicy food</span></label>
 </div>
 <div class="popup-actions">
 <button class="btn" data-translate="save_selection" id="saveMenurestaurante boutiqueDining" type="button">Save selection</button>
+</div>
 </div>
 </div>
 </div>
