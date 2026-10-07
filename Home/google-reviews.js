@@ -11,6 +11,24 @@
 
   const FALLBACK_REVIEWS = [
     {
+      id: "lydia_salomon_deleon",
+      name: "Lydia Salomón deLeón",
+      rating: 5,
+      text: "Estuvimos en la cabalgata hace 2 días. Destacamos la excelente organización de Romina, que une a su amabilidad, el constante perfeccionamiento de su trabajo a través de jornadas internacionales y experiencia. Asimismo, sus colaboradores son de un trato educado, cordial y lo pasamos genial. Lydia y Gerardo de Maldonado."
+    },
+    {
+      id: "carolina_furtado",
+      name: "carolina furtado",
+      rating: 5,
+      text: "¡Una experiencia increíble! Montar a caballo en la playa fue una de las cosas más felices que he hecho en mi vida. ¡Me encantó cada detalle! El personal que organiza el tour es excelente, desde la atención al cliente hasta el guía. Lo recomiendo muchísimo."
+    },
+    {
+      id: "rita_di_feo",
+      name: "Rita Di Feo",
+      rating: 5,
+      text: "I did the horse riding experience and it was the highlight of my time in this amazing country! All the staff was super kind and I would highly recommend this experience. As a solo girl I felt very safe at all times! Thank you❤️"
+    },
+    {
       id: "ellen_c",
       name: "ellen c",
       rating: 5,
