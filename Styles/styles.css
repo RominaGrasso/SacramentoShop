@@ -391,6 +391,7 @@
   .cards {
     padding: 30px 60px;
     display: grid;
+    grid-auto-flow: row;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 40px;
   }
@@ -3901,6 +3902,35 @@
     object-position: center 11%;
   }
 
+  .home-about-collage__photo--liebbrasil img {
+    object-fit: cover;
+    object-position: center 76%;
+    transform: scale(1.58);
+    transform-origin: center 76%;
+  }
+
+  .home-about-collage__photo--flota img {
+    object-position: center 60%;
+  }
+
+  .home-about-collage__photo--grupo3 img {
+    object-fit: cover;
+    object-position: center 72%;
+    transform: scale(1.55);
+    transform-origin: center 72%;
+  }
+
+  .home-about-collage__photo--fit1 img {
+    object-position: center 42%;
+  }
+
+  .home-about-collage__photo--pedro img {
+    object-fit: cover;
+    object-position: center 58%;
+    transform: scale(1.62);
+    transform-origin: center 56%;
+  }
+
   .home-about-mobile-gallery {
     display: none;
     width: 100%;
@@ -3956,6 +3986,37 @@
   .home-about-mobile-gallery__photo--focus-head img {
     object-fit: cover;
     object-position: center 11%;
+  }
+
+  .home-about-mobile-gallery__photo--liebbrasil img {
+    object-fit: cover;
+    object-position: center 76%;
+    transform: scale(1.45);
+    transform-origin: center 76%;
+  }
+
+  .home-about-mobile-gallery__photo--flota img {
+    object-fit: cover;
+    object-position: center 60%;
+  }
+
+  .home-about-mobile-gallery__photo--grupo3 img {
+    object-fit: cover;
+    object-position: center 72%;
+    transform: scale(1.4);
+    transform-origin: center 72%;
+  }
+
+  .home-about-mobile-gallery__photo--fit1 img {
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .home-about-mobile-gallery__photo--pedro img {
+    object-fit: cover;
+    object-position: center 58%;
+    transform: scale(1.45);
+    transform-origin: center 56%;
   }
 
   @media (max-width: 1023px) {
@@ -4212,6 +4273,10 @@
     text-align: center;
   }
 
+  section.home-about-intro .home-about-intro__body {
+    gap: 24px;
+  }
+
   .home-about-intro__body p {
     margin: 0;
     font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -4220,6 +4285,10 @@
     font-weight: 400;
     color: #4a5f73;
     text-wrap: pretty;
+  }
+
+  .home-about-intro__body p:empty {
+    display: none;
   }
 
   .home-about-intro__body strong {
@@ -5478,7 +5547,7 @@
     color: #4a5f73;
   }
 
-  /* Modal catalog: CSS columns (2-up desktop) preserves full card intrinsic height */
+  /* Modal catalog: CSS grid keeps DOM order (row, then next row) on every breakpoint */
   .home-category-modal__cards {
     flex: 1;
     overflow-y: auto;
@@ -5487,8 +5556,11 @@
     -webkit-overflow-scrolling: touch;
     padding: 0.35rem 1.25rem 1.3rem;
     margin: 0;
-    column-count: 1;
-    column-gap: 1.1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    align-items: start;
+    gap: 1.25rem 1.1rem;
   }
 
   .home-category-modal__cards .card.card--category-modal {
@@ -5496,10 +5568,7 @@
     flex-direction: column;
     width: 100%;
     height: auto;
-    margin: 0 0 1.25rem;
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
+    margin: 0;
     contain: none;
     transition:
       transform 0.28s ease,
@@ -5717,6 +5786,7 @@
   .home-experiences-more-panel {
     grid-column: 1 / -1;
     display: grid;
+    grid-auto-flow: row;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 40px;
     overflow: hidden;
@@ -5760,7 +5830,7 @@
 
   @media (min-width: 641px) {
     .home-category-modal__cards {
-      column-count: 2;
+      grid-template-columns: 1fr 1fr;
       padding: 0.4rem 1.35rem 1.4rem;
     }
   }
@@ -5790,12 +5860,9 @@
     }
 
     .home-category-modal__cards {
-      column-count: 1;
+      grid-template-columns: 1fr;
       padding: 0.2rem 0.95rem 1rem;
-    }
-
-    .home-category-modal__cards .card.card--category-modal {
-      margin-bottom: 1.15rem;
+      gap: 1.15rem;
     }
 
     .home-category-modal__actions {

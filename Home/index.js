@@ -79,9 +79,9 @@ const translations = {
       home_about_gallery_aria: "Sacramento Adventures photo gallery",
       home_about_intro_title: "About Sacramento Adventures",
       home_about_intro_p1:
-        "At Sacramento Adventures, we create <strong>authentic experiences</strong> for travelers who want to discover the true essence of <strong>Colonia del Sacramento</strong> and its surroundings.",
+        "We are a team of local professionals united by the same passion: <strong>Colonia</strong>. Years of training, study and dedication to its heritage, history and culture allow us to share it from a genuine place.",
       home_about_intro_p2:
-        "From <strong>guided walking tours</strong> and <strong>full-day experiences</strong> to local gastronomy and sunset moments by the <strong>Río de la Plata</strong>, we help visitors connect with the culture, history and lifestyle of <strong>Uruguay</strong> in a genuine and memorable way.",
+        "We also work with <strong>more than 30 local partners</strong>, connecting people, flavors, stories and places so every traveler can discover Colonia in a way that is as complete as it is diverse.",
       home_category_nav_eyebrow: "Curated experiences",
       home_category_nav_title: "Explore by experience",
       home_category_nav_lead: "Choose how you want to discover Colonia",
@@ -3819,9 +3819,9 @@ golden_mile_step_note:
       home_about_gallery_aria: "Galería de fotos de Sacramento Adventures",
       home_about_intro_title: "Sobre Sacramento Adventures",
       home_about_intro_p1:
-        "En Sacramento Adventures creamos <strong>experiencias auténticas</strong> para viajeros que quieren descubrir la verdadera esencia de <strong>Colonia del Sacramento</strong> y sus alrededores.",
+        "Somos un equipo de profesionales locales unidos por una misma pasión: <strong>Colonia</strong>. Años de formación, estudio y dedicación a su patrimonio, historia y cultura nos permiten compartirla desde un lugar genuino.",
       home_about_intro_p2:
-        "Desde <strong>recorridos guiados a pie</strong> y <strong>experiencias de día completo</strong> hasta gastronomía local y atardeceres junto al <strong>Río de la Plata</strong>, ayudamos a quien nos visita a conectar con la cultura, la historia y el estilo de vida de <strong>Uruguay</strong> de manera genuina y memorable.",
+        "Trabajamos además junto a <strong>más de 30 proveedores locales</strong>, conectando personas, sabores, historias y lugares para que cada viajero pueda descubrir Colonia de una manera tan completa como diversa.",
       home_category_nav_eyebrow: "Experiencias curadas",
       home_category_nav_title: "Explorá por experiencia",
       home_category_nav_lead: "Elegí cómo querés descubrir Colonia",
@@ -7561,9 +7561,9 @@ golden_mile_step_note:
       home_about_gallery_aria: "Galeria de fotos da Sacramento Adventures",
       home_about_intro_title: "Sobre a Sacramento Adventures",
       home_about_intro_p1:
-        "Na Sacramento Adventures, criamos <strong>experiências autênticas</strong> para viajantes que querem descobrir a verdadeira essência de <strong>Colonia del Sacramento</strong> e seus arredores.",
+        "Somos uma equipe de profissionais locais unidos pela mesma paixão: <strong>Colonia</strong>. Anos de formação, estudo e dedicação ao seu patrimônio, história e cultura nos permitem compartilhá-la de um lugar genuíno.",
       home_about_intro_p2:
-        "De <strong>passeios guiados a pé</strong> e <strong>experiências de dia inteiro</strong> à gastronomia local e momentos ao pôr do sol às margens do <strong>Rio da Prata</strong>, ajudamos visitantes a se conectar com a cultura, a história e o estilo de vida do <strong>Uruguai</strong> de forma genuína e memorável.",
+        "Trabalhamos também com <strong>mais de 30 fornecedores locais</strong>, conectando pessoas, sabores, histórias e lugares para que cada viajante possa descobrir Colonia de uma forma tão completa quanto diversa.",
       home_category_nav_eyebrow: "Experiências curadas",
       home_category_nav_title: "Explore por experiência",
       home_category_nav_lead: "Escolha como quer descobrir Colonia",
