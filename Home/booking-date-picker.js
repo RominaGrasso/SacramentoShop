@@ -22,6 +22,14 @@
     return !Number.isNaN(parsed.getTime()) && isWeekendDate(parsed);
   }
 
+  function parseIsoList(attr) {
+    if (!attr) return [];
+    return String(attr)
+      .split(",")
+      .map((part) => part.trim())
+      .filter((iso) => /^\d{4}-\d{2}-\d{2}$/.test(iso));
+  }
+
   function parseBlockedWeekdays(attr) {
     if (!attr) return [];
     return String(attr)
@@ -82,6 +90,10 @@
     if (!input || input.tagName !== "INPUT") return;
     const key = input.getAttribute("data-booking-date-key") || "selectedDate";
     const weekendsOnly = input.getAttribute("data-booking-date-weekends-only") === "true";
+    const extraAllowed = parseIsoList(
+      input.getAttribute("data-booking-date-extra-allowed") || ""
+    );
+    const isExtraAllowed = (iso) => extraAllowed.includes(iso);
     const blockedWeekdays = parseBlockedWeekdays(
       input.getAttribute("data-booking-date-blocked-weekdays") || ""
     );
@@ -104,10 +116,13 @@
 
     let value = storedValid ? stored : min;
     if (weekendsOnly) {
-      if (!isWeekendIso(value) || value < min) {
+      if ((!isWeekendIso(value) && !isExtraAllowed(value)) || value < min) {
         value = nextWeekendOnOrAfter(value < min ? min : value);
       }
-    } else if (blockedWeekdays.length && (isBlockedIso(value, blockedWeekdays) || value < min)) {
+    } else if (
+      blockedWeekdays.length &&
+      ((isBlockedIso(value, blockedWeekdays) && !isExtraAllowed(value)) || value < min)
+    ) {
       value = nextAllowedOnOrAfter(value < min ? min : value, min, blockedWeekdays);
     } else if (!storedValid) {
       value = min;
@@ -118,7 +133,7 @@
     input.addEventListener("change", () => {
       if (!input.value || input.value < min) return;
 
-      if (weekendsOnly && !isWeekendIso(input.value)) {
+      if (weekendsOnly && !isWeekendIso(input.value) && !isExtraAllowed(input.value)) {
         const corrected = nextWeekendOnOrAfter(
           input.value >= min ? input.value : min
         );
@@ -127,7 +142,11 @@
         return;
       }
 
-      if (blockedWeekdays.length && isBlockedIso(input.value, blockedWeekdays)) {
+      if (
+        blockedWeekdays.length &&
+        isBlockedIso(input.value, blockedWeekdays) &&
+        !isExtraAllowed(input.value)
+      ) {
         const corrected = nextAllowedOnOrAfter(
           input.value >= min ? input.value : min,
           min,

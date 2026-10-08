@@ -2938,9 +2938,9 @@ golden_mile_step_note:
       sunset_boat_include_3: "✔ Life jackets and safety briefing",
       sunset_boat_include_4: "✔ Small-group atmosphere",
       sunset_boat_create_title: "Book your spot",
-      sunset_boat_visit_date_hint: "Saturdays and Sundays only.",
+      sunset_boat_visit_date_hint: "Saturdays and Sundays, plus Monday 12 October 2026.",
       sunset_boat_alert_weekday:
-        "The Sunset Boat experience is only available on Saturdays and Sundays. Please pick a weekend date.",
+        "The Sunset Boat experience is available on Saturdays, Sundays, and Monday 12 October 2026. Please pick one of those dates.",
       sunset_boat_create_subtitle:
         "Choose your visit date below, then add a booking and pick a departure time in the popup. Use +/− on each booking for more than one passenger at the same time.",
       sunset_boat_create_btn: "+ Add passenger or group",
@@ -6680,9 +6680,9 @@ golden_mile_step_note:
       sunset_boat_include_3: "✔ Chalecos salvavidas e indicaciones de seguridad",
       sunset_boat_include_4: "✔ Ambiente de grupo reducido",
       sunset_boat_create_title: "Reservá tu lugar",
-      sunset_boat_visit_date_hint: "Solo sábados y domingos.",
+      sunset_boat_visit_date_hint: "Sábados y domingos, y también el lunes 12 de octubre de 2026.",
       sunset_boat_alert_weekday:
-        "La experiencia Sunset Boat está disponible solo sábados y domingos. Elegí una fecha de fin de semana.",
+        "La experiencia Sunset Boat está disponible sábados, domingos y el lunes 12 de octubre de 2026. Elegí una de esas fechas.",
       sunset_boat_create_subtitle:
         "Elegí la fecha de visita abajo, después agregá una reserva y el horario de salida en el popup. Con +/− en cada reserva podés sumar más de un pasajero al mismo horario.",
       sunset_boat_create_btn: "+ Agregar pasajero o grupo",
@@ -10421,9 +10421,9 @@ golden_mile_step_note:
       sunset_boat_include_3: "✔ Coletes salva-vidas e orientações de segurança",
       sunset_boat_include_4: "✔ Experiência em grupo pequeno",
       sunset_boat_create_title: "Reserve seu lugar",
-      sunset_boat_visit_date_hint: "Somente sábados e domingos.",
+      sunset_boat_visit_date_hint: "Sábados e domingos, e também segunda-feira, 12 de outubro de 2026.",
       sunset_boat_alert_weekday:
-        "A experiência Sunset Boat está disponível apenas aos sábados e domingos. Escolha uma data de fim de semana.",
+        "A experiência Sunset Boat está disponível aos sábados, domingos e na segunda-feira 12 de outubro de 2026. Escolha uma dessas datas.",
       sunset_boat_create_subtitle:
         "Escolha a data da visita abaixo, depois adicione uma reserva e o horário de saída no popup. Use +/− em cada reserva para mais de um passageiro no mesmo horário.",
       sunset_boat_create_btn: "+ Adicionar passageiro ou grupo",
