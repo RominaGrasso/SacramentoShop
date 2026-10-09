@@ -339,13 +339,13 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260820availnotice"></script>
+<script src="../Home/index.js?v=20261009walkprice"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
 <script>
   (function () {
-    const pricesByLang = { es: 15, en: 17, pt: 17 };
+    const pricesByLang = { es: 13, en: 15, pt: 15 };
     const MATE_ADDON_PRICE_USD = 20;
     const getLang = () => window.getInitialLanguage().toLowerCase();
     const t = (key, fallback) => {
@@ -355,16 +355,16 @@
     };
     const getListPriceForGuideLanguage = (guideLanguage) => {
       const g = String(guideLanguage || "").toLowerCase();
-      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 12;
-      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 17;
-      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 17;
+      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 13;
+      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 15;
+      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 15;
       return null;
     };
     const getPriceForGuideLanguage = (guideLanguage) => getListPriceForGuideLanguage(guideLanguage);
     const getPrice = (guideLanguage) => {
       const byGuide = getListPriceForGuideLanguage(guideLanguage);
       if (Number.isFinite(byGuide)) return byGuide;
-      return pricesByLang[getLang()] || 17;
+      return pricesByLang[getLang()] || 15;
     };
     const getKidsFreeNote = () => {
       return t("walking_kids_note", "Children under 5 years old do not pay.");
@@ -406,9 +406,9 @@
     };
 
     const WALKING_GUIDE_PRICE_TIERS = Object.freeze([
-      { langKey: "walking_price_lang_es", fallback: "Spanish", amount: 15 },
-      { langKey: "walking_price_lang_en", fallback: "English", amount: 17 },
-      { langKey: "walking_price_lang_pt", fallback: "Portuguese", amount: 17 }
+      { langKey: "walking_price_lang_es", fallback: "Spanish", amount: 13 },
+      { langKey: "walking_price_lang_en", fallback: "English", amount: 15 },
+      { langKey: "walking_price_lang_pt", fallback: "Portuguese", amount: 15 }
     ]);
 
     function renderWalkingPriceBadges() {
