@@ -116,9 +116,9 @@
     "walkingtour.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "lang_es", price: 15, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
-        { id: "lang_en", price: 17, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
-        { id: "lang_pt", price: 17, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
+        { id: "lang_es", price: 13, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
+        { id: "lang_en", price: 15, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
+        { id: "lang_pt", price: 15, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
       ]
     },
     "mision-night.html": {
@@ -140,17 +140,17 @@
     ["cabal.html", 40],
     ["colonia-wellness.html", 95],
     ["kayak.html", 80],
-    ["candombe.html", 80],
+    ["candombe.html", 60],
     ["mate.html", 40],
     ["traslado-plaza-letras.html", 50],
     ["chivito.html", 40],
     ["food1.html", 55],
     ["bike.html", 60],
     ["bruma.html", 50],
-    ["fullday-colonia.html", 90],
+    ["fullday-colonia.html", 100],
     ["golden-mile.html", 120],
-    ["private-walkingtour.html", 50],
-    ["night-walkingtour.html", 20],
+    ["private-walkingtour.html", 40],
+    ["night-walkingtour.html", 18],
     ["lasliebres.html", 110],
     ["sio.html", 70],
     ["romantic.html", 70],

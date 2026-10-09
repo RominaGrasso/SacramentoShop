@@ -4179,9 +4179,8 @@
       grid-column: 3;
       justify-self: start;
       align-self: center;
-      margin-top: 1.85rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: 4.85rem 5.35rem 4.35rem 5.15rem 4.85rem;
+      grid-template-rows: 5.5rem 5.5rem 5.15rem 5.15rem;
     }
 
     .home-about-collage--left .home-about-collage__photo--tall {
@@ -4190,8 +4189,12 @@
       min-height: 100%;
     }
 
-    .home-about-collage--right .home-about-collage__photo--wide:first-child,
-    .home-about-collage--right .home-about-collage__photo--wide:last-child {
+    .home-about-collage--right .home-about-collage__photo {
+      width: 100%;
+      height: 100%;
+    }
+
+    .home-about-collage--right .home-about-collage__photo--wide:first-child {
       grid-column: 1 / -1;
     }
 
@@ -4210,8 +4213,7 @@
     }
 
     .home-about-collage--right {
-      grid-template-rows: 5.5rem 6.25rem 4.75rem 5.75rem 5.25rem;
-      margin-top: 1.95rem;
+      grid-template-rows: 6.35rem 6.35rem 5.75rem 5.75rem;
     }
   }
 

@@ -7,6 +7,35 @@
 <title>Full Day Colonia Adventure | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link href="../Styles/styles.css?v=20260820golfreviews" rel="stylesheet"/>
+<style>
+  #popupFulldayColonia .popup-box {
+    display: flex;
+    flex-direction: column;
+    max-height: min(90vh, 38rem);
+    overflow: hidden;
+  }
+
+  #popupFulldayColonia .preferences-inside {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  #popupFulldayColonia .popup-actions {
+    flex-shrink: 0;
+    margin-top: 14px;
+    padding-top: 4px;
+  }
+
+  @media (max-width: 640px) {
+    #popupFulldayColonia .popup-box {
+      max-height: min(92vh, 100%);
+      width: min(100%, calc(100% - 20px));
+    }
+  }
+</style>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -97,12 +126,12 @@
     </p>
 <ul aria-label="Highlights" class="fullday-colonia-hero-badges">
 <li data-translate="fullday_colonia_highlight_1">Private transfer included</li>
-<li data-translate="fullday_colonia_highlight_2">Plaza de Toros (exterior)</li>
-<li data-translate="fullday_colonia_highlight_3">Typical Uruguayan lunch</li>
+<li data-translate="fullday_colonia_highlight_2">Plaza de Toros</li>
 <li data-translate="fullday_colonia_highlight_4">Colonia letters</li>
 <li data-translate="fullday_colonia_highlight_5">UNESCO Historic Quarter</li>
+<li data-translate="fullday_colonia_highlight_3">Typical Uruguayan lunch</li>
 </ul>
-<p class="fullday-colonia-hero-price" data-translate="fullday_colonia_price_title">From USD 90 per person</p>
+<p class="fullday-colonia-hero-price" data-translate="fullday_colonia_price_title">From USD 100 per person</p>
 </div>
 </section>
 <!-- ================= CONTENT ================= -->
@@ -139,26 +168,26 @@
 </li>
 <li class="activity-meta-row" data-card-meta="landmark">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#landmark"></use></svg>
-<span data-translate="fullday_colonia_step_3">Exterior stop at Plaza de Toros</span>
+<span data-translate="fullday_colonia_step_3">Stop at Plaza de Toros</span>
 </li>
 <li class="activity-meta-row" data-card-meta="camera">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#camera"></use></svg>
 <span data-translate="fullday_colonia_step_4">Photo stop at the Colonia letters</span>
 </li>
-<li class="activity-meta-row" data-card-meta="cup">
-<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#cup"></use></svg>
-<span data-translate="fullday_colonia_step_5">Typical Uruguayan lunch: chivito</span>
-</li>
 <li class="activity-meta-row" data-card-meta="walk">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#walk"></use></svg>
 <span data-translate="fullday_colonia_step_6">Guided tour of the UNESCO Historic Quarter</span>
+</li>
+<li class="activity-meta-row" data-card-meta="cup">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#cup"></use></svg>
+<span data-translate="fullday_colonia_step_5">Typical Uruguayan lunch: chivito</span>
 </li>
 </ul>
 </div>
 <!-- PRICE & PRACTICAL INFO -->
 <div class="price-box">
 <h3>
-<span data-translate="fullday_colonia_price_title">From USD 90 per person</span>
+<span data-translate="fullday_colonia_price_title">From USD 100 per person</span>
 <span class="food-price-separator"> · </span>
 <span><strong data-translate="fullday_colonia_duration_label_short">Duration:</strong> <span data-translate="fullday_colonia_duration_value">4–5 hours</span></span>
 </h3>
@@ -196,7 +225,7 @@
 </li>
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
-<span data-translate="fullday_colonia_include_2">Exterior stop at Plaza de Toros (outside view; no entry inside)</span>
+<span data-translate="fullday_colonia_include_2">Stop at Plaza de Toros</span>
 </li>
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
@@ -204,11 +233,11 @@
 </li>
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
-<span data-translate="fullday_colonia_include_4">Typical Uruguayan lunch (chivito)</span>
+<span data-translate="fullday_colonia_include_5">Guided tour of the UNESCO Historic Quarter</span>
 </li>
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
-<span data-translate="fullday_colonia_include_5">Guided tour of the UNESCO Historic Quarter</span>
+<span data-translate="fullday_colonia_include_4">Typical Uruguayan lunch (chivito)</span>
 </li>
 <li class="activity-meta-row" data-card-meta="check">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#check"></use></svg>
@@ -252,17 +281,14 @@
 <section class="coffee-gallery">
 <h2 data-translate="fullday_colonia_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
-<img alt="Electric taxi in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/electricoroginal.jpg" width="1200"/>
-<img alt="Electric taxi in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/electricoriginal2.jpg" width="1200"/>
-<img alt="Plaza de Toros Real de San Carlos" decoding="async" height="220" loading="lazy" src="../Assets/images/plaza.webp" width="1200"/>
+<img alt="Group experience in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/grupo2.jpeg" width="1200"/>
+<img alt="Group experience in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/grupo3.jpeg" width="1200"/>
+<img alt="Private transfer in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/flota1.jpg" width="1200"/>
+<img alt="Travelers in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/colombia.jpg" width="1200"/>
+<img alt="Chivito and local gastronomy in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/chiv111.jpeg" width="1200"/>
+<img alt="Colonia letters landmark" decoding="async" height="220" loading="lazy" src="../Assets/images/letras111.jpeg" width="1200"/>
 <img alt="Colonia del Sacramento waterfront" decoding="async" height="220" loading="lazy" src="../Assets/images/colonia.webp" width="1200"/>
 <img alt="Historic Quarter, Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/historic1.webp" width="1200"/>
-<img alt="Colonia letters landmark" decoding="async" height="220" loading="lazy" src="../Assets/images/historic3.webp" width="1200"/>
-<img alt="Colonia letters landmark" decoding="async" height="220" loading="lazy" src="../Assets/images/letras.webp" width="1200"/>
-<img alt="Historic gate, Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/historic4.webp" width="1200"/>
-<img alt="Chivito and local gastronomy in Colonia" decoding="async" height="220" loading="lazy" src="../Assets/images/ref2.webp" width="1200"/>
-<img alt="Uruguayan lunch experience" decoding="async" height="220" loading="lazy" src="../Assets/images/ref4.webp" width="1200"/>
-<img alt="Food and culture in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/ref22.webp" width="1200"/>
 </div>
 </section>
 <!-- ================= ACTIONS ================= -->
@@ -281,6 +307,11 @@
 <label><input checked="" name="fulldayColoniaLanguage" type="radio" value="English guide"/> <span data-translate="fullday_colonia_lang_en">English guide</span></label>
 <label><input name="fulldayColoniaLanguage" type="radio" value="Spanish guide"/> <span data-translate="fullday_colonia_lang_es">Spanish guide</span></label>
 <label><input name="fulldayColoniaLanguage" type="radio" value="Portuguese guide"/> <span data-translate="fullday_colonia_lang_pt">Portuguese guide</span></label>
+<h3 class="preferences-title" data-translate="fullday_colonia_label_start_time" style="margin-top: 14px;">Horario de inicio</h3>
+<label><input name="fulldayColoniaStartTime" type="radio" value="10:00"/> 10:00</label>
+<label><input name="fulldayColoniaStartTime" type="radio" value="11:00"/> 11:00</label>
+<label><input name="fulldayColoniaStartTime" type="radio" value="12:00"/> 12:00</label>
+<label><input name="fulldayColoniaStartTime" type="radio" value="13:00"/> 13:00</label>
 <h3 class="preferences-title" data-translate="fullday_colonia_label_pickup" style="margin-top: 14px;">Pickup point</h3>
 <label><input checked="" name="fulldayColoniaPickup" type="radio" value="Port"/> <span data-translate="fullday_colonia_pickup_port">Port</span></label>
 <label><input name="fulldayColoniaPickup" type="radio" value="Hotel"/> <span data-translate="fullday_colonia_pickup_hotel">Hotel</span></label>
@@ -299,13 +330,13 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260528ordersfix"></script>
+<script src="../Home/index.js?v=20261009fdord"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
   (function () {
-    const PRICE_PER_PERSON = 90;
+    const PRICE_PER_PERSON = 100;
     const whatsappNumber = "59898945542";
 
     const getPricingTotals = (people) => {
@@ -315,6 +346,7 @@
     };
     const storageKey = "orders_fullday_colonia";
     const VISIT_DATE_KEY = "selectedDateFulldayColonia";
+    const START_TIMES = ["10:00", "11:00", "12:00", "13:00"];
     const getLang = () => window.getInitialLanguage().toLowerCase();
     const t = (key, fallback) => {
       const lang = getLang();
@@ -356,6 +388,11 @@
       return t("fullday_colonia_pickup_port", "Port");
     };
 
+    const normalizeStartTime = (value) => {
+      const v = String(value || "").trim();
+      return START_TIMES.includes(v) ? v : "";
+    };
+
     const popup = document.getElementById("popupFulldayColonia");
     const openBtn = document.getElementById("createFulldayColoniaBtn");
     const closeBtn = document.getElementById("closeFulldayColonia");
@@ -372,6 +409,7 @@
           return {
             language: normalizeLanguage(raw.language),
             pickup: normalizePickup(raw.pickup),
+            startTime: normalizeStartTime(raw.startTime),
             people: Math.max(1, Number(raw.people) || 1)
           };
         }
@@ -389,10 +427,18 @@
       popup.querySelector("input[name='fulldayColoniaLanguage']:checked")?.value || "";
     const selectedPickup = () =>
       popup.querySelector("input[name='fulldayColoniaPickup']:checked")?.value || "";
+    const selectedStartTime = () =>
+      normalizeStartTime(
+        popup.querySelector("input[name='fulldayColoniaStartTime']:checked")?.value || ""
+      );
 
     const prefillPopupFromGroup = (group) => {
       popup.querySelectorAll("input[name='fulldayColoniaLanguage']").forEach((r) => {
         r.checked = r.value === normalizeLanguage(group?.language);
+      });
+      const startTime = normalizeStartTime(group?.startTime);
+      popup.querySelectorAll("input[name='fulldayColoniaStartTime']").forEach((r) => {
+        r.checked = Boolean(startTime) && r.value === startTime;
       });
       popup.querySelectorAll("input[name='fulldayColoniaPickup']").forEach((r) => {
         r.checked = r.value === normalizePickup(group?.pickup);
@@ -444,6 +490,7 @@
         `*${t("wa_date_label", "Date")}:* ${date}`,
         `*${t("wa_people_label", "People")}:* ${pricing.people}`,
         `*${t("wa_language_label", "Language")}:* ${localizeLanguage(group.language)}`,
+        `*${t("fullday_colonia_label_start_time", "Horario de inicio")}:* ${group.startTime || "—"}`,
         `*${t("fullday_colonia_label_pickup", "Pickup point")}:* ${localizePickup(group.pickup)}`,
         "",
         `*${t("fullday_colonia_wa_order_details", "Order details")}:*`,
@@ -570,6 +617,7 @@
         <p><strong>${t("booking_visit_date_label", "Preferred visit date")}:</strong> ${formatVisitDateLabel(getVisitDateIso()) || "—"}</p>
         <p><strong>${t("fullday_colonia_label_people", "People")}:</strong> ${group.people}</p>
         <p><strong>${t("fullday_colonia_label_language", "Language")}:</strong> ${localizeLanguage(group.language)}</p>
+        <p><strong>${t("fullday_colonia_label_start_time", "Horario de inicio")}:</strong> ${group.startTime || "—"}</p>
         <p><strong>${t("fullday_colonia_label_pickup", "Pickup point")}:</strong> ${localizePickup(group.pickup)}</p>
         <p><strong>${t("fullday_colonia_summary_experience", "Experience subtotal")}:</strong> USD ${pricing.total} (${group.people} × USD ${PRICE_PER_PERSON})</p>
         <p class="order-transport-note">${t("fullday_colonia_transport_included_note", "Private transport included in the price per person.")}</p>
@@ -621,9 +669,14 @@
 
     saveBtn.addEventListener("click", () => {
       const language = selectedLanguage();
+      const startTime = selectedStartTime();
       const pickup = selectedPickup();
       if (!language) {
         alert(t("fullday_colonia_alert_select_language", "Please select a language"));
+        return;
+      }
+      if (!startTime) {
+        alert(t("fullday_colonia_alert_select_start_time", "Please select a start time."));
         return;
       }
       if (!pickup) {
@@ -634,6 +687,7 @@
       setGroupConfig({
         language: normalizeLanguage(language),
         pickup: normalizePickup(pickup),
+        startTime,
         people: prev?.people || 1
       });
       popup.classList.remove("active");
@@ -676,6 +730,14 @@
           alert(t("fullday_colonia_alert_create_first", "Please create your Full Day group first."));
           return;
         }
+        if (!normalizeStartTime(group.startTime)) {
+          alert(t("fullday_colonia_alert_select_start_time", "Please select a start time."));
+          prefillPopupFromGroup(group);
+          popup.classList.add("active");
+          popup.style.display = "flex";
+          popup.setAttribute("aria-hidden", "false");
+          return;
+        }
         sendBookingToWhatsApp(group);
       }
     });
@@ -686,6 +748,14 @@
       if (!group) {
         alert(t("fullday_colonia_alert_create_first", "Please create your Full Day group first."));
         openBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      if (!normalizeStartTime(group.startTime)) {
+        alert(t("fullday_colonia_alert_select_start_time", "Please select a start time."));
+        prefillPopupFromGroup(group);
+        popup.classList.add("active");
+        popup.style.display = "flex";
+        popup.setAttribute("aria-hidden", "false");
         return;
       }
       sendBookingToWhatsApp(group);
