@@ -35,7 +35,7 @@
       variants: [
         { id: "degustacion_5_vinos", price: 45, labelKey: "exp_bodega_pkg_opt1_label", labelFallback: "5-wine tasting" },
         { id: "vinos_quesos", price: 60, labelKey: "exp_bodega_pkg_opt2_label", labelFallback: "Wines & Cheeses" },
-        { id: "premium_vinos_sabores", price: 80, labelKey: "exp_bodega_pkg_opt3_label", labelFallback: "Premium Wine & Local Flavors" }
+        { id: "premium_vinos_sabores", price: 70, labelKey: "exp_bodega_pkg_opt3_label", labelFallback: "Premium Wine & Local Flavors" }
       ]
     },
     "legado.html": {
