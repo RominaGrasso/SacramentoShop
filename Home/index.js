@@ -641,7 +641,7 @@ golden_mile_step_note:
       exp_bodega_guests_subtotal_amount: "USD {amount}",
       exp_bodega_pkg_opt1_price: "USD 45 per person",
       exp_bodega_pkg_opt2_price: "USD 60 per person",
-      exp_bodega_pkg_opt3_price: "USD 80 per person",
+      exp_bodega_pkg_opt3_price: "USD 70 per person",
       exp_bodega_premium_badge: "Premium",
       exp_bodega_pkg_opt1_label: "5-wine tasting",
       exp_bodega_pkg_opt1_desc:
@@ -4385,7 +4385,7 @@ golden_mile_step_note:
       exp_bodega_guests_subtotal_amount: "USD {amount}",
       exp_bodega_pkg_opt1_price: "USD 45 por persona",
       exp_bodega_pkg_opt2_price: "USD 60 por persona",
-      exp_bodega_pkg_opt3_price: "USD 80 por persona",
+      exp_bodega_pkg_opt3_price: "USD 70 por persona",
       exp_bodega_premium_badge: "Premium",
       exp_bodega_pkg_opt1_label: "Degustación de 5 vinos",
       exp_bodega_pkg_opt1_desc:
@@ -8128,7 +8128,7 @@ golden_mile_step_note:
       exp_bodega_guests_subtotal_amount: "USD {amount}",
       exp_bodega_pkg_opt1_price: "USD 45 por pessoa",
       exp_bodega_pkg_opt2_price: "USD 60 por pessoa",
-      exp_bodega_pkg_opt3_price: "USD 80 por pessoa",
+      exp_bodega_pkg_opt3_price: "USD 70 por pessoa",
       exp_bodega_premium_badge: "Premium",
       exp_bodega_pkg_opt1_label: "Degustação de 5 vinhos",
       exp_bodega_pkg_opt1_desc:
