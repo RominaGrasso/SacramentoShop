@@ -3143,7 +3143,7 @@ golden_mile_step_note:
         "🍽 Full lunch or dinner — Viñedo menu, according to the time you choose.",
       liebres_dining_step_6:
         "🏨 Return: Private drop-off back to your hotel or terminal.",
-      liebres_dining_price_title: "USD 110 per person",
+      liebres_dining_price_title: "USD 120 per person",
       liebres_dining_price_p:
         "Private transport is billed by vehicle: USD 40 total for 1–4 guests (one vehicle).",
       liebres_dining_included_title: "What's included",
@@ -3190,7 +3190,7 @@ golden_mile_step_note:
       liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(price per guest; transport share appears in summary)",
-      liebres_dining_pkg_vinedo_menu_line: "Viñedo menu 🍇 — USD 110",
+      liebres_dining_pkg_vinedo_menu_line: "Viñedo menu 🍇 — USD 120",
       liebres_dining_pkg_ceibo_menu_line: "Ceibo menu 🌳 — USD 90",
       liebres_dining_meal_heading: "Lunch or dinner",
       liebres_dining_meal_lunch: "Lunch",
@@ -3202,7 +3202,7 @@ golden_mile_step_note:
       liebres_dining_pickup_dinner_summary: "Pickup: 19:00 at your lodging",
       liebres_dining_transport_share: "Transport (your share of the {group} group):",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Lunch — Viñedo menu 🍇 USD 110",
+        "Lunch — Viñedo menu 🍇 USD 120",
       liebres_dining_pkg_lunch_vinedo_label: "Lunch — Viñedo menu",
       liebres_dining_pkg_lunch_vinedo_sub: "Balanced menu selection",
       liebres_dining_pkg_lunch_ceibo_main:
@@ -3210,7 +3210,7 @@ golden_mile_step_note:
       liebres_dining_pkg_lunch_ceibo_label: "Lunch — Ceibo menu",
       liebres_dining_pkg_lunch_ceibo_sub: "Premium menu selection",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Dinner — Viñedo menu 🍇 USD 110",
+        "Dinner — Viñedo menu 🍇 USD 120",
       liebres_dining_pkg_dinner_vinedo_label: "Dinner — Viñedo menu",
       liebres_dining_pkg_dinner_vinedo_sub: "Balanced menu selection",
       liebres_dining_pkg_dinner_ceibo_main:
@@ -3225,7 +3225,7 @@ golden_mile_step_note:
       liebres_dining_pkg_item_3: "One glass of wine",
       liebres_dining_pkg_item_4: "Coffee or tea",
       liebres_dining_popup_menu_name: "Viñedo menu",
-      liebres_dining_popup_menu_price: "USD 110 per person",
+      liebres_dining_popup_menu_price: "USD 120 per person",
       liebres_dining_popup_menu_note: "Dishes are chosen from the menu on site.",
       liebres_dining_alert_meal: "Please choose lunch or dinner.",
       liebres_dining_pref_no_alcohol: "No alcohol",
@@ -6887,7 +6887,7 @@ golden_mile_step_note:
         "🍽 Almuerzo o cena completos — Menú Viñedo, según el horario que elijas.",
       liebres_dining_step_6:
         "🏨 Regreso: Traslado privado de vuelta al hotel o terminal.",
-      liebres_dining_price_title: "USD 110 por persona",
+      liebres_dining_price_title: "USD 120 por persona",
       liebres_dining_price_p:
         "El transporte privado se cobra por vehículo: USD 40 total para 1–4 visitantes (un vehículo).",
       liebres_dining_included_title: "Qué incluye",
@@ -6934,7 +6934,7 @@ golden_mile_step_note:
       liebres_dining_popup_package_title: "Menú",
       liebres_dining_popup_package_note:
         "(precio por visitante; el prorrateo de transporte aparece en el resumen)",
-      liebres_dining_pkg_vinedo_menu_line: "Menú Viñedo 🍇 — USD 110",
+      liebres_dining_pkg_vinedo_menu_line: "Menú Viñedo 🍇 — USD 120",
       liebres_dining_pkg_ceibo_menu_line: "Menú Ceibo 🌳 — USD 90",
       liebres_dining_meal_heading: "Almuerzo o cena",
       liebres_dining_meal_lunch: "Almuerzo",
@@ -6946,7 +6946,7 @@ golden_mile_step_note:
       liebres_dining_pickup_dinner_summary: "Pickup: 19:00 hs por tu alojamiento",
       liebres_dining_transport_share: "Transporte (tu parte del grupo {group}):",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Almuerzo — Propuesta Viñedo 🍇 USD 110",
+        "Almuerzo — Propuesta Viñedo 🍇 USD 120",
       liebres_dining_pkg_lunch_vinedo_label: "Almuerzo — Propuesta Viñedo",
       liebres_dining_pkg_lunch_vinedo_sub: "Selección de menú equilibrada",
       liebres_dining_pkg_lunch_ceibo_main:
@@ -6954,7 +6954,7 @@ golden_mile_step_note:
       liebres_dining_pkg_lunch_ceibo_label: "Almuerzo — Propuesta Ceibo",
       liebres_dining_pkg_lunch_ceibo_sub: "Selección de menú premium",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Cena — Propuesta Viñedo 🍇 USD 110",
+        "Cena — Propuesta Viñedo 🍇 USD 120",
       liebres_dining_pkg_dinner_vinedo_label: "Cena — Propuesta Viñedo",
       liebres_dining_pkg_dinner_vinedo_sub: "Selección de menú equilibrada",
       liebres_dining_pkg_dinner_ceibo_main:
@@ -6969,7 +6969,7 @@ golden_mile_step_note:
       liebres_dining_pkg_item_3: "Una copa de vino",
       liebres_dining_pkg_item_4: "Café o té",
       liebres_dining_popup_menu_name: "Menú Viñedo",
-      liebres_dining_popup_menu_price: "USD 110 por persona",
+      liebres_dining_popup_menu_price: "USD 120 por persona",
       liebres_dining_popup_menu_note: "Los platos se eligen directamente de la carta en el lugar.",
       liebres_dining_alert_meal: "Elegí almuerzo o cena.",
       liebres_dining_pref_no_alcohol: "Sin alcohol",
@@ -10630,7 +10630,7 @@ golden_mile_step_note:
         "🍽 Almoço ou jantar completos — Menu Viñedo, conforme o horário escolhido.",
       liebres_dining_step_6:
         "🏨 Retorno: Transfer privado de volta ao hotel ou terminal.",
-      liebres_dining_price_title: "USD 110 por pessoa",
+      liebres_dining_price_title: "USD 120 por pessoa",
       liebres_dining_price_p:
         "O transporte privado é cobrado por veículo: USD 40 total para 1–4 visitantes (um veículo).",
       liebres_dining_included_title: "O que está incluído",
@@ -10677,7 +10677,7 @@ golden_mile_step_note:
       liebres_dining_popup_package_title: "Menu",
       liebres_dining_popup_package_note:
         "(preço por visitante; o rateio do transporte aparece no resumo)",
-      liebres_dining_pkg_vinedo_menu_line: "Menu Viñedo 🍇 — USD 110",
+      liebres_dining_pkg_vinedo_menu_line: "Menu Viñedo 🍇 — USD 120",
       liebres_dining_pkg_ceibo_menu_line: "Menu Ceibo 🌳 — USD 90",
       liebres_dining_meal_heading: "Almoço ou jantar",
       liebres_dining_meal_lunch: "Almoço",
@@ -10689,7 +10689,7 @@ golden_mile_step_note:
       liebres_dining_pickup_dinner_summary: "Pickup: 19:00 no seu alojamento",
       liebres_dining_transport_share: "Transporte (sua parte do grupo {group}):",
       liebres_dining_pkg_lunch_vinedo_main:
-        "Almoço — Proposta Viñedo 🍇 USD 110",
+        "Almoço — Proposta Viñedo 🍇 USD 120",
       liebres_dining_pkg_lunch_vinedo_label: "Almoço — Proposta Viñedo",
       liebres_dining_pkg_lunch_vinedo_sub: "Seleção de menu equilibrada",
       liebres_dining_pkg_lunch_ceibo_main:
@@ -10697,7 +10697,7 @@ golden_mile_step_note:
       liebres_dining_pkg_lunch_ceibo_label: "Almoço — Proposta Ceibo",
       liebres_dining_pkg_lunch_ceibo_sub: "Seleção de menu premium",
       liebres_dining_pkg_dinner_vinedo_main:
-        "Jantar — Proposta Viñedo 🍇 USD 110",
+        "Jantar — Proposta Viñedo 🍇 USD 120",
       liebres_dining_pkg_dinner_vinedo_label: "Jantar — Proposta Viñedo",
       liebres_dining_pkg_dinner_vinedo_sub: "Seleção de menu equilibrada",
       liebres_dining_pkg_dinner_ceibo_main:
@@ -10712,7 +10712,7 @@ golden_mile_step_note:
       liebres_dining_pkg_item_3: "Uma taça de vinho",
       liebres_dining_pkg_item_4: "Café ou chá",
       liebres_dining_popup_menu_name: "Menu Viñedo",
-      liebres_dining_popup_menu_price: "USD 110 por pessoa",
+      liebres_dining_popup_menu_price: "USD 120 por pessoa",
       liebres_dining_popup_menu_note: "Os pratos são escolhidos diretamente no cardápio no local.",
       liebres_dining_alert_meal: "Escolha almoço ou jantar.",
       liebres_dining_pref_no_alcohol: "Sem álcool",
