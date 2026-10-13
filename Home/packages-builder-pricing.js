@@ -116,9 +116,9 @@
     "walkingtour.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "lang_es", price: 13, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
-        { id: "lang_en", price: 15, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
-        { id: "lang_pt", price: 15, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
+        { id: "lang_es", price: 16, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
+        { id: "lang_en", price: 16, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
+        { id: "lang_pt", price: 16, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
       ]
     },
     "mision-night.html": {
