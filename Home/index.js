@@ -3495,7 +3495,7 @@ golden_mile_step_note:
       walking_mate_experience_title: "Mate Experience · USD 20 extra",
       walking_mate_experience_body:
         "Mate is part of everyday life in Uruguay: sharing the gourd, passing the bombilla, and chatting for a while. This optional add-on lets you enjoy a relaxed mate moment and learn why it is so typical of our culture (USD 20 per person).",
-      walking_price_title: "USD 15 per guest",
+      walking_price_title: "USD 16 per guest",
       walking_price_heading: "Prices by guide language",
       walking_price_lang_es: "Spanish",
       walking_price_lang_en: "English",
@@ -7239,7 +7239,7 @@ golden_mile_step_note:
       walking_mate_experience_title: "Experiencia de mate · USD 20 extra",
       walking_mate_experience_body:
         "El mate es parte del día a día en Uruguay: compartir el mate, la bombilla y charlar un rato. Este complemento opcional te invita a vivir un momento de mate relajado y a conocer por qué es tan típico de nuestra cultura (USD 20 por persona).",
-      walking_price_title: "USD 13 por persona",
+      walking_price_title: "USD 16 por persona",
       walking_price_heading: "Precios según idioma del guía",
       walking_price_lang_es: "Español",
       walking_price_lang_en: "Inglés",
@@ -10982,7 +10982,7 @@ golden_mile_step_note:
       walking_mate_experience_title: "Experiência de mate · USD 20 extra",
       walking_mate_experience_body:
         "O mate faz parte do cotidiano no Uruguai: compartilhar a cuia, a bomba e conversar um pouco. Este complemento opcional propõe um momento tranquilo de mate e a chance de entender por que é tão típico da nossa cultura (USD 20 por pessoa).",
-      walking_price_title: "USD 15 por pessoa",
+      walking_price_title: "USD 16 por pessoa",
       walking_price_heading: "Preços por idioma do guia",
       walking_price_lang_es: "Espanhol",
       walking_price_lang_en: "Inglês",

@@ -27,7 +27,7 @@
     "cabal.html": [40],
     "colonia-wellness.html": [95],
     "kayak.html": [80],
-    "walkingtour.html": [13, 15],
+    "walkingtour.html": [16],
     "private-walkingtour.html": [40],
     "night-walkingtour.html": [18],
     "candombe.html": [60],
