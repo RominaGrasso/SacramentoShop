@@ -130,6 +130,7 @@
         "copa de vino",
         "wine tasting",
         "bodegas",
+        "boutique",
       ],
     },
     {
@@ -379,6 +380,7 @@
     "colonia-wellness.html": ["nature", "day"],
     "kayak.html": ["boat"],
     "legado.html": ["bodega", "fullday"],
+    "bodega-boutique.html": ["bodega", "gastronomy", "dining"],
     "experiencia-bodega.html": ["bodega", "gastronomy", "dining"],
     "hotel-royal.html": ["lodging", "night"],
   };
@@ -388,6 +390,7 @@
     tours: ["home-walking-tour-card", "home-private-walking-tour-card", "home-night-walking-tour-card", "home-traslado-plaza-letras-card"],
     fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
+      "home-bodega-boutique-card",
       "home-exp-bodega-card",
       "home-vinos-card",
       "home-quinton-card",
@@ -397,8 +400,8 @@
     ],
     boat: ["home-kayak-card"],
     lodging: ["home-card-hotel-royal", "home-card-mision-bruma"],
-    dining: ["home-chivito-card", "home-vinos-card", "home-quinton-card"],
-    gastronomy: ["home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
+    dining: ["home-bodega-boutique-card", "home-chivito-card", "home-vinos-card", "home-quinton-card"],
+    gastronomy: ["home-bodega-boutique-card", "home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
@@ -423,6 +426,7 @@
     "home-chivito-card": ["gastronomy", "dining"],
     "home-legado-card": ["bodega", "fullday"],
     "home-vinos-card": ["bodega", "gastronomy", "dining"],
+    "home-bodega-boutique-card": ["bodega", "gastronomy", "dining"],
     "home-exp-bodega-card": ["bodega", "gastronomy", "dining"],
     "home-liebres-dining-card": ["dining", "gastronomy", "bodega", "nature"],
     "home-quinton-card": ["bodega", "gastronomy", "dining", "fullday"],

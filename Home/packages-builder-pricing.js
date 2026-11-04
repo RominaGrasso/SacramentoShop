@@ -152,6 +152,7 @@
     ["private-walkingtour.html", 40],
     ["night-walkingtour.html", 18],
     ["lasliebres.html", 110],
+    ["bodega-boutique.html", 90],
     ["sio.html", 70],
     ["romantic.html", 70],
     ["sunset-boat.html", 40]

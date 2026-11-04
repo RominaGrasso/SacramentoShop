@@ -5803,6 +5803,8 @@ function initPackageOrderExperience(config) {
     experienceSkipsPreferencesField = false,
     /** Optional i18n key replacing `preferences_word` in order cards / WhatsApp (package experiences). */
     preferencesSummaryLabelKey = null,
+    /** When true, omit the preferences line if the guest left none selected. */
+    hideEmptyPreferences = false,
     /**
      * When true, package amounts are fixed group totals (not per person): summary/WhatsApp use
      * "per group" wording and a simpler total detail line.
@@ -5973,6 +5975,8 @@ function initPackageOrderExperience(config) {
             pickupRadioName:
               typeof psgpRaw.pickupRadioName === "string" ? psgpRaw.pickupRadioName : "",
             errorElId: typeof psgpRaw.errorElId === "string" ? psgpRaw.errorElId : null,
+            summaryCountElId:
+              typeof psgpRaw.summaryCountElId === "string" ? psgpRaw.summaryCountElId : null,
             experienceSubtotalElId:
               typeof psgpRaw.experienceSubtotalElId === "string"
                 ? psgpRaw.experienceSubtotalElId
@@ -6162,7 +6166,9 @@ function initPackageOrderExperience(config) {
         : null;
       const countEl = psgp.countElId ? document.getElementById(psgp.countElId) : null;
       const subtotalEl = psgp.subtotalElId ? document.getElementById(psgp.subtotalElId) : null;
-      const summaryCountEl = document.getElementById("expBodegaGuestsSummaryCount");
+      const summaryCountEl = document.getElementById(
+        psgp.summaryCountElId || "expBodegaGuestsSummaryCount"
+      );
       const transportSummaryEl = psgp.transportSummaryElId
         ? document.getElementById(psgp.transportSummaryElId)
         : null;
@@ -6562,9 +6568,42 @@ function initPackageOrderExperience(config) {
       }[m]));
 
     const pkgI18nPrefPrefix = "__i18n__:";
+    const preferenceInputs = () =>
+      Array.from(
+        popup.querySelectorAll(
+          '.preferences-inside input[type="checkbox"], .preferences-inside input[type="radio"]'
+        )
+      ).filter((input) => input.name !== packageRadioName);
+
+    const encodePreferenceInput = (input) => {
+      const span = input.parentElement?.querySelector("span[data-translate]");
+      const trKey = span?.dataset?.translate;
+      if (trKey) return `${pkgI18nPrefPrefix}${trKey}`;
+      return input.value;
+    };
+
+    const readSelectedPreferences = () =>
+      preferenceInputs()
+        .filter((input) => input.checked)
+        .map(encodePreferenceInput);
+
+    const restoreSelectedPreferences = (prefsSet) => {
+      preferenceInputs().forEach((input) => {
+        const span = input.parentElement?.querySelector("span[data-translate]");
+        const trKey = span?.dataset?.translate;
+        const encoded = trKey ? `${pkgI18nPrefPrefix}${trKey}` : "";
+        const labelText = input.parentElement?.textContent?.trim();
+        const selected =
+          prefsSet.has(input.value) ||
+          Boolean(labelText && prefsSet.has(labelText)) ||
+          Boolean(encoded && prefsSet.has(encoded));
+        input.checked = selected;
+      });
+    };
+
     const buildPreferenceLookup = () => {
       const map = new Map();
-      popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((input) => {
+      preferenceInputs().forEach((input) => {
         const value = input.value || "";
         const span = input.parentElement?.querySelector("span[data-translate]");
         const rawLabel = span?.textContent?.trim() || input.parentElement?.textContent?.trim() || value;
@@ -6858,16 +6897,19 @@ function initPackageOrderExperience(config) {
             : prefs.map(decoratePkgPref).filter((p) => p && p !== "-").join(", ") || "-";
 
         const extraSummary = packageExtraSummaryLine(o);
+        const showPrefs =
+          !experienceSkipsPreferencesField &&
+          !(hideEmptyPreferences && (prefs.length === 0 || prefsWa === "-"));
         ordersText += `*${getI18nText(orderCardTitleKey, "Order")} ${i + 1}*\n${waLine(
           pkgLabel,
           packageLineForOrder(o, orders)
         )}${extraSummary ? `\n${extraSummary}` : ""}${
-          experienceSkipsPreferencesField
-            ? "\n\n"
-            : `\n${waLine(
+          showPrefs
+            ? `\n${waLine(
                 getI18nText(preferencesSummaryLabelKey || "preferences_word", "Preferences"),
                 prefsWa
               )}\n\n`
+            : "\n\n"
         }`;
       });
 
@@ -7135,9 +7177,40 @@ function initPackageOrderExperience(config) {
               )} — USD ${escapeHtml(formatMoney(effPkg.price))} ${escapeHtml(
                 getI18nText("orders_pkg_paren_experience", "experience")
               )}`;
+        const extraSummaryHtml = (() => {
+          const extra = packageExtraSummaryLine(orders[0]);
+          if (!extra) return "";
+          const colon = extra.indexOf(":");
+          if (colon === -1) return `<p><strong>${escapeHtml(extra)}</strong></p>`;
+          return `<p><strong>${escapeHtml(extra.slice(0, colon + 1))}</strong>${escapeHtml(
+            extra.slice(colon + 1)
+          )}</p>`;
+        })();
+        const prefsRaw = Array.isArray(orders[0]?.preferences) ? orders[0].preferences : [];
+        const prefsHtml =
+          experienceSkipsPreferencesField ||
+          (hideEmptyPreferences && prefsRaw.length === 0)
+            ? ""
+            : prefsRaw
+                .map(decoratePkgPref)
+                .filter((p) => p && p !== "-")
+                .map((line) => {
+                  const colon = line.indexOf(":");
+                  if (colon === -1) {
+                    return `<p><strong>${escapeHtml(
+                      getI18nText(preferencesSummaryLabelKey || "preferences_word", "Preferences")
+                    )}:</strong> ${escapeHtml(line)}</p>`;
+                  }
+                  return `<p><strong>${escapeHtml(line.slice(0, colon + 1))}</strong>${escapeHtml(
+                    line.slice(colon + 1)
+                  )}</p>`;
+                })
+                .join("");
         const psgpDetailBlock = psgp
           ? `
             <p>${pgcPackageLine}</p>
+            ${extraSummaryHtml}
+            ${prefsHtml}
             <p><strong>${escapeHtml(
               getI18nText(
                 psgpSummaryKeys.passengersLabel || "exp_bodega_summary_passengers",
@@ -7259,7 +7332,8 @@ function initPackageOrderExperience(config) {
                 : ""
             }
             ${
-              experienceSkipsPreferencesField
+              experienceSkipsPreferencesField ||
+              (hideEmptyPreferences && prefsRaw.length === 0)
                 ? ""
                 : `<p><strong>${escapeHtml(
                     getI18nText(preferencesSummaryLabelKey || "preferences_word", "Preferences")
@@ -7453,17 +7527,9 @@ function initPackageOrderExperience(config) {
           });
         }
 
-        const prefsSet = new Set(Array.isArray(order.preferences) ? order.preferences : []);
-        popup.querySelectorAll('.preferences-inside input[type="checkbox"]').forEach((cb) => {
-          const span = cb.parentElement?.querySelector("span[data-translate]");
-          const trKey = span?.dataset?.translate;
-          const encoded = trKey ? `${pkgI18nPrefPrefix}${trKey}` : "";
-          const labelText = cb.parentElement?.textContent?.trim();
-          cb.checked =
-            prefsSet.has(cb.value) ||
-            Boolean(labelText && prefsSet.has(labelText)) ||
-            Boolean(encoded && prefsSet.has(encoded));
-        });
+        restoreSelectedPreferences(
+          new Set(Array.isArray(order.preferences) ? order.preferences : [])
+        );
         const og = optionalGuideEl();
         if (og) og.checked = Boolean(order.includeGuide);
 
@@ -7566,14 +7632,7 @@ function initPackageOrderExperience(config) {
         return;
       }
 
-      const preferences = Array.from(
-        popup.querySelectorAll('.preferences-inside input[type="checkbox"]:checked')
-      ).map((cb) => {
-        const span = cb.parentElement?.querySelector("span[data-translate]");
-        const trKey = span?.dataset?.translate;
-        if (trKey) return `${pkgI18nPrefPrefix}${trKey}`;
-        return cb.value;
-      });
+      const preferences = readSelectedPreferences();
       const og = optionalGuideEl();
       const includeGuide = og ? Boolean(og.checked) : false;
 
