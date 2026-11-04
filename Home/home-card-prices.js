@@ -20,6 +20,10 @@
     "experiencia-bodega.html": {
       key: "home_card_price_transfer_included",
       fallback: "transfer included"
+    },
+    "bodega-boutique.html": {
+      key: "home_card_price_transfer_included",
+      fallback: "transfer included"
     }
   };
 
@@ -35,6 +39,7 @@
     "traslado-plaza-letras.html": [50],
     "vinos.html": [30, 40],
     "experiencia-bodega.html": [115],
+    "bodega-boutique.html": [90, 110],
     "s34-gin.html": [50, 70, 120],
     "quinton.html": [120, 130, 150],
     "fullday-colonia.html": [100],
