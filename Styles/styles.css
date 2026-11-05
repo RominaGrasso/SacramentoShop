@@ -6835,9 +6835,9 @@
 
   .bodega-boutique-hero {
     height: 43vh;
-    background-image: url("../Assets/images/fripp19.jpeg");
+    background-image: url("../Assets/images/fripp1.webp");
     background-size: cover;
-    background-position: center 48%;
+    background-position: center 45%;
     background-repeat: no-repeat;
   }
 
@@ -12209,6 +12209,18 @@
 
 .partners .logos-track img[src*="haciendalogo"] {
   height: 64px;
+}
+
+.partners .logos-track img[src*="logofripp"] {
+  height: 70px;
+}
+
+.partners .logos-track img[src*="buquebuslogo"] {
+  height: 92px;
+}
+
+.partners .logos-track img[src*="vinotecalogo"] {
+  height: 110px;
 }
 
 /* Viaggio (square): ~120px matches rendered width of S34 / Las Liebres at 54px row height */
