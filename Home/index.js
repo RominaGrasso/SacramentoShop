@@ -2597,7 +2597,7 @@ golden_mile_step_note:
       josefina_map_link: "Open in Google Maps",
       food_about_title: "About this experience",
       food_about_p: "Discover Colonia del Sacramento through a guided experience that blends history, gastronomy, and local culture. Walk through the city’s charming streets with a knowledgeable guide, starting from the iconic Plaza de la Basílica. Along the way, you will learn about Colonia’s Portuguese and Spanish heritage, hidden corners, and local stories. The experience also includes a stop to enjoy an authentic Uruguayan chivito — one of the country’s most iconic dishes.",
-      food_reel_btn: "🎥 Watch Reel on @_sacramentoadventures",
+      food_reel_btn: "Watch the reel on Instagram @_sacramentoadventures",
       food_support_title: "After your reservation",
       food_support_text:
         ", a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.",
@@ -6451,7 +6451,7 @@ golden_mile_step_note:
       josefina_map_link: "Abrir en Google Maps",
       food_about_title: "Sobre esta experiencia",
       food_about_p: "Descubrí Colonia del Sacramento a través de una experiencia guiada que combina historia, gastronomía y cultura local. Caminá por las encantadoras calles de la ciudad con un guía experto, comenzando en la icónica Plaza de la Basílica. En el recorrido conocerás la herencia portuguesa y española de Colonia, rincones escondidos e historias locales. La experiencia también incluye una parada para disfrutar un auténtico chivito uruguayo — uno de los platos más emblemáticos del país.",
-      food_reel_btn: "🎥 Ver reel en @_sacramentoadventures",
+      food_reel_btn: "Ver reel en Instagram @_sacramentoadventures",
       food_support_title: "Luego de tu reserva",
       food_support_text:
         ", una persona de soporte se pondrá en contacto para guiarte con los detalles de la experiencia y resolver tus dudas antes de la visita.",
@@ -10290,7 +10290,7 @@ golden_mile_step_note:
       josefina_map_link: "Abrir no Google Maps",
       food_about_title: "Sobre esta experiência",
       food_about_p: "Descubra Colonia del Sacramento através de uma experiência guiada que combina história, gastronomia e cultura local. Caminhe pelas ruas encantadoras da cidade com um guia especializado, começando na icônica Plaza de la Basílica. Durante o percurso, você conhecerá a herança portuguesa e espanhola de Colonia, cantos escondidos e histórias locais. A experiência também inclui uma parada para saborear um autêntico chivito uruguaio — um dos pratos mais icônicos do país.",
-      food_reel_btn: "🎥 Ver reel em @_sacramentoadventures",
+      food_reel_btn: "Ver reel no Instagram @_sacramentoadventures",
       food_support_title: "Após sua reserva",
       food_support_text:
         ", uma pessoa da nossa equipe de suporte entrará em contato para orientar você sobre os detalhes da experiência e tirar dúvidas antes da visita.",

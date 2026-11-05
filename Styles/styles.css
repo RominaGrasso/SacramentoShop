@@ -11338,6 +11338,10 @@
   color: #ffffff;
 }
 
+.reel-link-btn.activity-icon-link[data-card-meta~="video"] .activity-meta-icon {
+  color: #d946ef;
+}
+
 [data-card-meta~="video"] .activity-meta-icon {
   color: #d946ef;
 }
