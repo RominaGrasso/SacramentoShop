@@ -76,6 +76,12 @@
       cursor: pointer;
     }
 
+    .walking-tour-map-link {
+      color: #2f67a3;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
     .walking-tour-summary-times {
       margin: 10px 0 14px;
     }
@@ -197,9 +203,13 @@
 <h3 class="experience-steps-title" data-translate="walking_steps_title">How it works</h3>
 <div class="experience-steps">
 <ul class="activity-meta-list">
-<li class="activity-meta-row" data-card-meta="landmark">
-<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#landmark"></use></svg>
-<span data-translate="walking_step_1">Meeting point: Plaza de la Basílica (Historic Quarter)</span>
+<li class="activity-meta-row" data-card-meta="mappin">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#mappin"></use></svg>
+<span>
+<span data-translate="walking_step_1">Meeting point: Plaza Mayor</span>
+·
+<a class="walking-tour-map-link" data-translate="walking_map_link" href="https://share.google/UWJZIruyc4jd3ZNKd" rel="noopener noreferrer" target="_blank">View meeting point on Google Maps</a>
+</span>
 </li>
 <li class="activity-meta-row" data-card-meta="walk">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#walk"></use></svg>
@@ -339,7 +349,7 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20261012walk16"></script>
+<script src="../Home/index.js?v=20261108walkmeet"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
