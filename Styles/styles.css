@@ -2586,7 +2586,7 @@
   }
 
   .page-candombe .mate-only-hero {
-    background-image: url("../Assets/images/tambores1.jpeg");
+    background-image: url("../Assets/images/cando1.jpeg");
     background-position: center center;
   }
 
@@ -6839,6 +6839,25 @@
     background-size: cover;
     background-position: center 45%;
     background-repeat: no-repeat;
+  }
+
+  .walking-charco-hero {
+    height: 43vh;
+    background-image: url("../Assets/images/charco1.webp");
+    background-size: cover;
+    background-position: center 48%;
+    background-repeat: no-repeat;
+  }
+
+  .walking-charco-meeting {
+    display: block;
+    margin-top: 0.4rem;
+  }
+
+  .walking-charco-meeting a {
+    color: #2f67a3;
+    font-weight: 600;
+    text-decoration: underline;
   }
 
   .exp-bodega-hero {

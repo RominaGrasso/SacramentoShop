@@ -355,6 +355,7 @@
     "s34-gin.html": ["gastronomy"],
     "quinton.html": ["bodega", "gastronomy", "dining", "fullday"],
     "food1.html": ["tours", "gastronomy", "dining"],
+    "walking-charco.html": ["tours", "gastronomy", "dining"],
     "plaza1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "bodega"],
     "fullday-colonia.html": ["fullday"],
@@ -387,7 +388,7 @@
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
-    tours: ["home-walking-tour-card", "home-private-walking-tour-card", "home-night-walking-tour-card", "home-traslado-plaza-letras-card"],
+    tours: ["home-walking-tour-card", "home-fullday-colonia-card", "home-night-walking-tour-card", "home-walking-charco-card", "home-traslado-plaza-letras-card", "home-private-walking-tour-card"],
     fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
       "home-bodega-boutique-card",
@@ -400,8 +401,8 @@
     ],
     boat: ["home-kayak-card"],
     lodging: ["home-card-hotel-royal", "home-card-mision-bruma"],
-    dining: ["home-bodega-boutique-card", "home-chivito-card", "home-vinos-card", "home-quinton-card"],
-    gastronomy: ["home-bodega-boutique-card", "home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
+    dining: ["home-bodega-boutique-card", "home-walking-charco-card", "home-chivito-card", "home-vinos-card", "home-quinton-card"],
+    gastronomy: ["home-bodega-boutique-card", "home-walking-charco-card", "home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
@@ -431,6 +432,7 @@
     "home-liebres-dining-card": ["dining", "gastronomy", "bodega", "nature"],
     "home-quinton-card": ["bodega", "gastronomy", "dining", "fullday"],
     "home-food-tour-card": ["tours", "gastronomy"],
+    "home-walking-charco-card": ["tours", "gastronomy", "dining"],
     "home-plaza-anita-card": ["tours", "gastronomy"],
     "home-historic-lasliebres-card": ["tours", "bodega"],
   };
