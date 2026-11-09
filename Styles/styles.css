@@ -15692,8 +15692,12 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 }
 
 /* Home: Uruguay destinations (Montevideo + Punta del Este) */
-.home-uruguay-destinations {
+.home-uruguay-destinations,
+.home-uruguay-destinations *:not(.fa-solid):not(.fas):not(.fa-regular):not(.far):not(.fa-brands):not(.fab) {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.home-uruguay-destinations {
   padding: clamp(0.55rem, 1.6vw, 1.1rem) 0 clamp(0.35rem, 1vw, 0.7rem);
   background: #ffffff;
 }
@@ -15706,12 +15710,12 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 
 .home-uruguay-destinations__title {
   margin: 0 0 0.5rem;
-  font-family: inherit;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(1.35rem, 2.8vw, 1.75rem);
   font-weight: 700;
   line-height: 1.28;
   letter-spacing: -0.01em;
-  color: #243b5a;
+  color: #2c3e50;
   text-wrap: balance;
 }
 
@@ -15769,8 +15773,24 @@ body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):
 }
 
 @media (max-width: 767px) {
+  .home-uruguay-destinations {
+    padding: clamp(1rem, 3.2vw, 1.45rem) clamp(1rem, 3vw, 1.5rem)
+      clamp(0.25rem, 1vw, 0.45rem);
+  }
+
   .home-uruguay-destinations__header {
-    text-align: left;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .home-uruguay-destinations__title {
+    color: #2c3e50;
+  }
+
+  .home-uruguay-destinations__sub {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .home-uruguay-destinations__cards {
