@@ -8800,6 +8800,51 @@
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
   }
 
+  .page-fullday-punta .fullday-colonia-hero, .page-mvd-walking .fullday-colonia-hero,
+  .fullday-punta-hero {
+    background-image:
+      linear-gradient(135deg, rgba(30, 55, 90, 0.42), rgba(47, 103, 163, 0.32)),
+      url("../Assets/images/punta1.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .page-fullday-punta .coffee-gallery .gallery-grid img, .page-mvd-walking .coffee-gallery .gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .page-mvd-walking .fullday-colonia-hero,
+  .mvd-walking-hero {
+    background-image:
+      linear-gradient(135deg, rgba(30, 55, 90, 0.42), rgba(47, 103, 163, 0.32)),
+      url("../Assets/images/mont1.webp");
+    background-size: cover;
+    background-position: center 40%;
+  }
+
+  .page-mvd-walking .mvd-stop-title {
+    display: block;
+    margin-bottom: 0.22rem;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .page-mvd-walking .mvd-stop-desc {
+    display: block;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.55;
+  }
+
+  .page-mvd-walking .walking-tour-map-link {
+    color: #2f67a3;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
   .fullday-colonia-hero {
     height: 55vh;
     min-height: 280px;
@@ -9021,6 +9066,484 @@
       margin: 0;
       align-self: flex-start;
       max-width: 100%;
+    }
+  }
+
+  /* Full Day Punta: keep Google reviews in document flow (Colonia uses absolute). */
+  .page-fullday-punta.page-fullday-colonia, .page-mvd-walking.page-fullday-colonia {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  .page-fullday-punta.page-fullday-colonia .experience-about-head, .page-mvd-walking.page-fullday-colonia .experience-about-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem 1.35rem;
+    margin: 0 0 1.25rem;
+    min-height: 0;
+    padding-right: 0;
+    width: 100%;
+    position: relative;
+  }
+
+  .page-fullday-punta.page-fullday-colonia .experience-about-head h2, .page-mvd-walking.page-fullday-colonia .experience-about-head h2 {
+    flex: 1 1 14rem;
+    min-width: 0;
+    margin: 0;
+    padding-right: 0;
+    line-height: 1.28;
+  }
+
+  .page-fullday-punta.page-fullday-colonia .experience-about-head .google-reviews-cta, .page-mvd-walking.page-fullday-colonia .experience-about-head .google-reviews-cta {
+    position: static;
+    top: auto;
+    right: auto;
+    flex: 0 1 auto;
+    margin: 0;
+    max-width: min(100%, 17.5rem);
+    box-sizing: border-box;
+  }
+
+  .page-fullday-punta .fullday-punta-about-p, .page-mvd-walking .fullday-punta-about-p {
+    margin-top: 0.15rem;
+    margin-bottom: 1.15rem;
+    max-width: 42rem;
+  }
+
+  .page-fullday-punta .fullday-colonia-hero-inner, .page-mvd-walking .fullday-colonia-hero-inner {
+    width: 100%;
+    max-width: min(40rem, 100%);
+    box-sizing: border-box;
+    padding: 1.35rem 1.1rem;
+  }
+
+  .page-fullday-punta .fullday-colonia-hero-inner h1, .page-mvd-walking .fullday-colonia-hero-inner h1 {
+    padding: 0;
+    margin-bottom: 0.35rem;
+  }
+
+  .page-fullday-punta .fullday-colonia-hero-badges, .page-mvd-walking .fullday-colonia-hero-badges {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .page-fullday-punta .activity-meta-row, .page-mvd-walking .activity-meta-row > span {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .page-fullday-punta .price-box h3, .page-mvd-walking .price-box h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.15rem;
+    line-height: 1.4;
+  }
+
+  .page-fullday-punta .coffee-includes, .page-mvd-walking .coffee-includes,
+  .page-fullday-punta .price-box, .page-mvd-walking .price-box,
+  .page-fullday-punta .order-start, .page-mvd-walking .order-start,
+  .page-fullday-punta .coffee-gallery, .page-mvd-walking .coffee-gallery,
+  .page-fullday-punta .popup-box, .page-mvd-walking .popup-box {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .page-fullday-punta .order-start .primary-btn, .page-mvd-walking .order-start .primary-btn {
+    max-width: 100%;
+  }
+
+  .page-fullday-punta #popupFulldayPunta {
+    padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-popup {
+    max-width: min(26.5rem, 92vw);
+    width: min(26.5rem, 92vw);
+    max-height: min(88vh, 40rem);
+    overflow: auto;
+    padding: 1.2rem 1.3rem 1.15rem;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .close-x {
+    top: 8px;
+    right: 10px;
+    z-index: 2;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3e50;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-heading {
+    margin: 0 1.6rem 0.85rem 0;
+    text-align: center;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-heading .popup-title,
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-heading strong {
+    display: block;
+    margin: 0;
+    font-size: clamp(1.12rem, 3.2vw, 1.28rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #243b5a;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-label,
+  .page-fullday-punta #popupFulldayPunta p.fullday-punta-inquiry-label {
+    margin: 0.35rem 0 0;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #243b5a;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-label:first-child {
+    margin-top: 0;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-option {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #3d5568;
+    cursor: pointer;
+    line-height: 1.35;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-option input {
+    margin: 0;
+    accent-color: #4c95de;
+    flex-shrink: 0;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-note,
+  .page-fullday-punta #popupFulldayPunta p.fullday-punta-inquiry-note {
+    margin: 0.15rem 0 0;
+    padding: 0.45rem 0.55rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #5c6670;
+    background: rgba(102, 166, 230, 0.1);
+    border-radius: 8px;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-guests {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin: 0.15rem 0 0.2rem;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-guests .add-guest-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    padding: 0;
+    font-size: 1.05rem;
+    line-height: 1;
+    border-radius: 999px;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-guests #fulldayPuntaGuestsValue {
+    min-width: 1.5rem;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #243b5a;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-summary {
+    margin: 0.45rem 0 0;
+    padding: 0.7rem 0.8rem;
+    background: #f5f7fa;
+    border-radius: 10px;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-summary p {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.35rem 0.55rem;
+    margin: 0 0 0.35rem;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: #3d5568;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-summary p:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-summary strong {
+    display: inline;
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #243b5a;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-actions {
+    margin-top: 0.85rem;
+    display: flex;
+    justify-content: stretch;
+  }
+
+  .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-actions .primary-btn {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .page-fullday-punta.page-fullday-colonia .experience-about-head, .page-mvd-walking.page-fullday-colonia .experience-about-head {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.9rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .page-fullday-punta.page-fullday-colonia .experience-about-head h2, .page-mvd-walking.page-fullday-colonia .experience-about-head h2 {
+      flex: 1 1 auto;
+      width: 100%;
+    }
+
+    .page-fullday-punta.page-fullday-colonia .experience-about-head .google-reviews-cta, .page-mvd-walking.page-fullday-colonia .experience-about-head .google-reviews-cta {
+      width: 100%;
+      max-width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-fullday-punta .fullday-colonia-hero, .page-mvd-walking .fullday-colonia-hero,
+    .page-fullday-punta .fullday-punta-hero, .page-mvd-walking .fullday-punta-hero {
+      height: auto;
+      min-height: 0;
+      padding: 1.15rem 0.85rem 1.35rem;
+      align-items: flex-end;
+      box-sizing: border-box;
+    }
+
+    .page-fullday-punta .fullday-colonia-hero-inner, .page-mvd-walking .fullday-colonia-hero-inner {
+      gap: 0.55rem;
+      padding: 0.15rem 0.2rem 0.2rem;
+      max-width: 100%;
+    }
+
+    .page-fullday-punta .fullday-colonia-hero-inner h1, .page-mvd-walking .fullday-colonia-hero-inner h1 {
+      font-size: clamp(1.28rem, 6.4vw, 1.7rem);
+      line-height: 1.22;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-fullday-punta .fullday-colonia-hero-deck, .page-mvd-walking .fullday-colonia-hero-deck {
+      max-width: 100%;
+      font-size: clamp(0.9rem, 3.6vw, 1rem);
+      line-height: 1.45;
+      text-wrap: pretty;
+    }
+
+    .page-fullday-punta .fullday-colonia-hero-badges, .page-mvd-walking .fullday-colonia-hero-badges {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+
+    .page-fullday-punta .fullday-colonia-hero-badges li, .page-mvd-walking .fullday-colonia-hero-badges li {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.72rem;
+      padding: 0.34rem 0.42rem;
+      line-height: 1.25;
+      box-sizing: border-box;
+    }
+
+    .page-fullday-punta .fullday-colonia-hero-price, .page-mvd-walking .fullday-colonia-hero-price {
+      margin-top: 0.15rem;
+      font-size: 0.9rem;
+      padding: 0.42rem 0.9rem;
+    }
+
+    .page-fullday-punta .coffee-content, .page-mvd-walking .coffee-content {
+      margin-top: 1.65rem;
+      margin-bottom: 5.5rem;
+      width: 100%;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+    }
+
+    .page-fullday-punta.page-fullday-colonia .experience-about-head, .page-mvd-walking.page-fullday-colonia .experience-about-head {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .page-fullday-punta.page-fullday-colonia .experience-about-head h2, .page-mvd-walking.page-fullday-colonia .experience-about-head h2 {
+      order: 1;
+      width: 100%;
+      text-align: left;
+      font-size: clamp(1.2rem, 5.4vw, 1.45rem);
+    }
+
+    .page-fullday-punta.page-fullday-colonia .experience-about-head .google-reviews-cta, .page-mvd-walking.page-fullday-colonia .experience-about-head .google-reviews-cta {
+      order: 2;
+      position: static;
+      width: 100%;
+      max-width: 100%;
+      margin: 0.15rem 0 0.2rem;
+    }
+
+    .page-fullday-punta .fullday-punta-about-p, .page-mvd-walking .fullday-punta-about-p {
+      margin-top: 0.15rem;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.62;
+    }
+
+    .page-fullday-punta .reel-link-btn, .page-mvd-walking .reel-link-btn {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      justify-content: flex-start;
+    }
+
+    .page-fullday-punta .experience-steps-title, .page-mvd-walking .experience-steps-title {
+      margin-top: 1.35rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .page-fullday-punta .activity-meta-list, .page-mvd-walking .activity-meta-list {
+      margin: 0;
+    }
+
+    .page-fullday-punta .activity-meta-row, .page-mvd-walking .activity-meta-row {
+      gap: 0.65rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .page-fullday-punta .price-box, .page-mvd-walking .price-box {
+      padding: 1rem 1.05rem;
+    }
+
+    .page-fullday-punta .price-box h3, .page-mvd-walking .price-box h3 {
+      font-size: 1.02rem;
+    }
+
+    .page-fullday-punta .food-price-separator, .page-mvd-walking .food-price-separator {
+      display: none;
+    }
+
+    .page-fullday-punta .coffee-includes, .page-mvd-walking .coffee-includes {
+      margin: 1.35rem 0;
+      padding: 1.05rem 1rem;
+    }
+
+    .page-fullday-punta .includes-preferences, .page-mvd-walking .includes-preferences {
+      grid-template-columns: 1fr;
+      gap: 1.35rem;
+    }
+
+    .page-fullday-punta .order-start .primary-btn, .page-mvd-walking .order-start .primary-btn,
+    .page-fullday-punta .coffee-actions .btn, .page-mvd-walking .coffee-actions .btn {
+      width: 100%;
+      min-height: 48px;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .page-fullday-punta .booking-visit-date-row input, .page-mvd-walking .booking-visit-date-row input,
+    .page-mvd-walking .booking-visit-date-row textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .page-fullday-punta .coffee-gallery, .page-mvd-walking .coffee-gallery {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .page-fullday-punta .coffee-gallery .gallery-grid, .page-mvd-walking .coffee-gallery .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .page-fullday-punta .coffee-gallery .gallery-grid img, .page-mvd-walking .coffee-gallery .gallery-grid img {
+      height: min(42vw, 220px);
+      min-height: 160px;
+    }
+
+    .page-fullday-punta .coffee-actions, .page-mvd-walking .coffee-actions {
+      margin-top: 1.75rem;
+      margin-bottom: 1rem;
+      gap: 0.75rem;
+    }
+
+    .page-fullday-punta .popup-overlay .popup-box, .page-mvd-walking .popup-overlay .popup-box {
+      width: min(100%, calc(100vw - 1.25rem));
+      max-height: min(90vh, 38rem);
+      overflow: auto;
+      box-sizing: border-box;
+    }
+
+    .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-popup {
+      width: min(100%, calc(100vw - 1.25rem));
+      max-width: 26.5rem;
+      max-height: min(88vh, 40rem);
+      padding: 1.05rem 1rem 1rem;
+    }
+
+    .page-fullday-punta #popupFulldayPunta .fullday-punta-inquiry-actions .primary-btn {
+      width: 100%;
+      min-height: 48px;
+    }
+
+    .page-fullday-punta .whatsapp-float, .page-mvd-walking .whatsapp-float {
+      right: calc(14px + env(safe-area-inset-right, 0px));
+      bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  @media (max-width: 430px) {
+    .page-fullday-punta .fullday-colonia-hero-badges, .page-mvd-walking .fullday-colonia-hero-badges {
+      grid-template-columns: 1fr;
+    }
+
+    .page-fullday-punta .fullday-colonia-hero-badges li, .page-mvd-walking .fullday-colonia-hero-badges li {
+      font-size: 0.78rem;
     }
   }
 
@@ -11688,6 +12211,34 @@
     font-family: inherit;
     background: #fff;
     color: #1f2937;
+  }
+
+  .page-mvd-walking .booking-visit-date-row input[type="text"],
+  .page-mvd-walking .booking-visit-date-row input[type="email"],
+  .page-mvd-walking .booking-visit-date-row textarea {
+    max-width: 280px;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: #1f2937;
+    box-sizing: border-box;
+  }
+
+  .page-mvd-walking .booking-visit-date-row textarea {
+    min-height: 96px;
+    resize: vertical;
+  }
+
+  .page-mvd-walking .booking-visit-date-row input[type="text"]:focus,
+  .page-mvd-walking .booking-visit-date-row input[type="email"]:focus,
+  .page-mvd-walking .booking-visit-date-row textarea:focus {
+    outline: none;
+    border-color: #6ea8e5;
+    box-shadow: 0 0 0 3px rgba(110, 168, 229, 0.25);
   }
 
   .booking-visit-date-row select {
@@ -15138,6 +15689,94 @@ body.page-home .home-packages-promo {
 body.page-home .home-packages-promo,
 body.page-home .home-packages-promo *:not(.fa-solid):not(.fas):not(.fa-regular):not(.far):not(.fa-brands):not(.fab) {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Home: Uruguay destinations (Montevideo + Punta del Este) */
+.home-uruguay-destinations {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: clamp(0.55rem, 1.6vw, 1.1rem) 0 clamp(0.35rem, 1vw, 0.7rem);
+  background: #ffffff;
+}
+
+.home-uruguay-destinations__header {
+  max-width: min(1080px, 100%);
+  margin: 0 auto;
+  padding: 0.15rem clamp(1.25rem, 4vw, 2.5rem) 0.35rem;
+}
+
+.home-uruguay-destinations__title {
+  margin: 0 0 0.5rem;
+  font-family: inherit;
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: #243b5a;
+  text-wrap: balance;
+}
+
+.home-uruguay-destinations__sub {
+  margin: 0;
+  max-width: 42rem;
+  font-size: clamp(0.94rem, 2vw, 1.02rem);
+  font-weight: 400;
+  line-height: 1.62;
+  color: #4a5f73;
+  text-wrap: pretty;
+}
+
+.home-uruguay-destinations__cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: min(1080px, 100%);
+  margin: 0 auto;
+  padding-top: 1rem;
+}
+
+.home-uruguay-destinations .card-image--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  height: 220px;
+  padding: 1.25rem 1.5rem;
+  background:
+    linear-gradient(135deg, rgba(102, 166, 230, 0.14), rgba(47, 103, 163, 0.1));
+  color: #3d5a78;
+  text-align: center;
+}
+
+.home-uruguay-destinations .card-image-placeholder__label {
+  margin: 0;
+  max-width: 18rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.home-uruguay-destinations .card-buttons .btn[disabled],
+.home-uruguay-destinations .card-buttons .btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+#home-punta-este-card .carousel-track img,
+#home-montevideo-walking-card .carousel-track img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 767px) {
+  .home-uruguay-destinations__header {
+    text-align: left;
+  }
+
+  .home-uruguay-destinations__cards {
+    grid-template-columns: 1fr;
+    padding-top: 0.85rem;
+  }
 }
 
 /* Home: excursions catalog section title (above activity cards) */
