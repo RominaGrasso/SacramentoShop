@@ -9,7 +9,7 @@
    */
   const HOME_CARD_LODGING_SLUGS = new Set(["mision-night.html", "sio-night.html"]);
 
-  const HOME_CARD_PROMO_SLUGS = new Set(["hotel-royal.html"]);
+  const HOME_CARD_PROMO_SLUGS = new Set();
 
   /** Slugs whose entry price is a fixed group total (unit label ≠ per person). */
   const HOME_CARD_GROUP_UNIT_SLUGS = {
@@ -119,8 +119,7 @@
   }
 
   function isHotelPromoCard(card, slug) {
-    if (slug && HOME_CARD_PROMO_SLUGS.has(slug)) return true;
-    return card.id === "home-card-hotel-royal";
+    return Boolean(slug && HOME_CARD_PROMO_SLUGS.has(slug));
   }
 
   function isLodgingPriceCard(card, slug) {

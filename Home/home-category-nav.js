@@ -384,6 +384,7 @@
     "bodega-boutique.html": ["bodega", "gastronomy", "dining"],
     "experiencia-bodega.html": ["bodega", "gastronomy", "dining"],
     "hotel-royal.html": ["lodging", "night"],
+    "hotel-sheraton.html": ["lodging", "night"],
   };
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
@@ -400,7 +401,7 @@
       "home-cabalgata-liebres-card",
     ],
     boat: ["home-kayak-card"],
-    lodging: ["home-card-hotel-royal", "home-card-mision-bruma"],
+    lodging: ["home-card-hotel-royal", "home-card-sheraton", "home-card-mision-bruma"],
     dining: ["home-bodega-boutique-card", "home-walking-charco-card", "home-chivito-card", "home-vinos-card", "home-quinton-card"],
     gastronomy: ["home-bodega-boutique-card", "home-walking-charco-card", "home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
@@ -416,6 +417,9 @@
     "home-golfcart-card": ["tours"],
     "home-golden-mile-card": ["tours", "night", "gastronomy"],
     "home-card-hotel-royal": ["lodging", "night"],
+    "home-card-sheraton": ["lodging", "night"],
+    "home-featured-hotel-royal": ["lodging", "night"],
+    "home-featured-sheraton": ["lodging", "night"],
     "home-card-mision-bruma": ["lodging", "gastronomy"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
     "home-cabal-card": ["horseback"],
