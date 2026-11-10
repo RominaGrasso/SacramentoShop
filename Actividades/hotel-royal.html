@@ -7,7 +7,7 @@
 <title data-translate="royal_doc_title">Hotel Royal · Lodging in Colonia | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/royal2.jpg" rel="preload"/>
-<link href="../Styles/styles.css?v=20260820wide1120" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20261110stayextras2" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -114,38 +114,27 @@
 <div class="coffee-actions royal-pet-friendly-block">
 <button class="btn royal-pet-conditions-btn" data-translate="royal_pet_conditions_btn" id="royalPetConditionsBtn" type="button">Condiciones pet friendly</button>
 </div>
-<h3 class="experience-steps-title" data-translate="royal_steps_title">How to book</h3>
+<h3 class="experience-steps-title" data-translate="royal_steps_title">How to request a stay</h3>
 <div class="experience-steps">
 <ul>
 <li class="liebres-step-item">
-          💬
-          <strong data-translate="royal_step_1_title">Message us on WhatsApp:</strong>
-<span data-translate="royal_step_1_desc">We share our exclusive 10% promotional code with you.</span>
+<strong data-translate="royal_step_1_title">Send your inquiry:</strong>
+<span data-translate="royal_step_1_desc">Share your dates and number of guests. Sacramento Adventures manages the request.</span>
 </li>
 <li class="liebres-step-item">
-          🌐
-          <strong data-translate="royal_step_2_title">Check availability:</strong>
-<span data-translate="royal_step_2_desc">On the hotel's official booking site — live room availability.</span>
+<strong data-translate="royal_step_2_title">We check availability:</strong>
+<span data-translate="royal_step_2_desc">Every stay is subject to confirmation of availability.</span>
 </li>
 <li class="liebres-step-item">
-          🏨
-          <strong data-translate="royal_step_3_title">Complete your booking:</strong>
-<span data-translate="royal_step_3_desc">Apply the promotional code when you pay on the hotel website.</span>
+<strong data-translate="royal_step_3_title">We confirm with you:</strong>
+<span data-translate="royal_step_3_desc">Opening WhatsApp is not a confirmed reservation. Our team will follow up.</span>
 </li>
 </ul>
 </div>
 <div class="price-options">
 <div class="price-box">
-<h3 data-translate="royal_promo_title">Promotional code: 10% off</h3>
-<p data-translate="royal_promo_p">
-          We have an exclusive promotional code for Hotel Royal. Sacramento Adventures provides the code; you book directly on the hotel website according to availability.
-        </p>
-<p data-translate="royal_promo_book_p">
-          Room stock and rates are shown in real time on the hotel's booking platform. After you receive the code from us, enter it at checkout.
-        </p>
-<div class="coffee-actions royal-promo-actions">
-<a class="btn secondary royal-booking-site-btn" data-translate="royal_booking_site_btn" href="https://direct-book.com/properties/hotelroyalldirect?locale=en&amp;referrer=canvas&amp;currency=USD&amp;trackPage=yes" id="royalBookingSiteBtn" rel="noopener noreferrer" target="_blank">View availability on hotel website</a>
-</div>
+<h3 data-translate="royal_promo_title">Subject to availability</h3>
+<p data-translate="royal_promo_p">Sacramento Adventures handles reservation requests for this hotel. Rates are not published here. Nothing is charged automatically, and no reservation number is issued until our team confirms availability.</p>
 </div>
 </div>
 <div class="coffee-includes">
@@ -153,7 +142,7 @@
 <div class="includes-list">
 <h3 data-translate="royal_included_title">What's included</h3>
 <ul>
-<li data-translate="royal_include_promo">✔ 10% off with our promotional code</li>
+<li data-translate="royal_include_promo">✔ Request managed by our team, pending confirmation</li>
 <li data-translate="royal_include_1">✔ Breakfast included</li>
 <li data-translate="royal_include_2">✔ Outdoor swimming pool</li>
 <li data-translate="royal_include_7">✔ Conference room</li>
@@ -164,18 +153,35 @@
 </ul>
 </div>
 <div class="order-start" id="reservar">
-<h3 data-translate="royal_create_title">Get your promotional code</h3>
+<h3 data-translate="royal_create_title">Request this stay</h3>
+<p data-translate="royal_create_subtitle">Tell us your dates and group size. We will check availability and get back to you.</p>
+<div class="booking-visit-date-row">
+<label data-translate="royal_checkin_label" for="royalCheckIn">Check-in date</label>
+<input autocomplete="off" id="royalCheckIn" required="" type="date"/>
+</div>
+<div class="booking-visit-date-row">
+<label data-translate="royal_checkout_label" for="royalCheckOut">Check-out date</label>
+<input autocomplete="off" id="royalCheckOut" required="" type="date"/>
+</div>
+<div class="booking-visit-date-row sheraton-inquiry-guests royal-inquiry-guests">
+<label data-translate="royal_guests_label" for="royalGuestsValue">Number of guests</label>
+<div class="sheraton-inquiry-guests__controls royal-inquiry-guests__controls">
+<button aria-label="−" class="add-guest-btn" id="royalGuestsMinus" type="button">−</button>
+<span id="royalGuestsValue">1</span>
+<button aria-label="+" class="add-guest-btn" id="royalGuestsPlus" type="button">+</button>
+</div>
+</div>
+<div id="stayExtrasRoot"></div>
+<p class="booking-visit-date-hint" hidden="" id="royalInquiryError" role="alert"></p>
 <div class="coffee-actions royal-order-actions">
-<button class="btn" data-translate="royal_reserve_btn" id="royalReserveBtn" type="button">
-            Request code on WhatsApp
-          </button>
+<button class="btn" data-translate="royal_reserve_btn" id="royalReserveBtn" type="button">Request availability on WhatsApp</button>
 </div>
 </div>
 </div>
 </div>
 <div class="experience-support-notice" role="status">
 <p>
-<strong data-translate="royal_support_title">After you message us</strong><span data-translate="royal_support_text">, we will send you the promotional code and help you with any questions before you book on the hotel website.</span>
+<strong data-translate="royal_support_title">After you send your inquiry</strong><span data-translate="royal_support_text">, our team will review availability for Hotel Royal and contact you. Sending the WhatsApp message does not confirm the reservation.</span>
 </p>
 </div>
 <section class="coffee-gallery">
@@ -202,7 +208,7 @@
 </div>
 </section>
 <div class="coffee-actions">
-<a class="btn" data-translate="royal_reserve_btn" href="#" id="bookNowBottomRoyal">Request code on WhatsApp</a>
+<a class="btn" data-translate="royal_reserve_btn" href="#reservar" id="bookNowBottomRoyal">Request availability on WhatsApp</a>
 <a class="btn secondary" data-translate="royal_back_home" href="../Home/index.html">Back to Home</a>
 </div>
 </section>
@@ -225,14 +231,13 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260617royalpet"></script>
+<script charset="utf-8" src="../Home/index.js?v=20261110royalinq"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
-<script src="../Home/orders.js?v=20260702plexhints"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
+<script charset="utf-8" src="../Home/stay-extras.js?v=20261110stayextras2"></script>
 <script>
     (function () {
       const WA_NUMBER = "59898945542";
-      const BOOKING_BASE =
-        "https://direct-book.com/properties/hotelroyalldirect?referrer=canvas&currency=USD&trackPage=yes";
 
       function t(key, fallback) {
         if (typeof window.sacramentoGetI18nText === "function") {
@@ -252,62 +257,190 @@
           : window.getInitialLanguage?.() || "en";
       }
 
-      function bookingLocale() {
+      const MIN_GUESTS = 1;
+      const MAX_GUESTS = 20;
+      const checkInEl = document.getElementById("royalCheckIn");
+      const checkOutEl = document.getElementById("royalCheckOut");
+      const guestsEl = document.getElementById("royalGuestsValue");
+      const errorEl = document.getElementById("royalInquiryError");
+      const minusBtn = document.getElementById("royalGuestsMinus");
+      const plusBtn = document.getElementById("royalGuestsPlus");
+      let guests = 1;
+
+      function todayIso() {
+        const d = new Date();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        return d.getFullYear() + "-" + m + "-" + day;
+      }
+      function addDaysIso(iso, days) {
+        const [y, m, d] = iso.split("-").map(Number);
+        const dt = new Date(y, m - 1, d + days);
+        const mm = String(dt.getMonth() + 1).padStart(2, "0");
+        const dd = String(dt.getDate()).padStart(2, "0");
+        return dt.getFullYear() + "-" + mm + "-" + dd;
+      }
+      function formatDate(iso) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return "";
+        const [y, m, d] = iso.split("-").map(Number);
+        const parsed = new Date(y, m - 1, d);
+        if (Number.isNaN(parsed.getTime())) return "";
         const lang = getLang();
-        if (lang === "es") return "es";
-        if (lang === "pt") return "pt";
-        return "en";
+        const locale = lang === "es" ? "es-UY" : lang === "pt" ? "pt-BR" : "en-GB";
+        return parsed.toLocaleDateString(locale, { day: "2-digit", month: "short", year: "numeric" });
       }
-
-      function buildBookingSiteUrl() {
-        const params = new URLSearchParams({
-          locale: bookingLocale(),
-          referrer: "canvas",
-          currency: "USD",
-          trackPage: "yes"
-        });
-        return `${BOOKING_BASE.split("?")[0]}?${params.toString()}`;
+      function setGuests(n) {
+        guests = Math.min(MAX_GUESTS, Math.max(MIN_GUESTS, n));
+        if (guestsEl) guestsEl.textContent = String(guests);
+        if (minusBtn) minusBtn.disabled = guests <= MIN_GUESTS;
+        if (plusBtn) plusBtn.disabled = guests >= MAX_GUESTS;
       }
-
-      function updateBookingSiteLink() {
-        const btn = document.getElementById("royalBookingSiteBtn");
-        if (!btn) return;
-        btn.href = buildBookingSiteUrl();
+      function showError(msg) {
+        if (!errorEl) {
+          window.alert(msg);
+          return;
+        }
+        errorEl.hidden = false;
+        errorEl.textContent = msg;
+        errorEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
-
+      function hideError() {
+        if (!errorEl) return;
+        errorEl.hidden = true;
+        errorEl.textContent = "";
+      }
+      function syncDateMins() {
+        const minIn = todayIso();
+        if (checkInEl) checkInEl.min = minIn;
+        const inVal = String(checkInEl?.value || "");
+        if (checkOutEl) {
+          checkOutEl.min = /^\d{4}-\d{2}-\d{2}$/.test(inVal) ? addDaysIso(inVal, 1) : addDaysIso(minIn, 1);
+          if (checkOutEl.value && checkInEl?.value && checkOutEl.value <= checkInEl.value) {
+            checkOutEl.value = addDaysIso(checkInEl.value, 1);
+          }
+        }
+      }
+      function hotelName() {
+        return t("royal_name", "Hotel Royal");
+      }
+      function guestsLabel() {
+        return guests === 1
+          ? t("royal_guests_one", "1 guest")
+          : t("royal_guests_many", "{n} guests").replace("{n}", String(guests));
+      }
+      function extrasCount() {
+        return typeof window.sacramentoStayExtrasCount === "function"
+          ? window.sacramentoStayExtrasCount("stayExtrasRoot")
+          : 0;
+      }
+      function extrasBlock() {
+        return typeof window.sacramentoStayExtrasWhatsAppBlock === "function"
+          ? window.sacramentoStayExtrasWhatsAppBlock("stayExtrasRoot")
+          : "";
+      }
       function buildWhatsAppMessage() {
+        const hotel = hotelName();
+        const checkIn = formatDate(checkInEl?.value);
+        const checkOut = formatDate(checkOutEl?.value);
+        if (!extrasCount()) {
+          return [
+            t("royal_wa_hello", "Hi, Sacramento Adventures team!"),
+            "",
+            t("royal_wa_body", "I would like to inquire about availability for a stay at Hotel Royal."),
+            "",
+            t("royal_wa_hotel", "Hotel") + ": " + hotel,
+            t("royal_wa_checkin", "Check-in") + ": " + checkIn,
+            t("royal_wa_checkout", "Check-out") + ": " + checkOut,
+            t("royal_wa_guests", "Guests") + ": " + guestsLabel(),
+            "",
+            t(
+              "royal_wa_thanks",
+              "Thank you so much. I understand this request is subject to availability and confirmation from your team."
+            )
+          ].join("\n");
+        }
+        const greeting =
+          typeof window.sacramentoStayExtrasGreeting === "function"
+            ? window.sacramentoStayExtrasGreeting()
+            : t("stay_extras_wa_hello", "Hi, Sacramento Adventures team!");
+        const stayLines =
+          typeof window.sacramentoStayExtrasDecorateStayLines === "function"
+            ? window.sacramentoStayExtrasDecorateStayLines({
+                hotel,
+                checkIn,
+                checkOut,
+                guests: guestsLabel()
+              })
+            : [
+                t("royal_wa_hotel", "Hotel") + ": " + hotel,
+                t("royal_wa_checkin", "Check-in") + ": " + checkIn,
+                t("royal_wa_checkout", "Check-out") + ": " + checkOut,
+                t("royal_wa_guests", "Guests") + ": " + guestsLabel()
+              ];
+        const close =
+          typeof window.sacramentoStayExtrasQuoteClose === "function"
+            ? window.sacramentoStayExtrasQuoteClose()
+            : t("stay_extras_wa_help", "Could you help me with availability and a quote?");
         return [
-          t(
-            "royal_wa_intro",
-            "Hello! I'd like to stay at Hotel Royal and get the 10% promotional code."
+          greeting,
+          "",
+          t("stay_extras_wa_stay_body", "I would like to inquire about availability for a stay at {hotel}.").replace(
+            "{hotel}",
+            hotel
           ),
           "",
-          t(
-            "royal_wa_footer",
-            "Thank you! I plan to book on the hotel website once I receive the code."
-          )
+          ...stayLines,
+          "",
+          extrasBlock(),
+          "",
+          close
         ].join("\n");
       }
 
       function openWhatsApp() {
-        const message = buildWhatsAppMessage();
-        if (typeof window.sacramentoOpenWhatsApp === "function") {
-          window.sacramentoOpenWhatsApp(WA_NUMBER, message);
+        hideError();
+        syncDateMins();
+        const checkIn = String(checkInEl?.value || "");
+        const checkOut = String(checkOutEl?.value || "");
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(checkIn)) {
+          showError(t("sheraton_err_checkin", "Please select a check-in date."));
+          checkInEl?.focus();
           return;
         }
-        const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(checkOut)) {
+          showError(t("sheraton_err_checkout", "Please select a check-out date."));
+          checkOutEl?.focus();
+          return;
+        }
+        if (checkOut <= checkIn) {
+          showError(t("sheraton_err_range", "Check-out must be after check-in."));
+          checkOutEl?.focus();
+          return;
+        }
+        const message = buildWhatsAppMessage();
+        const url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(message);
         window.open(url, "_blank", "noopener,noreferrer");
       }
+
+      if (typeof window.sacramentoInitStayExtras === "function") {
+        window.sacramentoInitStayExtras({
+          rootId: "stayExtrasRoot",
+          hotelNameKey: "royal_name",
+          hotelName: "Hotel Royal"
+        });
+      }
+      setGuests(1);
+      syncDateMins();
+      checkInEl?.addEventListener("change", syncDateMins);
+      minusBtn?.addEventListener("click", () => setGuests(guests - 1));
+      plusBtn?.addEventListener("click", () => setGuests(guests + 1));
 
       document.getElementById("royalReserveBtn")?.addEventListener("click", openWhatsApp);
       document.getElementById("bookNowBottomRoyal")?.addEventListener("click", (e) => {
         e.preventDefault();
+        document.getElementById("reservar")?.scrollIntoView({ behavior: "smooth", block: "center" });
         openWhatsApp();
       });
-
-      document.addEventListener("sacramento:setLanguage", updateBookingSiteLink);
-      document.addEventListener("sacramento:languageChosen", updateBookingSiteLink);
-      updateBookingSiteLink();
 
       const petPopup = document.getElementById("popupRoyalPetConditions");
       const petOpenBtn = document.getElementById("royalPetConditionsBtn");
