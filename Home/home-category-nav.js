@@ -699,14 +699,20 @@
     return [...groups];
   }
 
+  function cardsInSection(sectionId) {
+    const root = document.getElementById(sectionId);
+    if (!root) return [];
+    return Array.from(root.querySelectorAll(".card")).filter(isListedCard);
+  }
+
+  /** Colonia catalog only — used by “view all activities” so Uruguay cards stay in their section. */
   function getExperienceCards() {
-    const roots = [
-      document.getElementById("experiences"),
-      document.getElementById("uruguay-destinations"),
-    ].filter(Boolean);
-    return roots.flatMap((root) =>
-      Array.from(root.querySelectorAll(":scope > .cards .card, :scope > .card")).filter(isListedCard)
-    );
+    return cardsInSection("experiences");
+  }
+
+  /** Category modal, search and filters also include Montevideo / Punta cards. */
+  function getNavCatalogCards() {
+    return [...getExperienceCards(), ...cardsInSection("uruguay-destinations")];
   }
 
   function orderCardsForNav(navKey, cards) {
@@ -736,7 +742,7 @@
   }
 
   function cardsForNav(navKey) {
-    const matches = getExperienceCards().filter((card) => cardBelongsToNavKey(card, navKey));
+    const matches = getNavCatalogCards().filter((card) => cardBelongsToNavKey(card, navKey));
     return orderCardsForNav(navKey, matches);
   }
 
@@ -958,7 +964,7 @@
     const matched = new Set(cardsForNav(navKey).map((c) => c));
 
     section.classList.add("card-filter-active");
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       if (matched.has(card)) {
         card.classList.add("card--nav-highlight");
         card.style.removeProperty("display");
@@ -974,7 +980,7 @@
     const section = document.getElementById("experiences");
     if (!section) return;
     section.classList.remove("card-filter-active");
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       card.classList.remove("card--nav-highlight");
       card.style.removeProperty("display");
     });
@@ -1231,7 +1237,7 @@
     if (section) section.classList.remove("card-search-active");
     window.clearTimeout(searchScrollTimer);
 
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       card.classList.remove("card--search-hidden", "card--search-match");
       if (!section?.classList.contains("card-filter-active")) {
         card.style.removeProperty("display");
@@ -1263,7 +1269,7 @@
     if (clearBtn) clearBtn.hidden = false;
 
     let visible = 0;
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       const match = cardMatchesSearch(card, query);
       card.classList.toggle("card--search-match", match);
       card.classList.toggle("card--search-hidden", !match);
