@@ -7,7 +7,7 @@
    * Per-activity minimum per-person USD prices (lowest bookable entry).
    * Arrays → Math.min; omit slug to hide label (e.g. hotel with external rates).
    */
-  const HOME_CARD_LODGING_SLUGS = new Set(["mision-night.html", "sio-night.html"]);
+  const HOME_CARD_LODGING_SLUGS = new Set();
 
   const HOME_CARD_PROMO_SLUGS = new Set();
 
@@ -31,9 +31,13 @@
     "cabal.html": [40],
     "colonia-wellness.html": [95],
     "kayak.html": [80],
-    "walkingtour.html": [16],
+    "montevideo-ciudad-vieja.html": [50],
+    "fullday-punta.html": [130],
+    "montevideo-city-tour.html": [100],
+    "asado-experience-montevideo.html": [150],
+    "walkingtour.html": [18],
     "private-walkingtour.html": [40],
-    "night-walkingtour.html": [18],
+    "night-walkingtour.html": [20],
     "candombe.html": [50],
     "mate.html": [40],
     "traslado-plaza-letras.html": [50],
@@ -62,8 +66,6 @@
     "sio.html": [70],
     "romantic.html": [70],
     "sunset-boat.html": [40],
-    "mision-night.html": [115],
-    "sio-night.html": [115],
     "corporate-boat.html": [150],
   };
 
@@ -242,7 +244,7 @@
     const cards = scope.querySelectorAll ? scope.querySelectorAll(".card") : [];
 
     cards.forEach((card) => {
-      if (scope !== document && !card.closest("#experiences, #homeCategoryModalCards")) return;
+      if (scope !== document && !card.closest("#experiences, #homeCategoryModalCards, #uruguay-destinations")) return;
       if (scope === document && card.closest("#homeCategoryModalCards")) return;
       if (!isListedCard(card)) {
         card.querySelector(".card-entry-price")?.remove();
@@ -282,8 +284,10 @@
 
   function init() {
     mountHomeCardPrices(document.getElementById("experiences"));
+    mountHomeCardPrices(document.getElementById("uruguay-destinations"));
     document.addEventListener("sacramento:setLanguage", () => {
       mountHomeCardPrices(document.getElementById("experiences"));
+      mountHomeCardPrices(document.getElementById("uruguay-destinations"));
       const modalCards = document.getElementById("homeCategoryModalCards");
       if (modalCards) mountHomeCardPrices(modalCards);
     });

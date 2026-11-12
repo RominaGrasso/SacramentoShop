@@ -29,8 +29,9 @@
   }
 
   function getListedCards() {
+    const inExperiences = (card) => Boolean(card && section && section.contains(card));
     if (typeof window.sacramentoGetHomeExperienceCards === "function") {
-      return window.sacramentoGetHomeExperienceCards();
+      return window.sacramentoGetHomeExperienceCards().filter(inExperiences);
     }
     if (!section) return [];
     return Array.from(section.querySelectorAll(".card")).filter((card) => {

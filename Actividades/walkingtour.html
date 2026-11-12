@@ -349,13 +349,14 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20261108walkmeet"></script>
+<script src="../Home/index.js?v=20261112walk18night20"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
 <script>
   (function () {
-    const pricesByLang = { es: 16, en: 16, pt: 16 };
+    const WALKING_PRICE_USD = 18;
+    const pricesByLang = { es: WALKING_PRICE_USD, en: WALKING_PRICE_USD, pt: WALKING_PRICE_USD };
     const MATE_ADDON_PRICE_USD = 20;
     const getLang = () => window.getInitialLanguage().toLowerCase();
     const t = (key, fallback) => {
@@ -365,16 +366,16 @@
     };
     const getListPriceForGuideLanguage = (guideLanguage) => {
       const g = String(guideLanguage || "").toLowerCase();
-      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return 16;
-      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return 16;
-      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return 16;
+      if (g.includes("spanish") || g.includes("español") || g.includes("espanol")) return WALKING_PRICE_USD;
+      if (g.includes("portuguese") || g.includes("portugués") || g.includes("portugues")) return WALKING_PRICE_USD;
+      if (g.includes("english") || g.includes("inglés") || g.includes("ingles")) return WALKING_PRICE_USD;
       return null;
     };
     const getPriceForGuideLanguage = (guideLanguage) => getListPriceForGuideLanguage(guideLanguage);
     const getPrice = (guideLanguage) => {
       const byGuide = getListPriceForGuideLanguage(guideLanguage);
       if (Number.isFinite(byGuide)) return byGuide;
-      return pricesByLang[getLang()] || 16;
+      return pricesByLang[getLang()] || WALKING_PRICE_USD;
     };
     const getKidsFreeNote = () => {
       return t("walking_kids_note", "Children under 5 years old do not pay.");
@@ -416,9 +417,9 @@
     };
 
     const WALKING_GUIDE_PRICE_TIERS = Object.freeze([
-      { langKey: "walking_price_lang_es", fallback: "Spanish", amount: 16 },
-      { langKey: "walking_price_lang_en", fallback: "English", amount: 16 },
-      { langKey: "walking_price_lang_pt", fallback: "Portuguese", amount: 16 }
+      { langKey: "walking_price_lang_es", fallback: "Spanish", amount: WALKING_PRICE_USD },
+      { langKey: "walking_price_lang_en", fallback: "English", amount: WALKING_PRICE_USD },
+      { langKey: "walking_price_lang_pt", fallback: "Portuguese", amount: WALKING_PRICE_USD }
     ]);
 
     function renderWalkingPriceBadges() {

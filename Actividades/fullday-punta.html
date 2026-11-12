@@ -4,11 +4,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<title data-translate="fullday_punta_doc_title">Punta del Este Full Day Tour | Sacramento Adventures</title>
+<title data-translate="fullday_punta_doc_title">Full Day Punta del Este | Sacramento Adventures</title>
 <meta content="Discover Punta del Este on a full-day tour from Colonia del Sacramento or Montevideo, with a local host, executive van, and iconic stops from Punta Ballena to La Barra." name="description"/>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/punta1.jpg" rel="preload"/>
-<link href="../Styles/styles.css?v=20261109puntamodal" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20261112puntalang" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <!-- Google tag (gtag.js) -->
@@ -86,7 +86,7 @@
 </header>
 <section aria-labelledby="fulldayPuntaHeroTitle" class="fullday-colonia-hero fullday-punta-hero">
 <div class="fullday-colonia-hero-inner">
-<h1 data-translate="home_uruguay_punta_title" id="fulldayPuntaHeroTitle">Punta del Este Full Day Tour</h1>
+<h1 data-translate="home_uruguay_punta_title" id="fulldayPuntaHeroTitle">Full Day Punta del Este</h1>
 <p class="fullday-colonia-hero-deck" data-translate="home_uruguay_punta_desc">Discover Punta del Este's stunning beaches, scenic landscapes, and iconic landmarks, from Punta Ballena and Casapueblo to La Barra de Maldonado.</p>
 <ul aria-label="Highlights" class="fullday-colonia-hero-badges">
 <li data-translate="fullday_punta_highlight_1">Punta Ballena &amp; Casapueblo</li>
@@ -96,7 +96,7 @@
 <li data-translate="fullday_punta_highlight_5">La Mano · Playa Brava</li>
 <li data-translate="fullday_punta_highlight_6">La Barra de Maldonado</li>
 </ul>
-<p class="fullday-colonia-hero-price" data-translate="fullday_punta_inquiry_badge">On request</p>
+<p class="fullday-colonia-hero-price" data-translate="fullday_punta_hero_price">USD 130 per person</p>
 </div>
 </section>
 <section class="coffee-content">
@@ -159,11 +159,12 @@
 </div>
 <div class="price-box">
 <h3>
-<span data-translate="fullday_punta_inquiry_badge">On request</span>
+<span data-translate="fullday_punta_hero_price">USD 130 per person</span>
 <span class="food-price-separator"> · </span>
 <span><strong data-translate="fullday_punta_duration_label">Duration:</strong> <span data-translate="home_uruguay_punta_duration">Approximately 10 hours</span></span>
 </h3>
 <p class="price-box-detail" data-translate="fullday_punta_duration_note">Duration is approximate and is not a fixed timetable.</p>
+<p class="price-box-detail" data-translate="fullday_punta_min_line">Minimum 6 participants (USD 780). Maximum 16.</p>
 <p class="price-box-detail">
 <strong data-translate="fullday_punta_langs_label">Languages:</strong>
 <span data-translate="fullday_punta_langs_value">Spanish · English · Portuguese, subject to confirmed availability</span>
@@ -175,6 +176,10 @@
 <li class="activity-meta-row" data-card-meta="clock">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#clock"></use></svg>
 <span><strong data-translate="fullday_punta_duration_label">Duration:</strong> <span data-translate="home_uruguay_punta_duration">Approximately 10 hours</span></span>
+</li>
+<li class="activity-meta-row" data-card-meta="ticket">
+<svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#ticket"></use></svg>
+<span data-translate="fullday_punta_min_line">Minimum 6 participants (USD 780). Maximum 16.</span>
 </li>
 <li class="activity-meta-row" data-card-meta="car">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#car"></use></svg>
@@ -221,7 +226,7 @@
 </li>
 </ul>
 </div>
-<div class="order-start">
+<div class="order-start" id="reservar">
 <h3 data-translate="fullday_punta_create_title">Inquire about this tour</h3>
 <div class="booking-visit-date-row">
 <label data-translate="booking_visit_date_label" for="bookingVisitDatePunta">Preferred visit date</label>
@@ -248,6 +253,9 @@
 <img alt="" data-translate-alt="home_uruguay_punta_alt_4" decoding="async" height="220" loading="lazy" src="../Assets/images/punta4.jpg" width="1200"/>
 <img alt="" data-translate-alt="home_uruguay_punta_alt_5" decoding="async" height="220" loading="lazy" src="../Assets/images/punta5.jpg" width="1200"/>
 <img alt="" data-translate-alt="home_uruguay_punta_alt_6" decoding="async" height="220" loading="lazy" src="../Assets/images/punta6.jpeg" width="1200"/>
+<img alt="" data-translate-alt="home_uruguay_punta_alt_7" decoding="async" height="220" loading="lazy" src="../Assets/images/punta1.jpeg" width="1200"/>
+<img alt="" data-translate-alt="home_uruguay_punta_alt_8" decoding="async" height="220" loading="lazy" src="../Assets/images/punta2.jpeg" width="1200"/>
+<img alt="" data-translate-alt="home_uruguay_punta_alt_9" decoding="async" height="220" loading="lazy" src="../Assets/images/punta3.jpeg" width="1200"/>
 </div>
 </section>
 <div class="coffee-actions">
@@ -274,15 +282,26 @@
 <p class="fullday-punta-inquiry-label" data-translate="fullday_punta_label_travelers">Number of travelers</p>
 <div class="fullday-punta-inquiry-guests">
 <button aria-label="−" class="add-guest-btn" id="fulldayPuntaGuestsMinus" type="button">−</button>
-<span id="fulldayPuntaGuestsValue">1</span>
+<span id="fulldayPuntaGuestsValue">6</span>
 <button aria-label="+" class="add-guest-btn" id="fulldayPuntaGuestsPlus" type="button">+</button>
 </div>
+<p class="fullday-punta-inquiry-note" data-translate="fullday_punta_guests_hint">Minimum 6 participants. USD 130 per person (USD 780 for 6 guests). Maximum 16.</p>
+<label class="fullday-punta-inquiry-label" data-translate="fullday_punta_label_language" for="fulldayPuntaLangSelect">Experience Language</label>
+<select class="fullday-punta-inquiry-select" id="fulldayPuntaLangSelect">
+<option data-translate="fullday_punta_lang_placeholder" value="">Select Language</option>
+<option data-translate="fullday_punta_lang_es" value="es">🇪🇸 Spanish</option>
+<option data-translate="fullday_punta_lang_en" value="en">🇬🇧 English</option>
+<option data-translate="fullday_punta_lang_pt" value="pt">🇧🇷 Portuguese</option>
+</select>
+<p class="fullday-punta-inquiry-error" hidden="" id="fulldayPuntaLangError" role="alert"></p>
 <div class="fullday-punta-inquiry-summary" id="fulldayPuntaInquirySummary">
 <p><strong data-translate="fullday_punta_summary_experience">Experience</strong> <span id="fulldayPuntaSummaryExperience">Full Day Punta del Este</span></p>
 <p><strong data-translate="fullday_punta_summary_departure">Departure</strong> <span id="fulldayPuntaSummaryDeparture">Colonia del Sacramento</span></p>
 <p><strong data-translate="fullday_punta_summary_return">Return</strong> <span id="fulldayPuntaSummaryReturn">Colonia del Sacramento</span></p>
-<p><strong data-translate="fullday_punta_summary_travelers">Travelers</strong> <span id="fulldayPuntaSummaryTravelers">1 person</span></p>
-<p><strong data-translate="fullday_punta_summary_price">Price</strong> <span data-translate="fullday_punta_summary_price_value">To confirm according to route and number of people.</span></p>
+<p><strong data-translate="fullday_punta_summary_travelers">Travelers</strong> <span id="fulldayPuntaSummaryTravelers">6 people</span></p>
+<p><strong data-translate="fullday_punta_summary_language">Language</strong> <span id="fulldayPuntaSummaryLanguage">—</span></p>
+<p><strong data-translate="fullday_punta_summary_price">Price</strong> <span id="fulldayPuntaSummaryPriceLine">6 people × USD 130</span></p>
+<p><strong data-translate="fullday_punta_total_label">Total</strong> <span id="fulldayPuntaSummaryTotal">USD 780</span></p>
 </div>
 </div>
 <div class="popup-actions fullday-punta-inquiry-actions">
@@ -298,16 +317,18 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script charset="utf-8" src="../Home/index.js?v=20261109puntawa2"></script>
+<script charset="utf-8" src="../Home/index.js?v=20261112noraul"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
 <script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
   (function () {
     const STORAGE_KEY = "fulldayPuntaInquiry";
     const DATE_KEY = "selectedDateFulldayPunta";
-    const MIN_GUESTS = 1;
-    const MAX_GUESTS = 20;
+    const PRICE_PER_PERSON = 130;
+    const MIN_GUESTS = 6;
+    const MAX_GUESTS = 16;
     const CITIES = ["colonia", "montevideo"];
+    const LANGS = ["es", "en", "pt"];
     const t = (key, fallback) => {
       const lang = typeof window.getInitialLanguage === "function" ? window.getInitialLanguage() : "en";
       const dict = window.__SACRAMENTO_TRANSLATIONS || {};
@@ -322,9 +343,11 @@
     const plusBtn = document.getElementById("fulldayPuntaGuestsPlus");
     const guestsValueEl = document.getElementById("fulldayPuntaGuestsValue");
     const returnNote = document.getElementById("fulldayPuntaReturnNote");
+    const langSelect = document.getElementById("fulldayPuntaLangSelect");
+    const langError = document.getElementById("fulldayPuntaLangError");
     const pageSummary = document.getElementById("fulldayPuntaOrderSummary");
     if (!popup) return;
-    const state = { departure: "colonia", returnCity: "colonia", guests: 1 };
+    const state = { departure: "colonia", returnCity: "colonia", guests: MIN_GUESTS, language: "" };
     function cityLabel(city) {
       return city === "montevideo"
         ? t("fullday_punta_dep_montevideo", "Montevideo")
@@ -338,6 +361,22 @@
     function experienceName() {
       return t("fullday_punta_experience_name", "Full Day Punta del Este");
     }
+    function languageLabel(code) {
+      if (code === "es") return t("fullday_punta_lang_name_es", "Spanish");
+      if (code === "en") return t("fullday_punta_lang_name_en", "English");
+      if (code === "pt") return t("fullday_punta_lang_name_pt", "Portuguese");
+      return "—";
+    }
+    function hideLangError() {
+      if (!langError) return;
+      langError.hidden = true;
+      langError.textContent = "";
+    }
+    function showLangError() {
+      if (!langError) return;
+      langError.hidden = false;
+      langError.textContent = t("fullday_punta_alert_language", "Please select an experience language.");
+    }
     function readStored() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -345,9 +384,12 @@
         const data = JSON.parse(raw);
         if (CITIES.includes(data.departure)) state.departure = data.departure;
         if (CITIES.includes(data.returnCity)) state.returnCity = data.returnCity;
+        if (LANGS.includes(data.language)) state.language = data.language;
         const guests = Number(data.guests);
         if (Number.isFinite(guests)) {
           state.guests = Math.min(MAX_GUESTS, Math.max(MIN_GUESTS, Math.round(guests)));
+        } else {
+          state.guests = MIN_GUESTS;
         }
       } catch (_err) {}
     }
@@ -388,31 +430,43 @@
       const dep = cityLabel(state.departure);
       const ret = cityLabel(state.returnCity);
       const travelers = travelersLabel(state.guests);
+      const language = languageLabel(state.language);
+      const total = state.guests * PRICE_PER_PERSON;
+      const priceLine = t("fullday_punta_summary_price_value", "{n} people × USD 130").replace("{n}", String(state.guests));
+      const totalLine = "USD " + total;
       const expEl = document.getElementById("fulldayPuntaSummaryExperience");
       const depEl = document.getElementById("fulldayPuntaSummaryDeparture");
       const retEl = document.getElementById("fulldayPuntaSummaryReturn");
       const trEl = document.getElementById("fulldayPuntaSummaryTravelers");
+      const langEl = document.getElementById("fulldayPuntaSummaryLanguage");
+      const priceEl = document.getElementById("fulldayPuntaSummaryPriceLine");
+      const totalEl = document.getElementById("fulldayPuntaSummaryTotal");
       if (expEl) expEl.textContent = exp;
       if (depEl) depEl.textContent = dep;
       if (retEl) retEl.textContent = ret;
       if (trEl) trEl.textContent = travelers;
+      if (langEl) langEl.textContent = language;
+      if (priceEl) priceEl.textContent = priceLine;
+      if (totalEl) totalEl.textContent = totalLine;
       if (guestsValueEl) guestsValueEl.textContent = String(state.guests);
       if (minusBtn) minusBtn.disabled = state.guests <= MIN_GUESTS;
       if (plusBtn) plusBtn.disabled = state.guests >= MAX_GUESTS;
       if (returnNote) returnNote.hidden = state.departure === state.returnCity;
       if (pageSummary) {
-        const price = t("fullday_punta_summary_price_value", "To confirm according to route and number of people.");
         pageSummary.innerHTML =
           "<p><strong>" + t("fullday_punta_summary_experience", "Experience") + ":</strong> " + exp + "</p>" +
           "<p><strong>" + t("fullday_punta_summary_departure", "Departure") + ":</strong> " + dep + "</p>" +
           "<p><strong>" + t("fullday_punta_summary_return", "Return") + ":</strong> " + ret + "</p>" +
           "<p><strong>" + t("fullday_punta_summary_travelers", "Travelers") + ":</strong> " + travelers + "</p>" +
-          "<p><strong>" + t("fullday_punta_summary_price", "Price") + ":</strong> " + price + "</p>";
+          "<p><strong>" + t("fullday_punta_summary_language", "Language") + ":</strong> " + language + "</p>" +
+          "<p><strong>" + t("fullday_punta_summary_price", "Price") + ":</strong> " + priceLine + "</p>" +
+          "<p><strong>" + t("fullday_punta_total_label", "Total") + ":</strong> " + totalLine + "</p>";
       }
     }
     function applyStateToForm() {
       setRadio("fulldayPuntaDeparture", state.departure);
       setRadio("fulldayPuntaReturn", state.returnCity);
+      if (langSelect) langSelect.value = LANGS.includes(state.language) ? state.language : "";
       renderSummary();
     }
     function openPopup() {
@@ -447,6 +501,13 @@
       persist();
       renderSummary();
     }
+    function onLanguageChange() {
+      const next = String(langSelect?.value || "");
+      state.language = LANGS.includes(next) ? next : "";
+      if (state.language) hideLangError();
+      persist();
+      renderSummary();
+    }
     function buildWhatsAppMessage() {
       const n = state.guests;
       const travelersLine =
@@ -463,7 +524,12 @@
         "",
         t("fullday_punta_wa_departure", "Departure city: {city}").replace("{city}", cityLabel(state.departure)),
         t("fullday_punta_wa_return", "Return city: {city}").replace("{city}", cityLabel(state.returnCity)),
-        travelersLine
+        travelersLine,
+        t("fullday_punta_wa_language", "Experience language: {lang}").replace("{lang}", languageLabel(state.language)),
+        t("fullday_punta_wa_price", "USD 130 per person · Total: USD {total}").replace(
+          "{total}",
+          String(state.guests * PRICE_PER_PERSON)
+        )
       ];
       const date = formatDate(readDateRaw());
       if (date) {
@@ -484,6 +550,12 @@
       if (state.guests < MIN_GUESTS) {
         setGuests(MIN_GUESTS);
       }
+      if (!LANGS.includes(state.language)) {
+        showLangError();
+        langSelect?.focus();
+        return;
+      }
+      hideLangError();
       const message = buildWhatsAppMessage();
       const url = "https://wa.me/59898945542?text=" + encodeURIComponent(message);
       window.open(url, "_blank", "noopener,noreferrer");
@@ -518,6 +590,7 @@
     });
     minusBtn?.addEventListener("click", () => setGuests(state.guests - 1));
     plusBtn?.addEventListener("click", () => setGuests(state.guests + 1));
+    langSelect?.addEventListener("change", onLanguageChange);
     consultBtn?.addEventListener("click", (e) => {
       e.preventDefault();
       openWhatsApp();

@@ -359,6 +359,10 @@
     "plaza1.html": ["tours", "gastronomy"],
     "historic-lasliebres.html": ["tours", "bodega"],
     "fullday-colonia.html": ["fullday"],
+    "fullday-punta.html": ["fullday"],
+    "montevideo-ciudad-vieja.html": ["tours"],
+    "montevideo-city-tour.html": ["tours"],
+    "asado-experience-montevideo.html": ["gastronomy", "dining"],
     "traslado-plaza-letras.html": ["tours", "fullday", "day"],
     "bruma.html": ["dining", "gastronomy"],
     "asado-boat.html": ["boat", "gastronomy"],
@@ -366,8 +370,8 @@
     "lasliebres.html": ["horseback", "fullday", "bodega"],
     "sio.html": ["dining", "gastronomy"],
     "romantic.html": ["dining", "gastronomy"],
-    "mision-night.html": ["lodging", "gastronomy"],
-    "sio-night.html": ["lodging", "gastronomy"],
+    "mision-night.html": ["lodging", "night"],
+    "sio-night.html": ["gastronomy"],
     "candombe.html": ["culture"],
     "mate.html": ["gastronomy"],
     "barbot.html": ["craft-beer"],
@@ -389,8 +393,8 @@
 
   /** Card ids listed first in category modals (remaining cards keep DOM order). */
   const NAV_CARD_ORDER = {
-    tours: ["home-walking-tour-card", "home-fullday-colonia-card", "home-night-walking-tour-card", "home-walking-charco-card", "home-traslado-plaza-letras-card", "home-private-walking-tour-card"],
-    fullday: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
+    tours: ["home-walking-tour-card", "home-montevideo-walking-card", "home-montevideo-city-tour-card", "home-fullday-colonia-card", "home-night-walking-tour-card", "home-walking-charco-card", "home-traslado-plaza-letras-card", "home-private-walking-tour-card"],
+    fullday: ["home-fullday-colonia-card", "home-punta-este-card", "home-traslado-plaza-letras-card", "home-quinton-card"],
     bodega: [
       "home-bodega-boutique-card",
       "home-exp-bodega-card",
@@ -401,9 +405,9 @@
       "home-cabalgata-liebres-card",
     ],
     boat: ["home-kayak-card"],
-    lodging: ["home-card-hotel-royal", "home-card-sheraton", "home-card-mision-bruma"],
-    dining: ["home-bodega-boutique-card", "home-walking-charco-card", "home-chivito-card", "home-vinos-card", "home-quinton-card"],
-    gastronomy: ["home-bodega-boutique-card", "home-walking-charco-card", "home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
+    lodging: ["home-card-hotel-royal", "home-card-sheraton", "home-featured-mision"],
+    dining: ["home-bodega-boutique-card", "home-walking-charco-card", "home-asado-mvd-card", "home-chivito-card", "home-vinos-card", "home-quinton-card"],
+    gastronomy: ["home-bodega-boutique-card", "home-walking-charco-card", "home-asado-mvd-card", "home-exp-bodega-card", "home-vinos-card", "home-quinton-card"],
     day: ["home-fullday-colonia-card", "home-traslado-plaza-letras-card"],
   };
 
@@ -411,6 +415,10 @@
     "home-walking-tour-card": ["tours"],
     "home-private-walking-tour-card": ["tours"],
     "home-night-walking-tour-card": ["tours", "night"],
+    "home-montevideo-walking-card": ["tours"],
+    "home-montevideo-city-tour-card": ["tours"],
+    "home-punta-este-card": ["fullday"],
+    "home-asado-mvd-card": ["gastronomy", "dining"],
     "home-fullday-colonia-card": ["fullday", "day"],
     "home-traslado-plaza-letras-card": ["tours", "fullday", "day"],
     "home-bike-card": ["tours"],
@@ -420,7 +428,7 @@
     "home-card-sheraton": ["lodging", "night"],
     "home-featured-hotel-royal": ["lodging", "night"],
     "home-featured-sheraton": ["lodging", "night"],
-    "home-card-mision-bruma": ["lodging", "gastronomy"],
+    "home-featured-mision": ["lodging", "night"],
     "home-cabalgata-liebres-card": ["horseback", "fullday", "bodega"],
     "home-cabal-card": ["horseback"],
     "home-colonia-wellness-card": ["nature", "day"],
@@ -691,10 +699,20 @@
     return [...groups];
   }
 
+  function cardsInSection(sectionId) {
+    const root = document.getElementById(sectionId);
+    if (!root) return [];
+    return Array.from(root.querySelectorAll(".card")).filter(isListedCard);
+  }
+
+  /** Colonia catalog only — used by “view all activities” so Uruguay cards stay in their section. */
   function getExperienceCards() {
-    const section = document.getElementById("experiences");
-    if (!section) return [];
-    return Array.from(section.querySelectorAll(".card")).filter(isListedCard);
+    return cardsInSection("experiences");
+  }
+
+  /** Category modal, search and filters also include Montevideo / Punta cards. */
+  function getNavCatalogCards() {
+    return [...getExperienceCards(), ...cardsInSection("uruguay-destinations")];
   }
 
   function orderCardsForNav(navKey, cards) {
@@ -724,7 +742,7 @@
   }
 
   function cardsForNav(navKey) {
-    const matches = getExperienceCards().filter((card) => cardBelongsToNavKey(card, navKey));
+    const matches = getNavCatalogCards().filter((card) => cardBelongsToNavKey(card, navKey));
     return orderCardsForNav(navKey, matches);
   }
 
@@ -946,7 +964,7 @@
     const matched = new Set(cardsForNav(navKey).map((c) => c));
 
     section.classList.add("card-filter-active");
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       if (matched.has(card)) {
         card.classList.add("card--nav-highlight");
         card.style.removeProperty("display");
@@ -962,7 +980,7 @@
     const section = document.getElementById("experiences");
     if (!section) return;
     section.classList.remove("card-filter-active");
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       card.classList.remove("card--nav-highlight");
       card.style.removeProperty("display");
     });
@@ -1219,7 +1237,7 @@
     if (section) section.classList.remove("card-search-active");
     window.clearTimeout(searchScrollTimer);
 
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       card.classList.remove("card--search-hidden", "card--search-match");
       if (!section?.classList.contains("card-filter-active")) {
         card.style.removeProperty("display");
@@ -1251,7 +1269,7 @@
     if (clearBtn) clearBtn.hidden = false;
 
     let visible = 0;
-    getExperienceCards().forEach((card) => {
+    getNavCatalogCards().forEach((card) => {
       const match = cardMatchesSearch(card, query);
       card.classList.toggle("card--search-match", match);
       card.classList.toggle("card--search-hidden", !match);
