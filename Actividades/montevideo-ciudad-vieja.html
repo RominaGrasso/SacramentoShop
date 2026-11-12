@@ -8,7 +8,7 @@
 <meta content="Discover Montevideo's Ciudad Vieja on a guided walking tour from Plaza Independencia to Mercado del Puerto, with local stories, architecture, and Uruguayan culture." name="description"/>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
 <link as="image" fetchpriority="high" href="../Assets/images/mont1.webp" rel="preload"/>
-<link href="../Styles/styles.css?v=20261109mvdwa" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20261112mvdmodal" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-72TT5VCG5S"></script>
@@ -94,7 +94,7 @@
 <li data-translate="mvd_walking_stop_5_title">Plaza Matriz</li>
 <li data-translate="mvd_walking_stop_7_title">Mercado del Puerto</li>
 </ul>
-<p class="fullday-colonia-hero-price" data-translate="fullday_punta_inquiry_badge">On request</p>
+<p class="fullday-colonia-hero-price" data-translate="mvd_walking_hero_price">USD 50 per person</p>
 </div>
 </section>
 <section class="coffee-content">
@@ -152,12 +152,12 @@
 </div>
 <div class="price-box">
 <h3>
-<span data-translate="fullday_punta_inquiry_badge">On request</span>
+<span data-translate="mvd_walking_hero_price">USD 50 per person</span>
 <span class="food-price-separator"> · </span>
 <span><strong data-translate="mvd_walking_duration_label">Duration:</strong> <span data-translate="mvd_walking_duration_value">approximately 2 hours 30 minutes</span></span>
 </h3>
 <p class="price-box-detail" data-translate="mvd_walking_duration_note">Duration is approximate and is not a fixed timetable.</p>
-<p class="price-box-detail" data-translate="mvd_walking_min_line">Minimum 5 people.</p>
+<p class="price-box-detail" data-translate="mvd_walking_min_line">Minimum 4 people (USD 200).</p>
 <p class="price-box-detail">
 <strong data-translate="mvd_walking_meeting_label">Meeting point:</strong>
 <span data-translate="mvd_walking_meeting_value">Plaza Independencia, Montevideo, Uruguay</span>
@@ -174,7 +174,7 @@
 </li>
 <li class="activity-meta-row" data-card-meta="ticket">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#ticket"></use></svg>
-<span data-translate="mvd_walking_min_line">Minimum 5 people.</span>
+<span data-translate="mvd_walking_min_line">Minimum 4 people (USD 200).</span>
 </li>
 <li class="activity-meta-row" data-card-meta="mappin">
 <svg aria-hidden="true" class="activity-meta-icon" focusable="false" height="20" width="20"><use href="../Assets/icons/card-meta.svg#mappin"></use></svg>
@@ -213,29 +213,27 @@
 </li>
 </ul>
 </div>
-<div class="order-start" id="mvdWalkingInquiry">
-<h3 data-translate="mvd_walking_create_title">Inquire about this tour</h3>
+<div class="order-start" id="reservar">
+<h3 data-translate="mvd_walking_create_title">Create your experience</h3>
+<p class="experience-availability-notice" data-translate="mision_room_availability_notice">
+            Please check availability with us on WhatsApp before completing your reservation.
+          </p>
 <div class="booking-visit-date-row">
-<label data-translate="agencies_label_name" for="mvdWalkingName">Full name</label>
-<input autocomplete="name" id="mvdWalkingName" name="mvd_walking_name" required="" type="text"/>
+<label data-translate="booking_visit_date_label" for="bookingVisitDateMvd">Preferred visit date</label>
+<input autocomplete="off" data-booking-date-key="selectedDateMvdWalking" id="bookingVisitDateMvd" type="date"/>
+<p class="booking-visit-date-hint" data-translate="booking_visit_date_hint">
+              Pick the day you plan to come so we can coordinate availability in advance.
+            </p>
 </div>
-<div class="booking-visit-date-row">
-<label data-translate="mvd_walking_label_email" for="mvdWalkingEmail">Email</label>
-<input autocomplete="email" id="mvdWalkingEmail" inputmode="email" name="mvd_walking_email" required="" type="email"/>
-</div>
-<div class="booking-visit-date-row">
-<label data-translate="agencies_label_message" for="mvdWalkingMessage">Message / Comments</label>
-<textarea id="mvdWalkingMessage" name="mvd_walking_message" required="" rows="4"></textarea>
-</div>
-<p class="booking-visit-date-hint" hidden="" id="mvdWalkingInquiryError" role="alert"></p>
-<p data-translate="mvd_walking_create_subtitle">This experience is on request and requires a minimum of 5 people. Complete your details to inquire.</p>
-<button class="btn primary-btn" data-translate="mvd_walking_cta" id="createMvdWalkingBtn" type="button">Inquire About This Tour</button>
+<p data-translate="mvd_walking_create_subtitle">Choose the date and number of guests. Minimum 4 people (USD 200).</p>
+<button class="btn primary-btn" data-translate="mvd_walking_create_btn" id="createMvdWalkingBtn" type="button">+ Create your experience</button>
 </div>
 </div>
 </div>
+<div aria-live="polite" class="order-summary" id="orderSummaryMvdWalking"></div>
 <div class="experience-support-notice" role="status">
 <p>
-<strong data-translate="fullday_punta_support_title">After you send your inquiry</strong><span data-translate="mvd_walking_support_text">, our team will contact you to confirm details for the Montevideo Old Town Walking Tour. This experience is currently on request — no online payment is required at this step.</span>
+<strong data-translate="food_support_title">After your reservation</strong><span data-translate="food_support_text">, a member of our support team will contact you to guide you through the details of your experience and answer any questions before your visit.</span>
 </p>
 </div>
 <section class="coffee-gallery">
@@ -250,10 +248,14 @@
 <img alt="" data-translate-alt="home_uruguay_mvd_alt_7" decoding="async" height="220" loading="lazy" src="../Assets/images/mont7.jpeg" width="1200"/>
 <img alt="" data-translate-alt="home_uruguay_mvd_alt_8" decoding="async" height="220" loading="lazy" src="../Assets/images/mont8.jpg" width="1200"/>
 <img alt="" data-translate-alt="home_uruguay_mvd_alt_9" decoding="async" height="220" loading="lazy" src="../Assets/images/mont9.webp" width="1200"/>
+<img alt="" data-translate-alt="home_uruguay_mvd_alt_10" decoding="async" height="220" loading="lazy" src="../Assets/images/mont1.jpeg" width="1200"/>
+<img alt="" data-translate-alt="home_uruguay_mvd_alt_11" decoding="async" height="220" loading="lazy" src="../Assets/images/mont2.jpeg" width="1200"/>
+<img alt="" data-translate-alt="home_uruguay_mvd_alt_12" decoding="async" height="220" loading="lazy" src="../Assets/images/mont3.jpeg" width="1200"/>
+<img alt="" data-translate-alt="home_uruguay_mvd_alt_13" decoding="async" height="220" loading="lazy" src="../Assets/images/mont4.jpeg" width="1200"/>
 </div>
 </section>
 <div class="coffee-actions">
-<a class="btn" data-translate="mvd_walking_cta" href="#" id="bookNowBottomMvd">Inquire About This Tour</a>
+<a class="btn" data-translate="book_btn" href="#reservar" id="bookNowBottomMvd">Reserve</a>
 <a class="btn secondary" data-translate="food_back_home" href="../Home/index.html">Back to Home</a>
 </div>
 </section>
@@ -263,14 +265,61 @@
 <img alt="" class="lightbox-img" decoding="async" id="lightboxImg"/>
 <button class="lightbox-btn next" id="nextBtn">›</button>
 </div>
+<div aria-hidden="true" class="popup-overlay" id="popupMvdWalking">
+<div aria-labelledby="mvdWalkingPopupTitle" aria-modal="true" class="popup-box food-menu-popup-box mvd-create-popup" role="dialog">
+<button class="close-x" id="closeMvdWalking" type="button">✕</button>
+<p class="popup-title mvd-create-popup__title" data-translate="mvd_walking_popup_title" id="mvdWalkingPopupTitle">Create Your Experience</p>
+<input checked="" hidden="" name="packageId" type="radio" value="mvd_walking_tour"/>
+<div class="preferences-inside mvd-create-popup__body">
+<div class="mvd-create-popup__field">
+<p class="mvd-create-popup__label" data-translate="mvd_walking_guests_heading">Number of Participants</p>
+<div class="cabal-popup-guests-row mvd-create-popup__stepper">
+<button aria-label="−" class="add-guest-btn" id="mvdGuestsMinus" type="button">−</button>
+<span id="mvdGuestsValue">4</span>
+<button aria-label="+" class="add-guest-btn" id="mvdGuestsPlus" type="button">+</button>
+</div>
+</div>
+<div class="mvd-create-popup__field">
+<label class="mvd-create-popup__label" data-translate="mvd_walking_lang_label" for="mvdLangSelect">Experience Language</label>
+<select class="mvd-create-popup__select" id="mvdLangSelect">
+<option data-translate="mvd_walking_lang_placeholder" value="">Select Language</option>
+<option data-translate="mvd_walking_lang_es" value="es">🇪🇸 Spanish</option>
+<option data-translate="mvd_walking_lang_en" value="en">🇬🇧 English</option>
+<option data-translate="mvd_walking_lang_pt" value="pt">🇧🇷 Portuguese</option>
+</select>
+<div class="mvd-create-popup__lang-radios" hidden="">
+<label><input name="mvdWalkingLang" type="radio" value="es"/><span data-translate="candombe_lang_es">Spanish guide</span></label>
+<label><input name="mvdWalkingLang" type="radio" value="en"/><span data-translate="candombe_lang_en">English guide</span></label>
+<label><input name="mvdWalkingLang" type="radio" value="pt"/><span data-translate="candombe_lang_pt">Portuguese guide</span></label>
+</div>
+<p class="mvd-create-popup__error" hidden="" id="mvdLangError" role="alert"></p>
+</div>
+<div class="mvd-create-popup__summary">
+<p class="mvd-create-popup__summary-title" data-translate="mvd_walking_summary_title">Experience Summary</p>
+<p class="mvd-create-popup__summary-name" data-translate="mvd_walking_pkg_label">Montevideo Old Town Walking Tour</p>
+<p class="mvd-create-popup__summary-line" id="mvdSummaryLine">4 people × USD 50</p>
+<p class="mvd-create-popup__total"><span data-translate="mvd_walking_total_label">Total</span>: <strong id="mvdGuestsTotalPreview">USD 200</strong></p>
+</div>
+</div>
+<div class="popup-actions mvd-create-popup__actions">
+<button class="btn" data-translate="save_selection" id="saveMenuMvdWalking" type="button">Save selection</button>
+</div>
+</div>
+</div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script charset="utf-8" src="../Home/index.js?v=20261109mvdwa2"></script>
+<script charset="utf-8" src="../Home/index.js?v=20261112mvdmodal"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
+<script src="../Home/payments-api-config.js?v=20260522perf"></script>
+<script src="../Home/orders.js?v=20261104boutiqueprices"></script>
+<script src="../Home/booking-date-picker.js?v=20260522perf"></script>
 <script>
   (function () {
-    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const PRICE = 50;
     const t = (key, fallback) => {
+      if (typeof window.sacramentoGetI18nText === "function") {
+        return window.sacramentoGetI18nText(key, fallback);
+      }
       const lang = typeof window.getInitialLanguage === "function" ? window.getInitialLanguage() : "en";
       const dict = window.__SACRAMENTO_TRANSLATIONS || {};
       return dict?.[lang]?.[key] || dict?.en?.[key] || fallback;
@@ -280,77 +329,126 @@
       if (!meta) return;
       meta.setAttribute("content", t("mvd_walking_meta_description", meta.getAttribute("content") || ""));
     }
-    const nameEl = document.getElementById("mvdWalkingName");
-    const emailEl = document.getElementById("mvdWalkingEmail");
-    const messageEl = document.getElementById("mvdWalkingMessage");
-    const errorEl = document.getElementById("mvdWalkingInquiryError");
-    const createBtn = document.getElementById("createMvdWalkingBtn");
-    const bottomBtn = document.getElementById("bookNowBottomMvd");
-    function hideError() {
-      if (!errorEl) return;
-      errorEl.hidden = true;
-      errorEl.textContent = "";
+    function guestsCount() {
+      return Math.max(4, parseInt(String(document.getElementById("mvdGuestsValue")?.textContent || "4"), 10) || 4);
     }
-    function showError(msg) {
-      if (!errorEl) {
-        window.alert(msg);
-        return;
-      }
-      errorEl.hidden = false;
-      errorEl.textContent = msg;
-      errorEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    function syncLangRadios() {
+      const selected = String(document.getElementById("mvdLangSelect")?.value || "");
+      document.querySelectorAll('input[name="mvdWalkingLang"]').forEach((input) => {
+        input.checked = Boolean(selected) && input.value === selected;
+      });
     }
-    function buildMessage(name, email, message) {
-      return [
-        t("mvd_walking_wa_hello", "Hi, Sacramento Adventures team!"),
-        "",
-        t(
-          "mvd_walking_wa_body",
-          "I would like to learn more about the Montevideo Old Town Walking Tour and check availability and rates."
-        ),
-        "",
-        t("mvd_walking_wa_name", "Name") + ": " + name,
-        t("mvd_walking_wa_email", "Email") + ": " + email,
-        t("mvd_walking_wa_message", "Message") + ": " + message,
-        "",
-        t("mvd_walking_wa_thanks", "Thank you so much! I look forward to your reply.")
-      ].join("\n");
+    function syncLangSelectFromRadios() {
+      const checked = document.querySelector('input[name="mvdWalkingLang"]:checked');
+      const select = document.getElementById("mvdLangSelect");
+      if (select && checked) select.value = checked.value;
     }
-    function openInquiryWhatsApp() {
-      hideError();
-      const name = String(nameEl?.value || "").trim();
-      const email = String(emailEl?.value || "").trim();
-      const message = String(messageEl?.value || "").trim();
-      if (!name) {
-        showError(t("agencies_err_name", "Please enter your full name."));
-        nameEl?.focus();
-        return;
-      }
-      if (!email || !EMAIL_RE.test(email)) {
-        showError(t("mvd_walking_err_email", "Please enter a valid email."));
-        emailEl?.focus();
-        return;
-      }
-      if (!message) {
-        showError(t("mvd_walking_err_message", "Please write a message."));
-        messageEl?.focus();
-        return;
-      }
-      const waText = buildMessage(name, email, message);
-      const url = "https://wa.me/59898945542?text=" + encodeURIComponent(waText);
-      window.open(url, "_blank", "noopener,noreferrer");
+    function hideLangError() {
+      const el = document.getElementById("mvdLangError");
+      if (!el) return;
+      el.hidden = true;
+      el.textContent = "";
     }
-    createBtn?.addEventListener("click", (e) => {
-      e.preventDefault();
-      openInquiryWhatsApp();
+    function showLangError() {
+      const el = document.getElementById("mvdLangError");
+      if (!el) return;
+      el.hidden = false;
+      el.textContent = t("mvd_walking_err_language", "Please select an experience language.");
+    }
+    function syncGuestTotal() {
+      const n = guestsCount();
+      const totalEl = document.getElementById("mvdGuestsTotalPreview");
+      const lineEl = document.getElementById("mvdSummaryLine");
+      const minusBtn = document.getElementById("mvdGuestsMinus");
+      if (totalEl) totalEl.textContent = "USD " + n * PRICE;
+      if (lineEl) {
+        lineEl.textContent = t("mvd_walking_summary_line", "{n} people × USD 50").replace("{n}", String(n));
+      }
+      if (minusBtn) minusBtn.disabled = n <= 4;
+    }
+    const guestsValue = document.getElementById("mvdGuestsValue");
+    if (guestsValue && typeof MutationObserver === "function") {
+      new MutationObserver(syncGuestTotal).observe(guestsValue, { childList: true, characterData: true, subtree: true });
+    }
+    document.getElementById("mvdGuestsMinus")?.addEventListener("click", () => setTimeout(syncGuestTotal, 0));
+    document.getElementById("mvdGuestsPlus")?.addEventListener("click", () => setTimeout(syncGuestTotal, 0));
+    document.getElementById("mvdLangSelect")?.addEventListener("change", () => {
+      hideLangError();
+      syncLangRadios();
     });
-    bottomBtn?.addEventListener("click", (e) => {
-      e.preventDefault();
-      document.getElementById("mvdWalkingInquiry")?.scrollIntoView({ behavior: "smooth", block: "center" });
-      openInquiryWhatsApp();
+    document.getElementById("saveMenuMvdWalking")?.addEventListener(
+      "click",
+      (e) => {
+        const selected = String(document.getElementById("mvdLangSelect")?.value || "");
+        if (!selected) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          showLangError();
+          document.getElementById("mvdLangSelect")?.focus();
+          return;
+        }
+        hideLangError();
+        syncLangRadios();
+      },
+      true
+    );
+    document.getElementById("createMvdWalkingBtn")?.addEventListener("click", () => {
+      hideLangError();
+      setTimeout(() => {
+        const checked = document.querySelector('input[name="mvdWalkingLang"]:checked');
+        const select = document.getElementById("mvdLangSelect");
+        if (select) select.value = checked ? checked.value : "";
+        syncGuestTotal();
+      }, 0);
+    });
+    syncGuestTotal();
+    initPackageOrderExperience({
+      experienceName: "Montevideo Old Town Walking Tour",
+      experienceNameKey: "home_uruguay_mvd_title",
+      whatsappIntroKey: "mvd_walking_wa_intro",
+      whatsappNumber: "59898945542",
+      popupId: "popupMvdWalking",
+      createBtnId: "createMvdWalkingBtn",
+      closeBtnId: "closeMvdWalking",
+      saveBtnId: "saveMenuMvdWalking",
+      orderSummaryId: "orderSummaryMvdWalking",
+      bookNowBottomId: "bookNowBottomMvd",
+      storageKey: "orders_mvd_walking",
+      selectedDateKey: "selectedDateMvdWalking",
+      orderCardTitleKey: "person_order_label",
+      experienceSkipsPreferencesField: false,
+      singlePackagePerBooking: true,
+      hideEmptyPreferences: false,
+      preferencesSummaryLabelKey: "mvd_walking_lang_label",
+      dynamicPayment: {
+        enabled: true,
+        endpoint: "/api/payments/resolve",
+        experienceId: "mvd_walking",
+        currency: "USD"
+      },
+      packageRadioName: "packageId",
+      packageGuestCounter: {
+        valueId: "mvdGuestsValue",
+        minusId: "mvdGuestsMinus",
+        plusId: "mvdGuestsPlus",
+        min: 4,
+        max: 20,
+        hintKey: "mvd_walking_guests_hint"
+      },
+      packages: {
+        mvd_walking_tour: {
+          price: 50,
+          label: "Montevideo Old Town Walking Tour",
+          labelKey: "mvd_walking_pkg_label",
+          minGuests: 4
+        }
+      }
     });
     updatePageMetaDescription();
-    document.addEventListener("sacramento:setLanguage", updatePageMetaDescription);
+    document.addEventListener("sacramento:setLanguage", () => {
+      updatePageMetaDescription();
+      syncGuestTotal();
+    });
   })();
 </script>
 <a aria-label="Taxi" class="taxi-float" href="https://wa.me/59895262626?text=Hola%2C%20quiero%20pedir%20un%20taxi%20en%20Colonia.%20Prioridad%3A%20Cliente%20Sacramento%20Adventures" rel="noopener noreferrer">

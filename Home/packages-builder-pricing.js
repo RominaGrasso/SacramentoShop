@@ -116,14 +116,10 @@
     "walkingtour.html": {
       pricingMode: "perPerson",
       variants: [
-        { id: "lang_es", price: 16, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
-        { id: "lang_en", price: 16, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
-        { id: "lang_pt", price: 16, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
+        { id: "lang_es", price: 18, labelKey: "walking_price_lang_es", labelFallback: "Spanish guide" },
+        { id: "lang_en", price: 18, labelKey: "walking_price_lang_en", labelFallback: "English guide" },
+        { id: "lang_pt", price: 18, labelKey: "walking_price_lang_pt", labelFallback: "Portuguese guide" }
       ]
-    },
-    "mision-night.html": {
-      pricingMode: "perNight",
-      variants: [{ id: "night", price: 115, labelKey: "home_card_price_per_night", labelFallback: "per night" }]
     },
     "sio-night.html": {
       pricingMode: "perNight",
@@ -150,8 +146,12 @@
     ["bruma.html", 50],
     ["fullday-colonia.html", 130],
     ["golden-mile.html", 120],
+    ["montevideo-ciudad-vieja.html", 50],
+    ["fullday-punta.html", 130],
+    ["montevideo-city-tour.html", 100],
+    ["asado-experience-montevideo.html", 150],
     ["private-walkingtour.html", 40],
-    ["night-walkingtour.html", 18],
+    ["night-walkingtour.html", 20],
     ["lasliebres.html", 110],
     ["bodega-boutique.html", 90],
     ["sio.html", 70],
