@@ -68,6 +68,7 @@ function formatOrderPayloadFallback(op) {
   if (op.cfg && typeof op.cfg === "object") {
     const c = op.cfg;
     if (c.package) lines.push(line("Paquete", c.package));
+    if (c.ride || c.rideLabel) lines.push(line("Modalidad cabalgata", c.rideLabel || c.ride));
     if (c.guests != null) lines.push(line("Personas", c.guests));
     if (c.transport != null) lines.push(line("Transporte", c.transport ? "Sí" : "No"));
     if (c.time && c.time !== visitTime) lines.push(line("Hora de salida", c.time));

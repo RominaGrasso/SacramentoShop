@@ -2593,8 +2593,8 @@
 
   /* Cabalgata — fotos fam* en retrato: priorizar rostros (hero, galería, card) */
   .page-cabal .horse-hero {
-    background-image: url("../Assets/images/gabin22.jpg");
-    background-position: center center;
+    background-image: url("../Assets/images/cab6.jpeg");
+    background-position: center 18%;
   }
 
   .page-candombe .mate-only-hero {
@@ -3065,13 +3065,18 @@
 
   .page-cabal .coffee-gallery .gallery-grid img[src*="fam"],
   .page-cabal .coffee-gallery .gallery-grid img[src*="gabino"],
-  .page-cabal .coffee-gallery .gallery-grid img[src*="gabin"] {
+  .page-cabal .coffee-gallery .gallery-grid img[src*="gabin"],
+  .page-cabal .coffee-gallery .gallery-grid img[src*="cab"] {
     height: auto;
     min-height: 260px;
     max-height: 420px;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center 12%;
+  }
+
+  .page-cabal .coffee-gallery .gallery-grid img[src*="cab"] {
+    object-position: center 42%;
   }
 
   .page-cabal .coffee-gallery .gallery-grid img[src*="gabino1"] {
@@ -3093,24 +3098,50 @@
     object-position: center center;
   }
 
-  .card-image img[src*="fam"],
-  .card-image img[src*="gabin"] {
+  .page-lasliebres .coffee-gallery .gallery-grid img[src*="cab"] {
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .page-lasliebres .coffee-gallery .gallery-grid img[src*="cab7"] {
+    object-position: center 35%;
+  }
+
+  .card-image img[src*="fam"] {
     object-fit: cover;
     object-position: center 15%;
   }
 
-  /* Cabalgata home card: menos cielo, jinetes más arriba en el recorte */
-  #home-cabal-card .carousel-track img {
+  /* Cabalgata (home + category modal clone): portrait photos, keep riders/horses in frame */
+  #home-cabal-card .carousel-track img,
+  .card--cabal .carousel-track img {
     object-fit: cover;
-    object-position: center 78%;
+    object-position: center 68%;
   }
 
-  #home-cabal-card .carousel-track img[src*="gabino1"] {
-    object-position: center 62%;
+  #home-cabal-card .carousel-track img[src*="gabino1"],
+  .card--cabal .carousel-track img[src*="gabino1"] {
+    object-position: center 72%;
   }
 
-  #home-cabal-card .carousel-track img[src*="gabin21"] {
-    object-position: center 48%;
+  #home-cabal-card .carousel-track img[src*="gabin21"],
+  .card--cabal .carousel-track img[src*="gabin21"] {
+    object-position: center 58%;
+  }
+
+  #home-cabal-card .carousel-track img[src*="gabin23"],
+  .card--cabal .carousel-track img[src*="gabin23"] {
+    object-position: center 58%;
+  }
+
+  #home-cabal-card .carousel-track img[src*="gabin22"],
+  .card--cabal .carousel-track img[src*="gabin22"] {
+    object-position: center 70%;
+  }
+
+  #home-cabal-card .carousel-track img[src*="cab7"],
+  .card--cabal .carousel-track img[src*="cab7"] {
+    object-position: center 35%;
   }
 
   #home-bodega-boutique-card .carousel-track img,
@@ -5716,6 +5747,47 @@
     min-height: 220px;
     aspect-ratio: auto;
     flex-shrink: 0;
+  }
+
+  .home-category-modal__cards .card.card--cabal.card--category-modal .card-image.carousel,
+  .home-category-modal__cards .card.card--cabal .card-modal-explore-link--media {
+    min-height: 280px;
+  }
+
+  .home-category-modal__cards .card.card--cabal.card--category-modal .carousel-track img {
+    height: 280px;
+    min-height: 280px;
+    object-fit: cover;
+    object-position: center 68%;
+  }
+
+  .home-category-modal__cards .card.card--cabal.card--category-modal .carousel-track img[src*="gabino1"] {
+    object-position: center 72%;
+  }
+
+  .home-category-modal__cards .card.card--cabal.card--category-modal .carousel-track img[src*="gabin21"],
+  .home-category-modal__cards .card.card--cabal.card--category-modal .carousel-track img[src*="gabin23"] {
+    object-position: center 58%;
+  }
+
+  .home-category-modal__cards .card.card--cabal.card--category-modal .carousel-track img[src*="gabin22"] {
+    object-position: center 70%;
+  }
+
+  .home-category-modal__cards .card.card--cabal.card--category-modal .carousel-track img[src*="cab7"] {
+    object-position: center 35%;
+  }
+
+  @media (max-width: 700px) {
+    .home-category-modal__cards .card.card--cabal.card--category-modal .card-image.carousel,
+    .home-category-modal__cards .card.card--cabal .card-modal-explore-link--media {
+      min-height: 240px;
+    }
+
+    .home-category-modal__cards .card.card--cabal.card--category-modal .carousel-track img {
+      height: 240px;
+      min-height: 240px;
+    }
   }
 
   .home-category-modal__actions {
@@ -13094,6 +13166,10 @@
 
 .partners .logos-track img[src*="logocharcosinfondo"] {
   height: 78px;
+}
+
+.partners .logos-track img[src*="radissonlogo"] {
+  height: 68px;
 }
 
 .partners .logos-slider:hover .logos-track {

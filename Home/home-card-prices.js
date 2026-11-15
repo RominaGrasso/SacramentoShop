@@ -28,7 +28,7 @@
   };
 
   const HOME_CARD_PRICE_USD = {
-    "cabal.html": [40],
+    "cabal.html": [40, 60],
     "colonia-wellness.html": [95],
     "kayak.html": [80],
     "montevideo-ciudad-vieja.html": [50],
@@ -49,7 +49,7 @@
     "fullday-colonia.html": [130],
     "plaza1.html": [80, 160],
     "chivito.html": [40],
-    "food1.html": [55],
+    "food1.html": [70],
     "walking-charco.html": [130],
     "bike.html": [60],
     "golfcart.html": [160],
@@ -61,7 +61,7 @@
     "barbot-brewpub.html": [45, 55],
     "lasliebres-dining.html": [120],
     "historic-lasliebres.html": [85, 105, 120],
-    "lasliebres.html": [110],
+    "lasliebres.html": [120],
     "legado.html": [45, 65, 110],
     "sio.html": [70],
     "romantic.html": [70],
