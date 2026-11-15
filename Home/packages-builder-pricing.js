@@ -128,19 +128,25 @@
     "corporate-boat.html": {
       pricingMode: "group",
       variants: [{ id: "charter", price: 150, labelKey: "pkg_builder_group_rate", labelFallback: "Group rate" }]
+    },
+    "cabal.html": {
+      pricingMode: "perPerson",
+      variants: [
+        { id: "monte", price: 40, labelKey: "cabal_ride_monte_title", labelFallback: "Woodland and lagoon" },
+        { id: "playa", price: 60, labelKey: "cabal_ride_playa_title", labelFallback: "Beach ride" }
+      ]
     }
   };
 
   /** Single-rate activities from home-card prices (per person unless overridden). */
   const SINGLE_PER_PERSON = [
-    ["cabal.html", 40],
     ["colonia-wellness.html", 95],
     ["kayak.html", 80],
     ["candombe.html", 50],
     ["mate.html", 40],
     ["traslado-plaza-letras.html", 50],
     ["chivito.html", 40],
-    ["food1.html", 55],
+    ["food1.html", 70],
     ["walking-charco.html", 130],
     ["bike.html", 60],
     ["bruma.html", 50],
@@ -152,7 +158,7 @@
     ["asado-experience-montevideo.html", 150],
     ["private-walkingtour.html", 40],
     ["night-walkingtour.html", 20],
-    ["lasliebres.html", 110],
+    ["lasliebres.html", 120],
     ["bodega-boutique.html", 90],
     ["sio.html", 70],
     ["romantic.html", 70],

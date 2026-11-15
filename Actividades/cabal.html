@@ -6,7 +6,7 @@
 <meta charset="utf-8"/>
 <title>Horseback Riding in the Countryside | Sacramento Adventures</title>
 <link href="/Assets/images/favicon.png?v=2" rel="icon" type="image/png"/>
-<link href="../Styles/styles.css?v=20260820wide1120" rel="stylesheet"/>
+<link href="../Styles/styles.css?v=20261115cab6head" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <style>
@@ -49,17 +49,59 @@
     }
 
     .page-cabal .horse-hero {
-      background-image: url("../Assets/images/gabin22.jpg");
-      background-position: center center;
+      background-image: url("../Assets/images/cab6.jpeg");
+      background-position: center 18%;
     }
 
     .page-cabal .coffee-gallery .gallery-grid img[src*="fam"],
     .page-cabal .coffee-gallery .gallery-grid img[src*="gabino"],
-    .page-cabal .coffee-gallery .gallery-grid img[src*="gabin"] {
+    .page-cabal .coffee-gallery .gallery-grid img[src*="gabin"],
+    .page-cabal .coffee-gallery .gallery-grid img[src*="cab"] {
       min-height: 220px;
       max-height: 360px;
       aspect-ratio: 3 / 4;
+      object-fit: cover;
       object-position: center 10%;
+    }
+
+    .page-cabal .coffee-gallery .gallery-grid img[src*="cab"] {
+      object-position: center 42%;
+    }
+
+    #popupCabalBooking .cabal-ride-options {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    #popupCabalBooking .cabal-ride-options .food-menu-option {
+      margin: 0;
+      padding: 12px 12px 10px;
+      border: 1.5px solid rgba(47, 103, 163, 0.18);
+      border-radius: 14px;
+      background: #f7fbff;
+    }
+
+    #popupCabalBooking .cabal-ride-options .food-menu-option:has(input[type="radio"]:checked) {
+      border-color: #5a95cf;
+      background: #eef6ff;
+      box-shadow: 0 0 0 3px rgba(90, 149, 207, 0.16);
+    }
+
+    #popupCabalBooking .cabal-ride-options .food-menu-option-desc {
+      padding-left: 2.05rem;
+    }
+
+    #popupCabalBooking .cabal-popup-live-total {
+      margin: 12px 0 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(90, 149, 207, 0.1);
+      color: #1f2f46;
+      font-size: 0.95rem;
+      font-weight: 700;
     }
   </style>
 <!-- Google tag (gtag.js) -->
@@ -160,7 +202,7 @@
 <div class="includes-list">
 <h3 data-translate="cabal_included_title">What's included</h3>
 <ul>
-<li>✔ <span data-translate="cabal_include_ride">Guided horseback riding experience · 1 hour</span></li>
+<li>✔ <span data-translate="cabal_include_ride">Guided horseback ride: woodland &amp; lagoon (1 hour) or beach (1 hour 30 minutes)</span></li>
 <li>✔ <span data-translate="cabal_include_horses">Calm and trained horses suitable for beginners</span></li>
 <li>✔ <span data-translate="cabal_include_trails">Ride through countryside trails and open landscapes</span></li>
 <li>✔ <span data-translate="cabal_include_host">Local host assistance</span></li>
@@ -169,7 +211,7 @@
 </div>
 <div class="order-start page-cabal-order-start">
 <p class="cabal-inline-price">
-<strong data-translate="cabal_page_price_line">USD 40 per person</strong>
+<strong data-translate="cabal_page_price_line">From USD 40 per person</strong>
 </p>
 <p class="cabal-page-departures" data-translate="cabal_page_departures">
               Departure times: 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00 and 17:00
@@ -198,15 +240,18 @@
 <section class="coffee-gallery">
 <h2 data-translate="food_gallery_title">Experience Gallery</h2>
 <div class="gallery-grid">
+<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" src="../Assets/images/cab7.jpeg" width="1200"/>
 <img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin20.jpg" width="1200"/>
-<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabino1.jpg" width="1200"/>
 <img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin21.jpg" width="1200"/>
 <img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin22.jpg" width="1200"/>
-<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin23.jpg" width="1200"/>
-<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin1.jpg" width="1200"/>
-<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin11.jpg" width="1200"/>
 <img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin12.jpg" width="1200"/>
 <img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/gabin13.jpg" width="1200"/>
+<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/cab1.jpeg" width="1200"/>
+<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/cab2.jpeg" width="1200"/>
+<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/cab3.jpeg" width="1200"/>
+<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/cab4.jpeg" width="1200"/>
+<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/cab5.jpeg" width="1200"/>
+<img alt="Horseback riding in Colonia del Sacramento" decoding="async" height="220" loading="lazy" src="../Assets/images/cab6.jpeg" width="1200"/>
 </div>
 </section>
 <!-- ================= ACTIONS ================= -->
@@ -224,6 +269,25 @@
 <button class="close-x" data-translate-aria-label="sio_special_menu_close_aria" id="closeCabalBooking" type="button">✕</button>
 <p><strong class="popup-title" data-translate="cabal_popup_title" id="cabalPopupTitle">Horseback riding in the countryside</strong></p>
 <div class="preferences-inside">
+<h3 class="preferences-title" data-translate="cabal_popup_ride_heading">Choose your ride</h3>
+<ul class="popup-list cabal-ride-options">
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input checked="" name="cabalRide" type="radio" value="monte"/>
+<span class="food-menu-option-main" data-translate="cabal_ride_monte_title">Horseback ride through woodland and lagoon</span>
+<span class="food-menu-option-sub" data-translate="cabal_ride_monte_meta">1 hour · USD 40 per person</span>
+</label>
+<p class="food-menu-option-desc" data-translate="cabal_ride_monte_desc">A trail ride through natural paths, enjoying the countryside, woodland, and lagoon.</p>
+</li>
+<li class="food-menu-option">
+<label class="food-menu-option-label">
+<input name="cabalRide" type="radio" value="playa"/>
+<span class="food-menu-option-main" data-translate="cabal_ride_playa_title">Horseback ride along the beach</span>
+<span class="food-menu-option-sub" data-translate="cabal_ride_playa_meta">1 hour 30 minutes · USD 60 per person</span>
+</label>
+<p class="food-menu-option-desc" data-translate="cabal_ride_playa_desc">A beach ride through a natural setting, enjoying the landscape and the quiet of the trail.</p>
+</li>
+</ul>
 <h3 class="preferences-title" data-translate="cabal_popup_time_heading">Departure time</h3>
 <div class="cabal-popup-times-grid">
 <label><input checked="" name="cabalDeparture" type="radio" value="10:00"/> <span data-translate="cabal_popup_time_10">10:00</span></label>
@@ -244,8 +308,9 @@
 <p class="cabal-popup-guests-hint" data-translate="cabal_popup_guests_hint">Minimum 1 · maximum 4 guests per departure time.</p>
 <h3 class="preferences-title cabal-popup-transport-title" data-translate="cabal_popup_transport_heading">Round-trip transport included?</h3>
 <label><input checked="" name="cabalTransport" type="radio" value="no"/> <span data-translate="cabal_popup_transport_no">No</span></label>
-<label><input name="cabalTransport" type="radio" value="yes"/> <span data-translate="cabal_popup_transport_yes">Yes (+USD 30 total · up to 4 guests)</span></label>
-<p class="cabal-popup-transport-hint" data-translate="cabal_popup_transport_hint">If yes, USD 30 is added for the group (up to 4 people).</p>
+<label><input name="cabalTransport" type="radio" value="yes"/> <span data-translate="cabal_popup_transport_yes">Yes (+USD 35 round trip · up to 4 guests)</span></label>
+<p class="cabal-popup-transport-hint" data-translate="cabal_popup_transport_hint">If yes, USD 35 round trip is added once for the booking (up to 4 guests), not per person.</p>
+<p class="cabal-popup-live-total" id="cabalPopupLiveTotal" aria-live="polite"></p>
 </div>
 <div class="popup-actions">
 <button class="btn" data-translate="save_selection" id="saveCabalBooking" type="button">Save selection</button>
@@ -254,15 +319,19 @@
 </div>
 <script src="../Home/language-init.js?v=20260522perf"></script>
 <script src="../Home/language-prompt.js?v=20260522perf"></script>
-<script src="../Home/index.js?v=20260820availnotice"></script>
+<script src="../Home/index.js?v=20261115cabal2opt"></script>
 <script data-sacramento-footer src="../Home/site-footer.js?v=20260921footerlinkedin"></script>
 <script src="../Home/orders.js?v=20260702plexhints"></script>
 <script>
 (function () {
   const STORAGE_KEY = "cabal_booking_config";
-  const PRICE_PER_PERSON = 40;
-  const TRANSPORT_FLAT_USD = 30;
+  const TRANSPORT_FLAT_USD = 35;
   const MAX_GUESTS = 4;
+  const DEFAULT_RIDE = "monte";
+  const RIDES = {
+    monte: { id: "monte", price: 40 },
+    playa: { id: "playa", price: 60 }
+  };
   const VALID_TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
   const WHATSAPP_NUMBER = "59898945542";
 
@@ -276,6 +345,8 @@
   const plusBtn = document.getElementById("cabalGuestsPlus");
 
   if (!popup || !openBtn || !closeBtn || !saveBtn || !summary || !guestsEl || !minusBtn || !plusBtn) return;
+
+  let guestCount = 1;
 
   const getLang = () => window.getInitialLanguage().toLowerCase();
   const t = (key, fallback) => {
@@ -293,7 +364,8 @@
       const rawTime = o.time === "13:30" ? "13:00" : o.time;
       const time = VALID_TIMES.includes(rawTime) ? rawTime : "10:00";
       const guests = Math.min(MAX_GUESTS, Math.max(1, parseInt(o.guests, 10) || 1));
-      return { time, guests, transport: Boolean(o.transport) };
+      const ride = RIDES[o.ride] ? o.ride : DEFAULT_RIDE;
+      return { time, guests, transport: Boolean(o.transport), ride };
     } catch {
       return null;
     }
@@ -316,9 +388,50 @@
       year: "numeric"
     });
 
+  const rideSpec = (rideId) => RIDES[rideId] || RIDES[DEFAULT_RIDE];
+
+  const rideTitle = (rideId) =>
+    rideId === "playa"
+      ? t("cabal_ride_playa_title", "Horseback ride along the beach")
+      : t("cabal_ride_monte_title", "Horseback ride through woodland and lagoon");
+
+  const rideDuration = (rideId) =>
+    rideId === "playa"
+      ? t("cabal_ride_playa_duration", "1 hour 30 minutes")
+      : t("cabal_ride_monte_duration", "1 hour");
+
+  const pricePerPerson = (cfg) => rideSpec(cfg?.ride).price;
+
   const calcTotal = (cfg) => {
     const transportExtra = cfg.transport ? TRANSPORT_FLAT_USD : 0;
-    return PRICE_PER_PERSON * cfg.guests + transportExtra;
+    return pricePerPerson(cfg) * cfg.guests + transportExtra;
+  };
+
+  const readPopupDraft = () => {
+    const rideInput = popup.querySelector('input[name="cabalRide"]:checked');
+    const ride = rideInput && RIDES[rideInput.value] ? rideInput.value : DEFAULT_RIDE;
+    const timeInput = popup.querySelector('input[name="cabalDeparture"]:checked');
+    const time = timeInput && VALID_TIMES.includes(timeInput.value) ? timeInput.value : "10:00";
+    const transportInput = popup.querySelector('input[name="cabalTransport"]:checked');
+    return {
+      ride,
+      time,
+      guests: guestCount,
+      transport: Boolean(transportInput && transportInput.value === "yes")
+    };
+  };
+
+  const updateLiveTotal = () => {
+    const el = document.getElementById("cabalPopupLiveTotal");
+    if (!el) return;
+    const draft = readPopupDraft();
+    const unit = pricePerPerson(draft);
+    const total = calcTotal(draft);
+    const parts = [`${draft.guests} × USD ${unit}`];
+    if (draft.transport) {
+      parts.push(`+ USD ${TRANSPORT_FLAT_USD} ${t("cabal_transport_total_suffix", "round-trip transport")}`);
+    }
+    el.textContent = `${t("total_label", "Total")}: USD ${total}  (${parts.join(" ")})`;
   };
 
   const sendCabalToWhatsApp = (cfg) => {
@@ -332,6 +445,7 @@
       return;
     }
     const total = calcTotal(cfg);
+    const unit = pricePerPerson(cfg);
     const date = formatDate();
 
     const runReserveFlow = async () => {
@@ -359,9 +473,14 @@
                   ? stableStringify({ cfg, total })
                   : JSON.stringify({ cfg, total }),
               orderPayload: {
-                cfg,
+                cfg: { ...cfg, rideLabel: rideTitle(cfg.ride) },
+                ride: cfg.ride,
+                rideLabel: rideTitle(cfg.ride),
+                duration: rideDuration(cfg.ride),
+                pricePerPerson: unit,
+                transportUsd: cfg.transport ? TRANSPORT_FLAT_USD : 0,
                 total,
-                experienceName: "Horseback riding, Riachuelo"
+                experienceName: `Horseback riding — ${rideTitle(cfg.ride)}`
               }
             }
           );
@@ -372,12 +491,14 @@
 
       let message =
         `${t("cabal_wa_intro", "Hello! I'd like to book the horseback riding experience:")}\n\n` +
+        `${t("cabal_summary_ride_label", "Ride")}: ${rideTitle(cfg.ride)}\n` +
+        `${t("cabal_summary_duration_label", "Duration")}: ${rideDuration(cfg.ride)}\n` +
         `${t("wa_date_label", "Date")}: ${date}\n` +
         `${t("cabal_summary_time_label", "Departure time")}: ${timeLabel(cfg.time)}\n` +
-        `${t("wa_people_label", "People")}: ${cfg.guests}\n` +
+        `${t("wa_people_label", "People")}: ${cfg.guests} × USD ${unit}\n` +
         `${t("cabal_summary_transport_label", "Round-trip transport")}: ${
           cfg.transport
-            ? t("cabal_summary_transport_included", "Yes (+USD 30 total · up to 4 guests)")
+            ? t("cabal_summary_transport_included", "Yes (+USD 35 round trip · up to 4 guests)")
             : t("cabal_popup_transport_no", "No")
         }\n`;
       message += `\n${t("wa_total_label", "Total")}: USD ${total}`;
@@ -400,8 +521,6 @@
     }
   };
 
-  let guestCount = 1;
-
   const syncGuestDisplay = () => {
     guestsEl.textContent = String(guestCount);
   };
@@ -413,9 +532,13 @@
     const timeVal = cfg?.time && VALID_TIMES.includes(cfg.time) ? cfg.time : "10:00";
     const r = popup.querySelector(`input[name="cabalDeparture"][value="${timeVal}"]`);
     if (r) r.checked = true;
+    const rideVal = cfg?.ride && RIDES[cfg.ride] ? cfg.ride : DEFAULT_RIDE;
+    const rideRadio = popup.querySelector(`input[name="cabalRide"][value="${rideVal}"]`);
+    if (rideRadio) rideRadio.checked = true;
     const transportVal = cfg?.transport ? "yes" : "no";
     const transportRadio = popup.querySelector(`input[name="cabalTransport"][value="${transportVal}"]`);
     if (transportRadio) transportRadio.checked = true;
+    updateLiveTotal();
   };
 
   const openPopup = () => {
@@ -469,6 +592,14 @@
     const card = document.createElement("div");
     card.className = "order-card";
 
+    const pRide = document.createElement("p");
+    pRide.innerHTML = `<strong>${t("cabal_summary_ride_label", "Ride")}:</strong> ${rideTitle(cfg.ride)}`;
+    card.appendChild(pRide);
+
+    const pDuration = document.createElement("p");
+    pDuration.innerHTML = `<strong>${t("cabal_summary_duration_label", "Duration")}:</strong> ${rideDuration(cfg.ride)}`;
+    card.appendChild(pDuration);
+
     const pTime = document.createElement("p");
     pTime.className = "cabal-summary-card-row";
     const timeMain = document.createElement("span");
@@ -488,7 +619,7 @@
     const pTransport = document.createElement("p");
     pTransport.innerHTML = `<strong>${t("cabal_summary_transport_label", "Round-trip transport")}:</strong> ${
       cfg.transport
-        ? t("cabal_summary_transport_included", "Yes (+USD 30 total · up to 4 guests)")
+        ? t("cabal_summary_transport_included", "Yes (+USD 35 round trip · up to 4 guests)")
         : t("cabal_popup_transport_no", "No")
     }`;
     card.appendChild(pTransport);
@@ -496,7 +627,7 @@
     summary.appendChild(card);
 
     const total = calcTotal(cfg);
-    const detailParts = [`(${cfg.guests} × USD ${PRICE_PER_PERSON})`];
+    const detailParts = [`(${cfg.guests} × USD ${pricePerPerson(cfg)})`];
     if (cfg.transport) {
       detailParts.push(`+ USD ${TRANSPORT_FLAT_USD} ${t("cabal_transport_total_suffix", "round-trip transport")}`);
     }
@@ -533,21 +664,25 @@
   minusBtn.addEventListener("click", () => {
     guestCount = Math.max(1, guestCount - 1);
     syncGuestDisplay();
+    updateLiveTotal();
   });
   plusBtn.addEventListener("click", () => {
     guestCount = Math.min(MAX_GUESTS, guestCount + 1);
     syncGuestDisplay();
+    updateLiveTotal();
+  });
+
+  popup.querySelectorAll('input[name="cabalRide"], input[name="cabalTransport"]').forEach((input) => {
+    input.addEventListener("change", updateLiveTotal);
   });
 
   saveBtn.addEventListener("click", () => {
-    const timeInput = popup.querySelector('input[name="cabalDeparture"]:checked');
-    const time = timeInput && VALID_TIMES.includes(timeInput.value) ? timeInput.value : "10:00";
-    const transportInput = popup.querySelector('input[name="cabalTransport"]:checked');
-    const transport = transportInput && transportInput.value === "yes";
+    const draft = readPopupDraft();
     setConfig({
-      time,
-      guests: guestCount,
-      transport
+      ride: draft.ride,
+      time: draft.time,
+      guests: draft.guests,
+      transport: draft.transport
     });
     closePopup();
     renderSummary();
